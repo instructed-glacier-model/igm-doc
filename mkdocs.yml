@@ -1,8 +1,14 @@
 site_name: IGM documentation
-site_url: https://jouvetg.github.io
+site_url: https://jouvetg.github.io/igm-doc.github.io/
 
 nav:
-  - About: index.md
+  - Installation: 1.Installation.md
+  - Examples: 2.-Examples--(quick-start).md
+  - Runing-IGM: 3.-Runing-IGM.md
+  - IGM-module-documentation: 4.-IGM-module-documentation.md
+  - Custom-modules: 5.-Custom-modules-(coding).md
+  - Variables: 6.-Variables.md
+  - Q&A: Q&A.md
 
 theme:
   name: readthedocs
