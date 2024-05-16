@@ -2,16 +2,48 @@ site_name: IGM documentation
 site_url: https://jouvetg.github.io/igm-doc.github.io/
 
 nav:
-  - Installation: 1.Installation.md
-  - Examples: 2.-Examples--(quick-start).md
-  - Runing-IGM: 3.-Runing-IGM.md
-  - IGM-module-documentation: 4.-IGM-module-documentation.md
-  - Custom-modules: 5.-Custom-modules-(coding).md
-  - Variables: 6.-Variables.md
-  - Q&A: Q&A.md
+  - Installation: Installation.md
+  - Examples: Examples.md
+  - Running IGM: Running.md
+  - Modules:
+      - Pre-processing:
+           - oggm_shop: modules/oggm_shop.md
+           - load_ncdf: modules/load_ncdf.md
+           - load_tif: modules/load_tif.md
+           - include_icemask: modules/include_icemask.md
+           - pretraining: modules/pretraining.md
+           - optimize: modules/optimize.md
+      - Processing:
+           - clim_oggm: modules/clim_oggm.md
+           - smb_oggm: modules/smb_oggm.md
+           - iceflow: modules/iceflow.md
+           - time: modules/time.md
+           - thk: modules/thk.md
+           - vert_flow: modules/vert_flow.md
+           - enthalpy: modules/enthalpy.md
+           - particles: modules/particles.md
+           - rockflow: modules/rockflow.md
+           - glerosion: modules/glerosion.md
+           - avalanche: modules/avalanche.md
+           - gflex: modules/gflex.md
+      - Post-processing:
+           - write_ncdf: modules/write_ncdf.md
+           - write_tif: modules/write_tif.md
+           - write_ts: modules/write_ts.md
+           - plot2d: modules/plot2d.md
+           - write_particles: modules/write_particles.md
+           - print_info: modules/print_info.md
+           - print_comp: modules/print_comp.md
+           - anim_plotly: modules/anim_plotly.md
+           - anim_mayavi: modules/anim_mayavi.md
+           - anim_video: modules/anim_video.md
+  - Custom: Custum.md
+  - Variables: Variables.md
+  - Q&A: QandA.md
 
 theme:
-  name: readthedocs
-  highlightjs: true
-  hljs_languages:
-    - yaml
+  name: windmill-dark
+  
+extra:
+  version: 2.2
+

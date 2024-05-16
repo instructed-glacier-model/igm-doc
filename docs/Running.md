@@ -44,7 +44,7 @@ and many other module-specific parameters, see the [full list of parameters](htt
 
 # Modules (_modules_)
 
-![Check here to vizualize the flowchart of IGM modules](https://github.com/jouvetg/igm/blob/main/doc/IGM-modules-flowchart.png)
+![Check here to vizualize the flowchart of IGM modules](fig/IGM-modules-flowchart.png)
 
 **IGM is organized module-wise.** Each user must pick a sequence of existing **pre-processing**, **processing**, **post-processing** and/or **user-made** modules she/he wishes to have for her/his application (check at the [module documentation](https://github.com/jouvetg/igm/wiki/3.-Modules). Each module implements all least 4 functions for module-specific parameter definition, initialization, update and finalization, which are called by `igm_run`. This section helps to chose the appropriate module. First one needs **pre-processing modules**:
 
