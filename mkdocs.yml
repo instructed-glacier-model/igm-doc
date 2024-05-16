@@ -37,9 +37,11 @@ nav:
            - anim_plotly: modules/anim_plotly.md
            - anim_mayavi: modules/anim_mayavi.md
            - anim_video: modules/anim_video.md
-  - Custom: Custum.md
+  - Custom Modules: Custom_Modules.md
+  - About GPUs: About_GPUs.md
+  - Credits and references: Credits_and_references.md
   - Variables: Variables.md
-  - Q&A: QandA.md
+  - FAQ: FAQ.md
 
 theme:
   name: windmill-dark
