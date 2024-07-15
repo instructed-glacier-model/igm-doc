@@ -1,3 +1,7 @@
+<script> window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] }, svg: { fontCache: 'global' } }; </script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 ### <h1 align="center" id="title">IGM enthalpy module  </h1>
 
 **Warning: this rather complex module was not much tested so far, use it with care!**

@@ -44,7 +44,24 @@ nav:
   - FAQ: FAQ.md
 
 theme:
-  name: windmill-dark
+  name: material
+  palette: 
+ 
+    # Palette toggle for dark mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+ 
+    # Palette toggle for light mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7 
+
+
+        name: Switch to dark mode
+
+
   
 extra:
   version: 2.2
