@@ -8,6 +8,9 @@ pip install mkdocs
 pip install mkdocs-material
 ```
 
+URL of the documentatiON : https://jouvetg.github.io/igm-doc.github.io/ (not ideal, to be changed)
+
+
 We mostly follow the instruction from : https://dev.to/ar2pi/publish-your-markdown-docs-on-github-pages-6pe
 
 Here will be to ensure versionning : https://github.com/squidfunk/mkdocs-material-example-versioning
