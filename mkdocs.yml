@@ -1,0 +1,74 @@
+site_name: IGM documentation
+site_url: https://jouvetg.github.io/igm-doc.github.io/
+site_description: >-
+  Run your own glacier simulations in a fast, accurate, and user-friendly way.
+
+# Repository
+repo_name: jouvetg/igm
+repo_url: https://github.com/jouvetg/igm
+
+nav:
+  - Installation: Installation.md
+  - Examples: Examples.md
+  - Running IGM: Running.md
+  - Modules:
+      - Pre-processing:
+           - oggm_shop: modules/oggm_shop.md
+           - load_ncdf: modules/load_ncdf.md
+           - load_tif: modules/load_tif.md
+           - include_icemask: modules/include_icemask.md
+           - pretraining: modules/pretraining.md
+           - optimize: modules/optimize.md
+      - Processing:
+           - clim_oggm: modules/clim_oggm.md
+           - smb_oggm: modules/smb_oggm.md
+           - iceflow: modules/iceflow.md
+           - time: modules/time.md
+           - thk: modules/thk.md
+           - vert_flow: modules/vert_flow.md
+           - enthalpy: modules/enthalpy.md
+           - particles: modules/particles.md
+           - rockflow: modules/rockflow.md
+           - glerosion: modules/glerosion.md
+           - avalanche: modules/avalanche.md
+           - gflex: modules/gflex.md
+      - Post-processing:
+           - write_ncdf: modules/write_ncdf.md
+           - write_tif: modules/write_tif.md
+           - write_ts: modules/write_ts.md
+           - plot2d: modules/plot2d.md
+           - write_particles: modules/write_particles.md
+           - print_info: modules/print_info.md
+           - print_comp: modules/print_comp.md
+           - anim_plotly: modules/anim_plotly.md
+           - anim_mayavi: modules/anim_mayavi.md
+           - anim_video: modules/anim_video.md
+  - Custom Modules: Custom_Modules.md
+  - About GPUs: About_GPUs.md
+  - Credits and references: Credits_and_references.md
+  - Variables: Variables.md
+  - FAQ: FAQ.md
+
+theme:
+  name: material
+  palette: 
+ 
+    # Palette toggle for dark mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+ 
+    # Palette toggle for light mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7 
+
+
+        name: Switch to dark mode
+
+
+  
+extra:
+  version: 2.2
+
