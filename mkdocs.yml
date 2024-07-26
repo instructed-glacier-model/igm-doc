@@ -1,6 +1,10 @@
 site_name: IGM documentation
 site_url: https://jouvetg.github.io/igm-doc.github.io/
 
+# Repository
+repo_name: jouvetg/igm
+repo_url: https://github.com/jouvetg/igm
+
 nav:
   - Installation: Installation.md
   - Examples: Examples.md
