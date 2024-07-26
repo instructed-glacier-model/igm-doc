@@ -1,4 +1,4 @@
-[submodule "igm-doc"]
-	path = igm-doc
-	url = https://github.com/jouvetg/igm-doc
+[submodule "igm-doc.github.io"]
+	path = igm-doc.github.io
+	url = https://github.com/jouvetg/igm-doc.github.io
 	branch = main
