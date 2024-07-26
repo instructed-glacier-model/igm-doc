@@ -1,5 +1,7 @@
 site_name: IGM documentation
 site_url: https://jouvetg.github.io/igm-doc.github.io/
+site_description: >-
+  Run your own glacier simulations in a fast, accurate, and user-friendly way.
 
 # Repository
 repo_name: jouvetg/igm
