@@ -1,3 +1,9 @@
+---
+title: IGM
+template: home.html
+hide:
+  - footer
+---
 
 # Before to start
 

@@ -15,7 +15,7 @@ Whenever this is possible, IGM adopts name convention of [PISM](https://www.pism
 | V              | (nz,ny,nx)       |  y-horiz. 3D velocity field of ice  | m/y     |
 | W              | (nz,ny,nx)       |  z-vert.  3D velocity field of ice  | m/y     |
 | arrhenius      | (ny,nx)          |  Arrhenius Factor                 | MPa^(-3) y^(-1) |
-| slidingco      | (ny,nx)          |  Sliding Coefficient              | MPa m^(-1/3) y^(-1/3) |
+| slidingco      | (ny,nx)          |  Sliding Coefficient              | $$MPa m^{-1/3} y^(-1/3)$$ |
 | divflux        | (ny,nx)          |  Divergence of the flux           | m/y     |
 | icemask        | (ny,nx)          |  Mask to restrict the smb comp.   | -       |
 | dtopgdt        | (ny,nx)          |  Erosion rate                     | m/y     |
