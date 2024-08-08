@@ -2,3 +2,7 @@
 	path = igm-doc.github.io
 	url = git@github.com:jouvetg/igm-doc.github.io.git
 	branch = main
+[submodule "igm"]
+	path = igm
+	url = git@github.com:jouvetg/igm.git
+	branch = feature/hydra
