@@ -1,0 +1,30 @@
+[data-md-color-scheme="glacier_light"]  {
+	--md-primary-fg-color:        #ffffff;
+	--md-primary-fg-color--light: #80B3C4;
+	--md-primary-fg-color--dark:  #152636;
+	--md-primary-bg-color:        #0F1035;
+	--md-footer-fg-color:	      #0F1035;
+	--md-footer-fg-color--light: #0F1035;
+	--md-footer-fg-color--lighter: #0F1035;
+
+	--md-footer-bg-color--dark:  #f0f0f0; 
+	--md-code-bg-color: 		 #f0f0f0;
+  }
+
+[data-md-color-scheme="glacier_dark"]  {
+	--md-primary-fg-color:        #0F1035;
+	--md-primary-fg-color--light: #80B3C4;
+	--md-primary-fg-color--dark:  #152636;
+	--md-primary-bg-color:        #ffffff;
+	--md-default-bg-color: 		  #0F1035;
+	--md-footer-bg-color:		  #0F1035;
+	--md-footer-bg-color--dark:  #0F1035;
+	--md-code-bg-color: 		 #07081f;
+  }
+  
+/* .md-typeset h1 {
+    color: greenyellow;
+    --md-text-font: "arial";
+} */
+
+/* https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/stylesheets/main/_colors.scss */
