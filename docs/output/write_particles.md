@@ -1,9 +1,9 @@
-# plot2d
+# write_particles
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/plot2d.yaml" %}
+{% include "../../igm/igm/conf/output/write_particles.yaml" %}
 ~~~
 
 ## Arguments

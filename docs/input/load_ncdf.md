@@ -1,9 +1,9 @@
-# include_icemask
+# load_ncdf
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/include_icemask.yaml" %}
+{% include "../../igm/igm/conf/input/load_ncdf.yaml" %}
 ~~~
 
 ## Arguments

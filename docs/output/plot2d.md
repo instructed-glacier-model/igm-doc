@@ -1,9 +1,9 @@
-# write_ts
+# plot2d
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/write_ts.yaml" %}
+{% include "../../igm/igm/conf/output/plot2d.yaml" %}
 ~~~
 
 ## Arguments

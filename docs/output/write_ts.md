@@ -1,9 +1,9 @@
-# write_ncdf
+# write_ts
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/write_ncdf.yaml" %}
+{% include "../../igm/igm/conf/output/write_ts.yaml" %}
 ~~~
 
 ## Arguments

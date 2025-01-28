@@ -1,9 +1,9 @@
-# iceflow_v1
+# include_icemask
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/iceflow_v1.yaml" %}
+{% include "../../igm/igm/conf/input/include_icemask.yaml" %}
 ~~~
 
 ## Arguments

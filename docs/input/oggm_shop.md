@@ -1,9 +1,9 @@
-# load_tif
+# oggm_shop
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/load_tif.yaml" %}
+{% include "../../igm/igm/conf/input/oggm_shop.yaml" %}
 ~~~
 
 ## Arguments

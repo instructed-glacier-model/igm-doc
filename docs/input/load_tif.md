@@ -1,9 +1,9 @@
-# write_tif
+# load_tif
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/write_tif.yaml" %}
+{% include "../../igm/igm/conf/input/load_tif.yaml" %}
 ~~~
 
 ## Arguments

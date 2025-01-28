@@ -1,9 +1,9 @@
-# write_particles
+# write_tif
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/write_particles.yaml" %}
+{% include "../../igm/igm/conf/output/write_tif.yaml" %}
 ~~~
 
 ## Arguments

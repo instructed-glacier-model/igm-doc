@@ -1,9 +1,9 @@
-# oggm_shop
+# write_ncdf
 This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/oggm_shop.yaml" %}
+{% include "../../igm/igm/conf/output/write_ncdf.yaml" %}
 ~~~
 
 ## Arguments

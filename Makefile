@@ -14,3 +14,5 @@ publish: deploy update-build-version
 .PHONY: deploy
 deploy:
 	cd $(GH_PAGE) && mkdocs gh-deploy --config-file ../mkdocs.yml --remote-branch main
+
+# mike deploy --push --update-aliases 0.1 latest
