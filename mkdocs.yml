@@ -19,6 +19,17 @@ nav:
       - Quick Demo: examples/quick_demo.md
       - Aletsch Basic: examples/aletsch_basic.md
   - Running IGM: Running.md
+  - Input:
+    - inlude_icemask: automated_modules/inlude_icemask.md
+    - load_ncdf: automated_modules/load_ncdf.md
+    - load_tif: automated_modules/load_tif.md
+    - oggm_shop: automated_modules/oggm_shop.md
+  - Output:
+    - write_ncdf: automated_modules/write_ncdf.md
+    - write_particles: automated_modules/write_particles.md
+    - write_tif: automated_modules/write_tif.md
+    - write_ts: automated_modules/write_ts.md
+    - plot2d: automated_modules/plot2d.md
   - Modules:
     - avalanche: automated_modules/avalanche.md
     - clim_oggm: automated_modules/clim_oggm.md
@@ -26,15 +37,7 @@ nav:
     - gflex: automated_modules/gflex.md
     - glerosion: automated_modules/glerosion.md
     - iceflow: automated_modules/iceflow.md
-    - iceflow_v1: automated_modules/iceflow_v1.md
-    - inlude_icemask: automated_modules/inlude_icemask.md
-    - load_ncdf: automated_modules/load_ncdf.md
-    - load_tif: automated_modules/load_tif.md
-    - oggm_shop: automated_modules/oggm_shop.md
-    - optimize_v1: automated_modules/optimize_v1.md
     - particles: automated_modules/particles.md
-    - particles_v1: automated_modules/particles_v1.md
-    - plot2d: automated_modules/plot2d.md
     - print_info: automated_modules/print_info.md
     - read_output: automated_modules/read_output.md
     - rockflow: automated_modules/rockflow.md
@@ -45,10 +48,6 @@ nav:
     - thk: automated_modules/thk.md
     - time_igm: automated_modules/time_igm.md
     - vert_flow: automated_modules/vert_flow.md
-    - write_ncdf: automated_modules/write_ncdf.md
-    - write_particles: automated_modules/write_particles.md
-    - write_tif: automated_modules/write_tif.md
-    - write_ts: automated_modules/write_ts.md
           
       # - Pre-processing:
       #      - oggm_shop: modules/oggm_shop.md
