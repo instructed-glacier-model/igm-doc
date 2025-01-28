@@ -18,6 +18,12 @@ Build the website and test in a browser: (Navigate to http://127.0.0.1:8000/ to 
 ```bash
 mkdocs serve
 ```
+to see the non-versioned website or
+
+```bash
+mike serve
+```
+to see the versioned website.
 
 Pulish the website:
 

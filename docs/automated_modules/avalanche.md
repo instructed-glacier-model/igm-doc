@@ -13,16 +13,13 @@ program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet
 ## Arguments
 Here we store a table with
 
-<!-- | Name   | Units   | Definiton      |
-| ------------- | ------------- | ------------- |
-| avalanche_update_freq | years | Frequency at which the avalanche is updated |
-| avalanche_angleOfRepose | degrees | Angle of repose | -->
+??? warning "Warning Title Here"
+
+    This is a warning block
 
 {{ read_yaml("../../igm/igm/conf_help/modules/avalanche.yaml") }}
 
 ## Example Usage
-
-### Example 1
 We can run a simulation with a higher frequency of avalanches by changing the `avalanche_update_freq` argument. We can either do this in our config file.
 
 ```yaml linenums="1", title="params.yaml", hl_lines="19 20"
@@ -48,4 +45,6 @@ modules:
 	avalanche_update_freq: 5 # every 5 years
 ```
 Alternatively, we can do it over the command line
-`igm_run +experiment/params modules.avalanche.avalanche_update_freq=5`
+```bash
+igm_run +experiment/params modules.avalanche.avalanche_update_freq=5
+```

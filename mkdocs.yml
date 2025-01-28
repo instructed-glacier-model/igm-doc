@@ -1,4 +1,4 @@
-site_name: Instructed Glacier Model (IGM) Documentation
+site_name: Instructed Glacier Model (IGM)
 site_url: https://jouvetg.github.io/igm-doc.github.io/
 site_description: >-
   Run your own glacier simulations in a fast, accurate, and user-friendly way.
@@ -10,6 +10,7 @@ repo_url: https://github.com/jouvetg/igm
 nav:
   - Home: index.md
   - Installation:
+      - Quick Start: installation/quick_start.md
       - Linux: installation/linux.md
       - Windows: installation/windows.md
       - MacOS: installation/mac.md
@@ -101,10 +102,13 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
 
 theme:
   name: material
   custom_dir: docs/material/overrides
+  logo: assets/logo.svg
   palette:
     - scheme: glacier_light
       # primary: black
@@ -119,11 +123,16 @@ theme:
         name: Switch to light mode
 
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Inter
+    # code: PragmataPro
+    code: Fira Code
 
   language: en
   features:
+    - content.code.copy
+    - content.code.annotate
+    - content.code.select
+
     - navigation.path
     - navigation.instant.progress
     - navigation.tabs
@@ -135,14 +144,19 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
-  
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
 extra:
-  version: 2.2
-  social:
-    - icon: fontawesome/brands/discord 
-      link: https://fosstodon.org/@squidfunk
-    - icon: fontawesome/brands/github 
-      link: https://fosstodon.org/@squidfunk
-    - icon: fontawesome/brands/docker
-      link: https://fosstodon.org/@squidfunk
+  version:
+    provider: mike
+  # social:
+  #   - icon: fontawesome/brands/discord 
+  #     link: https://fosstodon.org/@squidfunk
+  #   - icon: fontawesome/brands/github 
+  #     link: https://fosstodon.org/@squidfunk
+  #   - icon: fontawesome/brands/docker
+  #     link: https://fosstodon.org/@squidfunk
 
