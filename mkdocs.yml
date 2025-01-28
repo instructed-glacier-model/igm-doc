@@ -46,7 +46,7 @@ nav:
     - smb_simple: automated_modules/smb_simple.md
     - texture: automated_modules/texture.md
     - thk: automated_modules/thk.md
-    - time_igm: automated_modules/time_igm.md
+    - time: automated_modules/time.md
     - vert_flow: automated_modules/vert_flow.md
           
       # - Pre-processing:
