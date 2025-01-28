@@ -20,16 +20,16 @@ nav:
       - Aletsch Basic: examples/aletsch_basic.md
   - Running IGM: Running.md
   - Input:
-    - inlude_icemask: automated_modules/inlude_icemask.md
-    - load_ncdf: automated_modules/load_ncdf.md
-    - load_tif: automated_modules/load_tif.md
-    - oggm_shop: automated_modules/oggm_shop.md
+    - inlude_icemask: input/inlude_icemask.md
+    - load_ncdf: input/load_ncdf.md
+    - load_tif: input/load_tif.md
+    - oggm_shop: input/oggm_shop.md
   - Output:
-    - write_ncdf: automated_modules/write_ncdf.md
-    - write_particles: automated_modules/write_particles.md
-    - write_tif: automated_modules/write_tif.md
-    - write_ts: automated_modules/write_ts.md
-    - plot2d: automated_modules/plot2d.md
+    - write_ncdf: output/write_ncdf.md
+    - write_particles: output/write_particles.md
+    - write_tif: output/write_tif.md
+    - write_ts: output/write_ts.md
+    - plot2d: output/plot2d.md
   - Modules:
     - avalanche: automated_modules/avalanche.md
     - clim_oggm: automated_modules/clim_oggm.md

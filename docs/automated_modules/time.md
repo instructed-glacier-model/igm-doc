@@ -3,7 +3,7 @@ This modules allows you to calculate ...
 
 ## Config Structure  
 ~~~yaml
-{% include "../../igm/igm/conf/modules/time_igm.yaml" %}
+{% include "../../igm/igm/conf/modules/time.yaml" %}
 ~~~
 
 ## Arguments
