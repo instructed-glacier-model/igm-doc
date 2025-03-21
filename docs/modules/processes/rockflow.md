@@ -1,0 +1,15 @@
+# rockflow
+
+This module extends the ice flow outside the glaciated area, by giving a constant speed and along-slope flow direction. This modules serves to track rock-like particles (with module `particles`) everywhere in ice-free and ice-filled areas, particles being either advected at constant steep (controlled by parameter `rock_flow_speed`) following the stepest gradient of the ice-free terrain in 2D, or by ice flow in 3D.
+
+## Config Structure  
+~~~yaml
+{% include  "../../../igm/igm/conf/modules/rockflow.yaml" %}
+~~~
+
+## Arguments
+Here we store a table with
+
+{{ read_raw( "../../../igm/igm/conf_help/modules/rockflow.md") }}
+
+## Example Usage

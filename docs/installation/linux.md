@@ -1,6 +1,7 @@
 1. Install NVIDIA drivers
 
 If you aim to use only the CPU or already get an output from `nvidia-smi`, you can skip this step.
+
 ```bash
 
 # get the latest libraries from apt
@@ -10,6 +11,7 @@ sudo apt upgrade
 # choose which driver version is compatible with your GPU device (in this case 510)
 sudo apt install nvidia-driver-510 nvidia-dkms-510
 sudo reboot # you wont see the changes until after you reboot
+
 ```
 After rebooting, you can check your driver version with the command `watch -d -n 0.5 nvidia-smi` should give you live information on your GPU device.
 
@@ -26,6 +28,7 @@ conda create --name igm python=3.10
 # activate environment to install IGM
 conda activate igm
 ```
+
 or
 
 ```bash
@@ -39,16 +42,21 @@ source igm/bin/activate
 3. Install IGM
 
 For simple usage, you can install the latest **IGM stable** version and its dependencies from the Pypi as follows:
+
 ```bash
 pip install igm_model
 ```
+
 OR for using all and recent features, you can install the IGM **development version** from the github repository as follows:
+
 ```bash
 git clone https://github.com/jouvetg/igm.git
 cd igm
 pip install -e .
 ```
+
 After that, you may run any example (``igm_run``). As IGM is being updated often, make sure you have the latest version, you may run
+
 ```bash
 git pull
 ```

@@ -1,2 +1,5 @@
 site/
 igm-doc.github.io
+markdown_testing.md
+
+__pycache__/
