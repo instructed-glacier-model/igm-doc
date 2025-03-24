@@ -16,6 +16,7 @@ This IGM module models the ice enthalpy, which permits to jointly model the ice 
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
+
 <table>
   <thead>
     <tr>
@@ -30,7 +31,7 @@ This IGM module models the ice enthalpy, which permits to jointly model the ice 
     {% for key, value in module.items() %}
     <tr>
       <td>{{ key }}</td>
-      <td>{{ module_help[key].Type}}</td>
+      <td><span class={{module_help[key].Type}}_table>{{ module_help[key].Type}}</span></td>
       <td><span class="math">{{ module_help[key].Units }}</span></td>
       <td>{{ module_help[key].Description}}</td>
 

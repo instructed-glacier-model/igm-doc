@@ -73,7 +73,7 @@ When treating ery large arrays, retraining must be done sequentially patch-wise 
     {% for key, value in module_iceflow.items() %}
     <tr>
       <td>{{ key }}</td>
-      <td>{{ module_help_iceflow[key].Type}}</td>
+      <td><span class={{module_help_iceflow[key].Type}}_table>{{ module_help_iceflow[key].Type}}</span></td>
       <!-- <td>{{ module_help_iceflow[key].Units}}</td> -->
       <td><span class="math">{{ module_help_iceflow[key].Units }}</span></td>
       <td>{{ module_help_iceflow[key].Description}}</td>
