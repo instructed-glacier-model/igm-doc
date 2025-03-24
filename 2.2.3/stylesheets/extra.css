@@ -78,6 +78,38 @@
   display: inline-block;
 }
 
+
+
+.float_table {
+  background-color: rgba(37, 113, 228, 0.5);
+  border-radius: 0.2rem;
+  padding: .1rem 0.2rem;
+}
+
+.int_table {
+  background-color: rgba(30, 139, 20, 0.466);
+  border-radius: 0.2rem;
+  padding: .1rem 0.2rem;
+}
+
+.integer_table {
+  background-color: rgba(207, 73, 55, 0.473);
+  border-radius: 0.2rem;
+  padding: .1rem 0.2rem;
+}
+
+.boolean_table {
+  background-color: rgba(37, 184, 32, 0.493);
+  border-radius: 0.2rem;
+  padding: .1rem 0.2rem;
+}
+
+.string_table {
+  background-color: rgba(191, 36, 211, 0.575);
+  border-radius: 0.2rem;
+  padding: .1rem 0.2rem;
+}
+
 [data-md-color-scheme="glacier_dark"]  {
 
 	 /* Indicate that the site is rendered with a dark color scheme */
