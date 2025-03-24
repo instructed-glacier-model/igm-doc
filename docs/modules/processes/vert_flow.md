@@ -4,12 +4,42 @@ This IGM module computes the vertical component (providing state.W) of the veloc
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/modules/vert_flow.yaml" %}
+{% include  "../../../igm/igm/conf/processes/vert_flow.yaml" %}
 ~~~
 
 ## Arguments
-Here we store a table with
+{% set config = load_yaml('igm/igm/conf/processes/vert_flow.yaml') %}
+{% set help = load_yaml('igm/igm/conf_help/processes/vert_flow.yaml') %}
+{% set module_key = config.keys() | list | first %}
+{% set module = config[module_key] %}
+{% set module_help = help[module_key] %}
 
-{{ read_raw( "../../../igm/igm/conf_help/modules/vert_flow.md") }}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      {% for key in help.header %}
+      <th>{{ key }}</th>
+      {% endfor %}
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, value in module.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ module_help[key].type }}</td>
+      <td>{{ module_help[key].units }}</td>
+      <!-- <td><span class="math">{{ help_module[key].units }}</span></td> -->
+      <td>{{ module_help[key].description }}</td>
+      <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 ## Example Usage

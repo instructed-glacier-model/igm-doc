@@ -43,12 +43,74 @@ When treating ery large arrays, retraining must be done sequentially patch-wise 
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/modules/iceflow.yaml" %}
+{% include  "../../../igm/igm/conf/processes/iceflow.yaml" %}
 ~~~
 
 ## Arguments
-Here we store a table with
+{% set config = load_yaml('igm/igm/conf/processes/iceflow.yaml') %}
+{% set help = load_yaml('igm/igm/conf_help/processes/iceflow.yaml') %}
+{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set module_key = config.keys() | list | first %}
+{% set module_iceflow = config[module_key].iceflow %}
+{% set module_optimize = config[module_key].optimize %}
+{% set module_pretraining = config[module_key].pretraining %}
+{% set module_help_iceflow = help.iceflow %}
+{% set module_help_optimize = help.optimize %}
+{% set module_help_pretraining = help.pretraining %}
 
-{{ read_raw( "../../../igm/igm/conf_help/modules/iceflow.md") }}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      {% for key in header %}
+      <th>{{ key }}</th>
+      {% endfor %}
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <th>Iceflow</th>
+  <tbody>
+    {% for key, value in module_iceflow.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ module_help_iceflow[key].Type}}</td>
+      <!-- <td>{{ module_help_iceflow[key].Units}}</td> -->
+      <td><span class="math">{{ module_help_iceflow[key].Units }}</span></td>
+      <td>{{ module_help_iceflow[key].Description}}</td>
+      <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <th>Optimize</th>
+  <tbody>
+    {% for key, value in module_optimize.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ module_help_optimize[key].Type}}</td>
+      <!-- <td>{{ module_help_optimize[key].Units}}</td> -->
+      <td><span class="math">{{ module_help_optimize[key].Units }}</span></td>
+      <td>{{ module_help_optimize[key].Description}}</td>
+      <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <th>Pretraining</th>
+  <tbody>
+    {% for key, value in module_pretraining.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ module_help_pretraining[key].Type}}</td>
+      <!-- <td>{{ module_help_pretraining[key].Units}}</td> -->
+      <td><span class="math">{{ module_help_pretraining[key].Units }}</span></td>
+      <td>{{ module_help_pretraining[key].Description}}</td>
+      <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 ## Example Usage

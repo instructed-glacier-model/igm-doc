@@ -1,14 +1,17 @@
-# texture
-This modules allows you to calculate ...
+# write_ts
+
+This IGM module writes time serie variables (ice glaciated area and volume) into the NetCDF output file defined by parameter `wts_output_file` (default output_ts.nc). The saving frequency is given by parameter `time_save` defined in module `time`.
+
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/processes/texture.yaml" %}
+{% include  "../../../igm/igm/conf/outputs/write_ts.yaml" %}
 ~~~
 
-## Arguments
-{% set config = load_yaml('igm/igm/conf/processes/texture.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/processes/texture.yaml') %}
+## Parameters
+
+{% set config = load_yaml('igm/igm/conf/outputs/write_ts.yaml') %}
+{% set help = load_yaml('igm/igm/conf_help/outputs/write_ts.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
@@ -29,8 +32,7 @@ This modules allows you to calculate ...
     <tr>
       <td>{{ key }}</td>
       <td>{{ module_help[key].Type}}</td>
-      <!-- <td>{{ module_help[key].Units}}</td> -->
-      <td><span class="math">{{ module_help[key].Units }}</span></td>
+      <td>{{ module_help[key].Units}}</td>
       <td>{{ module_help[key].Description}}</td>
 
       <td>{{ value }}</td>

@@ -4,23 +4,24 @@ Module `clim_oggm` reads monthly time series of historical GSWP3_W5E5 climate da
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/modules/clim_oggm.yaml" %}
+{% include  "../../../igm/igm/conf/processes/clim_oggm.yaml" %}
 ~~~
 
 ## Parameters
 Here we store a table with
 
-{% set config = load_yaml('igm/igm/conf/modules/clim_oggm.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/modules/clim_oggm.yaml') %}
+{% set config = load_yaml('igm/igm/conf/processes/clim_oggm.yaml') %}
+{% set help = load_yaml('igm/igm/conf_help/processes/clim_oggm.yaml') %}
+{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
-{% set module_help = help[module_key] %}
+{% set module_help = help %}
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      {% for key in help.header %}
+      {% for key in header %}
       <th>{{ key }}</th>
       {% endfor %}
       <th>Default Value</th>
@@ -30,15 +31,19 @@ Here we store a table with
     {% for key, value in module.items() %}
     <tr>
       <td>{{ key }}</td>
-      <td>{{ module_help[key].type }}</td>
-      <!-- <td>{{ module_help[key].units | safe }}</td> -->
-      <td><span class="math">{{ module_help[key].units }}</span></td>
-      <td>{{ module_help[key].description }}</td>
+      <td>{{ module_help[key].Type}}</td>
+      <td>{{ module_help[key].Units}}</td>
+      <td>{{ module_help[key].Description}}</td>
+
       <td>{{ value }}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script> -->
 
 ## Example Usage
 We can run a simulation with a higher frequency of avalanches by changing the ... argument. We can either do this in our config file.

@@ -6,11 +6,44 @@ This module depends on `rasterio`.
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/input/load_tif.yaml" %}
+{% include  "../../../igm/igm/conf/inputs/load_tif.yaml" %}
 ~~~
 
 ## Parameters
 
-{{ read_raw( "../../../igm/igm/conf_help/input/load_tif.md") }}
+{% set config = load_yaml('igm/igm/conf/inputs/load_tif.yaml') %}
+{% set help = load_yaml('igm/igm/conf_help/inputs/load_tif.yaml') %}
+{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set module_key = config.keys() | list | first %}
+{% set module = config[module_key] %}
+{% set module_help = help %}
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      {% for key in header %}
+      <th>{{ key }}</th>
+      {% endfor %}
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, value in module.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ module_help[key].Type}}</td>
+      <td>{{ module_help[key].Units}}</td>
+      <td>{{ module_help[key].Description}}</td>
+
+      <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 ## Example Usage

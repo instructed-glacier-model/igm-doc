@@ -32,10 +32,10 @@ nav:
   - Modules:
     - What are modules?: modules/introduction.md
     - Input:
-      - inlude_icemask: modules/input/include_icemask.md
-      - load_ncdf: modules/input/load_ncdf.md
-      - load_tif: modules/input/load_tif.md
-      - oggm_shop: modules/input/oggm_shop.md
+      # - inlude_icemask: modules/input/include_icemask.md
+      - load_ncdf: modules/inputs/load_ncdf.md
+      - load_tif: modules/inputs/load_tif.md
+      - oggm_shop: modules/inputs/oggm_shop.md
     - Processes:
       - avalanche: modules/processes/avalanche.md
       - clim_oggm: modules/processes/clim_oggm.md
@@ -55,11 +55,11 @@ nav:
       - time: modules/processes/time.md
       - vert_flow: modules/processes/vert_flow.md
     - Output:
-      - write_ncdf: modules/output/write_ncdf.md
-      - write_particles: modules/output/write_particles.md
-      - write_tif: modules/output/write_tif.md
-      - write_ts: modules/output/write_ts.md
-      - plot2d: modules/output/plot2d.md
+      - write_ncdf: modules/outputs/write_ncdf.md
+      - write_particles: modules/outputs/write_particles.md
+      - write_tif: modules/outputs/write_tif.md
+      - write_ts: modules/outputs/write_ts.md
+      - plot2d: modules/outputs/plot2d.md
     - Custom: about/custom_modules.md
 
   # - Gallery:
@@ -141,8 +141,8 @@ extra_css:
 
 extra_javascript:
   - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra:

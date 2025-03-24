@@ -10,12 +10,44 @@ where $P_i^{sol}$ is the is the monthly solid precipitation, $T_i$ is the monthl
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/modules/smb_oggm.yaml" %}
+{% include  "../../../igm/igm/conf/processes/smb_oggm.yaml" %}
 ~~~
 
 ## Arguments
-Here we store a table with
+{% set config = load_yaml('igm/igm/conf/processes/smb_oggm.yaml') %}
+{% set help = load_yaml('igm/igm/conf_help/processes/smb_oggm.yaml') %}
+{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set module_key = config.keys() | list | first %}
+{% set module = config[module_key] %}
+{% set module_help = help %}
 
-{{ read_raw( "../../../igm/igm/conf_help/modules/smb_oggm.md") }}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      {% for key in header %}
+      <th>{{ key }}</th>
+      {% endfor %}
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, value in module.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ module_help[key].Type}}</td>
+      <!-- <td>{{ module_help[key].Units}}</td> -->
+      <td><span class="math">{{ module_help[key].Units }}</span></td>
+      <td>{{ module_help[key].Description}}</td>
+
+      <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 ## Example Usage
