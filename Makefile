@@ -13,6 +13,8 @@ publish: deploy update-build-version
 
 .PHONY: deploy
 deploy:
-	cd $(GH_PAGE) && mkdocs gh-deploy --config-file ../mkdocs.yml --remote-branch main
+	mike deploy --config-file mkdocs.yml --remote origin --push --update-aliases latest --allow-empty
 
-# mike deploy --config-file ../mkdocs.yml --remote origin --push --update-aliases 2.2.3 latest --allow-empty
+# how to read a git tag from a commit and place it here?
+
+# cd $(GH_PAGE) && mkdocs gh-deploy --config-file ../mkdocs.yml --remote-branch main # OLD ONE WITH MKDOCS instead of MIKE
