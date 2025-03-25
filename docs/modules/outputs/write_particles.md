@@ -1,6 +1,6 @@
-# write_particles
+# Module `write_particles`
 
-This IGM module writes particle time-position in csv files computed by module `particles`. The saving frequency is given by parameter `time_save` defined in module `time`.
+This IGM module writes particle time-position in csv files computed by module `particles`. The saving frequency is given by parameter `processes.time.save` defined in module `time`.
 
 The data are stored in folder 'trajectory' (created if does not exist). Files 'traj-TIME.csv' reports the space-time position of the particles at time TIME with the following structure:
 
