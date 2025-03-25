@@ -44,7 +44,6 @@ nav:
       - glerosion: modules/processes/glerosion.md
       - iceflow: modules/processes/iceflow.md
       - particles: modules/processes/particles.md
-      - print_info: modules/processes/print_info.md
       - read_output: modules/processes/read_output.md
       - rockflow: modules/processes/rockflow.md
       - smb_accpdd: modules/processes/smb_accpdd.md
@@ -55,6 +54,7 @@ nav:
       - time: modules/processes/time.md
       - vert_flow: modules/processes/vert_flow.md
     - Output:
+      - local: modules/outputs/local.md
       - write_ncdf: modules/outputs/write_ncdf.md
       - write_particles: modules/outputs/write_particles.md
       - write_tif: modules/outputs/write_tif.md

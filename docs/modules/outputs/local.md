@@ -1,18 +1,18 @@
-# Module `write_ncdf`
+# Module `local`
 
 This IGM module writes 2D field variables defined in the paramer list `vars_to_save` into the NetCDF output file given by parameter `output_file` (default output.nc). The saving frequency is given by parameter `processes.time.save` defined in module `time`.
 
-This module depends on `netCDF4`.
+This module depends on `xarray`.
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/outputs/write_ncdf.yaml" %}
+{% include  "../../../igm/igm/conf/outputs/local.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/outputs/write_ncdf.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/outputs/write_ncdf.yaml') %}
+{% set config = load_yaml('igm/igm/conf/outputs/local.yaml') %}
+{% set help = load_yaml('igm/igm/conf_help/outputs/local.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
