@@ -17,6 +17,20 @@ The module needs horizontal velocities (state.U), as well as vertical speeds (st
 **Note:** in the code, positions of particles are recorded within a vector of lenght te number of traked particels state.xpos, state.ypos, state.zpos. Variable state.rhpos provide the relative height within the ice column (1 at the surface, 0 at the bed). At each time step, the weight of surface debris contains in each cell the 2D
  horizontal grid is computed, and stored in variable state.weight_particles.
 
+This IGM module writes particle time-position in csv files computed by module `particles`. The saving frequency is given by parameter `processes.time.save` defined in module `time`.
+
+The module also write the trajectories followed by particles: The data are stored in folder 'trajectory' (created if does not exist). Files 'traj-TIME.csv' reports the space-time position of the particles at time TIME with the following structure:
+
+```
+ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
+X,            X,           X,           X,           X,           X,           X,
+X,            X,           X,           X,           X,           X,           X,
+X,            X,           X,           X,           X,           X,           X,
+```
+
+providing in turn the particle ID, x,y,z positions, the relative height within the ice column, the seeding time, and the englacial time.
+
+
 ## Config Structure  
 ~~~yaml
 {% include  "../../../igm/igm/conf/processes/particles.yaml" %}

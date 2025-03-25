@@ -56,7 +56,6 @@ nav:
     - Output:
       - local: modules/outputs/local.md
       - write_ncdf: modules/outputs/write_ncdf.md
-      - write_particles: modules/outputs/write_particles.md
       - write_tif: modules/outputs/write_tif.md
       - write_ts: modules/outputs/write_ts.md
       - plot2d: modules/outputs/plot2d.md
