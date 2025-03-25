@@ -2,12 +2,29 @@
 
 This IGM module models ice flow dynamics in 3D using a Convolutional Neural Network based on Physics Informed Neural Network as described in this [paper](https://eartharxiv.org/repository/view/5335/). In more details, we train a CNN to minimise the energy associated with high-order ice flow equations within the time iterations of a glacier evolution model. As a result, our iflo_emulator is a computationally-efficient alternative to traditional solvers, it is capable to handle a variety of ice flow regimes and memorize previous solutions.
 
+This module permits to load, pretrain, retrain, and evaluate ice flow emulator. In addition, it can also be used for data assimilata / model inversion (former module `optimize`) setting this option:
+```json 
+"iflo_run_data_assimilation": true,
+```
+Check the documentation for using the `optimize` option below.
+
+
+It can also be used for pretraining an emulator (former module `pretraining`) setting option: 
+```json 
+"iflo_run_pretraining": true,
+```
+Check the documentation for using the `pretraining` option below.
+
+## Iceflow
+
+
+
 Pre-trained emulators are provided by defaults (parameter `iflo_emulator`). However, a from scratch iflo_emulator can be requested with `iflo_emulator=""`. The most important parameters are:
 
 - physical parameters 
 
 ```json 
-"iflo_init_slidingco": 10000.0  # Init slid. coeff. ($Mpa^{-3} y^{-1} m$)
+"iflo_init_slidingco": 0.045    # Init slid. coeff. ($Mpa y^{1/3} m^{-1/3}$)
 "iflo_init_arrhenius": 78.0     # Init Arrhenius cts ($Mpa^{-3} y^{-1}$)
 "iflo_exp_glen": 3              # Glen's exponent
 "iflo_exp_weertman":  3         # Weertman's sliding law exponent

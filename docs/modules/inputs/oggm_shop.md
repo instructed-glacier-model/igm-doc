@@ -1,18 +1,33 @@
-# oggm_shop
+# Module `oggm_shop`
 
-This IGM module uses OGGM utilities and GlaThiDa dataset to prepare data 
-for the IGM model for a specific glacier given the RGI ID (parameter `oggm_RGI_ID`), check at [GLIMS VIeWER](https://www.glims.org/maps/glims) to find the RGI ID of your glacier (only for RGI 6.0 - if using RGI 7.0, please download the RGI shapefiles and use the enquire function in your GIS software to find the right ID - by default, IGM looks at RGI 7.0C [here](https://nsidc.org/data/nsidc-0770/versions/7). but modifying line 304 of the module to '70G' instead of '70C' will give you that version instead. This may be made a parameter in the future once the RGI 7.0 release and associated OGGM data are all finalised). By default, data are already processed (parameter `oggm_preprocess` is True), with spatial resolution of 100 m and an oggm_border size of 30 m. For custom spatial resolution and size of 'oggm_border' to keep a safe distance to the glacier margin, one need to set `oggm_preprocess` parameter to False, and set `oggm_dx` and `oggm_border` parameter as desired. 
+This IGM module utilizes OGGM utilities and the GlaThiDa dataset to prepare data for the IGM model for a specific glacier given its RGI ID (parameter `RGI_ID`). You can check the [GLIMS Viewer](https://www.glims.org/maps/glims) to find the RGI ID of your glacier. By default, IGM references RGI 7.0C, which can be found [here](https://nsidc.org/data/nsidc-0770/versions/7). Altering the `RGI_product` parameter ('C' for glacier complex or 'G' for individual glacier) allows you to switch between these options. By default, data is preprocessed (`preprocess` parameter is set to True) with a spatial resolution of 100 meters and a border size of 30 meters. To customize the spatial resolution and the size of the 'border' to maintain a safe distance from the glacier margin, you need to set the `preprocess` parameter to False, and then set the `dx` and `border` parameters as desired. Upon running this module, its automatically downloads an ensemble of data (see Table) related to the specified glacier (individual or complex), which is then stored in a folder named after the RGI ID. 
 
-The module directly provides IGM with all 2D gridded variables (as tensorflow object), and are accessible in the code with e.g. `state.thk`. By default a copy of all the data are stored in a NetCDF file `input_saved.nc` so that this file can be readed directly in a second run with module `load_ncdf` instead of re-downloading the data with `oggm_shop` again. The module provides all data variables necessary to run IGM for a forward glacier evolution run (assuming we provide basal topography `topg` and ice thickness `thk`), or a preliminary data assimilation/ inverse modelling with the `optimize` module further data (typically `icemaskobs`, `thkinit`, `uvelsurf`, `vvelsurf`, `thkobs`, `usurfobs`).
+The module supplies IGM with all 2D gridded variables as TensorFlow objects, which can be accessed in the code using, for example, `state.thk`. By default, a copy of all data is stored in a NetCDF file named `input_saved.nc`. This file can be directly read during subsequent runs using an input module, eliminating the need to re-download the data with `shop` again. The module provides all the necessary data variables required to run IGM for a forward glacier evolution simulation, assuming the provision of basal topography `topg` and ice thickness `thk`. It also supports preliminary data assimilation and inverse modeling tasks within the `iceflow` module, typically including `icemaskobs`, `thkinit`, `uvelsurf`, `vvelsurf`, `thkobs`, and `usurfobs`.
 
-Data are currently based on COPERNICUS DEM 90 for the top surface DEM, the surface ice velocity from (Millan, 2022), the ice thickness from (Millan, 2022) or (farinotti2019) (the user can choose with parameter `oggm_thk_source` between `millan_ice_thickness` or `consensus_ice_thickness` dataset). 
+Data available via the shop are given in the following table. The user can choose the source for ice thickness or ice velocities with parameter `thk_source` (between `millan_ice_thickness` or `consensus_ice_thickness` dataset), and `vel_source` (between `millan_ice_velocity` or `its_live` dataset).
 
-When activating `oggm_include_glathida` to True, ice thickness profiles are downloaded from the [GlaThiDa depo](https://gitlab.com/wgms/glathida) and are rasterized with name `thkobs` (pixels without data are set to NaN values.) if using RGI 6.0. With RGI 7.0, the GlaThiDa data are downloaded for the specific glacier (defined by the RGI ID) from the OGGM server and are found as a text file in the download folder created by this module (glathida_data.csv), from where they are subsequently read in, rasterised, and NaNs added where there are no observations.
+Set `include_glathida` to True for retrieving the GlaThiDa ice thickness profiles for the inversion. When using RGI6.0,  these profiles are sourced from the [GlaThiDa repository](https://gitlab.com/wgms/glathida). When using RGI 7.0, GlaThiDa data specific to the glacier, identified by its RGI ID, are retrieved from the OGGM server. These data are saved as a text file named `glathida_data.csv` in the module's download directory. In both cases, the data are then read, rasterized with the label `thkobs`, and any pixels lacking observations are marked with NaN values.
 
-The OGGM script was written by Fabien Maussion. The GlaThiDa script was written by Ethan Welty & Guillaume Jouvet. RGI 7.0 modifications were written by Samuel Cook.
+| Variable              | Reference                              |
+|-----------------------|----------------------------------------|
+| Surface DEM           | Copernicus DEM GLO-90                  |
+| Ice thickness         | Millan et al. (2022)                   |
+| Ice thickness         | Farinotti et al. (2019)                |
+| Surface ice speeds    | Millan et al. (2022)                   |
+| Surface ice speeds    | [its-live.jpl.nasa.gov](https://its-live.jpl.nasa.gov) |
+| Glacier mask          | Randolph Glacier Inventory             |
+| Ice thickness profile | GlaThiDa                               |
+| Glacier change        | Hugonnet et al. (2021)                 |
+| Climate data          | GSWP3_W5E5                             |
+| Flowline              | OGGM                                   |
+
+**Table:** Products available with the `oggm_shop` module.
 
 The module depends (of course) on the `oggm` library. Unfortunately the module works on linux and Max, but not on windows (unless using WSL).
 
+## Contributors 
+
+F. Maussion, G. Jouvet, E. Welty (GlaThiDa-related code), S. Cook (RGI 7.0 modifications).
 
 ## Config Structure  
 ~~~yaml

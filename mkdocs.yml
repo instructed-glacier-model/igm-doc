@@ -32,6 +32,7 @@ nav:
   - Modules:
     - What are modules?: modules/introduction.md
     - Input:
+      - local: modules/inputs/local.md
       - load_ncdf: modules/inputs/load_ncdf.md
       - load_tif: modules/inputs/load_tif.md
       - oggm_shop: modules/inputs/oggm_shop.md

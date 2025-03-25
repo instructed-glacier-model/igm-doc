@@ -1,8 +1,18 @@
-# load_tif
+# Module `load_tif`
 
-This IGM module loads spatial 2D raster data from any tif file present in the working directory folder, and transform each of them into tensorflow variables, the name of the file becoming the name of the variable, e.g. the file topg.tif will yield variable topg, ect... It is expected here to import at least basal topography (variable `topg`). It also complete the data, e.g. the basal topography from ice thickness and surface topography. Note that all these variables will therefore be available in the code with `state.myvar` from myvar.tif (e.g. variable `icemask` can be provided, and served to define an accumulation area -- this is usefull for modelling an individual glaciers, and prevent overflowing in neighbouring catchements). The module also contains two functions for resampling (parameter `ltif_coarsen` should be increased to 2,3,4 ..., default 1 value means no coarsening) and cropping the data (parameter `ltif_crop` should be set to True, and the bounds must be definined as wished).
+**Warning: we advise to use instead module `local`**
+
+This IGM module is designed to load spatial 2D raster data from any tif file present in the working directory `folder`, and transform each of them into tensorflow variables, the name of the file becoming the name of the variable, e.g. the file topg.tif will yield variable topg, ect... At a minimum, the module is expected to import basal topography represented by the `topg` variable. Additionally, it completes the data, such as deriving basal topography from ice thickness and surface topography. Other fields present in the folder file will also be converted to TensorFlow variables, allowing them to be accessed in the code via `state.myvar`. For example, providing the `icemask` variable can be useful in defining an accumulation area, which is beneficial for modeling individual glaciers and preventing overflow into neighboring catchments.
+
+The module offers functions for resampling the data, where the `coarsen` parameter can be set to values like 2, 3, or 4 (with a default value of 1 indicating no coarsening), and for cropping the data, which requires setting the `crop` parameter to True and specifying the desired bounds.
+
+Additionally, by setting `icemask_invert` to True, an ice mask can be generated from an ESRI Shapefile specified by the `icemask_shapefile` parameter. This mask can identify areas that should contain glaciers or areas that should remain glacier-free, based on the `icemask_include` parameter.
 
 This module depends on `rasterio`.
+
+## Contributors
+
+G. Jouvet, A. Henz (icemask add-on)
 
 ## Config Structure  
 ~~~yaml
