@@ -1,12 +1,14 @@
 
 
-# Avalanche
+# Module `avalanche`
 
-This IGM module permits to model redistribution of snow due to avalanches.
-This routine move ice/snow downslope until the ice surface is everywhere
-at angle of repose. This function was adapted from 
-[Mark Kessler's GC2D](https://github.com/csdms-contrib/gc2d)
-program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet.
+This IGM module simulates the redistribution of snow and ice due to gravitational avalanches. The model assumes that if the local surface slope exceeds a given threshold (angle of repose), mass is redistributed toward lower elevations until the surface slope is reduced below this threshold.
+
+## Contributors
+
+Mark Kessler, Jürgen Mey, Guillaume Jouvet
+
+This function was adapted from [Mark Kessler's GC2D](https://github.com/csdms-contrib/gc2d) program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet.
 
 ## Config Structure  
 ~~~yaml

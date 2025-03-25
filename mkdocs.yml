@@ -38,6 +38,7 @@ nav:
       - oggm_shop: modules/inputs/oggm_shop.md
     - Processes:
       - avalanche: modules/processes/avalanche.md
+      - clim_glacialindex: modules/processes/clim_glacialindex.md
       - clim_oggm: modules/processes/clim_oggm.md
       - enthalpy: modules/processes/enthalpy.md
       - gflex: modules/processes/gflex.md

@@ -1,5 +1,10 @@
-# texture
+# Module `texture`
+
 This modules allows you to calculate ...
+
+## Contributors
+
+Brandon Finley
 
 ## Config Structure  
 ~~~yaml

@@ -1,6 +1,10 @@
-# clim_oggm
+# Module `clim_oggm`
 
-Module `clim_oggm` reads monthly time series of historical GSWP3_W5E5 climate data collected by the `oggm_shop` module, and generates monthly 2D raster fields of corrected precipitation, mean temperature, and temperature variability. To achieve this, we first apply a multiplicative correction factor for precipitation (parameter `prcp_fac`) and a biais correction for temperature (parameter `temp_bias`). Then, the module extrapolates temperature data to the entire glacier surface using a reference height and a constant lapse rate (parameter `temp_default_gradient`). In constrast, the point-wise data for precipitation and temperature variablity are extended to the entire domain without further correction. Module `oggm_shop` provides all calibrated parameters. The resulting fields are intended to be used to force the surface mass balance or enthalpy models.
+The `clim_oggm` module processes monthly historical climate data from the GSWP3_W5E5 dataset obtained through the `oggm_shop` module. It generates monthly 2D raster fields that include corrected precipitation, mean temperature, and temperature variability. The process involves applying a multiplicative correction factor to precipitation (specified by the `prcp_fac` parameter) and a bias correction to temperature (specified by the `temp_bias` parameter). Temperature data is then extrapolated across the glacier surface using a reference height and a constant lapse rate, determined by the `temp_default_gradient` parameter. Conversely, precipitation and temperature variability data are distributed across the entire domain without additional corrections. The `oggm_shop` module provides all necessary calibrated parameters. These resultant fields are designed for use in surface mass balance or enthalpy modeling.
+
+## Contributors
+
+Guillaume Jouvet, Fabien Maussion
 
 ## Config Structure  
 ~~~yaml

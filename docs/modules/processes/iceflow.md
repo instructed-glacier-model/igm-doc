@@ -1,4 +1,4 @@
-# Iceflow
+# Module `iceflow`
 
 This IGM module models ice flow dynamics in 3D using a Convolutional Neural Network based on Physics Informed Neural Network as described in this [paper](https://eartharxiv.org/repository/view/5335/). In more details, we train a CNN to minimise the energy associated with high-order ice flow equations within the time iterations of a glacier evolution model. As a result, our iflo_emulator is a computationally-efficient alternative to traditional solvers, it is capable to handle a variety of ice flow regimes and memorize previous solutions.
 
@@ -57,6 +57,10 @@ use the solver (`iflo_type='solved'`) instead of the default iflo_emulator (`ifl
 One may choose between 2D arrhenius factor by changing parameters between `iflo_dim_arrhenius=2` or `iflo_dim_arrhenius=3` -- le later is necessary for the enthalpy model.
 
 When treating ery large arrays, retraining must be done sequentially patch-wise for memory reason. The size of the pathc is controlled by parameter `iflo_multiple_window_size=750`.
+
+## Contributors
+
+Guillaume Jouvet
 
 ## Config Structure  
 ~~~yaml
