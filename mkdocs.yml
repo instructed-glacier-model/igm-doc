@@ -60,12 +60,13 @@ nav:
       - write_tif: modules/outputs/write_tif.md
       - write_ts: modules/outputs/write_ts.md
       - plot2d: modules/outputs/plot2d.md
-    - Custom: about/custom_modules.md
+    - User: about/user_modules.md
 
   # - Gallery:
   #     - Gallery: gallery/gallery.md
   - About:
       # - About IGM: about/about.md
+      - Transitioning from IGM 2 to 3: about/transition-IGM-2-to-3.md
       - Graphical Processing Units (GPUs): about/gpus.md
       - Tensorflow: about/tensorflow.md
       - Crediting IGM: about/credits_and_references.md
