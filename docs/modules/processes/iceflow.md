@@ -58,9 +58,7 @@ One may choose between 2D arrhenius factor by changing parameters between `iflo_
 
 When treating ery large arrays, retraining must be done sequentially patch-wise for memory reason. The size of the pathc is controlled by parameter `iflo_multiple_window_size=750`.
 
-## Contributors
-
-Guillaume Jouvet
+**Contributors:** Guillaume Jouvet, Samuel Cook (global-modelling features in optimize)
 
 ## Config Structure  
 ~~~yaml

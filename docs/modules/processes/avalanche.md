@@ -4,9 +4,7 @@
 
 This IGM module simulates the redistribution of snow and ice due to gravitational avalanches. The model assumes that if the local surface slope exceeds a given threshold (angle of repose), mass is redistributed toward lower elevations until the surface slope is reduced below this threshold.
 
-## Contributors
-
-Mark Kessler, Jürgen Mey, Guillaume Jouvet
+**Contributors:** Jürgen Mey, Guillaume Jouvet
 
 This function was adapted from [Mark Kessler's GC2D](https://github.com/csdms-contrib/gc2d) program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet.
 
@@ -47,40 +45,42 @@ This function was adapted from [Mark Kessler's GC2D](https://github.com/csdms-co
     {% endfor %}
   </tbody>
 </table>
-
-
       
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
 
-
 ## Example Usage
-We can run a simulation with a higher frequency of avalanches by changing the `avalanche_update_freq` argument. We can either do this in our config file.
 
-```yaml linenums="1", title="params.yaml", hl_lines="19 20"
+We can run a simulation with a higher frequency of avalanches by changing the `processes.avalanche.update_freq` argument. We can either do this in our config file.
+
+```yaml
 # @package _global_
 
 core:
   url_data: https://www.dropbox.com/scl/fo/kd7dix5j1tm75nj941pvi/h?rlkey=q7jtmf9yn3a970cqygdwne25j&dl=0
   
-modules:
+inputs:
   load_ncdf:
-    lncd_input_file: data/input.nc
+    input_file: data/input.nc
+
+processes:
   smb_simple:
-    smb_simple_array:
+    array:
       - ["time", "gradabl", "gradacc", "ela", "accmax"]
       - [1900, 0.009, 0.005, 2800, 2.0]
       - [2000, 0.009, 0.005, 2900, 2.0]
       - [2100, 0.009, 0.005, 3300, 2.0]
-  time_igm:
-    time_start: 1900.0
-    time_end: 2000.0
-    time_save: 10.0
+  time:
+    start: 1900.0
+    end: 2000.0
+    save: 10.0
   avalanche:
-	avalanche_update_freq: 5 # every 5 years
+	  update_freq: 5 # every 5 years
 ```
+
 Alternatively, we can do it over the command line
+
 ```bash
-igm_run +experiment/params modules.avalanche.avalanche_update_freq=5
+igm_run +experiment/params processes.avalanche.update_freq=5
 ```

@@ -7,9 +7,7 @@ Parameters are the update frequency `gflex_update_freq` and the Elastic thicknes
 
 This module only runs on CPU, which may be an issue for treating very large arrays. On the other hand, we do not expect a frequent update, therefore, this module should not be overall too consuming.
 
-## Contributors
-
-Jürgen Mey
+**Contributors:** Jürgen Mey
 
 ## Config Structure  
 ~~~yaml

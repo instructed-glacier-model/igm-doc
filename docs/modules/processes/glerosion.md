@@ -6,9 +6,7 @@ By default, we use the parameters from [1].
  
 [1] Herman, F. et al., Erosion by an Alpine glacier. Science 350, 193-195, 2015.
 
-## Contributors
-
-G. Jouvet
+**Contributors:** G. Jouvet
 
 ## Config Structure  
 ~~~yaml
@@ -53,5 +51,4 @@ G. Jouvet
 </script>
 
 ## Example Usage
-
-Hi
+ 

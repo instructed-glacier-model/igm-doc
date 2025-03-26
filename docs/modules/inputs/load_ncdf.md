@@ -12,9 +12,7 @@ The module also supports restarting an IGM run using a NetCDF file produced from
 
 This module depends on `netCDF4`.
 
-## Contributors
-
-G. Jouvet, A. Henz (icemask add-on)
+**Contributors:** G. Jouvet, A. Henz (icemask add-on)
 
 ## Config Structure  
 ~~~yaml

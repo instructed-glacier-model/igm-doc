@@ -25,9 +25,7 @@ Set `include_glathida` to True for retrieving the GlaThiDa ice thickness profile
 
 The module depends (of course) on the `oggm` library. Unfortunately the module works on linux and Max, but not on windows (unless using WSL).
 
-## Contributors 
-
-F. Maussion, G. Jouvet, E. Welty (GlaThiDa-related code), S. Cook (RGI 7.0 modifications).
+**Contributors:** F. Maussion, G. Jouvet, E. Welty (GlaThiDa-related code), S. Cook (RGI 7.0 modifications).
 
 ## Config Structure  
 ~~~yaml

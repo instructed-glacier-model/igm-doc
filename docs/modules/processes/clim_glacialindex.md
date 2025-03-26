@@ -27,9 +27,7 @@ Note that the two climates ${\rm CL}_0$ and  ${\rm CL}_1$ are defined on 2 refer
 
 [1] Jouvet, Guillaume, et al. "Coupled climate-glacier modelling of the last glaciation in the Alps." Journal of Glaciology 69.278 (2023): 1956-1970.
 
-## Contributors
-
-G. Jouvet
+**Contributors:** G. Jouvet
 
 ## Config Structure  
 ~~~yaml

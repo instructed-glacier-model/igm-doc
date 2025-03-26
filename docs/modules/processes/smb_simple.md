@@ -31,9 +31,7 @@ The module will compute surface mass balance at a frequency given by parameter `
 
 If one has provided in input an "icemask" field, then this module will compute negative surface mass balance (-10 m/y) in place where posstive surface mass balance outside the mask were originally computed. The goal here is to prevent against overflowing in neibourghing catchements.
 
-## Contributors
-
-G. Jouvet
+**Contributors:** G. Jouvet
 
 ## Config Structure  
 ~~~yaml

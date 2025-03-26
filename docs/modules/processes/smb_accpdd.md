@@ -15,9 +15,7 @@ Hock R. (2003). Temperature index melt modelling in mountain areas, J. Hydrol.
 
 Calov and Greve (2005), A semi-analytical solution for the positive degree-day model with stochastic temperature variations, JOG.
 
-## Contributors
-
-G. Jouvet
+**Contributors:** G. Jouvet
 
 Note: It is a TensorFlow re-implementation similar to the one used in the aletsch-1880-2100 example but adapted to fit as closely as possible (thought it is not a strict fit) the Positive Degree Day model implemented in PyPDD (Seguinot, 2019) used for the Parralel Ice Sheet Model (PISM, Khroulev and the PISM Authors, 2020).
 

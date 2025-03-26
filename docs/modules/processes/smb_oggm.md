@@ -8,9 +8,7 @@ $$
 
 where $P_i^{sol}$ is the is the monthly solid precipitation, $T_i$ is the monthly temperature and $T_{melt}$ is the air temperature above which ice melt is assumed to occur (parameter `temp_melt`), $d_f$ is the melt factor (parameter `melt_f`), and $\frac{\rho_w}{\rho_i} $ is the ratio of water to ice density. Solid precipitation $P_i^{sol}$ is computed out of precipitation and temperature such that it equals precipitation when the temperature is lower than a certain threshold (parameter `temp_all_solid`), zero above another threshold (parameter `temp_all_liq`), with a linear transition between the two. Module `oggm_shop` provides all calibrated parameters.
 
-## Contributors
-
-Guillaume Jouvet, Fabien Maussion
+**Contributors:** Guillaume Jouvet, Fabien Maussion
 
 ## Config Structure  
 ~~~yaml

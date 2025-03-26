@@ -2,9 +2,7 @@
 
 This modules allows you to calculate ...
 
-## Contributors
-
-Brandon Finley
+**Contributors:** Brandon Finley
 
 ## Config Structure  
 ~~~yaml

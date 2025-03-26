@@ -2,9 +2,7 @@
 
 This IGM module computes the vertical component (providing `state.W`) of the velocity from the horizontal components (`state.U` and `state.V`), computed from an emulation of the Blatter-Pattyn model in the module `iceflow`) by integrating the imcompressibility condition layer-wise. This module is typically needed prior calling module `particle` for 3D particle trajectory integration, or module `enthalpy` for computing 3D advection-diffusion of the enthalpy.
 
-## Contributors
-
-Guillaume Jouvet, Claire-Mathile Stücki
+**Contributors:** Guillaume Jouvet, Claire-Mathile Stücki
 
 ## Config Structure  
 ~~~yaml

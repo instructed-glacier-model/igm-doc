@@ -4,9 +4,7 @@ This IGM module solves the mass conservation of ice to update the thickness from
 
 Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.
 
-## Contributors
-
-Guillaume Cordonnier, Guillaume Jouvet
+**Contributors:** Guillaume Cordonnier, Guillaume Jouvet
 
 ## Config Structure  
 ~~~yaml

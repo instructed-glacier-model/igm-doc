@@ -10,9 +10,7 @@ A bit more details on the time step stability conditionsis given in the followin
 
 Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.
 
-## Contributors
-
-G. Jouvet
+**Contributors:** G. Jouvet
 
 ## Config Structure  
 ~~~yaml

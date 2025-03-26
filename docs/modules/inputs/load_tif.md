@@ -10,9 +10,7 @@ Additionally, by setting `icemask_invert` to True, an ice mask can be generated 
 
 This module depends on `rasterio`.
 
-## Contributors
-
-G. Jouvet, A. Henz (icemask add-on)
+**Contributors:** G. Jouvet, A. Henz (icemask add-on)
 
 ## Config Structure  
 ~~~yaml

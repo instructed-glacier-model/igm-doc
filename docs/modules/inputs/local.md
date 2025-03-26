@@ -10,9 +10,7 @@ The module also supports restarting an IGM run using a NetCDF file produced from
 
 This module depends on `xarray`, and `rioxarray`.
 
-## Contributors
-
-B. Finley, A. Henz (icemask add-on), G. Jouvet (tif format)
+**Contributors:** B. Finley, A. Henz (icemask add-on), G. Jouvet (tif format)
 
 ## Config Structure  
 ~~~yaml

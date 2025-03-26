@@ -29,9 +29,7 @@ X,            X,           X,           X,           X,           X,           X
 
 providing in turn the particle ID, x,y,z positions, the relative height within the ice column, the seeding time, and the englacial time.
 
-## Contributors
-
-Guillaume Jouvet, Claire-Mathile Stücki
+**Contributors:** Guillaume Jouvet, Claire-Mathile Stücki
 
 ## Config Structure  
 ~~~yaml
