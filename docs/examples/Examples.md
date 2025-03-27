@@ -1,55 +1,54 @@
-The best and quickest way to get to know IGM is to run given examples. Having IGM installed on your machine, you can simply run `igm_run` in a folder that contains the following parameter file `params.json`:
+# Examples
 
-```json
-{
-  "modules_preproc": ["oggm_shop"],
-  "modules_process": ["clim_oggm",
-                      "smb_oggm",
-                      "iceflow",
-                      "time",
-                      "thk"
-                      ],
-  "modules_postproc": ["write_ncdf",
-                       "plot2d",
-                       "print_info",
-                       "print_comp"],
-  "clim_oggm_clim_trend_array": [
-                        ["time", "delta_temp", "prec_scal"],
-                        [ 1900,           0.0,         1.0],
-                        [ 2020,           0.0,         1.0],
-                        [ 2100,           4.0,         1.0]
-                                 ],
-  "oggm_RGI_ID": "RGI60-11.01450",
-  "time_start": 1800.0,
-  "time_end": 2100.0,
-  "plt2d_live": true,
-  "iflo_init_slidingco": 0.25
-}
+Once IGM is installed, it is time to make your first runs. The best and quickest way to get to know IGM is to run given examples. For that, you may run the `quick-demo` presented hereafter, or download the following repository that contains an gallery of ready-to-run setups (incl. parameter file, data, user modules if any), check at individual instructions:
+
+```bash
+git clone https://github.com/instructed-glacier-model/igm-examples
 ```
 
+then you may simply run `igm_run +experiment=params` (or adapt `params` to the name of the file) in each folder to run the example.
 
-You may run other ready-to-use examples in the folder `test/examples/` in the develop version, which contains input data and parameter files. To run the example, just go in each folder and run `igm_run` there. You have the following examples available:
+## Quick demo
 
-<!-- You can do this with online Colab Notebook or locally on your machine:
+Copy paste the following YAML parameter file (named it `params.yaml`), put in a folder `experiment`, and then run the comand `igm_run +experiment=params`. By doing so, you will model Glacier with RGI ID `RGI60-11.01450` (the great Aletsch Glacier, Switzerland) from 2020 to 2100 assuming an increase of temperature of 4 degree by 2100 relative to 1960-1990. The run i) use module `oggm_shop` to download all the data via OGGM, ii) run a forward model that combine OGGM-based SMB model, and IGM-based iceflow, iii) write and plot the results in live time. **Warning:** this setup is just an example, that should not be intepreted (as it has not been validated against past period). After running, this example, you may explore different glaciers picking a different ID (check the [GLIMS Viewer](https://www.glims.org/maps/glims)), explore different parameters, explore additional modules, ...
 
-* The easiest way is to run notebooks in [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jouvetg/igm/), which offers free access to GPU. Advantageously, you don't have to install anything, all is done.
+```yaml title="params.yaml"
+# @package _global_
 
-* If you have IGM installed on your machine, you may already run ready-to-use examples in the folder `examples/`, which contains input data and parameter files. To run the example, just go in each folder and run `igm_run` there. You have the following examples available:
+defaults:
+  - override /inputs: 
+    - oggm_shop
+  - override /processes: 
+    - clim_oggm
+    - smb_oggm
+    - iceflow
+    - time
+    - thk
+  - override /outputs: 
+    - write_ncdf
+    - plot2d
 
--->
+inputs:
+  oggm_shop:
+    RGI_ID: "RGI60-11.01450"
+    RGI_version: 6
 
-   - **quick-demo** provides a set-up to model any glacier given an RGI ID, with a OGGM-based climate forcing and SMB. 
+processes:
+  clim_oggm:
+    clim_trend_array: 
+      - ["time", "delta_temp", "prec_scal"]
+      - [ 2020,           0.0,         1.0]
+      - [ 2100,           4.0,         1.0]
+  iceflow:
+    iceflow:
+      init_slidingco: 0.25
+  time:
+    start: 2200.0
+    end: 2100.0
+    save: 10.0
 
-   -  **quick-demo-mysmb** is like **quick-demo** but wirh a own user-defined SMB module / parametrization.
-
-   - **aletsch-basic** provides a simple set-up for an advance-retreat simulation of the largest glacier of the European Alps -- Aletsch Glacier, Switzerland -- using a simple parametrization of the mass balance based on time-varying Equilibrium Line Altitudes (ELA).
- 
-   - **aletsch-1880-2100** gives the set-up to reproduce the [simulations](https://jouvetg.github.io/the-aletsch-glacier-module) of the Great Aletsch Glacier (Switzerland) in the [past](https://www.cambridge.org/core/journals/journal-of-glaciology/article/modelling-the-retreat-of-grosser-aletschgletscher-switzerland-in-a-changing-climate/C877413079F73C5FC6131FC7BC031B69) and in the [future](https://www.cambridge.org/core/journals/journal-of-glaciology/article/future-retreat-of-great-aletsch-glacier/EB46DC696E0AB9528168F42595EE23D9) based on the CH2018 climate scenarios and an accumulation/melt model.
-
-   - **aletsch-invert** and **rhone-invert** gives an example of data assimilation with IGM (Warning: inverse modelling requires tuning parameters for each glacier). **rhone-invert** is the most advanced/recent setting.
-
-
-   - **paleo-alps** consists of a simple set-up to run a paleo glacier model in the European Alps in paleo times with different catchments (lyon, ticino, rhine, linth glaciers) with IGM around the last glacial maximum (LGM, about 24 BP in the Alps).
-
-   - **synthetic** permits to make simple numerical experiments with simple synthetic bedrock topographies.
+outputs:
+  plot2d:
+    live: true
+```
  
