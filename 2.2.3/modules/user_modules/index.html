@@ -306,23 +306,6 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../about/variables/" class="md-tabs__link">
-        
-  
-    
-  
-  Variables
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
       <a href="../../about/credits_and_references/" class="md-tabs__link">
         
   
@@ -1593,15 +1576,8 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
@@ -1617,6 +1593,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1659,10 +1643,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1674,8 +1658,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             FAQ
           </label>
@@ -1785,7 +1769,7 @@
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   │       └── myoutput.yaml
 </span></code></pre></div>
 <p>Hereabove, the code files are expected to define functions <code>run(cfg,state)</code>, <code>initialize(cfg,state)</code>, <code>update(cfg,state)</code>, and/or <code>finalize(cfg,state)</code>, where <code>cfg</code> permits to access any parameters (e.g <code>cfg.processes.enthalpy.ref_temp</code> is a parameter associated with the <code>enthalpy</code> processes module), while <code>state</code> permits to access any 
-variables describing the glacier state at a time t (e.g <code>state.thk</code> is the variable describing the distributed 2D ice thickness). All these variable are <a href="https://www.tensorflow.org/">TensorFlow 2.0</a> Tensors. Using Tensorflow is key to making computationally efficient operations, especially on GPU (see the dedicated section below). Any variables can be accessed/modified via state.nameofthevariable. Variables names are summarized <a href="XXX">here</a>.</p>
+variables describing the glacier state at a time t (e.g <code>state.thk</code> is the variable describing the distributed 2D ice thickness). All these variable are <a href="https://www.tensorflow.org/">TensorFlow 2.0</a> Tensors. Using Tensorflow is key to making computationally efficient operations, especially on GPU (see the dedicated section below). Any variables can be accessed/modified via state.nameofthevariable. </p>
 <h1 id="example">Example</h1>
 <p>For instance, to implementation of the mass balance function 'sinus' with an oscillating ELA, you may create a module <code>mysmb</code> in a file <code>mysmb.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
