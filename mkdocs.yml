@@ -60,18 +60,15 @@ nav:
       - write_tif: modules/outputs/write_tif.md
       - write_ts: modules/outputs/write_ts.md
       - plot2d: modules/outputs/plot2d.md
-    - User: about/user_modules.md
+    - User: modules/user_modules.md
+    - Variables: about/variables.md
+  - Credits: about/credits_and_references.md
+  - FAQ: 
+      - FAQ: about/FAQ.md
+      - IGM 2 to 3: about/transition-IGM-2-to-3.md      
 
   # - Gallery:
   #     - Gallery: gallery/gallery.md
-  - About:
-      # - About IGM: about/about.md
-      - Transitioning from IGM 2 to 3: about/transition-IGM-2-to-3.md
-      - Graphical Processing Units (GPUs): about/gpus.md
-      - Tensorflow: about/tensorflow.md
-      - Crediting IGM: about/credits_and_references.md
-      - Variables: about/variables.md
-      # - FAQ: about/FAQ.md
 
 plugins:
   - search
