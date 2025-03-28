@@ -1629,7 +1629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/gpus/" class="md-nav__link">
+      <a href="../about/gpus.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1766,6 +1766,10 @@
 <li>oggm_shop produces error on windows</li>
 </ul>
 <p>This is expected, OGGM is <a href="https://github.com/OGGM/oggm/issues/870">not supported</a> on windows, however, modifying the tarfile.py file at line 2677 from name == member_name to name.replace(os.sep, '/') == member_name seems to fix the issue on Windows. Thanks Alexi Morin for proposing this workaround.</p>
+<ul>
+<li>GPU vs CPU</li>
+</ul>
+<p>IGM works fine on CPU for small computational domains (typically individual glaciers). In contrast, GPUs will be very advantageous to treat very large computational grids (typically large networks of glaciers) as IGM naturally takes further benefit from parallelism (see this <a href="https://youtu.be/Sna673xb-PE">example</a>).</p>
 
 
 
