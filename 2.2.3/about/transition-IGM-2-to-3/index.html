@@ -10,9 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://jouvetg.github.io/igm-doc.github.io/2.2.3/installation/linux/">
+        <link rel="canonical" href="https://jouvetg.github.io/igm-doc.github.io/2.2.3/about/transition-IGM-2-to-3/">
       
       
+        <link rel="prev" href="../user_modules/">
+      
+      
+        <link rel="next" href="../gpus/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Linux - Instructed Glacier Model (IGM)</title>
+        <title>Transitioning from IGM 2 to 3 - Instructed Glacier Model (IGM)</title>
       
     
     
@@ -73,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#guideline-for-transitioning-igm-v2-to-v3" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -106,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Linux
+              Transitioning from IGM 2 to 3
             
           </span>
         </div>
@@ -234,7 +243,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../quick_start/" class="md-tabs__link">
+        <a href="../../installation/quick_start/" class="md-tabs__link">
           
   
   Installation
@@ -293,11 +302,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../about/transition-IGM-2-to-3/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   About
@@ -421,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quick_start/" class="md-nav__link">
+      <a href="../../installation/quick_start/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -482,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../other/nvidia_drivers/" class="md-nav__link">
+      <a href="../../installation/other/nvidia_drivers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../other/virtual_environment/" class="md-nav__link">
+      <a href="../../installation/other/virtual_environment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -526,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../other/wsl_windows/" class="md-nav__link">
+      <a href="../../installation/other/wsl_windows/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1518,7 +1529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/user_modules/" class="md-nav__link">
+      <a href="../user_modules/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1544,23 +1555,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1572,7 +1588,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             About
@@ -1583,10 +1599,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../about/transition-IGM-2-to-3/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Transitioning from IGM 2 to 3
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1596,6 +1633,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hydra-library-replaces-parser" class="md-nav__link">
+    <span class="md-ellipsis">
+      hydra library replaces parser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hierachical-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hierachical parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1608,7 +1698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/gpus/" class="md-nav__link">
+      <a href="../gpus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1630,7 +1720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/tensorflow/" class="md-nav__link">
+      <a href="../tensorflow/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1652,7 +1742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/credits_and_references/" class="md-nav__link">
+      <a href="../credits_and_references/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1674,7 +1764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/variables/" class="md-nav__link">
+      <a href="../variables/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1715,55 +1805,179 @@
   
 
 
-  <h1>Linux</h1>
-
-<ol>
-<li>Install NVIDIA drivers</li>
-</ol>
-<p>If you aim to use only the CPU or already get an output from <code>nvidia-smi</code>, you can skip this step.</p>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># get the latest libraries from apt</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># choose which driver version is compatible with your GPU device (in this case 510)</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nvidia-driver-510<span class="w"> </span>nvidia-dkms-510
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>sudo<span class="w"> </span>reboot<span class="w"> </span><span class="c1"># you wont see the changes until after you reboot</span>
+<h1 id="guideline-for-transitioning-igm-v2-to-v3">Guideline for transitioning IGM v2 to v3</h1>
+<h2 id="parameter-handling">Parameter handling</h2>
+<h3 id="hydra-library-replaces-parser"><code>hydra</code> library replaces <code>parser</code></h3>
+<p>Parameters handed with library <code>parser</code> are nor handled with library <code>hydra</code>. Parameter file formerly JSON file <code>param.json</code> is now changed into YAML file <code>experiment/params.yaml</code> following <code>yaml</code> standard. Delegating the handling of parameters to <code>hydra</code> has permitted major simplification of the core IGM code. Running IGM now consists of running</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> igm_run +experiment=params 
 </span></code></pre></div>
-After rebooting, you can check your driver version with the command <code>watch -d -n 0.5 nvidia-smi</code> should give you live information on your GPU device.</p>
-<ol>
-<li>Install anaconda and create a virtual environment (strongly recommended) with conda or venv:</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># install anaconda</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>wget<span class="w"> </span>https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>bash<span class="w"> </span>Anaconda3-2023.09-0-Linux-x86_64.sh
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># create new environment</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>igm<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># activate environment to install IGM</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>conda<span class="w"> </span>activate<span class="w"> </span>igm
+where parameters can be changed within the params, or can be overidden like :
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a> igm_run +experiment=params core.hardware.gpu_info=False core.print_params=False
+</span></code></pre></div></p>
+<h3 id="hierachical-parameters">Hierachical parameters</h3>
+<p>Another consequence is that the parameters are now hierarchically organized in 2 ways:
+  - The structure of folder where default parameter are stored in folder <code>igm/igm/conf</code>, which is separated from the code in folder <code>igm/igm</code>:
+  ```
+core.yaml
+├── inputs 
+│   └── local.yaml
+│   └── ....
+├── processes 
+│   └── iceflow.yaml
+│   └── ....
+└── outputs
+│   └── plot2d.yaml
+│   └── ....
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>  - In the code, all parameters are accessible through the object `cfg`, e.g `cfg.processes.enthalpy.ref_temp` is a parameter associated with the `enthalpy` processes module.
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>### Parameters naming change
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Paarameter name have been slightly changed: Before all parameters had a first keyword like `iflo` to indicate it was a parameter associated with `iceflow` module. Now, all parameters are sorted anyway attributes, therefore, the keyword was no longer used, and was removed. 
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>As an example `time_start` is now accessible with `processes.time.start`, ...
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>In the `iceflow` module, parameters were re-oragnized significantly (especially to make them hierarchically organized), however, we provide with a folder/script/table of correspondance to modify former json file into new yaml one.
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>### Example of new parameter file
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>Here is what look like the new parameter file : 
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>```yaml
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a># @package _global_
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>core:
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>  url_data: &quot;https://www.dropbox.com/scl/fo/8ixpy27i67s04bp7uixoq/h?rlkey=0ye7rd4zkcqfhvzx7suunw3bk&amp;dl=0&quot;
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>defaults:
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>  - override /input: [load_ncdf]
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>  - override /modules: [smb_simple, iceflow, time, thk]
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>  - override /output: [write_ncdf, plot2d]
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>inputs:
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>  load_ncdf:
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    input_file: data/input.nc
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>processes:
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>  iceflow:
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>    iceflow:
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>      init_slidingco: 0.0595
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>  time:
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    start: 1880.0
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    end: 2020.0
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    save: 5.0 
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>outputs:
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>  plot2d:
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>    live: true
+</span></code></pre></div></p>
+<p>The above file will be read by hydra in IGM, and has the following strucuture:</p>
+<ul>
+<li><code>core</code> includes all parameters that are specific to core IGM run, e.g. logging, if we want to download data priori to run, GPU related, ...</li>
+<li><code>defaults</code> will list the inputs, processes, and outputs modules.</li>
+<li><code>inputs</code> give the parameters tot override the defaults for input modules.</li>
+<li><code>processes</code> give the parameters tot override the defaults for processes modules.</li>
+<li><code>outputs</code> give the parameters tot override the defaults for output modules.</li>
+</ul>
+<h1 id="new-structure-of-working-folder">New structure of working folder</h1>
+<p>The working folder as follows with one 
+  - folder <code>experiment</code> containing the parameter files,
+  - folder <code>data</code> for input data if any, 
+  - folder <code>user</code> containing user/custom python functions/modules, 
+  - folder <code>output</code> or <code>multirun</code> containing the results of the IGM runs.</p>
+<p>This will look like : 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>├── experiment 
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│   └── params.yaml
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── data
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   ├── ...
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>└── user
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   ├── code
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│   │   └── processes
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│   │       └── mymodule.py
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│   └── conf
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│   │   └── processes
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│   │       └── mymodule.yaml
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>└── output
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│   ├── 2025-03-06
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│   │   └── 15-43-37
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│   │   └── 15-44-07
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│   │       └── output.nc
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│   │       └── ......
+</span></code></pre></div></p>
+<h1 id="re-naming-of-modules">Re-naming of modules:</h1>
+<p>Former <code>preprocess</code>, <code>process</code>, and <code>postprocess</code> module types were renamed <code>input</code>, <code>modules</code>, <code>output</code>. <code>input</code> only have a <code>run</code> method, while <code>output</code> has <code>initialize</code> and <code>update</code> like modules.</p>
+<h1 id="integration-and-exclusion-of-former-modules">Integration and exclusion of former modules</h1>
+<ul>
+<li>
+<p>Former modules <code>anim_mayavi</code>, <code>anim_plotly</code>, <code>anim_video</code> were externalized from igm, and put in <code>utils</code>. These one were purely postprocessing, and were run at the very end. For simplicity, there were externalized.</p>
+</li>
+<li>
+<p>Modules like <code>print_comp</code>, or <code>print_info</code>were integrated to the core</p>
+</li>
+</ul>
+<h1 id="transition-from-igm-2xx-to-igm-300">Transition from IGM 2.X.X to IGM 3.0.0</h1>
+<p>From a pure user point of view, migrating to IGM 3, is mainly changing former parameter file <code>params.json</code> into <code>experiment/params.yaml</code>. To help with this, we have made utility is <code>json_to_yaml.py</code>.</p>
+<h1 id="running-multiple-runs">Running multiple runs</h1>
+<p>A great advantage of hydra is the posibility it gives to for running ensemble runs, e.g. the foolowing line permits to run sequentially two runs with the 2 sets of parameters:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>igm_run -m +experiment=params processes.time.end=2080,2110
 </span></code></pre></div>
-<p>or</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># create igm venv environment</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python3.10<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>igm
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># activate environment to install IGM</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">source</span><span class="w"> </span>igm/bin/activate
+or if one supply two parameter files (params1, params2):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>igm_run -m +experiment=params1,params2
 </span></code></pre></div>
-<ol>
-<li>Install IGM</li>
-</ol>
-<p>For simple usage, you can install the latest <strong>IGM stable</strong> version and its dependencies from the Pypi as follows:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span>igm_model
+or doing a grid search ovr 3x2 parameters
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>igm_run -m +experiment=params processes.time.start=1900,1910,1920 processes.time.end=2080,2110
 </span></code></pre></div>
-<p>OR for using all and recent features, you can install the IGM <strong>development version</strong> from the github repository as follows:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/jouvetg/igm.git
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>igm
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+Note that in that case, the output folder will be named <code>multirun</code> instead of <code>output</code>.</p>
+<h1 id="custom-modules-now-called-user">Custom modules (now called "user")</h1>
+<p>User modules are very useful as soon as we need to customize applications, they can be used to customize inputs, processes or outputs methods. To create such a user module, you need to create (or complete) the folder <code>user</code> located at the root of your working directory as follows (respect the hierarchy):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>└── user
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    ├── code
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    │   └── inputs 
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    │   │   └── my_inputs_module
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    │   │       └── my_inputs_module.py 
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    │   └── processes 
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    │   │   └── my_processes_module
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    │   │       └── my_processes_module.py 
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    │   └── outputs 
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    │       └── my_outputs_module
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    │           └── my_outputs_module.py 
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    └── conf
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>        └── inputs
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>            └── my_inputs_module.yaml 
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        └── processes
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>            └── my_processes_module.yaml 
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>        └── outputs
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>            └── my_outputs_module.yaml 
 </span></code></pre></div>
-<p>After that, you may run any example (<code>igm_run</code>). As IGM is being updated often, make sure you have the latest version, you may run</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>pull
+where <code>my_processes_module.py</code> has the following structure (and require to define function <code>initialize</code>, <code>update</code>, and <code>finalize</code>):</p>
+<p>and access to the parameter
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  <span class="o">...</span> 
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  <span class="n">cfg</span><span class="o">.</span><span class="n">processes</span><span class="o">.</span><span class="n">clim_aletsch</span><span class="o">.</span><span class="n">time_resolution</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  <span class="o">...</span> 
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  <span class="k">pass</span>
 </span></code></pre></div>
+while <code>my_inputs_module.py</code> and <code>my_outputs_module.py</code> has the following structure (and require to define function <code>run</code>) and access to the parameter</p>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  <span class="o">...</span>
+</span></code></pre></div>
+On the other end, parameter files located in <code>conf/inputs</code>, <code>conf/processes</code>, and <code>conf/outputs</code> look like 
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">time_resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">365</span>
+</span></code></pre></div>
+or in case there is no parameter (the file must exist as follows even if no parameter are defined):
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span></code></pre></div>
+It must be stressed that the user modules override the official one, therefore, if you call a module that has the same name of an official one, the user one will be retained, and the official one will be ignored.</p>
+<h1 id="misc">MISC</h1>
+<ul>
+<li>write_particles is now part of the particule module</li>
+<li>oggm_shop is now only tking care of downloading the data, and putting the data ready for IGM, therfore, oggm_shop must be followed by <code>load_ncdf</code>, or <code>local</code></li>
+<li>A new I/O module <code>local</code> as introduced to replace <code>load_XXX</code> and <code>write_XXX</code>: <code>local</code> uses library <code>xarray</code> that is more powerfull and can load both <code>netcdf</code> and <code>tif</code>.</li>
+</ul>
 
 
 
@@ -1788,6 +2002,44 @@ After rebooting, you can check your driver version with the command <code>watch 
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../user_modules/" class="md-footer__link md-footer__link--prev" aria-label="Previous: User">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                User
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../gpus/" class="md-footer__link md-footer__link--next" aria-label="Next: Graphical Processing Units (GPUs)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Graphical Processing Units (GPUs)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
