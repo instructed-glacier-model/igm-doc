@@ -75,7 +75,6 @@ nav:
 
 plugins:
   - search
-  - table-reader
   - include-markdown
   - macros:
       # include_yaml:
@@ -85,6 +84,7 @@ plugins:
         # - avalanche_help: igm/igm/conf_help/modules/avalanche.yaml
       include_dir: ./igm/igm/
       # render_by_default: false
+  - table-reader
 
 markdown_extensions:
   - pymdownx.highlight:

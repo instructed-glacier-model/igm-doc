@@ -194,3 +194,9 @@ or in case there is no parameter (the file must exist as follows even if no para
 null
 ```
 It must be stressed that the user modules override the official one, therefore, if you call a module that has the same name of an official one, the user one will be retained, and the official one will be ignored.
+
+# MISC
+
+- write_particles is now part of the particule module
+- oggm_shop is now only tking care of downloading the data, and putting the data ready for IGM, therfore, oggm_shop must be followed by `load_ncdf`, or `local`
+- A new I/O module `local` as introduced to replace `load_XXX` and `write_XXX`: `local` uses library `xarray` that is more powerfull and can load both `netcdf` and `tif`.
