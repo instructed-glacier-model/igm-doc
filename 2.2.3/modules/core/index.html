@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#core" class="md-skip">
           Skip to content
         </a>
       
@@ -877,6 +877,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Core
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -887,6 +899,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1786,21 +1835,173 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<p><em>File</em>: <code>modules/core.md</code></p>
-<p><em>UndefinedError</em>: 'dict object' has no attribute 'hardware'</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py&quot;, line 688, in render
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 1295, in render
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    self.environment.handle_exception()
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    raise rewrite_traceback_stack(source=source)
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;&lt;template&gt;&quot;, line 63, in top-level template code
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 490, in getattr
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    return getattr(obj, attribute)
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>jinja2.exceptions.UndefinedError: &#39;dict object&#39; has no attribute &#39;hardware&#39;
+<h1 id="core">Core</h1>
+<p>IGM comes with a number of core parameters ...</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">core</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="c1"># Input / Output</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">saved_params_filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">params_saved</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">url_data</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">folder_data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">logging_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="c1"># Logging</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">logging_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="c1"># Hardware</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">hardware</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">gpu_info</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">visible_gpus</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">strategy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="c1"># Misc</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">print_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">print_comp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="nt">print_info</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="nt">print_imported_modules</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="c1"># Custom Modules</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="nt">structure</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">root_foldername</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">conf_foldername</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conf</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">code_foldername</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">code</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="nt">input_modules_foldername</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inputs</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="nt">process_modules_foldername</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nt">output_modules_foldername</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">outputs</span>
 </span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>saved_params_filename</td>
+      <td>str</td>
+      <td>['dimensionless']</td>
+      <td>Filename of the saved parameters (will be depreciated with hydra)</td>
+
+      <td>params_saved</td>
+    </tr>
+
+    <tr>
+      <td>url_data</td>
+      <td>str</td>
+      <td>['dimensionless']</td>
+      <td>Url supplied to download .nc data files</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>folder_data</td>
+      <td>str</td>
+      <td>['dimensionless']</td>
+      <td>data</td>
+
+      <td>data</td>
+    </tr>
+
+    <tr>
+      <td>logging_file</td>
+      <td>{{ no such element: dict object['Type'] }}</td>
+      <td>['dimensionless']</td>
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>logging</td>
+      <td>bool</td>
+      <td>['dimensionless']</td>
+      <td>False</td>
+
+      <td>False</td>
+    </tr>
+
+    <tr>
+      <td>logging_level</td>
+      <td>str</td>
+      <td>['dimensionless']</td>
+      <td>30</td>
+
+      <td>30</td>
+    </tr>
+
+    <tr>
+      <td>hardware</td>
+      <td>{{ no such element: dict object['Type'] }}</td>
+      <td>{{ no such element: dict object['Units'] }}</td>
+      <td>{{ no such element: dict object['Description'] }}</td>
+
+      <td>{'gpu_info': True, 'visible_gpus': [0], 'strategy': 'none'}</td>
+    </tr>
+
+    <tr>
+      <td>print_params</td>
+      <td>bool</td>
+      <td>['dimensionless']</td>
+      <td>True</td>
+
+      <td>True</td>
+    </tr>
+
+    <tr>
+      <td>print_comp</td>
+      <td>bool</td>
+      <td>['dimensionless']</td>
+      <td>Print information related to computational performances</td>
+
+      <td>False</td>
+    </tr>
+
+    <tr>
+      <td>print_info</td>
+      <td>bool</td>
+      <td>['dimensionless']</td>
+      <td>Print live information when the model is running</td>
+
+      <td>True</td>
+    </tr>
+
+    <tr>
+      <td>print_imported_modules</td>
+      <td>bool</td>
+      <td>['dimensionless']</td>
+      <td>Print imported modules</td>
+
+      <td>True</td>
+    </tr>
+
+    <tr>
+      <td>structure</td>
+      <td>{{ no such element: dict object['Type'] }}</td>
+      <td>{{ no such element: dict object['Units'] }}</td>
+      <td>{{ no such element: dict object['Description'] }}</td>
+
+      <td>{'root_foldername': 'user', 'conf_foldername': 'conf', 'code_foldername': 'code', 'input_modules_foldername': 'inputs', 'process_modules_foldername': 'processes', 'output_modules_foldername': 'outputs'}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
+<p>--&gt;</p>
 
 
 
