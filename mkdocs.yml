@@ -19,18 +19,17 @@ nav:
       # - Windows: installation/windows.md
       # - MacOS: installation/mac.md
       # - Docker: Installation_Docker.md
-  - Getting Started:
+  - Getting Started: 
+      - Running IGM: Running.md
       - Using Hydra:
         - Introduction: hydra/introduction.md
         - Configuration: hydra/configuration.md
-        - Distributed Computing: hydra/distributed_computing.md
-      
+        - Distributed Computing: hydra/distributed_computing.md 
       - Examples: examples/Examples.md
-#        - Quick Demo: examples/quick_demo.md
-#        - Aletsch Basic: examples/aletsch_basic.md
-  # - Running IGM: Running.md
+  
   - Modules:
     - What are modules?: modules/introduction.md
+    - Core: modules/core.md
     - Input:
       - local: modules/inputs/local.md
       - load_ncdf: modules/inputs/load_ncdf.md
@@ -62,10 +61,10 @@ nav:
       - plot2d: modules/outputs/plot2d.md
     - User: modules/user_modules.md
     - Variables: about/variables.md
-  - Credits: about/credits_and_references.md
   - FAQ: 
+      - IGM 2 to 3 transition notes: about/transition-IGM-2-to-3.md      
       - FAQ: about/FAQ.md
-      - IGM 2 to 3: about/transition-IGM-2-to-3.md      
+  - Credits: about/credits_and_references.md
 
   # - Gallery:
   #     - Gallery: gallery/gallery.md

@@ -5,7 +5,7 @@
 
 ### `hydra` library replaces `parser`
 
-Parameters handed with library `parser` are nor handled with library `hydra`. Parameter file formerly JSON file `param.json` is now changed into YAML file `experiment/params.yaml` following `yaml` standard. Delegating the handling of parameters to `hydra` has permitted major simplification of the core IGM code. Running IGM now consists of running
+Parameters handed with library `parser` are now handled with library `hydra`. Parameter file formerly JSON file `param.json` is now changed into YAML file `experiment/params.yaml` following `yaml` standard. Delegating the handling of parameters to `hydra` has permitted major simplification of the core IGM code. Running IGM now consists of running
 
 ```
  igm_run +experiment=params 

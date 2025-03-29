@@ -12,15 +12,16 @@ This IGM module computes the vertical component (providing `state.W`) of the vel
 ## Arguments
 {% set config = load_yaml('igm/igm/conf/processes/vert_flow.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/vert_flow.yaml') %}
+{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
-{% set module_help = help[module_key] %}
+{% set module_help = help %}
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      {% for key in help.header %}
+      {% for key in header %}
       <th>{{ key }}</th>
       {% endfor %}
       <th>Default Value</th>
@@ -30,10 +31,11 @@ This IGM module computes the vertical component (providing `state.W`) of the vel
     {% for key, value in module.items() %}
     <tr>
       <td>{{ key }}</td>
-      <td>{{ module_help[key].type }}</td>
-      <td>{{ module_help[key].units }}</td>
-      <!-- <td><span class="math">{{ help_module[key].units }}</span></td> -->
-      <td>{{ module_help[key].description }}</td>
+      <td>{{ module_help[key].Type}}</td>
+      <!-- <td>{{ module_help[key].Units}}</td> -->
+      <td><span class="math">{{ module_help[key].Units }}</span></td>
+      <td>{{ module_help[key].Description}}</td>
+
       <td>{{ value }}</td>
     </tr>
     {% endfor %}
