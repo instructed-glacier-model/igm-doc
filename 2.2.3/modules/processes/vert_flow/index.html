@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-vert_flow" class="md-skip">
           Skip to content
         </a>
       
@@ -1427,6 +1427,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    vert_flow
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1437,6 +1449,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arguments
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1788,21 +1846,59 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<p><em>File</em>: <code>modules/processes/vert_flow.md</code></p>
-<p><em>UndefinedError</em>: 'dict object' has no attribute 'vert_flow'</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py&quot;, line 688, in render
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 1295, in render
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    self.environment.handle_exception()
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    raise rewrite_traceback_stack(source=source)
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;&lt;template&gt;&quot;, line 35, in top-level template code
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 471, in getitem
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    return obj[argument]
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>jinja2.exceptions.UndefinedError: &#39;dict object&#39; has no attribute &#39;vert_flow&#39;
+<h1 id="module-vert_flow">Module <code>vert_flow</code></h1>
+<p>This IGM module computes the vertical component (providing <code>state.W</code>) of the velocity from the horizontal components (<code>state.U</code> and <code>state.V</code>), computed from an emulation of the Blatter-Pattyn model in the module <code>iceflow</code>) by integrating the imcompressibility condition layer-wise. This module is typically needed prior calling module <code>particle</code> for 3D particle trajectory integration, or module <code>enthalpy</code> for computing 3D advection-diffusion of the enthalpy.</p>
+<p><strong>Contributors:</strong> Guillaume Jouvet, Claire-Mathile Stücki</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">vert_flow</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kinematic</span>
 </span></code></pre></div>
+<h2 id="arguments">Arguments</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>version</td>
+      <td>integer</td>
+      <!-- <td>['dimensionless']</td> -->
+      <td><span class="math">['dimensionless']</span></td>
+      <td>Version of the vert_flow method (1 original, 2 improved by claire-mathilde)</td>
+
+      <td>2</td>
+    </tr>
+
+    <tr>
+      <td>method</td>
+      <td>string</td>
+      <!-- <td>['dimensionless']</td> -->
+      <td><span class="math">['dimensionless']</span></td>
+      <td>Method to retrieve the vertical velocity (kinematic, incompressibility)</td>
+
+      <td>kinematic</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
+
+<h2 id="example-usage">Example Usage</h2>
 
 
 
