@@ -1,65 +1,58 @@
 # Module `iceflow`
 
-This IGM module models ice flow dynamics in 3D using a Convolutional Neural Network based on Physics Informed Neural Network as described in this [paper](https://eartharxiv.org/repository/view/5335/). In more details, we train a CNN to minimise the energy associated with high-order ice flow equations within the time iterations of a glacier evolution model. As a result, our iflo_emulator is a computationally-efficient alternative to traditional solvers, it is capable to handle a variety of ice flow regimes and memorize previous solutions.
-
-This module permits to load, pretrain, retrain, and evaluate ice flow emulator. In addition, it can also be used for data assimilata / model inversion (former module `optimize`) setting this option:
-```json 
-"iflo_run_data_assimilation": true,
-```
-Check the documentation for using the `optimize` option below.
-
-
-It can also be used for pretraining an emulator (former module `pretraining`) setting option: 
-```json 
-"iflo_run_pretraining": true,
-```
-Check the documentation for using the `pretraining` option below.
-
+This IGM module models ice flow dynamics in 3D using a Convolutional Neural Network based on Physics Informed Neural Network as described in this [paper](https://eartharxiv.org/repository/view/5335/). In more details, we train a CNN to minimise the energy associated with high-order ice flow equations within the time iterations of a glacier evolution model. As a result, our processes.iceflow.emulator is a computationally-efficient alternative to traditional solvers, it is capable to handle a variety of ice flow regimes and memorize previous solutions.
+ 
 ## Iceflow
-
-
-
-Pre-trained emulators are provided by defaults (parameter `iflo_emulator`). However, a from scratch iflo_emulator can be requested with `iflo_emulator=""`. The most important parameters are:
+ 
+Pre-trained emulators are provided by defaults (parameter `processes.iceflow.emulator`). However, a from scratch processes.iceflow.emulator can be requested with `processes.iceflow.emulator=""`. The most important parameters are:
 
 - physical parameters 
 
 ```json 
-"iflo_init_slidingco": 0.045    # Init slid. coeff. ($Mpa y^{1/3} m^{-1/3}$)
-"iflo_init_arrhenius": 78.0     # Init Arrhenius cts ($Mpa^{-3} y^{-1}$)
-"iflo_exp_glen": 3              # Glen's exponent
-"iflo_exp_weertman":  3         # Weertman's sliding law exponent
+"processes.iceflow.init_slidingco": 0.045    # Init slid. coeff. ($Mpa y^{1/3} m^{-1/3}$)
+"processes.iceflow.init_arrhenius": 78.0     # Init Arrhenius cts ($Mpa^{-3} y^{-1}$)
+"processes.iceflow.exp_glen": 3              # Glen's exponent
+"processes.iceflow.exp_weertman":  3         # Weertman's sliding law exponent
 ```
 
 - related to the vertical discretization:
 
 ```json 
-"iflo_Nz": 10                 # number of vertical layers
-"iflo_vert_spacing": 4.0     # 1.0 for equal vertical spacing, 4.0 otherwise
+"processes.iceflow.Nz": 10                 # number of vertical layers
+"processes.iceflow.vert_spacing": 4.0     # 1.0 for equal vertical spacing, 4.0 otherwise
 ```
 
 - learning rate and frequency of retraining:
 
 ```json 
-"iflo_retrain_emulator_lr": 0.00002 
-"iflo_retrain_emulator_freq": 5     
+"processes.iceflow.retrain_emulator_lr": 0.00002 
+"processes.iceflow.retrain_emulator_freq": 5     
 ```
 
 While this module was targeted for deep learning emulation, it important parameters for solving are :
 
 is possible to
-use the solver (`iflo_type='solved'`) instead of the default iflo_emulator (`iflo_type='emulated'`), or use the two together (`iflo_type='diagnostic'`) to assess the emaultor against the solver. Most important parameters for solving are :
+use the solver (`processes.iceflow.type='solved'`) instead of the default processes.iceflow.emulator (`processes.iceflow.type='emulated'`), or use the two together (`processes.iceflow.type='diagnostic'`) to assess the emaultor against the solver. Most important parameters for solving are :
 
 ```json 
-"iflo_solve_step_size": 0.00002 
-"iflo_solve_nbitmax": 5     
+"processes.iceflow.solve_step_size": 0.00002 
+"processes.iceflow.solve_nbitmax": 5     
 ```
 
-One may choose between 2D arrhenius factor by changing parameters between `iflo_dim_arrhenius=2` or `iflo_dim_arrhenius=3` -- le later is necessary for the enthalpy model.
+One may choose between 2D arrhenius factor by changing parameters between `processes.iceflow.dim_arrhenius=2` or `processes.iceflow.dim_arrhenius=3` -- le later is necessary for the enthalpy model.
 
-When treating ery large arrays, retraining must be done sequentially patch-wise for memory reason. The size of the pathc is controlled by parameter `iflo_multiple_window_size=750`.
+When treating ery large arrays, retraining must be done sequentially patch-wise for memory reason. The size of the pathc is controlled by parameter `processes.iceflow.multiple_window_size=750`.
 
-**Contributors:** Guillaume Jouvet, Samuel Cook (global-modelling features in optimize)
+For mor info, check at the following reference:
 
+```
+@article{jouvet2023ice,
+  title={Ice flow model emulator based on physics-informed deep learning},
+  author={Jouvet, Guillaume and Cordonnier, Guillaume},
+  year={2023},
+}
+```
+ 
 ## Config Structure  
 ~~~yaml
 {% include  "../../../igm/igm/conf/processes/iceflow.yaml" %}
@@ -70,12 +63,8 @@ When treating ery large arrays, retraining must be done sequentially patch-wise 
 {% set help = load_yaml('igm/igm/conf_help/processes/iceflow.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
-{% set module_iceflow = config[module_key].iceflow %}
-{% set module_optimize = config[module_key].optimize %}
-{% set module_pretraining = config[module_key].pretraining %}
-{% set module_help_iceflow = help.iceflow %}
-{% set module_help_optimize = help.optimize %}
-{% set module_help_pretraining = help.pretraining %}
+{% set module = config[module_key] %}
+{% set module_help = help %}
 
 <table>
   <thead>
@@ -87,41 +76,15 @@ When treating ery large arrays, retraining must be done sequentially patch-wise 
       <th>Default Value</th>
     </tr>
   </thead>
-  <th>Iceflow</th>
   <tbody>
-    {% for key, value in module_iceflow.items() %}
+    {% for key, value in module.items() %}
     <tr>
       <td>{{ key }}</td>
-      <td><span class={{module_help_iceflow[key].Type}}_table>{{ module_help_iceflow[key].Type}}</span></td>
-      <!-- <td>{{ module_help_iceflow[key].Units}}</td> -->
-      <td><span class="math">{{ module_help_iceflow[key].Units }}</span></td>
-      <td>{{ module_help_iceflow[key].Description}}</td>
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-  <th>Optimize</th>
-  <tbody>
-    {% for key, value in module_optimize.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help_optimize[key].Type}}</td>
-      <!-- <td>{{ module_help_optimize[key].Units}}</td> -->
-      <td><span class="math">{{ module_help_optimize[key].Units }}</span></td>
-      <td>{{ module_help_optimize[key].Description}}</td>
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-  <th>Pretraining</th>
-  <tbody>
-    {% for key, value in module_pretraining.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help_pretraining[key].Type}}</td>
-      <!-- <td>{{ module_help_pretraining[key].Units}}</td> -->
-      <td><span class="math">{{ module_help_pretraining[key].Units }}</span></td>
-      <td>{{ module_help_pretraining[key].Description}}</td>
+      <td>{{ module_help[key].Type}}</td>
+      <!-- <td>{{ module_help[key].Units}}</td> -->
+      <td><span class="math">{{ module_help[key].Units }}</span></td>
+      <td>{{ module_help[key].Description}}</td>
+
       <td>{{ value }}</td>
     </tr>
     {% endfor %}

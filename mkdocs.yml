@@ -39,11 +39,13 @@ nav:
       - avalanche: modules/processes/avalanche.md
       - clim_glacialindex: modules/processes/clim_glacialindex.md
       - clim_oggm: modules/processes/clim_oggm.md
+      - data_assimilation: modules/processes/data_assimilation.md
       - enthalpy: modules/processes/enthalpy.md
       - gflex: modules/processes/gflex.md
       - glerosion: modules/processes/glerosion.md
       - iceflow: modules/processes/iceflow.md
       - particles: modules/processes/particles.md
+      - pretraining: modules/processes/pretraining.md
       - read_output: modules/processes/read_output.md
       - rockflow: modules/processes/rockflow.md
       - smb_accpdd: modules/processes/smb_accpdd.md
@@ -61,9 +63,10 @@ nav:
       - plot2d: modules/outputs/plot2d.md
     - User: modules/user_modules.md
     - Variables: about/variables.md
-  - FAQ: 
-      - IGM 2 to 3 transition notes: about/transition-IGM-2-to-3.md      
+  - Help: 
+      - Support: about/help.md
       - FAQ: about/FAQ.md
+      - IGM 2 to 3 transition notes: about/transition-IGM-2-to-3.md      
   - Credits: about/credits_and_references.md
 
   # - Gallery:
