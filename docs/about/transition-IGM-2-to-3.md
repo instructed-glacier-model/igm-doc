@@ -119,7 +119,16 @@ Former `preprocess`, `process`, and `postprocess` module types were renamed `inp
 
 - Former modules `anim_mayavi`, `anim_plotly`, `anim_video` were externalized from igm, and put in `utils`. These one were purely postprocessing, and were run at the very end. For simplicity, there were externalized.
 
-- Modules like `print_comp`, or `print_info`were integrated to the core
+- Modules like `print_comp`, or `print_info`w ere integrated to the core
+
+
+# (Re-)splitting of `iceflow` modules into `optimize` (now called `data_assimilation`) and `pretraining`
+
+As module `iceflow` become too big, it was decided to separate `optimize` and `pretraining` into dedicated modules. Formerly, it was separate, but the main issue is the dependance of  `optimize` and `pretraining` that was causing isues. With the new structure,  `optimize` and `pretraining` remain dependent of `iceflow`, but this is no longer an issue. However, if you call `optimize` and `pretraining`, you need to make sure that `iceflow`is caused as well (the order does not matter).
+
+# `oggm_shop` needs to be coupled with `load_ncdf` or `local`
+
+Module `oggm_shop` exclusively takes care of calling oggm to download the data (RGIXXXX folder), and changing this to a netcdf file `input.nc` that follows IGM's naming convention, and then can be read by IGM's  `load_ncdf` or `local` modules, which is NO LONGER DONE by `oggm_shop`. Therefore, if you call  `oggm_shop` , you need to call `load_ncdf` or `local` modules righ after (you can have multiple `inputs` modules).
 
 # Transition from IGM 2.X.X to IGM 3.0.0
 
