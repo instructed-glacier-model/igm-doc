@@ -2006,9 +2006,13 @@ core.yaml
 <p>Former modules <code>anim_mayavi</code>, <code>anim_plotly</code>, <code>anim_video</code> were externalized from igm, and put in <code>utils</code>. These one were purely postprocessing, and were run at the very end. For simplicity, there were externalized.</p>
 </li>
 <li>
-<p>Modules like <code>print_comp</code>, or <code>print_info</code>were integrated to the core</p>
+<p>Modules like <code>print_comp</code>, or <code>print_info</code>w ere integrated to the core</p>
 </li>
 </ul>
+<h1 id="re-splitting-of-iceflow-modules-into-optimize-now-called-data_assimilation-and-pretraining">(Re-)splitting of <code>iceflow</code> modules into <code>optimize</code> (now called <code>data_assimilation</code>) and <code>pretraining</code></h1>
+<p>As module <code>iceflow</code> become too big, it was decided to separate <code>optimize</code> and <code>pretraining</code> into dedicated modules. Formerly, it was separate, but the main issue is the dependance of  <code>optimize</code> and <code>pretraining</code> that was causing isues. With the new structure,  <code>optimize</code> and <code>pretraining</code> remain dependent of <code>iceflow</code>, but this is no longer an issue. However, if you call <code>optimize</code> and <code>pretraining</code>, you need to make sure that <code>iceflow</code>is caused as well (the order does not matter).</p>
+<h1 id="oggm_shop-needs-to-be-coupled-with-load_ncdf-or-local"><code>oggm_shop</code> needs to be coupled with <code>load_ncdf</code> or <code>local</code></h1>
+<p>Module <code>oggm_shop</code> exclusively takes care of calling oggm to download the data (RGIXXXX folder), and changing this to a netcdf file <code>input.nc</code> that follows IGM's naming convention, and then can be read by IGM's  <code>load_ncdf</code> or <code>local</code> modules, which is NO LONGER DONE by <code>oggm_shop</code>. Therefore, if you call  <code>oggm_shop</code> , you need to call <code>load_ncdf</code> or <code>local</code> modules righ after (you can have multiple <code>inputs</code> modules).</p>
 <h1 id="transition-from-igm-2xx-to-igm-300">Transition from IGM 2.X.X to IGM 3.0.0</h1>
 <p>From a pure user point of view, migrating to IGM 3, is mainly changing former parameter file <code>params.json</code> into <code>experiment/params.yaml</code>. To help with this, we have made utility is <code>json_to_yaml.py</code>.</p>
 <h1 id="running-multiple-runs">Running multiple runs</h1>
