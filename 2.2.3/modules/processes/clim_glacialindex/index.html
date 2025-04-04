@@ -1136,15 +1136,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Usage
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1812,11 +1803,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1825,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,30 +1888,22 @@
 
 
 <h1 id="module-clim_glacialindex">Module <code>clim_glacialindex</code></h1>
-<p>Module <code>clim_glacialindex</code> loads two climate snapshots (associated to a certain periods) and interpolate them using a climate signal and a glacial index approach [1]. It is suitable for paleo glacier modelling.</p>
-<p>For that purpose, we define a function GI that maps time <span class="arithmatex">\(t\)</span> to a scalar with two extreme states: one state <span class="arithmatex">\({\rm CL}_0\)</span> with nearly no ice corresponding to GI=<span class="arithmatex">\(0\)</span> and one maximum state <span class="arithmatex">\({\rm CL}_1\)</span> in terms of glacier extent corresponding GI=<span class="arithmatex">\(1\)</span>. The Climate CL consists of a set of variables:  mean temperature, temperature variability, mean precipitation, and lapse rate,
-$$
-\begin{align<em>}
-{\rm CL}(t) =(T^{\rm mean}(t),T^{\rm std}(t),P^{\rm mean}(t), {\rm LR}(t)),
-\end{align</em>} 
-$$
-and is assumed to be a linear combination: 
-$$
-\begin{align<em>}
-{\rm CL}(t) = {\rm GI}(t) \times {\rm CL}<em>{\rm 1} (t) + (1-{\rm GI}(t)) \times {\rm CL}</em>{\rm 0} (t),
-\end{align</em>}
-$$
-where the two climate states 
-$$
-\begin{align<em>}
-{\rm CL}_0(t) &amp; = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm mean}(t), {\rm LR}_0(t)), \
+<p>Module <code>clim_glacialindex</code> loads two climate snapshots (associated with certain periods) and interpolates them using a climate signal and a glacial index approach [1]. It is suitable for paleo-glacier modeling.</p>
+<p>For this purpose, we define a function GI (Glacier Index) that maps time <span class="arithmatex">\(t\)</span> to a scalar with two extreme states: one state <span class="arithmatex">\({\rm CL}_0\)</span> with nearly no ice corresponding to GI=<span class="arithmatex">\(0\)</span>, and one maximum state <span class="arithmatex">\({\rm CL}_1\)</span> in terms of glacier extent corresponding to GI=<span class="arithmatex">\(1\)</span>. The climate <span class="arithmatex">\({\rm CL}\)</span> consists of a set of variables: mean temperature, temperature variability, mean precipitation, and lapse rate:</p>
+<div class="arithmatex">\[{\rm CL}(t) =(T^{\rm mean}(t),T^{\rm std}(t),P^{\rm mean}(t), {\rm LR}(t)),\]</div>
+<p>and is assumed to be a linear combination:</p>
+<div class="arithmatex">\[\begin{align*}
+{\rm CL}(t) = {\rm GI}(t) \times {\rm CL}_{\rm 1} (t) + (1-{\rm GI}(t)) \times {\rm CL}_{\rm 0} (t),
+\end{align*}\]</div>
+<p>where the two climate states are:</p>
+<div class="arithmatex">\[\begin{align*}
+{\rm CL}_0(t) &amp; = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm mean}(t), {\rm LR}_0(t)), \\
 {\rm CL}_1(t) &amp; = ( T_1^{\rm mean}(t),T_1^{\rm std}(t),P_1^{\rm mean}(t), {\rm LR}_1(t)),
-\end{align</em>}
-$$
-correspond to GI=<span class="arithmatex">\(0\)</span> and GI=<span class="arithmatex">\(1\)</span>, respectively. Last, the GI function is built by linearly rescaling a climate proxy signal in such a way that GI is close to 1 at the ice maximum and close to 0 at the ice minimum. E.g., we may use the Antarctica EPICA temperature anomaly signal, which is available for the last 800'000 years.</p>
-<p>Note that the two climates <span class="arithmatex">\({\rm CL}_0\)</span> and  <span class="arithmatex">\({\rm CL}_1\)</span> are defined on 2 reference topographies different. Therefore, it is necessary to correct the temperature for a shift in elevation with a vertical laspe rate between the modelled ice surface elevation and the reference surface.</p>
-<p>[1] Jouvet, Guillaume, et al. "Coupled climate-glacier modelling of the last glaciation in the Alps." Journal of Glaciology 69.278 (2023): 1956-1970.</p>
+\end{align*}\]</div>
+<p>corresponding to GI=<span class="arithmatex">\(0\)</span> and GI=<span class="arithmatex">\(1\)</span>, respectively. Lastly, the GI function is built by linearly rescaling a climate proxy signal so that GI is close to 1 at the ice maximum and close to 0 at the ice minimum. For example, we may use the Antarctica EPICA temperature anomaly signal, which is available for the last 800,000 years.</p>
+<p>Note that the two climates <span class="arithmatex">\({\rm CL}_0\)</span> and <span class="arithmatex">\({\rm CL}_1\)</span> are defined on two different reference topographies. Therefore, it is necessary to correct the temperature for a shift in elevation using a vertical lapse rate between the modeled ice surface elevation and the reference surface.</p>
 <p><strong>Contributors:</strong> G. Jouvet</p>
+<p><strong>Reference:</strong> [1] Jouvet, Guillaume, et al. "Coupled climate-glacier modelling of the last glaciation in the Alps." Journal of Glaciology 69.278 (2023): 1956-1970.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">clim_glacialindex</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
@@ -1932,7 +1915,6 @@ correspond to GI=<span class="arithmatex">\(0\)</span> and GI=<span class="arith
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">temporal_resampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
 </span></code></pre></div>
 <h2 id="parameters">Parameters</h2>
-<p>Here we store a table with</p>
 <table>
   <thead>
     <tr>
@@ -2019,7 +2001,6 @@ correspond to GI=<span class="arithmatex">\(0\)</span> and GI=<span class="arith
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
 <p>--&gt;</p>
-<h2 id="example-usage">Example Usage</h2>
 
 
 

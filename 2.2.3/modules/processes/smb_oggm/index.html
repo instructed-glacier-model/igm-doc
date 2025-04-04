@@ -1812,11 +1812,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1834,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,12 +1897,11 @@
 
 
 <h1 id="module-smb_oggm">Module <code>smb_oggm</code></h1>
-<p>Module <code>smb_oggm</code> implements the monthly temperature index model calibrated on geodetic MB data (Hugonnet, 2021) by OGGM. The yearly surface mass balance  is computed with </p>
-<div class="arithmatex">\[
-SMB = \frac{\rho_w}{\rho_i}  \sum_{i=1}^{12} \left( P_i^{sol} - d_f \max \{ T_i - T_{melt}, 0 \} \right),
-\]</div>
-<p>where <span class="arithmatex">\(P_i^{sol}\)</span> is the is the monthly solid precipitation, <span class="arithmatex">\(T_i\)</span> is the monthly temperature and <span class="arithmatex">\(T_{melt}\)</span> is the air temperature above which ice melt is assumed to occur (parameter <code>temp_melt</code>), <span class="arithmatex">\(d_f\)</span> is the melt factor (parameter <code>melt_f</code>), and $\frac{\rho_w}{\rho_i} $ is the ratio of water to ice density. Solid precipitation <span class="arithmatex">\(P_i^{sol}\)</span> is computed out of precipitation and temperature such that it equals precipitation when the temperature is lower than a certain threshold (parameter <code>temp_all_solid</code>), zero above another threshold (parameter <code>temp_all_liq</code>), with a linear transition between the two. Module <code>oggm_shop</code> provides all calibrated parameters.</p>
+<p>Module <code>smb_oggm</code> implements the monthly temperature index model calibrated on geodetic mass balance (MB) data (Hugonnet, 2021) by OGGM. The yearly surface mass balance is computed with:</p>
+<div class="arithmatex">\[SMB = \frac{\rho_w}{\rho_i}  \sum_{i=1}^{12} \left( P_i^{sol} - d_f \max \{ T_i - T_{melt}, 0 \} \right),\]</div>
+<p>where <span class="arithmatex">\(P_i^{sol}\)</span> is the monthly solid precipitation, <span class="arithmatex">\(T_i\)</span> is the monthly temperature, and <span class="arithmatex">\(T_{melt}\)</span> is the air temperature above which ice melt is assumed to occur (parameter <code>temp_melt</code>). The parameter <span class="arithmatex">\(d_f\)</span> is the melt factor (parameter <code>melt_f</code>), and <span class="arithmatex">\(\frac{\rho_w}{\rho_i}\)</span> is the ratio of water to ice density. Solid precipitation <span class="arithmatex">\(P_i^{sol}\)</span> is computed from precipitation and temperature such that it equals precipitation when the temperature is lower than a certain threshold (parameter <code>temp_all_solid</code>), zero above another threshold (parameter <code>temp_all_liq</code>), with a linear transition between the two. Module <code>oggm_shop</code> provides all calibrated parameters [1].</p>
 <p><strong>Contributors:</strong> Guillaume Jouvet, Fabien Maussion</p>
+<p><strong>Reference:</strong> Maussion, Fabien, et al. "The open global glacier model (OGGM) v1. 1." Geoscientific Model Development 12.3 (2019): 909-931.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">smb_oggm</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>

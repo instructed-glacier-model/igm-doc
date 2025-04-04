@@ -1812,11 +1812,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1834,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,7 +1897,7 @@
 
 
 <h1 id="module-rockflow">Module <code>rockflow</code></h1>
-<p>This module extends the ice flow outside the glaciated area, by giving a constant speed and along-slope flow direction. This modules serves to track rock-like particles (with module <code>particles</code>) everywhere in ice-free and ice-filled areas, particles being either advected at constant steep (controlled by parameter <code>rock_flow_speed</code>) following the stepest gradient of the ice-free terrain in 2D, or by ice flow in 3D.</p>
+<p>This module extends the ice flow beyond glaciated areas by assigning a constant speed and along-slope flow direction. It is designed to track rock-like particles (using the <code>particles</code> module) in both ice-free and ice-covered regions. Particles are either advected at a constant speed (controlled by the parameter <code>processes.rockflow.speed</code>) following the steepest gradient of the ice-free terrain in 2D or transported by ice flow in 3D.</p>
 <p><strong>Contributors:</strong> G. Jouvet</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">rockflow</span><span class="p">:</span>

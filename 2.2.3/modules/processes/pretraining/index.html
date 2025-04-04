@@ -1312,15 +1312,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Usage
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1812,11 +1803,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1825,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,7 +1888,7 @@
 
 
 <h1 id="module-pretraining">Module <code>pretraining</code></h1>
-<p>This module performs a pretraining of the ice flow iflo_emulator on a glacier catalogue to improve the performance of the emaulator when used in glacier forward run. The pretraining can be relatively computationally demanding task (a couple of hours). This module should be called alone independently of any other igm module. Here is an example of parameter file:</p>
+<p>This module performs pretraining of the ice flow <code>iflo_emulator</code> on a glacier catalog to enhance its performance during glacier forward runs. Pretraining can be a computationally intensive task, taking a few hours to complete. This module should be executed independently, without involving any other IGM modules. Below is an example of a parameter file:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># @package _global_</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">defaults</span><span class="p">:</span>
@@ -1926,8 +1917,8 @@
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">min_arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">max_arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">400</span>
 </span></code></pre></div>
-<p>To run it, one first needs to have available a glacier catalogue. I provide here <a href="https://doi.org/10.5281/zenodo.8332898"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.8332898.svg" /></a> a dataset of a glacier catalogue (mountain glaciers) I have mostly used for pretraining IGM emaulators.</p>
-<p>Once downloaded (or self generated), the folder "surflib3d_shape_100" can be re-organized into a subfolder "train" and a subfolder "test"  as follows:</p>
+<p>To run this module, you first need access to a glacier catalog. A dataset of a glacier catalog (mountain glaciers) commonly used for pretraining IGM emulators is available here: <a href="https://doi.org/10.5281/zenodo.8332898"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.8332898.svg" /></a>.</p>
+<p>After downloading (or generating your own dataset), organize the folder <code>surflib3d_shape_100</code> into two subfolders: <code>train</code> and <code>test</code>.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">pretraining</span><span class="p">:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;surflib3d_shape_100&quot;</span>
@@ -2086,8 +2077,6 @@
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-<h2 id="example-usage">Example Usage</h2>
 
 
 

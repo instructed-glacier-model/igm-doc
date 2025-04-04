@@ -1422,15 +1422,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Usage
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1812,11 +1803,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1825,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,26 +1888,29 @@
 
 
 <h1 id="module-smb_simple">Module <code>smb_simple</code></h1>
-<p>This IGM modules models a simple surface mass balance model parametrized by time-evolving ELA <span class="arithmatex">\(z_{ELA}\)</span>, ablation <span class="arithmatex">\(\beta_{abl}\)</span> and accumulation <span class="arithmatex">\(\beta_{acc}\)</span> gradients, and max accumulation <span class="arithmatex">\(m_{acc}\)</span> parameters:</p>
-<div class="arithmatex">\[SMB(z)=min(\beta_{acc} (z-z_{ELA}),m_{acc})\quad\textrm{if}\;z&gt;z_{ELA},$$
-$$SMB(z)=\beta_{abl} (z-z_{ELA})\quad\textrm{else}.\]</div>
-<p>These parameters may be given in file (file name given in <code>file</code> parameter), which look like this</p>
+<p>This IGM module models a simple surface mass balance (SMB) parametrized by time-evolving equilibrium line altitude (ELA) <span class="arithmatex">\(z_{ELA}\)</span>, ablation gradient <span class="arithmatex">\(\beta_{abl}\)</span>, accumulation gradient <span class="arithmatex">\(\beta_{acc}\)</span>, and maximum accumulation <span class="arithmatex">\(m_{acc}\)</span> parameters:</p>
+<div class="arithmatex">\[SMB(z) = 
+\begin{cases} 
+\min(\beta_{acc} \cdot (z - z_{ELA}), m_{acc}) &amp; \text{if } z &gt; z_{ELA}, \\
+\beta_{abl} \cdot (z - z_{ELA}) &amp; \text{otherwise}.
+\end{cases}\]</div>
+<p>These parameters can be provided in a file (specified by the <code>file</code> parameter) with the following format:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>time   gradabl  gradacc    ela   accmax
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>1900     0.009    0.005   2800      2.0
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2000     0.009    0.005   2900      2.0
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>2100     0.009    0.005   3300      2.0
 </span></code></pre></div>
-<p>or directly as parameter in the config <code>params.yaml</code> file:</p>
+<p>Alternatively, they can be directly specified in the configuration file <code>params.yaml</code> as follows:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">smb_simple</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">   </span><span class="nt">array</span><span class="p">:</span><span class="w"> </span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;time&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;gradabl&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;gradacc&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;ela&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;accmax&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1900</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w">     </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">2800</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">2000</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w">     </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">2900</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">2100</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w">     </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">3300</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">array</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;time&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;gradabl&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;gradacc&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;ela&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;accmax&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1900</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w">     </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">2800</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">2000</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w">     </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">2900</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">2100</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w">     </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">3300</span><span class="p p-Indicator">,</span><span class="w">      </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
-<p>If parameter <code>array</code> is set to empty list <code>[]</code>, then it will read the file <code>file</code>, otherwise it read the array <code>array</code> (which is here in fact a list of list).</p>
-<p>The module will compute surface mass balance at a frequency given by parameter <code>update_freq</code> (default is 1 year), and interpolate linearly the 4 parameters in time.</p>
-<p>If one has provided in input an "icemask" field, then this module will compute negative surface mass balance (-10 m/y) in place where posstive surface mass balance outside the mask were originally computed. The goal here is to prevent against overflowing in neibourghing catchements.</p>
+<p>If the <code>array</code> parameter is set to an empty list <code>[]</code>, the module will read the data from the file specified by the <code>file</code> parameter. Otherwise, it will use the provided <code>array</code> (a list of lists).</p>
+<p>The module computes the surface mass balance at a frequency defined by the <code>update_freq</code> parameter (default is 1 year) and interpolates the four parameters linearly over time.</p>
+<p>If an "icemask" field is provided as input, the module will assign a negative surface mass balance (-10 m/y) to areas where a positive surface mass balance would otherwise occur outside the mask. This prevents overflow into neighboring catchments.</p>
 <p><strong>Contributors:</strong> G. Jouvet</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">smb_simple</span><span class="p">:</span>
@@ -1977,8 +1971,6 @@ $$SMB(z)=\beta_{abl} (z-z_{ELA})\quad\textrm{else}.\]</div>
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-<h2 id="example-usage">Example Usage</h2>
 
 
 

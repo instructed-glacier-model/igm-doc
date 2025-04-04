@@ -1510,15 +1510,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Usage
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1812,11 +1803,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1825,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,7 +1888,7 @@
 
 
 <h1 id="module-vert_flow">Module <code>vert_flow</code></h1>
-<p>This IGM module computes the vertical component (providing <code>state.W</code>) of the velocity from the horizontal components (<code>state.U</code> and <code>state.V</code>), computed from an emulation of the Blatter-Pattyn model in the module <code>iceflow</code>) by integrating the imcompressibility condition layer-wise. This module is typically needed prior calling module <code>particle</code> for 3D particle trajectory integration, or module <code>enthalpy</code> for computing 3D advection-diffusion of the enthalpy.</p>
+<p>This IGM module computes the vertical component of the velocity (<code>state.W</code>) from the horizontal components (<code>state.U</code> and <code>state.V</code>). These horizontal components are derived from an emulation of the Blatter-Pattyn model in the <code>iceflow</code> module. The computation is performed by integrating the incompressibility condition layer-wise. This module is typically used before invoking the <code>particle</code> module for 3D particle trajectory integration or the <code>enthalpy</code> module for computing 3D advection-diffusion of enthalpy.</p>
 <p><strong>Contributors:</strong> Guillaume Jouvet, Claire-Mathile Stücki</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">vert_flow</span><span class="p">:</span>
@@ -1947,8 +1938,6 @@
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-<h2 id="example-usage">Example Usage</h2>
 
 
 

@@ -1812,11 +1812,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1834,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,8 +1897,9 @@
 
 
 <h1 id="module-thk">Module <code>thk</code></h1>
-<p>This IGM module solves the mass conservation of ice to update the thickness from ice flow (computed from module <code>iceflow</code>) and surface mass balance (given any module that update <code>smb</code>). The mass conservation equation is solved using an explicit first-order upwind finite-volume scheme on the 2D working grid. With this scheme mass of ice is allowed to move from cell to cell (where thickness and velocities are defined) from edge-defined fluxes (inferred from depth-averaged velocities, and ice thickness in upwind direction). The resulting scheme is mass conservative and parallelizable (because fully explicit). However, it is subject to a CFL condition. This means that the time step (defined in module <code>time</code>) is controlled by parameter parameter <code>processes.time.cfl</code>, which is the maximum number of cells crossed in one iteration (this parameter cannot exceed one), see the documentation of module <code>time</code>. A bit more details on the scheme are given in the following paper.</p>
-<p>Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., &amp; Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.</p>
+<p>This IGM module solves the mass conservation equation for ice to update the thickness based on ice flow (computed by the <code>iceflow</code> module) and surface mass balance (provided by any module that updates <code>smb</code>). The equation is solved using an explicit first-order upwind finite-volume scheme on the 2D working grid. This scheme allows ice mass to move between cells (where thickness and velocities are defined) using edge-defined fluxes (calculated from depth-averaged velocities and ice thickness in the upwind direction). </p>
+<p>The scheme is mass-conservative and parallelizable due to its fully explicit nature. However, it is subject to a CFL condition, meaning the time step (defined in the <code>time</code> module) is constrained by the parameter <code>processes.time.cfl</code>. This parameter represents the maximum number of cells crossed in one iteration and cannot exceed one. For more details, refer to the documentation of the <code>time</code> module. Additional information about the scheme can be found in the following paper:</p>
+<p><strong>Reference:</strong> Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., &amp; Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.</p>
 <p><strong>Contributors:</strong> Guillaume Cordonnier, Guillaume Jouvet</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">thk</span><span class="p">:</span>

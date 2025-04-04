@@ -1812,11 +1812,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1834,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,28 +1897,30 @@
 
 
 <h1 id="module-particles">Module <code>particles</code></h1>
-<p>This IGM module implements a particle tracking routine, which computes trajectory of virtual particles advected by the ice flow. The specificity is that it runs in live time during the forward mdodel run and a large number of particles can be computed tanks to the parrallel implementation with TensorFlow. The routine includes particle seeding (by default in the accumulation area at regular intervals, but this can be customized), and tracking (advection by the velocity field in 3D). There is currently no strategy for removing particles, therefore, there is risk of overloading the memory when using this routine as it is for long time and/or with intense seeding.</p>
-<p>There are currently 2 implementations (switch with parameter <code>tracking_method</code>:</p>
+<p>This IGM module implements a particle tracking routine, which computes the trajectories of virtual particles advected by the ice flow. The routine operates in real-time during the forward model run, and a large number of particles can be processed efficiently thanks to the parallel implementation with TensorFlow. The routine includes particle seeding (by default in the accumulation area at regular intervals, though this can be customized) and tracking (advection by the velocity field in 3D). Note that there is currently no strategy for removing particles, which may lead to memory overload when using this routine for long durations and/or with high seeding intensity.</p>
+<p>There are currently two implementations (selectable via the <code>tracking_method</code> parameter):</p>
 <ul>
+<li><code>'simple'</code>: Horizontal and vertical directions are treated differently:</li>
+<li>In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly).</li>
 <li>
-<p><code>'simple'</code>: Horizontal and vertical directions are treated differently: i) In the horizontal plan, particles are advected with the horizontal velocity field (interpolated bi-linearly) ii) In the vertical direction, particles are tracked along the ice column scaled between 0 and 1 (0 at the bed, 1 at the top surface) with the  relative position along the ice column. Particles are always initialized at 1 relative height (assumed to be on the surface). The evolution of the particle within the ice column through time is computed according to the surface mass balance: the particle deepens when the surface mass balance is positive (the relative height decreases), and re-emerge when the surface mass balance is negative (the relative height increases).</p>
+<p>In the vertical direction, particles are tracked along the ice column, scaled between 0 (at the bed) and 1 (at the surface), based on their relative position. Particles are always initialized at a relative height of 1 (assumed to be on the surface). The evolution of the particle's position within the ice column over time is computed based on the surface mass balance: the particle deepens when the surface mass balance is positive (the relative height decreases) and re-emerges when the surface mass balance is negative (the relative height increases).</p>
 </li>
 <li>
-<p><code>'3d'</code>: requires to activate module <code>vert_flow</code>, which computes the vertical velocity by integrating the divergence of the horizontal velocity. This permits in turn to perform 3D particle tracking.</p>
+<p><code>'3d'</code>: Requires activation of the <code>vert_flow</code> module, which computes the vertical velocity by integrating the divergence of the horizontal velocity. This enables full 3D particle tracking.</p>
 </li>
 </ul>
-<p>For now, <code>tracking_method</code> is by default set to  <code>'simple'</code>, as the  <code>'3d'</code> method (and the dependence <code>vert_flow</code>) needs to further tested.</p>
-<p>Note that you my adapt the seeding to your need. You may keep the default seeding in the accumulation area setting the seeding frequency with <code>frequency_seeding</code> parameter and the seeding density <code>density_seeding</code> parameter. Alternatively, you may define your own seeding strategy (e.g. seeding close to rock walls/nunataks). To do so, you may redefine the function <code>seeding_particles()</code> in a file <code>particles.py</code> provided in the working directory (check the example aletsch-1880-2100). When excuted, <code>igm_run</code> will overide the original function <code>seeding_particles()</code> with the new user-defined one.</p>
-<p>The module needs horizontal velocities (state.U), as well as vertical speeds (state.W) that ice computed with the vert_flow module when <code>tracking_method</code> is set to <code>3d</code>. </p>
-<p><strong>Note:</strong> in the code, positions of particles are recorded within a vector of lenght te number of traked particels state.xpos, state.ypos, state.zpos. Variable state.rhpos provide the relative height within the ice column (1 at the surface, 0 at the bed). At each time step, the weight of surface debris contains in each cell the 2D horizontal grid is computed, and stored in variable state.weight_particles.</p>
-<p>This IGM module writes particle time-position in csv files computed by module <code>particles</code>. The saving frequency is given by parameter <code>processes.time.save</code> defined in module <code>time</code>.</p>
-<p>The module also write the trajectories followed by particles: The data are stored in folder 'trajectory' (created if does not exist). Files 'traj-TIME.csv' reports the space-time position of the particles at time TIME with the following structure:</p>
+<p>Currently, the default <code>tracking_method</code> is set to <code>'simple'</code>, as the <code>'3d'</code> method (and its dependency on <code>vert_flow</code>) requires further testing.</p>
+<p>You may adapt the seeding strategy to your needs. The default seeding occurs in the accumulation area, with the seeding frequency controlled by the <code>frequency_seeding</code> parameter and the seeding density by the <code>density_seeding</code> parameter. Alternatively, you can define a custom seeding strategy (e.g., seeding near rock walls or nunataks). To do this, redefine the <code>seeding_particles()</code> function in a <code>particles.py</code> file located in the working directory (refer to the example <code>aletsch-1880-2100</code>). When executed, <code>igm_run</code> will override the original <code>seeding_particles()</code> function with the user-defined one.</p>
+<p>The module requires horizontal velocities (<code>state.U</code>) and vertical velocities (<code>state.W</code>). The vertical velocities are computed using the <code>vert_flow</code> module when the <code>tracking_method</code> is set to <code>'3d'</code>.</p>
+<p><strong>Note:</strong> In the code, the positions of particles are recorded within vectors corresponding to the number of tracked particles: <code>state.xpos</code>, <code>state.ypos</code>, and <code>state.zpos</code>. The variable <code>state.rhpos</code> provides the relative height within the ice column (1 at the surface, 0 at the bed). At each time step, the weight of surface debris contained in each cell of the 2D horizontal grid is computed and stored in the variable <code>state.weight_particles</code>.</p>
+<p>This IGM module writes particle time-position data into CSV files, as computed by the <code>particles</code> module. The saving frequency is controlled by the parameter <code>processes.time.save</code>, which is defined in the <code>time</code> module.</p>
+<p>The module also writes the trajectories followed by particles. The data are stored in a folder named <code>trajectory</code> (created if it does not already exist). Files named <code>traj-TIME.csv</code> report the space-time positions of the particles at time <code>TIME</code> with the following structure:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>X,            X,           X,           X,           X,           X,           X,
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>X,            X,           X,           X,           X,           X,           X,
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>X,            X,           X,           X,           X,           X,           X,
 </span></code></pre></div>
-<p>providing in turn the particle ID, x,y,z positions, the relative height within the ice column, the seeding time, and the englacial time.</p>
+<p>providing, in turn, the particle ID, x, y, z positions, the relative height within the ice column, the seeding time, and the englacial residence time.</p>
 <p><strong>Contributors:</strong> Guillaume Jouvet, Claire-Mathile Stücki</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">particles</span><span class="p">:</span>

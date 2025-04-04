@@ -1224,15 +1224,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Usage
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1812,11 +1803,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1834,11 +1825,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1897,10 +1888,9 @@
 
 
 <h1 id="module-gflex">Module <code>gflex</code></h1>
-<p>This IGM module permits to model the isostasy or upward motion of the lithosphere when loaded with thick ice, it uses the 
-<a href="https://gmd.copernicus.org/articles/9/997/2016/">gflex</a> python module writen by Andy Wickert.</p>
-<p>Parameters are the update frequency <code>gflex_update_freq</code> and the Elastic thickness [m] (Te) <code>gflex_default_Te</code>.</p>
-<p>This module only runs on CPU, which may be an issue for treating very large arrays. On the other hand, we do not expect a frequent update, therefore, this module should not be overall too consuming.</p>
+<p>This IGM module models isostasy or the upward motion of the lithosphere when loaded with thick ice. It utilizes the <a href="https://gmd.copernicus.org/articles/9/997/2016/">gflex</a> Python module developed by Andy Wickert.</p>
+<p>The key parameters are the update frequency <code>processes.gflex.update_freq</code> and the Elastic Thickness (Te) in meters, specified as <code>processes.gflex.default_Te</code>.</p>
+<p>This module operates exclusively on the CPU, which may pose challenges when processing very large arrays. However, since updates are not expected to occur frequently, the overall computational demand of this module should remain manageable.</p>
 <p><strong>Contributors:</strong> Jürgen Mey</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">gflex</span><span class="p">:</span>
@@ -1983,8 +1973,6 @@
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-<h2 id="example-usage">Example Usage</h2>
 
 
 

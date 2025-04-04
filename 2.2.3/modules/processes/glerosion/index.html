@@ -1242,15 +1242,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Usage
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1808,11 +1799,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    FAQ
+    IGM 2 to 3 transition notes
     
   </span>
   
@@ -1830,11 +1821,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../about/FAQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
+    FAQ
     
   </span>
   
@@ -1895,8 +1886,7 @@
   <h1>glerosion</h1>
 
 <p>Module <code>glerosion</code></p>
-<p>This IGM module implements change in basal topography (due to glacial erosion). The bedrock is updated (with a frequency provided by parameter <code>glerosion_update_freq years</code>) assuming a power erosion law, i.e. the erosion rate is proportional (parameter <code>glerosion_cst</code>) to a power (parameter <code>glerosion_exp</code>) of the sliding velocity magnitude. </p>
-<p>By default, we use the parameters from [1].</p>
+<p>This IGM module implements change in basal topography (due to glacial erosion). The bedrock is updated (with a frequency provided by parameter <code>processes.glerosion.update_freq years</code>) assuming a power erosion law, i.e. the erosion rate is proportional (parameter <code>processes.glerosion.cst</code>) to a power (parameter <code>processes.glerosion.exp</code>) of the sliding velocity magnitude. By default, we use the parameters from [1].</p>
 <p>[1] Herman, F. et al., Erosion by an Alpine glacier. Science 350, 193-195, 2015.</p>
 <p><strong>Contributors:</strong> G. Jouvet</p>
 <h2 id="config-structure">Config Structure</h2>
@@ -1958,8 +1948,6 @@
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-<h2 id="example-usage">Example Usage</h2>
 
 
 
