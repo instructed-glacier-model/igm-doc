@@ -1897,8 +1897,9 @@
 
 
 <h1 id="module-write_tif">Module <code>write_tif</code></h1>
-<p>This IGM module writes 2D field variables defined in the paramer list <code>vars_to_save</code> into tif output files. Files will be created with names composed by the variable name and the time (e.g., thk-000040.tif, usurf-000090.tif) in the working directory. The saving frequency is given by parameter <code>processes.time.save</code> defined in module <code>time</code>. If input file were call with module <code>load_tif</code>, then the tif meta information are saved, and provided with the final tiff files.</p>
-<p>This module depends on the <code>rasterio</code> library.</p>
+<p>This IGM module writes 2D field variables listed in the parameter <code>vars_to_save</code> into TIFF output files. The files are named using the variable name and the time step (e.g., <code>thk-000040.tif</code>, <code>usurf-000090.tif</code>) and are saved in the working directory. The saving frequency is determined by the parameter <code>processes.time.save</code> defined in the <code>time</code> module. </p>
+<p>If the input files were loaded using the <code>load_tif</code> module, the TIFF metadata is preserved and included in the output files.</p>
+<p>This module requires the <code>rasterio</code> library.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">write_tif</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">vars_to_save</span><span class="p">:</span>

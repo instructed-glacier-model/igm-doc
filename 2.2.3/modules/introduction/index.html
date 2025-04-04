@@ -1837,37 +1837,37 @@
 
 
 <h1 id="introduction">Introduction</h1>
-<p>IGM is organized in a module-wise fashion, recognizing the similarity in the tasks performed such as the loading of data, the initializing of fields, the update of these fields within a time loop, or the outputting results at regular time intervals. Each module handles a specific aspect of the glacier evolution process, making the model modular:</p>
+<p>IGM is organized in a modular fashion, reflecting the similarity in tasks such as loading data, initializing fields, updating these fields within a time loop, and outputting results at regular intervals. Each module is designed to handle a specific aspect of the glacier evolution process, ensuring a clear and modular structure:</p>
 <ul>
 <li>
-<p>the <code>inputs</code> modules serve to load data (e.g., glacier bedrock, ice surface velocities, ...),</p>
+<p>The <code>inputs</code> modules are responsible for loading data, such as glacier bedrock and ice surface velocities.</p>
 </li>
 <li>
-<p>the <code>processes</code> modules implement physical mechanisms in a decoupled manner (e.g., ice flow, mass conservation, ...),</p>
+<p>The <code>processes</code> modules implement physical mechanisms in a modular way, such as ice flow and mass conservation.</p>
 </li>
 <li>
-<p>the <code>outputs</code> modules serve to write or plot model results.</p>
+<p>The <code>outputs</code> modules handle writing or visualizing model results.</p>
 </li>
 </ul>
-<p>The main Python script <code>igm_run</code> permits to load all <code>inputs</code>, <code>processes</code>, <code>outputs</code> modules and their parameters, initialize, update them within a time loop, and finalize them. The large majority of the IGM code is part of modules, while the core structure is very lightweight. Each module includes:</p>
+<p>The main Python script <code>igm_run</code> is responsible for orchestrating the entire simulation process. It loads all <code>inputs</code>, <code>processes</code>, and <code>outputs</code> modules along with their parameters, initializes them, updates them within a time loop, and finalizes them. The majority of the IGM code resides within these modules, while the core structure remains minimal and lightweight. Each module includes:</p>
 <ul>
 <li>
-<p>a name that is used to identify it (e.g., <code>greatmodule</code>)</p>
+<p>a name that is used to identify it (e.g., <code>greatmodule</code>).</p>
 </li>
 <li>
-<p>a source code located <code>XXX/greatmodule/greatmodule.py</code> where XXX is folder <code>inputs</code>, <code>processes</code>, or <code>outputs</code> according to the nature of the module.</p>
+<p>a source code located in <code>XXX/greatmodule/greatmodule.py</code>, where <code>XXX</code> is the folder <code>inputs</code>, <code>processes</code>, or <code>outputs</code> depending on the module's purpose.</p>
 </li>
 <li>
-<p>a parameter file located in <code>conf/XXX/greatmodule.yaml</code> with default parameters,</p>
+<p>a parameter file located in <code>conf/XXX/greatmodule.yaml</code> containing default parameters.</p>
 </li>
 <li>
-<p>a help file <code>conf_help/XXX/greatmodule.yaml</code> specifying the definition of each parameter, its type and unit.</p>
+<p>a help file located in <code>conf_help/XXX/greatmodule.yaml</code> that defines each parameter, including its type and unit.</p>
 </li>
 <li>
-<p>a documentation page located on the <code>igm-doc</code> GitHub repo that serves to build the documentation.</p>
+<p>a documentation page in the <code>igm-doc</code> GitHub repository, which is used in the documentation.</p>
 </li>
 </ul>
-<p>For convenience, users can write their own module-parameter pair in a folder <code>user</code>, and can call the user module from the parameter file.</p>
+<p>For convenience, users can create their own module-parameter pairs in a dedicated <code>user</code> folder. These user-defined modules can be referenced directly from the parameter file, enabling customization and flexibility to extend the simulation's functionality. This approach allows users to tailor the simulation to their specific needs without altering the core modules. Check section on <a href="modules/user_modules.md">user modules</a> for more information.</p>
 
 
 

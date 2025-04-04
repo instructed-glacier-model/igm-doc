@@ -1897,9 +1897,9 @@
 
 
 <h1 id="module-plot2d">Module <code>plot2d</code></h1>
-<p>This IGM module produces 2D plan-view plots of variable defined by parameter <code>var</code> (e.g. <code>var</code> can be set to <code>thk</code>, or <code>ubar</code>, ...). The saving frequency is given by parameter <code>processes.time.save</code> defined in module <code>time</code>.  The scale range of the colobar is controlled by parameter <code>varmax</code>.</p>
-<p>By default, the plots are saved as png files in the working directory. However, one may display the plot "in live" by setting <code>live</code> to True. Note that if you use the spyder python editor, you need to turn <code>editor</code> to 'sp'.</p>
-<p>If the <code>particles</code> module is activated, one may plot particles on the top setting <code>particles</code> to True, or remove them form the plot seeting it to False.</p>
+<p>This IGM module generates 2D plan-view plots of a variable specified by the parameter <code>var</code> (e.g., <code>var</code> can be set to <code>thk</code>, <code>ubar</code>, etc.). The saving frequency is determined by the parameter <code>processes.time.save</code> defined in the <code>time</code> module. The color bar's scale range is controlled by the parameter <code>varmax</code>.</p>
+<p>By default, the plots are saved as PNG files in the working directory. However, you can display the plot "live" by setting <code>live</code> to <code>True</code>. </p>
+<p>If the <code>particles</code> module is activated, you can overlay particles on the plot by setting <code>particles</code> to <code>True</code>, or exclude them by setting it to <code>False</code>.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">plot2d</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">editor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vs</span>

@@ -1897,8 +1897,8 @@
 
 
 <h1 id="module-write_ncdf">Module <code>write_ncdf</code></h1>
-<p>This IGM module writes 2D field variables defined in the paramer list <code>vars_to_save</code> into the NetCDF output file given by parameter <code>output_file</code> (default output.nc). The saving frequency is given by parameter <code>processes.time.save</code> defined in module <code>time</code>.</p>
-<p>This module depends on <code>netCDF4</code>.</p>
+<p>This IGM module writes 2D field variables specified in the parameter list <code>vars_to_save</code> into the NetCDF output file defined by the parameter <code>output_file</code> (default: <code>output.nc</code>). The saving frequency is determined by the parameter <code>processes.time.save</code> in the <code>time</code> module.</p>
+<p>This module requires the <code>netCDF4</code> library.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">write_ncdf</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">output_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">output.nc</span>

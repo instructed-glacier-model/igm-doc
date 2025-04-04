@@ -1897,7 +1897,7 @@
 
 
 <h1 id="module-local">Module <code>local</code></h1>
-<p>This IGM module writes 2D field variables defined in the paramer list <code>vars_to_save</code> into the NetCDF output file given by parameter <code>output_file</code> (default output.nc). The saving frequency is given by parameter <code>processes.time.save</code> defined in module <code>time</code>.</p>
+<p>This IGM module writes 2D field variables defined in the parameter list <code>vars_to_save</code> into the NetCDF output file specified by the parameter <code>output_file</code> (default: <code>output.nc</code>). The saving frequency is determined by the parameter <code>processes.time.save</code> defined in the <code>time</code> module.</p>
 <p>This module depends on <code>xarray</code>.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">local</span><span class="p">:</span>
