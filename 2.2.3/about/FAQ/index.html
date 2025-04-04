@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#frequently-asked-questions-faq" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1744,6 +1749,18 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1754,6 +1771,83 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions-faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequently Asked Questions (FAQ)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frequently Asked Questions (FAQ)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ice-is-stuck-on-the-border-of-the-domain-no-fluxes-what-can-i-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ice is stuck on the border of the domain (no fluxes), what can I do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-see-some-numerical-artifacts-eg-waves-occurring-when-modeling-glacier-evolution-what-can-i-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      I see some numerical artifacts (e.g., waves) occurring when modeling glacier evolution, what can I do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-createmodify-netcdf-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to create/modify NetCDF files?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oggm-shop-produces-an-error-on-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      OGGM Shop produces an error on Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-vs-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPU vs CPU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1831,31 +1925,22 @@
 
   <h1>FAQ</h1>
 
-<ul>
-<li>Ice is stuck on the border of the domain (no fluxes), what can I do?</li>
-</ul>
-<p>Set parameter exclude_borders_from_iceflow to True</p>
-<ul>
-<li>I see some numerical artifacts (e.g. waves) occurring when modeling glacier evolution, what can I do?</li>
-</ul>
-<p>Reduce the CFL parameter</p>
-<ul>
-<li>How to create/modify NetCDF files?</li>
-</ul>
-<p>There are many ways to prepare NetCDF files (matlab, python, GIS tools, ...). The <a href="http://nco.sourceforge.net/">NCO</a> toolkit permits easy operations in command lines, e.g.</p>
-<div class="language-text highlight"><pre><span></span><code>   ncks -x -v thk file.nc file.nc              # this removes the variable &#39;thk&#39; from file.nc
-   ncks -v usurf file.nc file.nc               # this extracts the variable usurf from file.nc
-   ncap2 -h -O -s &#39;thk=0*thk&#39; file.nc file.nc  # this does operations on file.nc, here force zero thk
-   ncrename -v apc,strflowctrl file.nc         # this renames varible apc to strflowctrl in file.nc
-</code></pre></div>
-<ul>
-<li>oggm_shop produces error on windows</li>
-</ul>
-<p>This is expected, OGGM is <a href="https://github.com/OGGM/oggm/issues/870">not supported</a> on windows, however, modifying the tarfile.py file at line 2677 from name == member_name to name.replace(os.sep, '/') == member_name seems to fix the issue on Windows. Thanks Alexi Morin for proposing this workaround.</p>
-<ul>
-<li>GPU vs CPU</li>
-</ul>
-<p>IGM works fine on CPU for small computational domains (typically individual glaciers). In contrast, GPUs will be very advantageous to treat very large computational grids (typically large networks of glaciers) as IGM naturally takes further benefit from parallelism (see this <a href="https://youtu.be/Sna673xb-PE">example</a>).</p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<h3 id="ice-is-stuck-on-the-border-of-the-domain-no-fluxes-what-can-i-do">Ice is stuck on the border of the domain (no fluxes), what can I do?</h3>
+<p>Set the parameter <code>exclude_borders_from_iceflow</code> to <code>True</code>.</p>
+<h3 id="i-see-some-numerical-artifacts-eg-waves-occurring-when-modeling-glacier-evolution-what-can-i-do">I see some numerical artifacts (e.g., waves) occurring when modeling glacier evolution, what can I do?</h3>
+<p>Reduce the <code>CFL</code> parameter.</p>
+<h3 id="how-to-createmodify-netcdf-files">How to create/modify NetCDF files?</h3>
+<p>There are many ways to prepare NetCDF files (e.g., MATLAB, Python, GIS tools). The <a href="http://nco.sourceforge.net/">NCO</a> toolkit allows easy operations via command lines, for example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ncks<span class="w"> </span>-x<span class="w"> </span>-v<span class="w"> </span>thk<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">              </span><span class="c1"># Removes the variable &#39;thk&#39; from file.nc</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ncks<span class="w"> </span>-v<span class="w"> </span>usurf<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">               </span><span class="c1"># Extracts the variable &#39;usurf&#39; from file.nc</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ncap2<span class="w"> </span>-h<span class="w"> </span>-O<span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39;thk=0*thk&#39;</span><span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">  </span><span class="c1"># Performs operations on file.nc, here forcing zero &#39;thk&#39;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ncrename<span class="w"> </span>-v<span class="w"> </span>apc,strflowctrl<span class="w"> </span>file.nc<span class="w">         </span><span class="c1"># Renames variable &#39;apc&#39; to &#39;strflowctrl&#39; in file.nc</span>
+</span></code></pre></div>
+<h3 id="oggm-shop-produces-an-error-on-windows">OGGM Shop produces an error on Windows</h3>
+<p>This is expected, as OGGM is <a href="https://github.com/OGGM/oggm/issues/870">not supported</a> on Windows. However, modifying the <code>tarfile.py</code> file at line 2677 from <code>name == member_name</code> to <code>name.replace(os.sep, '/') == member_name</code> seems to fix the issue on Windows. Thanks to Alexi Morin for proposing this workaround.</p>
+<h3 id="gpu-vs-cpu">GPU vs CPU</h3>
+<p>IGM works fine on CPUs for small computational domains (typically individual glaciers). In contrast, GPUs are highly advantageous for very large computational grids (e.g., large networks of glaciers), as IGM naturally benefits from parallelism. See this <a href="https://youtu.be/Sna673xb-PE">example</a>.</p>
 
 
 

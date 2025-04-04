@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#guideline-for-transitioning-igm-v2-to-v3" class="md-skip">
+        <a href="#transitioning-igm-from-v2-to-v3-guideline" class="md-skip">
           Skip to content
         </a>
       
@@ -1773,18 +1773,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    IGM 2 to 3 transition notes
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1795,58 +1783,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#parameter-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameter handling
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Parameter handling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hydra-library-replaces-parser" class="md-nav__link">
-    <span class="md-ellipsis">
-      hydra library replaces parser
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hierachical-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Hierachical parameters
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1900,183 +1836,221 @@
   
 
 
-<h1 id="guideline-for-transitioning-igm-v2-to-v3">Guideline for transitioning IGM v2 to v3</h1>
+<h1 id="transitioning-igm-from-v2-to-v3-guideline">Transitioning IGM from v2 to v3: Guideline</h1>
+<h1 id="in-short">In short</h1>
+<p>This is a major structural update, and we are starting a new versioning series with IGM 3.0.0. Below are the main changes and improvements you can expect:</p>
+<ul>
+<li>
+<p><strong>Hydra integration (game changer!):</strong> The most important update is the integration of the Hydra library for handling parameters. This allows you to run large multi-ensemble simulations (poss on multiple GPUs) from a single command line, with full traceability and reproducibility. No more manually managing complex parameter files—Hydra does it for you, and does it extremely well. This alone is a compelling reason to switch to IGM3!</p>
+</li>
+<li>
+<p><strong>YAML-based parameters with hierarchical structure:</strong> All parameters are now defined in YAML (instead of JSON), offering a more powerful and flexible configuration format. Especially, parameters are now organized hierarchically, making it much easier to manage large configurations. This comes with renamed parameters, but don’t worry—we provide a tool to convert old JSON files to the new YAML format, along with a conversion table.</p>
+</li>
+<li>
+<p><strong>New documentation website:</strong> A freshly built documentation website now automatically collects all parameter definitions, along with their default values, descriptions, and units.</p>
+</li>
+<li>
+<p><strong>Clean folder structure:</strong> The working directory is now properly organized into subfolders for parameters, data, user modules, and output.</p>
+</li>
+<li>
+<p><strong>Improved code readability:</strong> Key modules like iceflow and data_assimilation (formerly optimize) have been split into sub-files to improve readability, maintainability, and customization.</p>
+</li>
+</ul>
+<p>Here are the important new links:</p>
+<ul>
+<li>
+<p>The pre-release is on the usual https://github.com/jouvetg/igm , but you need to checkout the feature/hydra branch.</p>
+</li>
+<li>
+<p>The new documentation website is here : https://jouvetg.github.io/igm-doc/</p>
+</li>
+<li>
+<p>The separate repo containing examples : https://github.com/instructed-glacier-model/igm-examples</p>
+</li>
+<li>
+<p>The repo with the current technical paper re-shaped for IGM 3.0.0 : https://github.com/instructed-glacier-model/igm-paper</p>
+</li>
+</ul>
+<h1 id="in-more-details-for-users">In more details (for users)</h1>
 <h2 id="parameter-handling">Parameter handling</h2>
-<h3 id="hydra-library-replaces-parser"><code>hydra</code> library replaces <code>parser</code></h3>
-<p>Parameters handed with library <code>parser</code> are now handled with library <code>hydra</code>. Parameter file formerly JSON file <code>param.json</code> is now changed into YAML file <code>experiment/params.yaml</code> following <code>yaml</code> standard. Delegating the handling of parameters to <code>hydra</code> has permitted major simplification of the core IGM code. Running IGM now consists of running</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> igm_run +experiment=params 
+<h3 id="hydra-library-replaces-parser-and-yaml-file"><code>hydra</code> library replaces <code>parser</code>, and YAML file</h3>
+<p>Parameters previously managed with the <code>parser</code> library are now handled using the <code>hydra</code> library. The parameter file, which was formerly a JSON file (<code>params.json</code>), has been transitioned to a YAML file (<code>experiment/params.yaml</code>) adhering to the YAML standard. This shift to <code>hydra</code> has significantly simplified the core IGM code. Running IGM now involves executing commands like:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> igm_run +experiment=params 
 </span></code></pre></div>
-where parameters can be changed within the params, or can be overidden like :
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a> igm_run +experiment=params core.hardware.gpu_info=False core.print_params=False
-</span></code></pre></div></p>
-<h3 id="hierachical-parameters">Hierachical parameters</h3>
-<p>Another consequence is that the parameters are now hierarchically organized in 2 ways:
-  - The structure of folder where default parameter are stored in folder <code>igm/igm/conf</code>, which is separated from the code in folder <code>igm/igm</code>:
-  ```
-core.yaml
-├── inputs 
-│   └── local.yaml
-│   └── ....
-├── processes 
-│   └── iceflow.yaml
-│   └── ....
-└── outputs
-│   └── plot2d.yaml
-│   └── ....
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>  - In the code, all parameters are accessible through the object `cfg`, e.g `cfg.processes.enthalpy.ref_temp` is a parameter associated with the `enthalpy` processes module.
+<p>where parameters can be changed within the <code>params.yaml</code> file, or overridden directly in the command line. For example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>processes.time.start<span class="o">=</span><span class="m">1900</span><span class="w"> </span>processes.time.end<span class="o">=</span><span class="m">2100</span>
+</span></code></pre></div>
+<p>From a user perspective, migrating to IGM 3 essentially involves converting the former parameter file <code>params.json</code> into the new <code>experiment/params.yaml</code> format. To facilitate this transition, we provide a utility script named <code>json_to_yaml.py</code> (in the root of IGM repo) that automates the conversion process (you may have to adjust manually, check it afterwards!).</p>
+<h3 id="parameter-naming-changes-and-hierarchical-construction">Parameter Naming Changes, and hierarchical construction</h3>
+<p>Parameter names have been slightly modified. Previously, all parameters included a prefix like <code>iflo</code> to indicate they were associated with the <code>iceflow</code> module. Now, parameters are organized hierarchically by attributes, making the prefix redundant and therefore removed. For example: <code>time_start</code> is now accessible as <code>processes.time.start</code>.</p>
+<p>In the <code>iceflow</code> module, parameters have been significantly reorganized to follow a <strong>hierarchical structure</strong>. To assist with the transition, we provide a script named <code>json_to_yaml.py</code>, and correspondence table to help convert old JSON files into the new YAML format. Also, IGM now raises an error if a parameter contains a typo, and suggests parameters to pick.</p>
+<h3 id="example-of-new-parameter-file">Example of new parameter file</h3>
+<p>Here is what the new parameter file looks like:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># @package _global_</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>### Parameters naming change
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Paarameter name have been slightly changed: Before all parameters had a first keyword like `iflo` to indicate it was a parameter associated with `iceflow` module. Now, all parameters are sorted anyway attributes, therefore, the keyword was no longer used, and was removed. 
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>As an example `time_start` is now accessible with `processes.time.start`, ...
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>In the `iceflow` module, parameters were re-oragnized significantly (especially to make them hierarchically organized), however, we provide with a folder/script/table of correspondance to modify former json file into new yaml one.
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">core</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">url_data</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://www.dropbox.com/scl/fo/8ixpy27i67s04bp7uixoq/h?rlkey=0ye7rd4zkcqfhvzx7suunw3bk&amp;dl=0&quot;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">defaults</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /input</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">load_ncdf</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /modules</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">smb_simple</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">iceflow</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">time</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">thk</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /output</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">write_ncdf</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">plot2d</span><span class="p p-Indicator">]</span>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>### Example of new parameter file
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>Here is what look like the new parameter file : 
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nt">inputs</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="nt">load_ncdf</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">input_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/input.nc</span>
 </span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>```yaml
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a># @package _global_
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>core:
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>  url_data: &quot;https://www.dropbox.com/scl/fo/8ixpy27i67s04bp7uixoq/h?rlkey=0ye7rd4zkcqfhvzx7suunw3bk&amp;dl=0&quot;
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>defaults:
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>  - override /input: [load_ncdf]
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>  - override /modules: [smb_simple, iceflow, time, thk]
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>  - override /output: [write_ncdf, plot2d]
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>inputs:
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>  load_ncdf:
-</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    input_file: data/input.nc
-</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>processes:
-</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>  iceflow:
-</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>    iceflow:
-</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>      init_slidingco: 0.0595
-</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>  time:
-</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    start: 1880.0
-</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    end: 2020.0
-</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    save: 5.0 
-</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
-</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>outputs:
-</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>  plot2d:
-</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>    live: true
-</span></code></pre></div></p>
-<p>The above file will be read by hydra in IGM, and has the following strucuture:</p>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="nt">physics</span><span class="p">:</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">      </span><span class="nt">init_slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0595</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">  </span><span class="nt">time</span><span class="p">:</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1880.0</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2020.0</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="nt">save</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span><span class="w"> </span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="nt">outputs</span><span class="p">:</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">  </span><span class="nt">plot2d</span><span class="p">:</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="nt">live</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p>The above file will be read by Hydra in IGM and has the following structure:</p>
 <ul>
-<li><code>core</code> includes all parameters that are specific to core IGM run, e.g. logging, if we want to download data priori to run, GPU related, ...</li>
-<li><code>defaults</code> will list the inputs, processes, and outputs modules.</li>
-<li><code>inputs</code> give the parameters tot override the defaults for input modules.</li>
-<li><code>processes</code> give the parameters tot override the defaults for processes modules.</li>
-<li><code>outputs</code> give the parameters tot override the defaults for output modules.</li>
+<li><code>core</code>: Includes all parameters specific to the core IGM run, such as logging, downloading data prior to the run, GPU-related settings, etc.</li>
+<li><code>defaults</code>: Lists the input, process, and output modules to be used.</li>
+<li><code>inputs</code>: Contains parameters to override the defaults for input modules.</li>
+<li><code>processes</code>: Contains parameters to override the defaults for process modules.</li>
+<li><code>outputs</code>: Contains parameters to override the defaults for output modules.</li>
 </ul>
-<h1 id="new-structure-of-working-folder">New structure of working folder</h1>
-<p>The working folder as follows with one 
-  - folder <code>experiment</code> containing the parameter files,
-  - folder <code>data</code> for input data if any, 
-  - folder <code>user</code> containing user/custom python functions/modules, 
-  - folder <code>output</code> or <code>multirun</code> containing the results of the IGM runs.</p>
-<p>This will look like : 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>├── experiment 
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│   └── params.yaml
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── data
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│   ├── ...
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>└── user
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│   ├── code
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│   │   └── processes
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│   │       └── mymodule.py
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│   └── conf
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│   │   └── processes
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│   │       └── mymodule.yaml
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>└── output
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│   ├── 2025-03-06
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│   │   └── 15-43-37
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│   │   └── 15-44-07
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│   │       └── output.nc
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│   │       └── ......
-</span></code></pre></div></p>
-<h1 id="re-naming-of-modules">Re-naming of modules:</h1>
-<p>Former <code>preprocess</code>, <code>process</code>, and <code>postprocess</code> module types were renamed <code>input</code>, <code>modules</code>, <code>output</code>. <code>input</code> only have a <code>run</code> method, while <code>output</code> has <code>initialize</code> and <code>update</code> like modules.</p>
-<h1 id="integration-and-exclusion-of-former-modules">Integration and exclusion of former modules</h1>
+<p><strong>Note:</strong> The former module types <code>preprocess</code>, <code>process</code>, and <code>postprocess</code> have been renamed to <code>input</code>, <code>modules</code>, and <code>output</code>, respectively. </p>
+<h3 id="running-multiple-runs">Running multiple runs</h3>
+<p>A great advantage of Hydra is the possibility it provides for running ensemble simulations. For example, the following command sequentially runs two simulations with two different sets of parameters:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>processes.time.end<span class="o">=</span><span class="m">2080</span>,2110
+</span></code></pre></div>
+<p>Alternatively, if you supply two parameter files (<code>params1</code> and <code>params2</code>), you can execute:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params1,params2
+</span></code></pre></div>
+<p>You can also perform a grid search over multiple parameters. For instance, the following command runs simulations for a 3x2 parameter grid:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>processes.time.start<span class="o">=</span><span class="m">1900</span>,1910,1920<span class="w"> </span>processes.time.end<span class="o">=</span><span class="m">2080</span>,2110
+</span></code></pre></div>
+<p>In such cases, the output folder will be named <code>multirun</code> instead of <code>output</code>.</p>
+<h2 id="new-structure-of-working-folder">New structure of working folder</h2>
+<p>The working folder is structured as follows:</p>
+<ul>
+<li><code>experiment</code>: Contains the parameter files.</li>
+<li><code>data</code>: Stores input data, if any.</li>
+<li><code>user</code>: Contains user-defined/custom Python functions or modules.</li>
+<li><code>output</code> or <code>multirun</code>: Contains the results of the IGM runs.</li>
+</ul>
+<p>The folder structure looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>├── experiment
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>│   └── params.yaml
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>├── data
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│   ├── ...
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>├── user
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│   ├── code
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│   │   └── processes
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│   │       └── mymodule.py
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>│   └── conf
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│       └── processes
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>│           └── mymodule.yaml
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>└── output
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  ├── 2025-03-06
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  │   └── 15-43-37
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>  │   └── 15-44-07
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  │       └── output.nc
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  │       └── ...
+</span></code></pre></div>
+<h2 id="integration-and-exclusion-of-former-modules">Integration and Exclusion of Former Modules</h2>
 <ul>
 <li>
-<p>Former modules <code>anim_mayavi</code>, <code>anim_plotly</code>, <code>anim_video</code> were externalized from igm, and put in <code>utils</code>. These one were purely postprocessing, and were run at the very end. For simplicity, there were externalized.</p>
+<p>Splitting of <code>iceflow</code> modules into <code>data_assimilation</code> and <code>pretraining</code>: The <code>iceflow</code> module has been split into two dedicated modules: <code>data_assimilation</code> (formerly <code>optimize</code>) and <code>pretraining</code>. This change was made to improve code organization and maintainability, as the <code>iceflow</code> module had grown too large. Previously, <code>data_assimilation</code> and <code>pretraining</code> were separate but had dependency issues with <code>iceflow</code>. With the new structure, both modules remain dependent on <code>iceflow</code>, but these dependencies are now handled seamlessly. When using <code>data_assimilation</code> or <code>pretraining</code>, ensure that the <code>iceflow</code> module is also included in your configuration. The order of inclusion does not matter.</p>
 </li>
 <li>
-<p>Modules like <code>print_comp</code>, or <code>print_info</code>w ere integrated to the core</p>
+<p>The modules <code>anim_mayavi</code>, <code>anim_plotly</code>, and <code>anim_video</code> have been externalized from IGM and moved to <code>utils</code>. These modules were purely for postprocessing and were executed at the very end. To simplify the core structure, they were externalized.</p>
+</li>
+<li>
+<p>Modules such as <code>print_comp</code> and <code>print_info</code> have been integrated into the core functionality of IGM.</p>
+</li>
+<li>
+<p>The <code>write_particles</code> functionality is now integrated into the <code>particule</code> module.</p>
 </li>
 </ul>
-<h1 id="re-splitting-of-iceflow-modules-into-optimize-now-called-data_assimilation-and-pretraining">(Re-)splitting of <code>iceflow</code> modules into <code>optimize</code> (now called <code>data_assimilation</code>) and <code>pretraining</code></h1>
-<p>As module <code>iceflow</code> become too big, it was decided to separate <code>optimize</code> and <code>pretraining</code> into dedicated modules. Formerly, it was separate, but the main issue is the dependance of  <code>optimize</code> and <code>pretraining</code> that was causing isues. With the new structure,  <code>optimize</code> and <code>pretraining</code> remain dependent of <code>iceflow</code>, but this is no longer an issue. However, if you call <code>optimize</code> and <code>pretraining</code>, you need to make sure that <code>iceflow</code>is caused as well (the order does not matter).</p>
-<h1 id="oggm_shop-needs-to-be-coupled-with-load_ncdf-or-local"><code>oggm_shop</code> needs to be coupled with <code>load_ncdf</code> or <code>local</code></h1>
-<p>Module <code>oggm_shop</code> exclusively takes care of calling oggm to download the data (RGIXXXX folder), and changing this to a netcdf file <code>input.nc</code> that follows IGM's naming convention, and then can be read by IGM's  <code>load_ncdf</code> or <code>local</code> modules, which is NO LONGER DONE by <code>oggm_shop</code>. Therefore, if you call  <code>oggm_shop</code> , you need to call <code>load_ncdf</code> or <code>local</code> modules righ after (you can have multiple <code>inputs</code> modules).</p>
-<h1 id="transition-from-igm-2xx-to-igm-300">Transition from IGM 2.X.X to IGM 3.0.0</h1>
-<p>From a pure user point of view, migrating to IGM 3, is mainly changing former parameter file <code>params.json</code> into <code>experiment/params.yaml</code>. To help with this, we have made utility is <code>json_to_yaml.py</code>.</p>
-<h1 id="running-multiple-runs">Running multiple runs</h1>
-<p>A great advantage of hydra is the posibility it gives to for running ensemble runs, e.g. the foolowing line permits to run sequentially two runs with the 2 sets of parameters:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>igm_run -m +experiment=params processes.time.end=2080,2110
+<h2 id="new-local-module-merging-netcdf-and-tif">New <code>local</code> module merging netcdf and tif</h2>
+<p>A new I/O module, <code>local</code>, has been introduced to replace the <code>load_XXX</code> and <code>write_XXX</code> modules. The <code>local</code> module leverages the <code>xarray</code> library, which is more powerful and supports loading both NetCDF (<code>.nc</code>) and GeoTIFF (<code>.tif</code>) files.</p>
+<h2 id="oggm_shop-requires-coupling-with-load_ncdf-or-local"><code>oggm_shop</code> requires coupling with <code>load_ncdf</code> or <code>local</code></h2>
+<p>The <code>oggm_shop</code> module now exclusively handles downloading data (e.g., RGIXXXX folders) using OGGM and converting it into a NetCDF file (<code>input.nc</code>) that adheres to IGM's naming conventions. However, it no longer performs the task of loading this data into IGM. To process the downloaded data, you must pair <code>oggm_shop</code> with either the <code>load_ncdf</code> or <code>local</code> modules. </p>
+<p>For example, if you use <code>oggm_shop</code>, you must include <code>load_ncdf</code> or <code>local</code> as additional <code>inputs</code> modules in your configuration.</p>
+<h1 id="in-more-details-for-developpers">In more details (for developpers)</h1>
+<h2 id="hierachical-and-separated-parameters-and-code">Hierachical and separated parameters and code</h2>
+<p>In IGM source code, the parameters and the code are now hierarchically organized. Default parameters are stored in the <code>igm/igm/conf</code> folder, which is separate from the code located in the <code>igm/igm</code> folder. This separation ensures a clean organization of configuration files and source code. Parameters are grouped into logical categories and subcategories within the YAML files. This structure mirrors the organization of the modules and processes in IGM. For example, the folder structure for default parameters looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>igm/igm/conf
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── inputs
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│   └── local.yaml
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│   └── ...
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>├── processes
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│   └── iceflow.yaml
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│   └── ...
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>└── outputs
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>  └── plot2d.yaml
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>  └── ...
 </span></code></pre></div>
-or if one supply two parameter files (params1, params2):
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>igm_run -m +experiment=params1,params2
+<p>In the code, all parameters are accessible through the object <code>cfg</code>. For example, <code>cfg.processes.enthalpy.ref_temp</code> refers to a parameter associated with the <code>enthalpy</code> processes module.</p>
+<p>On the other hand the structure for the code looks very similar:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>igm/igm
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── inputs
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>│   └── local
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│   └── ...
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>├── processes
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│   └── iceflow
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│   └── avalanche
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>└── outputs
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  └── plot2d
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>  └── ...
 </span></code></pre></div>
-or doing a grid search ovr 3x2 parameters
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>igm_run -m +experiment=params processes.time.start=1900,1910,1920 processes.time.end=2080,2110
+<h2 id="custom-modules-now-called-user">Custom modules (now called "user")</h2>
+<p>User modules are very useful when customizing applications. They can be used to tailor input, process, or output methods. To create such a user module, you need to create (or update) the <code>user</code> folder located at the root of your working directory, ensuring the following hierarchy is respected:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>└── user
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    ├── code
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    │   └── inputs 
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    │   │   └── my_inputs_module
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    │   │       └── my_inputs_module.py 
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    │   └── processes 
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    │   │   └── my_processes_module
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    │   │       └── my_processes_module.py 
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    │   └── outputs 
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    │       └── my_outputs_module
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    │           └── my_outputs_module.py 
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    └── conf
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        └── inputs
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>            └── my_inputs_module.yaml 
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>        └── processes
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>            └── my_processes_module.yaml 
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>        └── outputs
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>            └── my_outputs_module.yaml 
 </span></code></pre></div>
-Note that in that case, the output folder will be named <code>multirun</code> instead of <code>output</code>.</p>
-<h1 id="custom-modules-now-called-user">Custom modules (now called "user")</h1>
-<p>User modules are very useful as soon as we need to customize applications, they can be used to customize inputs, processes or outputs methods. To create such a user module, you need to create (or complete) the folder <code>user</code> located at the root of your working directory as follows (respect the hierarchy):
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>└── user
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    ├── code
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    │   └── inputs 
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    │   │   └── my_inputs_module
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    │   │       └── my_inputs_module.py 
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    │   └── processes 
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    │   │   └── my_processes_module
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    │   │       └── my_processes_module.py 
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    │   └── outputs 
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    │       └── my_outputs_module
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    │           └── my_outputs_module.py 
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    └── conf
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>        └── inputs
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>            └── my_inputs_module.yaml 
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        └── processes
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>            └── my_processes_module.yaml 
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>        └── outputs
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>            └── my_outputs_module.yaml 
+<p>where <code>my_processes_module.py</code> has the following structure (and require to define function <code>initialize</code>, <code>update</code>, and <code>finalize</code>):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  <span class="o">...</span> 
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>  <span class="n">cfg</span><span class="o">.</span><span class="n">processes</span><span class="o">.</span><span class="n">clim_aletsch</span><span class="o">.</span><span class="n">time_resolution</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>  <span class="o">...</span> 
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>  <span class="k">pass</span>
 </span></code></pre></div>
-where <code>my_processes_module.py</code> has the following structure (and require to define function <code>initialize</code>, <code>update</code>, and <code>finalize</code>):</p>
-<p>and access to the parameter
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  <span class="o">...</span> 
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  <span class="n">cfg</span><span class="o">.</span><span class="n">processes</span><span class="o">.</span><span class="n">clim_aletsch</span><span class="o">.</span><span class="n">time_resolution</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  <span class="o">...</span> 
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  <span class="k">pass</span>
-</span></code></pre></div>
-while <code>my_inputs_module.py</code> and <code>my_outputs_module.py</code> has the following structure (and require to define function <code>run</code>) and access to the parameter</p>
-<p><div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  <span class="o">...</span>
-</span></code></pre></div>
-On the other end, parameter files located in <code>conf/inputs</code>, <code>conf/processes</code>, and <code>conf/outputs</code> look like 
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">time_resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">365</span>
+<p>Note that <code>my_inputs_module.py</code> and <code>my_outputs_module.py</code> only require function <code>run</code> (and <code>initialize</code> for output).</p>
+<p>Parameter files located in <code>conf/inputs</code>, <code>conf/processes</code>, and <code>conf/outputs</code> look like 
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">time_resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">365</span>
 </span></code></pre></div>
 or in case there is no parameter (the file must exist as follows even if no parameter are defined):
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="l l-Scalar l-Scalar-Plain">null</span>
-</span></code></pre></div>
-It must be stressed that the user modules override the official one, therefore, if you call a module that has the same name of an official one, the user one will be retained, and the official one will be ignored.</p>
-<h1 id="misc">MISC</h1>
-<ul>
-<li>write_particles is now part of the particule module</li>
-<li>oggm_shop is now only tking care of downloading the data, and putting the data ready for IGM, therfore, oggm_shop must be followed by <code>load_ncdf</code>, or <code>local</code></li>
-<li>A new I/O module <code>local</code> as introduced to replace <code>load_XXX</code> and <code>write_XXX</code>: <code>local</code> uses library <code>xarray</code> that is more powerfull and can load both <code>netcdf</code> and <code>tif</code>.</li>
-</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span></code></pre></div></p>
+<p>It is important to note that user modules take precedence over official modules. If a user module shares the same name as an official module, the user module will override the official one, and the official module will be ignored.</p>
+<h2 id="complex-modules-made-more-readables-and-more-customizable">Complex modules made more readables, and more customizable</h2>
+<p>Key modules like <code>iceflow</code> and <code>data_assimilation</code> (formerly optimize) have been split into sub-files to improve readability, maintainability, and customization. Sometimes, you may need to modify an existing built-in module, e.g. to test a new feature in the iceflow emulator/solver, or new cost in the data assimilation. This can be achieved by creating a user module that overrides the built-in functionality. Check at the page on <code>user modules</code> in the documentation.</p>
+<h1 id="parameter-changes">Parameter changes</h1>
 <h2 id="parameter-name-change-table-for-iceflow-module">Parameter name change table for <code>iceflow</code> module</h2>
 <table>
 <thead>
