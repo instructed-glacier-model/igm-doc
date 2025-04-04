@@ -1,8 +1,10 @@
 # Module `write_tif`
 
-This IGM module writes 2D field variables defined in the paramer list `vars_to_save` into tif output files. Files will be created with names composed by the variable name and the time (e.g., thk-000040.tif, usurf-000090.tif) in the working directory. The saving frequency is given by parameter `processes.time.save` defined in module `time`. If input file were call with module `load_tif`, then the tif meta information are saved, and provided with the final tiff files.
+This IGM module writes 2D field variables listed in the parameter `vars_to_save` into TIFF output files. The files are named using the variable name and the time step (e.g., `thk-000040.tif`, `usurf-000090.tif`) and are saved in the working directory. The saving frequency is determined by the parameter `processes.time.save` defined in the `time` module. 
 
-This module depends on the `rasterio` library.
+If the input files were loaded using the `load_tif` module, the TIFF metadata is preserved and included in the output files.
+
+This module requires the `rasterio` library.
 
 ## Config Structure  
 ~~~yaml

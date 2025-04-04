@@ -1,6 +1,6 @@
 # Module `write_ts`
 
-This IGM module writes time serie variables (ice glaciated area and volume) into the NetCDF output file defined by parameter `output_file` (default output_ts.nc). The saving frequency is given by parameter `processes.time.save` defined in module `time`.
+This module writes time series variables, such as ice-glaciated area and volume, into the NetCDF output file specified by the `output_file` parameter (default: `output_ts.nc`). The saving frequency is determined by the `processes.time.save` parameter defined in the `time` module.
 
 ## Config Structure  
 ~~~yaml

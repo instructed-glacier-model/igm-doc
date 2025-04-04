@@ -1,10 +1,10 @@
 # Module `plot2d`
 
-This IGM module produces 2D plan-view plots of variable defined by parameter `var` (e.g. `var` can be set to `thk`, or `ubar`, ...). The saving frequency is given by parameter `processes.time.save` defined in module `time`.  The scale range of the colobar is controlled by parameter `varmax`.
+This IGM module generates 2D plan-view plots of a variable specified by the parameter `var` (e.g., `var` can be set to `thk`, `ubar`, etc.). The saving frequency is determined by the parameter `processes.time.save` defined in the `time` module. The color bar's scale range is controlled by the parameter `varmax`.
 
-By default, the plots are saved as png files in the working directory. However, one may display the plot "in live" by setting `live` to True. Note that if you use the spyder python editor, you need to turn `editor` to 'sp'.
- 
-If the `particles` module is activated, one may plot particles on the top setting `particles` to True, or remove them form the plot seeting it to False.
+By default, the plots are saved as PNG files in the working directory. However, you can display the plot "live" by setting `live` to `True`. 
+
+If the `particles` module is activated, you can overlay particles on the plot by setting `particles` to `True`, or exclude them by setting it to `False`.
 
 ## Config Structure  
 ~~~yaml

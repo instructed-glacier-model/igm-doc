@@ -250,7 +250,6 @@ It must be stressed that the user modules override the official one, therefore, 
 |   iflo_retrain_emulator_nbit_init   |   iceflow.emulator.nbit_init  |
 |   iflo_retrain_emulator_nbit   |   iceflow.emulator.nbit  |
 |   iflo_retrain_emulator_framesizemax   |   iceflow.emulator.framesizemax  |
-|   iflo_run_pretraining   |   iceflow.emulator.run_pretraining  |
 |   iflo_pretrained_emulator   |   iceflow.emulator.pretrained  |
 |   iflo_emulator   |   iceflow.emulator.name  |
 |   iflo_save_model   |   iceflow.emulator.save_model  |

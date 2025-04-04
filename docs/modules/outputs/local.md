@@ -1,6 +1,6 @@
 # Module `local`
 
-This IGM module writes 2D field variables defined in the paramer list `vars_to_save` into the NetCDF output file given by parameter `output_file` (default output.nc). The saving frequency is given by parameter `processes.time.save` defined in module `time`.
+This IGM module writes 2D field variables defined in the parameter list `vars_to_save` into the NetCDF output file specified by the parameter `output_file` (default: `output.nc`). The saving frequency is determined by the parameter `processes.time.save` defined in the `time` module.
 
 This module depends on `xarray`.
 

@@ -1,16 +1,27 @@
 # Examples
 
-Once IGM is installed, it is time to make your first runs. The best and quickest way to get to know IGM is to run given examples. For that, you may run the `quick-demo` presented hereafter, or download the following repository that contains an gallery of ready-to-run setups (incl. parameter file, data, user modules if any), check at individual instructions:
+Once IGM is installed, it is time to make your first runs. The best and quickest way to get to know IGM is to run given examples. For that, you may download dedicated IGM examples or run the `quick-demo` presented hereafter if you want to go faster.
+
+## IGM examples
+
+Download the following repository that contains a gallery of ready-to-run setups (incl. parameter file, data, user modules if any), check at individual instructions:
 
 ```bash
 git clone https://github.com/instructed-glacier-model/igm-examples
 ```
 
-then you may simply run `igm_run +experiment=params` (or adapt `params` to the name of the file) in each folder to run the example.
+Then, you may simply run the command `igm_run +experiment=params` (or replace `params` with the actual name of your parameter file) in the corresponding folder to execute the example.
 
 ## Quick demo
 
-Copy paste the following YAML parameter file (named it `params.yaml`), put in a folder `experiment`, and then run the comand `igm_run +experiment=params`. By doing so, you will model Glacier with RGI ID `RGI60-11.01450` (the great Aletsch Glacier, Switzerland) from 2020 to 2100 assuming an increase of temperature of 4 degree by 2100 relative to 1960-1990. The run i) use module `oggm_shop` to download all the data via OGGM, ii) run a forward model that combine OGGM-based SMB model, and IGM-based iceflow, iii) write and plot the results in live time. **Warning:** this setup is just an example, that should not be intepreted (as it has not been validated against past period). After running, this example, you may explore different glaciers picking a different ID (check the [GLIMS Viewer](https://www.glims.org/maps/glims)), explore different parameters, explore additional modules, ...
+Copy and paste the following YAML parameter file (name it `params.yaml`), place it in a folder named `experiment`, and then run the command `igm_run +experiment=params`. This will model the Glacier with RGI ID `RGI60-11.01450` (the Great Aletsch Glacier, Switzerland) from 2020 to 2100, assuming a temperature increase of 4 degrees by 2100 relative to 1960–1990. 
+
+The run will:
+1. Use the `oggm_shop` module to download all necessary data via OGGM.
+2. Execute a forward model combining the OGGM-based SMB model and the IGM-based ice flow model.
+3. Write and plot the results in real time.
+
+**Warning:** This setup is provided as an example and has not been validated against historical data. It should not be interpreted as a scientifically accurate simulation. After running this example, you can explore different glaciers by selecting a different ID (refer to the [GLIMS Viewer](https://www.glims.org/maps/glims)), modify parameters, or experiment with additional modules.
 
 ```yaml title="params.yaml"
 # @package _global_
@@ -18,6 +29,7 @@ Copy paste the following YAML parameter file (named it `params.yaml`), put in a 
 defaults:
   - override /inputs: 
     - oggm_shop
+    - local
   - override /processes: 
     - clim_oggm
     - smb_oggm
@@ -40,7 +52,7 @@ processes:
       - [ 2020,           0.0,         1.0]
       - [ 2100,           4.0,         1.0]
   iceflow:
-    iceflow:
+    physics:
       init_slidingco: 0.25
   time:
     start: 2200.0

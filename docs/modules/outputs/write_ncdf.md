@@ -1,8 +1,7 @@
 # Module `write_ncdf`
+This IGM module writes 2D field variables specified in the parameter list `vars_to_save` into the NetCDF output file defined by the parameter `output_file` (default: `output.nc`). The saving frequency is determined by the parameter `processes.time.save` in the `time` module.
 
-This IGM module writes 2D field variables defined in the paramer list `vars_to_save` into the NetCDF output file given by parameter `output_file` (default output.nc). The saving frequency is given by parameter `processes.time.save` defined in module `time`.
-
-This module depends on `netCDF4`.
+This module requires the `netCDF4` library.
 
 ## Config Structure  
 ~~~yaml

@@ -1,8 +1,6 @@
 # Running IGM
 
-[SHOULD THAT INTRO BE WITH NEXT `hydra`-specific folder?]
-
-Once IGM is installed, running IGM is done by running in a terminal:
+Once IGM is installed, it can be executed by entering the following command in a terminal:
 
 ```
 igm_run +experiment=params
@@ -21,9 +19,11 @@ in a folder that contains the following sub-folders:
 │   └── ....
 ```
 
-where parameter file `params.yaml` consists of i) calling a list of ìnputs, processes, and outputs **modules** ii) a list of **parameters** that differ from the default one:
+where the parameter file `params.yaml` (example below) consists of:  
+i) specifying a list of **modules** for inputs, processes, and outputs, and  
+ii) defining a list of **parameters** that override the default values.
 
-```yaml
+```yaml params.yaml
 # @package _global_
 
 core:  # core IGM parameter (looging, GPU, ...)
@@ -49,3 +49,4 @@ outputs: # override parameters of output modules
   plot2d:
     live: true
 ```
+Visit the `Module` section of this documentation to find out what modules are available, together with their parameters.

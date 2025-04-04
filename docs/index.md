@@ -17,8 +17,6 @@ hide:
 
 Running IGM consists of running a python script `igm_run`, which is made of functions of the IGM python package. This documentation will help you to understand the parameters and, set-up your model by listing the modules you need, customize your own modules for your application.
 
-- First, start with the 10-min [video tutorial](https://vimeo.com/884003820), or a longer [IGS seminar presentation](https://youtu.be/dQH1PGzAF54), and/or look at the in-progress IGM [technical paper](https://github.com/jouvetg/igm-paper/blob/main/paper.pdf).
-
 - Then, [install](https://github.com/jouvetg/igm/wiki/1.-Installation) an igm python environment on your system and starting with [examples](https://github.com/jouvetg/igm/wiki/2.-Examples--(quick-start)).
 
 - Then, learn how to run [IGM](https://github.com/jouvetg/igm/wiki/3.-Runing-IGM) with module list and parameter setting (without extra coding), and explore the [module documentation](https://github.com/jouvetg/igm/wiki/4.-IGM-module-documentation).
