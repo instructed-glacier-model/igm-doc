@@ -1,14 +1,18 @@
 # Need Help?
 
-For any IGM-related questions, you can reach out to the community through the Discord channel. Just send an email to guillaume.jouvet@unil.ch to request access to the IGM Discord chat.
+## Discord Chat Server
 
-If you need support or feedback from others (such as developers), and you're experiencing an issue, you may need to share your setup. In that case, it is crucial to provide a **fully reproducible** and **well-organized** setup folder to facilitate communication and save time. To that end, please provide a download link to a setup folder with the following structure:
+For any IGM-related questions, feel free to connect with the community on the Discord channel. To gain access, send an email request to guillaume.jouvet@unil.ch.
 
-- A sub-folder (e.g., `experiment`) with the parameter file
-- A sub-folder (e.g., `data`) with the input data (if any)
-- A sub-folder (e.g., `user`) with the user modules  (if any)
-- a README file that includes 
-   + The exact version of IGM (tag or version to check out)
-   + The command to run in order to reproduce the error (e.g., `igm_run experiment=params`)
-   + A description of the issue
-   + (Optional) The version of external libraries, if relevant (e.g., TensorFlow, xarray, etc.)
+## Support Guidelines
+
+If you require assistance or feedback from developers or other users, and you are encountering an issue, it is essential to share a **fully reproducible** and **well-organized** setup folder. This will streamline communication and save time. Please provide a download link or even better an access to a github repository with a setup folder structured as follows:
+
+- A sub-folder (e.g., `experiment`) containing the parameter file.
+- A sub-folder (e.g., `data`) containing the input data (if applicable).
+- A sub-folder (e.g., `user`) containing user modules (if applicable).
+- A README file that includes:
+   - The exact version of IGM (tag or version to check out).
+   - The command to run to reproduce the error (e.g., `igm_run experiment=params`).
+   - A clear description of the issue.
+   - (Optional) The version of external libraries, if relevant (e.g., TensorFlow, xarray, etc.).

@@ -20,4 +20,4 @@ The main Python script `igm_run` is responsible for orchestrating the entire sim
 
 - a documentation page in the `igm-doc` GitHub repository, which is used in the documentation.
 
-For convenience, users can create their own module-parameter pairs in a dedicated `user` folder. These user-defined modules can be referenced directly from the parameter file, enabling customization and flexibility to extend the simulation's functionality. This approach allows users to tailor the simulation to their specific needs without altering the core modules. Check section on [user modules](modules/user_modules.md) for more information.
+For convenience, users can create their own module-parameter pairs in a dedicated `user` folder. These user-defined modules can be referenced directly from the parameter file, enabling customization and flexibility to extend the simulation's functionality. This approach allows users to tailor the simulation to their specific needs without altering the core modules. Check section on [user modules](https://jouvetg.github.io/igm-doc/latest/modules/user_modules/) for more information.

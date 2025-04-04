@@ -1,50 +1,60 @@
 
-# Guideline for transitioning IGM v2 to v3
+# Transitioning IGM from v2 to v3: Guideline
+
+# In short
+
+This is a major structural update, and we are starting a new versioning series with IGM 3.0.0. Below are the main changes and improvements you can expect:
+
+- **Hydra integration (game changer!):** The most important update is the integration of the Hydra library for handling parameters. This allows you to run large multi-ensemble simulations (poss on multiple GPUs) from a single command line, with full traceability and reproducibility. No more manually managing complex parameter files—Hydra does it for you, and does it extremely well. This alone is a compelling reason to switch to IGM3!
+
+- **YAML-based parameters with hierarchical structure:** All parameters are now defined in YAML (instead of JSON), offering a more powerful and flexible configuration format. Especially, parameters are now organized hierarchically, making it much easier to manage large configurations. This comes with renamed parameters, but don’t worry—we provide a tool to convert old JSON files to the new YAML format, along with a conversion table.
+
+- **New documentation website:** A freshly built documentation website now automatically collects all parameter definitions, along with their default values, descriptions, and units.
+
+- **Clean folder structure:** The working directory is now properly organized into subfolders for parameters, data, user modules, and output.
+
+- **Improved code readability:** Key modules like iceflow and data_assimilation (formerly optimize) have been split into sub-files to improve readability, maintainability, and customization.
+
+Here are the important new links:
+
+- The pre-release is on the usual https://github.com/jouvetg/igm , but you need to checkout the feature/hydra branch.
+
+- The new documentation website is here : https://jouvetg.github.io/igm-doc/
+
+- The separate repo containing examples : https://github.com/instructed-glacier-model/igm-examples
+
+- The repo with the current technical paper re-shaped for IGM 3.0.0 : https://github.com/instructed-glacier-model/igm-paper
+
+# In more details (for users)
 
 ## Parameter handling
 
-### `hydra` library replaces `parser`
+### `hydra` library replaces `parser`, and YAML file
 
-Parameters handed with library `parser` are now handled with library `hydra`. Parameter file formerly JSON file `param.json` is now changed into YAML file `experiment/params.yaml` following `yaml` standard. Delegating the handling of parameters to `hydra` has permitted major simplification of the core IGM code. Running IGM now consists of running
+Parameters previously managed with the `parser` library are now handled using the `hydra` library. The parameter file, which was formerly a JSON file (`params.json`), has been transitioned to a YAML file (`experiment/params.yaml`) adhering to the YAML standard. This shift to `hydra` has significantly simplified the core IGM code. Running IGM now involves executing commands like:
 
 ```
  igm_run +experiment=params 
 ```
-where parameters can be changed within the params, or can be overidden like :
+
+where parameters can be changed within the `params.yaml` file, or overridden directly in the command line. For example:
+
+```bash
+igm_run +experiment=params processes.time.start=1900 processes.time.end=2100
 ```
- igm_run +experiment=params core.hardware.gpu_info=False core.print_params=False
-```
 
-### Hierachical parameters
+From a user perspective, migrating to IGM 3 essentially involves converting the former parameter file `params.json` into the new `experiment/params.yaml` format. To facilitate this transition, we provide a utility script named `json_to_yaml.py` (in the root of IGM repo) that automates the conversion process (you may have to adjust manually, check it afterwards!).
 
-Another consequence is that the parameters are now hierarchically organized in 2 ways:
-  - The structure of folder where default parameter are stored in folder `igm/igm/conf`, which is separated from the code in folder `igm/igm`:
-  ```
-core.yaml
-├── inputs 
-│   └── local.yaml
-│   └── ....
-├── processes 
-│   └── iceflow.yaml
-│   └── ....
-└── outputs
-│   └── plot2d.yaml
-│   └── ....
-```
-  - In the code, all parameters are accessible through the object `cfg`, e.g `cfg.processes.enthalpy.ref_temp` is a parameter associated with the `enthalpy` processes module.
+### Parameter Naming Changes, and hierarchical construction
 
-### Parameters naming change
+Parameter names have been slightly modified. Previously, all parameters included a prefix like `iflo` to indicate they were associated with the `iceflow` module. Now, parameters are organized hierarchically by attributes, making the prefix redundant and therefore removed. For example: `time_start` is now accessible as `processes.time.start`.
 
-Paarameter name have been slightly changed: Before all parameters had a first keyword like `iflo` to indicate it was a parameter associated with `iceflow` module. Now, all parameters are sorted anyway attributes, therefore, the keyword was no longer used, and was removed. 
-
-As an example `time_start` is now accessible with `processes.time.start`, ...
-
-In the `iceflow` module, parameters were re-oragnized significantly (especially to make them hierarchically organized), however, we provide with a folder/script/table of correspondance to modify former json file into new yaml one.
-
+In the `iceflow` module, parameters have been significantly reorganized to follow a **hierarchical structure**. To assist with the transition, we provide a script named `json_to_yaml.py`, and correspondence table to help convert old JSON files into the new YAML format. Also, IGM now raises an error if a parameter contains a typo, and suggests parameters to pick.
+ 
 ### Example of new parameter file
 
-Here is what look like the new parameter file : 
- 
+Here is what the new parameter file looks like:
+  
 ```yaml
 # @package _global_
 
@@ -62,7 +72,7 @@ inputs:
 
 processes:
   iceflow:
-    iceflow:
+    physics:
       init_slidingco: 0.0595
   time:
     start: 1880.0
@@ -74,85 +84,129 @@ outputs:
     live: true
 ```
 
-The above file will be read by hydra in IGM, and has the following strucuture:
+The above file will be read by Hydra in IGM and has the following structure:
 
-- `core` includes all parameters that are specific to core IGM run, e.g. logging, if we want to download data priori to run, GPU related, ...
-- `defaults` will list the inputs, processes, and outputs modules.
-- `inputs` give the parameters tot override the defaults for input modules.
-- `processes` give the parameters tot override the defaults for processes modules.
-- `outputs` give the parameters tot override the defaults for output modules.
+- `core`: Includes all parameters specific to the core IGM run, such as logging, downloading data prior to the run, GPU-related settings, etc.
+- `defaults`: Lists the input, process, and output modules to be used.
+- `inputs`: Contains parameters to override the defaults for input modules.
+- `processes`: Contains parameters to override the defaults for process modules.
+- `outputs`: Contains parameters to override the defaults for output modules.
 
-# New structure of working folder
+**Note:** The former module types `preprocess`, `process`, and `postprocess` have been renamed to `input`, `modules`, and `output`, respectively. 
 
-The working folder as follows with one 
-  - folder `experiment` containing the parameter files,
-  - folder `data` for input data if any, 
-  - folder `user` containing user/custom python functions/modules, 
-  - folder `output` or `multirun` containing the results of the IGM runs.
+### Running multiple runs
 
-This will look like : 
+A great advantage of Hydra is the possibility it provides for running ensemble simulations. For example, the following command sequentially runs two simulations with two different sets of parameters:
+
+```bash
+igm_run -m +experiment=params processes.time.end=2080,2110
 ```
-├── experiment 
+
+Alternatively, if you supply two parameter files (`params1` and `params2`), you can execute:
+
+```bash
+igm_run -m +experiment=params1,params2
+```
+
+You can also perform a grid search over multiple parameters. For instance, the following command runs simulations for a 3x2 parameter grid:
+
+```bash
+igm_run -m +experiment=params processes.time.start=1900,1910,1920 processes.time.end=2080,2110
+```
+
+In such cases, the output folder will be named `multirun` instead of `output`.
+
+## New structure of working folder
+
+The working folder is structured as follows:
+
+- `experiment`: Contains the parameter files.
+- `data`: Stores input data, if any.
+- `user`: Contains user-defined/custom Python functions or modules.
+- `output` or `multirun`: Contains the results of the IGM runs.
+
+The folder structure looks like this:
+
+```
+├── experiment
 │   └── params.yaml
 ├── data
 │   ├── ...
-└── user
+├── user
 │   ├── code
 │   │   └── processes
 │   │       └── mymodule.py
 │   └── conf
-│   │   └── processes
-│   │       └── mymodule.yaml
+│       └── processes
+│           └── mymodule.yaml
 └── output
-│   ├── 2025-03-06
-│   │   └── 15-43-37
-│   │   └── 15-44-07
-│   │       └── output.nc
-│   │       └── ......
+  ├── 2025-03-06
+  │   └── 15-43-37
+  │   └── 15-44-07
+  │       └── output.nc
+  │       └── ...
 ```
 
-# Re-naming of modules:
+## Integration and Exclusion of Former Modules
 
-Former `preprocess`, `process`, and `postprocess` module types were renamed `input`, `modules`, `output`. `input` only have a `run` method, while `output` has `initialize` and `update` like modules.
+- Splitting of `iceflow` modules into `data_assimilation` and `pretraining`: The `iceflow` module has been split into two dedicated modules: `data_assimilation` (formerly `optimize`) and `pretraining`. This change was made to improve code organization and maintainability, as the `iceflow` module had grown too large. Previously, `data_assimilation` and `pretraining` were separate but had dependency issues with `iceflow`. With the new structure, both modules remain dependent on `iceflow`, but these dependencies are now handled seamlessly. When using `data_assimilation` or `pretraining`, ensure that the `iceflow` module is also included in your configuration. The order of inclusion does not matter.
 
-# Integration and exclusion of former modules
+- The modules `anim_mayavi`, `anim_plotly`, and `anim_video` have been externalized from IGM and moved to `utils`. These modules were purely for postprocessing and were executed at the very end. To simplify the core structure, they were externalized.
 
-- Former modules `anim_mayavi`, `anim_plotly`, `anim_video` were externalized from igm, and put in `utils`. These one were purely postprocessing, and were run at the very end. For simplicity, there were externalized.
+- Modules such as `print_comp` and `print_info` have been integrated into the core functionality of IGM.
 
-- Modules like `print_comp`, or `print_info`w ere integrated to the core
+- The `write_particles` functionality is now integrated into the `particule` module.
 
+## New `local` module merging netcdf and tif
 
-# (Re-)splitting of `iceflow` modules into `optimize` (now called `data_assimilation`) and `pretraining`
+A new I/O module, `local`, has been introduced to replace the `load_XXX` and `write_XXX` modules. The `local` module leverages the `xarray` library, which is more powerful and supports loading both NetCDF (`.nc`) and GeoTIFF (`.tif`) files.
 
-As module `iceflow` become too big, it was decided to separate `optimize` and `pretraining` into dedicated modules. Formerly, it was separate, but the main issue is the dependance of  `optimize` and `pretraining` that was causing isues. With the new structure,  `optimize` and `pretraining` remain dependent of `iceflow`, but this is no longer an issue. However, if you call `optimize` and `pretraining`, you need to make sure that `iceflow`is caused as well (the order does not matter).
+## `oggm_shop` requires coupling with `load_ncdf` or `local`
 
-# `oggm_shop` needs to be coupled with `load_ncdf` or `local`
+The `oggm_shop` module now exclusively handles downloading data (e.g., RGIXXXX folders) using OGGM and converting it into a NetCDF file (`input.nc`) that adheres to IGM's naming conventions. However, it no longer performs the task of loading this data into IGM. To process the downloaded data, you must pair `oggm_shop` with either the `load_ncdf` or `local` modules. 
 
-Module `oggm_shop` exclusively takes care of calling oggm to download the data (RGIXXXX folder), and changing this to a netcdf file `input.nc` that follows IGM's naming convention, and then can be read by IGM's  `load_ncdf` or `local` modules, which is NO LONGER DONE by `oggm_shop`. Therefore, if you call  `oggm_shop` , you need to call `load_ncdf` or `local` modules righ after (you can have multiple `inputs` modules).
+For example, if you use `oggm_shop`, you must include `load_ncdf` or `local` as additional `inputs` modules in your configuration.
 
-# Transition from IGM 2.X.X to IGM 3.0.0
+# In more details (for developpers)
 
-From a pure user point of view, migrating to IGM 3, is mainly changing former parameter file `params.json` into `experiment/params.yaml`. To help with this, we have made utility is `json_to_yaml.py`.
+## Hierachical and separated parameters and code
 
-# Running multiple runs
+In IGM source code, the parameters and the code are now hierarchically organized. Default parameters are stored in the `igm/igm/conf` folder, which is separate from the code located in the `igm/igm` folder. This separation ensures a clean organization of configuration files and source code. Parameters are grouped into logical categories and subcategories within the YAML files. This structure mirrors the organization of the modules and processes in IGM. For example, the folder structure for default parameters looks like this:
 
-A great advantage of hydra is the posibility it gives to for running ensemble runs, e.g. the foolowing line permits to run sequentially two runs with the 2 sets of parameters:
 ```
-igm_run -m +experiment=params processes.time.end=2080,2110
+igm/igm/conf
+├── inputs
+│   └── local.yaml
+│   └── ...
+├── processes
+│   └── iceflow.yaml
+│   └── ...
+└── outputs
+  └── plot2d.yaml
+  └── ...
 ```
-or if one supply two parameter files (params1, params2):
-```
-igm_run -m +experiment=params1,params2
-```
-or doing a grid search ovr 3x2 parameters
-```
-igm_run -m +experiment=params processes.time.start=1900,1910,1920 processes.time.end=2080,2110
-```
-Note that in that case, the output folder will be named `multirun` instead of `output`.
 
-# Custom modules (now called "user")
+In the code, all parameters are accessible through the object `cfg`. For example, `cfg.processes.enthalpy.ref_temp` refers to a parameter associated with the `enthalpy` processes module.
 
-User modules are very useful as soon as we need to customize applications, they can be used to customize inputs, processes or outputs methods. To create such a user module, you need to create (or complete) the folder `user` located at the root of your working directory as follows (respect the hierarchy):
+On the other hand the structure for the code looks very similar:
+
+```
+igm/igm
+├── inputs
+│   └── local
+│   └── ...
+├── processes
+│   └── iceflow
+│   └── avalanche
+└── outputs
+  └── plot2d
+  └── ...
+```
+
+## Custom modules (now called "user")
+
+User modules are very useful when customizing applications. They can be used to tailor input, process, or output methods. To create such a user module, you need to create (or update) the `user` folder located at the root of your working directory, ensuring the following hierarchy is respected:
+
 ```
 └── user
     ├── code
@@ -173,9 +227,9 @@ User modules are very useful as soon as we need to customize applications, they 
         └── outputs
             └── my_outputs_module.yaml 
 ```
+
 where `my_processes_module.py` has the following structure (and require to define function `initialize`, `update`, and `finalize`):
 
-and access to the parameter
 ```python
 def initialize(cfg,state):
   ... 
@@ -187,13 +241,10 @@ def update(cfg,state):
 def finalize(cfg,state):
   pass
 ```
-while `my_inputs_module.py` and `my_outputs_module.py` has the following structure (and require to define function `run`) and access to the parameter
 
-```python
-def run(cfg, state):
-  ...
-```
-On the other end, parameter files located in `conf/inputs`, `conf/processes`, and `conf/outputs` look like 
+Note that `my_inputs_module.py` and `my_outputs_module.py` only require function `run` (and `initialize` for output).
+
+Parameter files located in `conf/inputs`, `conf/processes`, and `conf/outputs` look like 
 ```yaml
 update_freq: 1
 time_resolution: 365
@@ -202,13 +253,14 @@ or in case there is no parameter (the file must exist as follows even if no para
 ```yaml
 null
 ```
-It must be stressed that the user modules override the official one, therefore, if you call a module that has the same name of an official one, the user one will be retained, and the official one will be ignored.
 
-# MISC
+It is important to note that user modules take precedence over official modules. If a user module shares the same name as an official module, the user module will override the official one, and the official module will be ignored.
 
-- write_particles is now part of the particule module
-- oggm_shop is now only tking care of downloading the data, and putting the data ready for IGM, therfore, oggm_shop must be followed by `load_ncdf`, or `local`
-- A new I/O module `local` as introduced to replace `load_XXX` and `write_XXX`: `local` uses library `xarray` that is more powerfull and can load both `netcdf` and `tif`.
+## Complex modules made more readables, and more customizable
+
+Key modules like `iceflow` and `data_assimilation` (formerly optimize) have been split into sub-files to improve readability, maintainability, and customization. Sometimes, you may need to modify an existing built-in module, e.g. to test a new feature in the iceflow emulator/solver, or new cost in the data assimilation. This can be achieved by creating a user module that overrides the built-in functionality. Check at the page on `user modules` in the documentation.
+
+# Parameter changes 
 
 ## Parameter name change table for `iceflow` module
 
@@ -268,7 +320,6 @@ It must be stressed that the user modules override the official one, therefore, 
 |   iflo_conv_ker_size   |   iceflow.emulator.network.conv_ker_size  |
 |   iflo_dropout_rate   |   iceflow.emulator.network.dropout_rate  |
 |   iflo_weight_initialization   |   iceflow.emulator.network.weight_initialization  |
-
 
 ## Parameter name change table for `optimize` (`data_assimilation`) module
 

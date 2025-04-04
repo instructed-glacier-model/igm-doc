@@ -1,25 +1,28 @@
-* Ice is stuck on the border of the domain (no fluxes), what can I do?
+## Frequently Asked Questions (FAQ)
 
-Set parameter exclude_borders_from_iceflow to True
+### Ice is stuck on the border of the domain (no fluxes), what can I do?
 
-* I see some numerical artifacts (e.g. waves) occurring when modeling glacier evolution, what can I do?
+Set the parameter `exclude_borders_from_iceflow` to `True`.
 
-Reduce the CFL parameter
+### I see some numerical artifacts (e.g., waves) occurring when modeling glacier evolution, what can I do?
 
-* How to create/modify NetCDF files?
+Reduce the `CFL` parameter.
 
-There are many ways to prepare NetCDF files (matlab, python, GIS tools, ...). The [NCO](http://nco.sourceforge.net/) toolkit permits easy operations in command lines, e.g.
+### How to create/modify NetCDF files?
 
-       ncks -x -v thk file.nc file.nc              # this removes the variable 'thk' from file.nc
-       ncks -v usurf file.nc file.nc               # this extracts the variable usurf from file.nc
-       ncap2 -h -O -s 'thk=0*thk' file.nc file.nc  # this does operations on file.nc, here force zero thk
-       ncrename -v apc,strflowctrl file.nc         # this renames varible apc to strflowctrl in file.nc
+There are many ways to prepare NetCDF files (e.g., MATLAB, Python, GIS tools). The [NCO](http://nco.sourceforge.net/) toolkit allows easy operations via command lines, for example:
 
-* oggm_shop produces error on windows
+```bash
+ncks -x -v thk file.nc file.nc              # Removes the variable 'thk' from file.nc
+ncks -v usurf file.nc file.nc               # Extracts the variable 'usurf' from file.nc
+ncap2 -h -O -s 'thk=0*thk' file.nc file.nc  # Performs operations on file.nc, here forcing zero 'thk'
+ncrename -v apc,strflowctrl file.nc         # Renames variable 'apc' to 'strflowctrl' in file.nc
+```
 
-This is expected, OGGM is [not supported](https://github.com/OGGM/oggm/issues/870) on windows, however, modifying the tarfile.py file at line 2677 from name == member_name to name.replace(os.sep, '/') == member_name seems to fix the issue on Windows. Thanks Alexi Morin for proposing this workaround.
+### OGGM Shop produces an error on Windows
 
-* GPU vs CPU
+This is expected, as OGGM is [not supported](https://github.com/OGGM/oggm/issues/870) on Windows. However, modifying the `tarfile.py` file at line 2677 from `name == member_name` to `name.replace(os.sep, '/') == member_name` seems to fix the issue on Windows. Thanks to Alexi Morin for proposing this workaround.
 
-IGM works fine on CPU for small computational domains (typically individual glaciers). In contrast, GPUs will be very advantageous to treat very large computational grids (typically large networks of glaciers) as IGM naturally takes further benefit from parallelism (see this [example](https://youtu.be/Sna673xb-PE)).
- 
+### GPU vs CPU
+
+IGM works fine on CPUs for small computational domains (typically individual glaciers). In contrast, GPUs are highly advantageous for very large computational grids (e.g., large networks of glaciers), as IGM naturally benefits from parallelism. See this [example](https://youtu.be/Sna673xb-PE).
