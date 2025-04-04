@@ -1,6 +1,6 @@
 # Module `rockflow`
 
-This module extends the ice flow outside the glaciated area, by giving a constant speed and along-slope flow direction. This modules serves to track rock-like particles (with module `particles`) everywhere in ice-free and ice-filled areas, particles being either advected at constant steep (controlled by parameter `rock_flow_speed`) following the stepest gradient of the ice-free terrain in 2D, or by ice flow in 3D.
+This module extends the ice flow beyond glaciated areas by assigning a constant speed and along-slope flow direction. It is designed to track rock-like particles (using the `particles` module) in both ice-free and ice-covered regions. Particles are either advected at a constant speed (controlled by the parameter `processes.rockflow.speed`) following the steepest gradient of the ice-free terrain in 2D or transported by ice flow in 3D.
 
 **Contributors:** G. Jouvet
 

@@ -1,11 +1,10 @@
 # Module `gflex`
 
-This IGM module permits to model the isostasy or upward motion of the lithosphere when loaded with thick ice, it uses the 
-[gflex](https://gmd.copernicus.org/articles/9/997/2016/) python module writen by Andy Wickert.
- 
-Parameters are the update frequency `gflex_update_freq` and the Elastic thickness [m] (Te) `gflex_default_Te`.
+This IGM module models isostasy or the upward motion of the lithosphere when loaded with thick ice. It utilizes the [gflex](https://gmd.copernicus.org/articles/9/997/2016/) Python module developed by Andy Wickert.
 
-This module only runs on CPU, which may be an issue for treating very large arrays. On the other hand, we do not expect a frequent update, therefore, this module should not be overall too consuming.
+The key parameters are the update frequency `processes.gflex.update_freq` and the Elastic Thickness (Te) in meters, specified as `processes.gflex.default_Te`.
+
+This module operates exclusively on the CPU, which may pose challenges when processing very large arrays. However, since updates are not expected to occur frequently, the overall computational demand of this module should remain manageable.
 
 **Contributors:** Jürgen Mey
 
@@ -51,5 +50,3 @@ This module only runs on CPU, which may be an issue for treating very large arra
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

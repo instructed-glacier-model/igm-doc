@@ -2,11 +2,9 @@
 
 # Module `avalanche`
 
-This IGM module simulates the redistribution of snow and ice due to gravitational avalanches. The model assumes that if the local surface slope exceeds a given threshold (angle of repose), mass is redistributed toward lower elevations until the surface slope is reduced below this threshold.
+This IGM module simulates the redistribution of snow and ice due to gravitational avalanches. The model assumes that when the local surface slope exceeds a specified threshold (angle of repose), mass is redistributed toward lower elevations until the surface slope is reduced below this threshold.
 
-**Contributors:** Jürgen Mey, Guillaume Jouvet
-
-This function was adapted from [Mark Kessler's GC2D](https://github.com/csdms-contrib/gc2d) program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet.
+**Contributors:** This function was adapted from [Mark Kessler's GC2D](https://github.com/csdms-contrib/gc2d) program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet.
 
 ## Config Structure  
 ~~~yaml
@@ -56,9 +54,6 @@ We can run a simulation with a higher frequency of avalanches by changing the `p
 
 ```yaml
 # @package _global_
-
-core:
-  url_data: https://www.dropbox.com/scl/fo/kd7dix5j1tm75nj941pvi/h?rlkey=q7jtmf9yn3a970cqygdwne25j&dl=0
   
 inputs:
   load_ncdf:

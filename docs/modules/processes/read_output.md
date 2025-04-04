@@ -1,6 +1,6 @@
 # Module `read_output`
 
-This IGM module permits to read an output NetCDF file produced previously and to run igm as if these quantities were shortly computed, this is mainly usefull for testing postprocessing module independently.
+This module enables the reading of a previously generated NetCDF output file, allowing IGM to operate as though these quantities were freshly computed. It is particularly useful for testing the postprocessing module in isolation.
 
 **Contributors:** G. Jouvet
 

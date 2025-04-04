@@ -26,7 +26,6 @@ nav:
         - Configuration: hydra/configuration.md
         - Distributed Computing: hydra/distributed_computing.md 
       - Examples: examples/Examples.md
-  
   - Modules:
     - What are modules?: modules/introduction.md
     - Core: modules/core.md
@@ -65,8 +64,8 @@ nav:
     - Variables: about/variables.md
   - Help: 
       - Support: about/help.md
-      - FAQ: about/FAQ.md
-      - IGM 2 to 3 transition notes: about/transition-IGM-2-to-3.md      
+      - IGM 2 to 3 transition notes: about/transition-IGM-2-to-3.md
+      - FAQ: about/FAQ.md  
   - Credits: about/credits_and_references.md
 
   # - Gallery:

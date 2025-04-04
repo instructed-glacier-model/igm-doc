@@ -1,6 +1,6 @@
 # Module `vert_flow`
 
-This IGM module computes the vertical component (providing `state.W`) of the velocity from the horizontal components (`state.U` and `state.V`), computed from an emulation of the Blatter-Pattyn model in the module `iceflow`) by integrating the imcompressibility condition layer-wise. This module is typically needed prior calling module `particle` for 3D particle trajectory integration, or module `enthalpy` for computing 3D advection-diffusion of the enthalpy.
+This IGM module computes the vertical component of the velocity (`state.W`) from the horizontal components (`state.U` and `state.V`). These horizontal components are derived from an emulation of the Blatter-Pattyn model in the `iceflow` module. The computation is performed by integrating the incompressibility condition layer-wise. This module is typically used before invoking the `particle` module for 3D particle trajectory integration or the `enthalpy` module for computing 3D advection-diffusion of enthalpy.
 
 **Contributors:** Guillaume Jouvet, Claire-Mathile Stücki
 
@@ -45,5 +45,3 @@ This IGM module computes the vertical component (providing `state.W`) of the vel
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

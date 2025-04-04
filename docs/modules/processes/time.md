@@ -1,14 +1,21 @@
 # Module `time`
+This IGM module computes the time step such that:  
+i) It satisfies the CFL condition (controlled by the parameter `processes.time.cfl`).  
+ii) It is lower than a given maximum time step (controlled by the parameter `processes.time.step_max`).  
+iii) It aligns exactly with specified saving times (controlled by the parameter `processes.time.save`).  
 
-This IGM modules computes time step such that i) it satisfy the CFL condition (controlled by parameter `cfl`) ii) it is lower than a given maximum time step (controlled by parameter `processes.time.step_max`) iii) it hits exactly given saving times (controlled by parameter `processes.time.save`). The module additionally updates the time $t$ in addition to the time step.
+The module also updates the current simulation time $t$ in addition to determining the time step.
 
-Indeed, for stability reasons of the transport scheme for the ice thickness evolution, the time step must respect a CFL condition, controlled by parameter `processes.time.cfl`, which is the maximum number of cells crossed in one iteration (this parameter cannot exceed one). By default, we take `processes.time.cfl` to 0.3. We additionally request time step to be upper-bounded by a user-defined parameter `processes.time.save` (default: 1 year).
- 
-Among the parameters of this module `processes.time.start` and `processes.time.end` defines the simulation starting and ending times, while `processes.time.save` defines the frequency at which results must be saved (default: 10 years).
+For stability reasons related to the transport scheme for ice thickness evolution, the time step must adhere to the CFL condition. This condition is governed by the parameter `processes.time.cfl`, which specifies the maximum number of cells that can be crossed in one iteration (this parameter cannot exceed 1). By default, `processes.time.cfl` is set to 0.3. Additionally, the time step is constrained by a user-defined maximum time step, `processes.time.step_max`, and must align with the saving frequency defined by `processes.time.save` (default: 1 year).
 
-A bit more details on the time step stability conditionsis given in the following paper.
+Key parameters of this module include:  
+- `processes.time.start`: Defines the simulation start time.  
+- `processes.time.end`: Defines the simulation end time.  
+- `processes.time.save`: Specifies the frequency at which results are saved (default: 10 years).
 
-Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.
+Further details on the time step stability conditions can be found in the following paper:   
+
+**Reference:** Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.
 
 **Contributors:** G. Jouvet
 
@@ -53,5 +60,3 @@ Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (20
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

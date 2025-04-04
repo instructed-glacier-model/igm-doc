@@ -1,8 +1,10 @@
 # Module `thk`
 
-This IGM module solves the mass conservation of ice to update the thickness from ice flow (computed from module `iceflow`) and surface mass balance (given any module that update `smb`). The mass conservation equation is solved using an explicit first-order upwind finite-volume scheme on the 2D working grid. With this scheme mass of ice is allowed to move from cell to cell (where thickness and velocities are defined) from edge-defined fluxes (inferred from depth-averaged velocities, and ice thickness in upwind direction). The resulting scheme is mass conservative and parallelizable (because fully explicit). However, it is subject to a CFL condition. This means that the time step (defined in module `time`) is controlled by parameter parameter `processes.time.cfl`, which is the maximum number of cells crossed in one iteration (this parameter cannot exceed one), see the documentation of module `time`. A bit more details on the scheme are given in the following paper.
+This IGM module solves the mass conservation equation for ice to update the thickness based on ice flow (computed by the `iceflow` module) and surface mass balance (provided by any module that updates `smb`). The equation is solved using an explicit first-order upwind finite-volume scheme on the 2D working grid. This scheme allows ice mass to move between cells (where thickness and velocities are defined) using edge-defined fluxes (calculated from depth-averaged velocities and ice thickness in the upwind direction). 
 
-Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.
+The scheme is mass-conservative and parallelizable due to its fully explicit nature. However, it is subject to a CFL condition, meaning the time step (defined in the `time` module) is constrained by the parameter `processes.time.cfl`. This parameter represents the maximum number of cells crossed in one iteration and cannot exceed one. For more details, refer to the documentation of the `time` module. Additional information about the scheme can be found in the following paper:
+
+**Reference:** Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.
 
 **Contributors:** Guillaume Cordonnier, Guillaume Jouvet
 

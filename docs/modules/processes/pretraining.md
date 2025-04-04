@@ -1,6 +1,5 @@
 # Module `pretraining` 
-
-This module performs a pretraining of the ice flow iflo_emulator on a glacier catalogue to improve the performance of the emaulator when used in glacier forward run. The pretraining can be relatively computationally demanding task (a couple of hours). This module should be called alone independently of any other igm module. Here is an example of parameter file:
+This module performs pretraining of the ice flow `iflo_emulator` on a glacier catalog to enhance its performance during glacier forward runs. Pretraining can be a computationally intensive task, taking a few hours to complete. This module should be executed independently, without involving any other IGM modules. Below is an example of a parameter file:
 
 ```yaml
 # @package _global_
@@ -33,9 +32,9 @@ processes:
  
 ```
 
-To run it, one first needs to have available a glacier catalogue. I provide here [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8332898.svg)](https://doi.org/10.5281/zenodo.8332898) a dataset of a glacier catalogue (mountain glaciers) I have mostly used for pretraining IGM emaulators.
+To run this module, you first need access to a glacier catalog. A dataset of a glacier catalog (mountain glaciers) commonly used for pretraining IGM emulators is available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8332898.svg)](https://doi.org/10.5281/zenodo.8332898).
 
-Once downloaded (or self generated), the folder "surflib3d_shape_100" can be re-organized into a subfolder "train" and a subfolder "test"  as follows:
+After downloading (or generating your own dataset), organize the folder `surflib3d_shape_100` into two subfolders: `train` and `test`.
  
 ## Config Structure  
 ~~~yaml
@@ -78,5 +77,3 @@ Once downloaded (or self generated), the folder "surflib3d_shape_100" can be re-
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

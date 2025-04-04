@@ -1,6 +1,6 @@
 # Core
 
-IGM comes with a number of core parameters ...
+These core parameters are organized under a specific configuration structure designed to manage essential aspects of IGM's workflow, hardware preferences, and logging options. 
 
 ## Config Structure  
 ~~~yaml

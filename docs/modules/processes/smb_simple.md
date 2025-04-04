@@ -1,11 +1,13 @@
 # Module `smb_simple`
+This IGM module models a simple surface mass balance (SMB) parametrized by time-evolving equilibrium line altitude (ELA) $z_{ELA}$, ablation gradient $\beta_{abl}$, accumulation gradient $\beta_{acc}$, and maximum accumulation $m_{acc}$ parameters:
 
-This IGM modules models a simple surface mass balance model parametrized by time-evolving ELA $z_{ELA}$, ablation $\beta_{abl}$ and accumulation $\beta_{acc}$ gradients, and max accumulation $m_{acc}$ parameters:
+$$SMB(z) = 
+\begin{cases} 
+\min(\beta_{acc} \cdot (z - z_{ELA}), m_{acc}) & \text{if } z > z_{ELA}, \\
+\beta_{abl} \cdot (z - z_{ELA}) & \text{otherwise}.
+\end{cases}$$
 
-$$SMB(z)=min(\beta_{acc} (z-z_{ELA}),m_{acc})\quad\textrm{if}\;z>z_{ELA},$$
-$$SMB(z)=\beta_{abl} (z-z_{ELA})\quad\textrm{else}.$$
-
-These parameters may be given in file (file name given in `file` parameter), which look like this
+These parameters can be provided in a file (specified by the `file` parameter) with the following format:
 
 ```dat
 time   gradabl  gradacc    ela   accmax
@@ -14,22 +16,22 @@ time   gradabl  gradacc    ela   accmax
 2100     0.009    0.005   3300      2.0
 ```
 
-or directly as parameter in the config `params.yaml` file:
+Alternatively, they can be directly specified in the configuration file `params.yaml` as follows:
 
 ```yaml
 smb_simple:
-   array: 
-      - ["time", "gradabl", "gradacc", "ela", "accmax"]
-      - [ 1900,      0.009,     0.005,  2800,      2.0]
-      - [ 2000,      0.009,     0.005,  2900,      2.0]
-      - [ 2100,      0.009,     0.005,  3300,      2.0]
+  array: 
+    - ["time", "gradabl", "gradacc", "ela", "accmax"]
+    - [ 1900,      0.009,     0.005,  2800,      2.0]
+    - [ 2000,      0.009,     0.005,  2900,      2.0]
+    - [ 2100,      0.009,     0.005,  3300,      2.0]
 ```
 
-If parameter `array` is set to empty list `[]`, then it will read the file `file`, otherwise it read the array `array` (which is here in fact a list of list).
+If the `array` parameter is set to an empty list `[]`, the module will read the data from the file specified by the `file` parameter. Otherwise, it will use the provided `array` (a list of lists).
 
-The module will compute surface mass balance at a frequency given by parameter `update_freq` (default is 1 year), and interpolate linearly the 4 parameters in time.
+The module computes the surface mass balance at a frequency defined by the `update_freq` parameter (default is 1 year) and interpolates the four parameters linearly over time.
 
-If one has provided in input an "icemask" field, then this module will compute negative surface mass balance (-10 m/y) in place where posstive surface mass balance outside the mask were originally computed. The goal here is to prevent against overflowing in neibourghing catchements.
+If an "icemask" field is provided as input, the module will assign a negative surface mass balance (-10 m/y) to areas where a positive surface mass balance would otherwise occur outside the mask. This prevents overflow into neighboring catchments.
 
 **Contributors:** G. Jouvet
 
@@ -74,5 +76,3 @@ If one has provided in input an "icemask" field, then this module will compute n
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage
