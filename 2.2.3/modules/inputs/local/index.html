@@ -979,15 +979,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example Usage
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1937,59 +1928,267 @@
   </thead>
   <tbody>
 
-    <tr>
-      <td>type</td>
-      <td>str</td>
-      <td>['dimensionless']</td>
-      <td>Type of file to be loaded, can be netcdf or tif</td>
 
-      <td>netcdf</td>
-    </tr>
 
-    <tr>
-      <td>filename</td>
-      <td>str</td>
-      <td>['dimensionless']</td>
-      <td>NetCDF input data file</td>
 
-      <td>input.nc</td>
-    </tr>
 
-    <tr>
-      <td>coarsening</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <td>{{ no such element: dict object['Units'] }}</td>
-      <td>{{ no such element: dict object['Description'] }}</td>
+      <tr>
+        <td>type</td>
+        <td>
 
-      <td>{'boundary': 'trim', 'ratio': 1}</td>
-    </tr>
+            <span class="str_table">str</span>
 
-    <tr>
-      <td>crop</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <td>{{ no such element: dict object['Units'] }}</td>
-      <td>{{ no such element: dict object['Description'] }}</td>
+        </td>
+        <td>
 
-      <td>{'xmin': None, 'xmax': None, 'ymin': None, 'ymax': None}</td>
-    </tr>
+            <span class="math">\( ['dimensionless'] \)</span>
 
-    <tr>
-      <td>icemask</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <td>{{ no such element: dict object['Units'] }}</td>
-      <td>{{ no such element: dict object['Description'] }}</td>
+        </td>
+        <td>Type of file to be loaded, can be netcdf or tif</td>
+        <td>netcdf</td>
+      </tr>
 
-      <td>{'include': False, 'shapefile': 'icemask.shp', 'invert': False}</td>
-    </tr>
+
+
+
+
+      <tr>
+        <td>filename</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>NetCDF input data file</td>
+        <td>input.nc</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>coarsening.boundary</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Method for coarsening the data from NetCDF file: skipping or cubic_spline</td>
+        <td>trim</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>coarsening.ratio</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Coarsen ratio</td>
+        <td>1</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>crop.xmin</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>X left coordinate for cropping the NetCDF data</td>
+        <td>None</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>crop.xmax</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>X right coordinate for cropping the NetCDF data</td>
+        <td>None</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>crop.ymin</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>Y bottom coordinate for cropping the NetCDF data</td>
+        <td>None</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>crop.ymax</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>Y top coordinate for cropping the NetCDF data</td>
+        <td>None</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>icemask.include</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Include ice mask in the NetCDF file</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>icemask.shapefile</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Shapefile for ice mask</td>
+        <td>icemask.shp</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>icemask.invert</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Invert the ice mask</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
 
   </tbody>
 </table>
 
+<!-- Load MathJax v3 -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-<p>--&gt;</p>
-<h2 id="example-usage">Example Usage</h2>
 
 
 

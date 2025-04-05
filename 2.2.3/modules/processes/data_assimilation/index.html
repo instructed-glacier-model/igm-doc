@@ -1217,9 +1217,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#arguments" class="md-nav__link">
+  <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Arguments
+      Parameters
     </span>
   </a>
   
@@ -2092,7 +2092,7 @@ A final parameter - processes.data_assimilation.tidewater_glacier - can also be 
 </span><span id="__span-6-60"><a id="__codelineno-6-60" name="__codelineno-6-60" href="#__codelineno-6-60"></a><span class="w">    </span><span class="nt">tidewater_glacier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </span><span id="__span-6-61"><a id="__codelineno-6-61" name="__codelineno-6-61" href="#__codelineno-6-61"></a><span class="w">    </span><span class="nt">vol_std</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
 </span></code></pre></div>
-<h2 id="arguments">Arguments</h2>
+<h2 id="parameters">Parameters</h2>
 <table>
   <thead>
     <tr>
@@ -2109,208 +2109,927 @@ A final parameter - processes.data_assimilation.tidewater_glacier - can also be 
   </thead>
   <tbody>
 
-    <tr>
-      <td>control_list</td>
-      <td>list</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>List of optimized variables for the optimization</td>
 
-      <td>['thk']</td>
-    </tr>
 
-    <tr>
-      <td>cost_list</td>
-      <td>list</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>List of cost components for the optimization</td>
 
-      <td>['velsurf', 'thk', 'icemask']</td>
-    </tr>
 
-    <tr>
-      <td>nbitmin</td>
-      <td>integer</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Min iterations for the optimization</td>
+      <tr>
+        <td>control_list</td>
+        <td>
 
-      <td>50</td>
-    </tr>
+            <span class="list_table">list</span>
 
-    <tr>
-      <td>nbitmax</td>
-      <td>integer</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Max iterations for the optimization</td>
+        </td>
+        <td>
 
-      <td>500</td>
-    </tr>
+            <span class="math">\( ['dimensionless'] \)</span>
 
-    <tr>
-      <td>step_size</td>
-      <td>float</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Step size for the optimization</td>
+        </td>
+        <td>List of optimized variables for the optimization</td>
+        <td>['thk']</td>
+      </tr>
 
-      <td>1.0</td>
-    </tr>
 
-    <tr>
-      <td>step_size_decay</td>
-      <td>float</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Decay step size parameter for the optimization</td>
 
-      <td>0.9</td>
-    </tr>
 
-    <tr>
-      <td>init_zero_thk</td>
-      <td>boolean</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Initialize the optimization with zero ice thickness</td>
 
-      <td>False</td>
-    </tr>
+      <tr>
+        <td>cost_list</td>
+        <td>
 
-    <tr>
-      <td>uniformize_thkobs</td>
-      <td>boolean</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>uniformize the density of thkobs</td>
+            <span class="list_table">list</span>
 
-      <td>True</td>
-    </tr>
+        </td>
+        <td>
 
-    <tr>
-      <td>sole_mask</td>
-      <td>boolean</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>sole_mask</td>
+            <span class="math">\( ['dimensionless'] \)</span>
 
-      <td>False</td>
-    </tr>
+        </td>
+        <td>List of cost components for the optimization</td>
+        <td>['velsurf', 'thk', 'icemask']</td>
+      </tr>
 
-    <tr>
-      <td>retrain_iceflow_model</td>
-      <td>boolean</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Retrain the iceflow model simultaneously?</td>
 
-      <td>True</td>
-    </tr>
 
-    <tr>
-      <td>include_low_speed_term</td>
-      <td>boolean</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>opti_include_low_speed_term</td>
 
-      <td>False</td>
-    </tr>
 
-    <tr>
-      <td>fix_opti_normalization_issue</td>
-      <td>boolean</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Formerly, the oce was mixing reduce_mean and l2_loss leading to dependence to the resolution of the grid</td>
+      <tr>
+        <td>nbitmin</td>
+        <td>
 
-      <td>False</td>
-    </tr>
+            <span class="integer_table">integer</span>
 
-    <tr>
-      <td>velsurfobs_thr</td>
-      <td>float</td>
-      <!-- <td>$m y^{-1}$</td> -->
-      <td><span class="math">$m y^{-1}$</span></td>
-      <td>Threshold for the surface ice velocities as input data for the optimization, anything below this value will be ignored</td>
+        </td>
+        <td>
 
-      <td>0.0</td>
-    </tr>
+            <span class="math">\( ['dimensionless'] \)</span>
 
-    <tr>
-      <td>log_slidingco</td>
-      <td>boolean</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Optimize the log of the sliding coefficient instead of the slidingco itself</td>
+        </td>
+        <td>Min iterations for the optimization</td>
+        <td>50</td>
+      </tr>
 
-      <td>False</td>
-    </tr>
 
-    <tr>
-      <td>regularization</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
-      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
-      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>{'thk': 10.0, 'slidingco': 1.0, 'arrhenius': 10.0, 'divflux': 1.0, 'smooth_anisotropy_factor': 0.2, 'smooth_anisotropy_factor_sl': 1.0, 'convexity_weight': 0.002, 'convexity_power': 1.3, 'to_regularize': 'topg'}</td>
-    </tr>
 
-    <tr>
-      <td>fitting</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
-      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
-      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>{'usurfobs_std': 2.0, 'velsurfobs_std': 1.0, 'thkobs_std': 3.0, 'divfluxobs_std': 1.0}</td>
-    </tr>
+      <tr>
+        <td>nbitmax</td>
+        <td>
 
-    <tr>
-      <td>divflux</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
-      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
-      <td>{{ no such element: dict object['Description'] }}</td>
+            <span class="integer_table">integer</span>
 
-      <td>{'method': 'upwind', 'force_zero_sum': False}</td>
-    </tr>
+        </td>
+        <td>
 
-    <tr>
-      <td>scaling</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
-      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
-      <td>{{ no such element: dict object['Description'] }}</td>
+            <span class="math">\( ['dimensionless'] \)</span>
 
-      <td>{'thk': 2.0, 'usurf': 0.5, 'slidingco': 0.0001, 'arrhenius': 0.1}</td>
-    </tr>
+        </td>
+        <td>Max iterations for the optimization</td>
+        <td>500</td>
+      </tr>
 
-    <tr>
-      <td>output</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
-      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
-      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>{'freq': 50, 'plot2d_live': True, 'plot2d': True, 'save_result_in_ncdf': 'geology-optimized.nc', 'save_iterat_in_ncdf': True, 'editor_plot2d': 'vs', 'vars_to_save': ['usurf', 'thk', 'slidingco', 'velsurf_mag', 'velsurfobs_mag', 'divflux', 'icemask']}</td>
-    </tr>
 
-    <tr>
-      <td>cook</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
-      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
-      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>{'infer_params': False, 'tidewater_glacier': False, 'vol_std': 1000.0}</td>
-    </tr>
+
+      <tr>
+        <td>step_size</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Step size for the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>step_size_decay</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Decay step size parameter for the optimization</td>
+        <td>0.9</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>init_zero_thk</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Initialize the optimization with zero ice thickness</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>uniformize_thkobs</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>uniformize the density of thkobs</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>sole_mask</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>sole_mask</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>retrain_iceflow_model</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Retrain the iceflow model simultaneously?</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>include_low_speed_term</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>opti_include_low_speed_term</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fix_opti_normalization_issue</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Formerly, the oce was mixing reduce_mean and l2_loss leading to dependence to the resolution of the grid</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>velsurfobs_thr</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m y^{-1} \)</span>
+
+        </td>
+        <td>Threshold for the surface ice velocities as input data for the optimization, anything below this value will be ignored</td>
+        <td>0.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>log_slidingco</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Optimize the log of the sliding coefficient instead of the slidingco itself</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>regularization.thk</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Regularization weight for the ice thickness in the optimization</td>
+        <td>10.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.slidingco</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Regularization weight for the slidingco field in the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.arrhenius</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Regularization weight for the arrhenius field in the optimization</td>
+        <td>10.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.divflux</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Regularization weight for the divergence field in the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.smooth_anisotropy_factor</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Smooth anisotropy factor for the ice thickness regularization in the optimization</td>
+        <td>0.2</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.smooth_anisotropy_factor_sl</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Smooth anisotropy factor for the slidingco regularization in the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.convexity_weight</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Convexity weight for the ice thickness regularization in the optimization</td>
+        <td>0.002</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.convexity_power</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Power b in the area-volume scaling V ~ a * A^b taken from 'An estimate of global glacier volume', A. Grinsted, TC, 2013</td>
+        <td>1.3</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.to_regularize</td>
+        <td>
+
+            <span class="string_table">string</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Field to regularize: topg or thk</td>
+        <td>topg</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>fitting.usurfobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>Confidence/STD of the top ice surface as input data for the optimization</td>
+        <td>2.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fitting.velsurfobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m y^{-1} \)</span>
+
+        </td>
+        <td>Confidence/STD of the surface ice velocities as input data for the optimization (if 0, velsurfobs_std field must be given)</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fitting.thkobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>Confidence/STD of the ice thickness profiles (unless given)</td>
+        <td>3.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fitting.divfluxobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ??? \)</span>
+
+        </td>
+        <td>Confidence/STD of the flux divergence as input data for the optimization (if 0, divfluxobs_std field must be given)</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>divflux.method</td>
+        <td>
+
+            <span class="string_table">string</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Compute the divergence of the flux using the upwind or centered method</td>
+        <td>upwind</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>divflux.force_zero_sum</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Add a penalty to the cost function to force the sum of the divergence of the flux to be zero</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>scaling.thk</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Scaling factor for the ice thickness in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>2.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>scaling.usurf</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Scaling factor for the ice thickness in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>0.5</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>scaling.slidingco</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Scaling factor for the slidingco in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>0.0001</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>scaling.arrhenius</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Scaling factor for the Arrhenius in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>0.1</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>output.freq</td>
+        <td>
+
+            <span class="integer_table">integer</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Frequency of the output for the optimization</td>
+        <td>50</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.plot2d_live</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>plot2d_live_inversion</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.plot2d</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>plot 2d inversion</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.save_result_in_ncdf</td>
+        <td>
+
+            <span class="file path_table">file path</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Geology input file</td>
+        <td>geology-optimized.nc</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.save_iterat_in_ncdf</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Sve the iterations in a ncdf file</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.editor_plot2d</td>
+        <td>
+
+            <span class="string_table">string</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>optimized for VS code (vs) or spyder (sp) for live plot</td>
+        <td>vs</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.vars_to_save</td>
+        <td>
+
+            <span class="list_table">list</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>List of variables to be recorded in the ncdf file</td>
+        <td>['usurf', 'thk', 'slidingco', 'velsurf_mag', 'velsurfobs_mag', 'divflux', 'icemask']</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>cook.infer_params</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Infer slidingco and convexity weight from velocity observations</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>cook.tidewater_glacier</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Is the glacier you're trying to infer parameters for a tidewater type?</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>cook.vol_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ??? \)</span>
+
+        </td>
+        <td>Confidence/STD of the volume estimates from volume-area scaling</td>
+        <td>1000.0</td>
+      </tr>
+
+
+
+
+
 
   </tbody>
 </table>
+
+<!-- Load MathJax v3 -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
 
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);

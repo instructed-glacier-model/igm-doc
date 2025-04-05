@@ -1937,121 +1937,419 @@
   </thead>
   <tbody>
 
-    <tr>
-      <td>url_data</td>
-      <td>str</td>
-      <td>['dimensionless']</td>
-      <td>Url supplied to download .nc data files</td>
 
-      <td></td>
-    </tr>
 
-    <tr>
-      <td>folder_data</td>
-      <td>str</td>
-      <td>['dimensionless']</td>
-      <td>data</td>
 
-      <td>data</td>
-    </tr>
 
-    <tr>
-      <td>logging_file</td>
-      <td>str</td>
-      <td>['dimensionless']</td>
-      <td></td>
+      <tr>
+        <td>url_data</td>
+        <td>
 
-      <td></td>
-    </tr>
+            <span class="str_table">str</span>
 
-    <tr>
-      <td>logging</td>
-      <td>bool</td>
-      <td>['dimensionless']</td>
-      <td>False</td>
+        </td>
+        <td>
 
-      <td>False</td>
-    </tr>
+            <span class="math">\( ['dimensionless'] \)</span>
 
-    <tr>
-      <td>logging_level</td>
-      <td>str</td>
-      <td>['dimensionless']</td>
-      <td>30</td>
+        </td>
+        <td>Url supplied to download .nc data files</td>
+        <td></td>
+      </tr>
 
-      <td>30</td>
-    </tr>
 
-    <tr>
-      <td>hardware</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <td>{{ no such element: dict object['Units'] }}</td>
-      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>{'gpu_info': True, 'visible_gpus': [0], 'strategy': 'none'}</td>
-    </tr>
 
-    <tr>
-      <td>print_params</td>
-      <td>bool</td>
-      <td>['dimensionless']</td>
-      <td>True</td>
 
-      <td>False</td>
-    </tr>
+      <tr>
+        <td>folder_data</td>
+        <td>
 
-    <tr>
-      <td>print_comp</td>
-      <td>bool</td>
-      <td>['dimensionless']</td>
-      <td>Print information related to computational performances</td>
+            <span class="str_table">str</span>
 
-      <td>False</td>
-    </tr>
+        </td>
+        <td>
 
-    <tr>
-      <td>print_info</td>
-      <td>bool</td>
-      <td>['dimensionless']</td>
-      <td>Print live information when the model is running</td>
+            <span class="math">\( ['dimensionless'] \)</span>
 
-      <td>True</td>
-    </tr>
+        </td>
+        <td>data</td>
+        <td>data</td>
+      </tr>
 
-    <tr>
-      <td>print_imported_modules</td>
-      <td>bool</td>
-      <td>['dimensionless']</td>
-      <td>Print imported modules</td>
 
-      <td>True</td>
-    </tr>
 
-    <tr>
-      <td>check_compat_params</td>
-      <td>bool</td>
-      <td>['dimensionless']</td>
-      <td>Check compatibility btween default pasm name and user-defined one to check for typos, ect.</td>
 
-      <td>True</td>
-    </tr>
 
-    <tr>
-      <td>structure</td>
-      <td>{{ no such element: dict object['Type'] }}</td>
-      <td>{{ no such element: dict object['Units'] }}</td>
-      <td>{{ no such element: dict object['Description'] }}</td>
+      <tr>
+        <td>logging_file</td>
+        <td>
 
-      <td>{'root_foldername': 'user', 'conf_foldername': 'conf', 'code_foldername': 'code', 'input_modules_foldername': 'inputs', 'process_modules_foldername': 'processes', 'output_modules_foldername': 'outputs'}</td>
-    </tr>
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>logging</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td></td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>logging_level</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>30</td>
+        <td>30</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>hardware.gpu_info</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>True</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>hardware.visible_gpus</td>
+        <td>
+
+            <span class="list_table">list</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>visible gpus</td>
+        <td>[0]</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>hardware.strategy</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>strategy</td>
+        <td>none</td>
+      </tr>
+
+
+
+
+
+
+
+
+      <tr>
+        <td>print_params</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>True</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>print_comp</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Print information related to computational performances</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>print_info</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Print live information when the model is running</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>print_imported_modules</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Print imported modules</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>check_compat_params</td>
+        <td>
+
+            <span class="bool_table">bool</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>Check compatibility btween default pasm name and user-defined one to check for typos, ect.</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>structure.root_foldername</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>user</td>
+        <td>user</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>structure.conf_foldername</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>conf</td>
+        <td>conf</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>structure.code_foldername</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>code</td>
+        <td>code</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>structure.input_modules_foldername</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>inputs</td>
+        <td>inputs</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>structure.process_modules_foldername</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>processes</td>
+        <td>processes</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>structure.output_modules_foldername</td>
+        <td>
+
+            <span class="str_table">str</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ['dimensionless'] \)</span>
+
+        </td>
+        <td>outputs</td>
+        <td>outputs</td>
+      </tr>
+
+
+
+
+
 
   </tbody>
 </table>
 
+<!-- Load MathJax v3 -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-<p>--&gt;</p>
 
 
 
