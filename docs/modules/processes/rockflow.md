@@ -46,5 +46,3 @@ This module extends the ice flow beyond glaciated areas by assigning a constant 
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

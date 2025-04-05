@@ -52,5 +52,3 @@ where $P_i^{sol}$ is the monthly solid precipitation, $T_i$ is the monthly tempe
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

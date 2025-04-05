@@ -45,5 +45,3 @@ This module enables the reading of a previously generated NetCDF output file, al
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

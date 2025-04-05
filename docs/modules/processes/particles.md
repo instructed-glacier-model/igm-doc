@@ -73,5 +73,3 @@ providing, in turn, the particle ID, x, y, z positions, the relative height with
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

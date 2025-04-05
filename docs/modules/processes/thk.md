@@ -49,5 +49,3 @@ The scheme is mass-conservative and parallelizable due to its fully explicit nat
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

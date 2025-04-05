@@ -174,5 +174,3 @@ For mor info, check at the following reference:
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </script>
-
-## Example Usage

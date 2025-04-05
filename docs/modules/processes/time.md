@@ -1,4 +1,5 @@
 # Module `time`
+
 This IGM module computes the time step such that:  
 i) It satisfies the CFL condition (controlled by the parameter `processes.time.cfl`).  
 ii) It is lower than a given maximum time step (controlled by the parameter `processes.time.step_max`).  

@@ -8,16 +8,12 @@ $${\rm CL}(t) =(T^{\rm mean}(t),T^{\rm std}(t),P^{\rm mean}(t), {\rm LR}(t)),$$
 
 and is assumed to be a linear combination:
 
-$$\begin{align*}
-{\rm CL}(t) = {\rm GI}(t) \times {\rm CL}_{\rm 1} (t) + (1-{\rm GI}(t)) \times {\rm CL}_{\rm 0} (t),
-\end{align*}$$
+$${\rm CL}(t) = {\rm GI}(t) \times {\rm CL}_{\rm 1} (t) + (1-{\rm GI}(t)) \times {\rm CL}_{\rm 0} (t),$$
 
 where the two climate states are:
 
-$$\begin{align*}
-{\rm CL}_0(t) & = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm mean}(t), {\rm LR}_0(t)), \\
-{\rm CL}_1(t) & = ( T_1^{\rm mean}(t),T_1^{\rm std}(t),P_1^{\rm mean}(t), {\rm LR}_1(t)),
-\end{align*}$$
+$$\begin{align} {\rm CL}_0(t) & = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm mean}(t), {\rm LR}_0(t)), \\
+{\rm CL}_1(t) & = ( T_1^{\rm mean}(t),T_1^{\rm std}(t),P_1^{\rm mean}(t), {\rm LR}_1(t)), \end{align}$$
 
 corresponding to GI=$0$ and GI=$1$, respectively. Lastly, the GI function is built by linearly rescaling a climate proxy signal so that GI is close to 1 at the ice maximum and close to 0 at the ice minimum. For example, we may use the Antarctica EPICA temperature anomaly signal, which is available for the last 800,000 years.
 
