@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-smb_oggm" class="md-skip">
           Skip to content
         </a>
       
@@ -1344,6 +1344,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    smb_oggm
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1354,6 +1366,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1887,82 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/smb_oggm.md`
+<h1 id="module-smb_oggm">Module <code>smb_oggm</code></h1>
+<p>Module <code>smb_oggm</code> implements the monthly temperature index model calibrated on geodetic mass balance (MB) data (Hugonnet, 2021) by OGGM. The yearly surface mass balance is computed with:</p>
+<div class="arithmatex">\[SMB = \frac{\rho_w}{\rho_i}  \sum_{i=1}^{12} \left( P_i^{sol} - d_f \max \{ T_i - T_{melt}, 0 \} \right),\]</div>
+<p>where <span class="arithmatex">\(P_i^{sol}\)</span> is the monthly solid precipitation, <span class="arithmatex">\(T_i\)</span> is the monthly temperature, and <span class="arithmatex">\(T_{melt}\)</span> is the air temperature above which ice melt is assumed to occur (parameter <code>temp_melt</code>). The parameter <span class="arithmatex">\(d_f\)</span> is the melt factor (parameter <code>melt_f</code>), and <span class="arithmatex">\(\frac{\rho_w}{\rho_i}\)</span> is the ratio of water to ice density. Solid precipitation <span class="arithmatex">\(P_i^{sol}\)</span> is computed from precipitation and temperature such that it equals precipitation when the temperature is lower than a certain threshold (parameter <code>temp_all_solid</code>), zero above another threshold (parameter <code>temp_all_liq</code>), with a linear transition between the two. Module <code>oggm_shop</code> provides all calibrated parameters [1].</p>
+<p><strong>Contributors:</strong> Guillaume Jouvet, Fabien Maussion</p>
+<p><strong>Reference:</strong> Maussion, Fabien, et al. "The open global glacier model (OGGM) v1. 1." Geoscientific Model Development 12.3 (2019): 909-931.</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">smb_oggm</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">ice_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">910.0</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">wat_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">melt_enhancer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/processes/smb_oggm.yaml", line 15, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 26, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/processes/smb_oggm.yaml", line 15, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>update_freq</td>
+      <td>float</td>
+      <!-- <td>y</td> -->
+      <td><span class="math">y</span></td>
+      <td>Update the mass balance each X years</td>
+
+      <td>1</td>
+    </tr>
+
+    <tr>
+      <td>ice_density</td>
+      <td>float</td>
+      <!-- <td>kg m^{-3}</td> -->
+      <td><span class="math">kg m^{-3}</span></td>
+      <td>Density of ice for conversion of SMB into ice equivalent</td>
+
+      <td>910.0</td>
+    </tr>
+
+    <tr>
+      <td>wat_density</td>
+      <td>float</td>
+      <!-- <td>kg m^{-3}</td> -->
+      <td><span class="math">kg m^{-3}</span></td>
+      <td>Density of water</td>
+
+      <td>1000.0</td>
+    </tr>
+
+    <tr>
+      <td>melt_enhancer</td>
+      <td>float</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Melt enhancer factor</td>
+
+      <td>1</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 
 

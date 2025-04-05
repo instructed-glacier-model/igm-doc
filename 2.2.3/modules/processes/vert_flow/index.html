@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-vert_flow" class="md-skip">
           Skip to content
         </a>
       
@@ -1454,6 +1454,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    vert_flow
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1464,6 +1476,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1887,57 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/vert_flow.md`
+<h1 id="module-vert_flow">Module <code>vert_flow</code></h1>
+<p>This IGM module computes the vertical component of the velocity (<code>state.W</code>) from the horizontal components (<code>state.U</code> and <code>state.V</code>). These horizontal components are derived from an emulation of the Blatter-Pattyn model in the <code>iceflow</code> module. The computation is performed by integrating the incompressibility condition layer-wise. This module is typically used before invoking the <code>particle</code> module for 3D particle trajectory integration or the <code>enthalpy</code> module for computing 3D advection-diffusion of enthalpy.</p>
+<p><strong>Contributors:</strong> Guillaume Jouvet, Claire-Mathile Stücki</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">vert_flow</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kinematic</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/processes/vert_flow.yaml", line 3, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 17, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/processes/vert_flow.yaml", line 3, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>version</td>
+      <td>integer</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Version of the vert_flow method (1 original, 2 improved by claire-mathilde)</td>
+
+      <td>2</td>
+    </tr>
+
+    <tr>
+      <td>method</td>
+      <td>string</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Method to retrieve the vertical velocity (kinematic, incompressibility)</td>
+
+      <td>kinematic</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 
 

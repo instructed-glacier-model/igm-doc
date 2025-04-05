@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-particles" class="md-skip">
           Skip to content
         </a>
       
@@ -1234,6 +1234,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    particles
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1244,6 +1256,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1887,124 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/particles.md`
+<h1 id="module-particles">Module <code>particles</code></h1>
+<p>This IGM module implements a particle tracking routine, which computes the trajectories of virtual particles advected by the ice flow. The routine operates in real-time during the forward model run, and a large number of particles can be processed efficiently thanks to the parallel implementation with TensorFlow. The routine includes particle seeding (by default in the accumulation area at regular intervals, though this can be customized) and tracking (advection by the velocity field in 3D). Note that there is currently no strategy for removing particles, which may lead to memory overload when using this routine for long durations and/or with high seeding intensity.</p>
+<p>There are currently two implementations (selectable via the <code>tracking_method</code> parameter):</p>
+<ul>
+<li><code>'simple'</code>: Horizontal and vertical directions are treated differently:</li>
+<li>In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly).</li>
+<li>
+<p>In the vertical direction, particles are tracked along the ice column, scaled between 0 (at the bed) and 1 (at the surface), based on their relative position. Particles are always initialized at a relative height of 1 (assumed to be on the surface). The evolution of the particle's position within the ice column over time is computed based on the surface mass balance: the particle deepens when the surface mass balance is positive (the relative height decreases) and re-emerges when the surface mass balance is negative (the relative height increases).</p>
+</li>
+<li>
+<p><code>'3d'</code>: Requires activation of the <code>vert_flow</code> module, which computes the vertical velocity by integrating the divergence of the horizontal velocity. This enables full 3D particle tracking.</p>
+</li>
+</ul>
+<p>Currently, the default <code>tracking_method</code> is set to <code>'simple'</code>, as the <code>'3d'</code> method (and its dependency on <code>vert_flow</code>) requires further testing.</p>
+<p>You may adapt the seeding strategy to your needs. The default seeding occurs in the accumulation area, with the seeding frequency controlled by the <code>frequency_seeding</code> parameter and the seeding density by the <code>density_seeding</code> parameter. Alternatively, you can define a custom seeding strategy (e.g., seeding near rock walls or nunataks). To do this, redefine the <code>seeding_particles()</code> function in a <code>particles.py</code> file located in the working directory (refer to the example <code>aletsch-1880-2100</code>). When executed, <code>igm_run</code> will override the original <code>seeding_particles()</code> function with the user-defined one.</p>
+<p>The module requires horizontal velocities (<code>state.U</code>) and vertical velocities (<code>state.W</code>). The vertical velocities are computed using the <code>vert_flow</code> module when the <code>tracking_method</code> is set to <code>'3d'</code>.</p>
+<p><strong>Note:</strong> In the code, the positions of particles are recorded within vectors corresponding to the number of tracked particles: <code>state.xpos</code>, <code>state.ypos</code>, and <code>state.zpos</code>. The variable <code>state.rhpos</code> provides the relative height within the ice column (1 at the surface, 0 at the bed). At each time step, the weight of surface debris contained in each cell of the 2D horizontal grid is computed and stored in the variable <code>state.weight_particles</code>.</p>
+<p>This IGM module writes particle time-position data into CSV files, as computed by the <code>particles</code> module. The saving frequency is controlled by the parameter <code>processes.time.save</code>, which is defined in the <code>time</code> module.</p>
+<p>The module also writes the trajectories followed by particles. The data are stored in a folder named <code>trajectory</code> (created if it does not already exist). Files named <code>traj-TIME.csv</code> report the space-time positions of the particles at time <code>TIME</code> with the following structure:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>X,            X,           X,           X,           X,           X,           X,
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>X,            X,           X,           X,           X,           X,           X,
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>X,            X,           X,           X,           X,           X,           X,
+</span></code></pre></div>
+<p>providing, in turn, the particle ID, x, y, z positions, the relative height within the ice column, the seeding time, and the englacial residence time.</p>
+<p><strong>Contributors:</strong> Guillaume Jouvet, Claire-Mathile Stücki</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">particles</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">tracking_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3d</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">frequency_seeding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">density_seeding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">tlast_seeding_init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.0e+5000</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">write_trajectories</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">add_topography</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/processes/particles.yaml", line 3, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 49, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/processes/particles.yaml", line 3, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>tracking_method</td>
+      <td>str</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Method for tracking particles (3d or simple)</td>
+
+      <td>3d</td>
+    </tr>
+
+    <tr>
+      <td>frequency_seeding</td>
+      <td>float</td>
+      <!-- <td>y</td> -->
+      <td><span class="math">y</span></td>
+      <td>Frequency of seeding</td>
+
+      <td>50</td>
+    </tr>
+
+    <tr>
+      <td>density_seeding</td>
+      <td>float</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Density of seeding (1 means we seed all pixels, 0.2 means we seed each 5 grid cell, etc.)</td>
+
+      <td>0.2</td>
+    </tr>
+
+    <tr>
+      <td>tlast_seeding_init</td>
+      <td>float</td>
+      <!-- <td>y</td> -->
+      <td><span class="math">y</span></td>
+      <td>Initialize the date of last seeding. If default value, the seeding will start the first year of the simulation. Changing this value allows to defer it</td>
+
+      <td>-inf</td>
+    </tr>
+
+    <tr>
+      <td>write_trajectories</td>
+      <td>bool</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Write the trajectories of the particles</td>
+
+      <td>True</td>
+    </tr>
+
+    <tr>
+      <td>add_topography</td>
+      <td>bool</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Add topg when writing particles</td>
+
+      <td>True</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 
 

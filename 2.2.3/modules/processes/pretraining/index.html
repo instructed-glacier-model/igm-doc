@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-pretraining" class="md-skip">
           Skip to content
         </a>
       
@@ -1256,6 +1256,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    pretraining
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1266,6 +1278,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1887,196 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/pretraining.md`
+<h1 id="module-pretraining">Module <code>pretraining</code></h1>
+<p>This module performs pretraining of the ice flow <code>iflo_emulator</code> on a glacier catalog to enhance its performance during glacier forward runs. Pretraining can be a computationally intensive task, taking a few hours to complete. This module should be executed independently, without involving any other IGM modules. Below is an example of a parameter file:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># @package _global_</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">defaults</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /inputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /processes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">pretraining</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">iceflow</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /outputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">Nz </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">dim_arrhenius </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">multiple_window_size </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">nb_layers </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">nb_out_filter </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">network </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cnn</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">new_friction_param </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">retrain_emulator_lr </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0001</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">solve_nbitmax </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">solve_stop_if_no_decrease </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">pretraining</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">epochs </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/surflib3d_shape_100</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">soft_begining</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">min_slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">max_slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.4</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">min_arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">max_arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">400</span>
+</span></code></pre></div>
+<p>To run this module, you first need access to a glacier catalog. A dataset of a glacier catalog (mountain glaciers) commonly used for pretraining IGM emulators is available here: <a href="https://doi.org/10.5281/zenodo.8332898"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.8332898.svg" /></a>.</p>
+<p>After downloading (or generating your own dataset), organize the folder <code>surflib3d_shape_100</code> into two subfolders: <code>train</code> and <code>test</code>.</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">pretraining</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;surflib3d_shape_100&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">freq_test</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">train_iceflow_emulator_restart_lr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">epochs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">min_arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">max_arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">151.0</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">min_slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">max_slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20000.0</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">min_coarsen</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">max_coarsen</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="nt">soft_begining</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/processes/pretraining.yaml", line 4, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 59, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/processes/pretraining.yaml", line 4, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>data_dir</td>
+      <td>str</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Directory of the data of the glacier catalog</td>
+
+      <td>surflib3d_shape_100</td>
+    </tr>
+
+    <tr>
+      <td>batch_size</td>
+      <td>integer</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Batch size</td>
+
+      <td>1</td>
+    </tr>
+
+    <tr>
+      <td>freq_test</td>
+      <td>integer</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Frequency of the test</td>
+
+      <td>20</td>
+    </tr>
+
+    <tr>
+      <td>train_iceflow_emulator_restart_lr</td>
+      <td>integer</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Restart frequency for the learning rate</td>
+
+      <td>2500</td>
+    </tr>
+
+    <tr>
+      <td>epochs</td>
+      <td>integer</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Number of epochs</td>
+
+      <td>5000</td>
+    </tr>
+
+    <tr>
+      <td>min_arrhenius</td>
+      <td>float</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Minimum Arrhenius factor</td>
+
+      <td>5.0</td>
+    </tr>
+
+    <tr>
+      <td>max_arrhenius</td>
+      <td>float</td>
+      <!-- <td>???</td> -->
+      <td><span class="math">???</span></td>
+      <td>Maximum Arrhenius factor</td>
+
+      <td>151.0</td>
+    </tr>
+
+    <tr>
+      <td>min_slidingco</td>
+      <td>float</td>
+      <!-- <td>???</td> -->
+      <td><span class="math">???</span></td>
+      <td>Minimum sliding coefficient</td>
+
+      <td>0.0</td>
+    </tr>
+
+    <tr>
+      <td>max_slidingco</td>
+      <td>float</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>Maximum sliding coefficient</td>
+
+      <td>20000.0</td>
+    </tr>
+
+    <tr>
+      <td>min_coarsen</td>
+      <td>integer</td>
+      <!-- <td>???</td> -->
+      <td><span class="math">???</span></td>
+      <td>Minimum coarsening factor</td>
+
+      <td>0</td>
+    </tr>
+
+    <tr>
+      <td>max_coarsen</td>
+      <td>integer</td>
+      <!-- <td>???</td> -->
+      <td><span class="math">???</span></td>
+      <td>Maximum coarsening factor</td>
+
+      <td>2</td>
+    </tr>
+
+    <tr>
+      <td>soft_begining</td>
+      <td>integer</td>
+      <!-- <td>dimless</td> -->
+      <td><span class="math">dimless</span></td>
+      <td>soft_begining, if 0 explore all parameters between min and max, otherwise, only explore from this iteration while keeping mid-value for the first it.</td>
+
+      <td>500</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 
 

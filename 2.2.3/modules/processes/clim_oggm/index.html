@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-clim_oggm" class="md-skip">
           Skip to content
         </a>
       
@@ -1102,6 +1102,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    clim_oggm
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1112,6 +1124,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1887,97 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/clim_oggm.md`
+<h1 id="module-clim_oggm">Module <code>clim_oggm</code></h1>
+<p>The <code>clim_oggm</code> module processes monthly historical climate data from the GSWP3_W5E5 dataset, obtained via the <code>oggm_shop</code> module. It generates monthly 2D raster fields for corrected precipitation, mean temperature, and temperature variability. The module applies a multiplicative correction factor to precipitation (<code>prcp_fac</code>) and a bias correction to temperature (<code>temp_bias</code>). Temperature data is extrapolated across the glacier surface using a reference height and a constant lapse rate (<code>temp_default_gradient</code>). In contrast, precipitation and temperature variability data are distributed across the entire domain without additional corrections. All necessary calibrated parameters are provided by the <code>oggm_shop</code> module. These outputs are intended for use in surface mass balance or enthalpy modeling.</p>
+<p>The module also supports generating climate data beyond the observational time frame. This is achieved by defining a reference period (<code>ref_period</code>) to randomly select years within this interval (typically a climate-neutral period). A temperature bias and a precipitation scaling are then applied. These parameters can be specified in a file (<code>file</code> parameter), as shown in the example below. The example illustrates a linear temperature increase of 4 degrees by 2100 (relative to the 1960–1990 period):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>time   delta_temp  prec_scal
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>1900          0.0        1.0
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2020          0.0        1.0
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>2100          4.0        1.0
+</span></code></pre></div>
+<p>If the <code>clim_trend_array</code> parameter is set to an empty list (<code>[]</code>), the module reads the data from the specified <code>file</code>. Otherwise, it uses the <code>clim_trend_array</code> parameter, which must be a list of lists.</p>
+<p><strong>Contributors:</strong> Guillaume Jouvet, Fabien Maussion</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">clim_oggm</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file.txt</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">clim_trend_array</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;time&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;delta_temp&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;prec_scal&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1900</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2020</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">ref_period</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1960</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1990</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">seed_par</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<p>Here we store a table with</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/processes/clim_oggm.yaml", line 7, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 35, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/processes/clim_oggm.yaml", line 7, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>update_freq</td>
+      <td>float</td>
+      <td>y</td>
+      <td>Update the climate each X years</td>
+
+      <td>1</td>
+    </tr>
+
+    <tr>
+      <td>file</td>
+      <td>string</td>
+      <td>dimless</td>
+      <td>Name of the input file for the climate outside the given datetime frame (time, delta_temp, prec_scaling)</td>
+
+      <td>file.txt</td>
+    </tr>
+
+    <tr>
+      <td>clim_trend_array</td>
+      <td>list</td>
+      <td>dimless</td>
+      <td>Define climate trend outside available time window</td>
+
+      <td>[['time', 'delta_temp', 'prec_scal'], [1900, 0.0, 1.0], [2020, 0.0, 1.0]]</td>
+    </tr>
+
+    <tr>
+      <td>ref_period</td>
+      <td>list</td>
+      <td>dimless</td>
+      <td>Define the reference period to pick year outside available time window</td>
+
+      <td>[1960, 1990]</td>
+    </tr>
+
+    <tr>
+      <td>seed_par</td>
+      <td>integer</td>
+      <td>dimless</td>
+      <td>Seeding parameter to fix for picking randomly year in the ref period</td>
+
+      <td>123</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
+<p>--&gt;</p>
 
 
 

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-clim_glacialindex" class="md-skip">
           Skip to content
         </a>
       
@@ -1080,6 +1080,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    clim_glacialindex
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1090,6 +1102,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1887,116 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/clim_glacialindex.md`
+<h1 id="module-clim_glacialindex">Module <code>clim_glacialindex</code></h1>
+<p>Module <code>clim_glacialindex</code> loads two climate snapshots (associated with certain periods) and interpolates them using a climate signal and a glacial index approach [1]. It is suitable for paleo-glacier modeling.</p>
+<p>For this purpose, we define a function GI (Glacier Index) that maps time <span class="arithmatex">\(t\)</span> to a scalar with two extreme states: one state <span class="arithmatex">\({\rm CL}_0\)</span> with nearly no ice corresponding to GI=<span class="arithmatex">\(0\)</span>, and one maximum state <span class="arithmatex">\({\rm CL}_1\)</span> in terms of glacier extent corresponding to GI=<span class="arithmatex">\(1\)</span>. The climate <span class="arithmatex">\({\rm CL}\)</span> consists of a set of variables: mean temperature, temperature variability, mean precipitation, and lapse rate:</p>
+<div class="arithmatex">\[{\rm CL}(t) =(T^{\rm mean}(t),T^{\rm std}(t),P^{\rm mean}(t), {\rm LR}(t)),\]</div>
+<p>and is assumed to be a linear combination:</p>
+<div class="arithmatex">\[{\rm CL}(t) = {\rm GI}(t) \times {\rm CL}_{\rm 1} (t) + (1-{\rm GI}(t)) \times {\rm CL}_{\rm 0} (t),\]</div>
+<p>where the two climate states are:</p>
+<div class="arithmatex">\[\begin{align} {\rm CL}_0(t) &amp; = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm mean}(t), {\rm LR}_0(t)), \\
+{\rm CL}_1(t) &amp; = ( T_1^{\rm mean}(t),T_1^{\rm std}(t),P_1^{\rm mean}(t), {\rm LR}_1(t)), \end{align}\]</div>
+<p>corresponding to GI=<span class="arithmatex">\(0\)</span> and GI=<span class="arithmatex">\(1\)</span>, respectively. Lastly, the GI function is built by linearly rescaling a climate proxy signal so that GI is close to 1 at the ice maximum and close to 0 at the ice minimum. For example, we may use the Antarctica EPICA temperature anomaly signal, which is available for the last 800,000 years.</p>
+<p>Note that the two climates <span class="arithmatex">\({\rm CL}_0\)</span> and <span class="arithmatex">\({\rm CL}_1\)</span> are defined on two different reference topographies. Therefore, it is necessary to correct the temperature for a shift in elevation using a vertical lapse rate between the modeled ice surface elevation and the reference surface.</p>
+<p><strong>Contributors:</strong> G. Jouvet</p>
+<p><strong>Reference:</strong> [1] Jouvet, Guillaume, et al. "Coupled climate-glacier modelling of the last glaciation in the Alps." Journal of Glaciology 69.278 (2023): 1956-1970.</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">clim_glacialindex</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">climate_0_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/climate.nc</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">climate_1_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/climate1.nc</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">signal_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/GI.dat</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">vertical_lapse_rate_0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6.0</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">vertical_lapse_rate_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.74</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">temporal_resampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/processes/clim_glacialindex.yaml", line 7, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 42, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/processes/clim_glacialindex.yaml", line 7, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>update_freq</td>
+      <td>float</td>
+      <td>y</td>
+      <td>Frequency at which to update the climate module</td>
+
+      <td>100</td>
+    </tr>
+
+    <tr>
+      <td>climate_0_file</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>Climate file for glacial index 0</td>
+
+      <td>data/climate.nc</td>
+    </tr>
+
+    <tr>
+      <td>climate_1_file</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>Climate file for glacial index 1</td>
+
+      <td>data/climate1.nc</td>
+    </tr>
+
+    <tr>
+      <td>signal_file</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>Climate signal file for GI</td>
+
+      <td>data/GI.dat</td>
+    </tr>
+
+    <tr>
+      <td>vertical_lapse_rate_0</td>
+      <td>float</td>
+      <td>^\circC km^{-1}</td>
+      <td>Vertical lapse rate for glacier index 0</td>
+
+      <td>6.0</td>
+    </tr>
+
+    <tr>
+      <td>vertical_lapse_rate_1</td>
+      <td>float</td>
+      <td>^\circC km^{-1}</td>
+      <td>Vertical lapse rate for glacier index 1</td>
+
+      <td>5.74</td>
+    </tr>
+
+    <tr>
+      <td>temporal_resampling</td>
+      <td>int</td>
+      <td>y^{-1}</td>
+      <td>Temporal resampling, number of time steps per year</td>
+
+      <td>12</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
+<p>--&gt;</p>
 
 
 

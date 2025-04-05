@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-oggm_shop" class="md-skip">
           Skip to content
         </a>
       
@@ -989,6 +989,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    oggm_shop
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -999,6 +1011,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1896,263 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/inputs/oggm_shop.md`
+<h1 id="module-oggm_shop">Module <code>oggm_shop</code></h1>
+<p>This IGM module utilizes OGGM utilities and the GlaThiDa dataset to prepare data for the IGM model for a specific glacier given its RGI ID (parameter <code>RGI_ID</code>). You can check the <a href="https://www.glims.org/maps/glims">GLIMS Viewer</a> to find the RGI ID of your glacier. By default, IGM references RGI 7.0C, which can be found <a href="https://nsidc.org/data/nsidc-0770/versions/7">here</a>. Altering the <code>RGI_product</code> parameter ('C' for glacier complex or 'G' for individual glacier) allows you to switch between these options. By default, data is preprocessed (<code>preprocess</code> parameter is set to True) with a spatial resolution of 100 meters and a border size of 30 meters. To customize the spatial resolution and the size of the 'border' to maintain a safe distance from the glacier margin, you need to set the <code>preprocess</code> parameter to False, and then set the <code>dx</code> and <code>border</code> parameters as desired. </p>
+<p>When this module is executed, it automatically downloads a suite of data (refer to the table above) associated with the specified glacier (individual or complex). These data are stored in a directory named after the RGI ID within the <code>data</code> folder. Subsequently, a file named <code>input.nc</code> is created, containing the relevant variables renamed according to IGM's naming conventions.</p>
+<p><strong>Important:</strong> The <code>oggm_shop</code> module must be followed by the <code>local</code> inputs module, which reads <code>data/input.nc</code> and loads the 2D gridded variables as TensorFlow objects in IGM.</p>
+<p>If IGM is run a second time, it will not re-download the OGGM data or recreate <code>data/input.nc</code> as long as the data remain in the <code>data</code> folder. This is particularly useful for parameter analysis, as it avoids redundant data downloads during multiple runs. The <code>oggm_shop</code> module provides all the necessary data variables required to run IGM for forward glacier evolution simulations, assuming the availability of basal topography (<code>topg</code>) and ice thickness (<code>thk</code>). </p>
+<p>Additionally, it supports preliminary data assimilation and inverse modeling tasks within the <code>iceflow</code> module. These tasks typically involve variables such as <code>icemaskobs</code>, <code>thkinit</code>, <code>uvelsurf</code>, <code>vvelsurf</code>, <code>thkobs</code>, and <code>usurfobs</code>.</p>
+<p>Data available via the shop are listed in the table below. Users can specify the source for ice thickness using the <code>thk_source</code> parameter (options: <code>millan_ice_thickness</code> or <code>consensus_ice_thickness</code> dataset) and for ice velocities using the <code>vel_source</code> parameter (options: <code>millan_ice_velocity</code> or <code>its_live</code> dataset).</p>
+<p>Set <code>include_glathida</code> to True to retrieve the GlaThiDa ice thickness profiles for data assimilation purpose. When using RGI 6.0, these profiles are sourced from the <a href="https://gitlab.com/wgms/glathida">GlaThiDa repository</a>. For RGI 7.0, GlaThiDa data specific to the glacier, identified by its RGI ID, are retrieved from the OGGM server. These data are saved as a text file named <code>glathida_data.csv</code> in the module's download directory. In both cases, the data are read, rasterized with the label <code>thkobs</code>, and any pixels lacking observations are marked with NaN values.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ice thickness profile</td>
+<td>GlaThiDa</td>
+</tr>
+<tr>
+<td>-----------------------</td>
+<td>----------------------------------------</td>
+</tr>
+<tr>
+<td>Surface DEM</td>
+<td>Copernicus DEM GLO-90</td>
+</tr>
+<tr>
+<td>Ice thickness</td>
+<td>Millan et al. (2022)</td>
+</tr>
+<tr>
+<td>Ice thickness</td>
+<td>Farinotti et al. (2019)</td>
+</tr>
+<tr>
+<td>Surface ice speeds</td>
+<td>Millan et al. (2022)</td>
+</tr>
+<tr>
+<td>Surface ice speeds</td>
+<td><a href="https://its-live.jpl.nasa.gov">its-live.jpl.nasa.gov</a></td>
+</tr>
+<tr>
+<td>Glacier mask</td>
+<td>Randolph Glacier Inventory</td>
+</tr>
+<tr>
+<td>Ice thickness profile</td>
+<td>GlaThiDa</td>
+</tr>
+<tr>
+<td>Glacier change</td>
+<td>Hugonnet et al. (2021)</td>
+</tr>
+<tr>
+<td>Climate data</td>
+<td>GSWP3_W5E5</td>
+</tr>
+<tr>
+<td>Flowline</td>
+<td>OGGM</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table:</strong> Products available with the <code>oggm_shop</code> module.</p>
+<p>The module depends (of course) on the <code>oggm</code> library. Unfortunately the module works on linux and Max, but not on windows (unless using WSL).</p>
+<p><strong>Contributors:</strong> F. Maussion, G. Jouvet, E. Welty (GlaThiDa-related code), S. Cook (RGI 7.0 modifications).</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">oggm_shop</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">RGI_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;RGI60-11.01450&quot;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">preprocess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">RGI_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">dx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">border</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">thk_source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">consensus_ice_thickness</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">vel_source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">millan_ice_velocity</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">incl_glathida</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">path_glathida</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input.nc</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">remove_RGI_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">sub_entity_mask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">RGI_product</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;G&quot;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">run_batch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">smooth_obs_vel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">highres</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/inputs/oggm_shop.yaml", line 4, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 62, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/inputs/oggm_shop.yaml", line 4, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>RGI_ID</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>RGI ID of the selected glacier, G stands for individual Glacier, and C for glacier Complex for RGI7</td>
+
+      <td>RGI60-11.01450</td>
+    </tr>
+
+    <tr>
+      <td>preprocess</td>
+      <td>bool</td>
+      <td>dimless</td>
+      <td>Use OGGM preprocessing if you are fine with given spatial resolution and border size</td>
+
+      <td>True</td>
+    </tr>
+
+    <tr>
+      <td>RGI_version</td>
+      <td>int</td>
+      <td>dimless</td>
+      <td>RGI versio : 6 or 7</td>
+
+      <td>7</td>
+    </tr>
+
+    <tr>
+      <td>dx</td>
+      <td>float</td>
+      <td>m</td>
+      <td>Spatial resolution (need preprocess false to change it)</td>
+
+      <td>100</td>
+    </tr>
+
+    <tr>
+      <td>border</td>
+      <td>int</td>
+      <td>dimless</td>
+      <td>Safe border margin, number of pixels, (need preprocess false to change it)</td>
+
+      <td>30</td>
+    </tr>
+
+    <tr>
+      <td>thk_source</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>Millan ice thickness (millan_ice_thickness) or consensus ice thickness (consensus_ice_thickness)</td>
+
+      <td>consensus_ice_thickness</td>
+    </tr>
+
+    <tr>
+      <td>vel_source</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>Source of the surface velocities (millan_ice_velocity or its_live)</td>
+
+      <td>millan_ice_velocity</td>
+    </tr>
+
+    <tr>
+      <td>incl_glathida</td>
+      <td>bool</td>
+      <td>dimless</td>
+      <td>Set this to True for retrieving the GlaThiDa ice thickness profiles for the inversion.</td>
+
+      <td>False</td>
+    </tr>
+
+    <tr>
+      <td>path_glathida</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>Path where the Glathida Folder is stored, so that you don't need to redownload it at every use of the script, if empty it will be in the home directory (only relevant for RGI6.0)</td>
+
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>filename</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>NetCDF input data file created by OGGM</td>
+
+      <td>input.nc</td>
+    </tr>
+
+    <tr>
+      <td>remove_RGI_folder</td>
+      <td>bool</td>
+      <td>dimless</td>
+      <td>Remove RGI folder</td>
+
+      <td>True</td>
+    </tr>
+
+    <tr>
+      <td>sub_entity_mask</td>
+      <td>bool</td>
+      <td>dimless</td>
+      <td>Ice mask shows individual RGI 7.0G entities within each larger RGI 7.0C complex</td>
+
+      <td>False</td>
+    </tr>
+
+    <tr>
+      <td>RGI_product</td>
+      <td>str</td>
+      <td>dimless</td>
+      <td>Glacier complexes (C) or individual basins (G) (default is G, individual basins)</td>
+
+      <td>G</td>
+    </tr>
+
+    <tr>
+      <td>run_batch</td>
+      <td>bool</td>
+      <td>dimless</td>
+      <td>Run all the glaciers in the world</td>
+
+      <td>False</td>
+    </tr>
+
+    <tr>
+      <td>smooth_obs_vel</td>
+      <td>bool</td>
+      <td>dimless</td>
+      <td>Smooth the observed velocities</td>
+
+      <td>True</td>
+    </tr>
+
+    <tr>
+      <td>highres</td>
+      <td>bool</td>
+      <td>dimless</td>
+      <td>Use high resolution data</td>
+
+      <td>False</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
+
+<h2 id="example-usage">Example Usage</h2>
 
 
 

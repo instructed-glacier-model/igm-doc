@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-rendering-error" class="md-skip">
+        <a href="#module-data_assimilation" class="md-skip">
           Skip to content
         </a>
       
@@ -1124,6 +1124,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    data_assimilation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1134,6 +1146,97 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting the data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-optimization-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      General optimization setting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-controls-and-cost-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define controls and cost components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring parameters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-inference-s-cook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter inference (S. Cook)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-the-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring the Optimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1838,58 +1941,1109 @@
   
 
 
-<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
-<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/data_assimilation.md`
+<h1 id="module-data_assimilation">Module <code>data_assimilation</code></h1>
+<p>A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (<code>iceflow</code>) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM. <strong>Check at the IGM technical paper for further details [1].</strong></p>
+<p>[1] Concepts and capabilities of the Instructed Glacier Model 3.X.X, Jouvet and al.</p>
+<p><strong>Note:</strong> The optimization process requires some expertise, and parameter tuning may be necessary to achieve meaningful results. Use this module carefully and be prepared to explore various parameter configurations. Feel free to contact us to verify the consistency of your results.</p>
+<h3 id="getting-the-data">Getting the data</h3>
+<p>The first step is to gather as much relevant data as possible. The recommended data includes:</p>
+<ul>
+<li><strong>Observed surface ice velocities</strong> (<span class="arithmatex">\({\bf u}^{s,obs}\)</span>), e.g., from Millan et al. (2022).</li>
+<li><strong>Surface top elevation</strong> (<span class="arithmatex">\(s^{obs}\)</span>), e.g., from datasets like SRTM or ESA GLO-30.</li>
+<li><strong>Ice thickness profiles</strong> (<span class="arithmatex">\(h_p^{obs}\)</span>), e.g., from the GlaThiDa database.</li>
+<li><strong>Glacier outlines and resulting mask</strong>, e.g., from the Randolph Glacier Inventory (RGI).</li>
+</ul>
+<p>If you do not have access to all these datasets, it is still possible to proceed with a reduced dataset. However, in such cases, you will need to make assumptions to limit the number of variables to optimize (controls). This ensures that the optimization problem remains well-posed, meaning it has a unique and meaningful solution.</p>
+<p>These data can be obtained using the IGM module <code>oggm_shop</code> and loaded with the inputs module using convention-based variable names ending with <code>obs</code>. For example:</p>
+<ul>
+<li><code>usurfobs</code>: Observed top surface elevation.</li>
+<li><code>thkobs</code>: Observed thickness profiles (use <code>NaN</code> or no-value where no data is available).</li>
+<li><code>icemaskobs</code>: Mask derived from RGI outlines to enforce zero ice thickness outside the mask.</li>
+<li><code>uvelsurfobs</code> and <code>vvelsurfobs</code>: X- and Y-components of the horizontal surface ice velocity (use <code>NaN</code> or no-value where no data is available).</li>
+<li><code>thkinit</code>: Optionally, a previously inferred ice thickness field to initialize the inverse model. If not provided, the model will start with <code>thk=0</code>.</li>
+</ul>
+<p><strong>Use the IGM <code>oggm_shop</code> to download all the data you need using OGGM.</strong></p>
+<h3 id="general-optimization-setting">General optimization setting</h3>
+<p>The optimization problem consists of finding spatially varying fields (<span class="arithmatex">\(h\)</span>, <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(c\)</span>, <span class="arithmatex">\(s\)</span>) that minimize the cost function:</p>
+<div class="arithmatex">\[\mathcal{J}(h,A,c,s)=\mathcal{C}^u+\mathcal{C}^h+\mathcal{C}^s+\mathcal{C}^{d}+\mathcal{R}^h+\mathcal{R}^A+\mathcal{R}^{c}+\mathcal{P}^h,\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal{C}^u\)</span>: Misfit between modeled and observed surface ice velocities.</li>
+<li><span class="arithmatex">\(\mathcal{C}^h\)</span>: Misfit between modeled and observed ice thickness profiles.</li>
+<li><span class="arithmatex">\(\mathcal{C}^s\)</span>: Misfit between modeled and observed top ice surface.</li>
+<li><span class="arithmatex">\(\mathcal{C}^d\)</span>: Misfit term between modeled and observed flux divergence.</li>
+<li><span class="arithmatex">\(\mathcal{R}^h\)</span>: Regularization term to enforce smoothness (and possible convexity) on <span class="arithmatex">\(h\)</span>.</li>
+<li><span class="arithmatex">\(\mathcal{R}^A\)</span>: Regularization term to enforce smoothness (and possible convexity) on <span class="arithmatex">\(A\)</span>.</li>
+<li><span class="arithmatex">\(\mathcal{R}^c\)</span>: Regularization term to enforce smoothness on <span class="arithmatex">\(c\)</span>.</li>
+<li><span class="arithmatex">\(\mathcal{P}^h\)</span>: Penalty term to enforce nonnegative ice thickness.</li>
+</ul>
+<p>This formulation ensures that the optimization problem is well-posed by balancing data fidelity terms (<span class="arithmatex">\(\mathcal{C}\)</span>) with regularization and penalty terms (<span class="arithmatex">\(\mathcal{R}\)</span> and <span class="arithmatex">\(\mathcal{P}\)</span>). Check at the reference paper for more explanation on each terms of the cost function.</p>
+<h3 id="define-controls-and-cost-components">Define controls and cost components</h3>
+<p>The above optimization problem is given in the most general case. However, you may select only some components according to your data as follows:</p>
+<ul>
+<li>
+<p><strong>Control Variables</strong>: Specify the variables you wish to optimize. For example:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&quot;processes.data_assimilation.control_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thk&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;slidingco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;usurf&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Op</span><span class="kc">t</span><span class="err">imize</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span><span class="p">,</span><span class="w"> </span><span class="err">slidi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">coe</span><span class="kc">ff</span><span class="err">icie</span><span class="kc">nt</span><span class="p">,</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">sur</span><span class="kc">fa</span><span class="err">ce</span><span class="w"> </span><span class="err">eleva</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">.</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">&quot;processes.data_assimilation.control_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thk&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;usurf&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Op</span><span class="kc">t</span><span class="err">imize</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">sur</span><span class="kc">fa</span><span class="err">ce</span><span class="w"> </span><span class="err">eleva</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y.</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">&quot;processes.data_assimilation.control_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thk&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Op</span><span class="kc">t</span><span class="err">imize</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y.</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Cost Components</strong>: Specify the components of the cost function to minimize. For example:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&quot;processes.data_assimilation.cost_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;velsurf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;thk&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;usurf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;divfluxfcz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;icemask&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Ge</span><span class="kc">neral</span><span class="w"> </span><span class="err">case</span><span class="w"> </span><span class="err">wi</span><span class="kc">t</span><span class="err">h</span><span class="w"> </span><span class="err">mul</span><span class="kc">t</span><span class="err">iple</span><span class="w"> </span><span class="err">compo</span><span class="kc">nents</span><span class="err">.</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">&quot;processes.data_assimilation.cost_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;velsurf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;icemask&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Fi</span><span class="kc">t</span><span class="w"> </span><span class="err">sur</span><span class="kc">fa</span><span class="err">ce</span><span class="w"> </span><span class="err">veloci</span><span class="kc">t</span><span class="err">y</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="err">mask</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y.</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Recommendation</strong>: Start with a simple optimization setup, such as a single control variable (<code>thk</code>) and a few cost components (<code>velsurf</code> and <code>icemask</code>). Gradually increase the complexity by adding more controls and cost components once the simpler setup yields meaningful results. Ensure a balance between controls and constraints to maintain a well-posed problem and avoid multiple solutions.</p>
+<h3 id="exploring-parameters">Exploring parameters</h3>
+<p>There are parameters that may need to tune for each application.</p>
+<p>First, you may adjust the expected confidence levels (i.e., tolerance to fit the data) <span class="arithmatex">\(\sigma^u\)</span>, <span class="arithmatex">\(\sigma^h\)</span>, <span class="arithmatex">\(\sigma^s\)</span>, and <span class="arithmatex">\(\sigma^d\)</span> to better match surface ice velocity, ice thickness, surface top elevation, or flux divergence. These parameters can be configured as follows:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&quot;processes.data_assimilation.velsurfobs_std&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m/y</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">&quot;processes.data_assimilation.thkobs_std&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">&quot;processes.data_assimilation.usurfobs_std&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">&quot;processes.data_assimilation.divfluxobs_std&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m/y</span>
+</span></code></pre></div>
+<p>Second, you may adjust regularization parameters to control the smoothness and convexity of the optimized fields. These include:</p>
+<ol>
+<li>
+<p><strong>Regularization Weights</strong> (<span class="arithmatex">\(\alpha^h\)</span>, <span class="arithmatex">\(\alpha^A\)</span>): These parameters control the regularization strength for ice thickness and flow parameters. Increasing <span class="arithmatex">\(\alpha^h\)</span> or <span class="arithmatex">\(\alpha^A\)</span> will result in smoother spatial fields for these variables.</p>
+</li>
+<li>
+<p><strong>Convexity weight</strong> (<span class="arithmatex">\(\gamma\)</span>): Adds a convexity constraint to the system. Using a small value for <span class="arithmatex">\(\gamma\)</span> can help when initializing the inverse model with zero ice thickness or when dealing with margin regions lacking observational data.</p>
+</li>
+</ol>
+<p>These parameters can be configured as follows:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&quot;processes.data_assimilation.regu_param_thk&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="err">Regulariza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">weigh</span><span class="kc">t</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">&quot;processes.data_assimilation.regu_param_slidingco&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">Regulariza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">weigh</span><span class="kc">t</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">slidi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">coe</span><span class="kc">ff</span><span class="err">icie</span><span class="kc">nt</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">&quot;processes.data_assimilation.convexity_weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">Co</span><span class="kc">n</span><span class="err">vexi</span><span class="kc">t</span><span class="err">y</span><span class="w"> </span><span class="err">weigh</span><span class="kc">t</span><span class="w"> </span><span class="err">(gamma)</span>
+</span></code></pre></div>
+<p>Lastly, there are a couple of other parameters we may be interest to change e.g.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&quot;processes.data_assimilation.nbitmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">         </span><span class="err">#</span><span class="w"> </span><span class="err">Number</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">i</span><span class="kc">t</span><span class="err">.</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">op</span><span class="kc">t</span><span class="err">imiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">&quot;processes.data_assimilation.step_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">S</span><span class="kc">te</span><span class="err">p</span><span class="w"> </span><span class="err">size</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">op</span><span class="kc">t</span><span class="err">imiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">i</span><span class="kc">terat</span><span class="err">ive</span><span class="w"> </span><span class="err">algori</span><span class="kc">t</span><span class="err">hm</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">&quot;processes.data_assimilation.init_zero_thk&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">Force</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">zero</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hk</span><span class="w"> </span><span class="err">(o</span><span class="kc">t</span><span class="err">herwise</span><span class="w"> </span><span class="kc">ta</span><span class="err">ke</span><span class="w"> </span><span class="kc">t</span><span class="err">hki</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="err">)</span>
+</span></code></pre></div>
+<h3 id="parameter-inference-s-cook">Parameter inference (S. Cook)</h3>
+<p>There is also a further option: the convexity weight and the slidingco can be inferred automatically by the model. These values are calibrated only for IGM v2.2.1 and a particular set of costs and controls, and are based on a series of regressions calculated through manual inversions to find the best parameters for 50 glaciers of different types and sizes around the world (see Samuel's forthcoming paper when it's published). In other words, they are purely empirical and are likely to be a bit off for any different set of costs and controls, but should work tolerably well on any glacier anywhere on the planet, at least to give you somewhere to start exploring the parameter space. If this behaviour is desired, you MUST use RGI7.0 (C or G) and the oggm_shop module. If using C, you will also need to set the oggm_sub_entity_mask parameter to True. Within the optimize module, processes.data_assimilation.infer_params must also be set to true.</p>
+<p>For small glaciers with no velocity observations, the model will also use volume-area scaling to provide an additional constraint with in the inference framework - this all happens automatically, but note the processes.data_assimilation.vol_std parameter that you can fiddle around with if you want to force it to pay more or less attention to volume (by default, this is 1000.0 - which will give a very small cost - anywhere with velocity data, and 0.001 - which will give a big cost - anywhere lacking velocity data. The parameter only controls the default value where this is other data - the 0.001 where there's no velocity data is hard-coded).</p>
+<p>A final parameter - processes.data_assimilation.tidewater_glacier - can also be set to True to force the inference code to treat the glacier as a tidewater-type glacier. If the RGI identifies a glacier as tidewater, it will be treated as such anyway, but this parameter gives you the option to force it (note: setting the parameter to False - its default value - will not cause the model to treat RGI-identified tidewater glaciers as non-tidewater - there is no option to do that).</p>
+<h3 id="monitoring-the-optimization">Monitoring the Optimization</h3>
+<p>You can monitor the data assimilation process during inverse modeling in several ways:</p>
+<ul>
+<li><strong>Cost Components</strong>: Verify that the components of the cost function decrease over time. The cost values are printed during the optimization process, and a graph summarizing the results is generated at the end.</li>
+<li><strong>Live Monitoring</strong>: Set the parameters <code>"plot_result": true</code> and <code>"plt2d_live": true</code> to visualize the evolution of the optimized fields (e.g., ice thickness, surface ice speeds) in real-time. Additionally, observe the (hopefully decreasing) standard deviations displayed in the figures.</li>
+<li><strong>Post-Run Analysis</strong>: After the run, examine the <code>optimize.nc</code> file, which contains the results of the optimization. Ensure this file is configured to be written during the process.</li>
+<li><strong>Flux Divergence Check</strong>: If <code>divfluxfcz</code> is included in the parameter list <code>"processes.data_assimilation.cost"</code>, inspect the divergence of the flux to ensure it aligns with expectations.</li>
+</ul>
+<p>For more information, refer to the relevant documentation or technical references.</p>
+<p>[2] Jouvet, Guillaume. "Inversion of a Stokes glacier flow model emulated by deep learning." Journal of Glaciology 69.273 (2023): 13-26.</p>
+<p>[3] Jouvet, Guillaume, and Guillaume Cordonnier. "Ice-flow model emulator based on physics-informed deep learning." Journal of Glaciology 69.278 (2023): 1941-1955.</p>
+<p><strong>Contributors:</strong> G. Jouvet, S. Cook (parameter inference functions for global modelling)</p>
+<h2 id="config-structure">Config Structure</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">data_assimilation</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">control_list</span><span class="p">:</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thk</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">cost_list</span><span class="p">:</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velsurf</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thk</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icemask</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">nbitmin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">nbitmax</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nt">step_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nt">step_size_decay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nt">init_zero_thk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nt">uniformize_thkobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span><span class="nt">sole_mask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span><span class="nt">retrain_iceflow_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">  </span><span class="nt">include_low_speed_term</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">  </span><span class="nt">fix_opti_normalization_issue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">  </span><span class="nt">velsurfobs_thr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">  </span><span class="nt">log_slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">  </span><span class="nt">regularization</span><span class="p">:</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="nt">thk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">    </span><span class="nt">slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">    </span><span class="nt">arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">    </span><span class="nt">divflux</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">    </span><span class="nt">smooth_anisotropy_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">    </span><span class="nt">smooth_anisotropy_factor_sl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">    </span><span class="nt">convexity_weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.002</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">    </span><span class="nt">convexity_power</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.3</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">    </span><span class="nt">to_regularize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">topg</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">  </span><span class="nt">fitting</span><span class="p">:</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">    </span><span class="nt">usurfobs_std</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">    </span><span class="nt">velsurfobs_std</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">    </span><span class="nt">thkobs_std</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">    </span><span class="nt">divfluxobs_std</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">  </span><span class="nt">divflux</span><span class="p">:</span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upwind</span>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">    </span><span class="nt">force_zero_sum</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">  </span><span class="nt">scaling</span><span class="p">:</span>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="w">    </span><span class="nt">thk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="w">    </span><span class="nt">usurf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="w">    </span><span class="nt">slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0001</span>
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="w">    </span><span class="nt">arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="w">    </span><span class="nt">freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="w">    </span><span class="nt">plot2d_live</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="w">    </span><span class="nt">plot2d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-5-47"><a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a><span class="w">    </span><span class="nt">save_result_in_ncdf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">geology-optimized.nc</span>
+</span><span id="__span-5-48"><a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="w">    </span><span class="nt">save_iterat_in_ncdf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-5-49"><a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="w">    </span><span class="nt">editor_plot2d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vs</span>
+</span><span id="__span-5-50"><a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a><span class="w">    </span><span class="nt">vars_to_save</span><span class="p">:</span>
+</span><span id="__span-5-51"><a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">usurf</span>
+</span><span id="__span-5-52"><a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thk</span>
+</span><span id="__span-5-53"><a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slidingco</span>
+</span><span id="__span-5-54"><a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velsurf_mag</span>
+</span><span id="__span-5-55"><a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velsurfobs_mag</span>
+</span><span id="__span-5-56"><a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">divflux</span>
+</span><span id="__span-5-57"><a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icemask</span>
+</span><span id="__span-5-58"><a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="w">  </span><span class="nt">cook</span><span class="p">:</span>
+</span><span id="__span-5-59"><a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="w">    </span><span class="nt">infer_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-60"><a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="w">    </span><span class="nt">tidewater_glacier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-5-61"><a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="w">    </span><span class="nt">vol_std</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</span></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
 
-  _ScannerError_: sequence entries are not allowed here
-</code></pre></div>
-<p>in "igm/igm/conf_help/processes/data_assimilation.yaml", line 4, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-  Traceback (most recent call last):
-</code></pre></div>
-<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
-    return md_template.render(**page_variables)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
-    self.environment.handle_exception()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "<template>", line 223, in top-level template code
-  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
-    return yaml.safe_load(file)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
-    return load(stream, SafeLoader)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
-    return loader.get_single_data()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
-    node = self.get_single_node()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
-    document = self.compose_document()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
-    node = self.compose_node(None, None)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
-    node = self.compose_mapping_node(anchor)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
-    item_value = self.compose_node(node, item_key)
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
-    if self.check_event(AliasEvent):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
-    self.current_event = self.state()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
-    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
-    self.fetch_more_tokens()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
-    return self.fetch_block_entry()
-  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
-    raise ScannerError(None, None,
-yaml.scanner.ScannerError: sequence entries are not allowed here
-  in "igm/igm/conf_help/processes/data_assimilation.yaml", line 4, column 10</p>
-<div class="language-text highlight"><pre><span></span><code>  ```
-</code></pre></div>
+      <th>Type</th>
+
+      <th>Units</th>
+
+      <th>Description</th>
+
+      <th>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+
+
+
+      <tr>
+        <td>control_list</td>
+        <td>
+
+            <span class="list_table">list</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>List of optimized variables for the optimization</td>
+        <td>['thk']</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>cost_list</td>
+        <td>
+
+            <span class="list_table">list</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>List of cost components for the optimization</td>
+        <td>['velsurf', 'thk', 'icemask']</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>nbitmin</td>
+        <td>
+
+            <span class="integer_table">integer</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Min iterations for the optimization</td>
+        <td>50</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>nbitmax</td>
+        <td>
+
+            <span class="integer_table">integer</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Max iterations for the optimization</td>
+        <td>500</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>step_size</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Step size for the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>step_size_decay</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Decay step size parameter for the optimization</td>
+        <td>0.9</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>init_zero_thk</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Initialize the optimization with zero ice thickness</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>uniformize_thkobs</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>uniformize the density of thkobs</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>sole_mask</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>sole_mask</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>retrain_iceflow_model</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Retrain the iceflow model simultaneously?</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>include_low_speed_term</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>opti_include_low_speed_term</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fix_opti_normalization_issue</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Formerly, the oce was mixing reduce_mean and l2_loss leading to dependence to the resolution of the grid</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>velsurfobs_thr</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m y^{-1} \)</span>
+
+        </td>
+        <td>Threshold for the surface ice velocities as input data for the optimization, anything below this value will be ignored</td>
+        <td>0.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>log_slidingco</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Optimize the log of the sliding coefficient instead of the slidingco itself</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>regularization.thk</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Regularization weight for the ice thickness in the optimization</td>
+        <td>10.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.slidingco</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Regularization weight for the slidingco field in the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.arrhenius</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Regularization weight for the arrhenius field in the optimization</td>
+        <td>10.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.divflux</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Regularization weight for the divergence field in the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.smooth_anisotropy_factor</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Smooth anisotropy factor for the ice thickness regularization in the optimization</td>
+        <td>0.2</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.smooth_anisotropy_factor_sl</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Smooth anisotropy factor for the slidingco regularization in the optimization</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.convexity_weight</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Convexity weight for the ice thickness regularization in the optimization</td>
+        <td>0.002</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.convexity_power</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Power b in the area-volume scaling V ~ a * A^b taken from 'An estimate of global glacier volume', A. Grinsted, TC, 2013</td>
+        <td>1.3</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>regularization.to_regularize</td>
+        <td>
+
+            <span class="string_table">string</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Field to regularize: topg or thk</td>
+        <td>topg</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>fitting.usurfobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>Confidence/STD of the top ice surface as input data for the optimization</td>
+        <td>2.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fitting.velsurfobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m y^{-1} \)</span>
+
+        </td>
+        <td>Confidence/STD of the surface ice velocities as input data for the optimization (if 0, velsurfobs_std field must be given)</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fitting.thkobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( m \)</span>
+
+        </td>
+        <td>Confidence/STD of the ice thickness profiles (unless given)</td>
+        <td>3.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>fitting.divfluxobs_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ??? \)</span>
+
+        </td>
+        <td>Confidence/STD of the flux divergence as input data for the optimization (if 0, divfluxobs_std field must be given)</td>
+        <td>1.0</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>divflux.method</td>
+        <td>
+
+            <span class="string_table">string</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Compute the divergence of the flux using the upwind or centered method</td>
+        <td>upwind</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>divflux.force_zero_sum</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Add a penalty to the cost function to force the sum of the divergence of the flux to be zero</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>scaling.thk</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Scaling factor for the ice thickness in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>2.0</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>scaling.usurf</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Scaling factor for the ice thickness in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>0.5</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>scaling.slidingco</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Scaling factor for the slidingco in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>0.0001</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>scaling.arrhenius</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Scaling factor for the Arrhenius in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td>0.1</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>output.freq</td>
+        <td>
+
+            <span class="integer_table">integer</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Frequency of the output for the optimization</td>
+        <td>50</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.plot2d_live</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>plot2d_live_inversion</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.plot2d</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>plot 2d inversion</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.save_result_in_ncdf</td>
+        <td>
+
+            <span class="file path_table">file path</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Geology input file</td>
+        <td>geology-optimized.nc</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.save_iterat_in_ncdf</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Sve the iterations in a ncdf file</td>
+        <td>True</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.editor_plot2d</td>
+        <td>
+
+            <span class="string_table">string</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>optimized for VS code (vs) or spyder (sp) for live plot</td>
+        <td>vs</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>output.vars_to_save</td>
+        <td>
+
+            <span class="list_table">list</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>List of variables to be recorded in the ncdf file</td>
+        <td>['usurf', 'thk', 'slidingco', 'velsurf_mag', 'velsurfobs_mag', 'divflux', 'icemask']</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td>cook.infer_params</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Infer slidingco and convexity weight from velocity observations</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>cook.tidewater_glacier</td>
+        <td>
+
+            <span class="boolean_table">boolean</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( dimless \)</span>
+
+        </td>
+        <td>Is the glacier you're trying to infer parameters for a tidewater type?</td>
+        <td>False</td>
+      </tr>
+
+
+
+
+
+      <tr>
+        <td>cook.vol_std</td>
+        <td>
+
+            <span class="float_table">float</span>
+
+        </td>
+        <td>
+
+            <span class="math">\( ??? \)</span>
+
+        </td>
+        <td>Confidence/STD of the volume estimates from volume-area scaling</td>
+        <td>1000.0</td>
+      </tr>
+
+
+
+
+
+
+  </tbody>
+</table>
+
+<!-- Load MathJax v3 -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+
+<script type="text/javascript">
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 
 
 
