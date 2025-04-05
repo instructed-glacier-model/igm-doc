@@ -1892,14 +1892,10 @@
 <p>For this purpose, we define a function GI (Glacier Index) that maps time <span class="arithmatex">\(t\)</span> to a scalar with two extreme states: one state <span class="arithmatex">\({\rm CL}_0\)</span> with nearly no ice corresponding to GI=<span class="arithmatex">\(0\)</span>, and one maximum state <span class="arithmatex">\({\rm CL}_1\)</span> in terms of glacier extent corresponding to GI=<span class="arithmatex">\(1\)</span>. The climate <span class="arithmatex">\({\rm CL}\)</span> consists of a set of variables: mean temperature, temperature variability, mean precipitation, and lapse rate:</p>
 <div class="arithmatex">\[{\rm CL}(t) =(T^{\rm mean}(t),T^{\rm std}(t),P^{\rm mean}(t), {\rm LR}(t)),\]</div>
 <p>and is assumed to be a linear combination:</p>
-<div class="arithmatex">\[\begin{align*}
-{\rm CL}(t) = {\rm GI}(t) \times {\rm CL}_{\rm 1} (t) + (1-{\rm GI}(t)) \times {\rm CL}_{\rm 0} (t),
-\end{align*}\]</div>
+<div class="arithmatex">\[{\rm CL}(t) = {\rm GI}(t) \times {\rm CL}_{\rm 1} (t) + (1-{\rm GI}(t)) \times {\rm CL}_{\rm 0} (t),\]</div>
 <p>where the two climate states are:</p>
-<div class="arithmatex">\[\begin{align*}
-{\rm CL}_0(t) &amp; = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm mean}(t), {\rm LR}_0(t)), \\
-{\rm CL}_1(t) &amp; = ( T_1^{\rm mean}(t),T_1^{\rm std}(t),P_1^{\rm mean}(t), {\rm LR}_1(t)),
-\end{align*}\]</div>
+<div class="arithmatex">\[\begin{align} {\rm CL}_0(t) &amp; = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm mean}(t), {\rm LR}_0(t)), \\
+{\rm CL}_1(t) &amp; = ( T_1^{\rm mean}(t),T_1^{\rm std}(t),P_1^{\rm mean}(t), {\rm LR}_1(t)), \end{align}\]</div>
 <p>corresponding to GI=<span class="arithmatex">\(0\)</span> and GI=<span class="arithmatex">\(1\)</span>, respectively. Lastly, the GI function is built by linearly rescaling a climate proxy signal so that GI is close to 1 at the ice maximum and close to 0 at the ice minimum. For example, we may use the Antarctica EPICA temperature anomaly signal, which is available for the last 800,000 years.</p>
 <p>Note that the two climates <span class="arithmatex">\({\rm CL}_0\)</span> and <span class="arithmatex">\({\rm CL}_1\)</span> are defined on two different reference topographies. Therefore, it is necessary to correct the temperature for a shift in elevation using a vertical lapse rate between the modeled ice surface elevation and the reference surface.</p>
 <p><strong>Contributors:</strong> G. Jouvet</p>
