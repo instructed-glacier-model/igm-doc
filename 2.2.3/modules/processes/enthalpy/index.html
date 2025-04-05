@@ -1841,140 +1841,16 @@
 <h1 id="module-enthalpy">Module <code>enthalpy</code></h1>
 <p><strong>Warning: this rather complex module was not much tested so far, use it with care!</strong></p>
 <h1 id="description">Description:</h1>
-<p>This IGM module models the ice enthalpy, which permits to jointly model the ice temperature, as well as the water content created when the temperature hits the pressure melting points, and therefore energy conservation, which is not the case when modelling the sole temperature variable. The model is described in <a href="https://www.cambridge.org/core/journals/journal-of-glaciology/article/an-enthalpy-formulation-for-glaciers-and-ice-sheets/605D2EC3DE03B82F2A8289220E76EB27">(Aschwanden and al, JOG, 2012)</a>. Here, we used a simplified version largely inspired from the one implemented in <a href="https://www.pism.io/">PISM</a>. Other references that have helped are <a href="https://tc.copernicus.org/articles/9/217/2015/">(Kleiner and al, TC, 2015)</a> and <a href="https://www.sciencedirect.com/science/article/abs/pii/S0098300419311458">(Wang and al, 2020)</a>.</p>
-<h1 id="model">Model:</h1>
-<h2 id="ice-flow">Ice flow</h2>
-<p>Here we only quickly sketch the components of the ice dynamical modelling necessary for modeling the Enthalpy.</p>
-<p>Ice is assumed to be a Non Newtonian fluid, gouverned by Glen's flow law:
-$$ \tau = A^{-1/n} | D({\bf u}) |^{1/n-1} D({\bf u}), $$</p>
-<p>where <span class="arithmatex">\(D({\bf U})\)</span> and <span class="arithmatex">\(\tau\)</span> are the strain rate and deviatoric stress tensor, respectively. While a no-stress condition is applied on the top surface, we assume that
-the basal shear stress  <span class="arithmatex">\(\tau_b\)</span> and the sliding velocity <span class="arithmatex">\(u_b\)</span> are linked by Weertmann power law at the glacier bed interface:
-$$ 
- \tau_b = - c | u_b |^{m-1} u_b,
-$$
-where <span class="arithmatex">\(c=\tau_c u_{th}^{-m}\)</span> (unit: <span class="arithmatex">\(Mpa \; m^{-m} \; y^m\)</span>), <span class="arithmatex">\(\tau_c\)</span> being the yield stress and <span class="arithmatex">\(u_{th}\)</span> being a parameter homegenous to ice velocity. This formalism is taken from PISM.</p>
-<p>(Note that originally, IGM had <span class="arithmatex">\(c^{-m}\)</span> instead of <span class="arithmatex">\(c\)</span> above as "slidingco" with <span class="arithmatex">\(u_{th}=1\)</span>. The newest runs under parameters "new_sliding_param", and <span class="arithmatex">\(c\)</span> has unit <span class="arithmatex">\(MPa \; m^{-m} \; y^m\)</span>)</p>
-<h2 id="enthalpy">Enthalpy</h2>
-<p>The Enthalpy <span class="arithmatex">\(E\)</span> is a 3D variable defined everywhere in the ice as a function of the temperature <span class="arithmatex">\(T\)</span> and the water content <span class="arithmatex">\(\omega\)</span>:</p>
-<div class="arithmatex">\[
-\begin{align}
-E(T, \omega,p) = 
-\left\{
-\begin{array}{ll}
-c_i (T- T_{\rm ref}), &amp; {\rm  if } \; T &lt; T_{\rm pmp} , \\ 
-E_{\rm pmp} + L \omega, &amp;  
-{\rm if } \;  T = T_{\rm pmp} \; {\rm and } \; 0 \le \omega,
-\end{array} 
-\right.  
-\end{align}
-\]</div>
-<p>where <span class="arithmatex">\(c_i\)</span> is the heat capacity, <span class="arithmatex">\(T_{ref}\)</span> is the reference temperature, <span class="arithmatex">\(T_{\rm pmp} = T_{\rm pmp}(p) = T_0 - \beta p\)</span> is the temperature pressure-melting point of ice, <span class="arithmatex">\(E_{\rm pmp}(p)\)</span>  is the enthalpy pressure-melting point of ice defined as </p>
-<div class="arithmatex">\[ E_{\rm pmp}(p) = c_i (T_{\rm pmp}(p) - T_{\rm ref}), \]</div>
-<p>where <span class="arithmatex">\(L\)</span> is the latent heat of fusion. According to the above defintion of enthalpy, we have two possible modes: i) the ice is cold, i.e. below the melting point, and the Enthalpy is simply proportional to the temperature minus a reference temperature ii) the ice is temperate and the Enthalpy continue to grow, the additional component <span class="arithmatex">\(L \omega\)</span> corresponding to the creation of water content by energy transfer. Therefore, it is straightforward to deduce <span class="arithmatex">\(E\)</span> from <span class="arithmatex">\(T\)</span> and <span class="arithmatex">\(\omega\)</span>.</p>
-<p>The enthalpy model consists of the following advection-diffusion equation (the horizontal diffusion being neglected):</p>
-<div class="arithmatex">\[ 
-\begin{align}
-&amp; \rho_i \left( \frac{\partial E}{ \partial t}
-+ u_x \frac{\partial E}{ \partial x}
-+ u_y \frac{\partial E}{ \partial y} 
-+ u_z \frac{\partial E}{ \partial z} \right) 
- - \frac{\partial }{\partial z} \left(
-K_{c,t} \frac{\partial E}{ \partial z} \right)
-= \phi - \rho_w L D_w(\omega),
-\end{align}
-\]</div>
-<p>where <span class="arithmatex">\(\rho_i\)</span> is the ice density, <span class="arithmatex">\(K_{c,t}\)</span> equals <span class="arithmatex">\(K_c = k_i/c_i\)</span> if the ice is cold (<span class="arithmatex">\(E&lt;E_{pmp}\)</span>) or <span class="arithmatex">\(K_t = \epsilon k_i/c_i\)</span> otherwise, <span class="arithmatex">\(\phi\)</span> is the strain heating defined by (using Glen's flow law)</p>
-<div class="arithmatex">\[ \phi = D({\bf U}) \tau = A^{-1/n} | D({\bf u}) |^{1+1/n}, \]</div>
-<p>where <span class="arithmatex">\(D({\bf U})\)</span> and <span class="arithmatex">\(\tau\)</span> are the strain rate and deviatoric stress tensor, respectively. The last source term <span class="arithmatex">\(- \rho_w L D_w(\omega)\)</span>  permits to remove the water in temperate ice <span class="arithmatex">\(D_w(\omega)\)</span> being a drainage function ((Greve, 1997) and (Aschwanden et al., 2012)).</p>
-<p>At the top ice surface, the enthalpy equation is constrained by the surface temperature (or equivalently the Enthalpy) provided by the climate forcing (Dirichlet condition). At the glacier bed, boundary conditions for the enthalpy equation are multiple (<a href="https://www.cambridge.org/core/journals/journal-of-glaciology/article/an-enthalpy-formulation-for-glaciers-and-ice-sheets/605D2EC3DE03B82F2A8289220E76EB27">(Aschwanden and al, JOG, 2012)</a>, <a href="https://tc.copernicus.org/articles/9/217/2015/">(Kleiner and al, TC, 2015)</a> and <a href="https://www.sciencedirect.com/science/article/abs/pii/S0098300419311458">(Wang and al, 2020)</a>.)</p>
+<p>This IGM module models the ice enthalpy, which permits to jointly model the ice temperature, as well as the water content created when the temperature hits the pressure melting points, and therefore energy conservation, which is not the case when modelling the sole temperature variable. The model is described in <a href="https://www.cambridge.org/core/journals/journal-of-glaciology/article/an-enthalpy-formulation-for-glaciers-and-ice-sheets/605D2EC3DE03B82F2A8289220E76EB27">(Aschwanden and al, JOG, 2012)</a>. <strong>Check at the IGM technical paper for further details [1].</strong></p>
+<p>[1] Concepts and capabilities of the Instructed Glacier Model 3.X.X, Jouvet and al.</p>
+<p>The enthalpy module builds upon the <code>iceflow</code> module. To ensure proper functionality, follow these requirements:</p>
 <ul>
-<li><span class="arithmatex">\(K_{c} \frac{\partial E}{ \partial z} = Q_{\rm geo} + Q_{\rm fh}\)</span>
-if <span class="arithmatex">\(E_b&lt;E_{\rm pmp}\)</span> and <span class="arithmatex">\(H_w = 0\)</span>, (cold base, dry) </li>
-<li>$ E_b = E_{\rm pmp} $ if <span class="arithmatex">\(E_b&lt;E_{\rm pmp}\)</span> and <span class="arithmatex">\(H_w &gt; 0\)</span>, (cold base, wet)</li>
-<li>$ E_b = E_{\rm pmp} $ if <span class="arithmatex">\(E_b \ge E_{\rm pmp}\)</span> and <span class="arithmatex">\(W_{till}&gt; 0\)</span>, zero temperate basal layer, (temperate base, cold ice)</li>
-<li>$ K_{t} \frac{\partial E}{ \partial z} = 0$ if <span class="arithmatex">\(E_b \ge E_{\rm pmp}\)</span> and <span class="arithmatex">\(W_{till} &gt; 0\)</span>, non-zero temperate basal layer, (temperate base, temp. ice)</li>
+<li>Activate the <code>vertical_iceflow</code> module to provide the vertical velocity.</li>
+<li>Set <code>params.dim_arrhenius = 3</code>.</li>
+<li>Set <code>params.new_friction_param = true</code>.</li>
+<li>Ensure sufficient retraining by setting <code>retrain_iceflow_emulator_freq = 1</code>. Optionally, set <code>retrain_iceflow_emulator_nbit</code> to a value greater than 1 for improved performance.</li>
 </ul>
-<p>where <span class="arithmatex">\(H_t\)</span> is the height of the temperate basal layer, <span class="arithmatex">\(Q_{\rm geo}\)</span> and <span class="arithmatex">\(Q_{\rm fh}\)</span> are the geothermal heat flux, and the frictional heat flux, respectively. The latter is defined by 
-$$ 
-Q_{\rm fh} = \tau_b \cdot u_b = c | u_b |^{m+1}.
-$$</p>
-<p>As a matter of fact, the ice enthalpy (or equivalently temperature and water content) feedbacks the dynamical model in two ways. The Enthalpy directly impacts the sliding basal parametrization, while variations in temperature and water content cause ice softening or hardening. </p>
-<h2 id="basal-melt">Basal melt</h2>
-<p>When the temperature hits the pressure-melting point at the glacier bed (i.e. <span class="arithmatex">\(E \ge E_{\rm pmp}\)</span>), the basal melt rate is calculated via the following equation:
-$$
-\begin{equation}
-m_b = \frac{Q_{fr}+Q_{geo} - K_{t,c} \frac{\partial E}{ \partial z} }{\rho_i L}. 
-\end{equation}
-$$
-The basal melt rate is further adjusted positively to account for the drainage of the water content generated along the entire column.</p>
-<h2 id="water-thickness">Water thickness</h2>
-<p>The basal water thickness in the till <span class="arithmatex">\(W_{till}\)</span> is computed directly from the basal melt rate as follows:
-$$
-\begin{equation}
-\frac{\partial W_{till} }{ \partial z} = \frac{m_b}{\rho_w} - C,
-\end{equation}
-$$
-where <span class="arithmatex">\(C\)</span> is a simple drainage parameter. The till is assumed to be saturated when it reaches the value <span class="arithmatex">\(W_{till}^{max} = 2\)</span> m, therefore, the till water thickness is bounded to this value. The effective thickness of water within the till <span class="arithmatex">\(N_{till}\)</span> is computed from the saturation ratio <span class="arithmatex">\(s= W_{till} / W_{till}^{max}\)</span> by the formula <a href="https://gmd.copernicus.org/articles/8/1613/2015/gmd-8-1613-2015.html">(Bueler and Pelt, GMD, 2015)</a>:
-$$
-\begin{equation}
-N_{till} = \min \left{ P_0, N_0 \left( \frac{\delta P_0}{N_0} \right)^s 10^{(e_0/C_c)(1-s)} \right},
-\end{equation}
-$$
-where <span class="arithmatex">\(P_0\)</span> is the ice overburden pressure and the remaining parameters are constant. </p>
-<h2 id="sliding-parametrization">Sliding parametrization</h2>
-<p>Last, the sliding coefficient <span class="arithmatex">\(c\)</span> is defined with the Mohr-Coulomb (Cuffey and Paterson, 2010) sliding law with the effective pressure in the till:
-$$
-\begin{align}
-c  = \tau_c u_{th}^{-m} &amp; = N_{till} \tan(\phi) u_{th}^{-m}, \
-\end{align}
-$$
-where <span class="arithmatex">\(\phi\)</span> is the till friction angle.</p>
-<h2 id="ahrrenius-factor">Ahrrenius factor</h2>
-<p>We use the Glen-Paterson-Budd-Lliboutry-Duval law, where</p>
-<div class="arithmatex">\[A(T,\omega)= A_c(T)(1+C \omega) \]</div>
-<p>where <span class="arithmatex">\(A_c(T)\)</span> is given by the Paterson-Budd law:</p>
-<div class="arithmatex">\[  A_c(T)= A \exp{( −Q / (R \, T_{pa}) )} \]</div>
-<p>where <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(Q\)</span> have different values below and above a threshold temperature. </p>
-<div class="arithmatex">\[ A = 3.985 \times 10^{-13} \, s^{-1} Pa^{-3}, \textrm{ if } T &lt;263.15 K$$
-$$ A = 1.916 \times 10^3 \, s^{-1} Pa^{-3}, \textrm{else.}$$
-and
-$$ Q =  60 kJ mol^{-1},  \textrm{ if } T &lt;263.15 K$$
-$$ Q = 139 kJ mol^{-1},  \textrm{else.}\]</div>
-<p>These values are taken from (Paterson 1994).</p>
-<h2 id="pressure-adujsuted-temperature">Pressure-adujsuted temperature</h2>
-<p>Melting point temperature at pressure is adjusted for pressure as follows
-$$ T_{pmp} = T_{0} - \beta \rho g d, $$
-where <span class="arithmatex">\(d\)</span> is the depth, <span class="arithmatex">\(T_{0}=273.15\)</span> is the melting temperate at standart pressure (unit [<span class="arithmatex">\(K\)</span>]),  <span class="arithmatex">\(\beta = 7.9 \; 10^{-8}\)</span> is Clausius-Clapeyron constant (unit [<span class="arithmatex">\(K Pa^{-1}\)</span>]). Therefore, one define the "pressure-adjusted" temperaure <span class="arithmatex">\(T_{pa}\)</span> as being the temperature with a shift such that its metling point temperature reference is always zero:
-$$ T_{pa} = T + \beta \rho g z. $$</p>
-<h1 id="numerical-scheme">Numerical scheme</h1>
-<p>To solve the Enthalpy equation numerically, one makes use of the same horizontal and vertical discretization as used for the ice flow.
-Treating the horizontal advection term explicitly using an upwind scheme, the Enthalpy equation with its boundary conditions can be solved column-wise as a one-dimensional advection-diffusion equation. This is achieved implicitly for both the vertical advection and the diffusion term, which are approximated by finite differences. For each column, 
-one solves a small tridiagonal using the Tridiagonal Matrix Algorithm (TDMA) aka Thomas Algorithm.</p>
-<p>Updating the Enthalpy at time <span class="arithmatex">\(t^{n+1}\)</span> requires to perform several sub-steps (in function ''update_enthalpy(params,state)''):</p>
-<ul>
-<li>compute the mean surface temperature <span class="arithmatex">\(T^n_s\)</span> to enforce upper surface Dirichlet Boundary condition,</li>
-<li>compute the vertical discretization with respect to the ice geometry <span class="arithmatex">\(h^n\)</span>,</li>
-<li>compute the temperature <span class="arithmatex">\(T_{pmp}\)</span> and enthalpy <span class="arithmatex">\(E_{pmp}\)</span> at pressure meltinf point,</li>
-<li>compute the ice temperature field <span class="arithmatex">\(T^n\)</span> from the Enthalpy <span class="arithmatex">\(E^n\)</span>,</li>
-<li>compute the Arrhenius factor <span class="arithmatex">\(A(T^n)\)</span> from temperature <span class="arithmatex">\(T^n\)</span>,</li>
-<li>compute the 3D strain heat <span class="arithmatex">\(\phi^n\)</span> from ice flow field <span class="arithmatex">\({\bf u}^{n+1}\)</span> and rrhenius factor <span class="arithmatex">\(A(T^n)\)</span>,</li>
-<li>compute the 2D basal frictional heat <span class="arithmatex">\(Q_{\rm fh}^n\)</span>, from basal velocity field <span class="arithmatex">\({\bf u}\)</span> and sliding coefficient <span class="arithmatex">\(c^n\)</span>,</li>
-<li>compute the <span class="arithmatex">\(UPWIND^n\)</span> term for the explicit treatement of the horizontal advection,</li>
-<li>compute the surface Enthalpy <span class="arithmatex">\(E^n_s\)</span> from the surface temperature <span class="arithmatex">\(T^n_s\)</span>,</li>
-<li>compute the new enthalpy <span class="arithmatex">\(E^{n+1}\)</span> field solving one-dimension column-wise advection-diffusion equation, as well as the basal melt rate, <strong>this is the main updating step</strong>,</li>
-<li>compute the water thickness in the till <span class="arithmatex">\(W^{n+1}\)</span>,</li>
-<li>compute the sliding parametrization <span class="arithmatex">\(c^{n+1}\)</span>. </li>
-</ul>
-<h1 id="numerical-stability-time-stepping">Numerical stability -- time stepping</h1>
-<p>Here one updates the enthalpy as many times as the ice flow, we assume that the time step for the explicit advection is more restrictive than the implicit diffusion-advection problem.</p>
-<h1 id="dependencies">Dependencies</h1>
-<ul>
-<li>the enthalpy module builds upon the module iceflow</li>
-<li>one needs to have the vertical_iceflow module activated to provide the vertical velocitiy</li>
-<li>make sure to have params.dim_arrhenius = 3</li>
-<li>make sure to have params.new_friction_param = true</li>
-<li>make sure to ave enough retraining retrain_iceflow_emulator_freq: 1, possibly retrain_iceflow_emulator_nbit more than 1.</li>
-</ul>
+<p><strong>Contributors:</strong> G. Jouvet</p>
 <p>This implementation is largely inspired from the one implemented in <a href="https://www.pism.io/">PISM</a>. Other references that have helped are <a href="https://tc.copernicus.org/articles/9/217/2015/">(Kleiner and al, TC, 2015)</a> and <a href="https://www.sciencedirect.com/science/article/abs/pii/S0098300419311458">(Wang and al, 2020)</a>.</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">enthalpy</span><span class="p">:</span><span class="w">  </span>

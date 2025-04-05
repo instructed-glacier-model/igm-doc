@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#config-structure" class="md-skip">
+        <a href="#macro-rendering-error" class="md-skip">
           Skip to content
         </a>
       
@@ -1187,18 +1187,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    glerosion
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1210,41 +1200,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#config-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Config Structure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1883,71 +1838,58 @@
   
 
 
-  <h1>glerosion</h1>
+<h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
+<div class="language-text highlight"><pre><span></span><code>  _File_: `modules/processes/glerosion.md`
 
-<p>Module <code>glerosion</code></p>
-<p>This IGM module implements change in basal topography (due to glacial erosion). The bedrock is updated (with a frequency provided by parameter <code>processes.glerosion.update_freq years</code>) assuming a power erosion law, i.e. the erosion rate is proportional (parameter <code>processes.glerosion.cst</code>) to a power (parameter <code>processes.glerosion.exp</code>) of the sliding velocity magnitude. By default, we use the parameters from [1].</p>
-<p>[1] Herman, F. et al., Erosion by an Alpine glacier. Science 350, 193-195, 2015.</p>
-<p><strong>Contributors:</strong> G. Jouvet</p>
-<h2 id="config-structure">Config Structure</h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">glerosion</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">cst</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.7e-7</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">exp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-</span></code></pre></div>
-<h2 id="parameters">Parameters</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-
-      <th>Type</th>
-
-      <th>Units</th>
-
-      <th>Description</th>
-
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td>cst</td>
-      <td>float</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Erosion multiplicative factor, here taken from Herman, F. et al. Erosion by an Alpine glacier. Science 350, 193–195 (2015)</td>
-
-      <td>2.7e-07</td>
-    </tr>
-
-    <tr>
-      <td>exp</td>
-      <td>float</td>
-      <!-- <td>['dimensionless']</td> -->
-      <td><span class="math">['dimensionless']</span></td>
-      <td>Erosion exponent factor, here taken from Herman, F. et al. Eerosion by an Alpine glacier. Science 350, 193–195 (2015)</td>
-
-      <td>2</td>
-    </tr>
-
-    <tr>
-      <td>update_freq</td>
-      <td>float</td>
-      <!-- <td>y</td> -->
-      <td><span class="math">y</span></td>
-      <td>Update the erosion only each X years</td>
-
-      <td>1</td>
-    </tr>
-
-  </tbody>
-</table>
-
-<script type="text/javascript">
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-</script>
+  _ScannerError_: sequence entries are not allowed here
+</code></pre></div>
+<p>in "igm/igm/conf_help/processes/glerosion.yaml", line 3, column 10</p>
+<div class="language-text highlight"><pre><span></span><code>  ```
+  Traceback (most recent call last):
+</code></pre></div>
+<p>File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py", line 688, in render
+    return md_template.render(**page_variables)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 21, in top-level template code
+  File "/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py", line 7, in load_yaml
+    return yaml.safe_load(file)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/<strong>init</strong>.py", line 81, in load
+    return loader.get_single_data()
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 36, in get_single_node
+    document = self.compose_document()
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/composer.py", line 64, in compose_node
+    if self.check_event(AliasEvent):
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 98, in check_event
+    self.current_event = self.state()
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
+    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 215, in fetch_more_tokens
+    return self.fetch_block_entry()
+  File "/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/yaml/scanner.py", line 491, in fetch_block_entry
+    raise ScannerError(None, None,
+yaml.scanner.ScannerError: sequence entries are not allowed here
+  in "igm/igm/conf_help/processes/glerosion.yaml", line 3, column 10</p>
+<div class="language-text highlight"><pre><span></span><code>  ```
+</code></pre></div>
 
 
 
