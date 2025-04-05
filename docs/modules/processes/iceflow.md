@@ -1,57 +1,46 @@
 # Module `iceflow`
 
-This IGM module models ice flow dynamics in 3D using a Convolutional Neural Network based on Physics Informed Neural Network as described in this [paper](https://eartharxiv.org/repository/view/5335/). In more details, we train a CNN to minimise the energy associated with high-order ice flow equations within the time iterations of a glacier evolution model. As a result, our processes.iceflow.emulator is a computationally-efficient alternative to traditional solvers, it is capable to handle a variety of ice flow regimes and memorize previous solutions.
+This IGM module models ice flow dynamics in 3D using a Convolutional Neural Network (CNN) based on a Physics-Informed Neural Network (PINN), as described in [1]. Specifically, the CNN is trained to minimize the energy associated with high-order ice flow equations during the time iterations of a glacier evolution model. Consequently, it serves as a computationally efficient alternative to traditional solvers, capable of handling diverse ice flow regimes. **Check at the IGM technical paper for further details [1].**
+
+[1] Concepts and capabilities of the Instructed Glacier Model 3.X.X, Jouvet and al.
  
-## Iceflow
- 
-Pre-trained emulators are provided by defaults (parameter `processes.iceflow.emulator`). However, a from scratch processes.iceflow.emulator can be requested with `processes.iceflow.emulator=""`. The most important parameters are:
+Pre-trained emulators are provided by default. However, one may start from scratch by setting `processes.iceflow.emulator.name=""`. The key parameters to consider in this case are:
 
-- physical parameters 
+- Physical parameters:
 
 ```json 
-"processes.iceflow.init_slidingco": 0.045    # Init slid. coeff. ($Mpa y^{1/3} m^{-1/3}$)
-"processes.iceflow.init_arrhenius": 78.0     # Init Arrhenius cts ($Mpa^{-3} y^{-1}$)
-"processes.iceflow.exp_glen": 3              # Glen's exponent
-"processes.iceflow.exp_weertman":  3         # Weertman's sliding law exponent
+"processes.iceflow.physics.init_slidingco": 0.045    # Init slid. coeff. ($Mpa y^{1/3} m^{-1/3}$)
+"processes.iceflow.physics.init_arrhenius": 78.0     # Init Arrhenius cts ($Mpa^{-3} y^{-1}$)
+"processes.iceflow.physics.exp_glen": 3              # Glen's exponent
+"processes.iceflow.physics.exp_weertman":  3         # Weertman's sliding law exponent
 ```
 
-- related to the vertical discretization:
+- Numerical parameters for the vertical discretization:
 
 ```json 
-"processes.iceflow.Nz": 10                 # number of vertical layers
-"processes.iceflow.vert_spacing": 4.0     # 1.0 for equal vertical spacing, 4.0 otherwise
+"processes.iceflow.numerics.Nz": 10                 # number of vertical layers
+"processes.iceflow.numerics.vert_spacing": 4.0      # 1.0 for equal vertical spacing, 4.0 otherwise
 ```
 
-- learning rate and frequency of retraining:
+- Learning rate and frequency of retraining:
 
 ```json 
-"processes.iceflow.retrain_emulator_lr": 0.00002 
-"processes.iceflow.retrain_emulator_freq": 5     
+"processes.iceflow.emulator.lr": 0.00002 
+"processes.iceflow.emulator.retrain_freq": 5     
 ```
 
-While this module was targeted for deep learning emulation, it important parameters for solving are :
+While this module was targeted for deep learning emulation, it is possible to use the solver (`processes.iceflow.method='solved'`) instead of the default (`processes.iceflow.method='emulated'`), or use the two together (`processes.iceflow.method='diagnostic'`) to assess the emulator against the solver. The most important parameters for solving are:
 
-is possible to
-use the solver (`processes.iceflow.type='solved'`) instead of the default processes.iceflow.emulator (`processes.iceflow.type='emulated'`), or use the two together (`processes.iceflow.type='diagnostic'`) to assess the emaultor against the solver. Most important parameters for solving are :
-
-```json 
-"processes.iceflow.solve_step_size": 0.00002 
-"processes.iceflow.solve_nbitmax": 5     
+```json
+"processes.iceflow.solve.step_size": 0.00002 
+"processes.iceflow.solve.nbitmax": 5         
 ```
 
-One may choose between 2D arrhenius factor by changing parameters between `processes.iceflow.dim_arrhenius=2` or `processes.iceflow.dim_arrhenius=3` -- le later is necessary for the enthalpy model.
+One may choose between a 2D Arrhenius factor or a 3D Arrhenius factor by setting the parameter `processes.iceflow.dim_arrhenius` to `2` or `3`, respectively. The 3D option is required for the enthalpy model.
 
-When treating ery large arrays, retraining must be done sequentially patch-wise for memory reason. The size of the pathc is controlled by parameter `processes.iceflow.multiple_window_size=750`.
+When treating very large arrays, retraining must be done sequentially in a patch-wise manner due to memory constraints. The size of the patch is controlled by the parameter `processes.iceflow.multiple_window_size=750`.
 
-For mor info, check at the following reference:
-
-```
-@article{jouvet2023ice,
-  title={Ice flow model emulator based on physics-informed deep learning},
-  author={Jouvet, Guillaume and Cordonnier, Guillaume},
-  year={2023},
-}
-```
+**Contributors:** G. Jouvet
  
 ## Config Structure  
 ~~~yaml
