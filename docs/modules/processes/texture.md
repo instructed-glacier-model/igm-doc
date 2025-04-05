@@ -9,7 +9,8 @@ This modules allows you to calculate ...
 {% include  "../../../igm/igm/conf/processes/texture.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/texture.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/texture.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

@@ -9,7 +9,8 @@ This module enables the reading of a previously generated NetCDF output file, al
 {% include  "../../../igm/igm/conf/processes/read_output.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/read_output.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/read_output.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

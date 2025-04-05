@@ -9,7 +9,7 @@ This module extends the ice flow beyond glaciated areas by assigning a constant 
 {% include  "../../../igm/igm/conf/processes/rockflow.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
 
 {% set config = load_yaml('igm/igm/conf/processes/rockflow.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/rockflow.yaml') %}

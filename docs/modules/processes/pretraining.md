@@ -41,7 +41,8 @@ After downloading (or generating your own dataset), organize the folder `surflib
 {% include  "../../../igm/igm/conf/processes/pretraining.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/pretraining.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/pretraining.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

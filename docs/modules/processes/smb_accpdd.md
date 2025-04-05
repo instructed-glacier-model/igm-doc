@@ -28,7 +28,8 @@ Note: This implementation is a TensorFlow re-implementation inspired by the one 
 {% include  "../../../igm/igm/conf/processes/smb_accpdd.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/smb_accpdd.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/smb_accpdd.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

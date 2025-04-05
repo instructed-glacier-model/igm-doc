@@ -9,7 +9,8 @@ This IGM module computes the vertical component of the velocity (`state.W`) from
 {% include  "../../../igm/igm/conf/processes/vert_flow.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/vert_flow.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/vert_flow.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

@@ -16,7 +16,8 @@ where $P_i^{sol}$ is the monthly solid precipitation, $T_i$ is the monthly tempe
 {% include  "../../../igm/igm/conf/processes/smb_oggm.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/smb_oggm.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/smb_oggm.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

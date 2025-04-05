@@ -11,7 +11,8 @@ This IGM module implements change in basal topography (due to glacial erosion). 
 {% include  "../../../igm/igm/conf/processes/glerosion.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/glerosion.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/glerosion.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

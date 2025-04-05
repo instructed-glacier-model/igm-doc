@@ -25,7 +25,8 @@ Further details on the time step stability conditions can be found in the follow
 {% include  "../../../igm/igm/conf/processes/time.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/time.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/time.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

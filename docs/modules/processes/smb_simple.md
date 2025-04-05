@@ -40,7 +40,8 @@ If an "icemask" field is provided as input, the module will assign a negative su
 {% include  "../../../igm/igm/conf/processes/smb_simple.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/smb_simple.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/smb_simple.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

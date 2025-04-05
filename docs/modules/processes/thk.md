@@ -13,7 +13,8 @@ The scheme is mass-conservative and parallelizable due to its fully explicit nat
 {% include  "../../../igm/igm/conf/processes/thk.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/thk.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/thk.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

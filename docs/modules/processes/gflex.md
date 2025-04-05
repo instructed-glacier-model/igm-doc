@@ -13,7 +13,7 @@ This module operates exclusively on the CPU, which may pose challenges when proc
 {% include  "../../../igm/igm/conf/processes/gflex.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
 
 {% set config = load_yaml('igm/igm/conf/processes/gflex.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/gflex.yaml') %}

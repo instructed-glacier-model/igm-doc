@@ -37,7 +37,8 @@ providing, in turn, the particle ID, x, y, z positions, the relative height with
 {% include  "../../../igm/igm/conf/processes/particles.yaml" %}
 ~~~
 
-## Arguments
+## Parameters
+
 {% set config = load_yaml('igm/igm/conf/processes/particles.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/particles.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}

@@ -19,6 +19,34 @@ This module depends on the `xarray` and `rioxarray` Python libraries.
 
 ## Parameters
 
+
+{% macro flatten_config(config, help, prefix='') %}
+  {% for key, value in config.items() %}
+    {% set full_key = prefix ~ key if prefix == '' else prefix ~ '.' ~ key %}
+    {% set help_entry = help.get(key, {}) %}
+    {% if value is mapping %}
+      {{ flatten_config(value, help_entry, full_key) }}
+    {% else %}
+      <tr>
+        <td>{{ full_key }}</td>
+        <td>
+          {% if help_entry.Type %}
+            <span class="{{ help_entry.Type }}_table">{{ help_entry.Type }}</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if help_entry.Units %}
+            <span class="math">\( {{ help_entry.Units }} \)</span>
+          {% endif %}
+        </td>
+        <td>{{ help_entry.Description or '' }}</td>
+        <td>{{ value }}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+
 {% set config = load_yaml('igm/igm/conf/inputs/local.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/inputs/local.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
@@ -37,24 +65,19 @@ This module depends on the `xarray` and `rioxarray` Python libraries.
     </tr>
   </thead>
   <tbody>
-    {% for key, value in module.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help[key].Type}}</td>
-      <td>{{ module_help[key].Units}}</td>
-      <td>{{ module_help[key].Description}}</td>
-
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
+    {{ flatten_config(module, module_help) }}
   </tbody>
 </table>
 
+<!-- Load MathJax v3 -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
 
-      
 <script type="text/javascript">
   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-</script> -->
-
-
-## Example Usage
+</script>
