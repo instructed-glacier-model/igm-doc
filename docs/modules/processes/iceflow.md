@@ -59,6 +59,25 @@ For mor info, check at the following reference:
 ~~~
 
 ## Arguments
+
+{% macro flatten_config(config, help, prefix='') %}
+  {% for key, value in config.items() %}
+    {% set full_key = prefix ~ key if prefix == '' else prefix ~ '.' ~ key %}
+    {% if value is mapping %}
+      {{ flatten_config(value, help.get(key, {}), full_key) }}
+    {% else %}
+      <tr>
+        <td>{{ full_key }}</td>
+        <td>{{ help.get(key, {}).get('Type', '') }}</td>
+        <td><span class="math">{{ help.get(key, {}).get('Units', '') }}</span></td>
+        <td>{{ help.get(key, {}).get('Description', '') }}</td>
+        <td>{{ value }}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+
 {% set config = load_yaml('igm/igm/conf/processes/iceflow.yaml') %}
 {% set help = load_yaml('igm/igm/conf_help/processes/iceflow.yaml') %}
 {% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
@@ -77,17 +96,7 @@ For mor info, check at the following reference:
     </tr>
   </thead>
   <tbody>
-    {% for key, value in module.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help[key].Type}}</td>
-      <!-- <td>{{ module_help[key].Units}}</td> -->
-      <td><span class="math">{{ module_help[key].Units }}</span></td>
-      <td>{{ module_help[key].Description}}</td>
-
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
+    {{ flatten_config(module, module_help) }}
   </tbody>
 </table>
 
