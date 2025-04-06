@@ -9,12 +9,15 @@ A closer look at the main script `igm_run.py` reveals the following structure:
 - `run` all *inputs* modules
 - `initialize` all *processes* modules
 - `initialize` all *outputs* modules
-- For all time steps:
+
+For all time steps:
+
   - `update` all *processes* modules
   - `run` all *outputs* modules
-- `finalize` all *processes* modules
+  - `finalize` all *processes* modules
 
 Here, we find that
+
 - `inputs` modules have a `run` function,
 - `processes` modules have `initialize`, `update`, and `finalize` functions
 - `outputs` modules have `initialize` and `run` functions.

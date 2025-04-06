@@ -49,4 +49,5 @@ outputs: # override parameters of output modules
   plot2d:
     live: true
 ```
+
 Visit the `Module` section of this documentation to find out what modules are available, together with their parameters.
