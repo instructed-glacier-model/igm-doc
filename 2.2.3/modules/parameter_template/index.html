@@ -1817,7 +1817,7 @@
 
 <h1 id="macro-rendering-error"><em>Macro Rendering Error</em></h1>
 <p><em>File</em>: <code>modules/parameter_template.md</code></p>
-<p><em>FileNotFoundError</em>: [Errno 2] No such file or directory: 'igm/igm/conf/processes/{{ module_name }}.yaml'</p>
+<p><em>UndefinedError</em>: 'str object' has no attribute 'items'</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/mkdocs_macros/plugin.py&quot;, line 688, in render
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
@@ -1825,10 +1825,13 @@
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    self.environment.handle_exception()
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 942, in handle_exception
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    raise rewrite_traceback_stack(source=source)
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;&lt;template&gt;&quot;, line 28, in top-level template code
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  File &quot;/media/gjouvet/storage/Dropbox/home/IGM/igm-doc/main.py&quot;, line 6, in load_yaml
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    with open(file_path, &#39;r&#39;) as file:
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>FileNotFoundError: [Errno 2] No such file or directory: &#39;igm/igm/conf/processes/{{ module_name }}.yaml&#39;
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;&lt;template&gt;&quot;, line 44, in top-level template code
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/runtime.py&quot;, line 784, in _invoke
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    rv = self._func(*arguments)
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;&lt;template&gt;&quot;, line 3, in template
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  File &quot;/home/gjouvet/anaconda3/envs/igm/lib/python3.10/site-packages/jinja2/utils.py&quot;, line 92, in from_obj
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    if hasattr(obj, &quot;jinja_pass_arg&quot;):
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>jinja2.exceptions.UndefinedError: &#39;str object&#39; has no attribute &#39;items&#39;
 </span></code></pre></div>
 
 
