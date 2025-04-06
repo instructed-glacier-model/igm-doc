@@ -1844,15 +1844,19 @@
 <li><code>run</code> all <em>inputs</em> modules</li>
 <li><code>initialize</code> all <em>processes</em> modules</li>
 <li><code>initialize</code> all <em>outputs</em> modules</li>
-<li>For all time steps:</li>
+</ul>
+<p>For all time steps:</p>
+<ul>
 <li><code>update</code> all <em>processes</em> modules</li>
 <li><code>run</code> all <em>outputs</em> modules</li>
 <li><code>finalize</code> all <em>processes</em> modules</li>
 </ul>
-<p>Here, we find that
-- <code>inputs</code> modules have a <code>run</code> function,
-- <code>processes</code> modules have <code>initialize</code>, <code>update</code>, and <code>finalize</code> functions
-- <code>outputs</code> modules have <code>initialize</code> and <code>run</code> functions.</p>
+<p>Here, we find that</p>
+<ul>
+<li><code>inputs</code> modules have a <code>run</code> function,</li>
+<li><code>processes</code> modules have <code>initialize</code>, <code>update</code>, and <code>finalize</code> functions</li>
+<li><code>outputs</code> modules have <code>initialize</code> and <code>run</code> functions.</li>
+</ul>
 <p>Similarly to existing IGM modules, a user-defined module <code>my_module</code> can be implemented and automatically loaded when <code>igm_run</code> is executed, provided that <code>my_module</code> and the path to its parameter file are correctly specified. Building a user module involves creating the following folder structure (folder <code>user</code> lies alongside <code>experiment</code> and <code>data</code>):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>└── user
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  ├── code
