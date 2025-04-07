@@ -23,7 +23,8 @@ where the parameter file `params.yaml` (example below) consists of:
 i) specifying a list of **modules** for inputs, processes, and outputs, and  
 ii) defining a list of **parameters** that override the default values.
 
-```yaml params.yaml
+```yaml
+
 # @package _global_
 
 core:  # core IGM parameter (looging, GPU, ...)
