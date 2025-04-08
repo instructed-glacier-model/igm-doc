@@ -8,7 +8,7 @@ This guide serves as the fastest way to install IGM. It assumes that have alread
 2. Have a working [virtual environment](other/virtual_environment.md)
 
 If this is the case, you can skip to the next section.
-!!! note
+!!! note "Installing on Windows"
 
     Tensorflow does not allow us to run IGM on GPU directly on Windows, and the module `oggm_shop` does not work on windows. Therefore, we recommend windows-user to install WSL2-ubuntu, which provides a linux/ubuntu terminal. WSL2 terminal can be nicely linked with VS code (with an extension). First, install WSL2-ubuntu
 
@@ -24,7 +24,7 @@ Once this is done, the options are the following
 
 1. pip
 2. github
-3. docker
+<!-- 3. docker -->
 
 <style>
 
@@ -63,33 +63,41 @@ One can download the latest version of IGM with `git clone`
 ```bash
 git clone https://github.com/jouvetg/igm.git
 ```
-!!! note
 
-    IGM core library native Tensorflow is not supported on Mac for GPU usage. Instead, a "Tensorflow for Mac", called [tensorflow-metal](https://developer.apple.com/metal/tensorflow-plugin/), was developed as workaround. To install IGM on Mac, you may follow the linux workflow, however, you will need to change in setup.py tensorflow by tensorflow-macos. Here is a working procedure (tested on MacBook Pro M2) -- still we recommend using a virtual environment such as conda or venv as on linux:
+!!! note "A Note about IGM's Install Location"
+
+    Please note that where you decide to clone IGM is purely the location where IGMs source code will be installed. After you install IGM with `pip install -e` (more on this below), you can run IGM from *any* location on your computer. This is because installing IGM will create a symbolic link to wherever this folder is installed.
+
+!!! note "Installing on Mac"
+
+    IGM's core package, Tensorflow, is unfortunately not natively supported on Mac OS for GPUs. Instead, a "Tensorflow for Mac", called [tensorflow-metal](https://developer.apple.com/metal/tensorflow-plugin/), was developed as a workaround. To install IGM on Mac, you can still clone the repository with the above line, but you must additionally change `tensorflow` to `tensorflow-macos` in `setup.py` *before* running `pip install -e`. Here is a working procedure (tested on MacBook Pro M2); we still recommend using a virtual environment such as conda or venv when installing.
 
     ```bash
-    git clone -b develop https://github.com/jouvetg/igm
+    git clone https://github.com/jouvetg/igm
     cd igm
     ```
-    You need to edit "install_requires=[...]" in the file "setup.py":
+    Now, in the `setup.py` file, you will need to edit the "install_requires=[...]" line depending on your requirements:
 
-    * To use only the CPUs: `tensorflow-macos==2.14.0`
-    * To use the GPUs: `tensorflow-macos==2.14.0, tensorflow-metal,`
+    * To use only the CPU: `tensorflow-macos==2.14.0`
+    * To use the GPU: `tensorflow-macos==2.14.0, tensorflow-metal,`
+
+Now, once the `setup.py` file is ready for your machine and operating system, one can install IGM inside his or her virtual environment. To do this, run the following command in the same level as the `setup.py` file:
 
 ```bash
-cd igm
 pip install -e .
 ```
 
-After that, you may run any example (``igm_run``). As IGM is being updated often, make sure you have the latest version, you may run
+Note that while the user installs 
+
+As IGM is being updated often, make sure you have the latest version by running the following command inside the `igm` folder
 
 ```bash
 git pull
 ```
 
-### Docker
+<!-- ### Docker
 
-For even more granular control, one can opt to use the docker image instead of the github version. This maximizes the chances of reproducibility stability as the virtual environmnet is part of the installation of IGM. ... Assuming you have [docker]() installed already, you can download the docker image through two ways
+For even more granular control, one can opt to use the docker image instead of the github version. This maximizes the chances of reproducibility and stability as the virtual environmnet is part of the installation of IGM. ... Assuming you have [docker]() installed already, you can download the docker image through two ways
 
 1. Docker CLI
 2. DockerHub
@@ -98,4 +106,4 @@ In order to download IGM through the commandline, you can run the following comm
 
 ```{.bash .annotate}
 docker ...
-```
+``` -->

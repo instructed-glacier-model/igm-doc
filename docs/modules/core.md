@@ -4,7 +4,7 @@ These core parameters are organized under a specific configuration structure des
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/core.yaml" %}
+{% include  "../../igm/igm/conf/core.yaml" %}
 ~~~
 
 ## Parameters

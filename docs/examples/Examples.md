@@ -1,10 +1,10 @@
 # Examples
 
-Once IGM is installed, it is time to make your first runs. The best and quickest way to get to know IGM is to run given examples. For that, you may download dedicated IGM examples or run the `quick-demo` presented hereafter if you want to go faster.
+Once IGM is installed, it is time to make your first runs. The best and quickest way to get to know IGM is to run the given IGM examples. For that, you may download dedicated IGM examples or run the `quick-demo` presented hereafter if you want to go faster.
 
 ## IGM examples
 
-Download the following repository that contains a gallery of ready-to-run setups (incl. parameter file, data, user modules if any), check at individual instructions:
+Download the following repository that contains a gallery of ready-to-run setups (incl. parameter file, data, and user modules if any):
 
 ```bash
 git clone https://github.com/instructed-glacier-model/igm-examples
@@ -21,7 +21,9 @@ The run will:
 2. Execute a forward model combining the OGGM-based SMB model and the IGM-based ice flow model.
 3. Write and plot the results in real time.
 
-**Warning:** This setup is provided as an example and has not been validated against historical data. It should not be interpreted as a scientifically accurate simulation. After running this example, you can explore different glaciers by selecting a different ID (refer to the [GLIMS Viewer](https://www.glims.org/maps/glims)), modify parameters, or experiment with additional modules.
+!!! warning
+
+    This setup is provided as an example and has not been validated against historical data. It should not be interpreted as a scientifically accurate simulation. After running this example, you can explore different glaciers by selecting a different ID (refer to the [GLIMS Viewer](https://www.glims.org/maps/glims)), modify parameters, or experiment with additional modules.
 
 ```yaml title="params.yaml"
 # @package _global_

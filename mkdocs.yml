@@ -20,11 +20,14 @@ nav:
       # - MacOS: installation/mac.md
       # - Docker: Installation_Docker.md
   - Getting Started: 
-      - Running IGM: Running.md
+      - How to Run IGM: Running.md
       - Using Hydra:
         - Introduction: hydra/introduction.md
-        - Configuration: hydra/configuration.md
+        - Basics: hydra/basics.md
+        - Working Directory: hydra/working_directory.md
+        - Custom Configurations: hydra/custom_configurations.md
         - Distributed Computing: hydra/distributed_computing.md 
+        - Help: hydra/help.md
       - Examples: examples/Examples.md
   - Modules:
     - What are modules?: modules/introduction.md
@@ -137,11 +140,13 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/style.css
 
 extra_javascript:
   - javascripts/mathjax.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
   # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra:

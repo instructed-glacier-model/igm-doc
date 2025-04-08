@@ -37,6 +37,15 @@ If you use IGM in publications, make sure to cite one of the following papers an
 	doi={10.1017/jog.2023.73}
 }
 ```
+```
+@Misc{Yadan2019Hydra,
+  author =       {Omry Yadan},
+  title =        {Hydra - A framework for elegantly configuring complex applications},
+  howpublished = {Github},
+  year =         {2019},
+  url =          {https://github.com/facebookresearch/hydra}
+}
+```
  
 # Acknowledgements
 

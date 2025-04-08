@@ -1,6 +1,6 @@
 ---
 title: IGM
-template: home_testing.html
+template: home_igm.html
 hide:
   - footer
 ---

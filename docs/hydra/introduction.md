@@ -1,1 +1,11 @@
-# Hi intro
+# Hydra
+
+As IGM runs various modules based on physical processes (for instance iceflow), one needs to also be able to adjust physical parameters and constants between runs. For instance, if one wants to change the ice viscosity, it would be ideal to adjust this parameter outside the source code in a controlled manner. Now, imagine where one can not only adjust the viscosity but hundreds of different parameters across a multitude of modules - this is where [Hydra](https://hydra.cc/docs/intro/) comes in. Simply put, it is a way to manage a complex hierarchy of configuration files. In more detail, we chose to integrate Hydra into IGM for the following reasons:
+
+* **Readability and reproducability**: As Hydra uses the [yaml](https://yaml.org/) extension, files are by consequence much easier to read. Hydra also excels in keeping track of which parameters you change, so for scientific experiments, it is much easier for results to become reproducable.
+
+* **Scalability**: While it is certainly possible to have IGM work on multiple computers, GPUs, etc., there is a lot of manual work involved in setting this up and maintaining it. Fortunately, Hydra automatically takes care of many of these requirements. For instance, we can launch ensemble runs quite easily with a single line, optimize our parameters for inverse problems, and integrate our system into slurm directly. For more information, please visit this [page](https://hydra.cc/docs/plugins/joblib_launcher/).
+
+* **Abstraction**: Lastly, but arguably most importantly, Hydra excels in managing complex hierarchies of yaml files. If we were to manage this ourselves, it quickly becomes error prone and acts as a barrier to how organized IGM can become. We chose Hydra to let it manage our structure in hopes that it will robustify our existing codebase whilst future proofing it.
+
+To start learning how to use Hydra with IGM, please visit the [configuration](configuration.md) and [distributed computing](distributed_computing.md) pages. These pages serve as a quick reference, so if you require more information, we suggest you go to the Hydra website itself for more examples and explanations.
