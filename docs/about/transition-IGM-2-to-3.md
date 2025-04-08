@@ -166,6 +166,20 @@ A new I/O module, `local`, has been introduced to replace the `load_XXX` and `wr
 The `oggm_shop` module now exclusively handles downloading data (e.g., RGIXXXX folders) using OGGM and converting it into a NetCDF file (`input.nc`) that adheres to IGM's naming conventions. However, it no longer performs the task of loading this data into IGM. To process the downloaded data, you must pair `oggm_shop` with either the `load_ncdf` or `local` modules. 
 
 For example, if you use `oggm_shop`, you must include `load_ncdf` or `local` as additional `inputs` modules in your configuration.
+ 
+## Default Parameter Value Changes (Upcoming Release)
+
+In the upcoming release, several default parameter values will be updated to improve performance and usability. These changes are not applied yet but will be included in the next version:
+
+- **`retrain_freq` (current default: 10):** The current default retrains the ice flow CNN every 10 time steps. This frequency has been found insufficient in many cases. The next release will increase the retraining frequency to every 3 time steps.
+
+- **`smooth_anisotropy_factor` (current default: 0.2):** The current value of 0.2 for anisotropic smoothing has been observed to cause chessboard effects in ice thickness. To address this, the next release will safely deactivate anisotropic smoothing by setting this parameter to 1.0.
+
+- **`convexity_weight` (current default: unknown):** The current convexity weight, which is particularly useful in the absence of data, has been found to be highly empirical and non-intuitive. As a result, it will be deactivated in the next release by setting its value to 0.
+
+- **`fix_opti_normalization_issue` (current default: false):** A normalization issue has been identified in the current cost function for data assimilation, where some terms use sums while others use means. This inconsistency has been compensated for by adjusting regularization parameters. The next release will address this issue by setting this parameter to `true`, ensuring consistent use of means throughout. Consequently, users will need to significantly increase the regularization parameters (approximately \(10^3\) for thickness and \(10^{10}\) for sliding coefficients).
+
+- **`log_slidingco` (current default: false):** In the next release, the optimization will handle the square root of `slidingco` (scaled) instead of `slidingco` directly. This approach ensures that `slidingco` remains positive without explicitly enforcing positivity. Note that this change will affect the scaling of `slidingco` (approximately \(10^{-6}\)) when this option is set to `true`.
 
 # In more details (for developpers)
 
@@ -327,18 +341,14 @@ Key modules like `iceflow` and `data_assimilation` (formerly optimize) have been
 |----------|------------|
 |   opti_control   |   data_assimilation.control_list  |
 |   opti_cost   |   data_assimilation.cost_list  |
-|   opti_nbitmin   |   data_assimilation.nbitmin  |
-|   opti_nbitmax   |   data_assimilation.nbitmax  |
-|   opti_step_size   |   data_assimilation.step_size  |
-|   opti_step_size_decay   |   data_assimilation.step_size_decay  |
-|   opti_init_zero_thk   |   data_assimilation.init_zero_thk  |
-|   opti_uniformize_thkobs   |   data_assimilation.uniformize_thkobs  |
-|   opti_sole_mask   |   data_assimilation.sole_mask  |
-|   opti_retrain_iceflow_model   |   data_assimilation.retrain_iceflow_model  |
-|   opti_include_low_speed_term   |   data_assimilation.include_low_speed_term  |
-|   opti_fix_opti_normalization_issue   |   data_assimilation.fix_opti_normalization_issue  |
-|   opti_velsurfobs_thr   |   data_assimilation.velsurfobs_thr  |
-|   opti_log_slidingco   |   data_assimilation.log_slidingco  |
+|   opti_nbitmin   |   data_assimilation.optimization.nbitmin  |
+|   opti_nbitmax   |   data_assimilation.optimization.nbitmax  |
+|   opti_step_size   |   data_assimilation.optimization.step_size  |
+|   opti_step_size_decay   |   data_assimilation.optimization.step_size_decay  |
+|   opti_init_zero_thk   |   data_assimilation.optimization.init_zero_thk  |
+|   opti_sole_mask   |   data_assimilation.optimization.sole_mask  |
+|   opti_retrain_iceflow_model   |   data_assimilation.optimization.retrain_iceflow_model  |
+|   opti_fix_opti_normalization_issue   |   data_assimilation.optimization.fix_opti_normalization_issue  |
 |   opti_regu_param_thk   |   data_assimilation.regularization.thk  |
 |   opti_regu_param_slidingco   |   data_assimilation.regularization.slidingco  |
 |   opti_regu_param_arrhenius   |   data_assimilation.regularization.arrhenius  |
@@ -352,6 +362,10 @@ Key modules like `iceflow` and `data_assimilation` (formerly optimize) have been
 |   opti_velsurfobs_std   |   data_assimilation.fitting.velsurfobs_std  |
 |   opti_thkobs_std   |   data_assimilation.fitting.thkobs_std  |
 |   opti_divfluxobs_std   |   data_assimilation.fitting.divfluxobs_std  |
+|   opti_uniformize_thkobs   |   data_assimilation.fitting.uniformize_thkobs  |
+|   opti_include_low_speed_term   |   data_assimilation.fitting.include_low_speed_term  |
+|   opti_velsurfobs_thr   |   data_assimilation.fitting.velsurfobs_thr  |
+|   opti_log_slidingco   |   data_assimilation.fitting.log_slidingco  |
 |   opti_divflux_method   |   data_assimilation.divflux.method  |
 |   opti_force_zero_sum_divflux   |   data_assimilation.divflux.force_zero_sum  |
 |   opti_scaling_thk   |   data_assimilation.scaling.thk  |
