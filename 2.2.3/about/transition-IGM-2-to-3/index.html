@@ -2048,6 +2048,25 @@
 <h2 id="oggm_shop-requires-coupling-with-load_ncdf-or-local"><code>oggm_shop</code> requires coupling with <code>load_ncdf</code> or <code>local</code></h2>
 <p>The <code>oggm_shop</code> module now exclusively handles downloading data (e.g., RGIXXXX folders) using OGGM and converting it into a NetCDF file (<code>input.nc</code>) that adheres to IGM's naming conventions. However, it no longer performs the task of loading this data into IGM. To process the downloaded data, you must pair <code>oggm_shop</code> with either the <code>load_ncdf</code> or <code>local</code> modules. </p>
 <p>For example, if you use <code>oggm_shop</code>, you must include <code>load_ncdf</code> or <code>local</code> as additional <code>inputs</code> modules in your configuration.</p>
+<h2 id="default-parameter-value-changes-upcoming-release">Default Parameter Value Changes (Upcoming Release)</h2>
+<p>In the upcoming release, several default parameter values will be updated to improve performance and usability. These changes are not applied yet but will be included in the next version:</p>
+<ul>
+<li>
+<p><strong><code>retrain_freq</code> (current default: 10):</strong> The current default retrains the ice flow CNN every 10 time steps. This frequency has been found insufficient in many cases. The next release will increase the retraining frequency to every 3 time steps.</p>
+</li>
+<li>
+<p><strong><code>smooth_anisotropy_factor</code> (current default: 0.2):</strong> The current value of 0.2 for anisotropic smoothing has been observed to cause chessboard effects in ice thickness. To address this, the next release will safely deactivate anisotropic smoothing by setting this parameter to 1.0.</p>
+</li>
+<li>
+<p><strong><code>convexity_weight</code> (current default: unknown):</strong> The current convexity weight, which is particularly useful in the absence of data, has been found to be highly empirical and non-intuitive. As a result, it will be deactivated in the next release by setting its value to 0.</p>
+</li>
+<li>
+<p><strong><code>fix_opti_normalization_issue</code> (current default: false):</strong> A normalization issue has been identified in the current cost function for data assimilation, where some terms use sums while others use means. This inconsistency has been compensated for by adjusting regularization parameters. The next release will address this issue by setting this parameter to <code>true</code>, ensuring consistent use of means throughout. Consequently, users will need to significantly increase the regularization parameters (approximately <span class="arithmatex">\(10^3\)</span> for thickness and <span class="arithmatex">\(10^{10}\)</span> for sliding coefficients).</p>
+</li>
+<li>
+<p><strong><code>log_slidingco</code> (current default: false):</strong> In the next release, the optimization will handle the square root of <code>slidingco</code> (scaled) instead of <code>slidingco</code> directly. This approach ensures that <code>slidingco</code> remains positive without explicitly enforcing positivity. Note that this change will affect the scaling of <code>slidingco</code> (approximately <span class="arithmatex">\(10^{-6}\)</span>) when this option is set to <code>true</code>.</p>
+</li>
+</ul>
 <h1 id="in-more-details-for-developpers">In more details (for developpers)</h1>
 <h2 id="hierachical-and-separated-parameters-and-code">Hierachical and separated parameters and code</h2>
 <p>In IGM source code, the parameters and the code are now hierarchically organized. Default parameters are stored in the <code>igm/igm/conf</code> folder, which is separate from the code located in the <code>igm/igm</code> folder. This separation ensures a clean organization of configuration files and source code. Parameters are grouped into logical categories and subcategories within the YAML files. This structure mirrors the organization of the modules and processes in IGM. For example, the folder structure for default parameters looks like this:</p>
