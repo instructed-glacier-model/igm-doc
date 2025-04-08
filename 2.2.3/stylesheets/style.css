@@ -51,7 +51,7 @@
   width: 700px;
   position: absolute;
   right: 10%;
-  top: 35%;
+  top: 30%;
   border-radius: 10px;
   /* height: auto; */
   /* margin-top: 20px; */
@@ -60,3 +60,7 @@
 /* .md-nav__item.md-nav__item--active {
   display: none !important;
 } */
+
+.landing-container ~ .md-nav--lifted>.md-nav__list>.md-nav__item--active {
+  display: none
+}
