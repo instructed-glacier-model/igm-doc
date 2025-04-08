@@ -22,6 +22,8 @@ Pre-trained emulators are provided by default. However, one may start from scrat
 "processes.iceflow.numerics.vert_spacing": 4.0      # 1.0 for equal vertical spacing, 4.0 otherwise
 ```
 
+Note that in the special case of $Nz=2$, the ice velocity profile from the bottom to the top of the ice is assumed to vary polynomially following the Shallow Ice Approximation (SIA) formula. In the case of a single layer $Nz=1$, the ice flow is assumed to be vertically uniform, and the ice flow model reduces to the Shallow Shelf Approximation (SSA).
+
 - Learning rate and frequency of retraining:
 
 ```json 
