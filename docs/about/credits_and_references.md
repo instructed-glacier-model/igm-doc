@@ -4,8 +4,8 @@
 
 | Name | Contributions |
 |----------|----------|
-| Guillaume Jouvet    | Primary source code author of most of modules and their documentation, design of the PI-CNN in forward [1,3] and inverse modes [2]. |
-| Brandon Finley      | Core code and software design, hydra integration, code profiling, docker, documentation framework design, `texture` module, TBC |
+| Guillaume Jouvet, UNIL | Primary source code author of most of modules and their documentation, design of the PI-CNN in forward [1,3] and inverse modes [2]. |
+| Brandon Finley, UNIL  | Core code and software design, hydra integration, code profiling, docker, documentation framework design, `texture` module, TBC |
 
 ## Contributors
 
@@ -13,6 +13,7 @@
 
 | Name | Contributions |
 |----------|----------|
+| Flavio Calvo  | Support from the release IGM1 to IGM2 |
 | Samuel Cook | Implementation of functions specific for global modelling in the `data_assimilation` module, inclusion of RGI7 in `oggm_shop` |
 | Guillaume Cordonnier | Co-design of the PI-CNN in forward mode, original implementation of the `thk` module |
 | Alex Jarosch  | Bueler2005C's benchmark case in the example gallery |
@@ -22,6 +23,7 @@
 | Jürgen Mey | `avalanche` and `glex` modules |
 | Oskar Hermann | Vizualization tool `anim_plotly` |
 | Dirk Scherler | Support for the verication of the `particle` module |
+| Margot Sirdey | Support from the release IGM1 to IGM2, PiPy setup |
 | Gillian Smith | Bug fixes |
 | Patrick Schmitt | Vizualization tool, TBC |
 | Claire-Mathile Stücki | Update of `vert_flow` and `particle` modules |
