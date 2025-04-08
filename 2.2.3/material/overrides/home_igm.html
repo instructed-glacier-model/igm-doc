@@ -4,17 +4,23 @@
 {% extends "main.html" %}
 
 {% block tabs %}
-  {{ super() }}
+{{ super() }}
 
+<body class="landing-page">
+  <a href="https://www.nature.com/articles/s41467-025-56168-3">
+    <img class="feature-img">
+  </a>
   <div class="landing-container">
-    <h1>Model<br class="subheader">Glaciers Now</h1>
+    <h1>Model<br class="subheader">Glacier Evolution</h1>
     <p>Reproducible Science. Community-Driven. Scalable. </p>
     <div class="landing-buttons">
       <button onclick="location.href='../igm-doc.github.io/Running/'">Get Started Now</button>
       <button onclick="location.href='../igm-doc.github.io/about/help/'">Contact Us</button>
     </div>
   </div>
-  <img src="assets/images/-24050_aif_esri.jpeg" alt="Landing Image" class="feature-img">
+</body>
+
+  
 {% endblock %}
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}
