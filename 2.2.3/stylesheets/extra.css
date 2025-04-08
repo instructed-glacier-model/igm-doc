@@ -52,6 +52,9 @@
   --md-admonition-fg-color:          var(--md-default-fg-color);
   --md-admonition-bg-color:          var(--md-default-bg-color);
   
+  .description_text {
+    color: rgba(0, 0, 0, 0.6);
+  }
 	/* --md-primary-fg-color--dark:  #cadeed; */
 	/* --md-primary-fg-color--light: #dbecf4; */
 
@@ -80,32 +83,38 @@
 
 
 
+
+.value_table {
+  font-style: italic;
+}
+
 .float_table {
-  background-color: rgba(37, 113, 228, 0.5);
+  background-color: #1b496586;
   border-radius: 0.2rem;
   padding: .1rem 0.2rem;
 }
 
+
 .int_table {
-  background-color: rgba(30, 139, 20, 0.466);
+  background-color: rgba(30, 139, 20, 0.35);
   border-radius: 0.2rem;
   padding: .1rem 0.2rem;
 }
 
 .integer_table {
-  background-color: rgba(207, 73, 55, 0.473);
+  background-color: #4b97c998;
   border-radius: 0.2rem;
   padding: .1rem 0.2rem;
 }
 
 .boolean_table {
-  background-color: rgba(37, 184, 32, 0.493);
+  background-color: #9db4c08a;
   border-radius: 0.2rem;
   padding: .1rem 0.2rem;
 }
 
 .string_table {
-  background-color: rgba(191, 36, 211, 0.575);
+  background-color: #d0e8f280;
   border-radius: 0.2rem;
   padding: .1rem 0.2rem;
 }
@@ -203,6 +212,9 @@
       0 #{px2rem(4px)} #{px2rem(10px)} hsla(0, 0%, 0%, 0.4),
       0 0              #{px2rem(1px)}  hsla(0, 0%, 0%, 0.35);
 	
+      .description_text {
+        color: rgba(255, 255, 255, 0.66);
+      }
   }
 
   /* https://www.realtimecolors.com/?colors=eceef3-070a0e-4667a4-243b65-2f559d&fonts=Inter-Inter */

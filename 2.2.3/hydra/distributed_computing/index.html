@@ -13,14 +13,14 @@
         <link rel="canonical" href="https://jouvetg.github.io/igm-doc.github.io/2.2.3/hydra/distributed_computing/">
       
       
-        <link rel="prev" href="../configuration/">
+        <link rel="prev" href="../custom_configurations/">
       
       
-        <link rel="next" href="../../examples/Examples/">
+        <link rel="next" href="../help/">
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -52,7 +52,9 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+      <link rel="stylesheet" href="../../stylesheets/style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hi-computing" class="md-skip">
+        <a href="#distributed-computing" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +105,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -131,7 +133,7 @@
     <input class="md-option" data-md-color-media="" data-md-color-scheme="glacier_light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
       </label>
     
   
@@ -141,7 +143,7 @@
     <input class="md-option" data-md-color-media="" data-md-color-scheme="glacier_dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
       </label>
     
   
@@ -149,13 +151,13 @@
       
     
     
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -164,15 +166,15 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -197,7 +199,7 @@
         <a href="https://github.com/jouvetg/igm" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     jouvetg/igm
@@ -363,7 +365,7 @@
       <a href="https://github.com/jouvetg/igm" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     jouvetg/igm
@@ -385,7 +387,6 @@
   
   <span class="md-ellipsis">
     Home
-    
   </span>
   
 
@@ -419,7 +420,6 @@
   
   <span class="md-ellipsis">
     Installation
-    
   </span>
   
 
@@ -445,7 +445,6 @@
   
   <span class="md-ellipsis">
     Quick Start
-    
   </span>
   
 
@@ -480,7 +479,6 @@
   
   <span class="md-ellipsis">
     Other
-    
   </span>
   
 
@@ -506,7 +504,6 @@
   
   <span class="md-ellipsis">
     Nvidia Drivers
-    
   </span>
   
 
@@ -528,7 +525,6 @@
   
   <span class="md-ellipsis">
     Virtual Environments
-    
   </span>
   
 
@@ -550,7 +546,6 @@
   
   <span class="md-ellipsis">
     WSL Windows
-    
   </span>
   
 
@@ -605,7 +600,6 @@
   
   <span class="md-ellipsis">
     Getting Started
-    
   </span>
   
 
@@ -630,8 +624,7 @@
         
   
   <span class="md-ellipsis">
-    Running IGM
-    
+    How to Run IGM
   </span>
   
 
@@ -668,7 +661,6 @@
   
   <span class="md-ellipsis">
     Using Hydra
-    
   </span>
   
 
@@ -694,7 +686,6 @@
   
   <span class="md-ellipsis">
     Introduction
-    
   </span>
   
 
@@ -711,12 +702,53 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../basics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration
-    
+    Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../working_directory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working Directory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom_configurations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Configurations
   </span>
   
 
@@ -742,17 +774,94 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Distributed Computing
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
     Distributed Computing
-    
   </span>
   
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-multirun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Multirun
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grid-searches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grid Searches
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-on-node-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running on Node Clusters
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Help
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -778,7 +887,6 @@
   
   <span class="md-ellipsis">
     Examples
-    
   </span>
   
 
@@ -820,7 +928,6 @@
   
   <span class="md-ellipsis">
     Modules
-    
   </span>
   
 
@@ -846,7 +953,6 @@
   
   <span class="md-ellipsis">
     What are modules?
-    
   </span>
   
 
@@ -868,7 +974,6 @@
   
   <span class="md-ellipsis">
     Core
-    
   </span>
   
 
@@ -903,7 +1008,6 @@
   
   <span class="md-ellipsis">
     Input
-    
   </span>
   
 
@@ -929,7 +1033,6 @@
   
   <span class="md-ellipsis">
     local
-    
   </span>
   
 
@@ -951,7 +1054,6 @@
   
   <span class="md-ellipsis">
     load_ncdf
-    
   </span>
   
 
@@ -973,7 +1075,6 @@
   
   <span class="md-ellipsis">
     load_tif
-    
   </span>
   
 
@@ -995,7 +1096,6 @@
   
   <span class="md-ellipsis">
     oggm_shop
-    
   </span>
   
 
@@ -1038,7 +1138,6 @@
   
   <span class="md-ellipsis">
     Processes
-    
   </span>
   
 
@@ -1064,7 +1163,6 @@
   
   <span class="md-ellipsis">
     avalanche
-    
   </span>
   
 
@@ -1086,7 +1184,6 @@
   
   <span class="md-ellipsis">
     clim_glacialindex
-    
   </span>
   
 
@@ -1108,7 +1205,6 @@
   
   <span class="md-ellipsis">
     clim_oggm
-    
   </span>
   
 
@@ -1130,7 +1226,6 @@
   
   <span class="md-ellipsis">
     data_assimilation
-    
   </span>
   
 
@@ -1152,7 +1247,6 @@
   
   <span class="md-ellipsis">
     enthalpy
-    
   </span>
   
 
@@ -1174,7 +1268,6 @@
   
   <span class="md-ellipsis">
     gflex
-    
   </span>
   
 
@@ -1196,7 +1289,6 @@
   
   <span class="md-ellipsis">
     glerosion
-    
   </span>
   
 
@@ -1218,7 +1310,6 @@
   
   <span class="md-ellipsis">
     iceflow
-    
   </span>
   
 
@@ -1240,7 +1331,6 @@
   
   <span class="md-ellipsis">
     particles
-    
   </span>
   
 
@@ -1262,7 +1352,6 @@
   
   <span class="md-ellipsis">
     pretraining
-    
   </span>
   
 
@@ -1284,7 +1373,6 @@
   
   <span class="md-ellipsis">
     read_output
-    
   </span>
   
 
@@ -1306,7 +1394,6 @@
   
   <span class="md-ellipsis">
     rockflow
-    
   </span>
   
 
@@ -1328,7 +1415,6 @@
   
   <span class="md-ellipsis">
     smb_accpdd
-    
   </span>
   
 
@@ -1350,7 +1436,6 @@
   
   <span class="md-ellipsis">
     smb_oggm
-    
   </span>
   
 
@@ -1372,7 +1457,6 @@
   
   <span class="md-ellipsis">
     smb_simple
-    
   </span>
   
 
@@ -1394,7 +1478,6 @@
   
   <span class="md-ellipsis">
     texture
-    
   </span>
   
 
@@ -1416,7 +1499,6 @@
   
   <span class="md-ellipsis">
     thk
-    
   </span>
   
 
@@ -1438,7 +1520,6 @@
   
   <span class="md-ellipsis">
     time
-    
   </span>
   
 
@@ -1460,7 +1541,6 @@
   
   <span class="md-ellipsis">
     vert_flow
-    
   </span>
   
 
@@ -1503,7 +1583,6 @@
   
   <span class="md-ellipsis">
     Output
-    
   </span>
   
 
@@ -1529,7 +1608,6 @@
   
   <span class="md-ellipsis">
     local
-    
   </span>
   
 
@@ -1551,7 +1629,6 @@
   
   <span class="md-ellipsis">
     write_ncdf
-    
   </span>
   
 
@@ -1573,7 +1650,6 @@
   
   <span class="md-ellipsis">
     write_tif
-    
   </span>
   
 
@@ -1595,7 +1671,6 @@
   
   <span class="md-ellipsis">
     write_ts
-    
   </span>
   
 
@@ -1617,7 +1692,6 @@
   
   <span class="md-ellipsis">
     plot2d
-    
   </span>
   
 
@@ -1647,7 +1721,6 @@
   
   <span class="md-ellipsis">
     User
-    
   </span>
   
 
@@ -1669,7 +1742,6 @@
   
   <span class="md-ellipsis">
     Variables
-    
   </span>
   
 
@@ -1711,7 +1783,6 @@
   
   <span class="md-ellipsis">
     Help
-    
   </span>
   
 
@@ -1737,7 +1808,6 @@
   
   <span class="md-ellipsis">
     Support
-    
   </span>
   
 
@@ -1759,7 +1829,6 @@
   
   <span class="md-ellipsis">
     IGM 2 to 3 transition notes
-    
   </span>
   
 
@@ -1781,7 +1850,6 @@
   
   <span class="md-ellipsis">
     FAQ
-    
   </span>
   
 
@@ -1810,7 +1878,6 @@
   
   <span class="md-ellipsis">
     Credits
-    
   </span>
   
 
@@ -1833,12 +1900,141 @@
                 
                   
 
-
   
   
 
 
-<h1 id="hi-computing">Hi computing</h1>
+<h1 id="distributed-computing">Distributed Computing</h1>
+<p>Another advantage with Hydra is that it is well suited for distributed computing. Specifically, it is not just meant for distributed computing but running experiments at scale. Previously, we learned that each IGM run requires a single experiment file (e.g. <code>params.yaml</code>). However, instead of running just one experiment, we can run multiple. We can do this with Hydra's flag <code>--multirun</code>.</p>
+<h2 id="using-multirun">Using Multirun</h2>
+<p>For example, lets say that I want to run the same experiment but just with two different values for one of my modules. In this example, lets take the <code>aletsch-basic</code> example's setup</p>
+<div class="language-yaml highlight"><span class="filename">param.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># @package _global_</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">core</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">url_data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.dropbox.com/scl/fo/kd7dix5j1tm75nj941pvi/h?rlkey=q7jtmf9yn3a970cqygdwne25j&amp;dl=0</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">logging_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nt">defaults</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /inputs</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /processes</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smb_simple</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iceflow</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thk</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vert_flow</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">particles</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /outputs</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plot2d</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="nt">inputs</span><span class="p">:</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">     </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input.nc</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">     </span><span class="nt">coarsening</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">       </span><span class="nt">ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="nt">smb_simple</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="nt">array</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;time&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;gradabl&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;gradacc&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;ela&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;accmax&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1900</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2800</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2000</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2900</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2100</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.009</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.005</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3300</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="nt">time</span><span class="p">:</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1900.0</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000.0</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="nt">save</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="nt">outputs</span><span class="p">:</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">  </span><span class="nt">plot2d</span><span class="p">:</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="nt">live</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span></code></pre></div>
+<p>Now, lets assume I want to run two experiments: one with <code>start=1900</code> and another with <code>start=1950</code>. Instead of manually running two experiments back-to-back, I can run the following command</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure you add <code>--multirun</code> at the end of the command. Additionally, watch out for spaces (i.e. <code>1990,1950</code> and not <code>1990, 1950</code>).</p>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>processes.time.start<span class="o">=</span><span class="m">1990</span>,1950<span class="w"> </span>--multirun
+</span></code></pre></div>
+<p>which will result in Hydra launching two jobs <em>sequentially</em>. Importantly, the default bahvior is to use the <code>basic</code> launcher, which means that the jobs will be run one at a time. We can verify this by looking at the terminal, where we see the message</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">11</span>:34:59,755<span class="o">][</span>HYDRA<span class="o">]</span><span class="w"> </span>Launching<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>locally
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="hll"><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">11</span>:34:59,755<span class="o">][</span>HYDRA<span class="o">]</span><span class="w">    </span><span class="c1">#0 : +experiment=params processes.time.start=1990</span>
+</span></span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>...
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>CODE<span class="w"> </span>IS<span class="w"> </span>RUNNING<span class="w"> </span>HERE
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>...
+</span></code></pre></div>
+<p>However, most jobs are independent, so instead we should ideally launch both jobs at the same time. This is where we can use the <code>joblib</code> launcher instead. To do this, we can instead use the command</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure to install it beforehand with <code>pip install hydra-joblib-launcher --upgrade</code></p>
+</div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>processes.time.start<span class="o">=</span><span class="m">1990</span>,1950<span class="w"> </span>hydra/launcher<span class="o">=</span>joblib<span class="w"> </span>--multirun
+</span></code></pre></div>
+<p>which will produce the following output</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">11</span>:43:51,156<span class="o">][</span>HYDRA<span class="o">]</span><span class="w"> </span>Joblib.Parallel<span class="o">(</span><span class="nv">n_jobs</span><span class="o">=</span>-1,backend<span class="o">=</span>loky,prefer<span class="o">=</span>processes,require<span class="o">=</span>None,verbose<span class="o">=</span><span class="m">0</span>,timeout<span class="o">=</span>None,pre_dispatch<span class="o">=</span><span class="m">2</span>*n_jobs,batch_size<span class="o">=</span>auto,temp_folder<span class="o">=</span>None,max_nbytes<span class="o">=</span>None,mmap_mode<span class="o">=</span>r<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>launching<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nb">jobs</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">11</span>:43:51,156<span class="o">][</span>HYDRA<span class="o">]</span><span class="w"> </span>Launching<span class="w"> </span>jobs,<span class="w"> </span>sweep<span class="w"> </span>output<span class="w"> </span>dir<span class="w"> </span>:<span class="w"> </span>multirun/2025-04-08/11-43-50
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">11</span>:43:51,156<span class="o">][</span>HYDRA<span class="o">]</span><span class="w">    </span><span class="c1">#0 : +experiment=params processes.time.start=1990</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">11</span>:43:51,156<span class="o">][</span>HYDRA<span class="o">]</span><span class="w">    </span><span class="c1">#1 : +experiment=params processes.time.start=1950</span>
+</span></code></pre></div>
+<p>Here we see that both jobs were launched in parallel instead of one at at a time. We can also see that there are various parameters we can choose like the number of jobs or the batch size. For an exhaustive list, please go to Hydra's <a href="https://hydra.cc/docs/plugins/joblib_launcher/">page</a>.</p>
+<h2 id="grid-searches">Grid Searches</h2>
+<p>One cool extension of this is that it is very easy to launch a multitude of jobs where Hydra will simply launch all possible combinations of the parameters. For instance, lets say that I do not only want to change the start date but also the end date and try all 4 combinations. To do this, I use the same command but just specify the end date and include a comma between potential values:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>processes.time.start<span class="o">=</span><span class="m">1990</span>,1950<span class="w"> </span>processes.time.end<span class="o">=</span><span class="m">2000</span>,2050<span class="w"> </span>hydra/launcher<span class="o">=</span>joblib<span class="w"> </span>--multirun
+</span></code></pre></div>
+<p>which will produce the following message from Hydra</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">12</span>:04:41,425<span class="o">][</span>HYDRA<span class="o">]</span><span class="w"> </span>Joblib.Parallel<span class="o">(</span><span class="nv">n_jobs</span><span class="o">=</span>-1,backend<span class="o">=</span>loky,prefer<span class="o">=</span>processes,require<span class="o">=</span>None,verbose<span class="o">=</span><span class="m">0</span>,timeout<span class="o">=</span>None,pre_dispatch<span class="o">=</span><span class="m">2</span>*n_jobs,batch_size<span class="o">=</span>auto,temp_folder<span class="o">=</span>None,max_nbytes<span class="o">=</span>None,mmap_mode<span class="o">=</span>r<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>launching<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="nb">jobs</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">12</span>:04:41,425<span class="o">][</span>HYDRA<span class="o">]</span><span class="w"> </span>Launching<span class="w"> </span>jobs,<span class="w"> </span>sweep<span class="w"> </span>output<span class="w"> </span>dir<span class="w"> </span>:<span class="w"> </span>multirun/2025-04-08/12-04-40
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">12</span>:04:41,425<span class="o">][</span>HYDRA<span class="o">]</span><span class="w">    </span><span class="c1">#0 : +experiment=params processes.time.start=1990 processes.time.end=2000</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">12</span>:04:41,425<span class="o">][</span>HYDRA<span class="o">]</span><span class="w">    </span><span class="c1">#1 : +experiment=params processes.time.start=1990 processes.time.end=2050</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">12</span>:04:41,425<span class="o">][</span>HYDRA<span class="o">]</span><span class="w">    </span><span class="c1">#2 : +experiment=params processes.time.start=1950 processes.time.end=2000</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="o">[</span><span class="m">2025</span>-04-08<span class="w"> </span><span class="m">12</span>:04:41,425<span class="o">][</span>HYDRA<span class="o">]</span><span class="w">    </span><span class="c1">#3 : +experiment=params processes.time.start=1950 processes.time.end=2050</span>
+</span></code></pre></div>
+<p>In addition to grid searchs, Hydra actually also allows for smarter searches using Beysian approaches or other inverse algorithms. To learn more, please visit their <a href="https://hydra.cc/docs/plugins/ax_sweeper/">sweepers</a> section.</p>
+<h2 id="running-on-node-clusters">Running on Node Clusters</h2>
+<p>Here we will explore a basic example of when you have multiple GPU devices and want to run IGM on both devices for respective experiments. Above, you learned how to launch 2 experiments at the same time. If we only have a single GPU device, IGM will try to use the same GPU for both experiments, which will result in potential conflicts. To combat this, we can still use <code>joblib</code> but when on a cluster of multple GPUs. For example, lets say our node looks like the following (when running <code>nvidia-smi</code>)</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Tue<span class="w"> </span>Apr<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">11</span>:52:52<span class="w"> </span><span class="m">2025</span><span class="w">       </span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>+---------------------------------------------------------------------------------------+
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">|</span><span class="w"> </span>NVIDIA-SMI<span class="w"> </span><span class="m">535</span>.161.07<span class="w">             </span>Driver<span class="w"> </span>Version:<span class="w"> </span><span class="m">535</span>.161.07<span class="w">   </span>CUDA<span class="w"> </span>Version:<span class="w"> </span><span class="m">12</span>.2<span class="w">     </span><span class="p">|</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">|</span>-----------------------------------------+----------------------+----------------------+
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">|</span><span class="w"> </span>GPU<span class="w">  </span>Name<span class="w">                 </span>Persistence-M<span class="w"> </span><span class="p">|</span><span class="w"> </span>Bus-Id<span class="w">        </span>Disp.A<span class="w"> </span><span class="p">|</span><span class="w"> </span>Volatile<span class="w"> </span>Uncorr.<span class="w"> </span>ECC<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">|</span><span class="w"> </span>Fan<span class="w">  </span>Temp<span class="w">   </span>Perf<span class="w">          </span>Pwr:Usage/Cap<span class="w"> </span><span class="p">|</span><span class="w">         </span>Memory-Usage<span class="w"> </span><span class="p">|</span><span class="w"> </span>GPU-Util<span class="w">  </span>Compute<span class="w"> </span>M.<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">|</span><span class="w">                                         </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">               </span>MIG<span class="w"> </span>M.<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">|</span><span class="o">=========================================</span>+<span class="o">======================</span>+<span class="o">======================</span><span class="p">|</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>NVIDIA<span class="w"> </span>GeForce<span class="w"> </span>RTX<span class="w"> </span><span class="m">4090</span><span class="w">        </span>On<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">00000000</span>:02:00.0<span class="w"> </span>Off<span class="w"> </span><span class="p">|</span><span class="w">                  </span>Off<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">|</span><span class="w"> </span><span class="m">90</span>%<span class="w">   </span>27C<span class="w">    </span>P8<span class="w">              </span>16W<span class="w"> </span>/<span class="w"> </span>450W<span class="w"> </span><span class="p">|</span><span class="w">      </span>0MiB<span class="w"> </span>/<span class="w"> </span>24564MiB<span class="w"> </span><span class="p">|</span><span class="w">      </span><span class="m">0</span>%<span class="w">      </span>Default<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="p">|</span><span class="w">                                         </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">                  </span>N/A<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>+-----------------------------------------+----------------------+----------------------+
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">|</span><span class="w">   </span><span class="m">1</span><span class="w">  </span>NVIDIA<span class="w"> </span>GeForce<span class="w"> </span>RTX<span class="w"> </span><span class="m">4090</span><span class="w">        </span>On<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">00000000</span>:83:00.0<span class="w"> </span>Off<span class="w"> </span><span class="p">|</span><span class="w">                  </span>Off<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="p">|</span><span class="w"> </span><span class="m">90</span>%<span class="w">   </span>26C<span class="w">    </span>P8<span class="w">              </span>18W<span class="w"> </span>/<span class="w"> </span>450W<span class="w"> </span><span class="p">|</span><span class="w">      </span>0MiB<span class="w"> </span>/<span class="w"> </span>24564MiB<span class="w"> </span><span class="p">|</span><span class="w">      </span><span class="m">0</span>%<span class="w">      </span>Default<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="p">|</span><span class="w">                                         </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">                  </span>N/A<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>+-----------------------------------------+----------------------+----------------------+
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>+---------------------------------------------------------------------------------------+
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="p">|</span><span class="w"> </span>Processes:<span class="w">                                                                            </span><span class="p">|</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="p">|</span><span class="w">  </span>GPU<span class="w">   </span>GI<span class="w">   </span>CI<span class="w">        </span>PID<span class="w">   </span>Type<span class="w">   </span>Process<span class="w"> </span>name<span class="w">                            </span>GPU<span class="w"> </span>Memory<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="p">|</span><span class="w">        </span>ID<span class="w">   </span>ID<span class="w">                                                             </span>Usage<span class="w">      </span><span class="p">|</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="p">|</span><span class="o">=======================================================================================</span><span class="p">|</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="p">|</span><span class="w">  </span>No<span class="w"> </span>running<span class="w"> </span>processes<span class="w"> </span>found<span class="w">                                                           </span><span class="p">|</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>+---------------------------------------------------------------------------------------+
+</span></code></pre></div>
+<p>Here you will see two GPUs: <code>NVIDIA RTX 4090</code>. Now, lets still use the <code>joblib</code> launcher, but before doing so, specify a different GPU device for each run. To do so, we can locate the GPU ID on the far left (in this case, we have <code>0</code> and <code>1</code>) and either in our <code>params</code> file or the commandline, we can select the GPU device. In our case, lets say we have two experiments</p>
+<p><div class="language-yaml highlight"><span class="filename">experiment_1</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">core</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">hardware</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">visible_gpus</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nn">...</span>
+</span></code></pre></div>
+<div class="language-yaml highlight"><span class="filename">experiment_2</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">core</span><span class="p">:</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">hardware</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">visible_gpus</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">]</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nn">...</span>
+</span></code></pre></div></p>
+<p>Then, by simply doing</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>experiment_1,experiment_2<span class="w"> </span>hydra/launcher<span class="o">=</span>joblib<span class="w"> </span>--multirun
+</span></code></pre></div>
+<p>we launch both experiments on both GPUs.</p>
+<p>Hydra also allows one to use <a href="https://hydra.cc/docs/plugins/submitit_launcher/">SLURM</a> scipts as well as AWS clusters (using <a href="https://hydra.cc/docs/plugins/ray_launcher/">Ray</a>). While we do not currently have an example, we recommend you to again go to Hydra's page to learn more.</p>
 
 
 
@@ -1868,35 +2064,35 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration">
+          <a href="../custom_configurations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Custom Configurations">
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Previous
               </span>
               <div class="md-ellipsis">
-                Configuration
+                Custom Configurations
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../examples/Examples/" class="md-footer__link md-footer__link--next" aria-label="Next: Examples">
+          <a href="../help/" class="md-footer__link md-footer__link--next" aria-label="Next: Help">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Examples
+                Help
               </div>
             </div>
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
             </div>
           </a>
         
@@ -1927,10 +2123,10 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
