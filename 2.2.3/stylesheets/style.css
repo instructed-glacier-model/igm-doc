@@ -94,13 +94,13 @@
 
 /* [data-md-color-scheme="default"] .feature-img, */
 [data-md-color-scheme="glacier_light"] .feature-img {
-  content: url("../assets/images/IGM_landing_page_light.svg");
+  content: url("../assets/images/IGM_landing_page_light.jpeg");
 }
 
 
 /* Image for dark theme */
 [data-md-color-scheme="glacier_dark"] .feature-img {
-  content: url("../assets/images/IGM_landing_page_dark.svg");
+  content: url("../assets/images/IGM_landing_page_dark.jpeg");
 }
 /* .md-nav__item.md-nav__item--active {
   display: none !important;
