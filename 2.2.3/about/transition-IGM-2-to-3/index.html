@@ -2135,6 +2135,18 @@ or in case there is no parameter (the file must exist as follows even if no para
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="l l-Scalar l-Scalar-Plain">null</span>
 </span></code></pre></div></p>
 <p>It is important to note that user modules take precedence over official modules. If a user module shares the same name as an official module, the user module will override the official one, and the official module will be ignored.</p>
+<h2 id="how-to-transition-your-own-user-modules">How to transition your own user modules?</h2>
+<ul>
+<li>
+<p><strong>Parameter changes:</strong> Update your user module code to replace each parameter reference (e.g., <code>params.iflo_exp_glen</code>) with the new naming convention (e.g., <code>cfg.processes.iceflow.physics.exp_glen</code>) as outlined in the parameter change tables below.</p>
+</li>
+<li>
+<p><strong>Function updates:</strong> Modify the function argument for <code>initialize</code>, <code>update</code>, and <code>finalize</code> to accept <code>cfg</code> as an argument instead of <code>params</code>. The <code>state</code> argument remains unchanged.</p>
+</li>
+<li>
+<p><strong>Own parameter:</strong> Remove the <code>params(parser)</code> function that previously defined your parameter list. Instead, transfer your parameter definitions into the appropriate YAML files within the <code>conf</code> folder, following the structure described in the "Custom modules (now called 'user')" section.</p>
+</li>
+</ul>
 <h2 id="complex-modules-made-more-readables-and-more-customizable">Complex modules made more readables, and more customizable</h2>
 <p>Key modules like <code>iceflow</code> and <code>data_assimilation</code> (formerly optimize) have been split into sub-files to improve readability, maintainability, and customization. Sometimes, you may need to modify an existing built-in module, e.g. to test a new feature in the iceflow emulator/solver, or new cost in the data assimilation. This can be achieved by creating a user module that overrides the built-in functionality. Check at the page on <code>user modules</code> in the documentation.</p>
 <h1 id="parameter-changes">Parameter changes</h1>
