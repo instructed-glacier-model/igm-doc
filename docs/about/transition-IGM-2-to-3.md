@@ -270,6 +270,14 @@ null
 
 It is important to note that user modules take precedence over official modules. If a user module shares the same name as an official module, the user module will override the official one, and the official module will be ignored.
 
+## How to transition your own user modules? 
+
+- **Parameter changes:** Update your user module code to replace each parameter reference (e.g., `params.iflo_exp_glen`) with the new naming convention (e.g., `cfg.processes.iceflow.physics.exp_glen`) as outlined in the parameter change tables below.
+
+- **Function updates:** Modify the function argument for `initialize`, `update`, and `finalize` to accept `cfg` as an argument instead of `params`. The `state` argument remains unchanged.
+
+- **Own parameter:** Remove the `params(parser)` function that previously defined your parameter list. Instead, transfer your parameter definitions into the appropriate YAML files within the `conf` folder, following the structure described in the "Custom modules (now called 'user')" section.
+
 ## Complex modules made more readables, and more customizable
 
 Key modules like `iceflow` and `data_assimilation` (formerly optimize) have been split into sub-files to improve readability, maintainability, and customization. Sometimes, you may need to modify an existing built-in module, e.g. to test a new feature in the iceflow emulator/solver, or new cost in the data assimilation. This can be achieved by creating a user module that overrides the built-in functionality. Check at the page on `user modules` in the documentation.
