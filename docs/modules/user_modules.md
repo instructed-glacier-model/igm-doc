@@ -83,6 +83,8 @@ Then, in the parameter file `params.yaml`, you need to:
 Here is an example of how to modify `params.yaml`:
 
 ```yaml
+ @package _global_
+
 defaults:
 
   - /user/conf/processes@processes.mysmb: mysmb
