@@ -43,6 +43,7 @@ nav:
       - clim_oggm: modules/processes/clim_oggm.md
       - data_assimilation: modules/processes/data_assimilation.md
       - enthalpy: modules/processes/enthalpy.md
+      - flow_accumulation: modules/processes/flow_accumulation.md
       - gflex: modules/processes/gflex.md
       - glerosion: modules/processes/glerosion.md
       - iceflow: modules/processes/iceflow.md
