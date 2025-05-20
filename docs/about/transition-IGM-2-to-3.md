@@ -62,13 +62,13 @@ core:
   url_data: "https://www.dropbox.com/scl/fo/8ixpy27i67s04bp7uixoq/h?rlkey=0ye7rd4zkcqfhvzx7suunw3bk&dl=0"
 
 defaults:
-  - override /input: [load_ncdf]
-  - override /modules: [smb_simple, iceflow, time, thk]
-  - override /output: [write_ncdf, plot2d]
+  - override /inputs: [local]
+  - override /processes: [smb_simple, iceflow, time, thk]
+  - override /outputs: [local, plot2d]
 
 inputs:
-  load_ncdf:
-    input_file: data/input.nc
+  local:
+    input_file: input.nc
 
 processes:
   iceflow:
@@ -180,6 +180,8 @@ In the upcoming release, several default parameter values will be updated to imp
 - **`fix_opti_normalization_issue` (current default: false):** A normalization issue has been identified in the current cost function for data assimilation, where some terms use sums while others use means. This inconsistency has been compensated for by adjusting regularization parameters. The next release will address this issue by setting this parameter to `true`, ensuring consistent use of means throughout. Consequently, users will need to significantly increase the regularization parameters (approximately \(10^3\) for thickness and \(10^{10}\) for sliding coefficients).
 
 - **`log_slidingco` (current default: false):** In the next release, the optimization will handle the square root of `slidingco` (scaled) instead of `slidingco` directly. This approach ensures that `slidingco` remains positive without explicitly enforcing positivity. Note that this change will affect the scaling of `slidingco` (approximately \(10^{-6}\)) when this option is set to `true`.
+
+- **`lr_init`` (current default: 0.0001):** In the next release, it will be reduced to 0.001 to make the training more agressive.
 
 # In more details (for developpers)
 
