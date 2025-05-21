@@ -244,7 +244,7 @@ User modules are very useful when customizing applications. They can be used to 
             └── my_outputs_module.yaml 
 ```
 
-where `my_processes_module.py` has the following structure (and require to define function `initialize`, `update`, and `finalize`):
+where `my_processes_module.py` has the following structure (and requires the definitions of functions `initialize`, `update`, and `finalize`):
 
 ```python
 def initialize(cfg,state):
@@ -258,7 +258,7 @@ def finalize(cfg,state):
   pass
 ```
 
-Note that `my_inputs_module.py` and `my_outputs_module.py` only require function `run` (and `initialize` for output).
+Note that `my_inputs_module.py` and `my_outputs_module.py` only require a single function called `run` (with the addition of an `initialize` function for output), defined in the same way as the three functions above.
 
 Parameter files located in `conf/inputs`, `conf/processes`, and `conf/outputs` look like 
 ```yaml
