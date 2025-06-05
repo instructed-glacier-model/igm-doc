@@ -2092,6 +2092,14 @@
 <h2 id="oggm_shop-requires-coupling-with-load_ncdf-or-local"><code>oggm_shop</code> requires coupling with <code>load_ncdf</code> or <code>local</code></h2>
 <p>The <code>oggm_shop</code> module now exclusively handles downloading data (e.g., RGIXXXX folders) using OGGM and converting it into a NetCDF file (<code>input.nc</code>) that adheres to IGM's naming conventions. However, it no longer performs the task of loading this data into IGM. To process the downloaded data, you must pair <code>oggm_shop</code> with either the <code>load_ncdf</code> or <code>local</code> modules. </p>
 <p>For example, if you use <code>oggm_shop</code>, you must include <code>load_ncdf</code> or <code>local</code> as additional <code>inputs</code> modules in your configuration.</p>
+<h2 id="oggm_shop"><code>oggm_shop</code></h2>
+<p>The oggm_shop module has been substantially re-organized. </p>
+<p>Parameters <code>RGI_version</code> and <code>RGI_product</code> were removed since there are directly deduced from the RGI ID</p>
+<h2 id="utils-re-structuring"><code>utils</code> re-structuring</h2>
+<p>The former <code>utils.py</code> file has been re-structured forlder-wise for clarity, this means that some import like</p>
+<p><code>from ..utils import getmag</code></p>
+<p>must be changed to</p>
+<p><code>from igm.utils.math.getmag import getmag</code></p>
 <h2 id="default-parameter-value-changes-upcoming-release">Default Parameter Value Changes (Upcoming Release)</h2>
 <p>In the upcoming release, several default parameter values will be updated to improve performance and usability. These changes are not applied yet but will be included in the next version:</p>
 <ul>
@@ -2162,7 +2170,7 @@
 </span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>        └── outputs
 </span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>            └── my_outputs_module.yaml 
 </span></code></pre></div>
-<p>where <code>my_processes_module.py</code> has the following structure (and require to define function <code>initialize</code>, <code>update</code>, and <code>finalize</code>):</p>
+<p>where <code>my_processes_module.py</code> has the following structure (and requires the definitions of functions <code>initialize</code>, <code>update</code>, and <code>finalize</code>):</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  <span class="o">...</span> 
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
@@ -2173,7 +2181,7 @@
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
 </span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>  <span class="k">pass</span>
 </span></code></pre></div>
-<p>Note that <code>my_inputs_module.py</code> and <code>my_outputs_module.py</code> only require function <code>run</code> (and <code>initialize</code> for output).</p>
+<p>Note that <code>my_inputs_module.py</code> and <code>my_outputs_module.py</code> only require a single function called <code>run</code> (with the addition of an <code>initialize</code> function for output), defined in the same way as the three functions above.</p>
 <p>Parameter files located in <code>conf/inputs</code>, <code>conf/processes</code>, and <code>conf/outputs</code> look like 
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">time_resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">365</span>
