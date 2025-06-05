@@ -166,6 +166,22 @@ A new I/O module, `local`, has been introduced to replace the `load_XXX` and `wr
 The `oggm_shop` module now exclusively handles downloading data (e.g., RGIXXXX folders) using OGGM and converting it into a NetCDF file (`input.nc`) that adheres to IGM's naming conventions. However, it no longer performs the task of loading this data into IGM. To process the downloaded data, you must pair `oggm_shop` with either the `load_ncdf` or `local` modules. 
 
 For example, if you use `oggm_shop`, you must include `load_ncdf` or `local` as additional `inputs` modules in your configuration.
+
+## `oggm_shop` 
+
+The oggm_shop module has been substantially re-organized. 
+
+Parameters `RGI_version` and `RGI_product` were removed since there are directly deduced from the RGI ID
+
+## `utils` re-structuring
+
+The former `utils.py` file has been re-structured forlder-wise for clarity, this means that some import like
+
+`from ..utils import getmag`
+
+must be changed to
+
+`from igm.utils.math.getmag import getmag`
  
 ## Default Parameter Value Changes (Upcoming Release)
 
