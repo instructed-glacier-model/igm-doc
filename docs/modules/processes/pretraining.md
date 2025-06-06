@@ -38,14 +38,14 @@ After downloading (or generating your own dataset), organize the folder `surflib
  
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/processes/pretraining.yaml" %}
+{% include  "../../../../igm/conf/processes/pretraining.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/processes/pretraining.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/processes/pretraining.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/processes/pretraining.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/pretraining.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

@@ -14,7 +14,7 @@ This module depends on the `xarray` and `rioxarray` Python libraries.
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/inputs/local.yaml" %}
+{% include  "../../../../igm/conf/inputs/local.yaml" %}
 ~~~
 
 ## Parameters
@@ -47,9 +47,10 @@ This module depends on the `xarray` and `rioxarray` Python libraries.
 {% endmacro %}
 
 
-{% set config = load_yaml('igm/igm/conf/inputs/local.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/inputs/local.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+
+{% set config = load_yaml('../igm/conf/inputs/local.yaml') %}
+{% set help = load_yaml('../igm/conf_help/inputs/local.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

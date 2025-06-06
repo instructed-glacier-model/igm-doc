@@ -17,15 +17,15 @@ If the `clim_trend_array` parameter is set to an empty list (`[]`), the module r
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/processes/clim_oggm.yaml" %}
+{% include  "../../../../igm/conf/processes/clim_oggm.yaml" %}
 ~~~
 
 ## Parameters
 Here we store a table with
 
-{% set config = load_yaml('igm/igm/conf/processes/clim_oggm.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/processes/clim_oggm.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/processes/clim_oggm.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/clim_oggm.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

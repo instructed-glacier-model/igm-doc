@@ -46,14 +46,14 @@ When treating very large arrays, retraining must be done sequentially in a patch
  
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/processes/iceflow.yaml" %}
+{% include  "../../../../igm/conf/processes/iceflow.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/processes/iceflow.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/processes/iceflow.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/processes/iceflow.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/iceflow.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

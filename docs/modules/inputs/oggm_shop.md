@@ -37,14 +37,14 @@ The module depends (of course) on the `oggm` library. Unfortunately the module w
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/inputs/oggm_shop.yaml" %}
+{% include  "../../../../igm/conf/inputs/oggm_shop.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/inputs/oggm_shop.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/inputs/oggm_shop.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/inputs/oggm_shop.yaml') %}
+{% set help = load_yaml('../igm/conf_help/inputs/oggm_shop.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

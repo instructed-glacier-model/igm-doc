@@ -8,14 +8,14 @@ This IGM module simulates the redistribution of snow and ice due to gravitationa
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/processes/avalanche.yaml" %}
+{% include  "../../../../igm/conf/processes/avalanche.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/processes/avalanche.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/processes/avalanche.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/processes/avalanche.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/avalanche.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

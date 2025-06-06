@@ -25,14 +25,14 @@ Note that the two climates ${\rm CL}_0$ and ${\rm CL}_1$ are defined on two diff
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/processes/clim_glacialindex.yaml" %}
+{% include  "../../../../igm/conf/processes/clim_glacialindex.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/processes/clim_glacialindex.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/processes/clim_glacialindex.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/processes/clim_glacialindex.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/clim_glacialindex.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

@@ -8,14 +8,14 @@ This module requires the `rasterio` library.
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/outputs/write_tif.yaml" %}
+{% include  "../../../../igm/conf/outputs/write_tif.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/outputs/write_tif.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/outputs/write_tif.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/outputs/write_tif.yaml') %}
+{% set help = load_yaml('../igm/conf_help/outputs/write_tif.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

@@ -16,14 +16,14 @@ This module depends on `netCDF4`.
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/inputs/load_ncdf.yaml" %}
+{% include  "../../../../igm/conf/inputs/load_ncdf.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/inputs/load_ncdf.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/inputs/load_ncdf.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/inputs/load_ncdf.yaml') %}
+{% set help = load_yaml('../igm/conf_help/inputs/load_ncdf.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

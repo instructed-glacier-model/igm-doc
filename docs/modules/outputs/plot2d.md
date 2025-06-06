@@ -8,14 +8,14 @@ If the `particles` module is activated, you can overlay particles on the plot by
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/outputs/plot2d.yaml" %}
+{% include  "../../../../igm/conf/outputs/plot2d.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/outputs/plot2d.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/outputs/plot2d.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/outputs/plot2d.yaml') %}
+{% set help = load_yaml('../igm/conf_help/outputs/plot2d.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

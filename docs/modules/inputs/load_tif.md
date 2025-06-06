@@ -14,14 +14,14 @@ This module depends on `rasterio`.
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/inputs/load_tif.yaml" %}
+{% include  "../../../../igm/conf/inputs/load_tif.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/inputs/load_tif.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/inputs/load_tif.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/inputs/load_tif.yaml') %}
+{% set help = load_yaml('../igm/conf_help/inputs/load_tif.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

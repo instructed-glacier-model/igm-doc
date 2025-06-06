@@ -10,14 +10,14 @@ This module operates exclusively on the CPU, which may pose challenges when proc
 
 ## Config Structure  
 ~~~yaml
-{% include  "../../../igm/igm/conf/processes/gflex.yaml" %}
+{% include  "../../../../igm/conf/processes/gflex.yaml" %}
 ~~~
 
 ## Parameters
 
-{% set config = load_yaml('igm/igm/conf/processes/gflex.yaml') %}
-{% set help = load_yaml('igm/igm/conf_help/processes/gflex.yaml') %}
-{% set header = load_yaml('igm/igm/conf_help/header.yaml') %}
+{% set config = load_yaml('../igm/conf/processes/gflex.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/gflex.yaml') %}
+{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

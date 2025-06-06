@@ -85,7 +85,9 @@ plugins:
         # - igm/igm/conf_help/modules/avalanche.yaml
         # - avalanche: igm/igm/conf/modules/avalanche.yaml
         # - avalanche_help: igm/igm/conf_help/modules/avalanche.yaml
-      include_dir: ./igm/igm/
+      # include_dir: ../igm # relative to this file - works for mkdocs deployment
+      # include_dir: ../../../../igm/
+      # include_dir: ./igm/igm/
       # render_by_default: false
   - table-reader
 
