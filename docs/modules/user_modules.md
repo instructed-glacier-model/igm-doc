@@ -127,6 +127,8 @@ igm.processes.particles.particles.seeding_particles = seeding_particles
 
 By following this approach, you can **surgically** extend or modify the behavior of existing modules while preserving the original functionality. This ensures flexibility and adaptability for specific use cases without compromising the integrity of the built-in modules.
 
+**Warning:** To override any IGM python  function (with `igm.processes.particles.particles.seeding_particles = seeding_particles` in the previous example), you must make sure to apply it in the file the function (here `seeding_particles`) is called (here in function `igm.processes.particles.particles`), and not where it is defined (since it can be defined in another place), this idea here is to overide either the python function or the import.
+
 # Tensorflow
 
 IGM relies on the [TensorFlow 2.0](https://www.tensorflow.org/) library to achieve computational efficiency, particularly on GPUs. All variables, such as ice thickness, are represented as TensorFlow tensor objects. These tensors can only be modified using TensorFlow operations, which are inherently **vectorized**. This vectorization allows operations to be applied simultaneously across all entries of 2D gridded fields, enabling parallel and efficient execution.
