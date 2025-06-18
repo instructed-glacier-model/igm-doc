@@ -1,4 +1,5 @@
 # Module `particles`
+
 This IGM module implements a particle tracking routine, which computes the trajectories of virtual particles advected by the ice flow. The routine operates in real-time during the forward model run, and a large number of particles can be processed efficiently thanks to the parallel implementation with TensorFlow. The routine includes particle seeding (by default in the accumulation area at regular intervals, though this can be customized) and tracking (advection by the velocity field in 3D). Note that there is currently no strategy for removing particles, which may lead to memory overload when using this routine for long durations and/or with high seeding intensity.
 
 There are currently two implementations (selectable via the `tracking_method` parameter):
@@ -30,9 +31,14 @@ X,            X,           X,           X,           X,           X,           X
 
 providing, in turn, the particle ID, x, y, z positions, the relative height within the ice column, the seeding time, and the englacial residence time.
 
-**Contributors:** Guillaume Jouvet, Claire-Mathile Stücki
+**Note:** The module has 2 implementations for computing particle trajectories: 1) the original one based on `tensorflow`, 2) an optimized one (implemented by B. Finley) based on cupy and numba. One can switch to one implementation to another with parameter `computation_library`.
+
+Also, the module has 2 implmentation for saving results: 1) the original one based on `numpy` 2) an optimized one (implemented by B. Finley) based on `cudf`. One can switch to one implementation to another with parameter `output_format`. When using the `cudf` one, several choice of output formats are available including : "csv", "feather", and "parquet".
+
+**Contributors:** Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley
 
 ## Config Structure  
+
 ~~~yaml
 {% include  "../../../../igm/conf/processes/particles.yaml" %}
 ~~~
