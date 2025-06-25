@@ -59,14 +59,14 @@ For example, from the custom modules [page](../modules/user_modules.md), we know
 .
 └── user
   ├── code
-  │   └── input
+  │   └── inputs
   │   │   └── my_module.py
   │   └── processes
   │   │   └── my_module.py
   │   └── outputs
   │       └── my_module.py
   └── conf
-    └── input
+    └── inputs
     │   └── my_module.yaml
     └── processes
     │   └── my_module.yaml

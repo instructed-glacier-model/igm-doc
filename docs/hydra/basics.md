@@ -80,10 +80,10 @@ Now, lets break down this structure. At the outermost indentation level (that is
 If we would just want to use IGM's default modules and default parameters (which would rarely be the case), we could simply specify all modules in the `defaults` list inside our `params` file.
 
 !!! warning "Align with the Global Level"
-	Do not forget to include `@package _global_` inside your params file, or else IGM will structure it incorrectly. If you do forget it, it will not overwrite the default parameters and will just create a separate section with the parameters you specified. It will also not necessarily throw an error, so please verify that your parameters are correctly overwriting the default ones.
+	Do not forget to include `# @package _global_` inside your params file, or else IGM will structure it incorrectly. If you do forget it, it will not overwrite the default parameters and will just create a separate section with the parameters you specified. It will also not necessarily throw an error, so please verify that your parameters are correctly overwriting the default ones.
 
 ```yaml
-@package _global_
+# @package _global_
 
 defaults:
   - override /inputs: 
@@ -102,7 +102,7 @@ defaults:
 However, most of the time we would like to adjust the default parameters. In order to do this, we can specify the parameters in an additional section in the same level as `defaults`. For instance, if we wanted to change the default time frame our simulation runs, we could make the following adjustment
 
 ```yaml hl_lines="6 9 17-21"
-@package _global_
+# @package _global_
 
 defaults:
   - override /inputs: 
@@ -157,7 +157,7 @@ igm_run +experiment=params processes.time.start=1990
 which will result in
 
 ```yaml hl_lines="19"
-@package _global_
+# @package _global_
 
 defaults:
   - override /inputs: 

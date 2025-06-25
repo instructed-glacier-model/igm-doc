@@ -56,7 +56,7 @@ core:  # core IGM parameter (looging, GPU, ...)
     gpu_info: False
 
 defaults: # declare the list of modules to be used
-  - override /input: [load_ncdf]
+  - override /inputs: [load_ncdf]
   - override /modules: [smb_simple, iceflow, time, thk]
   - override /output: [write_ncdf, plot2d]
 

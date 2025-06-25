@@ -2,39 +2,43 @@
 
 It is easy to create your own module in a separate Python file and integrate it into the workflow. For instance, you might want to implement a climate or surface mass balance model tailored to a specific application. To achieve this, it is crucial to understand the structure and operation of IGM. User modules follow the same structure as built-in ones, so you can use built-in modules as a reference or starting point when designing your own.
 
+It is important to note that there are two main parts of creating custom modules: the module script (this page) and the module's configuration with hydra (this other [page](../hydra/custom_configurations.md)). One needs to setup both of these for it to be properly integrated into IGM. Below, we will only cover the needed steps to create the code that will be run for the custom module.
+
 # Coding structure
 
-A closer look at the main script `igm_run.py` reveals the following structure:
+A closer look at the main script `igm_run.py` reveals that IGM runs in the below manner.
+
+First, we have IGM
 
 - `run` all *inputs* modules
 - `initialize` all *processes* modules
 - `initialize` all *outputs* modules
 
-For all time steps:
+Then, for all time steps:
 
   - `update` all *processes* modules
   - `run` all *outputs* modules
   - `finalize` all *processes* modules
 
-Here, we find that
+Furthermore, one must note that within each module, the necessary functions change:
 
 - `inputs` modules have a `run` function,
 - `processes` modules have `initialize`, `update`, and `finalize` functions
 - `outputs` modules have `initialize` and `run` functions.
 
-Similarly to existing IGM modules, a user-defined module `my_module` can be implemented and automatically loaded when `igm_run` is executed, provided that `my_module` and the path to its parameter file are correctly specified. Building a user module involves creating the following folder structure (folder `user` lies alongside `experiment` and `data`):
+Similar to existing IGM modules, a user-defined module `my_module` can be implemented and automatically loaded when `igm_run` is executed, provided that `my_module` and the path to its parameter file are correctly specified. Building a user module involves creating the following folder structure (folder `user` lies alongside `experiment` and `data`):
 
 ``` 
 └── user
   ├── code
-  │   └── input
+  │   └── inputs
   │   │   └── my_module.py
   │   └── processes
   │   │   └── my_module.py
   │   └── outputs
   │       └── my_module.py
   └── conf
-    └── input
+    └── inputs
     │   └── my_module.yaml
     └── processes
     │   └── my_module.yaml
@@ -46,7 +50,7 @@ Here, the code files are expected to define functions `run(cfg, state)`, `initia
 
 - the `cfg` object allows access to parameters in a hierachical fashion (e.g., `cfg.processes.enthalpy.ref_temp` retrieves a parameter associated with the `enthalpy` processes module),
 
-- the `state` object provides access to variables describing the glacier state at a given time `t` (e.g., `state.thk` represents the distributed 2D ice thickness). All these variables are [TensorFlow 2.0](https://www.tensorflow.org/) Tensors. Leveraging TensorFlow is essential for performing computationally efficient operations, particularly on GPUs (see the dedicated TensorFlow section below). Variables can be accessed or modified using `state.name_of_the_variable`. Check at the section below to know more how to code in Tensorflow.
+- the `state` object provides access to variables describing the glacier state at a given time `t` (e.g., `state.thk` represents the distributed 2D ice thickness). All these variables are [TensorFlow 2.0](https://www.tensorflow.org/) Tensors. Leveraging TensorFlow is essential for performing computationally efficient operations, particularly on GPUs (see the dedicated TensorFlow section below). Variables can be accessed or modified using `state.[NAME_OF_VARIABLE]`.
 
 # Example
 
@@ -70,7 +74,7 @@ def finalize(cfg,state):
 
 and a parameter file `mysmb.yaml` containing the default value:
 
-```python
+```yaml
 mysmb:
   meanela: 3200
 ```
@@ -83,7 +87,7 @@ Then, in the parameter file `params.yaml`, you need to:
 Here is an example of how to modify `params.yaml`:
 
 ```yaml
- @package _global_
+# @package _global_
 
 defaults:
 
