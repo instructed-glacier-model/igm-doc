@@ -17,9 +17,9 @@ This is a major structural update, and we are starting a new versioning series w
 
 Here are the important new links:
 
-- The pre-release is on the usual https://github.com/jouvetg/igm , but you need to checkout the feature/hydra branch.
+- The pre-release is on the usual https://github.com/instructed-glacier-model/igm , but you need to checkout the feature/hydra branch.
 
-- The new documentation website is here : https://jouvetg.github.io/igm-doc/
+- The new documentation website is here : https://instructed-glacier-model.github.io/igm-doc/
 
 - The separate repo containing examples : https://github.com/instructed-glacier-model/igm-examples
 
