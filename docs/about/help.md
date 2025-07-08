@@ -1,4 +1,4 @@
-# Need Help?
+# Need?
 
 ## Discord Chat Server
 
