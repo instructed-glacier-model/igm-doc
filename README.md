@@ -18,7 +18,7 @@ git switch main
 # MAKE CHANGE
 git add .
 git commit -m "removed help submodule testing"
-git push origin main
+git push  
 make deploy-latest
 ```
 
