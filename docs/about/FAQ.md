@@ -1,4 +1,4 @@
-## Frequently Asked Question (FAQ)
+## Frequently Asked Questions (FAQ)
 
 ### Ice is stuck on the border of the domain (no fluxes), what can I do?
 
