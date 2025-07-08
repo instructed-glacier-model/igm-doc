@@ -1,34 +1,25 @@
 
 # This gives the main steps to maintain and publish this IGM documentation
 
-Here we use mkdocs with thema material (https://pawamoy.github.io/mkdocs-gallery/)
+
+# First get the igm, with the submdule igm-doc
 
 ```bash
-pip install mkdocs
-pip install mkdocs-material
+git clone https://github.com/instructed-glacier-model/igm
+cd igm/
+git checkout feature/hydra
+git submodule update --init
 ```
 
-We mostly follow the instruction from : https://dev.to/ar2pi/publish-your-markdown-docs-on-github-pages-6pe
-
-Here will be to ensure versionning : https://github.com/squidfunk/mkdocs-material-example-versioning
-(example : https://squidfunk.github.io/mkdocs-material-example-versioning/0.2/)
-
-Build the website and test in a browser: (Navigate to http://127.0.0.1:8000/ to view your site)
+# Second, ...
 
 ```bash
-mkdocs serve
-```
-to see the non-versioned website or
-
-```bash
-mike serve
-```
-to see the versioned website.
-
-Pulish the website:
-
-```bash
-make publish
+git switch main
+# MAKE CHANGE
+git add .
+git commit -m "removed help submodule testing"
+git push origin main
+make deploy-latest
 ```
 
 
