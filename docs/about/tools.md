@@ -18,7 +18,7 @@ VS Code is an excellent editor and is highly recommended for working with IGM. I
 - Remote server connection for coding and running IGM remotely.
 - Powerful extensions, such as **H5Web**, for visualizing NetCDF files.
 
-## Visualization
+## Cool Visualizations
 
 - **`utils/anim_plotly.py`**: Enables interactive 3D visualization of IGM results by reading NetCDF files. It uses the `dash` and `plotly` libraries (`pip install dash plotly`). This script creates a Dash app accessible via a browser (usually at `http://127.0.0.1:8050/`). The app displays a 3D plot of the glacier's surface over the surrounding bedrock. Surface color can represent ice thickness, velocity magnitude, or surface mass balance. Variables can be selected from a dropdown menu, and a slider allows navigation through different time steps. This tool was implemented by [Oskar Herrmann](https://github.com/ho11laqe).
 
