@@ -1,4 +1,0 @@
-[submodule "igm"]
-	path = igm
-	url = git@github.com:jouvetg/igm.git
-	branch = feature/hydra
