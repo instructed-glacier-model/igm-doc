@@ -2137,20 +2137,41 @@
 <p><strong>Contributors:</strong> Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley</p>
 <h2 id="config-structure">Config Structure</h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">particles</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">tracking_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3d</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">frequency_seeding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">density_seeding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">tlast_seeding_init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.0e+5000</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">write_trajectories</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">add_topography</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">computation_library</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tensorflow</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">writing_library</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">output_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">fields</span><span class="p">:</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">weight</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">englt</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velmag</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">seeding_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">accumulation</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">seeding</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">accumulation</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">frequency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">tlast_init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.0e+5000</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">tracking</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3d</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">library</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuda</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">removal</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="nt">output</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">library</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nt">add_topography</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nt">add_fields</span><span class="p">:</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">weight</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">englt</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velmag</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="c1"># tracking_method: 3d</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span><span class="c1"># frequency_seeding: 50</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">  </span><span class="c1"># density_seeding: 0.2</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="c1"># tlast_seeding_init: -1.0e+5000</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">  </span><span class="c1"># write_trajectories: True</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">  </span><span class="c1"># add_topography: True</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">  </span><span class="c1"># computation_library: tensorflow</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">  </span><span class="c1"># writing_library: numpy</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="c1"># output_format: csv</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">  </span><span class="c1"># fields:</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">  </span><span class="c1">#   - weight</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">  </span><span class="c1">#   - englt</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">  </span><span class="c1">#   - velmag</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">  </span><span class="c1"># seeding_method: accumulation</span>
 </span></code></pre></div>
 <h2 id="parameters">Parameters</h2>
 <table>
@@ -2170,113 +2191,43 @@
   <tbody>
 
     <tr>
-      <td>tracking_method</td>
-      <td>str</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>Method for tracking particles (3d or simple)</td>
+      <td>seeding</td>
+      <td>{{ no such element: dict object['Type'] }}</td>
+      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
+      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
+      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>3d</td>
+      <td>{'method': 'accumulation', 'frequency': 50, 'density': 0.2, 'tlast_init': -inf, 'height': 20}</td>
     </tr>
 
     <tr>
-      <td>frequency_seeding</td>
-      <td>float</td>
-      <!-- <td>y</td> -->
-      <td><span class="math">y</span></td>
-      <td>Frequency of seeding</td>
+      <td>tracking</td>
+      <td>{{ no such element: dict object['Type'] }}</td>
+      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
+      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
+      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>50</td>
+      <td>{'method': '3d', 'library': 'cuda'}</td>
     </tr>
 
     <tr>
-      <td>density_seeding</td>
-      <td>float</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>Density of seeding (1 means we seed all pixels, 0.2 means we seed each 5 grid cell, etc.)</td>
+      <td>removal</td>
+      <td>{{ no such element: dict object['Type'] }}</td>
+      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
+      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
+      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>0.2</td>
+      <td>{'method': ''}</td>
     </tr>
 
     <tr>
-      <td>tlast_seeding_init</td>
-      <td>float</td>
-      <!-- <td>y</td> -->
-      <td><span class="math">y</span></td>
-      <td>Initialize the date of last seeding. If default value, the seeding will start the first year of the simulation. Changing this value allows to defer it</td>
+      <td>output</td>
+      <td>{{ no such element: dict object['Type'] }}</td>
+      <!-- <td>{{ no such element: dict object['Units'] }}</td> -->
+      <td><span class="math">{{ no such element: dict object['Units'] }}</span></td>
+      <td>{{ no such element: dict object['Description'] }}</td>
 
-      <td>-inf</td>
-    </tr>
-
-    <tr>
-      <td>write_trajectories</td>
-      <td>bool</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>Write the trajectories of the particles</td>
-
-      <td>True</td>
-    </tr>
-
-    <tr>
-      <td>add_topography</td>
-      <td>bool</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>Add topg when writing particles</td>
-
-      <td>True</td>
-    </tr>
-
-    <tr>
-      <td>computation_library</td>
-      <td>str</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>tensorflow (original) or cupy (best performance, but requires cupy, numba)</td>
-
-      <td>tensorflow</td>
-    </tr>
-
-    <tr>
-      <td>writing_library</td>
-      <td>str</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>numpy (original), cudf (best performance, but requires cupy, cudf), or pyvista (for paraview)</td>
-
-      <td>numpy</td>
-    </tr>
-
-    <tr>
-      <td>output_format</td>
-      <td>str</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>Type of output format for particles (csv, parquet)</td>
-
-      <td>csv</td>
-    </tr>
-
-    <tr>
-      <td>fields</td>
-      <td>list</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>List of fields to write in the output file (englt, velbar, weight)</td>
-
-      <td>['weight', 'englt', 'velmag']</td>
-    </tr>
-
-    <tr>
-      <td>seeding_method</td>
-      <td>str</td>
-      <!-- <td>dimless</td> -->
-      <td><span class="math">dimless</span></td>
-      <td>name of the seeding method to use (accumulation or all)</td>
-
-      <td>accumulation</td>
+      <td>{'library': 'numpy', 'add_topography': True, 'format': 'csv', 'add_fields': ['weight', 'englt', 'velmag']}</td>
     </tr>
 
   </tbody>
