@@ -2,6 +2,8 @@
 
 # Quick Start
 
+THIS IS A TEST
+
 This guide serves as the fastest way to install IGM. It assumes that have already
 
 1. Downloaded the [nvidia drivers](other/nvidia_drivers.md)
