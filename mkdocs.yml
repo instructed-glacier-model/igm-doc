@@ -5,8 +5,8 @@ site_description: >-
   Run your own glacier simulations in a fast, accurate, and user-friendly way.
 
 # Repository
-repo_name: jouvetg/igm
-repo_url: https://github.com/jouvetg/igm
+repo_name: instructed-glacier-model/igm
+repo_url: https://github.com/instructed-glacier-model/igm
 
 nav:
   - Home: index.md

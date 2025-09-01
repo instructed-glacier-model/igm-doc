@@ -1,4 +1,4 @@
-
+ 
 # Transitioning IGM from v2 to v3: Guideline
 
 # In short
@@ -317,9 +317,9 @@ Key modules like `iceflow` and `data_assimilation` (formerly optimize) have been
 |   iflo_exp_weertman   |   iceflow.physics.exp_weertman  |
 |   iflo_regu_glen   |   iceflow.physics.regu_glen  |
 |   iflo_regu_weertman   |   iceflow.physics.regu_weertman  |
-|   iflo_new_friction_param   |   iceflow.physics.new_friction_param  |
+|   iflo_new_friction_param   |   REMOVED  |
 |   iflo_dim_arrhenius   |   iceflow.physics.dim_arrhenius  |
-|   iflo_regu   |   iceflow.physics.regu  |
+|   iflo_regu   |   REMOVED |
 |   iflo_thr_ice_thk   |   iceflow.physics.thr_ice_thk  |
 |   iflo_min_sr   |   iceflow.physics.min_sr  |
 |   iflo_max_sr   |   iceflow.physics.max_sr  |
