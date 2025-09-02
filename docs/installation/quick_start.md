@@ -2,7 +2,7 @@
 
 # Quick Start 
 
-** This website documents IGM version 3, if you are on an old version v2.X.X, visit https://github.com/instructed-glacier-model/igm/wiki **
+**This website documents IGM version 3, if you are on an old version v2.X.X, visit https://github.com/instructed-glacier-model/igm/wiki**
 
 This guide serves as the fastest way to install IGM. It assumes that have already
 
