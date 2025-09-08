@@ -22,6 +22,8 @@ VS Code is an excellent editor and is highly recommended for working with IGM. I
 
 - **`utils/anim_plotly.py`**: Enables interactive 3D visualization of IGM results by reading NetCDF files. It uses the `dash` and `plotly` libraries (`pip install dash plotly`). This script creates a Dash app accessible via a browser (usually at `http://127.0.0.1:8050/`). The app displays a 3D plot of the glacier's surface over the surrounding bedrock. Surface color can represent ice thickness, velocity magnitude, or surface mass balance. Variables can be selected from a dropdown menu, and a slider allows navigation through different time steps. This tool was implemented by [Oskar Herrmann](https://github.com/ho11laqe).
 
+- Using `write_vtp` output module, you may produce triangulated surface meshes from the glacier data and saves them as VTP files with timestamped filenames, as well as particle vizualisations that you can read with Software ParaView (https://www.paraview.org/).
+
 - [Glacier:3D-Viz tool](https://github.com/OGGM/glacier3dviz) is a visualization tool developed by the OGGM team (Patrick Schmitt) to create 3D visualizations of changing glaciers. It is primarily built on the `PyVista` package. Glacier:3D-Viz can read IGM-like output data. Refer to their documentation for more information.
 
 - **`utils/anim_mayavi.py`**: Creates a 3D animated plot from the NetCDF output (default `output.nc`) file produced by IGM. This module depends on the `mayavi` and `pyqt5` libraries (`pip install mayavi pyqt5`).  
