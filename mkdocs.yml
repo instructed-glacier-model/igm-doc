@@ -28,6 +28,7 @@ nav:
         - Working Directory: hydra/working_directory.md
         - Custom Configurations: hydra/custom_configurations.md
         - Distributed Computing: hydra/distributed_computing.md 
+        - Optuna on Cluster: hydra/optuna_cluster.md
         - Help: hydra/help.md
       - Examples: examples/Examples.md
   - Modules:
