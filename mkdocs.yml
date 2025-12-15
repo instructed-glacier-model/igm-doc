@@ -84,6 +84,7 @@ plugins:
   - search
   - include-markdown
   - macros:
+      module_name: main
       # include_yaml:
         # - igm/igm/conf/modules/avalanche.yaml
         # - igm/igm/conf_help/modules/avalanche.yaml
@@ -94,6 +95,9 @@ plugins:
       # include_dir: ./igm/igm/
       # render_by_default: false
   - table-reader
+  - bibtex:
+      bib_file: refs.bib
+      csl_file: apa.csl
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -107,6 +111,9 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
+  - footnotes
+  - attr_list
+  - md_in_html
 
 theme:
   name: material
@@ -148,12 +155,17 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/type-colors.css
+  - stylesheets/param-tables.css
   - stylesheets/style.css
+  - stylesheets/refs.css
+
 
 extra_javascript:
   - javascripts/mathjax.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/cite-linkify.js
 
   # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 

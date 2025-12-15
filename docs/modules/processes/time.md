@@ -14,51 +14,21 @@ Key parameters of this module include:
 - `processes.time.end`: Defines the simulation end time.  
 - `processes.time.save`: Specifies the frequency at which results are saved (default: 10 years).
 
-Further details on the time step stability conditions can be found in the following paper:   
+Further details on the time step stability conditions can be found in the following paper: [@Jouvet2021]   
 
-**Reference:** Jouvet, G., Cordonnier, G., Kim, B., Lüthi, M., Vieli, A., & Aschwanden, A. (2022). Deep learning speeds up ice flow modelling by several orders of magnitude. Journal of Glaciology, 68(270), 651-664.
+**Contributors:** G. Jouvet.
 
-**Contributors:** G. Jouvet
+## Parameters
 
-## Config Structure  
+Default configuration file ([time.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/time.yaml)):
 ~~~yaml
 {% include  "../../../../igm/conf/processes/time.yaml" %}
 ~~~
 
-## Parameters
-
 {% set config = load_yaml('../igm/conf/processes/time.yaml') %}
 {% set help = load_yaml('../igm/conf_help/processes/time.yaml') %}
-{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      {% for key in header %}
-      <th>{{ key }}</th>
-      {% endfor %}
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for key, value in module.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help[key].Type}}</td>
-      <!-- <td>{{ module_help[key].Units}}</td> -->
-      <td><span class="math">{{ module_help[key].Units }}</span></td>
-      <td>{{ module_help[key].Description}}</td>
-
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<script type="text/javascript">
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-</script>
+{% include "includes/_config_table_notree.j2" %}

@@ -12,51 +12,19 @@ The module also supports restarting an IGM run using a NetCDF file produced from
 
 This module depends on `netCDF4`.
 
-**Contributors:** G. Jouvet, A. Henz (icemask add-on)
+**Contributors:** G. Jouvet, A. Henz (icemask add-on).
 
-## Config Structure  
+## Parameters
+
+Default configuration file ([load_ncdf.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/inputs/load_ncdf.yaml)):
 ~~~yaml
 {% include  "../../../../igm/conf/inputs/load_ncdf.yaml" %}
 ~~~
 
-## Parameters
-
 {% set config = load_yaml('../igm/conf/inputs/load_ncdf.yaml') %}
 {% set help = load_yaml('../igm/conf_help/inputs/load_ncdf.yaml') %}
-{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      {% for key in header %}
-      <th>{{ key }}</th>
-      {% endfor %}
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for key, value in module.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help[key].Type}}</td>
-      <td>{{ module_help[key].Units}}</td>
-      <td>{{ module_help[key].Description}}</td>
-
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-
-      
-<script type="text/javascript">
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-</script> -->
-
-
-## Example Usage
+{% include "includes/_config_table_notree.j2" %}

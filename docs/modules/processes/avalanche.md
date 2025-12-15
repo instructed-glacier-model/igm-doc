@@ -6,47 +6,20 @@ This IGM module simulates the redistribution of snow and ice due to gravitationa
 
 **Contributors:** This function was adapted from [Mark Kessler's GC2D](https://github.com/csdms-contrib/gc2d) program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet.
 
-## Config Structure  
+## Parameters
+
+Default configuration file ([avalanche.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/avalanche.yaml)):
 ~~~yaml
 {% include  "../../../../igm/conf/processes/avalanche.yaml" %}
 ~~~
 
-## Parameters
-
 {% set config = load_yaml('../igm/conf/processes/avalanche.yaml') %}
 {% set help = load_yaml('../igm/conf_help/processes/avalanche.yaml') %}
-{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      {% for key in header %}
-      <th>{{ key }}</th>
-      {% endfor %}
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for key, value in module.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help[key].Type}}</td>
-      <td>{{ module_help[key].Units}}</td>
-      <td>{{ module_help[key].Description}}</td>
-
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-      
-<script type="text/javascript">
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-</script>
+{% include "includes/_config_table_notree.j2" %}
 
 ## Example Usage
 

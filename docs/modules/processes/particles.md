@@ -35,48 +35,19 @@ providing, in turn, the particle ID, x, y, z positions, the relative height with
 
 Also, the module has 2 implmentation for saving results: 1) the original one based on `numpy` 2) an optimized one (implemented by B. Finley) based on `cudf`. One can switch to one implementation to another with parameter `output_format`. When using the `cudf` one, several choice of output formats are available including : "csv", "feather", and "parquet".
 
-**Contributors:** Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley
+**Contributors:** Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley.
 
-## Config Structure  
+## Parameters
 
+Default configuration file ([particles.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/particles.yaml)):
 ~~~yaml
 {% include  "../../../../igm/conf/processes/particles.yaml" %}
 ~~~
 
-## Parameters
-
 {% set config = load_yaml('../igm/conf/processes/particles.yaml') %}
 {% set help = load_yaml('../igm/conf_help/processes/particles.yaml') %}
-{% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      {% for key in header %}
-      <th>{{ key }}</th>
-      {% endfor %}
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for key, value in module.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ module_help[key].Type}}</td>
-      <!-- <td>{{ module_help[key].Units}}</td> -->
-      <td><span class="math">{{ module_help[key].Units }}</span></td>
-      <td>{{ module_help[key].Description}}</td>
-
-      <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<script type="text/javascript">
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-</script>
+{% include "includes/_config_table_notree.j2" %}

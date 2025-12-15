@@ -58,10 +58,72 @@
   {% endif %}
 {% endfor %}
 
+Structure of the parameters:
+
 ```
 {{ module_key }}
 {{ build_tree(module, module_help) }}
 ```
 
-{{ render_yaml_citations() }}
+Description of the parameters:
 
+{% if simple_params|length > 0 %}
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Name</th>
+      <th style="width: 40%;">Description</th>
+      <th style="width: 20%; text-align: center;">Default value</th>
+      <th style="width: 15%; text-align: center;">Units</th>
+    </tr>
+  </thead>
+  <tbody>
+{%- for section_key, section_value, section_help in simple_params %}
+    <tr>
+      <td>
+        <code class="param_name">{{ section_key }}</code>
+      </td>
+      <td class="description_text">{{ (section_help.Description or '') | markdown_inline | safe }}</td>
+      <td style="text-align: center;">
+        {% if section_help.Type %}
+          <span class="{{ section_help.Type }}_table">{{ section_value }}</span>
+        {% else %}
+          {{ section_value }}
+        {% endif %}
+      </td>
+      <td style="text-align: center;">
+        {% if section_help.Units %}
+          <span class="units_text">{{ section_help.Units | format_units | safe }}</span>
+        {% endif %}
+      </td>
+    </tr>
+{%- endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% for section_key, section_value, section_help in nested_sections %}
+  <details class="param-section" id="{{ section_key }}">
+    <summary class="param-section-title">
+      <code>{{ section_key }}</code>
+      {% if section_help.Description %}
+      <span class="section-desc">{{ (section_help.Description or '') | markdown_inline | safe }}</span>
+      {% endif %}
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+{{ flatten_config(section_value, section_help, section_key) }}
+      </tbody>
+    </table>
+  </details>
+{% endfor %}
+
+{{ render_yaml_citations() }}

@@ -1,0 +1,6 @@
+/* Hide only the superscripts we convert (leave normal footnotes alone) */
+sup.citation-footnote { display: none !important; }
+
+/* Optional styling for the now-clickable "(Author, Year)" */
+a.citation-link { text-decoration: none; }
+a.citation-link:hover { text-decoration: underline; }

@@ -1,8 +1,6 @@
 # Module `data_assimilation`
  
-A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (`iceflow`) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM. **Check at the IGM technical paper for further details [1].**
-
-[1] Concepts and capabilities of the Instructed Glacier Model 3.X.X, Jouvet and al.
+A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (`iceflow`) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM. **Check at the IGM technical paper for further details [@Jouvet2026].**
 
 **Note:** The optimization process requires some expertise, and parameter tuning may be necessary to achieve meaningful results. Use this module carefully and be prepared to explore various parameter configurations. Feel free to contact us to verify the consistency of your results.
 
@@ -126,20 +124,13 @@ The parameter `data_assimilation.optimization.nb_relaxation_steps` (default valu
 
 The `data_assimilation` module outputs VTP files alongside NetCDF files, which greatly helps visualize your optimized/shaped bedrock with ParaView. Additionally, there is also an output module `write_vtp` that outputs sequences of VTK files that can be read by ParaView, offering new 3D visualization capabilities.  
 
-For more information, refer to the relevant documentation or technical references.
-
-[2] Jouvet, Guillaume. "Inversion of a Stokes glacier flow model emulated by deep learning." Journal of Glaciology 69.273 (2023): 13-26.
-
-[3] Jouvet, Guillaume, and Guillaume Cordonnier. "Ice-flow model emulator based on physics-informed deep learning." Journal of Glaciology 69.278 (2023): 1941-1955.
+For more information, refer to the relevant documentation or technical references [@Jouvet2022; @Jouvet2023b].
 
 **Contributors:** G. Jouvet, S. Cook (parameter inference functions for global modelling)
 
-## Config Structure  
-~~~yaml
-{% include  "../../../../igm/conf/processes/data_assimilation.yaml" %}
-~~~
-
 ## Parameters
+
+The complete default configuration file can be found here: [data_assimilation.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/data_assimilation.yaml).
 
 {% set config = load_yaml('../igm/conf/processes/data_assimilation.yaml') %}
 {% set help = load_yaml('../igm/conf_help/processes/data_assimilation.yaml') %}
@@ -148,4 +139,4 @@ For more information, refer to the relevant documentation or technical reference
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
-{% include "includes/_config_table.j2" %}
+{% include "includes/_config_table_tree.j2" %}
