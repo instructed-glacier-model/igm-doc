@@ -189,7 +189,7 @@ are the fundamental unknowns to be determined by the optimization procedure, as 
 
 #### Vertical basis functions
 
-Four basis types are available via `numerics.vert_basis`:
+Four basis types are available via `numerics.basis_vertical`:
 
 | Basis | $N_z$ | Description |
 |-------|-------|-------------|
