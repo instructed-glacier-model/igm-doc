@@ -12,7 +12,6 @@ defaults:
 processes:
   iceflow: 
     Nz : 10
-    dim_arrhenius : 2
     multiple_window_size : 8
     nb_layers : 16
     nb_out_filter : 32

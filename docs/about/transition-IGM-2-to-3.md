@@ -318,7 +318,7 @@ Key modules like `iceflow` and `data_assimilation` (formerly optimize) have been
 |   iflo_regu_glen   |   iceflow.physics.regu_glen  |
 |   iflo_regu_weertman   |   iceflow.physics.regu_weertman  |
 |   iflo_new_friction_param   |   REMOVED  |
-|   iflo_dim_arrhenius   |   iceflow.physics.dim_arrhenius  |
+|   iflo_dim_arrhenius   |   REMOVED  |
 |   iflo_regu   |   REMOVED |
 |   iflo_thr_ice_thk   |   iceflow.physics.thr_ice_thk  |
 |   iflo_min_sr   |   iceflow.physics.min_sr  |

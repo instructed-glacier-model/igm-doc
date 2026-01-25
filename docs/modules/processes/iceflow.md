@@ -160,9 +160,6 @@ $$
 
 On this regular grid, the approximation space consists of piecewise linear functions (equivalently, P1 finite elements or linear shape functions). Spatial derivatives in the horizontal direction are approximated by finite differences on a staggered grid, which is equivalent to the gradient of piecewise linear interpolants. This structured discretization enables efficient GPU-accelerated computation and natural representation of fields as 2D/3D arrays.
 
-??? question "3D Arrhenius factor"
-    In practice, one might want to have a vertically-varying Arrhenius factor. That is for example the case when a thermo-mechanical coupling is introduced using the [enthalpy](https://igm-model.org/latest/modules/processes/enthalpy/) module. To allow this, you have to set `processes.iceflow.dim_arrhenius=3`, which will lead to a 3D Arrhenius factor $\mathbf{A}_H \in \mathbb{R}^{N_z \times N_y \times N_x}$.
-
 ### Vertical discretization
 
 In general, the vertical structure of ice flow might be complex, with velocity varying from zero at the bed to maximum at the surface, and with strong gradients near the base where sliding occurs. To capture this, we use a **terrain-following coordinate**:
