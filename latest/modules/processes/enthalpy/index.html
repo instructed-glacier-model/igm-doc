@@ -2545,685 +2545,1246 @@
 <h2 id="parameters">Parameters</h2>
 <p>Default configuration file (<a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/enthalpy.yaml">enthalpy.yaml</a>):
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">enthalpy</span><span class="p">:</span><span class="w">  </span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">water_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">spy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">31556926.0</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">gas_constant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.314</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">ci</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2009.0</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">ki</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.1</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">Lh</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.34e+5</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">KtdivKc</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1e-1</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">claus_clape</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7.9e-8</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">melt_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">273.15</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">ref_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">223.15</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">min_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">243.15</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">temperature_offset_air_to_ice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">arrhenius_temp_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">263.15</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">arrhenius_A_cold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.985e-13</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">arrhenius_A_warm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.916e+3</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">arrhenius_Q_cold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60000.0</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">arrhenius_Q_warm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">139000.0</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">omega_enhancement_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">181.25</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">max_omega_enhancement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="nt">till_void_ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.69</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="nt">till_compressibility</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.12</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="nt">till_delta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="nt">till_reference_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="nt">till_friction_angle</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="nt">till_friction_angle_bed_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="nt">till_friction_angle_bed_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="nt">till_friction_angle_phi_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.0</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="nt">till_friction_angle_phi_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">45.0</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="nt">uthreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">  </span><span class="nt">tauc_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+5</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="nt">tauc_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+10</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">  </span><span class="nt">drain_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.001</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="nt">till_wat_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="nt">drain_ice_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="nt">drainage_omega_threshold_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">drainage_omega_threshold_2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">drainage_omega_threshold_3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.03</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">target_water_fraction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">  </span><span class="nt">default_bheatflx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.065</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">numerics</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">Nz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">vert_spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">solver</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">allow_basal_refreezing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">correct_w_for_melt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">override_basal_at_pmp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">thermal</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">T_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">243.15</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">T_pmp_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">273.15</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">T_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">223.15</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">c_ice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2009.0</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">L_ice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.34e+5</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">k_ice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.1</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">K_ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1e-1</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">basal_heat_flux_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.065</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">beta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7.9e-8</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">surface</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">T_offset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="nt">arrhenius</span><span class="p">:</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">A_cold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.985e-13</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">A_warm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.916e+3</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">Q_cold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60000.0</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">Q_warm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">139000.0</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">T_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">263.15</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">omega_coef</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">181.25</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">omega_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="nt">R</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.314</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="nt">till</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nt">friction</span><span class="p">:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">phi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">      </span><span class="nt">phi_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.0</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">phi_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">45.0</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">      </span><span class="nt">bed_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">      </span><span class="nt">bed_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">      </span><span class="nt">tauc_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+5</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">      </span><span class="nt">tauc_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+10</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">      </span><span class="nt">tauc_ice_free</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+6</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">      </span><span class="nt">u_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="nt">hydro</span><span class="p">:</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">      </span><span class="nt">h_water_till_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">      </span><span class="nt">N_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">      </span><span class="nt">e_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.69</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">      </span><span class="nt">C_c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.12</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">      </span><span class="nt">delta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">      </span><span class="nt">drainage_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.001</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">  </span><span class="nt">drainage</span><span class="p">:</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="nt">water_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="nt">drain_ice_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="nt">omega_target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="nt">omega_threshold_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="nt">omega_threshold_2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="nt">omega_threshold_3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.03</span><span class="w">    </span>
 </span></code></pre></div></p>
 <p>Description of the parameters:</p>
-<table>
-  <thead>
-    <tr>
-      <th style="width: 25%;">Name</th>
-      <th style="width: 40%;">Description</th>
-      <th style="width: 20%; text-align: center;">Default value</th>
-      <th style="width: 15%; text-align: center;">Units</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <code class="param_name">water_density</code>
-      </td>
-      <td class="description_text">Water density constant.</td>
-      <td style="text-align: center;">
-
-          <span class="float_table">1000.0</span>
-
-      </td>
-      <td style="text-align: center;">
-
-          <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
-
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">spy</code>
-      </td>
-      <td class="description_text">Number of seconds per year (for unit conversions).</td>
-      <td style="text-align: center;">
-
-          <span class="float_table">31556926.0</span>
-
-      </td>
-      <td style="text-align: center;">
-
-          <span class="units_text">s y<span class="math">\( ^{-1} \)</span></span>
-
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">gas_constant</code>
-      </td>
-      <td class="description_text">Universal gas constant for Arrhenius law.</td>
-      <td style="text-align: center;">
-
-          <span class="float_table">8.314</span>
-
-      </td>
-      <td style="text-align: center;">
-
-          <span class="units_text">J mol<span class="math">\( ^{-1} \)</span> K<span class="math">\( ^{-1} \)</span></span>
-
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">ci</code>
-      </td>
-      <td class="description_text">Specific heat capacity of ice <span id="fnref:Aschwanden2012"><a href="#fn:Aschwanden2012" class="citation-link">(Aschwanden et al., 2012)</a></span>.</td>
-      <td style="text-align: center;">
-
-          <span class="float_table">2009.0</span>
-
-      </td>
-      <td style="text-align: center;">
-
-          <span class="units_text">J kg<span class="math">\( ^{-1} \)</span> K<span class="math">\( ^{-1} \)</span></span>
-
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">ki</code>
-      </td>
-      <td class="description_text">Thermal conductivity of cold ice <span id="fnref2:Aschwanden2012"><a href="#fn:Aschwanden2012" class="citation-link">(Aschwanden et al., 2012)</a></span>.</td>
-      <td style="text-align: center;">
-
-          <span class="float_table">2.1</span>
-
-      </td>
-      <td style="text-align: center;">
-
-          <span class="units_text">W m<span class="math">\( ^{-1} \)</span> K<span class="math">\( ^{-1} \)</span></span>
-
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">Lh</code>
-      </td>
-      <td class="description_text">Latent heat of fusion <span id="fnref3:Aschwanden2012"><a href="#fn:Aschwanden2012" class="citation-link">(Aschwanden et al., 2012)</a></span>.</td>
-      <td style="text-align: center;">
-
-          <span class="float_table">334000.0</span>
-
-      </td>
-      <td style="text-align: center;">
+<details class="param-section" id="numerics">
+    <summary class="param-section-title">
+      <code>numerics</code>
 
-          <span class="units_text">J kg<span class="math">\( ^{-1} \)</span></span>
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">KtdivKc</code>
-      </td>
-      <td class="description_text">Ratio of temperate vs cold ice thermal diffusivity <span id="fnref4:Aschwanden2012"><a href="#fn:Aschwanden2012" class="citation-link">(Aschwanden et al., 2012)</a></span>.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">1e-1</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">—</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">claus_clape</code>
-      </td>
-      <td class="description_text">Clausius-Clapeyron constant for pressure melting <span id="fnref5:Aschwanden2012"><a href="#fn:Aschwanden2012" class="citation-link">(Aschwanden et al., 2012)</a></span>.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">7.9e-08</span>
 
-      </td>
-      <td style="text-align: center;">
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">numerics.Nz</code>
+        </td>
+        <td class="description_text">Number of vertical layers for the enthalpy discretization.</td>
+        <td style="text-align: center;">
 
-          <span class="units_text">K Pa<span class="math">\( ^{-1} \)</span></span>
+            <span class="integer_table">10</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">melt_temp</code>
-      </td>
-      <td class="description_text">Melting point temperature at standard pressure <span id="fnref6:Aschwanden2012"><a href="#fn:Aschwanden2012" class="citation-link">(Aschwanden et al., 2012)</a></span>.</td>
-      <td style="text-align: center;">
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-          <span class="float_table">273.15</span>
+            <span class="units_text">—</span>
 
-      </td>
-      <td style="text-align: center;">
+        </td>
+      </tr>
 
-          <span class="units_text">K</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">ref_temp</code>
-      </td>
-      <td class="description_text">Reference temperature for enthalpy calculations <span id="fnref7:Aschwanden2012"><a href="#fn:Aschwanden2012" class="citation-link">(Aschwanden et al., 2012)</a></span>.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">223.15</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">K</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">min_temp</code>
-      </td>
-      <td class="description_text">Minimum temperature bound for enthalpy solver.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">243.15</span>
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">numerics.vert_spacing</code>
+        </td>
+        <td class="description_text">Parameter controlling the vertical spacing; 1.0 means uniform, larger values concentrate points near the bed.</td>
+        <td style="text-align: center;">
 
-      </td>
-      <td style="text-align: center;">
+            <span class="float_table">4.0</span>
 
-          <span class="units_text">K</span>
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">temperature_offset_air_to_ice</code>
-      </td>
-      <td class="description_text">Offset between air temperature and ice surface temperature.</td>
-      <td style="text-align: center;">
+            <span class="units_text">—</span>
 
-          <span class="float_table">0.0</span>
+        </td>
+      </tr>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">K</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">arrhenius_temp_threshold</code>
-      </td>
-      <td class="description_text">Temperature threshold separating cold and warm ice regimes in Arrhenius law.</td>
-      <td style="text-align: center;">
+      </tbody>
+    </table>
+  </details>
 
-          <span class="float_table">263.15</span>
+<details class="param-section" id="solver">
+    <summary class="param-section-title">
+      <code>solver</code>
 
-      </td>
-      <td style="text-align: center;">
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
 
-          <span class="units_text">K</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">arrhenius_A_cold</code>
-      </td>
-      <td class="description_text">Pre-exponential factor for cold ice (T < threshold) (Paterson1994).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">3.985e-13</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">s<span class="math">\( ^{-1} \)</span> Pa<span class="math">\( ^{-3} \)</span></span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">arrhenius_A_warm</code>
-      </td>
-      <td class="description_text">Pre-exponential factor for warm ice (T >= threshold) (Paterson1994).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">1916.0</span>
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">solver.allow_basal_refreezing</code>
+        </td>
+        <td class="description_text">Allow negative basal melt rates (refreezing).</td>
+        <td style="text-align: center;">
 
-      </td>
-      <td style="text-align: center;">
+            <span class="boolean_table">True</span>
 
-          <span class="units_text">s<span class="math">\( ^{-1} \)</span> Pa<span class="math">\( ^{-3} \)</span></span>
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">arrhenius_Q_cold</code>
-      </td>
-      <td class="description_text">Activation energy for cold ice (T < threshold) (Paterson1994).</td>
-      <td style="text-align: center;">
+            <span class="units_text">—</span>
 
-          <span class="float_table">60000.0</span>
+        </td>
+      </tr>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">J mol<span class="math">\( ^{-1} \)</span></span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">arrhenius_Q_warm</code>
-      </td>
-      <td class="description_text">Activation energy for warm ice (T >= threshold) (Paterson1994).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">139000.0</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">J mol<span class="math">\( ^{-1} \)</span></span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">omega_enhancement_factor</code>
-      </td>
-      <td class="description_text">Enhancement factor for water content effect on ice softness.</td>
-      <td style="text-align: center;">
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">solver.correct_w_for_melt</code>
+        </td>
+        <td class="description_text">Correct vertical velocity for basal melting.</td>
+        <td style="text-align: center;">
 
-          <span class="float_table">181.25</span>
+            <span class="boolean_table">True</span>
 
-      </td>
-      <td style="text-align: center;">
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-          <span class="units_text">—</span>
+            <span class="units_text">—</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">max_omega_enhancement</code>
-      </td>
-      <td class="description_text">Maximum water fraction for enhancement calculation.</td>
-      <td style="text-align: center;">
+        </td>
+      </tr>
 
-          <span class="float_table">0.01</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">—</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_void_ratio</code>
-      </td>
-      <td class="description_text">Void ratio at reference effective pressure (Tulaczyk2000).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">0.69</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">—</span>
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">solver.override_basal_at_pmp</code>
+        </td>
+        <td class="description_text">Force basal enthalpy to be at pressure-melting point.</td>
+        <td style="text-align: center;">
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_compressibility</code>
-      </td>
-      <td class="description_text">Till compressibility coefficient (Tulaczyk2000).</td>
-      <td style="text-align: center;">
+            <span class="boolean_table">False</span>
 
-          <span class="float_table">0.12</span>
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-      </td>
-      <td style="text-align: center;">
+            <span class="units_text">—</span>
 
-          <span class="units_text">—</span>
+        </td>
+      </tr>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_delta</code>
-      </td>
-      <td class="description_text">Transition parameter for effective pressure calculation (Bueler2009).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">0.02</span>
 
-      </td>
-      <td style="text-align: center;">
+      </tbody>
+    </table>
+  </details>
 
-          <span class="units_text">—</span>
+<details class="param-section" id="thermal">
+    <summary class="param-section-title">
+      <code>thermal</code>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_reference_pressure</code>
-      </td>
-      <td class="description_text">Reference effective pressure for till mechanics (Bueler2009).</td>
-      <td style="text-align: center;">
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
 
-          <span class="float_table">1000.0</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">Pa</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_friction_angle</code>
-      </td>
-      <td class="description_text">Till friction angle in Mohr-Coulomb friction law (uniform case).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">30.0</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">degree</span>
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.T_min</code>
+        </td>
+        <td class="description_text">Minimum temperature bound for enthalpy solver.</td>
+        <td style="text-align: center;">
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_friction_angle_bed_min</code>
-      </td>
-      <td class="description_text">Bed elevation for minimum friction angle (spatially variable case).</td>
-      <td style="text-align: center;">
+            <span class="float_table">243.15</span>
 
-          <span class="float_table">None</span>
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-      </td>
-      <td style="text-align: center;">
+            <span class="units_text">K</span>
 
-          <span class="units_text">m</span>
+        </td>
+      </tr>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_friction_angle_bed_max</code>
-      </td>
-      <td class="description_text">Bed elevation for maximum friction angle (spatially variable case).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">None</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">m</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_friction_angle_phi_min</code>
-      </td>
-      <td class="description_text">Minimum till friction angle (spatially variable case).</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">15.0</span>
 
-      </td>
-      <td style="text-align: center;">
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.T_pmp_ref</code>
+        </td>
+        <td class="description_text">Reference pressure melting point temperature.</td>
+        <td style="text-align: center;">
 
-          <span class="units_text">degree</span>
+            <span class="float_table">273.15</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_friction_angle_phi_max</code>
-      </td>
-      <td class="description_text">Maximum till friction angle (spatially variable case).</td>
-      <td style="text-align: center;">
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-          <span class="float_table">45.0</span>
+            <span class="units_text">K</span>
 
-      </td>
-      <td style="text-align: center;">
+        </td>
+      </tr>
 
-          <span class="units_text">degree</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">uthreshold</code>
-      </td>
-      <td class="description_text">Threshold velocity for sliding coefficient calculation.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">100.0</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">m y<span class="math">\( ^{-1} \)</span></span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">tauc_min</code>
-      </td>
-      <td class="description_text">Minimum basal yield stress.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">100000.0</span>
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.T_ref</code>
+        </td>
+        <td class="description_text">Reference temperature for enthalpy calculations.</td>
+        <td style="text-align: center;">
 
-      </td>
-      <td style="text-align: center;">
+            <span class="float_table">223.15</span>
 
-          <span class="units_text">Pa</span>
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">tauc_max</code>
-      </td>
-      <td class="description_text">Maximum basal yield stress.</td>
-      <td style="text-align: center;">
+            <span class="units_text">K</span>
 
-          <span class="float_table">10000000000.0</span>
+        </td>
+      </tr>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">Pa</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">drain_rate</code>
-      </td>
-      <td class="description_text">Till water drainage rate <span id="fnref:Bueler2015"><a href="#fn:Bueler2015" class="citation-link">(Bueler et al., 2015)</a></span>.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">0.001</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">m y<span class="math">\( ^{-1} \)</span></span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">till_wat_max</code>
-      </td>
-      <td class="description_text">Maximum till water thickness <span id="fnref2:Bueler2015"><a href="#fn:Bueler2015" class="citation-link">(Bueler et al., 2015)</a></span>.</td>
-      <td style="text-align: center;">
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.c_ice</code>
+        </td>
+        <td class="description_text">Specific heat capacity of ice.</td>
+        <td style="text-align: center;">
 
-          <span class="float_table">2.0</span>
+            <span class="float_table">2009.0</span>
 
-      </td>
-      <td style="text-align: center;">
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-          <span class="units_text">m</span>
+            <span class="units_text">J kg<span class="math">\( ^{-1} \)</span> K<span class="math">\( ^{-1} \)</span></span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">drain_ice_column</code>
-      </td>
-      <td class="description_text">Enable water drainage through ice column (transforms water content beyond threshold into basal melt).</td>
-      <td style="text-align: center;">
+        </td>
+      </tr>
 
-          <span class="boolean_table">True</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">—</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">drainage_omega_threshold_1</code>
-      </td>
-      <td class="description_text">First water fraction threshold for drainage function.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">0.01</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">—</span>
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.L_ice</code>
+        </td>
+        <td class="description_text">Latent heat of fusion for ice.</td>
+        <td style="text-align: center;">
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">drainage_omega_threshold_2</code>
-      </td>
-      <td class="description_text">Second water fraction threshold for drainage function.</td>
-      <td style="text-align: center;">
+            <span class="float_table">334000.0</span>
 
-          <span class="float_table">0.02</span>
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-      </td>
-      <td style="text-align: center;">
+            <span class="units_text">J kg<span class="math">\( ^{-1} \)</span></span>
 
-          <span class="units_text">—</span>
+        </td>
+      </tr>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">drainage_omega_threshold_3</code>
-      </td>
-      <td class="description_text">Third water fraction threshold for drainage function.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">0.03</span>
 
-      </td>
-      <td style="text-align: center;">
 
-          <span class="units_text">—</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">target_water_fraction</code>
-      </td>
-      <td class="description_text">Target water fraction after drainage in ice column.</td>
-      <td style="text-align: center;">
 
-          <span class="float_table">0.01</span>
 
-      </td>
-      <td style="text-align: center;">
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.k_ice</code>
+        </td>
+        <td class="description_text">Thermal conductivity of ice.</td>
+        <td style="text-align: center;">
 
-          <span class="units_text">—</span>
+            <span class="float_table">2.1</span>
 
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code class="param_name">default_bheatflx</code>
-      </td>
-      <td class="description_text">Default geothermal heat flux (used when not specified in state).</td>
-      <td style="text-align: center;">
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
-          <span class="float_table">0.065</span>
+            <span class="units_text">W m<span class="math">\( ^{-1} \)</span> K<span class="math">\( ^{-1} \)</span></span>
 
-      </td>
-      <td style="text-align: center;">
+        </td>
+      </tr>
 
-          <span class="units_text">W m<span class="math">\( ^{-2} \)</span></span>
 
-      </td>
-    </tr>
-  </tbody>
-</table>
 
-<div style="display: none;" class="yaml-citations">(Aschwanden et al., 2012)[^Aschwanden2012] (Aschwanden et al., 2012)[^Aschwanden2012] (Aschwanden et al., 2012)[^Aschwanden2012] (Aschwanden et al., 2012)[^Aschwanden2012] (Aschwanden et al., 2012)[^Aschwanden2012] (Aschwanden et al., 2012)[^Aschwanden2012] (Aschwanden et al., 2012)[^Aschwanden2012] (**Bueler2009?**) (**Bueler2009?**) (Bueler & Pelt, 2015)[^Bueler2015] (Bueler & Pelt, 2015)[^Bueler2015] (**Paterson1994?**) (**Paterson1994?**) (**Paterson1994?**) (**Paterson1994?**) (**Tulaczyk2000?**) (**Tulaczyk2000?**)</div>
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.K_ratio</code>
+        </td>
+        <td class="description_text">Ratio of temperate to cold ice thermal diffusivity.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.basal_heat_flux_ref</code>
+        </td>
+        <td class="description_text">Reference geothermal heat flux (used when not specified in state).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.065</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">W m<span class="math">\( ^{-2} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">thermal.beta</code>
+        </td>
+        <td class="description_text">Clausius-Clapeyron constant.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">7.9e-08</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">K Pa<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="surface">
+    <summary class="param-section-title">
+      <code>surface</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">surface.T_offset</code>
+        </td>
+        <td class="description_text">Temperature offset for surface conditions.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">°C</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="arrhenius">
+    <summary class="param-section-title">
+      <code>arrhenius</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.A_cold</code>
+        </td>
+        <td class="description_text">Pre-exponential factor for cold ice.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">3.985e-13</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">Pa<span class="math">\( ^{-n} \)</span> s<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.A_warm</code>
+        </td>
+        <td class="description_text">Pre-exponential factor for warm ice.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1916.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">Pa<span class="math">\( ^{-n} \)</span> s<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.Q_cold</code>
+        </td>
+        <td class="description_text">Activation energy for cold ice.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">60000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">J mol<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.Q_warm</code>
+        </td>
+        <td class="description_text">Activation energy for warm ice.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">139000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">J mol<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.T_threshold</code>
+        </td>
+        <td class="description_text">Temperature threshold between cold and warm regimes.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">263.15</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">K</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.omega_coef</code>
+        </td>
+        <td class="description_text">Water content enhancement coefficient.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">181.25</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.omega_max</code>
+        </td>
+        <td class="description_text">Maximum water content for enhancement.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.01</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">arrhenius.R</code>
+        </td>
+        <td class="description_text">Universal gas constant.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">8.314</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">J mol<span class="math">\( ^{-1} \)</span> K<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="till">
+    <summary class="param-section-title">
+      <code>till</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.phi</code>
+        </td>
+        <td class="description_text">Till friction angle (uniform case).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">30.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">°</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.phi_min</code>
+        </td>
+        <td class="description_text">Friction angle at bed_min.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">15.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">°</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.phi_max</code>
+        </td>
+        <td class="description_text">Friction angle at bed_max.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">45.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">°</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.bed_min</code>
+        </td>
+        <td class="description_text">Minimum bed elevation for interpolation.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">None</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.bed_max</code>
+        </td>
+        <td class="description_text">Maximum bed elevation for interpolation.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">None</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.tauc_min</code>
+        </td>
+        <td class="description_text">Minimum yield stress.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">100000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">Pa</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.tauc_max</code>
+        </td>
+        <td class="description_text">Maximum yield stress.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">10000000000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">Pa</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.tauc_ice_free</code>
+        </td>
+        <td class="description_text">Yield stress for ice-free areas.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1000000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">Pa</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.friction.u_ref</code>
+        </td>
+        <td class="description_text">Reference sliding velocity.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">100.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.hydro.h_water_till_max</code>
+        </td>
+        <td class="description_text">Maximum till water layer thickness.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">2.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.hydro.N_ref</code>
+        </td>
+        <td class="description_text">Reference effective pressure.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">Pa</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.hydro.e_ref</code>
+        </td>
+        <td class="description_text">Reference void ratio.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.69</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.hydro.C_c</code>
+        </td>
+        <td class="description_text">Till compressibility coefficient.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.12</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.hydro.delta</code>
+        </td>
+        <td class="description_text">Minimum effective pressure fraction.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.02</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">till.hydro.drainage_rate</code>
+        </td>
+        <td class="description_text">Till drainage rate.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.001</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="drainage">
+    <summary class="param-section-title">
+      <code>drainage</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">drainage.water_density</code>
+        </td>
+        <td class="description_text">Water density constant.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">drainage.drain_ice_column</code>
+        </td>
+        <td class="description_text">Enable water drainage through ice column.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">drainage.omega_target</code>
+        </td>
+        <td class="description_text">Target water content after drainage.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.01</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">drainage.omega_threshold_1</code>
+        </td>
+        <td class="description_text">First water content threshold.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.01</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">drainage.omega_threshold_2</code>
+        </td>
+        <td class="description_text">Second water content threshold.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.02</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">drainage.omega_threshold_3</code>
+        </td>
+        <td class="description_text">Third water content threshold.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.03</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
 
 <div class="footnote">
 <hr />
@@ -3239,9 +3800,6 @@
 </li>
 <li id="fn:Wang2020">
 <p>Wang, Y., Zhang, T., Xiao, C., Ren, J., &amp; Wang, Y. (2020). A two-dimensional, higher-order, enthalpy-based thermomechanical ice flow model for mountain glaciers and its benchmark experiments. <em>Computers &amp; Geosciences</em>, <em>141</em>, 104526. <a href="https://doi.org/10.1016/j.cageo.2020.104526">https://doi.org/10.1016/j.cageo.2020.104526</a>&#160;<a class="footnote-backref" href="#fnref:Wang2020" title="Jump back to footnote 4 in the text">&#8617;</a></p>
-</li>
-<li id="fn:Bueler2015">
-<p>Bueler, E., &amp; Pelt, W. van. (2015). Mass-conserving subglacial hydrology in the parallel ice sheet model version 0.6. <em>Geoscientific Model Development</em>, <em>8</em>(6), 1613--1635. <a href="https://doi.org/10.5194/gmd-8-1613-2015">https://doi.org/10.5194/gmd-8-1613-2015</a>&#160;<a class="footnote-backref" href="#fnref:Bueler2015" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
