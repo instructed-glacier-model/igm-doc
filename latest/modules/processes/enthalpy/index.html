@@ -1480,6 +1480,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    enthalpy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1496,6 +1514,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#physical-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numerical-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Numerical solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coupling-with-ice-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coupling with ice flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2530,75 +2611,131 @@
 
 
 <h1 id="module-enthalpy">Module <code>enthalpy</code></h1>
-<p><strong>Warning: this rather complex module was not much tested so far, use it with care!</strong></p>
-<h1 id="description">Description:</h1>
-<p>This IGM module models the ice enthalpy, which permits to jointly model the ice temperature, as well as the water content created when the temperature hits the pressure melting points, and therefore energy conservation, which is not the case when modelling the sole temperature variable. The model is described in (Aschwanden et al., 2012)<sup id="fnref:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">1</a></sup> (Aschwanden et al., 2012)<sup id="fnref2:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">1</a></sup>. <strong>Check at the IGM technical paper for further details (Jouvet et al., 2026)<sup id="fnref:Jouvet2026"><a class="footnote-ref" href="#fn:Jouvet2026">2</a></sup>.</strong></p>
-<p>The enthalpy module builds upon the <code>iceflow</code> module. To ensure proper functionality, follow these requirements:</p>
+<div class="admonition info">
+<p class="admonition-title">Brief summary</p>
+<p>The <code>enthalpy</code> module determines the <strong>thermal profile</strong> in the ice. It uses an <strong>enthalpy</strong>-based approach that solves for both cold and temperate ice regions simultaneously (Aschwanden et al., 2012)<sup id="fnref3:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">1</a></sup>. The enthalpy module requires the <code>iceflow</code> module as it depends on ice velocity. In turn, the enthalpy determines the basal friction coefficient and the Arrhenius factor, which are used for ice-flow computation. The <strong>parameters</strong> of the module are described <a href="#parameters">here</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">New variable names</p>
+<p>Some enthalpy variables and parameters have been renamed for clarity. The following state variables have been changed:</p>
+<table>
+<thead>
+<tr>
+<th>Previous name</th>
+<th>New name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>basalMeltRate</code></td>
+<td><code>basal_melt_rate</code></td>
+</tr>
+<tr>
+<td><code>bheatflx</code></td>
+<td><code>basal_heat_flux</code></td>
+</tr>
+<tr>
+<td><code>tillwat</code></td>
+<td><code>h_water_till</code></td>
+</tr>
+<tr>
+<td><code>Tpmp</code></td>
+<td><code>T_pmp</code></td>
+</tr>
+<tr>
+<td><code>Epmp</code></td>
+<td><code>E_pmp</code></td>
+</tr>
+<tr>
+<td><code>surftemp</code></td>
+<td><code>T_s</code></td>
+</tr>
+<tr>
+<td><code>surfenth</code></td>
+<td><code>E_s</code></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a href="#parameters">parameters section</a> for parameter name changes.</p>
+</div>
+<p>The implementation is largely inspired by <a href="https://www.pism.io/">PISM</a> (Aschwanden et al., 2012)<sup id="fnref:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">1</a></sup>. Other references have also helped verify the implementation through benchmarks (Kleiner et al., 2015; Wang et al., 2020)<sup id="fnref:Kleiner2015"><a class="footnote-ref" href="#fn:Kleiner2015">2</a></sup> <sup id="fnref:Wang2020"><a class="footnote-ref" href="#fn:Wang2020">3</a></sup>. The <code>enthalpy</code> module will be described in further detail in the in-preparation paper for IGM 3 (Jouvet et al., 2026)<sup id="fnref:Jouvet2026"><a class="footnote-ref" href="#fn:Jouvet2026">4</a></sup>.</p>
+<h2 id="physical-model">Physical model</h2>
+<p>The thermal state of glaciers can be complex, with some regions at the pressure-melting point while others are not. Two ice regimes are typically defined:</p>
 <ul>
-<li>Activate the <code>vertical_iceflow</code> module to provide the vertical velocity.</li>
-<li>Set <code>params.dim_arrhenius = 3</code>.</li>
-<li>Set <code>params.new_friction_param = true</code>.</li>
-<li>Ensure sufficient retraining by setting <code>retrain_iceflow_emulator_freq = 1</code>. Optionally, set <code>retrain_iceflow_emulator_nbit</code> to a value greater than 1 for improved performance.</li>
+<li><strong>cold ice:</strong> <span class="arithmatex">\(T &lt; T_\mathrm{pmp}\)</span> and <span class="arithmatex">\(\omega = 0\)</span>;</li>
+<li><strong>temperate ice:</strong> <span class="arithmatex">\(T = T_\mathrm{pmp}\)</span> and <span class="arithmatex">\(0 &lt; \omega \le 1\)</span>.</li>
 </ul>
-<p><strong>Contributors:</strong> G. Jouvet.</p>
-<p>This implementation is largely inspired from the one implemented in <a href="https://www.pism.io/">PISM</a>. Other references that have helped are (Kleiner et al., 2015)<sup id="fnref:Kleiner2015"><a class="footnote-ref" href="#fn:Kleiner2015">3</a></sup> and (Wang et al., 2020)<sup id="fnref:Wang2020"><a class="footnote-ref" href="#fn:Wang2020">4</a></sup>.</p>
+<p>Here, <span class="arithmatex">\(T\)</span> denotes ice temperature and <span class="arithmatex">\(\omega\)</span> is the water content. The pressure-melting-point temperature <span class="arithmatex">\(T_\mathrm{pmp}\)</span> depends on pressure through the Clausius-Clapeyron relation, so we may write <span class="arithmatex">\(T_\mathrm{pmp}=T_\mathrm{pmp}(p)\)</span> with <span class="arithmatex">\(p\)</span> the ice pressure. To avoid dealing with two variables <span class="arithmatex">\((T, \omega)\)</span>, it is convenient to introduce the <strong>enthalpy</strong> as follows:</p>
+<div class="arithmatex">\[
+E = 
+\left\{
+\begin{aligned}
+&amp;E_\mathrm{pmp} + c_\mathrm{i}\,(T - T_\mathrm{pmp}), &amp; \quad \text{(cold ice)}\\
+&amp;E_\mathrm{pmp} + L\,\omega,&amp; \quad \text{(temperate ice)}
+\end{aligned}
+\right.
+\]</div>
+<p>where <span class="arithmatex">\(c_\mathrm{i}\)</span> and <span class="arithmatex">\(L\)</span> are the specific heat capacity and latent heat of ice, respectively. Importantly, each value of <span class="arithmatex">\(E\)</span> corresponds to a unique state <span class="arithmatex">\((T, \omega)\)</span>, so the values of these variables can be inferred once <span class="arithmatex">\(E\)</span> is known.</p>
+<p>Since enthalpy can be defined up to an additive constant, we can choose the value of <span class="arithmatex">\(E_\mathrm{pmp}\)</span>; here, we choose it in a such a way that the enthalpy is zero at a reference temperature <span class="arithmatex">\(T_\mathrm{ref}\)</span>:
+$$
+    E_\mathrm{pmp} = c_\mathrm{i}(T_\mathrm{pmp} - T_\mathrm{ref}).
+$$</p>
+<p>Based on energy conservation, the governing equation for enthalpy takes the form of the following partial differential equation:</p>
+<div class="arithmatex">\[
+    \rho_\mathrm{i} \left(\dfrac{\partial E}{\partial t} + u\,\dfrac{\partial E}{\partial x} + v\,\dfrac{\partial E}{\partial y} + w\,\dfrac{\partial E}{\partial z}\right) = \dfrac{\partial}{\partial z} \left(K \,\dfrac{\partial E}{\partial z}\right) + \Phi - \rho_\mathrm{w} L D_\mathrm{w} (\omega),
+\]</div>
+<p>together with suitable boundary conditions (Aschwanden et al., 2012)<sup id="fnref2:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">1</a></sup>. Here, <span class="arithmatex">\(\rho_\mathrm{i}\)</span> is the ice density, <span class="arithmatex">\(\rho_\mathrm{w}\)</span> is the liquid water density, <span class="arithmatex">\(\mathbf{v}=(u, v, w)\)</span> are the velocity components in the ice along each direction, <span class="arithmatex">\(K\)</span> is the effective enthalpy diffusivity, <span class="arithmatex">\(\Phi=\Phi(\mathbf{v})\)</span> is the strain heating, and <span class="arithmatex">\(D_\mathrm{w}\)</span> is a drainage function. The enthalpy diffusivity depends on the thermal state of the ice; here we follow the usual approach in ice-sheet modeling by writing </p>
+<div class="arithmatex">\[
+K = 
+\left\{
+\begin{aligned}
+&amp;k_\mathrm{i}/c_\mathrm{i}, &amp; \quad \text{(cold ice)}\\
+&amp;\epsilon\,k_\mathrm{i}/c_\mathrm{i},&amp; \quad \text{(temperate ice)}
+\end{aligned}
+\right.
+\]</div>
+<p>where <span class="arithmatex">\(k_\mathrm{i}\)</span> is the thermal conductivity of ice and <span class="arithmatex">\(\epsilon \ll 1\)</span> denotes the ratio of temperate to cold ice diffusivity.  </p>
+<h2 id="numerical-solution">Numerical solution</h2>
+<p>At each time step, the enthalpy module performs the following operations:</p>
+<ol>
+<li>Computation of surface conditions <span class="arithmatex">\((T_\mathrm{s}, E_\mathrm{s})\)</span>.</li>
+<li>Computation of pressure-melting point conditions <span class="arithmatex">\((T_\mathrm{pmp}, E_\mathrm{pmp})\)</span>.</li>
+<li>Solution of the equation for <span class="arithmatex">\(E\)</span>.</li>
+<li>Computation of the thermal state <span class="arithmatex">\((T, \omega)\)</span>.</li>
+<li>Computation of the Arrhenius factor <span class="arithmatex">\(A\)</span>.</li>
+<li>Computation of till hydrology conditions.</li>
+<li>Computation of till friction conditions.</li>
+</ol>
+<p>The computationally intensive step is solving the equation for <span class="arithmatex">\(E\)</span>. To achieve this efficiently, we use an operator splitting method:</p>
+<ul>
+<li>first, solve the horizontal advection equation with an explicit backward Euler method;</li>
+<li>then, solve the vertical advection-diffusion equation with an implicit solver.</li>
+</ul>
+<p>The implicit solver consists of the Thomas algorithm for tridiagonal linear systems, applied simultaneously to each vertical ice column.</p>
+<h2 id="coupling-with-ice-flow">Coupling with ice flow</h2>
+<p>The enthalpy module builds upon the <code>iceflow</code> module. To activate the coupling, set the following option:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.sliding.law = weertman</span>
+</span></code></pre></div>
+<p>To ensure proper functionality, also activate <code>vertical_iceflow</code>, use a relatively fine vertical discretization, and ensure sufficient retraining.</p>
 <h2 id="parameters">Parameters</h2>
-<p>Default configuration file (<a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/enthalpy.yaml">enthalpy.yaml</a>):
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">enthalpy</span><span class="p">:</span><span class="w">  </span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">numerics</span><span class="p">:</span><span class="w"> </span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">Nz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">vert_spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">solver</span><span class="p">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">allow_basal_refreezing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">correct_w_for_melt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">override_basal_at_pmp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">thermal</span><span class="p">:</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">T_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">243.15</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">T_pmp_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">273.15</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">T_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">223.15</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">c_ice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2009.0</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">L_ice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.34e+5</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">k_ice</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.1</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">K_ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1e-1</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">basal_heat_flux_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.065</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">beta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7.9e-8</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">surface</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">T_offset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="nt">arrhenius</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">A_cold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.985e-13</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">A_warm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.916e+3</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">Q_cold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60000.0</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">Q_warm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">139000.0</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">T_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">263.15</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">omega_coef</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">181.25</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">omega_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="nt">R</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.314</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="nt">till</span><span class="p">:</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nt">friction</span><span class="p">:</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">phi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">      </span><span class="nt">phi_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.0</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">phi_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">45.0</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">      </span><span class="nt">bed_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">      </span><span class="nt">bed_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">      </span><span class="nt">tauc_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+5</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">      </span><span class="nt">tauc_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+10</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">      </span><span class="nt">tauc_ice_free</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e+6</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">      </span><span class="nt">u_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="nt">hydro</span><span class="p">:</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">      </span><span class="nt">h_water_till_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">      </span><span class="nt">N_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">      </span><span class="nt">e_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.69</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">      </span><span class="nt">C_c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.12</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">      </span><span class="nt">delta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">      </span><span class="nt">drainage_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.001</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">  </span><span class="nt">drainage</span><span class="p">:</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="nt">water_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="nt">drain_ice_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="nt">omega_target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="nt">omega_threshold_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="nt">omega_threshold_2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="nt">omega_threshold_3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.03</span><span class="w">    </span>
-</span></code></pre></div></p>
+<p>The complete default configuration file can be found here: <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/enthalpy.yaml">enthalpy.yaml</a>.</p>
+<p>Structure of the parameters:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enthalpy
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── numerics
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   └── ...
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── solver
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   └── ...
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── thermal
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   └── ...
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├── surface
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── ...
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── arrhenius
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   └── ...
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>├── till
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   └── ...
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>└── drainage
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    └── ...
+</span></code></pre></div>
 <p>Description of the parameters:</p>
 <details class="param-section" id="numerics">
     <summary class="param-section-title">
@@ -3786,20 +3923,21 @@
     </table>
   </details>
 
+<p><strong>Contributors</strong>: G. Jouvet, T. Gregov, L. Bacchin.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:Aschwanden2012">
-<p>Aschwanden, A., Bueler, E., Khroulev, C., &amp; Blatter, H. (2012). An enthalpy formulation for glaciers and ice sheets. <em>Journal of Glaciology</em>, <em>58</em>(209), 441--457. <a href="https://doi.org/10.3189/2012jog11j088">https://doi.org/10.3189/2012jog11j088</a>&#160;<a class="footnote-backref" href="#fnref:Aschwanden2012" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:Aschwanden2012" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:Jouvet2026">
-<p>Jouvet, G., Cook, S., Cordonnier, G., Finley, B., Henz, A., Herrmann, O., Maussion, F., Mey, J., Scherler, D., &amp; Welty, E. (2026). <em>Concepts and capabilities of the instructed glacier model</em>. <a href="https://doi.org/10.31223/x5t99c">https://doi.org/10.31223/x5t99c</a>&#160;<a class="footnote-backref" href="#fnref:Jouvet2026" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Aschwanden, A., Bueler, E., Khroulev, C., &amp; Blatter, H. (2012). An enthalpy formulation for glaciers and ice sheets. <em>Journal of Glaciology</em>, <em>58</em>(209), 441--457. <a href="https://doi.org/10.3189/2012jog11j088">https://doi.org/10.3189/2012jog11j088</a>&#160;<a class="footnote-backref" href="#fnref:Aschwanden2012" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:Aschwanden2012" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:Aschwanden2012" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:Kleiner2015">
-<p>Kleiner, T., Rückamp, M., Bondzio, J. H., &amp; Humbert, A. (2015). Enthalpy benchmark experiments for numerical ice sheet models. <em>The Cryosphere</em>, <em>9</em>(1), 217--228. <a href="https://doi.org/10.5194/tc-9-217-2015">https://doi.org/10.5194/tc-9-217-2015</a>&#160;<a class="footnote-backref" href="#fnref:Kleiner2015" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Kleiner, T., Rückamp, M., Bondzio, J. H., &amp; Humbert, A. (2015). Enthalpy benchmark experiments for numerical ice sheet models. <em>The Cryosphere</em>, <em>9</em>(1), 217--228. <a href="https://doi.org/10.5194/tc-9-217-2015">https://doi.org/10.5194/tc-9-217-2015</a>&#160;<a class="footnote-backref" href="#fnref:Kleiner2015" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:Wang2020">
-<p>Wang, Y., Zhang, T., Xiao, C., Ren, J., &amp; Wang, Y. (2020). A two-dimensional, higher-order, enthalpy-based thermomechanical ice flow model for mountain glaciers and its benchmark experiments. <em>Computers &amp; Geosciences</em>, <em>141</em>, 104526. <a href="https://doi.org/10.1016/j.cageo.2020.104526">https://doi.org/10.1016/j.cageo.2020.104526</a>&#160;<a class="footnote-backref" href="#fnref:Wang2020" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>Wang, Y., Zhang, T., Xiao, C., Ren, J., &amp; Wang, Y. (2020). A two-dimensional, higher-order, enthalpy-based thermomechanical ice flow model for mountain glaciers and its benchmark experiments. <em>Computers &amp; Geosciences</em>, <em>141</em>, 104526. <a href="https://doi.org/10.1016/j.cageo.2020.104526">https://doi.org/10.1016/j.cageo.2020.104526</a>&#160;<a class="footnote-backref" href="#fnref:Wang2020" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:Jouvet2026">
+<p>Jouvet, G., Cook, S., Cordonnier, G., Finley, B., Henz, A., Herrmann, O., Maussion, F., Mey, J., Scherler, D., &amp; Welty, E. (2026). <em>Concepts and capabilities of the instructed glacier model</em>. <a href="https://doi.org/10.31223/x5t99c">https://doi.org/10.31223/x5t99c</a>&#160;<a class="footnote-backref" href="#fnref:Jouvet2026" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
