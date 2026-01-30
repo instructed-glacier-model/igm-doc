@@ -1951,6 +1951,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#terrain-following-coordinate-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terrain-following coordinate system
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basal-kinematic-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basal kinematic condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kinematic-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kinematic method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incompressibility-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incompressibility method
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2578,8 +2650,85 @@
 
 
 <h1 id="module-vert_flow">Module <code>vert_flow</code></h1>
-<p>This IGM module computes the vertical component of the velocity (<code>state.W</code>) from the horizontal components (<code>state.U</code> and <code>state.V</code>). These horizontal components are derived from an emulation of the Blatter-Pattyn model in the <code>iceflow</code> module. The computation is performed by integrating the incompressibility condition layer-wise. This module is typically used before invoking the <code>particle</code> module for 3D particle trajectory integration or the <code>enthalpy</code> module for computing 3D advection-diffusion of enthalpy.</p>
-<p><strong>Contributors:</strong> Guillaume Jouvet, Claire-Mathile Stücki.</p>
+<div class="admonition info">
+<p class="admonition-title">Brief summary</p>
+<p>The <code>vert_flow</code> module computes the <strong>vertical velocity</strong> <span class="arithmatex">\(w\)</span> from the horizontal velocity components <span class="arithmatex">\((u, v)\)</span> provided by the <code>iceflow</code> module. Two methods are available: <strong>kinematic</strong> (layer-following) and <strong>incompressibility</strong> (divergence-free). This module is required before invoking the <code>particle</code> module for 3D trajectory integration or the <code>enthalpy</code> module for 3D advection-diffusion.</p>
+</div>
+<h2 id="terrain-following-coordinate-system">Terrain-following coordinate system</h2>
+<p>Ice flow simulations use a terrain-following vertical coordinate </p>
+<div class="arithmatex">\[
+\zeta = \frac{z - b(x,y)}{H(x,y)},
+\]</div>
+<p>where <span class="arithmatex">\(z\)</span> is the physical height, <span class="arithmatex">\(b(x,y)\)</span> is the bed elevation, and <span class="arithmatex">\(H(x,y)\)</span> is the ice thickness. In this coordinate system, <span class="arithmatex">\(\zeta = 0\)</span> at the bed and <span class="arithmatex">\(\zeta = 1\)</span> at the surface, regardless of the underlying terrain complexity.</p>
+<h2 id="principle">Principle</h2>
+<h3 id="basal-kinematic-condition">Basal kinematic condition</h3>
+<p>Both methods enforce that ice velocity is parallel to the bed:</p>
+<div class="arithmatex">\[
+w_\mathrm{b} = u_\mathrm{b} \frac{\partial b}{\partial x} + v_\mathrm{b} \frac{\partial b}{\partial y}.
+\]</div>
+<h3 id="kinematic-method">Kinematic method</h3>
+<p>The kinematic method computes <span class="arithmatex">\(w\)</span> by requiring that ice velocity is tangent to each layer surface. At layer elevation <span class="arithmatex">\(z_\zeta = b + \zeta H\)</span>:</p>
+<div class="arithmatex">\[
+w = u \frac{\partial z_\zeta}{\partial x} + v \frac{\partial z_\zeta}{\partial y} - \nabla \cdot (\bar{\mathbf{u}}_\zeta \, z_\zeta),
+\]</div>
+<p>where <span class="arithmatex">\(\bar{\mathbf{u}}_\zeta\)</span> is the depth-averaged velocity from the bed up to that layer. This naturally accounts for varying terrain through the layer slope terms.</p>
+<h3 id="incompressibility-method">Incompressibility method</h3>
+<p>The incompressibility method uses the divergence-free condition for ice, which is expressed in physical coordinates:</p>
+<div class="arithmatex">\[
+\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0,
+\]</div>
+<p>where the horizontal derivatives are taken at constant physical height <span class="arithmatex">\(z\)</span>. Integrating from the bed:</p>
+<div class="arithmatex">\[
+w(z) = w_\mathrm{b} - \int_b^z \left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) \,\mathrm{d}z'.
+\]</div>
+<p>Changing the integration variable to terrain-following coordinates:</p>
+<div class="arithmatex">\[
+w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) H\,\mathrm{d}\zeta'.
+\]</div>
+<p>While we integrate with respect to <span class="arithmatex">\(\zeta\)</span>, the incompressibility condition requires horizontal derivatives at constant physical height <span class="arithmatex">\(z\)</span>. However, our velocity fields <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span> are discretized and computed at constant <span class="arithmatex">\(\zeta\)</span>. Therefore, we must transform the derivatives using the chain rule. Applying it to <span class="arithmatex">\(u(x,y,z)\)</span> with <span class="arithmatex">\(z = b + \zeta H\)</span>:</p>
+<div class="arithmatex">\[
+\left.\frac{\partial u}{\partial x}\right|_\zeta  = \left.\frac{\partial u}{\partial x}\right|_z + \left[\frac{\partial b}{\partial x} + \zeta\frac{\partial H}{\partial x}\right] \frac{\partial u}{\partial z},
+\]</div>
+<p>so that</p>
+<div class="arithmatex">\[
+\left.\frac{\partial u}{\partial x}\right|_z = \left.\frac{\partial u}{\partial x}\right|_\zeta - \left[\frac{\partial b}{\partial x} + \zeta\frac{\partial H}{\partial x}\right] \frac{\partial u}{\partial z}.
+\]</div>
+<h2 id="versions">Versions</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Version</th>
+<th style="text-align: center;">Kinematic</th>
+<th style="text-align: center;">Incompressibility</th>
+<th style="text-align: center;">Terrain correction</th>
+<th style="text-align: center;">Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1 (GJ)</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">Kinematic only</td>
+<td style="text-align: center;">Direct numerical derivatives</td>
+</tr>
+<tr>
+<td style="text-align: center;">2 (CMS)</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">Numerical integration with terrain chain rule</td>
+</tr>
+<tr>
+<td style="text-align: center;">3 (TG)</td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">Matrix-based with precomputed operators</td>
+</tr>
+</tbody>
+</table>
+<p>Versions 1 and 2 support choosing between <code>kinematic</code> and <code>incompressibility</code> methods via the <code>method</code> parameter, but only when using the Lagrange vertical basis. For Legendre basis, both versions use a spectral incompressibility method. For MOLHO basis, all versions use a two-layer kinematic approach. Version 3 implements only the incompressibility method for all basis functions.</p>
 <h2 id="parameters">Parameters</h2>
 <p>Default configuration file (<a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/vert_flow.yaml">vert_flow.yaml</a>):
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">vert_flow</span><span class="p">:</span>
@@ -2631,6 +2780,8 @@
     </tr>
   </tbody>
 </table>
+
+<p><strong>Contributors</strong>: G. Jouvet, C.-M. Stücki, T. Gregov.</p>
 
 
 
