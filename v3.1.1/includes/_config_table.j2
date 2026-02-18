@@ -2,40 +2,66 @@
   {% for key, value in config.items() %}
     {% set full_key = prefix ~ key if prefix == '' else prefix ~ '.' ~ key %}
     {% set help_entry = help.get(key, {}) %}
-    {% if value is mapping %}
+    {% set has_type = help_entry.get('Type') %}
+    {% set should_expand = value is mapping and value|length > 0 and not has_type %}
+    {% if should_expand %}
       {{ flatten_config(value, help_entry, full_key) }}
     {% else %}
       <tr>
-        <td>{{ full_key }}</td>
-        <td>
+        <td style="min-width: 200px;">
+          <code class="param_name">{{ full_key }}</code>
+        </td>
+        <td class="description_text">{{ (help_entry.Description or '') | markdown_inline | safe }}</td>
+        <td style="text-align: center;">
           {% if help_entry.Type %}
-            <span class="{{ help_entry.Type }}_table">{{ help_entry.Type }}</span>
+            <span class="{{ help_entry.Type }}_table">{{ value }}</span>
+          {% else %}
+            {{ value }}
           {% endif %}
         </td>
-        <td>
+        <td style="text-align: center; min-width: 100px;">
           {% if help_entry.Units %}
-            <span class="math">\( {{ help_entry.Units }} \)</span>
+            <span class="units_text">{{ help_entry.Units | format_units | safe }}</span>
           {% endif %}
         </td>
-        <td>{{ help_entry.Description or '' }}</td>
-        <td>{{ value }}</td>
       </tr>
     {% endif %}
   {% endfor %}
 {% endmacro %}
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      {% for key in header %}
-      <th>{{ key }}</th>
-      {% endfor %}
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{ flatten_config(module, module_help) }}
-  </tbody>
-</table>
+{% macro build_tree(config, help) %}
+{%- set keys = config.keys() | list -%}
+{%- for key in keys -%}
+{%- set value = config[key] -%}
+{%- set help_entry = help.get(key, {}) -%}
+{%- set has_type = help_entry.get('Type') -%}
+{%- set is_nested = value is mapping and value|length > 0 and not has_type -%}
+{%- set is_last_item = loop.last -%}
+{%- set prefix = '└── ' if is_last_item else '├── ' -%}
+{%- set continuation = '    └── ...' if is_last_item else '│   └── ...' -%}
+{{ prefix }}{{ key }}
+{%- if is_nested %}
+{{ continuation }}
+{%- endif %}
+{% endfor -%}
+{%- endmacro %}
+
+{% set simple_params = [] %}
+{% set nested_sections = [] %}
+{% for section_key, section_value in module.items() %}
+  {% set section_help = module_help.get(section_key, {}) %}
+  {% set section_has_type = section_help.get('Type') %}
+  {% if section_value is mapping and section_value|length > 0 and not section_has_type %}
+    {% set _ = nested_sections.append((section_key, section_value, section_help)) %}
+  {% else %}
+    {% set _ = simple_params.append((section_key, section_value, section_help)) %}
+  {% endif %}
+{% endfor %}
+
+```
+{{ module_key }}
+{{ build_tree(module, module_help) }}
+```
+
+{{ render_yaml_citations() }}
 
