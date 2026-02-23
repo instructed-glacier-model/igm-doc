@@ -2,238 +2,238 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://igm-model.org/latest/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/Installation/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/Running/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/FAQ/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/credits_and_references/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/help/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/tools/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/transition-IGM-2-to-3/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/updates/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/variables/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/examples/Examples/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/basics/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/custom_configurations/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/distributed_computing/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/help/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/introduction/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/introduction_old/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/optuna_cluster/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/working_directory/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/linux/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/mac/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/quick_start/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/windows/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/other/nvidia_drivers/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/other/virtual_environment/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/other/wsl_windows/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/core/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/introduction/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/user_modules/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/load_ncdf/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/load_tif/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/local/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/oggm_shop/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/local/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/plot2d/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_ncdf/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_tif/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_ts/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_vtp/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/avalanche/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/clim_glacialindex/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/clim_oggm/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/data_assimilation/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/enthalpy/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/flow_accumulation/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/gflex/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/glerosion/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/iceflow/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/particles/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/pretraining/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/read_output/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/rockflow/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/smb_accpdd/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/smb_oggm/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/smb_simple/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/texture/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/thk/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/time/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/vert_flow/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
 </urlset>
