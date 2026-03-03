@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-igm-with-hydra-optuna-gpu-cluster-distribution" class="md-skip">
+        <a href="#igm-optuna-sweeper-full-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -994,10 +994,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#1-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Requirements
+        1. Overview
       
     </span>
   </a>
@@ -1005,10 +1005,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#optimization-logic-user-module" class="md-nav__link">
+  <a href="#2-defining-scores-in-user-code" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Optimization Logic (User Module)
+        2. Defining scores in user code
       
     </span>
   </a>
@@ -1016,10 +1016,115 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#directory-layout" class="md-nav__link">
+  <a href="#3-the-optuna_paramsyaml-config-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📁 Directory Layout
+        3. The optuna_params.yaml config file
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. The optuna_params.yaml config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Objectives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-control-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Control parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-fixed-overrides-target-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Fixed overrides (target values)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-trials-and-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Trials and parallelism
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-sampler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Sampler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-pruner-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Pruner (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-storage-and-study-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Storage and study name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-trial-timeout-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Trial timeout (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-running-the-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Running the optimization
       
     </span>
   </a>
@@ -1027,10 +1132,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#parameter-sweep-config-params_sweepyaml" class="md-nav__link">
+  <a href="#5-gpu-distribution" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚙️ Parameter Sweep Config (params_sweep.yaml)
+        5. GPU distribution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. GPU distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-share-one-gpu-with-memory-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A — Share one GPU with memory growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-one-trial-per-gpu-round-robin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B — One trial per GPU (round-robin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-c-multiple-trials-per-gpu-across-gpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option C — Multiple trials per GPU, across GPUs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPU-only
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cluster-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Cluster deployment
       
     </span>
   </a>
@@ -1038,10 +1204,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#launch-script-runsh" class="md-nav__link">
+  <a href="#7-output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Launch Script (run.sh)
+        7. Output
       
     </span>
   </a>
@@ -1049,10 +1215,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster-submission-script-on-octopus" class="md-nav__link">
+  <a href="#8-dashboard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cluster Submission Script (on Octopus)
+        8. Dashboard
       
     </span>
   </a>
@@ -1060,32 +1226,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dashboard" class="md-nav__link">
+  <a href="#9-complete-optuna_paramsyaml-template" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 Dashboard
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚠️ Notes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-folder-structure-after-run" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Folder Structure (After Run)
+        9. Complete optuna_params.yaml template
       
     </span>
   </a>
@@ -2665,123 +2809,330 @@
   
 
 
-<h1 id="using-igm-with-hydra-optuna-gpu-cluster-distribution">Using IGM with Hydra + Optuna + GPU Cluster Distribution</h1>
-<p>This guide explains how to use <strong>IGM</strong> with the <strong>Hydra Optuna Sweeper</strong> to optimize parameters across a GPU-based cluster, storing all trials centrally in a <strong>single Optuna study</strong> and supporting visualization via the <a href="https://optuna.github.io/optuna-dashboard/">Optuna Dashboard</a>.</p>
+<h1 id="igm-optuna-sweeper-full-reference">IGM Optuna Sweeper — Full Reference</h1>
+<p>IGM includes a built-in Hydra sweeper plugin (<code>igm_optuna</code>) that uses <a href="https://optuna.org/">Optuna</a> for parameter optimization. It supports single- and multi-objective optimization, parallel trials, GPU distribution, and persistent storage with dashboard visualization.</p>
+<p>This replaces the upstream <code>hydra-optuna-sweeper</code> (which pins <code>optuna&lt;3.0</code>) with a lightweight alternative that uses Optuna directly with no version ceiling.</p>
 <hr />
-<h2 id="requirements">Requirements</h2>
-<p>Install the necessary Hydra plugins:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>hydra-optuna-sweeper
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip<span class="w"> </span>install<span class="w"> </span>hydra-joblib-launcher
-</span></code></pre></div>
-<p>These enable Optuna optimization and distributed job launching across your cluster.</p>
+<h2 id="1-overview">1. Overview</h2>
+<p>The optimization workflow has two parts:</p>
+<ol>
+<li><strong>User process</strong> (<code>eval_objective.py</code>): computes <code>state.score</code> as a dictionary of all available metrics at the end of a simulation.</li>
+<li><strong>Optuna config</strong> (<code>optuna_params.yaml</code>): selects which scores to optimize, defines control parameters, target values, sampler, and parallelism.</li>
+</ol>
+<p>Each trial runs as a <strong>separate subprocess</strong> with its own TensorFlow session, ensuring clean graph state between trials.</p>
 <hr />
-<h2 id="optimization-logic-user-module">Optimization Logic (User Module)</h2>
-<p>To optimize a model, you must define a floating-point variable in your Python module:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">state</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">computed</span> <span class="nb">float</span> <span class="n">metric</span><span class="o">&gt;</span>
+<h2 id="2-defining-scores-in-user-code">2. Defining scores in user code</h2>
+<p>Create a user process module (e.g. <code>user/code/processes/eval_objective.py</code>) that computes all available metrics in <code>finalize()</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">pass</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">pass</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">ecfg</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">processes</span><span class="o">.</span><span class="n">eval_objective</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">dx</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">dx</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">volume_km3</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">thk</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">/</span> <span class="mf">1.0e9</span><span class="p">)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">max_thk</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">thk</span><span class="p">))</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">velsurf_mag</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">state</span><span class="o">.</span><span class="n">uvelsurf</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">vvelsurf</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">max_speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">velsurf_mag</span><span class="p">))</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">state</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="s2">&quot;cost_volume&quot;</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">volume_km3</span> <span class="o">-</span> <span class="n">ecfg</span><span class="o">.</span><span class="n">target_volume</span><span class="p">),</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="s2">&quot;cost_speed&quot;</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max_speed</span> <span class="o">-</span> <span class="n">ecfg</span><span class="o">.</span><span class="n">target_max_speed</span><span class="p">),</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="s2">&quot;cost_thickness&quot;</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max_thk</span> <span class="o">-</span> <span class="n">ecfg</span><span class="o">.</span><span class="n">target_max_thk</span><span class="p">),</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="p">}</span>
 </span></code></pre></div>
-<p>Hydra will read this value and log it as the trial result.</p>
-<p>Only <strong>single-objective optimization</strong> is currently supported.</p>
+<p>The corresponding config (<code>user/conf/processes/eval_objective.yaml</code>) provides default target values:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">target_volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">18.0</span><span class="w">      </span><span class="c1"># km^3</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">target_max_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200.0</span><span class="w">  </span><span class="c1"># m/y</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">target_max_thk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300.0</span><span class="w">    </span><span class="c1"># m</span>
+</span></code></pre></div>
+<p>The <code>state.score</code> dictionary can contain as many metrics as desired. The <code>optuna_params.yaml</code> file then selects which ones to actually optimize.</p>
 <hr />
-<h2 id="directory-layout">📁 Directory Layout</h2>
-<p>All runs are stored under:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>multirun/trial_&lt;trial_id&gt;/
+<h2 id="3-the-optuna_paramsyaml-config-file">3. The <code>optuna_params.yaml</code> config file</h2>
+<p>All optimization settings live in a single YAML file (default name: <code>optuna_params.yaml</code>). Below is a complete reference with all available options.</p>
+<h3 id="31-objectives">3.1 Objectives</h3>
+<p>Select which scores from <code>state.score</code> to optimize:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">objectives</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_volume</span><span class="w">      </span><span class="c1"># key in state.score dict</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_speed</span><span class="w">       </span><span class="c1"># key in state.score dict</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
 </span></code></pre></div>
-<p>This keeps all trials together — even when run from different GPUs or nodes.</p>
-<p>An SQLite database stores the Optuna study:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>optuna.db
-</span></code></pre></div>
-<p>You can visualize the study with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>optuna-dashboard<span class="w"> </span>optuna.db
-</span></code></pre></div>
-<hr />
-<h2 id="parameter-sweep-config-params_sweepyaml">⚙️ Parameter Sweep Config (<code>params_sweep.yaml</code>)</h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># @package _global_</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">hydra</span><span class="p">:</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">sweep</span><span class="p">:</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multirun</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nt">subdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trial_${optuna_trial_number}</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nt">sweeper</span><span class="p">:</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hydra_plugins.hydra_optuna_sweeper.optuna_sweeper.OptunaSweeper</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nt">custom_search_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">igm.utils.optuna_hooks.configure</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">study_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myglacier</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlite:///optuna.db</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="nt">n_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="nt">sampler</span><span class="p">:</span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">      </span><span class="nt">_target_</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">optuna.samplers.TPESampler</span>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="nt">params</span><span class="p">:</span>
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">      </span><span class="nt">processes.data_assimilation.regularization.thk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tag(log, interval(1.0e3, 1.0e4))</span>
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">      </span><span class="nt">processes.data_assimilation.regularization.slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tag(log, interval(1.0e9, 1.0e10))</span>
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">      </span><span class="nt">processes.iceflow.physics.init_slidingco</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">interval(0.025, 0.045)</span>
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
-</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="nt">core</span><span class="p">:</span>
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">  </span><span class="nt">url_data</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
-</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">  </span><span class="nt">check_compat_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
-</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">  </span><span class="nt">hardware</span><span class="p">:</span>
-</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">    </span><span class="nt">visible_gpus</span><span class="p">:</span>
-</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${core.hardware.gpu_id}</span>
-</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">    </span><span class="nt">gpu_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-</span></code></pre></div>
-<hr />
-<h2 id="launch-script-runsh">Launch Script (<code>run.sh</code>)</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params_sweep<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>hydra/launcher<span class="o">=</span>joblib<span class="w"> </span>hydra/sweeper<span class="o">=</span>optuna<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>hydra.sweeper.n_trials<span class="o">=</span><span class="nv">$2</span><span class="w">  </span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span>core.hardware.gpu_id<span class="o">=</span><span class="nv">$1</span>
-</span></code></pre></div>
-<hr />
-<h2 id="cluster-submission-script-on-octopus">Cluster Submission Script (on Octopus)</h2>
-<p>This script launches jobs on different nodes and GPUs using <code>tmux</code> and <code>ssh</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">NB</span><span class="o">=</span><span class="m">20</span><span class="w"> </span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">for</span><span class="w"> </span>GPU<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span>A<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">01</span><span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">03</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="nv">SESSION</span><span class="o">=</span><span class="s2">&quot;node</span><span class="si">${</span><span class="nv">A</span><span class="si">}</span><span class="s2">_GPU</span><span class="si">${</span><span class="nv">GPU</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Starting tmux session </span><span class="nv">$SESSION</span><span class="s2"> on node</span><span class="nv">$A</span><span class="s2">&quot;</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span>ssh<span class="w"> </span>node<span class="nv">$A</span><span class="w"> </span><span class="s2">&quot;tmux new-session -d -s </span><span class="nv">$SESSION</span><span class="s2"> &#39;cd </span><span class="nv">$T</span><span class="s2"> &amp;&amp; ./run.sh </span><span class="nv">$GPU</span><span class="s2"> </span><span class="nv">$NB</span><span class="s2">&#39;&quot;</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span>sleep<span class="w"> </span><span class="m">15</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="k">done</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">done</span>
-</span></code></pre></div>
-<p>This ensures:
-- Each GPU runs <code>NB</code> trials
-- All trials contribute to the same Optuna database
-- Easy monitoring via <code>tmux attach -t &lt;session_name&gt;</code> per node</p>
-<hr />
-<h2 id="dashboard">📊 Dashboard</h2>
-<p>To visualize the optimization progress and find the <code>trial_000123</code> name for any run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>optuna-dashboard<span class="w"> </span>optuna.db
-</span></code></pre></div>
-<p>If you don't want (or have issues) to install locally, you may use the <a href="https://optuna.github.io/optuna-dashboard/">Optuna Dashboard</a>, just drop you <code>optuna.db</code> file in th browser.</p>
-<p>The dashboard shows:
-- Best parameters
-- Objective value per trial
-- Parameter importance
-- Parallel coordinate plots
-- ID of the run to retrieve where outputs are stored</p>
-<hr />
-<h2 id="notes">⚠️ Notes</h2>
 <ul>
-<li><strong>Multi-objective optimization is NOT supported</strong> with the current <code>TPESampler</code>. Only <code>direction: minimize</code> or <code>maximize</code> (single-objective) works.</li>
-<li><code>optuna_trial_number</code> in the <code>hydra.sweep.subdir</code> ensures each trial has a unique, identifiable folder like <code>trial_000001</code>, <code>trial_000002</code>, etc.</li>
-<li><strong>Parallelization</strong> is achieved using <code>hydra/launcher=joblib</code> and dispatching jobs manually via SSH+tmux.</li>
+<li>Each entry must have <code>name</code> (matching a key in <code>state.score</code>) and <code>direction</code> (<code>minimize</code> or <code>maximize</code>).</li>
+<li>Use a single entry for single-objective optimization, multiple entries for multi-objective.</li>
+<li>You can change which scores are active without modifying any Python code.</li>
+</ul>
+<h3 id="32-control-parameters">3.2 Control parameters</h3>
+<p>Parameters tuned by Optuna. Each maps to a Hydra config path:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">parameters</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.init_slidingco</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">       </span><span class="c1"># sample in log-space (good for parameters spanning orders of magnitude)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.init_arrhenius</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150.0</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.smb_simple.array.1.3</span><span class="w">    </span><span class="c1"># ELA (row 1, column 3 of the SMB array)</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500.0</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3200.0</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="nt">log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></code></pre></div>
+<p>Supported types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Required fields</th>
+<th>Optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>float</code></td>
+<td><code>low</code>, <code>high</code></td>
+<td><code>log</code> (default: <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>low</code>, <code>high</code></td>
+<td><code>log</code> (default: <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>categorical</code></td>
+<td><code>choices</code> (list)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>name</code> field is the full Hydra override path. Optuna suggests a value within the specified range, and it is passed to <code>igm_run</code> as <code>name=value</code>.</p>
+<h3 id="33-fixed-overrides-target-values">3.3 Fixed overrides (target values)</h3>
+<p>Values passed to every trial as Hydra overrides (not tuned by Optuna):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">overrides</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">18.0</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_max_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200.0</span>
+</span></code></pre></div>
+<p>This keeps both controls and targets in the same file for clarity.</p>
+<h3 id="34-trials-and-parallelism">3.4 Trials and parallelism</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">n_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span><span class="w">       </span><span class="c1"># total number of trials to run</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">           </span><span class="c1"># number of parallel trials (default: 1 = sequential)</span>
+</span></code></pre></div>
+<p>When <code>n_jobs &gt; 1</code>, trials are launched as parallel subprocesses. See Section 5 for GPU considerations.</p>
+<h3 id="35-sampler">3.5 Sampler</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">sampler</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TPESampler</span><span class="w">       </span><span class="c1"># Optuna sampler class name</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">population_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">      </span><span class="c1"># extra kwargs passed to the sampler constructor</span>
+</span></code></pre></div>
+<p>Available samplers (all from <code>optuna.samplers</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Multi-obj?</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TPESampler</code></td>
+<td>Yes (MOTPE)</td>
+<td>General purpose, fast convergence, good default</td>
+</tr>
+<tr>
+<td><code>NSGAIISampler</code></td>
+<td>Yes</td>
+<td>Multi-objective, diverse Pareto front (2-3 obj)</td>
+</tr>
+<tr>
+<td><code>NSGAIIISampler</code></td>
+<td>Yes</td>
+<td>Multi-objective, best for 3+ objectives (Optuna &gt;= 3.2)</td>
+</tr>
+<tr>
+<td><code>CmaEsSampler</code></td>
+<td>No</td>
+<td>Continuous parameters, covariance-based (single-obj only)</td>
+</tr>
+<tr>
+<td><code>GPSampler</code></td>
+<td>No</td>
+<td>Gaussian Process surrogate, small budget (single-obj only)</td>
+</tr>
+<tr>
+<td><code>RandomSampler</code></td>
+<td>Yes</td>
+<td>Baseline / exploration</td>
+</tr>
+<tr>
+<td><code>QMCSampler</code></td>
+<td>Yes</td>
+<td>Quasi-Monte Carlo, uniform space coverage</td>
+</tr>
+</tbody>
+</table>
+<p>Any keyword argument accepted by the sampler constructor can be added under <code>sampler:</code> (e.g. <code>population_size</code>, <code>seed</code>, <code>n_startup_trials</code>).</p>
+<h3 id="36-pruner-optional">3.6 Pruner (optional)</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">pruner</span><span class="p">:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MedianPruner</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">n_startup_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">n_warmup_steps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span></code></pre></div>
+<p>Any Optuna pruner from <code>optuna.pruners</code> can be used. Omit this section if pruning is not needed.</p>
+<h3 id="37-storage-and-study-name">3.7 Storage and study name</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlite:///optuna.db</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">study_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_experiment</span>
+</span></code></pre></div>
+<ul>
+<li><code>storage</code>: Optuna storage URL. Use <code>sqlite:///optuna.db</code> for a local SQLite file. Omit for in-memory storage.</li>
+<li><code>study_name</code>: name of the study. When <code>storage</code> is set, the study is created or resumed if it already exists (<code>load_if_exists=True</code>).</li>
+</ul>
+<h3 id="38-trial-timeout-optional">3.8 Trial timeout (optional)</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">trial_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span><span class="w">    </span><span class="c1"># seconds, kill trial if it exceeds this</span>
+</span></code></pre></div>
+<hr />
+<h2 id="4-running-the-optimization">4. Running the optimization</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Uses optuna_params.yaml by default</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>hydra/sweeper<span class="o">=</span>igm_optuna
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Specify a custom config file</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>hydra/sweeper<span class="o">=</span>igm_optuna<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>hydra.sweeper.optuna_config<span class="o">=</span>my_other_config.yaml
+</span></code></pre></div>
+<p>The <code>-m</code> flag enables Hydra <strong>multirun</strong> mode (required for sweepers).</p>
+<hr />
+<h2 id="5-gpu-distribution">5. GPU distribution</h2>
+<p>By default, TensorFlow grabs all available GPU memory. When running multiple trials in parallel, this causes crashes. Three strategies:</p>
+<h3 id="option-a-share-one-gpu-with-memory-growth">Option A — Share one GPU with memory growth</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">gpu_allow_growth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p>Sets <code>TF_FORCE_GPU_ALLOW_GROWTH=true</code> per trial. Each trial allocates only the memory it needs.</p>
+<h3 id="option-b-one-trial-per-gpu-round-robin">Option B — One trial per GPU (round-robin)</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">gpu_ids</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">]</span>
+</span></code></pre></div>
+<p>Trial <em>i</em> uses <code>gpu_ids[i % len(gpu_ids)]</code> via <code>CUDA_VISIBLE_DEVICES</code>.</p>
+<h3 id="option-c-multiple-trials-per-gpu-across-gpus">Option C — Multiple trials per GPU, across GPUs</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">gpu_ids</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">]</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">gpu_allow_growth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p>8 trials distributed round-robin across 2 GPUs, 4 trials per GPU, with memory growth enabled.</p>
+<h3 id="cpu-only">CPU-only</h3>
+<p>No special configuration needed:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span></code></pre></div>
+<hr />
+<h2 id="6-cluster-deployment">6. Cluster deployment</h2>
+<p>For multi-node clusters, each node can run its own <code>igm_run -m</code> command pointing to the <strong>same SQLite database</strong> (via shared filesystem) and <strong>same <code>study_name</code></strong>. Optuna's <code>load_if_exists=True</code> ensures all nodes contribute to the same study.</p>
+<p>Example launch script (<code>run.sh</code>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">GPU_ID</span><span class="o">=</span><span class="nv">$1</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">N_TRIALS</span><span class="o">=</span><span class="nv">$2</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>hydra/sweeper<span class="o">=</span>igm_optuna<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span>hydra.sweeper.optuna_config<span class="o">=</span>optuna_params.yaml
+</span></code></pre></div>
+<p>Example cluster dispatch (SSH + tmux):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">NB</span><span class="o">=</span><span class="m">50</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">for</span><span class="w"> </span>GPU<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span>NODE<span class="w"> </span><span class="k">in</span><span class="w"> </span>node01<span class="w"> </span>node02<span class="w"> </span>node03<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="nv">SESSION</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">NODE</span><span class="si">}</span><span class="s2">_GPU</span><span class="si">${</span><span class="nv">GPU</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span>ssh<span class="w"> </span><span class="nv">$NODE</span><span class="w"> </span><span class="s2">&quot;tmux new-session -d -s </span><span class="nv">$SESSION</span><span class="s2"> &#39;cd /path/to/experiment &amp;&amp; ./run.sh </span><span class="nv">$GPU</span><span class="s2"> </span><span class="nv">$NB</span><span class="s2">&#39;&quot;</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span>sleep<span class="w"> </span><span class="m">5</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="k">done</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">done</span>
+</span></code></pre></div>
+<p>All trials land in the same <code>optuna.db</code> and can be monitored together.</p>
+<hr />
+<h2 id="7-output">7. Output</h2>
+<p>After a run completes:</p>
+<ul>
+<li><strong><code>multirun/</code></strong> — one subfolder per trial containing the full IGM output and <code>_igm_score.json</code></li>
+<li><strong><code>optimization_results.csv</code></strong> — all trials with named objective columns and parameter values</li>
+<li><strong>Console summary</strong> — Pareto-optimal trials (multi-objective) or best trial (single-objective)</li>
 </ul>
 <hr />
-<h2 id="example-folder-structure-after-run">Example Folder Structure (After Run)</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>multirun/
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├── trial_0/
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>│   └── .hydra/
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>│   └── log.txt
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>│   └── result.json
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>├── trial_1/
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>│   └── ...
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>optuna.db
+<h2 id="8-dashboard">8. Dashboard</h2>
+<p>To visualize optimization progress interactively:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>pip<span class="w"> </span>install<span class="w"> </span>optuna-dashboard
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>optuna-dashboard<span class="w"> </span>sqlite:///optuna.db
+</span></code></pre></div>
+<p>The dashboard shows:
+- Objective values per trial
+- Best parameters
+- Parameter importance
+- Parallel coordinate plots
+- Pareto front (multi-objective)</p>
+<p>Alternatively, upload <code>optuna.db</code> to the <a href="https://optuna.github.io/optuna-dashboard/">Optuna Dashboard web app</a>.</p>
+<hr />
+<h2 id="9-complete-optuna_paramsyaml-template">9. Complete <code>optuna_params.yaml</code> template</h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># --- Objectives (selected from state.score dict) ---</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nt">objectives</span><span class="p">:</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_volume</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_speed</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="c1"># --- Trials and parallelism ---</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="nt">n_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nt">gpu_allow_growth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="c1"># gpu_ids: [0, 1, 2, 3]</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="c1"># trial_timeout: 3600</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="c1"># --- Persistent storage ---</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlite:///optuna.db</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="nt">study_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_experiment</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="c1"># --- Sampler ---</span>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="nt">sampler</span><span class="p">:</span>
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="c1">#  method: TPESampler          # Bayesian, fast convergence, good default (1+ obj)</span>
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NSGAIISampler</span><span class="w">        </span><span class="c1"># Genetic, good Pareto diversity (2-3 obj)</span>
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="c1">#  method: NSGAIIISampler      # Genetic, best for 3+ objectives</span>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="c1">#  method: CmaEsSampler        # Covariance-based (1 obj only)</span>
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="c1">#  method: GPSampler           # Gaussian Process surrogate (1 obj only)</span>
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="w">  </span><span class="nt">population_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">          </span><span class="c1"># for NSGA-II/III only</span>
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>
+</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a><span class="c1"># --- Pruner (optional) ---</span>
+</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a><span class="c1"># pruner:</span>
+</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a><span class="c1">#   method: MedianPruner</span>
+</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a><span class="c1">#   n_startup_trials: 5</span>
+</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>
+</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a><span class="c1"># --- Fixed overrides (target values, applied to every trial) ---</span>
+</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a><span class="nt">overrides</span><span class="p">:</span>
+</span><span id="__span-18-35"><a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">18.0</span>
+</span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_max_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200.0</span>
+</span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>
+</span><span id="__span-18-38"><a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a><span class="c1"># --- Control parameters (tuned by Optuna) ---</span>
+</span><span id="__span-18-39"><a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="nt">parameters</span><span class="p">:</span>
+</span><span id="__span-18-40"><a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.init_slidingco</span>
+</span><span id="__span-18-41"><a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-18-42"><a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
+</span><span id="__span-18-43"><a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-18-44"><a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a><span class="w">    </span><span class="nt">log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-18-45"><a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a>
+</span><span id="__span-18-46"><a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.init_arrhenius</span>
+</span><span id="__span-18-47"><a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-18-48"><a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
+</span><span id="__span-18-49"><a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150.0</span>
+</span><span id="__span-18-50"><a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a>
+</span><span id="__span-18-51"><a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.smb_simple.array.1.3</span><span class="w">    </span><span class="c1"># ELA</span>
+</span><span id="__span-18-52"><a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-18-53"><a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500.0</span>
+</span><span id="__span-18-54"><a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3200.0</span>
 </span></code></pre></div>
 
 
