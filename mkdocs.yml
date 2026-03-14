@@ -67,6 +67,7 @@ nav:
       - write_tif: modules/outputs/write_tif.md
       - write_ts: modules/outputs/write_ts.md
       - plot2d: modules/outputs/plot2d.md
+      - live_dashboard: modules/outputs/live_dashboard.md
     - User: modules/user_modules.md
     - Variables: about/variables.md
   - Help: 
