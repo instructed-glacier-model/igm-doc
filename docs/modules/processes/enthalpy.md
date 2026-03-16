@@ -73,8 +73,8 @@ where $k_\mathrm{i}$ is the thermal conductivity of ice and $\epsilon \ll 1$ den
 
 At each time step, the enthalpy module performs the following operations:
 
-1. Computation of surface conditions $(T_\mathrm{s}, E_\mathrm{s})$.
-2. Computation of pressure-melting point conditions $(T_\mathrm{pmp}, E_\mathrm{pmp})$.
+1. Computation of surface enthalpy $E_\mathrm{s}$.
+2. Computation of pressure-melting point enthalpy $E_\mathrm{pmp}$.
 3. Solution of the equation for $E$.
 4. Computation of the thermal state $(T, \omega)$.
 5. Computation of the Arrhenius factor $A$.
@@ -97,6 +97,27 @@ processes.iceflow.physics.sliding.law = weertman
 ```
 
 To ensure proper functionality, also activate `vertical_iceflow`, use a relatively fine vertical discretization, and ensure sufficient retraining.
+
+## Post-processing of auxiliary variables
+
+Variables derivable from the enthalpy field, such as temperature $T$, pressure-melting point $T_\mathrm{pmp}$, or water content $\omega$, are not stored in state during the simulation. Since these are 3D fields, persisting them at every time step would impose a significant GPU memory overhead. They can instead be recomputed on demand. All utilities below are exported from [`igm.processes.enthalpy`](https://github.com/instructed-glacier-model/igm/blob/main/igm/processes/enthalpy/__init__.py). Two high-level functions cover most use cases:
+
+| Function | Returns | Description |
+| -------- | ------- | ----------- |
+| `compute_variables_enthalpy_state` | `None` | Computes all auxiliary variables and writes them into `state`: `E_s`, `T_s`, `E_pmp`, `T_pmp`, `T`, `omega`, `T_pa`, `T_pa_b`. |
+| `compute_variables_enthalpy_np` | `Dict[str, np.ndarray]` | Same, but returns a dictionary of NumPy arrays without modifying `state`. |
+
+The individual building blocks are also available for finer-grained access:
+
+| Function | Returns | Description |
+| -------- | ------- | ----------- |
+| `compute_surface` | $E_\mathrm{s}$, $T_\mathrm{s}$ | Surface enthalpy and temperature derived from air temperature, capped at the pressure-melting point. |
+| `compute_pmp` | $E_\mathrm{pmp}$, $T_\mathrm{pmp}$ | Pressure-melting point enthalpy and temperature throughout the ice column via the Clausius-Clapeyron relation. |
+| `compute_temperature` | $T$, $\omega$ | Ice temperature and water content recovered from the enthalpy field. |
+| `compute_pa` | $T_\mathrm{pa}$ | Pressure-adjusted temperature using the Clausius-Clapeyron correction. |
+
+!!! warning "Work in progress"
+    Automatic export of auxiliary enthalpy variables (e.g., $T$, $T_\mathrm{pmp}$, $\omega$, ...) via the output module is planned but not yet available. In the meantime, use the utilities above. Please do not hesitate to contact us if you need guidance on how to access these variables in your workflow.
 
 ## Parameters
 
