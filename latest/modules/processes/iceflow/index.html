@@ -5857,6 +5857,256 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.muon.lr</code>
+        </td>
+        <td class="description_text">Learning rate for matrix parameters (conv kernels, Dense kernels) in the Muon optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.02</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.muon.momentum</code>
+        </td>
+        <td class="description_text">Nesterov momentum coefficient for the Muon optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.95</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.muon.ns_steps</code>
+        </td>
+        <td class="description_text">Number of Newton-Schulz iterations used to orthogonalize the gradient update in the Muon optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">5</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.muon.lr_1d</code>
+        </td>
+        <td class="description_text">Learning rate for rank-1 parameters (biases) in the Muon optimizer; these receive plain Nesterov SGD.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0003</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.soap.lr</code>
+        </td>
+        <td class="description_text">Adam learning rate for the SOAP optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0003</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.soap.beta1</code>
+        </td>
+        <td class="description_text">Adam first-moment decay coefficient for the SOAP optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.95</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.soap.beta2</code>
+        </td>
+        <td class="description_text">Adam second-moment decay coefficient for the SOAP optimizer; also used to update the Kronecker preconditioner factors.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.999</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.soap.eps</code>
+        </td>
+        <td class="description_text">Epsilon for numerical stability in the Adam update of the SOAP optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-08</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.soap.precond_freq</code>
+        </td>
+        <td class="description_text">Number of iterations between eigendecompositions of the Kronecker preconditioner factors in the SOAP optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">10</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.soap.damping</code>
+        </td>
+        <td class="description_text">Regularization added to the Kronecker preconditioner factors before eigendecomposition in the SOAP optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-08</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.sequential.stages</code>
         </td>
         <td class="description_text">List containing the optimizer configurations when using a sequential optimization approach.</td>
