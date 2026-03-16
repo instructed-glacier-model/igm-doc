@@ -4389,7 +4389,7 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td class="description_text">Number of iterations for a warm-up period, allowing intense initial training.</td>
         <td style="text-align: center;">
 
-            <span class="integer_table">-10000000000.0</span>
+            <span class="float_table">-10000000000.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -4458,7 +4458,7 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td class="description_text">Size of the patch used for training the emulator; this is useful for large size arrays as otherwise the GPU memory could be overloaded.</td>
         <td style="text-align: center;">
 
-            <span class="integer_table">750</span>
+            <span class="integer_table">1000</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -5329,7 +5329,7 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td class="description_text">Type of optimizer used to solve the ice flow.</td>
         <td style="text-align: center;">
 
-            <span class="list_table">adam</span>
+            <span class="string_table">adam</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -6188,13 +6188,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.method</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Type of method used for the normalization of the inputs: adaptive, fixed.</td>
         <td style="text-align: center;">
 
-            adaptive
+            <span class="string_table">adaptive</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -6223,13 +6225,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.thk</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed offset for the input thk.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6244,13 +6248,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.usurf</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed offset for the input usurf.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6265,13 +6271,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.arrhenius</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed offset for the input arrhenius.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa<span class="math">\( ^{-n} \)</span> y<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
@@ -6286,13 +6294,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.slidingco</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed offset for the input slidingco.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa y<span class="math">\( ^{m} \)</span> m<span class="math">\( ^{-m} \)</span></span>
 
         </td>
       </tr>
@@ -6307,13 +6317,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.dX</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed offset for the input dX.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6328,13 +6340,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.X</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed offset for the input X.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6349,13 +6363,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.Y</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed offset for the input Y.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6380,13 +6396,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.thk</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed variance for the input thk.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6401,13 +6419,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.usurf</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed variance for the input usurf.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6422,13 +6442,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.arrhenius</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed variance for the input arrhenius.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa<span class="math">\( ^{-n} \)</span> y<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
@@ -6443,13 +6465,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.slidingco</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed variance for the input slidingco.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa y<span class="math">\( ^{m} \)</span> m<span class="math">\( ^{-m} \)</span></span>
 
         </td>
       </tr>
@@ -6464,13 +6488,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.dX</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed variance for the input dX.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6485,13 +6511,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.X</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed variance for the input X.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6506,13 +6534,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.Y</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fixed variance for the input Y.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -6543,13 +6573,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.network.debug_mode</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Enable debug mode for the optimizer.</td>
         <td style="text-align: center;">
 
-            False
+            <span class="boolean_table">False</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -6564,13 +6596,15 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
         <td style="min-width: 200px;">
           <code class="param_name">unified.network.debug_freq</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Frequency of debug output.</td>
         <td style="text-align: center;">
 
-            100
+            <span class="integer_table">100</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -6727,9 +6761,9 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
 
       <tr>
         <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.patch_size</code>
+          <code class="param_name">unified.data_preparation.framesizemax</code>
         </td>
-        <td class="description_text">Size of a patch.</td>
+        <td class="description_text">Maximum patch size; the domain is split into non-overlapping patches no larger than this value to avoid GPU memory overload.</td>
         <td style="text-align: center;">
 
             <span class="integer_table">1000</span>
@@ -6750,147 +6784,9 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
 
       <tr>
         <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.overlap</code>
+          <code class="param_name">unified.data_preparation.patches_per_batch</code>
         </td>
-        <td class="description_text">Fraction of overlap between the patches.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.batch_size</code>
-        </td>
-        <td class="description_text">Size of batch.</td>
-        <td style="text-align: center;">
-
-            <span class="integer_table">1</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.rotation_probability</code>
-        </td>
-        <td class="description_text">Probability of rotation.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.flip_probability</code>
-        </td>
-        <td class="description_text">Probability of flip.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.noise_type</code>
-        </td>
-        <td class="description_text">Type of noise.</td>
-        <td style="text-align: center;">
-
-            <span class="string_table">none</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.noise_scale</code>
-        </td>
-        <td class="description_text">Scale of the noise.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">unified.data_preparation.target_samples</code>
-        </td>
-        <td class="description_text">Target for the number of samples.</td>
+        <td class="description_text">Number of patches processed per mini-batch during optimization.</td>
         <td style="text-align: center;">
 
             <span class="integer_table">1</span>
