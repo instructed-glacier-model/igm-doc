@@ -1564,6 +1564,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#post-processing-of-auxiliary-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-processing of auxiliary variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2726,8 +2737,8 @@ K =
 <h2 id="numerical-solution">Numerical solution</h2>
 <p>At each time step, the enthalpy module performs the following operations:</p>
 <ol>
-<li>Computation of surface conditions <span class="arithmatex">\((T_\mathrm{s}, E_\mathrm{s})\)</span>.</li>
-<li>Computation of pressure-melting point conditions <span class="arithmatex">\((T_\mathrm{pmp}, E_\mathrm{pmp})\)</span>.</li>
+<li>Computation of surface enthalpy <span class="arithmatex">\(E_\mathrm{s}\)</span>.</li>
+<li>Computation of pressure-melting point enthalpy <span class="arithmatex">\(E_\mathrm{pmp}\)</span>.</li>
 <li>Solution of the equation for <span class="arithmatex">\(E\)</span>.</li>
 <li>Computation of the thermal state <span class="arithmatex">\((T, \omega)\)</span>.</li>
 <li>Computation of the Arrhenius factor <span class="arithmatex">\(A\)</span>.</li>
@@ -2745,6 +2756,65 @@ K =
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.sliding.law = weertman</span>
 </span></code></pre></div>
 <p>To ensure proper functionality, also activate <code>vertical_iceflow</code>, use a relatively fine vertical discretization, and ensure sufficient retraining.</p>
+<h2 id="post-processing-of-auxiliary-variables">Post-processing of auxiliary variables</h2>
+<p>Variables derivable from the enthalpy field, such as temperature <span class="arithmatex">\(T\)</span>, pressure-melting point <span class="arithmatex">\(T_\mathrm{pmp}\)</span>, or water content <span class="arithmatex">\(\omega\)</span>, are not stored in state during the simulation. Since these are 3D fields, persisting them at every time step would impose a significant GPU memory overhead. They can instead be recomputed on demand. All utilities below are exported from <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/processes/enthalpy/__init__.py"><code>igm.processes.enthalpy</code></a>. Two high-level functions cover most use cases:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compute_variables_enthalpy_state</code></td>
+<td><code>None</code></td>
+<td>Computes all auxiliary variables and writes them into <code>state</code>: <code>E_s</code>, <code>T_s</code>, <code>E_pmp</code>, <code>T_pmp</code>, <code>T</code>, <code>omega</code>, <code>T_pa</code>, <code>T_pa_b</code>.</td>
+</tr>
+<tr>
+<td><code>compute_variables_enthalpy_np</code></td>
+<td><code>Dict[str, np.ndarray]</code></td>
+<td>Same, but returns a dictionary of NumPy arrays without modifying <code>state</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The individual building blocks are also available for finer-grained access:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compute_surface</code></td>
+<td><span class="arithmatex">\(E_\mathrm{s}\)</span>, <span class="arithmatex">\(T_\mathrm{s}\)</span></td>
+<td>Surface enthalpy and temperature derived from air temperature, capped at the pressure-melting point.</td>
+</tr>
+<tr>
+<td><code>compute_pmp</code></td>
+<td><span class="arithmatex">\(E_\mathrm{pmp}\)</span>, <span class="arithmatex">\(T_\mathrm{pmp}\)</span></td>
+<td>Pressure-melting point enthalpy and temperature throughout the ice column via the Clausius-Clapeyron relation.</td>
+</tr>
+<tr>
+<td><code>compute_temperature</code></td>
+<td><span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(\omega\)</span></td>
+<td>Ice temperature and water content recovered from the enthalpy field.</td>
+</tr>
+<tr>
+<td><code>compute_pa</code></td>
+<td><span class="arithmatex">\(T_\mathrm{pa}\)</span></td>
+<td>Pressure-adjusted temperature using the Clausius-Clapeyron correction.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Work in progress</p>
+<p>Automatic export of auxiliary enthalpy variables (e.g., <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(T_\mathrm{pmp}\)</span>, <span class="arithmatex">\(\omega\)</span>, ...) via the output module is planned but not yet available. In the meantime, use the utilities above. Please do not hesitate to contact us if you need guidance on how to access these variables in your workflow.</p>
+</div>
 <h2 id="parameters">Parameters</h2>
 <p>The complete default configuration file can be found here: <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/enthalpy.yaml">enthalpy.yaml</a>.</p>
 <p>Structure of the parameters:</p>
