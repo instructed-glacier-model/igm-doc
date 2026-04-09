@@ -2473,13 +2473,27 @@
 
   <h1>Windows</h1>
 
-<p>Tensorflow does not allow us to run IGM on GPU directly on Windows, and the module <code>oggm_shop</code> does not work on windows. Therefore, we recommend windows-user to install WSL2-ubuntu, which provides a linux/ubuntu terminal. WSL2 terminal can be nicely linked with VS code (with an extension). First, install WSL2-ubuntu</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wsl<span class="w"> </span>--install<span class="w"> </span>Ubuntu-22.04
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+<p>TensorFlow does not allow us to run IGM on GPU directly on Windows, and the module <code>oggm_shop</code> does not work on windows. Therefore, we recommend window users to install WSL2-ubuntu, which provides a linux/ubuntu terminal. This faciliates the installation process of TensorFlow by using the host machine's (i.e. windows not WSL) nvidia drivers. Thus, if the nvidia drivers are installed on your windows machine, it should automatically be detected within the WSL system. As a concrete step-by-step procedure, we thus have the following:</p>
+<div class="admonition note">
+<p class="admonition-title">Nvidia Drivers vs. CUDA</p>
+<p>Please note that similar to linux, the <em>only</em> requirement is the correct nvidia drivers. This means there is no need to install the CUDA or CUDNN to make TensorFlow work. </p>
+</div>
+<p>First, make sure your windows host machine has updated nvidia drivers. A simple check is to run the following command in Powershell or Windows terminal</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>nvidia-smi
 </span></code></pre></div>
-<p>and then, install the NVIDIA drivers if not done (if you get no output from <code>nvidia-smi</code>), and if you wish to use the GPU.</p>
-<p>The rest -- installation of conda or venv environment and the installation of IGM -- are the same as above on Linux.</p>
+<p>If this returns a valid response and the nvidia driver is up to date (see xxx for what this actually means), then, you can procede to installing <code>wsl</code> and it should inherit the correct nvidia drivers, making it possible to then install IGM.</p>
+<p>If, however, it does not i) generate a response or ii) your drivers are too outdated, you will need to update your drivers. To do this, windows users can install the most up to date version of the drivers from <a href="https://www.nvidia.com/en-us/drivers/">here</a>. All you need is your nvidia GPU model, typically found within "Task Manager" or "Device Manger."</p>
+<div class="admonition note">
+<p class="admonition-title">Nvidia Drivers and WSL</p>
+<p>If your host machine can correctly run <code>nvidia-smi</code> but after installing <code>wsl</code>, you can not run <code>nvidia-smi</code>, then most likely the nvidia drivers are too out-of-date. Please go back a step to update your nvidia drivers and then try to install <code>wsl</code> again.</p>
+</div>
+<p>After installing the new drivers, please reboot your machine and try again to run the following command, where you will see a response with the updated nvidia-drivers for you machine:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nvidia-smi
+</span></code></pre></div>
+<p>Finally, you can install <code>wsl</code> which then should automatically detect the new nvidia drivers.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wsl<span class="w"> </span>--install<span class="w"> </span>Ubuntu-22.04
+</span></code></pre></div>
+<p>The rest of the installation of IGM then follows the same procedure: first you install the virtual environment and then IGM with either PyPi or Git.</p>
 
 
 
