@@ -20,8 +20,12 @@ Assuming that you want to launch the `params` experiment, you can run the above 
 │   └── params.yaml
 ```
 
-### Using custom modules
-Optionally, if you have decided to include custom modules, you should also put these folders in the same level as the `experiment` folder (shown below). For more information on how to use custom modules in IGM, please visit [here](modules/user_modules.md).
+Optionally, if you have decided to include custom modules, you should also put these folders in the same level as the `experiment` folder (shown below). In particular you need to 
+
+1. Setup the correct Hydra configuration
+2. Create your custom module python script in the correct manner
+
+For more information on how to use custom modules in IGM, please visit [here](modules/user_modules.md).
 
 ```
 ├ [RUN COMMAND HERE]
@@ -32,47 +36,4 @@ Optionally, if you have decided to include custom modules, you should also put t
 │   │   └── ...
 │   └── code
 │       └── ...
-
 ```
-
-<!-- ├── data        # contains the input data
-│   └── ...
-└── user        # contains user-modules if any
-│   └── ...
-└── outputs      # folder created by hydra/IGM to store model outputs
-│   └── .... -->
-
-<!-- 
-where the parameter file `params.yaml` (example below) consists of:  
-i) specifying a list of **modules** for inputs, processes, and outputs, and  
-ii) defining a list of **parameters** that override the default values.
-
-```yaml
-
-# @package _global_
-
-core:  # core IGM parameter (looging, GPU, ...)
-  hardware: 
-    gpu_info: False
-
-defaults: # declare the list of modules to be used
-  - override /inputs: [load_ncdf]
-  - override /modules: [smb_simple, iceflow, time, thk]
-  - override /output: [write_ncdf, plot2d]
-
-inputs:  # override parameters of input modules
-  load_ncdf:
-    input_file: data/input.nc
-
-processes: # override parameters of processes modules
-  time:
-    start: 1880.0
-    end: 2020.0
-    save: 5.0 
-
-outputs: # override parameters of output modules
-  plot2d:
-    live: true
-```
-
-Visit the `Module` section of this documentation to find out what modules are available, together with their parameters. -->

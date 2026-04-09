@@ -56,7 +56,6 @@ Here, the code files are expected to define functions `run(cfg, state)`, `initia
 
 To implement a mass balance function `sinus` with an oscillating ELA, you may create a module `mysmb` in a file `mysmb.py`:
 
-
 ```python
 def initialize(cfg,state):
     pass

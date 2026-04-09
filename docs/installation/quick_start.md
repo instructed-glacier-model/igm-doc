@@ -2,7 +2,9 @@
 
 # Quick Start 
 
-**This website documents IGM version 3, if you are on an old version v2.X.X, visit https://github.com/instructed-glacier-model/igm/wiki**
+!!! note
+    
+    This website documents IGM version 3, if you are on an older version (version 2), please visit the former [documentation](https://github.com/instructed-glacier-model/igm/wiki).
 
 This guide serves as the fastest way to install IGM. It assumes that have already
 
@@ -10,6 +12,7 @@ This guide serves as the fastest way to install IGM. It assumes that have alread
 2. Have a working [virtual environment](other/virtual_environment.md)
 
 If this is the case, you can skip to the next section.
+
 !!! note "Installing on Windows"
 
     Tensorflow does not allow us to run IGM on GPU directly on Windows, and the module `oggm_shop` does not work on windows. Therefore, we recommend windows-user to install WSL2-ubuntu, which provides a linux/ubuntu terminal. WSL2 terminal can be nicely linked with VS code (with an extension). First, install WSL2-ubuntu
