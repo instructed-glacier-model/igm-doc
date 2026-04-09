@@ -40,27 +40,28 @@ Once this is done, the options are the following
 
 </style>
 
+While both of the versions work, we strongly suggest that you pick a fixed release version of IGM for stability. This is due to the rapid development of IGM, where the Git version needs to be tested before making it official releases. In either case, you can either specify the version directly with Pip (by default it uses the latest stable release) or Git (where you will need to specify the stable release version). Both methods are described below.
 
 ### Pip
 <!-- <heading2 >Heading level 1</heading2> -->
 To install the latest version of IGM, simply run
 
 ```{.bash .annotate}
-pip install igm_model
+pip install igm-model
 ```
 <!-- 1. This is a code annotation -->
 
 For reproducibility purposes, one might want to install a specific version of IGM. In order to do this, one can specify the version (*note*, this version must exist on the PyPI [servers](https://pypi.org/project/igm-model/#history)).
 
 ```{.bash .annotate}
-pip install igm_model=='2.2.2'
+pip install igm-model=='3.1.0'
 ```
 
 ### Github
 
-If one wants to have the latest versions, or even, work on a specific hash for reproducibility, one can download IGM through the github [repository](). This is useful for developers, and researchers alike, who want to have the latest features as well as contribute to IGM's model personally.
+If one wants to have the latest versions, or even, work on a specific hash for reproducibility, one can download IGM through the github [repository](https://github.com/instructed-glacier-model/igm.git). This is useful for developers, and researchers alike, who want to have the latest features as well as contribute to IGM's model personally. However, note that this means you will be working with a continuously updating version of IGM, which might temporarly be unstable before we make it an official release.
 
-One can download the latest version of IGM with `git clone`
+Here, one can download the latest version of IGM with `git clone`
 
 ```bash
 git clone https://github.com/jouvetg/igm.git
@@ -87,14 +88,6 @@ Now, once the `setup.py` file is ready for your machine and operating system, on
 
 ```bash
 pip install -e .
-```
-
-Note that while the user installs 
-
-As IGM is being updated often, make sure you have the latest version by running the following command inside the `igm` folder
-
-```bash
-git pull
 ```
 
 <!-- ### Docker
