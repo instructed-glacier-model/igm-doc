@@ -5,7 +5,9 @@
 | Name | Contributions |
 |----------|----------|
 | Guillaume Jouvet, UNIL | Primary source code author of most of modules and their documentation, design of the PI-CNN in forward [1,3] and inverse modes [2]. |
-| Brandon Finley, UNIL  | Core code and software design, hydra integration, code profiling, docker, documentation framework design, `texture` module, TBC |
+| Brandon Finley, UNIL   | Core code and software design, hydra integration, code profiling, docker, documentation framework design, `texture` module, TBC |
+| Thomas Gregov, UNIL    | Refactoring and overhaul of the iceflow and enthalpy modules, including improved robustness, code cleanliness, and benchmarking |
+| Sebastian Rosier, UZH  | Refactoring and overhaul of the data assimilation and pretraining modules, including improved robustness, code cleanliness, creation of pretrained emulators |
 
 ## Contributors
 
