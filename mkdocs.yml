@@ -44,6 +44,7 @@ nav:
       - clim_glacialindex: modules/processes/clim_glacialindex.md
       - clim_oggm: modules/processes/clim_oggm.md
       - data_assimilation: modules/processes/data_assimilation.md
+      - effective_pressure: modules/processes/effective_pressure.md
       - enthalpy: modules/processes/enthalpy.md
       - flow_accumulation: modules/processes/flow_accumulation.md
       - gflex: modules/processes/gflex.md
