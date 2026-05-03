@@ -1529,6 +1529,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../processes/effective_pressure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    effective_pressure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../processes/enthalpy/" class="md-nav__link">
         
   
@@ -2609,6 +2637,7 @@
 <p>This IGM module is designed to load spatial 2D raster data from NetCDF or Tiff files specified by the <code>input_file</code> parameter. The module converts all existing 2D fields (present in the NetCDF file or in the designated folder for Tiff files) into TensorFlow variables. At a minimum, the module is expected to import basal topography represented by the <code>topg</code> variable. Additionally, it completes the data by deriving basal topography from ice thickness and surface topography when necessary. Other fields present will also be converted to TensorFlow variables, allowing them to be accessed in the code via <code>state.myvar</code>. For example, providing the <code>icemask</code> variable can be useful for defining an accumulation area, which is beneficial for modeling individual glaciers and preventing overflow into neighboring catchments.</p>
 <p>The module offers functions for resampling the data, where the <code>coarsen</code> parameter can be set to values like 2, 3, or 4 (with a default value of 1 indicating no coarsening). It also supports cropping the data by setting the <code>crop</code> parameter to <code>True</code> and specifying the desired bounds.</p>
 <p>Additionally, by setting <code>icemask_invert</code> to <code>True</code>, an ice mask can be generated from an ESRI Shapefile specified by the <code>icemask_shapefile</code> parameter. This mask can identify areas that should contain glaciers or areas that should remain glacier-free, based on the <code>icemask_include</code> parameter.</p>
+<p>For marine / tidewater simulations, the <code>water_level</code> sub-config creates a 2D <code>state.water_level</code> field consumed downstream by the iceflow <code>floating</code> energy component (and by <code>thk</code> calving-front schemes). Set <code>water_level.include: True</code> to fill the domain with a uniform value (<code>water_level.value</code>, in metres). If a 2D <code>water_level</code> variable is already present in the input data, it takes precedence and the uniform fill is skipped — letting you prescribe a spatially-varying water level (e.g. a fjord geometry). If <code>water_level</code> is left absent, the flotation term is disabled (the lower surface follows the bed). Note: this used to live in the <code>thk</code> module as <code>default_sealevel</code> and has moved to the input phase, so that <code>state.water_level</code> is available before any process module runs.</p>
 <p>The module also supports restarting an IGM run using a NetCDF file produced from a previous IGM run. To achieve this, provide the output NetCDF file from the previous run as input to IGM. The module will seek data corresponding to the starting time defined by <code>processes.time.start</code> and initialize the simulation at that time.</p>
 <p>This module depends on the <code>xarray</code> and <code>rioxarray</code> Python libraries.</p>
 <p><strong>Contributors:</strong> B. Finley, A. Henz (icemask add-on), G. Jouvet (tif format).</p>
