@@ -2612,9 +2612,32 @@
 <h2 id="parameters">Parameters</h2>
 <p>Default configuration file (<a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/thk.yaml">thk.yaml</a>):
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">thk</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">slope_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superbee</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">ratio_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.910</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">default_sealevel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">slope_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superbee</span><span class="w">                 </span><span class="c1"># limiter used in stock mode (calving_front: false)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">ratio_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.910</span><span class="w">                 </span><span class="c1"># rho_ice / rho_water for flotation</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">calving_front</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                 </span><span class="c1"># true -&gt; enable method below; false -&gt; plain thk</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sub_grid</span><span class="w">                     </span><span class="c1"># sub_grid (Albrecht/PISM) | level_set </span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">front_slope_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">godunov</span><span class="w">            </span><span class="c1"># limiter at the front band; godunov avoids pile-up</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">interior_slope_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superbee</span><span class="w">        </span><span class="c1"># limiter in deep bulk; equal to front disables hybrid</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">only_marine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                    </span><span class="c1"># restrict calving to cells with topg &lt; water_level</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">extend_halo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">                       </span><span class="c1"># iceflow-facing thk padding width; 0 = partial cells only</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">extend_thresh</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.95</span><span class="w">                  </span><span class="c1"># halo cells below interior_mean*thresh get padded</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">sub_grid</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">href_cap_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w">               </span><span class="c1"># Href cap = factor * H_threshold (kills cold-start bursts)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">promote_iters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">                   </span><span class="c1"># passes of partial-cell -&gt; full promotion per outer step</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">calve_cliff</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                  </span><span class="c1"># drain thk at front full cells -&gt; actual retreat mechanism</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">level_set</span><span class="p">:</span><span class="w">                           </span><span class="c1"># Bondzio 2016 / ISSM</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">only_near_front</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">             </span><span class="c1"># Gaussian-damp calving forcing away from psi=0</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">band_cells</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">                      </span><span class="c1"># width of that Gaussian, in cells</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">reinit_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">                     </span><span class="c1"># Sussman reinit every N outer steps (0 = never)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">reinit_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">                     </span><span class="c1"># pseudo-time iterations per reinit</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">reinit_iter_initial</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50</span><span class="w">            </span><span class="c1"># iterations for the initial psi build from +/-dx mask</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">phi_eps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-3</span><span class="w">                    </span><span class="c1"># floor on phi when recovering thk = M / phi</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">cap_partial</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                 </span><span class="c1"># clip partial-cell thk to interior mean (lossy)</span>
 </span></code></pre></div></p>
 <p>Description of the parameters:</p>
 <table>
@@ -2661,22 +2684,358 @@
     </tr>
     <tr>
       <td>
-        <code class="param_name">default_sealevel</code>
+        <code class="param_name">calving_front</code>
       </td>
-      <td class="description_text">Default sea level if not provided by the user.</td>
+      <td class="description_text"></td>
       <td style="text-align: center;">
 
-          <span class="float_table">0.0</span>
+          False
 
       </td>
       <td style="text-align: center;">
 
-          <span class="units_text">m</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">method</code>
+      </td>
+      <td class="description_text"></td>
+      <td style="text-align: center;">
+
+          sub_grid
+
+      </td>
+      <td style="text-align: center;">
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">front_slope_type</code>
+      </td>
+      <td class="description_text"></td>
+      <td style="text-align: center;">
+
+          godunov
+
+      </td>
+      <td style="text-align: center;">
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">interior_slope_type</code>
+      </td>
+      <td class="description_text"></td>
+      <td style="text-align: center;">
+
+          superbee
+
+      </td>
+      <td style="text-align: center;">
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">only_marine</code>
+      </td>
+      <td class="description_text"></td>
+      <td style="text-align: center;">
+
+          True
+
+      </td>
+      <td style="text-align: center;">
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">extend_halo</code>
+      </td>
+      <td class="description_text"></td>
+      <td style="text-align: center;">
+
+          2
+
+      </td>
+      <td style="text-align: center;">
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">extend_thresh</code>
+      </td>
+      <td class="description_text"></td>
+      <td style="text-align: center;">
+
+          0.95
+
+      </td>
+      <td style="text-align: center;">
 
       </td>
     </tr>
   </tbody>
 </table>
+
+<details class="param-section" id="sub_grid">
+    <summary class="param-section-title">
+      <code>sub_grid</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">sub_grid.href_cap_factor</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            2.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">sub_grid.promote_iters</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            5
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">sub_grid.calve_cliff</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            True
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="level_set">
+    <summary class="param-section-title">
+      <code>level_set</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">level_set.only_near_front</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">level_set.band_cells</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            3
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">level_set.reinit_freq</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            5
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">level_set.reinit_iter</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            5
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">level_set.reinit_iter_initial</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            50
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">level_set.phi_eps</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.001
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">level_set.cap_partial</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
 
 <div class="footnote">
 <hr />
