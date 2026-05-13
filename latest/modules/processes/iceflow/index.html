@@ -6889,12 +6889,12 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
 
       <tr>
         <td style="min-width: 200px;">
-          <code class="param_name">unified.adaptive_patching.strategy</code>
+          <code class="param_name">unified.adaptive_patching.windows</code>
         </td>
         <td class="description_text"></td>
         <td style="text-align: center;">
 
-            none
+            peak_augmented
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -6910,12 +6910,75 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
 
       <tr>
         <td style="min-width: 200px;">
-          <code class="param_name">unified.adaptive_patching.max_retrain_patches</code>
+          <code class="param_name">unified.adaptive_patching.stride_factor</code>
         </td>
         <td class="description_text"></td>
         <td style="text-align: center;">
 
-            10
+            1.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.n_extra_peaks</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            4
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.selection</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            scheduled
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.scoring</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            max
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -6952,6 +7015,27 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.max_retrain_patches</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            10
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.adaptive_patching.forgetting_prevention</code>
         </td>
         <td class="description_text"></td>
@@ -6973,12 +7057,180 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
 
       <tr>
         <td style="min-width: 200px;">
-          <code class="param_name">unified.adaptive_patching.scoring</code>
+          <code class="param_name">unified.adaptive_patching.min_freq</code>
         </td>
         <td class="description_text"></td>
         <td style="text-align: center;">
 
-            max
+            1
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.freq_ratio</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            5
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.memory_budget</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.schedule_rebuild_freq</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.shuffle_within_pass</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            True
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.shuffle_pass_order</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.record_schedule</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.record_path</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            None
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.rng_seed</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            None
 
         </td>
         <td style="text-align: center; min-width: 100px;">
