@@ -76,11 +76,9 @@ nav:
       - IGM 2 to 3 transition notes: about/transition-IGM-2-to-3.md
       - Updates: about/updates.md
       - Tools: about/tools.md
-      - FAQ: about/FAQ.md  
+      - FAQ: about/FAQ.md
+  - Gallery: gallery/index.md
   - Credits: about/credits_and_references.md
-
-  # - Gallery:
-  #     - Gallery: gallery/gallery.md
 
 plugins:
   - search
@@ -161,6 +159,7 @@ extra_css:
   - stylesheets/param-tables.css
   - stylesheets/style.css
   - stylesheets/refs.css
+  - stylesheets/gallery.css
 
 
 extra_javascript:

@@ -218,3 +218,139 @@ def define_env(env):
             print(f"Error: Unexpected error in markdown_inline filter: {e}")
             # Fallback: just remove citation markers
             return re.sub(r'\[@([^\]]+)\]', r'(\1)', text)
+
+    @env.macro
+    def render_year_histogram(yaml_path):
+        """
+        Render a horizontal-bar histogram of papers per year from a YAML
+        publications file. Years are shown in ascending order. Each row
+        has the year label, a bar whose width is proportional to the
+        per-year paper count, and the count itself.
+        """
+        from collections import Counter
+        from html import escape
+
+        try:
+            with open(yaml_path, "r", encoding="utf-8") as f:
+                papers = yaml.safe_load(f) or []
+        except (FileNotFoundError, yaml.YAMLError):
+            return ""
+
+        counts = Counter(int(p["year"]) for p in papers if p.get("year"))
+        if not counts:
+            return ""
+        total = sum(counts.values())
+        max_n = max(counts.values())
+        years_sorted = sorted(counts.keys())
+
+        rows = []
+        for y in years_sorted:
+            n = counts[y]
+            pct = 100.0 * n / max_n
+            rows.append(
+                '<div class="paper-hist-row">'
+                f'<span class="paper-hist-year">{y}</span>'
+                '<div class="paper-hist-bar-track">'
+                f'<div class="paper-hist-bar" style="width: {pct:.1f}%"></div>'
+                '</div>'
+                f'<span class="paper-hist-count">{n}</span>'
+                '</div>'
+            )
+        header = (
+            f'<div class="paper-hist-header">'
+            f'<strong>{total}</strong> papers using IGM across '
+            f'<strong>{len(years_sorted)}</strong> years '
+            f'({years_sorted[0]}–{years_sorted[-1]})'
+            f'</div>'
+        )
+        return (
+            '<div class="paper-hist">'
+            f'{header}'
+            f'{"".join(rows)}'
+            '</div>'
+        )
+
+    @env.macro
+    def render_gallery(yaml_path):
+        """
+        Render a publications gallery from a YAML file.
+
+        Schema per entry: title, authors, year (required); journal, doi,
+        image | video, links (list of {type, url}), tags (all optional).
+        Paths in `image` are resolved relative to the docs/ directory.
+
+        Args:
+            yaml_path: Path to the YAML file (relative to mkdocs.yml dir).
+
+        Returns:
+            str: HTML for the gallery, grouped by year (descending).
+        """
+        from collections import defaultdict
+        from html import escape
+
+        try:
+            with open(yaml_path, "r", encoding="utf-8") as f:
+                papers = yaml.safe_load(f) or []
+        except FileNotFoundError:
+            return f"<p><em>Gallery file not found: {escape(yaml_path)}</em></p>"
+        except yaml.YAMLError as e:
+            return f"<p><em>Invalid YAML in {escape(yaml_path)}: {escape(str(e))}</em></p>"
+
+        def render_media(p):
+            video = p.get("video")
+            image = p.get("image")
+            title = escape(p.get("title", ""))
+            if video:
+                if video.startswith("http"):
+                    return (f'<div class="gallery-media">'
+                            f'<iframe src="{escape(video)}" loading="lazy" '
+                            f'frameborder="0" allowfullscreen></iframe></div>')
+                return (f'<div class="gallery-media"><video controls preload="metadata">'
+                        f'<source src="../{escape(video)}"></video></div>')
+            if image:
+                src = image if image.startswith("http") else f"../{image}"
+                return (f'<div class="gallery-media">'
+                        f'<img src="{escape(src)}" alt="{title}" loading="lazy">'
+                        f'</div>')
+            return '<div class="gallery-media gallery-media-empty">📄</div>'
+
+        def render_chips(p):
+            chips = []
+            seen_paper = False
+            for link in p.get("links") or []:
+                ltype = escape(str(link.get("type", "link")))
+                url = escape(str(link.get("url", "#")))
+                if ltype == "paper":
+                    seen_paper = True
+                chips.append(f'<a class="gallery-chip gallery-chip-{ltype}" '
+                             f'href="{url}" target="_blank" rel="noopener">{ltype}</a>')
+            doi = p.get("doi")
+            if doi and not seen_paper:
+                chips.append(f'<a class="gallery-chip gallery-chip-paper" '
+                             f'href="https://doi.org/{escape(str(doi))}" '
+                             f'target="_blank" rel="noopener">doi</a>')
+            return "".join(chips)
+
+        by_year = defaultdict(list)
+        for p in papers:
+            by_year[p.get("year", 0)].append(p)
+
+        out = []
+        for year in sorted(by_year.keys(), reverse=True):
+            items = by_year[year]
+            out.append(f'<h2 class="gallery-year">{year}</h2>')
+            out.append('<div class="gallery-grid">')
+            for p in items:
+                meta_parts = [p.get("authors"), p.get("journal"), str(p.get("year", ""))]
+                meta = " · ".join(escape(str(s)) for s in meta_parts if s)
+                out.append(
+                    '<div class="gallery-card">'
+                    f'{render_media(p)}'
+                    '<div class="gallery-body">'
+                    f'<div class="gallery-title">{escape(p.get("title", ""))}</div>'
+                    f'<div class="gallery-meta">{meta}</div>'
+                    f'<div class="gallery-chips">{render_chips(p)}</div>'
+                    '</div></div>'
+                )
+            out.append('</div>')
+        return "\n".join(out)
