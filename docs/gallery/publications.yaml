@@ -15,7 +15,7 @@
   journal: "Nature Communications"
   year: 2026
   doi: "10.1038/s41467-026-72548-9"
-  image: "fig/thumbnail_gallery.png"
+  image: "fig/papers/frank2026_natcomms.png"
   links:
     - { type: data, url: "https://doi.org/10.6084/m9.figshare.29940932" }
 
@@ -47,7 +47,7 @@
   journal: "EGUsphere (preprint)"
   year: 2026
   doi: "10.5194/egusphere-2026-788"
-  image: "fig/thumbnail_gallery.png"
+  image: "fig/papers/smith2026_egusphere.png"
 
 - title: "Alps-wide high-resolution 3D modelling reconstruction of glacier geometry and climatic conditions for the Little Ice Age"
   authors: "Henz A., Reinthaler J., Nussbaumer S. U., Leger T. P. M., Kamleitner S., Jouvet G., Vieli A."
@@ -61,7 +61,7 @@
   journal: "Nature Communications"
   year: 2025
   doi: "10.1038/s41467-025-56168-3"
-  image: "fig/thumbnail_gallery.png"
+  image: "fig/papers/leger2025_natcomms.png"
   links:
     - { type: data, url: "https://doi.org/10.5281/zenodo.14275231" }
     - { type: video,  url: "https://youtu.be/lfbwkASf1L0?list=PLhTnndqLZd666LMeVkirAKLERHRs9JHeS" }
@@ -99,7 +99,7 @@
   journal: "Journal of Glaciology"
   year: 2024
   doi: "10.1017/jog.2024.25"
-  image: "fig/thumbnail_gallery.png"   
+  image: "fig/papers/thomas2024_jog.png"
 
 - title: "Modeling sediment fluxes from debris-rich basal ice layers"
   authors: "Pierce E., Overeem I., Jouvet G."
@@ -120,7 +120,7 @@
   journal: "Journal of Glaciology"
   year: 2023
   doi: "10.1017/jog.2023.73"
-  image: "fig/thumbnail_gallery.png"   
+  image: "fig/papers/jouvet2023emul_jog.png"
   links:
     - { type: code, url: "https://github.com/instructed-glacier-model/igm" }
 
@@ -136,7 +136,7 @@
   journal: "Journal of Glaciology"
   year: 2022
   doi: "10.1017/jog.2021.120"
-  image: "fig/thumbnail_gallery.png"   
+  image: "fig/papers/jouvet2022_jog.png"
   links:
     - { type: code, url: "https://github.com/instructed-glacier-model/igm" }
 
