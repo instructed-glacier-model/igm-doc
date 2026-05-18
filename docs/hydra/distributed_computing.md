@@ -61,7 +61,7 @@ Now, lets assume I want to run two experiments: one with `start=1900` and anothe
 igm_run +experiment=params processes.time.start=1990,1950 --multirun
 ```
 
-which will result in Hydra launching two jobs *sequentially*. Importantly, the default bahvior is to use the `basic` launcher, which means that the jobs will be run one at a time. We can verify this by looking at the terminal, where we see the message
+which will result in Hydra launching two jobs *sequentially*. Importantly, the default behavior is to use the `basic` launcher, which means that the jobs will be run one at a time. We can verify this by looking at the terminal, where we see the message
 
 ```bash hl_lines="2"
 [2025-04-08 11:34:59,755][HYDRA] Launching 2 jobs locally
@@ -111,7 +111,7 @@ which will produce the following message from Hydra
 [2025-04-08 12:04:41,425][HYDRA] 	#3 : +experiment=params processes.time.start=1950 processes.time.end=2050
 ```
 
-In addition to grid searchs, Hydra actually also allows for smarter searches using Beysian approaches or other inverse algorithms. To learn more, please visit their [sweepers](https://hydra.cc/docs/plugins/ax_sweeper/) section.
+In addition to grid searchs, Hydra actually also allows for smarter searches using Bayesian approaches or other inverse algorithms. To learn more, please visit their [sweepers](https://hydra.cc/docs/plugins/ax_sweeper/) section.
 
 ## Running on Node Clusters
 

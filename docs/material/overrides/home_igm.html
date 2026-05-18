@@ -7,20 +7,52 @@
 {{ super() }}
 
 <body class="landing-page">
-   <!-- <a href="https://www.nature.com/articles/s41467-025-56168-3">
-    <img class="feature-img">
-  </a> -->
-  <div class="landing-container">
-    <h1>Model<br class="subheader">Glacier Evolution with IGM 3</h1>
- <!--    <p>Reproducible Science. Community-Driven. Scalable. </p> -->
+
+<!-- ─── BACKGROUND VIDEO ─────────────────────────────────────────────────────
+     • To swap video : change the src in the <source> tag below
+     • To remove     : delete this entire comment + the <div class="landing-video"> block
+     ───────────────────────────────────────────────────────────────────────── -->
+<div class="landing-video">
+  <video autoplay muted playsinline>
+    <source src="assets/anim_particles.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="landing-container">
+    <h1>Model Glacier Evolution<br class="subheader">with IGM</h1>
+    <p class="landing-subtitle">A differentiable, modular, and GPU-accelerated ice flow model.</p>
     <div class="landing-buttons">
-      <button onclick="location.href='../latest/Installation/'">Get Started Now</button>
-      <button onclick="location.href='../latest/about/help/'">Contact Us</button>
+      <button onclick="location.href='getting_started/'">Get Started</button>
+      <button onclick="location.href='modules/introduction/'">Explore Modules</button>
+      <button onclick="location.href='gallery/'">Gallery</button>
+      <button onclick="location.href='about/help/'">Contact Us</button>
+    </div>
+  </div>
+
+  <div class="landing-pillars">
+    <div class="pillar-card">
+      <div class="pillar-icon">⚡</div>
+      <h3>Accessible</h3>
+      <p>Install in one command. Configure with a single YAML file. No code changes needed for standard simulations.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🧩</div>
+      <h3>Modular</h3>
+      <p>Swap or extend individual components — ice flow, mass balance, thermodynamics — without touching the rest of the model.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🔁</div>
+      <h3>Reproducible</h3>
+      <p>Every run records its full configuration. Continuous integration keeps the documentation and code in sync.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">📈</div>
+      <h3>Scalable</h3>
+      <p>GPU-native raster operations scale from single glaciers to mountain ranges. Ensemble sweeps via Hydra and Optuna.</p>
     </div>
   </div>
 </body>
 
-  
 {% endblock %}
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}

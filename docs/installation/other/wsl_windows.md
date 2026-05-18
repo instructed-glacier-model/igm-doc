@@ -1,33 +1,44 @@
-TensorFlow does not allow us to run IGM on GPU directly on Windows, and the module `oggm_shop` does not work on windows. Therefore, we recommend window users to install WSL2-ubuntu, which provides a linux/ubuntu terminal. This faciliates the installation process of TensorFlow by using the host machine's (i.e. windows not WSL) nvidia drivers. Thus, if the nvidia drivers are installed on your windows machine, it should automatically be detected within the WSL system. As a concrete step-by-step procedure, we thus have the following:
+# WSL2 on Windows
 
-!!! note "Nvidia Drivers vs. CUDA"
+TensorFlow does not support GPU acceleration natively on Windows, and `oggm_shop` does not work on Windows. The recommended solution is **WSL2 (Windows Subsystem for Linux)**, which provides a full Ubuntu terminal and automatically inherits your host machine's NVIDIA drivers — no separate driver installation inside WSL is needed.
 
-    Please note that similar to linux, the *only* requirement is the correct nvidia drivers. This means there is no need to install the CUDA or CUDNN to make TensorFlow work. 
+!!! note
+    Only the NVIDIA driver on the Windows host is required. You do not need to install CUDA or cuDNN inside WSL.
 
-First, make sure your windows host machine has updated nvidia drivers. A simple check is to run the following command in Powershell or Windows terminal
+---
 
-```bash
-nvidia-smi
-```
+## Verify or update your NVIDIA driver on Windows
 
-If this returns a valid response and the nvidia driver is up to date (see xxx for what this actually means), then, you can procede to installing `wsl` and it should inherit the correct nvidia drivers, making it possible to then install IGM.
-
-If, however, it does not i) generate a response or ii) your drivers are too outdated, you will need to update your drivers. To do this, windows users can install the most up to date version of the drivers from [here](https://www.nvidia.com/en-us/drivers/). All you need is your nvidia GPU model, typically found within "Task Manager" or "Device Manger."
-
-!!! note "Nvidia Drivers and WSL"
-
-    If your host machine can correctly run `nvidia-smi` but after installing `wsl`, you can not run `nvidia-smi`, then most likely the nvidia drivers are too out-of-date. Please go back a step to update your nvidia drivers and then try to install `wsl` again.
-
-After installing the new drivers, please reboot your machine and try again to run the following command, where you will see a response with the updated nvidia-drivers for you machine:
+Open PowerShell or Windows Terminal and run:
 
 ```bash
 nvidia-smi
 ```
 
-Finally, you can install `wsl` which then should automatically detect the new nvidia drivers.
+If this prints a valid driver table, your drivers are sufficient. If the command is not found or the driver version is outdated, download the latest driver for your GPU from the [NVIDIA driver portal](https://www.nvidia.com/en-us/drivers/) (your GPU model is listed in **Task Manager → Performance** or **Device Manager**), then reboot.
+
+---
+
+## Install WSL2
+
+In PowerShell (run as Administrator):
 
 ```bash
 wsl --install Ubuntu-22.04
+sudo apt update && sudo apt upgrade
 ```
 
-The rest of the installation of IGM then follows the same procedure: first you install the virtual environment and then IGM with either PyPi or Git.
+After installation, open the Ubuntu terminal and confirm that the NVIDIA driver is visible:
+
+```bash
+nvidia-smi
+```
+
+!!! warning
+    If `nvidia-smi` fails inside WSL after a successful run on Windows, your Windows driver is likely too old. Update it (Step 1) and reinstall WSL.
+
+---
+
+## Install IGM
+
+Inside the WSL Ubuntu terminal, follow the standard [Installation](../quick_start.md) instructions — create a virtual environment, then `pip install igm-model`.

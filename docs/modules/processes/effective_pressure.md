@@ -2,6 +2,8 @@
 
 This IGM module computes and maintains `state.effective_pressure` (in MPa), the basal effective pressure $N = p_i - p_w$ consumed by the Budd and Coulomb sliding laws of the `iceflow` module (read as `fieldin["effective_pressure"]`). It is the single source of truth for $N$: when active, it overrides any prior value of `state.effective_pressure` at every update.
 
+{{ render_module_io("effective_pressure") }}
+
 The module is opt-in. If the only sliding law in use is Weertman, $N$ cancels out of the cost and the module should not be activated. Conversely, when Budd or Coulomb is active, `effective_pressure` is required — the iceflow energy validator refuses to run without it.
 
 ## Closure modes

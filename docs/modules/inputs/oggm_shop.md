@@ -16,22 +16,20 @@ Set `include_glathida` to True to retrieve the GlaThiDa ice thickness profiles f
 
 | Variable              | Reference                              |
 |-----------------------|----------------------------------------|
-| Ice thickness profile | GlaThiDa                               |
-|-----------------------|----------------------------------------|
 | Surface DEM           | Copernicus DEM GLO-90                  |
 | Ice thickness         | Millan et al. (2022)                   |
 | Ice thickness         | Farinotti et al. (2019)                |
+| Ice thickness profile | GlaThiDa                               |
 | Surface ice speeds    | Millan et al. (2022)                   |
 | Surface ice speeds    | [its-live.jpl.nasa.gov](https://its-live.jpl.nasa.gov) |
 | Glacier mask          | Randolph Glacier Inventory             |
-| Ice thickness profile | GlaThiDa                               |
 | Glacier change        | Hugonnet et al. (2021)                 |
 | Climate data          | GSWP3_W5E5                             |
 | Flowline              | OGGM                                   |
 
 **Table:** Products available with the `oggm_shop` module.
 
-The module depends (of course) on the `oggm` library. Unfortunately the module works on linux and Max, but not on windows (unless using WSL).
+The module depends (of course) on the `oggm` library. Unfortunately the module works on Linux and macOS, but not on Windows (unless using [WSL](../../../installation/other/wsl_windows.md)).
 
 **Contributors:** F. Maussion, G. Jouvet, E. Welty (GlaThiDa-related code), S. Cook (RGI 7.0 modifications).
 

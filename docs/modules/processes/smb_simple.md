@@ -1,4 +1,6 @@
 # Module `smb_simple`
+{{ render_module_io("smb_simple") }}
+
 This IGM module models a simple surface mass balance (SMB) parametrized by time-evolving equilibrium line altitude (ELA) $z_{ELA}$, ablation gradient $\beta_{abl}$, accumulation gradient $\beta_{acc}$, and maximum accumulation $m_{acc}$ parameters:
 
 $$SMB(z) = 

@@ -8,6 +8,8 @@ where $P_i^{sol}$ is the monthly solid precipitation, $T_i$ is the monthly tempe
 
 **Contributors:** Guillaume Jouvet, Fabien Maussion.
 
+{{ render_module_io("smb_oggm") }}
+
 ## Parameters
 
 Default configuration file ([smb_oggm.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/smb_oggm.yaml)):

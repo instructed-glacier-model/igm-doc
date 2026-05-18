@@ -7,6 +7,8 @@ iii) It aligns exactly with specified saving times (controlled by the parameter 
 
 The module also updates the current simulation time $t$ in addition to determining the time step.
 
+{{ render_module_io("time") }}
+
 For stability reasons related to the transport scheme for ice thickness evolution, the time step must adhere to the CFL condition. This condition is governed by the parameter `processes.time.cfl`, which specifies the maximum number of cells that can be crossed in one iteration (this parameter cannot exceed 1). By default, `processes.time.cfl` is set to 0.3. Additionally, the time step is constrained by a user-defined maximum time step, `processes.time.step_max`, and must align with the saving frequency defined by `processes.time.save` (default: 1 year).
 
 Key parameters of this module include:  

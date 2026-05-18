@@ -1,6 +1,6 @@
 # Module `texture`
 
-This modules allows you to calculate ...
+This module generates photorealistic surface imagery from glacier state variables (ice thickness, velocity, surface elevation, and related fields) using a pre-trained [Pix2PixHD](https://github.com/NVIDIA/pix2pixHD) image-to-image neural network. The output is an RGB image saved as PNG or GeoTIFF at each time step, suitable for visualisation and for producing synthetic remote-sensing training data. Pre-trained model weights must be downloaded separately before use (a link is provided if the weights are not found at startup).
 
 **Contributors:** Brandon Finley.
 

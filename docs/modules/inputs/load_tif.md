@@ -1,6 +1,7 @@
 # Module `load_tif`
 
-**Warning: we advise to use instead module `local`**
+!!! warning "Deprecated"
+    Prefer the [`local`](local.md) module, which handles both NetCDF and GeoTIFF through a single interface and is actively maintained. `load_tif` remains functional but will not receive new features.
 
 This IGM module is designed to load spatial 2D raster data from any `.tif` file present in the working directory (`folder`) and transform each of them into TensorFlow variables. The name of the file becomes the name of the variable. For example, the file `topg.tif` will yield the variable `topg`. At a minimum, the module is expected to import basal topography represented by the `topg` variable. Additionally, it can derive basal topography from ice thickness and surface topography. Other fields present in the folder will also be converted to TensorFlow variables, allowing them to be accessed in the code via `state.myvar`. For instance, providing the `icemask` variable can help define an accumulation area, which is useful for modeling individual glaciers and preventing overflow into neighboring catchments.
 

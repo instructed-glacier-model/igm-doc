@@ -183,5 +183,5 @@ processes:
 
 We can do this for multiple parameters at the same time. For instance, the start and the end date:
 ```bash
-igm_run +experiment=params processes.time.start=1990 process.time.end=2050
+igm_run +experiment=params processes.time.start=1990 processes.time.end=2050
 ```

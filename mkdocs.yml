@@ -1,8 +1,7 @@
 site_name: Instructed Glacier Model (IGM)
-#site_url: https://jouvetg.github.io/igm-doc.github.io/
 site_url: https://igm-model.org
 site_description: >-
-  Run your own glacier simulations in a fast, accurate, and user-friendly way.
+  A differentiable, modular, and GPU-accelerated ice flow model.
 
 # Repository
 repo_name: instructed-glacier-model/igm
@@ -12,88 +11,88 @@ nav:
   - Home: index.md
   - Installation:
       - Quick Start: installation/quick_start.md
-      - Other:
+      - Guides:
         - Nvidia Drivers: installation/other/nvidia_drivers.md
         - Virtual Environments: installation/other/virtual_environment.md
-        - WSL Windows: installation/other/wsl_windows.md
-      # - Linux: installation/linux.md
-      # - Windows: installation/windows.md
-      # - MacOS: installation/mac.md
-      # - Docker: Installation_Docker.md
-  - Getting Started: 
-      - How to Run IGM: Running.md
-      - Using Hydra:
-        - Introduction: hydra/introduction.md
-        - Basics: hydra/basics.md
-        - Working Directory: hydra/working_directory.md
-        - Custom Configurations: hydra/custom_configurations.md
-        - Distributed Computing: hydra/distributed_computing.md 
-        - Optuna on Cluster: hydra/optuna_cluster.md
-        - Help: hydra/help.md
-      - Examples: examples/Examples.md
+        - WSL (Windows): installation/other/wsl_windows.md
+  - Getting Started:
+      - Getting Started: getting_started.md
+      - Tutorials:
+          - tutorials/index.md
+          - "Aletsch: forward run": tutorials/aletsch.md
+          - "Aletsch: ensemble run": tutorials/aletsch_ensemble.md
+          - "Aletsch: particle tracking": tutorials/aletsch_particles.md
+          - "Aletsch: parameter calibration": tutorials/aletsch_da.md
+      - Best Practices:
+          - best_practices/index.md
+          - Checklist: best_practices/checklist.md
+          - Numerical Tips: best_practices/numerical_tips.md
+      - FAQ: best_practices/faq.md
+  - Configuration:
+      - Hydra:
+          - hydra/introduction.md
+          - Basics: hydra/basics.md
+          - Working Directory: hydra/working_directory.md
+          - Custom Configurations: hydra/custom_configurations.md
+          - Parameter Sweeps: hydra/distributed_computing.md
+          - Help: hydra/help.md
+      - Optuna:
+          - Optimization: hydra/optuna_cluster.md
+      - IGM v2 → v3 Transition: about/transition-IGM-2-to-3.md
   - Modules:
-    - What are modules?: modules/introduction.md
-    - Core: modules/core.md
-    - Input:
-      - local: modules/inputs/local.md
-      - load_ncdf: modules/inputs/load_ncdf.md
-      - load_tif: modules/inputs/load_tif.md
-      - oggm_shop: modules/inputs/oggm_shop.md
-    - Processes:
-      - avalanche: modules/processes/avalanche.md
-      - clim_glacialindex: modules/processes/clim_glacialindex.md
-      - clim_oggm: modules/processes/clim_oggm.md
-      - data_assimilation: modules/processes/data_assimilation.md
-      - effective_pressure: modules/processes/effective_pressure.md
-      - enthalpy: modules/processes/enthalpy.md
-      - flow_accumulation: modules/processes/flow_accumulation.md
-      - gflex: modules/processes/gflex.md
-      - glerosion: modules/processes/glerosion.md
-      - iceflow: modules/processes/iceflow.md
-      - particles: modules/processes/particles.md
-      - pretraining: modules/processes/pretraining.md
-      - read_output: modules/processes/read_output.md
-      - rockflow: modules/processes/rockflow.md
-      - smb_accpdd: modules/processes/smb_accpdd.md
-      - smb_oggm: modules/processes/smb_oggm.md
-      - smb_simple: modules/processes/smb_simple.md
-      - texture: modules/processes/texture.md
-      - thk: modules/processes/thk.md
-      - time: modules/processes/time.md
-      - vert_flow: modules/processes/vert_flow.md
-    - Output:
-      - local: modules/outputs/local.md
-      - write_ncdf: modules/outputs/write_ncdf.md
-      - write_vtp: modules/outputs/write_vtp.md
-      - write_tif: modules/outputs/write_tif.md
-      - write_ts: modules/outputs/write_ts.md
-      - plot2d: modules/outputs/plot2d.md
-      - live_dashboard: modules/outputs/live_dashboard.md
-    - User: modules/user_modules.md
-    - Variables: about/variables.md
-  - Help: 
-      - Support: about/help.md
-      - IGM 2 to 3 transition notes: about/transition-IGM-2-to-3.md
-      - Updates: about/updates.md
-      - Tools: about/tools.md
-      - FAQ: about/FAQ.md
+      - modules/introduction.md
+      - State Variables: modules/state_variables.md
+      - Input:
+          - local: modules/inputs/local.md
+          - load_ncdf: modules/inputs/load_ncdf.md
+          - load_tif: modules/inputs/load_tif.md
+          - oggm_shop: modules/inputs/oggm_shop.md
+      - Process:
+          - time: modules/processes/time.md
+          - iceflow: modules/processes/iceflow.md
+          - thk: modules/processes/thk.md
+          - vert_flow: modules/processes/vert_flow.md
+          - smb_simple: modules/processes/smb_simple.md
+          - enthalpy: modules/processes/enthalpy.md
+      - Output:
+          - local: modules/outputs/local.md
+          - write_ncdf: modules/outputs/write_ncdf.md
+          - write_vtp: modules/outputs/write_vtp.md
+          - write_tif: modules/outputs/write_tif.md
+          - write_ts: modules/outputs/write_ts.md
+          - plot2d: modules/outputs/plot2d.md
+          - live_dashboard: modules/outputs/live_dashboard.md
+      - Community:
+          - avalanche: modules/processes/avalanche.md
+          - calving_rate: modules/processes/calving_rate.md
+          - clim_glacialindex: modules/processes/clim_glacialindex.md
+          - clim_oggm: modules/processes/clim_oggm.md
+          - clim_station: modules/processes/clim_station.md
+          - data_assimilation: modules/processes/data_assimilation.md
+          - effective_pressure: modules/processes/effective_pressure.md
+          - flow_accumulation: modules/processes/flow_accumulation.md
+          - gflex: modules/processes/gflex.md
+          - glerosion: modules/processes/glerosion.md
+          - particles: modules/processes/particles.md
+          - pretraining: modules/processes/pretraining.md
+          - read_output: modules/processes/read_output.md
+          - rockflow: modules/processes/rockflow.md
+          - smb_accpdd: modules/processes/smb_accpdd.md
+          - smb_oggm: modules/processes/smb_oggm.md
+          - texture: modules/processes/texture.md
+      - Global Parameters: modules/core.md
+      - User Modules: modules/user_modules.md
   - Gallery: gallery/index.md
-  - Credits: about/credits_and_references.md
+  - About:
+      - Credits & Authors: about/credits_and_references.md
+      - Cite IGM: about/cite.md
+      - Support: about/help.md
 
 plugins:
   - search
   - include-markdown
   - macros:
       module_name: main
-      # include_yaml:
-        # - igm/igm/conf/modules/avalanche.yaml
-        # - igm/igm/conf_help/modules/avalanche.yaml
-        # - avalanche: igm/igm/conf/modules/avalanche.yaml
-        # - avalanche_help: igm/igm/conf_help/modules/avalanche.yaml
-      # include_dir: ../igm # relative to this file - works for mkdocs deployment
-      # include_dir: ../../../../igm/
-      # include_dir: ./igm/igm/
-      # render_by_default: false
   - table-reader
   - bibtex:
       bib_file: refs.bib
@@ -114,6 +113,10 @@ markdown_extensions:
   - footnotes
   - attr_list
   - md_in_html
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
 
 theme:
   name: material
@@ -122,12 +125,9 @@ theme:
   favicon: assets/favicon.ico
   palette:
     - scheme: glacier_light
-      # primary: black
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
-
-    # Palette toggle for light mode
     - scheme: glacier_dark
       toggle:
         icon: material/weather-sunny
@@ -135,7 +135,6 @@ theme:
 
   font:
     text: Inter
-    # code: PragmataPro
     code: Fira Code
 
   language: en
@@ -143,11 +142,14 @@ theme:
     - content.code.copy
     - content.code.annotate
     - content.code.select
+    - content.tabs.link
 
+    - navigation.indexes
     - navigation.path
     - navigation.instant.progress
     - navigation.tabs
     - navigation.footer
+    - navigation.prune
     - toc.integrate
     - toc.follow
     - search.highlight
@@ -161,25 +163,12 @@ extra_css:
   - stylesheets/refs.css
   - stylesheets/gallery.css
 
-
 extra_javascript:
   - javascripts/mathjax.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/cite-linkify.js
 
-  # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
 extra:
   version:
     provider: mike
-  # yaml_data: !include_dir 'igm/igm/conf/modules'
-  # unit_price: 10
-  # social:
-  #   - icon: fontawesome/brands/discord 
-  #     link: https://fosstodon.org/@squidfunk
-  #   - icon: fontawesome/brands/github 
-  #     link: https://fosstodon.org/@squidfunk
-  #   - icon: fontawesome/brands/docker
-  #     link: https://fosstodon.org/@squidfunk
-

@@ -1,0 +1,74 @@
+# Module I/O declarations — single source of truth for state variable reads/writes.
+# Generated from source audit of igm/processes/<name>/<name>.py
+#
+# "needs"   = state variables read in initialize() / update()
+# "updates" = state variables written in initialize() / update()
+# "community: true" marks community (non-core) modules
+
+# ── Core modules ──────────────────────────────────────────────────────────────
+
+time:
+  needs:   [ubar, vbar]
+  updates: [t, dt]
+
+iceflow:
+  needs:   [thk, usurf, topg, arrhenius, slidingco]
+  updates: [U, V, ubar, vbar]
+
+thk:
+  needs:   [thk, topg, ubar, vbar, smb, dt]
+  updates: [thk, usurf, divflux]
+
+vert_flow:
+  needs:   [U, V, thk]
+  updates: [W, wvelbase, wvelsurf]
+
+smb_simple:
+  needs:   [usurf, icemask]
+  updates: [smb]
+
+enthalpy:
+  needs:   [thk, U, V, W, arrhenius]
+  updates: [E, T, omega, basal_melt_rate, arrhenius]
+
+# ── Community modules ─────────────────────────────────────────────────────────
+
+avalanche:
+  community: true
+  needs:   [thk, topg]
+  updates: [thk, usurf]
+
+calving_rate:
+  community: true
+  needs:   [thk, topg, water_level, ubar, vbar]
+  updates: [calving_rate]
+
+glerosion:
+  community: true
+  needs:   [U, V, thk]
+  updates: [topg, usurf]
+
+gflex:
+  community: true
+  needs:   [thk, topg]
+  updates: [topg, usurf]
+
+particles:
+  community: true
+  needs:   [U, V, W, thk]
+  updates: [particle]
+
+texture:
+  community: true
+  needs:   [U, V, thk, usurf]
+  updates: []
+
+flow_accumulation:
+  community: true
+  needs:   [thk, topg]
+  updates: [phi, flow_accumulation]
+
+rockflow:
+  community: true
+  needs:   [usurf, thk, U, V]
+  updates: [U, V]

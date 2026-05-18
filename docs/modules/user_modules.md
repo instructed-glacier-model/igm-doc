@@ -48,7 +48,7 @@ Similar to existing IGM modules, a user-defined module `my_module` can be implem
 
 Here, the code files are expected to define functions `run(cfg, state)`, `initialize(cfg, state)`, `update(cfg, state)`, and/or `finalize(cfg, state)`, where
 
-- the `cfg` object allows access to parameters in a hierachical fashion (e.g., `cfg.processes.enthalpy.ref_temp` retrieves a parameter associated with the `enthalpy` processes module),
+- the `cfg` object allows access to parameters in a hierarchical fashion (e.g., `cfg.processes.enthalpy.ref_temp` retrieves a parameter associated with the `enthalpy` processes module),
 
 - the `state` object provides access to variables describing the glacier state at a given time `t` (e.g., `state.thk` represents the distributed 2D ice thickness). All these variables are [TensorFlow 2.0](https://www.tensorflow.org/) Tensors. Leveraging TensorFlow is essential for performing computationally efficient operations, particularly on GPUs (see the dedicated TensorFlow section below). Variables can be accessed or modified using `state.[NAME_OF_VARIABLE]`.
 
@@ -130,7 +130,8 @@ igm.processes.particles.update_tf.seeding_particles = seeding_particles
 
 By following this approach, you can **surgically** extend or modify the behavior of existing modules while preserving the original functionality. This ensures flexibility and adaptability for specific use cases without compromising the integrity of the built-in modules.
 
-**Warning:** To override any IGM python  function (with `igm.processes.particles.update_tf.seeding_particles = seeding_particles` in the previous example), you must make sure to apply it in the file the function (here `seeding_particles`) is called (here in function `igm.processes.particles.update_tf`), and not where it is defined (since it can be defined in another place), this idea here is to overide either the python function or the import.
+!!! warning
+    When overriding a function (e.g. `igm.processes.particles.update_tf.seeding_particles`), apply the override in the file where the function is *called*, not where it is *defined*. These may differ if the function is imported from another module.
 
 # Tensorflow
 

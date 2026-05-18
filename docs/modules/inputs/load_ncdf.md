@@ -1,6 +1,7 @@
 # Module `load_ncdf`
 
-**Warning: we advise to use instead module `local`**
+!!! warning "Deprecated"
+    Prefer the [`local`](local.md) module, which handles both NetCDF and GeoTIFF through a single interface and is actively maintained. `load_ncdf` remains functional but will not receive new features.
 
 This IGM module is designed to load spatial 2D raster data from a NetCDF file specified by the `input_file` parameter. The module converts all existing 2D fields into TensorFlow variables. At a minimum, the module is expected to import basal topography represented by the `topg` variable. Additionally, it completes the data, such as deriving basal topography from ice thickness and surface topography. Other fields present in the NetCDF file will also be converted to TensorFlow variables, allowing them to be accessed in the code via `state.myvar`. For example, providing the `icemask` variable can be useful in defining an accumulation area, which is beneficial for modeling individual glaciers and preventing overflow into neighboring catchments.
 

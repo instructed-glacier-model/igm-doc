@@ -8,7 +8,9 @@
 
     The unified framework (`method=unified`) is the recommended approach going forward. It consolidates the legacy solver (`method=solved`) and emulator (`method=emulated`) into a single architecture where the computational strategy is selected via the `mapping` parameter. Legacy modes are still supported for backward compatibility, but new projects should use the unified mode; it offers new features (e.g., additional optimizers and stopping criteria) and greater flexibility (e.g., support for custom mappings).
 
-The `iceflow` module will be described in further details within the in-preparation paper for IGM 3 [@Jouvet2026].
+The `iceflow` module is described in further detail in [@Jouvet2026].
+
+{{ render_module_io("iceflow") }}
 
 ## Quick start-up guide
 
@@ -124,14 +126,15 @@ Rather than solving these PDEs directly, IGM adopts an **energy minimization app
 The velocity field $\mathbf{u}$ that satisfies the momentum balance is the one that minimizes the mechanical energy functional:
 
 $$
-\mathcal{J}(\mathbf{u}) = {\int_{\Omega} \frac{2\,A^{-1/n}}{1+1/n} \vert \mathbf{D}(\mathbf{u}) \vert^{1+1/n}\,\mathrm{d}\Omega} + {\int_{\Gamma_\mathrm{b}} \frac{c \vert\mathbf{u}_\mathrm{b}\vert^{1+1/m}}{1+1/m}\,\mathrm{d}\Gamma} - {\int_{\Omega} \rho g \,\nabla s \cdot \mathbf{u}\,\mathrm{d}\Omega},
+\mathcal{J}(\mathbf{u}) = {\int_{\Omega} \frac{2\,A^{-1/n}}{1+1/n} \vert \mathbf{D}(\mathbf{u}) \vert^{1+1/n}\,\mathrm{d}\Omega} + {\int_{\Gamma_\mathrm{b}} \frac{c \vert\mathbf{u}_\mathrm{b}\vert^{1+1/m}}{1+1/m}\,\mathrm{d}\Gamma} - {\int_{\Omega} \rho_\mathrm{i} g \,\nabla s \cdot \mathbf{u}\,\mathrm{d}\Omega} - {\int_{\Gamma_\mathrm{cf}} \left[\rho_\mathrm{i} g (s-z) - p_\mathrm{w}\right] \mathbf{u}\cdot\mathbf{n}\,\mathrm{d}\Gamma},
 $$
 
-where $\Omega$ is the three-dimensional ice domain, $\Gamma_\mathrm{b}$ is the basal boundary, and $s$ is the upper surface elevation. The three terms correspond to different physical processes:
+where $\Omega$ is the three-dimensional ice domain, $\Gamma_\mathrm{b}$ is the basal boundary, $\Gamma_\mathrm{cf}$ is the calving front (absent for land-terminating glaciers), and $s$ is the upper surface elevation. The four terms correspond to different physical processes:
 
 - The first term represents viscous dissipation. Here, $\mathbf{D}(\mathbf{u}) = (\nabla \mathbf{u} + \nabla \mathbf{u}^\top)/2$ is the strain-rate tensor, $A$ is the Arrhenius factor, and $n$ is the flow law exponent.
 - The second term represents basal friction dissipation, here parametrized with a Weertman law. Here, $c$ is the friction coefficient, $\mathbf{u}_\mathrm{b}$ is the basal velocity, and $m$ is the power-law exponent.
-- The third term represents gravitational power, which is the driving force. Here, $\rho$ is ice density and $g$ is gravitational acceleration
+- The third term represents gravitational power, which is the driving force. Here, $\rho_\mathrm{i}$ is ice density and $g$ is gravitational acceleration.
+- The fourth term accounts for the calving-front energy in marine-terminating glaciers, where $p_\mathrm{w}$ is the hydrostatic water pressure and $\mathbf{n}$ is the outward horizontal unit normal to $\Gamma_\mathrm{cf}$.
 
 The ice velocity is found by minimizing this functional:
 
@@ -260,6 +263,7 @@ Available optimizers:
 |-----------|-------------|-----------|
 | `adam` | Adaptive Moment Estimation: maintains running averages of gradient (first moment) and gradient magnitude (second moment) | [@Kingma2015] |
 | `lbfgs` | Limited-memory BFGS: quasi-Newton method approximating the inverse Hessian using gradient history | [@Nocedal2006] |
+| `soap` | SOAP (Shampoo with Adam): second-order optimizer combining Shampoo-style preconditioned updates with Adam's moment estimation; effective for physics-informed neural network training | [@Vyas2024] |
 | `sequential` | Multi-stage optimization allowing different optimizers and iteration counts in successive phases (see the [quick start-up guide](#unified-mode)) | - |
 
 ### Convergence criteria

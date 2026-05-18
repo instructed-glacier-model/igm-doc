@@ -4,6 +4,8 @@
 
     The `vert_flow` module computes the **vertical velocity** $w$ from the horizontal velocity components $(u, v)$ provided by the `iceflow` module. Two methods are available: **kinematic** (layer-following) and **incompressibility** (divergence-free). This module is required before invoking the `particle` module for 3D trajectory integration or the `enthalpy` module for 3D advection-diffusion.
 
+{{ render_module_io("vert_flow") }}
+
 ## Terrain-following coordinate system
 
 Ice flow simulations use a terrain-following vertical coordinate 

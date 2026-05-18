@@ -1,107 +1,130 @@
+# Installation
 
+IGM requires **Python 3.10–3.11**. GPU acceleration requires an NVIDIA card; CPU-only runs are slower but fully supported.
 
-# Quick Start 
+!!! note "Coming from IGM v2?"
+    This documentation covers IGM v3. For IGM v2, visit the [former documentation](https://github.com/instructed-glacier-model/igm/wiki) or the [v2 → v3 migration guide](../about/transition-IGM-2-to-3.md).
 
-!!! note
-    
-    This website documents IGM version 3, if you are on an older version (version 2), please visit the former [documentation](https://github.com/instructed-glacier-model/igm/wiki).
+---
 
-This guide serves as the fastest way to install IGM. It assumes that have already
+## Prerequisites
 
-1. Downloaded the [nvidia drivers](other/nvidia_drivers.md)
-2. Have a working [virtual environment](other/virtual_environment.md)
+Select your operating system:
 
-If this is the case, you can skip to the next section.
+=== "Linux"
+    Check that your NVIDIA driver is installed and up to date:
 
-!!! note "Installing on Windows"
+    ```bash
+    nvidia-smi
+    ```
 
-    Tensorflow does not allow us to run IGM on GPU directly on Windows, and the module `oggm_shop` does not work on windows. Therefore, we recommend windows-user to install WSL2-ubuntu, which provides a linux/ubuntu terminal. WSL2 terminal can be nicely linked with VS code (with an extension). First, install WSL2-ubuntu
+    If the command is not found or the driver is outdated, see [NVIDIA Drivers](other/nvidia_drivers.md).
+
+=== "macOS (Apple Silicon)"
+    - **CPU:** works out of the box — no driver or source changes needed.
+    - **M-series GPU (Metal):** supported, but requires installing from source (see Install below). Only tested on M4.
+
+=== "Windows"
+    TensorFlow does not support GPU execution natively on Windows, and `oggm_shop` does not work on Windows. Install **WSL2 (Ubuntu)** first — it provides a Linux terminal and inherits your host NVIDIA drivers automatically.
 
     ```bash
     wsl --install Ubuntu-22.04
-    sudo apt update
-    sudo apt upgrade
+    sudo apt update && sudo apt upgrade
     ```
 
-## Installing Methods
+    See [WSL2 setup](other/wsl_windows.md) for a detailed walkthrough. Once inside WSL, follow the **Linux** instructions above.
 
-Once this is done, the options are the following
+---
 
-1. pip
-2. github
-<!-- 3. docker -->
+## Virtual environment
 
-<style>
+=== "conda (recommended)"
+    ```bash
+    conda create -n igm python=3.11
+    conda activate igm
+    ```
 
-.heading2 {
-	color: hsl(243, 100.00%, 48.00%);
-    font-weight:900;
-    font-style:bold;
-    font-size: 36px;
-	line-height: 30px;
-}
+=== "venv"
+    ```bash
+    python3.11 -m venv igm
+    source igm/bin/activate
+    ```
 
-</style>
+See [Virtual Environments](other/virtual_environment.md) for a more detailed walkthrough.
 
-While both of the versions work, we strongly suggest that you pick a fixed release version of IGM for stability. This is due to the rapid development of IGM, where the Git version needs to be tested before making it official releases. In either case, you can either specify the version directly with Pip (by default it uses the latest stable release) or Git (where you will need to specify the stable release version). Both methods are described below.
+---
 
-### Pip
-<!-- <heading2 >Heading level 1</heading2> -->
-To install the latest version of IGM, simply run
+## Install
 
-```{.bash .annotate}
-pip install igm-model
-```
-<!-- 1. This is a code annotation -->
+=== "Standard (pip)"
+    ```bash
+    pip install igm-model
+    ```
 
-For reproducibility purposes, one might want to install a specific version of IGM. In order to do this, one can specify the version (*note*, this version must exist on the PyPI [servers](https://pypi.org/project/igm-model/#history)).
-
-```{.bash .annotate}
-pip install igm-model=='3.1.0'
-```
-
-### Github
-
-If one wants to have the latest versions, or even, work on a specific hash for reproducibility, one can download IGM through the github [repository](https://github.com/instructed-glacier-model/igm.git). This is useful for developers, and researchers alike, who want to have the latest features as well as contribute to IGM's model personally. However, note that this means you will be working with a continuously updating version of IGM, which might temporarly be unstable before we make it an official release.
-
-Here, one can download the latest version of IGM with `git clone`
-
-```bash
-git clone https://github.com/jouvetg/igm.git
-```
-
-!!! note "A Note about IGM's Install Location"
-
-    Please note that where you decide to clone IGM is purely the location where IGMs source code will be installed. After you install IGM with `pip install -e` (more on this below), you can run IGM from *any* location on your computer. This is because installing IGM will create a symbolic link to wherever this folder is installed.
-
-!!! note "Installing on Mac"
-
-    IGM's core package, Tensorflow, is unfortunately not natively supported on Mac OS for GPUs. Instead, a "Tensorflow for Mac", called [tensorflow-metal](https://developer.apple.com/metal/tensorflow-plugin/), was developed as a workaround. To install IGM on Mac, you can still clone the repository with the above line, but you must additionally change `tensorflow` to `tensorflow-macos` in `setup.py` *before* running `pip install -e`. Here is a working procedure (tested on MacBook Pro M2); we still recommend using a virtual environment such as conda or venv when installing.
+    To pin a specific release for reproducibility:
 
     ```bash
-    git clone https://github.com/jouvetg/igm
+    pip install "igm-model==3.1.0"
+    ```
+
+    All available releases are listed on [PyPI](https://pypi.org/project/igm-model/#history).
+
+=== "From source"
+    For the latest development version or to contribute to IGM:
+
+    ```bash
+    git clone https://github.com/instructed-glacier-model/igm.git
+    cd igm
+    pip install -e .
+    ```
+
+    The `-e` flag installs IGM in editable mode: changes to the source are reflected immediately without reinstalling.
+
+    !!! warning
+        The source version may be unstable between releases. For production use, prefer `pip install igm-model`.
+
+=== "macOS (Apple Silicon, M-series GPU)"
+    Clone the repository and make two manual edits before installing.
+
+    ```bash
+    git clone https://github.com/instructed-glacier-model/igm.git
     cd igm
     ```
-    Now, in the `setup.py` file, you will need to edit the "install_requires=[...]" line depending on your requirements:
 
-    * To use only the CPU: `tensorflow-macos==2.14.0`
-    * To use the GPU: `tensorflow-macos==2.14.0, tensorflow-metal,`
+    **1. Edit `setup.py`** — replace the TensorFlow lines:
 
-Now, once the `setup.py` file is ready for your machine and operating system, one can install IGM inside his or her virtual environment. To do this, run the following command in the same level as the `setup.py` file:
+    ```python
+    # Remove:
+    "tensorflow[and-cuda]==2.15.1",
+    "tensorflow-probability==0.23.0",
+
+    # Add:
+    "tensorflow-macos==2.14.0",
+    "tensorflow-metal",
+    #"tensorflow-probability==0.23.0",
+    ```
+
+    **2. Disable JIT compilation** — `tensorflow-metal` does not support JIT compilation. Replace every occurrence of `jit_compile=True` with `jit_compile=False` throughout the source:
+
+    ```bash
+    grep -rl "jit_compile=True" . | xargs sed -i '' 's/jit_compile=True/jit_compile=False/g'
+    ```
+
+    **3. Install:**
+
+    ```bash
+    pip install -e .
+    ```
+
+    !!! note
+        This procedure has been tested on M4. We plan to streamline macOS installation in a future release.
+
+---
+
+## Verify
 
 ```bash
-pip install -e .
+igm_run --help
 ```
 
-<!-- ### Docker
-
-For even more granular control, one can opt to use the docker image instead of the github version. This maximizes the chances of reproducibility and stability as the virtual environmnet is part of the installation of IGM. ... Assuming you have [docker]() installed already, you can download the docker image through two ways
-
-1. Docker CLI
-2. DockerHub
-
-In order to download IGM through the commandline, you can run the following command
-
-```{.bash .annotate}
-docker ...
-``` -->
+A successful installation prints the IGM help text. You are ready to run your first simulation.

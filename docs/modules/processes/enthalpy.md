@@ -20,7 +20,9 @@
 
     See the [parameters section](#parameters) for parameter name changes.
 
-The implementation is largely inspired by [PISM](https://www.pism.io/) [@Aschwanden2012]. Other references have also helped verify the implementation through benchmarks [@Kleiner2015; @Wang2020]. The `enthalpy` module will be described in further detail in the in-preparation paper for IGM 3 [@Jouvet2026].
+The implementation is largely inspired by [PISM](https://www.pism.io/) [@Aschwanden2012]. Other references have also helped verify the implementation through benchmarks [@Kleiner2015; @Wang2020]. The `enthalpy` module is described in further detail in [@Jouvet2026].
+
+{{ render_module_io("enthalpy") }}
 
 
 ## Physical model
@@ -83,8 +85,8 @@ At each time step, the enthalpy module performs the following operations:
 
 The computationally intensive step is solving the equation for $E$. To achieve this efficiently, we use an operator splitting method:
 
-* first, solve the horizontal advection equation with an explicit backward Euler method;
-* then, solve the vertical advection-diffusion equation with an implicit solver.
+* first, solve the horizontal advection equation explicitly with an upwind finite-difference scheme (forward Euler in time);
+* then, solve the vertical advection-diffusion equation with an implicit solver (backward Euler).
 
 The implicit solver consists of the Thomas algorithm for tridiagonal linear systems, applied simultaneously to each vertical ice column.
 
