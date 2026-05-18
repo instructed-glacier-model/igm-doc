@@ -4,6 +4,14 @@ Source for the [igm-model.org](https://igm-model.org) documentation site, built 
 
 ## Setup
 
+Clone the main IGM repository and initialise submodules:
+
+```bash
+git clone https://github.com/instructed-glacier-model/igm
+cd igm/
+git submodule update --init
+```
+
 Create a dedicated environment and install the documentation dependencies:
 
 ```bash
@@ -20,6 +28,24 @@ mkdocs serve
 ```
 
 Open the URL printed in the terminal. Changes to any source file are reflected live in the browser.
+
+## Pushing changes
+
+Changes must be committed in both `igm-doc` and the parent `igm` repository:
+
+```bash
+# 1. In igm-doc/
+git pull
+# make your changes
+git add .
+git commit -m "docs: describe what you changed"
+git push
+
+# 2. In igm/
+git add igm-doc
+git commit -m "docs: bump igm-doc submodule"
+git push
+```
 
 ## Structure
 
