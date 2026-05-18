@@ -1,4 +1,4 @@
-# Cite IGM
+# Citing IGM
 
 ## Primary reference
 
@@ -6,15 +6,16 @@ When using IGM in your research, please cite the model development paper:
 
 > IGM authors (in prep.). **IGM: a differentiable, modular, and GPU-accelerated ice flow model.** doi:[10.31223/x5t99c](https://doi.org/10.31223/x5t99c)
 
+{% raw %}
 ```bibtex
 @article{IGM,
-  title   = {IGM: a differentiable, modular, and GPU-accelerated ice flow model},
-  author  = {IGM authors},
-  year    = {2026},
-  note    = {in prep.},
-  doi     = {10.31223/x5t99c},
+  title  = {IGM: a differentiable, modular, and GPU-accelerated ice flow model},
+  author = {{IGM authors}},
+  year   = {in prep.},
+  doi    = {10.31223/x5t99c},
 }
 ```
+{% endraw %}
 
 ---
 

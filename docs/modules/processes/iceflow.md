@@ -8,7 +8,7 @@
 
     The unified framework (`method=unified`) is the recommended approach going forward. It consolidates the legacy solver (`method=solved`) and emulator (`method=emulated`) into a single architecture where the computational strategy is selected via the `mapping` parameter. Legacy modes are still supported for backward compatibility, but new projects should use the unified mode; it offers new features (e.g., additional optimizers and stopping criteria) and greater flexibility (e.g., support for custom mappings).
 
-The `iceflow` module is described in further detail in [@Jouvet2026].
+The `iceflow` module is described in further detail in [@IGM].
 
 {{ render_module_io("iceflow") }}
 

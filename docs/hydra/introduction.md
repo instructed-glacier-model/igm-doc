@@ -1,4 +1,4 @@
-# Hydra
+# Overview
 
 As IGM runs various modules based on physical processes (for instance iceflow), one needs to also be able to adjust physical parameters and constants between runs. For instance, if one wants to change the ice viscosity, it would be ideal to adjust this parameter outside the source code in a controlled manner. Now, imagine where one can not only adjust the viscosity but hundreds of different parameters across a multitude of modules - this is where [Hydra](https://hydra.cc/docs/intro/) comes in. Simply put, it is a way to manage a complex hierarchy of configuration files. In more detail, we chose to integrate Hydra into IGM for the following reasons:
 

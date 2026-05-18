@@ -1,8 +1,8 @@
-# Modules
+# Overview
 
 IGM is built around a **modular architecture**: every physical process and every I/O operation is encapsulated in a self-contained module with its own parameters, source code, and documentation. Modules can be combined, reordered, or replaced from the configuration file — no source-code editing required.
 
-## Architecture overview
+## Architecture
 
 A simulation is assembled from three categories of modules:
 

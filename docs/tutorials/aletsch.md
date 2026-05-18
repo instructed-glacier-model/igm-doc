@@ -30,7 +30,7 @@ aletsch/
 
 ---
 
-## Step 1 — Simple ELA-based SMB
+## Step 1: Simple ELA-based SMB
 
 The simplest possible glacier simulation: ice flow driven by a built-in surface mass balance model whose equilibrium-line altitude (ELA) shifts linearly with time to represent a warming climate. No climate data is required.
 
@@ -96,7 +96,7 @@ ncview outputs/*/output.nc
 
 ---
 
-## Step 2 — Custom SMB module
+## Step 2: Custom SMB module
 
 This step replaces `smb_simple` with a **user-defined module** (`mysmb`) that computes SMB from a sinusoidal ELA signal. The physics are simple, but the point is the workflow: how to write, register, and use your own process module.
 
@@ -146,7 +146,7 @@ See [User Modules](../modules/user_modules.md) for a full guide to writing your 
 
 ---
 
-## Step 3 — Realistic climate and temperature-index SMB
+## Step 3: Realistic climate and temperature-index SMB
 
 Steps 1 and 2 use toy mass-balance models. Step 3 replaces them with a physically realistic pipeline driven by actual meteorological data:
 

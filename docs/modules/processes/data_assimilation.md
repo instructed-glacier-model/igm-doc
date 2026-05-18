@@ -1,6 +1,6 @@
 # Module `data_assimilation`
  
-A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (`iceflow`) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM. **See [@Jouvet2026] for full technical details.**
+A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (`iceflow`) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM. **See [@IGM] for full technical details.**
 
 {{ render_module_io("data_assimilation") }}
 

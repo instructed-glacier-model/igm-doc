@@ -16,7 +16,7 @@ nav:
         - Virtual Environments: installation/other/virtual_environment.md
         - WSL (Windows): installation/other/wsl_windows.md
   - Getting Started:
-      - Getting Started: getting_started.md
+      - Overview: getting_started.md
       - Tutorials:
           - tutorials/index.md
           - "Aletsch: forward run": tutorials/aletsch.md
@@ -29,6 +29,7 @@ nav:
           - Numerical Tips: best_practices/numerical_tips.md
       - FAQ: best_practices/faq.md
   - Configuration:
+      - configuration.md
       - Hydra:
           - hydra/introduction.md
           - Basics: hydra/basics.md
@@ -85,7 +86,7 @@ nav:
   - Gallery: gallery/index.md
   - About:
       - Credits & Authors: about/credits_and_references.md
-      - Cite IGM: about/cite.md
+      - Citing IGM: about/cite.md
       - Support: about/help.md
 
 plugins:
@@ -149,7 +150,7 @@ theme:
     - navigation.instant.progress
     - navigation.tabs
     - navigation.footer
-    - navigation.prune
+
     - toc.integrate
     - toc.follow
     - search.highlight

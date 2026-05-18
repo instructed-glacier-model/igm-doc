@@ -1,4 +1,4 @@
-# Getting Started
+# Overview
 
 IGM runs from the command line. A simulation is fully described by a single YAML configuration file; no source-code editing is needed.
 

@@ -30,7 +30,7 @@ Optuna calls `igm_run` repeatedly, proposing new parameter values each trial bas
 
 ---
 
-## Part 1 — Single-objective calibration
+## Part 1: Single-objective calibration
 
 ### What is optimised
 
@@ -145,7 +145,7 @@ The optimisation converges to `cost_usurf ≈ 30.6 m` (mean STD across all 7 DEM
 
 ---
 
-## Part 2 — Multi-objective calibration
+## Part 2: Multi-objective calibration
 
 Part 2 simultaneously optimises **two objectives**:
 

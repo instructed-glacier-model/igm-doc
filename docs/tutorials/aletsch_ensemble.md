@@ -39,7 +39,7 @@ igm_run +experiment=params_step3 \
 
 ---
 
-## 1D sweep — varying one parameter
+## 1D sweep: varying one parameter
 
 Add `-m` (multirun) and provide comma-separated values to run one simulation per value:
 
@@ -88,7 +88,7 @@ plt.savefig("volume_sensitivity_acc.png", dpi=150)
 
 ---
 
-## 2D grid — varying two parameters
+## 2D grid: varying two parameters
 
 Providing two overrides with comma-separated values produces their **Cartesian product**:
 

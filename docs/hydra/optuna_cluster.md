@@ -1,4 +1,4 @@
-# IGM Optuna Sweeper — Full Reference
+# Optimization with Optuna
 
 IGM includes a built-in Hydra sweeper plugin (`igm_optuna`) that uses [Optuna](https://optuna.org/) for parameter optimization. It supports single- and multi-objective optimization, parallel trials, GPU distribution, and persistent storage with dashboard visualization.
 
@@ -6,7 +6,7 @@ This replaces the upstream `hydra-optuna-sweeper` (which pins `optuna<3.0`) with
 
 ---
 
-## 1. Overview
+## Overview
 
 The optimization workflow has two parts:
 
@@ -17,7 +17,7 @@ Each trial runs as a **separate subprocess** with its own TensorFlow session, en
 
 ---
 
-## 2. Defining scores in user code
+## Defining scores in user code
 
 Create a user process module (e.g. `user/code/processes/eval_objective.py`) that computes all available metrics in `finalize()`:
 
@@ -60,11 +60,11 @@ The `state.score` dictionary can contain as many metrics as desired. The `optuna
 
 ---
 
-## 3. The `optuna_params.yaml` config file
+## The `optuna_params.yaml` config file
 
 All optimization settings live in a single YAML file (default name: `optuna_params.yaml`). Below is a complete reference with all available options.
 
-### 3.1 Objectives
+### Objectives
 
 Select which scores from `state.score` to optimize:
 
@@ -80,7 +80,7 @@ objectives:
 - Use a single entry for single-objective optimization, multiple entries for multi-objective.
 - You can change which scores are active without modifying any Python code.
 
-### 3.2 Control parameters
+### Control parameters
 
 Parameters tuned by Optuna. Each maps to a Hydra config path:
 
@@ -114,7 +114,7 @@ Supported types:
 
 The `name` field is the full Hydra override path. Optuna suggests a value within the specified range, and it is passed to `igm_run` as `name=value`.
 
-### 3.3 Fixed overrides (target values)
+### Fixed overrides
 
 Values passed to every trial as Hydra overrides (not tuned by Optuna):
 
@@ -126,16 +126,16 @@ overrides:
 
 This keeps both controls and targets in the same file for clarity.
 
-### 3.4 Trials and parallelism
+### Trials and parallelism
 
 ```yaml
 n_trials: 200       # total number of trials to run
 n_jobs: 1           # number of parallel trials (default: 1 = sequential)
 ```
 
-When `n_jobs > 1`, trials are launched as parallel subprocesses. See Section 5 for GPU considerations.
+When `n_jobs > 1`, trials are launched as parallel subprocesses. See [GPU distribution](#gpu-distribution) below for considerations when running in parallel.
 
-### 3.5 Sampler
+### Sampler
 
 ```yaml
 sampler:
@@ -157,7 +157,7 @@ Available samplers (all from `optuna.samplers`):
 
 Any keyword argument accepted by the sampler constructor can be added under `sampler:` (e.g. `population_size`, `seed`, `n_startup_trials`).
 
-### 3.6 Pruner (optional)
+### Pruner
 
 ```yaml
 pruner:
@@ -168,7 +168,7 @@ pruner:
 
 Any Optuna pruner from `optuna.pruners` can be used. Omit this section if pruning is not needed.
 
-### 3.7 Storage and study name
+### Storage and study name
 
 ```yaml
 storage: sqlite:///optuna.db
@@ -178,7 +178,7 @@ study_name: my_experiment
 - `storage`: Optuna storage URL. Use `sqlite:///optuna.db` for a local SQLite file. Omit for in-memory storage.
 - `study_name`: name of the study. When `storage` is set, the study is created or resumed if it already exists (`load_if_exists=True`).
 
-### 3.8 Trial timeout (optional)
+### Trial timeout
 
 ```yaml
 trial_timeout: 3600    # seconds, kill trial if it exceeds this
@@ -186,7 +186,7 @@ trial_timeout: 3600    # seconds, kill trial if it exceeds this
 
 ---
 
-## 4. Running the optimization
+## Running the optimization
 
 ```bash
 # Uses optuna_params.yaml by default
@@ -201,11 +201,11 @@ The `-m` flag enables Hydra **multirun** mode (required for sweepers).
 
 ---
 
-## 5. GPU distribution
+## GPU distribution
 
 By default, TensorFlow grabs all available GPU memory. When running multiple trials in parallel, this causes crashes. Three strategies:
 
-### Option A — Share one GPU with memory growth
+### Option A: Share one GPU with memory growth
 
 ```yaml
 n_jobs: 4
@@ -214,7 +214,7 @@ gpu_allow_growth: true
 
 Sets `TF_FORCE_GPU_ALLOW_GROWTH=true` per trial. Each trial allocates only the memory it needs.
 
-### Option B — One trial per GPU (round-robin)
+### Option B: One trial per GPU (round-robin)
 
 ```yaml
 n_jobs: 4
@@ -223,7 +223,7 @@ gpu_ids: [0, 1, 2, 3]
 
 Trial *i* uses `gpu_ids[i % len(gpu_ids)]` via `CUDA_VISIBLE_DEVICES`.
 
-### Option C — Multiple trials per GPU, across GPUs
+### Option C: Multiple trials per GPU, across GPUs
 
 ```yaml
 n_jobs: 8
@@ -243,7 +243,7 @@ n_jobs: 4
 
 ---
 
-## 6. Cluster deployment
+## Cluster deployment
 
 For multi-node clusters, each node can run its own `igm_run -m` command pointing to the **same SQLite database** (via shared filesystem) and **same `study_name`**. Optuna's `load_if_exists=True` ensures all nodes contribute to the same study.
 
@@ -275,7 +275,7 @@ All trials land in the same `optuna.db` and can be monitored together.
 
 ---
 
-## 7. Output
+## Output
 
 After a run completes:
 
@@ -285,7 +285,7 @@ After a run completes:
 
 ---
 
-## 8. Dashboard
+## Dashboard
 
 To visualize optimization progress interactively:
 
@@ -305,7 +305,7 @@ Alternatively, upload `optuna.db` to the [Optuna Dashboard web app](https://optu
 
 ---
 
-## 9. Complete `optuna_params.yaml` template
+## Full configuration template
 
 ```yaml
 # --- Objectives (selected from state.score dict) ---

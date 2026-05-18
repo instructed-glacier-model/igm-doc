@@ -20,7 +20,7 @@
 
     See the [parameters section](#parameters) for parameter name changes.
 
-The implementation is largely inspired by [PISM](https://www.pism.io/) [@Aschwanden2012]. Other references have also helped verify the implementation through benchmarks [@Kleiner2015; @Wang2020]. The `enthalpy` module is described in further detail in [@Jouvet2026].
+The implementation is largely inspired by [PISM](https://www.pism.io/) [@Aschwanden2012]. Other references have also helped verify the implementation through benchmarks [@Kleiner2015; @Wang2020]. The `enthalpy` module is described in further detail in [@IGM].
 
 {{ render_module_io("enthalpy") }}
 
