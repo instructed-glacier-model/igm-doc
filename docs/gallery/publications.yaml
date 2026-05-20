@@ -112,7 +112,7 @@
   authors: "Jouvet G."
   journal: "Journal of Glaciology"
   year: 2023
-  doi: "10.1017/jog.2021.13"
+  doi: "10.1017/jog.2022.41"
   image: "fig/thumbnail_gallery.png"   
 
 - title: "Ice-flow model emulator based on physics-informed deep learning"
