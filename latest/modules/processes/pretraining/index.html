@@ -2739,7 +2739,7 @@
       <td>
         <code class="param_name">data_dir</code>
       </td>
-      <td class="description_text">Directory of the data of the glacier catalog.</td>
+      <td class="description_text">Path to the directory containing the TFRecord glacier catalog used for training.</td>
       <td style="text-align: center;">
 
           <span class="string_table">/path/to/tfrecords/</span>
@@ -2755,7 +2755,7 @@
       <td>
         <code class="param_name">batch_size</code>
       </td>
-      <td class="description_text">Batch size.</td>
+      <td class="description_text">Number of samples per training batch for the neural network.</td>
       <td style="text-align: center;">
 
           <span class="integer_table">1</span>
@@ -2771,7 +2771,7 @@
       <td>
         <code class="param_name">epochs</code>
       </td>
-      <td class="description_text">Number of epochs.</td>
+      <td class="description_text">Total number of training epochs for neural network pre-training.</td>
       <td style="text-align: center;">
 
           <span class="integer_table">1000</span>
@@ -2787,13 +2787,15 @@
       <td>
         <code class="param_name">experiment_name</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">Name of the experiment; used as the subdirectory under `out_dir` where checkpoints, figures, and artifacts are saved.</td>
       <td style="text-align: center;">
 
-          name_of_model
+          <span class="string_table">name_of_model</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">—</span>
 
       </td>
     </tr>
@@ -2801,13 +2803,15 @@
       <td>
         <code class="param_name">loss_type</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">Loss function for the data fidelity term: `mse` (mean squared error) or `huber`.</td>
       <td style="text-align: center;">
 
-          huber
+          <span class="string_table">huber</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">—</span>
 
       </td>
     </tr>
@@ -2815,13 +2819,15 @@
       <td>
         <code class="param_name">learning_rate</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">Learning rate for the Adam optimizer.</td>
       <td style="text-align: center;">
 
-          0.0001
+          <span class="float_table">0.0001</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">—</span>
 
       </td>
     </tr>
@@ -2829,13 +2835,15 @@
       <td>
         <code class="param_name">out_dir</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">Base output directory; the experiment subdirectory (named by `experiment_name`) is created here to store checkpoints, figures, and artifacts.</td>
       <td style="text-align: center;">
 
-          /path/to/save/models/
+          <span class="string_table">/path/to/save/models/</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">—</span>
 
       </td>
     </tr>
@@ -2843,13 +2851,15 @@
       <td>
         <code class="param_name">resume</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">If True, restores the latest checkpoint from the experiment directory and continues training from the last saved epoch; raises an error if no checkpoint is found.</td>
       <td style="text-align: center;">
 
-          False
+          <span class="boolean_table">False</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">—</span>
 
       </td>
     </tr>

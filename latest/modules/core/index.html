@@ -2742,7 +2742,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>Url supplied to download .nc data files.</td>
+        <td>URL from which to download `.nc` data files automatically.</td>
         <td></td>
       </tr>
 
@@ -2762,7 +2762,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>Folder that holds the data for default IGM downloading.</td>
+        <td>Local folder that holds input data downloaded or used by IGM.</td>
         <td>data</td>
       </tr>
 
@@ -2782,7 +2782,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td></td>
+        <td>Path to a file for logging output. Leave empty to log to stdout only.</td>
         <td></td>
       </tr>
 
@@ -2802,7 +2802,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>false</td>
+        <td>Enable file-based logging.</td>
         <td>False</td>
       </tr>
 
@@ -2814,11 +2814,15 @@
         <td>tf_logging_level</td>
         <td>
 
+            <span class="string_table">string</span>
+
         </td>
         <td>
 
+            <span class="math">\( dimless \)</span>
+
         </td>
-        <td></td>
+        <td>TensorFlow logging verbosity level (`DEBUG`, `INFO`, `WARNING`, `ERROR`).</td>
         <td>WARNING</td>
       </tr>
 
@@ -2830,11 +2834,15 @@
         <td>igm_logging_level</td>
         <td>
 
+            <span class="string_table">string</span>
+
         </td>
         <td>
 
+            <span class="math">\( dimless \)</span>
+
         </td>
-        <td></td>
+        <td>IGM logging verbosity level (`DEBUG`, `INFO`, `WARNING`, `ERROR`).</td>
         <td>WARNING</td>
       </tr>
 
@@ -2859,7 +2867,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>true</td>
+        <td>Print GPU information at startup.</td>
         <td>False</td>
       </tr>
 
@@ -2879,7 +2887,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>visible gpus.</td>
+        <td>List of GPU device indices made visible to IGM. Only one GPU is used at a time.</td>
         <td>[0]</td>
       </tr>
 
@@ -2899,7 +2907,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>strategy.</td>
+        <td>TensorFlow distribution strategy (`none`, `mirrored`, etc.).</td>
         <td>none</td>
       </tr>
 
@@ -2911,11 +2919,15 @@
         <td>hardware.profile</td>
         <td>
 
+            <span class="boolean_table">boolean</span>
+
         </td>
         <td>
 
+            <span class="math">\( dimless \)</span>
+
         </td>
-        <td></td>
+        <td>Enable TensorFlow profiling for performance analysis.</td>
         <td>False</td>
       </tr>
 
@@ -2938,7 +2950,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>true</td>
+        <td>Print the full resolved parameter configuration at startup.</td>
         <td>False</td>
       </tr>
 
@@ -2958,7 +2970,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>Print information related to computational performances.</td>
+        <td>Print computational performance information (timing, throughput).</td>
         <td>False</td>
       </tr>
 
@@ -2978,7 +2990,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>Print live information when the model is running.</td>
+        <td>Print live simulation progress (time, time step, ice volume).</td>
         <td>True</td>
       </tr>
 
@@ -2998,7 +3010,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>Print imported modules.</td>
+        <td>Print the list of imported modules at startup.</td>
         <td>False</td>
       </tr>
 
@@ -3018,7 +3030,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>Check compatibility btween default pasm name and user-defined one to check for typos, ect.</td>
+        <td>Check that user-defined parameter names match known defaults, catching typos early.</td>
         <td>True</td>
       </tr>
 
@@ -3043,7 +3055,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>user.</td>
+        <td>Root folder for custom modules, relative to the working directory.</td>
         <td>user</td>
       </tr>
 
@@ -3063,7 +3075,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>conf.</td>
+        <td>Sub-folder inside the root folder containing Hydra configuration stubs.</td>
         <td>conf</td>
       </tr>
 
@@ -3083,7 +3095,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>code.</td>
+        <td>Sub-folder inside the root folder containing Python module source files.</td>
         <td>code</td>
       </tr>
 
@@ -3103,7 +3115,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>inputs.</td>
+        <td>Sub-folder name for custom input modules.</td>
         <td>inputs</td>
       </tr>
 
@@ -3123,7 +3135,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>processes.</td>
+        <td>Sub-folder name for custom process modules.</td>
         <td>processes</td>
       </tr>
 
@@ -3143,7 +3155,7 @@
             <span class="math">\( dimless \)</span>
 
         </td>
-        <td>outputs.</td>
+        <td>Sub-folder name for custom output modules.</td>
         <td>outputs</td>
       </tr>
 
