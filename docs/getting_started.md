@@ -50,7 +50,7 @@ igm_run -m +experiment=params \
   processes.iceflow.physics.init_slidingco=0.05,0.10,0.20
 ```
 
-See [Configuration — Basics](hydra/basics.md) for the full override syntax.
+See [Hydra: Basics](hydra/basics.md) for the full override syntax.
 
 ---
 

@@ -174,5 +174,5 @@ Lower values produce faster sliding and thinner ice. The calibrated value (0.059
 ## Next steps
 
 - **Automate the search** — instead of manually choosing values, let Optuna find the optimal parameters: [Parameter calibration with Optuna](aletsch_da.md)
-- **Scale to a cluster** — run hundreds of trials in parallel: [Configuration — Parameter Sweeps](../hydra/distributed_computing.md)
+- **Scale to a cluster** — run hundreds of trials in parallel: [Parameter Sweeps](../hydra/distributed_computing.md)
 - **Add particle tracking** to visualise how flow paths change across the ensemble: [Particle tracking](aletsch_particles.md)

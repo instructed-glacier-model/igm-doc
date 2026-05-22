@@ -290,5 +290,5 @@ igm_run +experiment=params_2obj \
 ## Next steps
 
 - Use the calibrated parameters as input to the particle tracking tutorial: [Particle tracking](aletsch_particles.md)
-- Scale the optimisation to a cluster: [Configuration — Optimization (Optuna)](../hydra/optuna_cluster.md)
+- Scale the optimisation to a cluster: [Optimization with Optuna](../hydra/optuna_cluster.md)
 - Explore parameter sensitivity manually: [Ensemble run with Hydra](aletsch_ensemble.md)

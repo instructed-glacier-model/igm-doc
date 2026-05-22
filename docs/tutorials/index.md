@@ -2,6 +2,9 @@
 
 Step-by-step guides for running IGM on the Great Aletsch Glacier. Each tutorial is self-contained and builds progressively in complexity.
 
+!!! tip "Before you start"
+    If you don't know anything about glacier processes, explore this great [website](https://www.antarcticglaciers.org/). If you don't know anything about glacier evolution modelling, you may want to watch this [introductory video](https://youtu.be/eJNIr_0zOyk) first.
+
 **Prerequisites:** a working IGM installation ([Quick Start](../installation/quick_start.md)) and basic familiarity with the command line. All tutorial files (data, params, custom modules) are in the [igm-examples repository](https://github.com/instructed-glacier-model/igm-examples).
 
 ---

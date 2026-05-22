@@ -8,7 +8,7 @@ The table below lists the main state variables associated with the **core module
 
 ---
 
-## Variable Reference
+## Description
 
 | Variable | Shape | Description | Unit |
 |---|---|---|---|
@@ -30,7 +30,7 @@ The table below lists the main state variables associated with the **core module
 | `wvelsurf` | `(ny, nx)` | Vertical velocity at the ice surface | m yr⁻¹ |
 | `divflux` | `(ny, nx)` | Divergence of the ice flux | m yr⁻¹ |
 | `arrhenius` | `(ny, nx)` | Arrhenius (rate) factor for ice rheology | MPa⁻³ yr⁻¹ |
-| `slidingco` | `(ny, nx)` | Sliding coefficient | MPa m⁻¹/³ yr¹/³ |
+| `slidingco` | `(ny, nx)` | Sliding coefficient | MPa m<sup>-1/3</sup> yr<sup>1/3</sup> |
 | `E` | `(nz, ny, nx)` | Ice enthalpy | J kg⁻¹ |
 | `T` | `(nz, ny, nx)` | Ice temperature | °C |
 | `omega` | `(nz, ny, nx)` | Water content (liquid fraction) | — |

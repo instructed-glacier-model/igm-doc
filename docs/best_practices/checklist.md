@@ -1,27 +1,32 @@
 # Best Practices Checklist
 
-IGM implements empirical physical laws with a range of approximations. The checklist below helps you avoid common pitfalls and ensures your results are reliable before publication.
-
-!!! warning "Interpret results with care"
-    IGM is an approximation of a highly complex physical system. No model output should be taken at face value without a basic sanity check.
+The checklist below helps you avoid common pitfalls before finalising your study.
 
 ---
 
 ## Numerical stability
 
-- [ ] **Check for border artefacts.** If ice accumulates unrealistically on the domain edges, set `exclude_borders_from_iceflow: True` in the `iceflow` configuration.
-- [ ] **Verify CFL stability.** Reduce the `CFL` parameter if you see oscillations, waves, or sudden thickness spikes. A value below 0.5 is typically safe.
-- [ ] **Vary `nbit`.** The number of iceflow solver iterations (`nbit`) controls accuracy vs. speed. Check that your results do not change significantly when you double `nbit`.
-- [ ] **Check the time-step size.** Examine `dt` in the output time series. Very small adaptive steps may indicate near-instability.
+- [ ] **Verify CFL stability and time-step size.** Reduce the `CFL` parameter if you see oscillations, waves, or sudden thickness spikes (a value below 0.5 is typically safe). Also examine `dt` in the output: very small adaptive time steps can indicate near-instability. See [Numerical Tips](numerical_tips.md#time-stepping-and-the-cfl-condition) for details.
+- [ ] **Vary solver settings.** Check that results do not change significantly when you double `nbit` (iceflow solver iterations). If using the network emulator with periodic re-training, also test sensitivity to the retrain frequency and learning rate — these three interact.
+- [ ] **Validate the iceflow solver.** If using `mapping: network`, run at least one short test with `mapping: identity` to confirm the emulator is not introducing significant error for your domain. Note that `lr` / `lr_init` differ substantially between the two (~0.9 for `identity`, ~1e-5–1e-3 for `network`) — see [Numerical Tips](numerical_tips.md#iceflow-solver-modes) for guidance.
 
 ---
 
 ## Physical plausibility
 
 - [ ] **Volume and area time series.** Plot total ice volume and area over time. Abrupt jumps or monotonic growth to unrealistic values are red flags.
-- [ ] **Mass balance.** Confirm the chosen SMB module is appropriate for your application (elevation-dependent `smb_simple`, OGGM-calibrated `smb_oggm`, or explicit snowpack `smb_accpdd`).
+- [ ] **Mass balance.** Confirm the chosen SMB module is appropriate for your application — see the [FAQ](faq.md) for a quick comparison of `smb_simple`, `smb_oggm`, and `smb_accpdd`.
 - [ ] **Ice velocity.** Compare modelled surface velocities against observations where available. Values exceeding a few km yr⁻¹ for alpine glaciers are unusual.
-- [ ] **Bed topography.** Verify that `topg` (bedrock) is physically reasonable. Errors in the bed are the most common source of unrealistic dynamics.
+
+---
+
+## Data assimilation *(if applicable)*
+
+- [ ] **Cost function convergence.** Residuals should decrease monotonically (at least on average). A stalling or erratic cost function often points to a learning rate or regularisation issue.
+- [ ] **Regularisation.** Apply regularisation (e.g. `regu_slidingco`, `regu_arrhenius`) to avoid over-fitting noisy observations — verify that inferred fields are physically smooth.
+- [ ] **Inversion step count.** A modest number of inversion steps is usually sufficient for a good initialisation; the forward simulation is more sensitive to the initial geometry than to the exact inversion accuracy.
+
+See [Numerical Tips](numerical_tips.md#data-assimilation-and-inversion) for deeper guidance, including scalar parameter calibration with Hydra + Optuna.
 
 ---
 
@@ -35,8 +40,8 @@ IGM implements empirical physical laws with a range of approximations. The check
       --multirun
     ```
 
-- [ ] **Sensitivity to initial conditions.** If you are initialising from observations via data assimilation, check how sensitive projections are to the initial ice thickness.
-- [ ] **Iceflow method.** If using the emulated solver, run at least one short test with `method: solved` (or `unified`) to confirm the emulator is not introducing significant error for your domain.
+- [ ] **Sensitivity to initial conditions.** If initialising from observations via data assimilation, check how sensitive projections are to the initial ice thickness.
+- [ ] **Run multiple times.** Due to the stochastic nature of neural-network training (random weight initialisation, mini-batch sampling), results can vary between runs. Repeat the simulation at least a few times and verify that key outputs (volume, velocities) are consistent across runs.
 
 ---
 
@@ -48,8 +53,7 @@ IGM implements empirical physical laws with a range of approximations. The check
 
 ---
 
-## Before publishing
+## Before finalising your study
 
-- [ ] Verify results against at least one independent observable (e.g. observed retreat, geodetic mass balance, surface velocities).
 - [ ] Document which IGM version and which modules were used.
-- [ ] Cite the model development paper — see [Cite IGM](../about/cite.md).
+- [ ] Cite the relevant IGM references — see [Citing IGM](../about/cite.md).

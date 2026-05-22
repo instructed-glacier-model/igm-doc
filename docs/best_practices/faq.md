@@ -80,8 +80,8 @@
     Monitor the iceflow cost function value printed during the run. It should decrease and plateau. If it keeps oscillating or does not decrease, try:
 
     - Increasing `nbit` (more iterations per solve).
-    - Reducing the learning rate (`lr`).
-    - Switching to `method: solved` for a direct comparison.
+    - Reducing the learning rate (`lr` / `lr_init`).
+    - Running a short test with `mapping: identity` (the direct solver) for comparison — note that `lr` / `lr_init` should be ~0.9 in that case.
 
 ??? question "Can I run multiple glaciers simultaneously?"
     Yes — use Hydra's multirun feature to launch independent simulations in parallel:
@@ -95,6 +95,6 @@
     Each simulation runs in a separate process. If you have multiple GPUs, assign one per simulation via `hydra/launcher=joblib`.
 
 ??? question "Where can I get help or report a bug?"
-    - **Discord**: join the community server (link on the [Support page](../about/help.md))
+    - **Discord**: join the community server (link on the [Support](../about/help.md) page)
     - **GitHub issues**: [github.com/instructed-glacier-model/igm/issues](https://github.com/instructed-glacier-model/igm/issues)
-    - **Email**: see the [Support page](../about/help.md)
+    - **Email**: see the [Support](../about/help.md) page

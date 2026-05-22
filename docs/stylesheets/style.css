@@ -196,6 +196,19 @@
   opacity: 0.85;
 }
 
+/* ── Credits / Authors tables ─────────────────────────────────────────────── */
+
+.credits-table table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.credits-table table th:first-child,
+.credits-table table td:first-child {
+  width: 22%;
+  white-space: nowrap;
+}
+
 /* ── Tutorial cards ────────────────────────────────────────────────────────── */
 
 .tutorial-cards {

@@ -16,6 +16,7 @@ The citation system works in conjunction with:
 import yaml
 import re
 import os
+import markdown as _md
 
 
 def define_env(env):
@@ -203,7 +204,7 @@ def define_env(env):
             text = re.sub(r'\[@([^\]]+)\]', replace_citation, text)
 
             # Convert any remaining markdown to HTML
-            html = env.markdown.convert(text)
+            html = _md.markdown(text)
 
             # Remove the wrapping <p> tags for inline display
             html = re.sub(r'^<p>(.*)</p>$', r'\1', html, flags=re.DOTALL)

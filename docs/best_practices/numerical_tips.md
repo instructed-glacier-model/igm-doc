@@ -38,16 +38,20 @@ All IGM fields live on a **regular rectangular grid** with uniform spacing $\Del
 
 ## Iceflow solver modes
 
-The `iceflow` module supports four modes:
+The `iceflow` module supports several modes. `solved` and `emulated` are **legacy modes** — they remain functional but are no longer actively developed. The recommended approach is the **`unified` mode**, which covers both use cases through the `mapping` parameter:
 
-| Mode | Description | When to use |
-|---|---|---|
-| `emulated` | Pre-trained neural network (fast) | Standard forward simulations |
-| `solved` | Direct energy minimisation (accurate) | Benchmarking, small domains |
-| `unified` | Emulated + periodic re-training | Long runs where flow evolves significantly |
-| `diagnostic` | Single velocity solve, no time loop | Checking initial state |
+| `method` | `mapping` | Equivalent to | Description |
+|---|---|---|---|
+| `unified` | `identity` | `solved` | Direct energy minimisation; accurate, slower |
+| `unified` | `network` | `emulated` | Neural-network emulator; fast, requires pre-trained weights |
 
-The emulated solver is orders of magnitude faster than the direct solver. For most applications it is accurate enough, but it is good practice to validate it against `solved` for at least one short test case.
+!!! warning "Learning rates differ significantly between mappings"
+    Always set **both** `lr` and `lr_init` explicitly — relying on defaults when switching mappings is a common source of problems.
+
+    - `mapping: identity` — use `lr` / `lr_init` ≈ **0.9**
+    - `mapping: network` — use `lr` / `lr_init` in the range **1e-5 – 1e-3**
+
+    A learning rate that is too high can cause numerical instabilities or a fully diverging run. If you observe velocities blowing up or NaN values in the output, reducing the learning rate is the first thing to try.
 
 ### The `nbit` parameter
 
@@ -85,15 +89,49 @@ processes:
 
 ## Vertical discretisation
 
-The vertical profile of the ice velocity is expanded in a set of basis functions (Lagrange, Legendre, MOLHO, or SSA). For most alpine glaciers the default **Lagrange** discretisation with a modest number of layers (`nz ≈ 10–20`) is sufficient. SSA (depth-averaged) is the cheapest option and appropriate when shear deformation is small relative to sliding.
+The vertical profile of the ice velocity is expanded in a set of basis functions controlled by `basis_vertical` and `Nz` under `processes.iceflow.unified.numerics`. Two options cover most use cases:
+
+**MOLHO** (MOno-Layer Higher-Order) uses exactly two layers and is the recommended choice for most applications — it captures the essential shear-sliding partition at low computational cost:
+
+```yaml
+processes:
+  iceflow:
+    method: unified
+    unified:
+      numerics:
+        basis_vertical: molho
+        Nz: 2
+```
+
+**Lagrange** with 4–10 layers is better suited when a more detailed vertical velocity profile is needed (e.g. studies of englacial flow or vertical strain):
+
+```yaml
+processes:
+  iceflow:
+    method: unified
+    unified:
+      numerics:
+        basis_vertical: Lagrange
+        Nz: 6   # anywhere from 4 to 10 is typical
+```
+
+!!! tip
+    Start with MOLHO. Only switch to Lagrange if you have a specific reason to resolve the vertical velocity structure in detail — the added layers increase memory and compute time proportionally.
 
 ---
 
 ## Data assimilation and inversion
 
-- Always check the cost function convergence. Residuals should decrease monotonically (at least on average).
-- Use regularisation (`regu_arrhenius`, `regu_slidingco`) to avoid over-fitting noisy observations.
-- A small number of inversion steps (`niter`) is usually sufficient for a good initialisation; the forward run is more sensitive to the initial conditions than to the exact inversion accuracy.
+### Calibrating scalar parameters
+
+For calibrating uniform scalar parameters (e.g. a uniform sliding coefficient, Arrhenius factor, ELA), we recommend using **Hydra parameter sweeps** combined with **Optuna** for Bayesian optimisation. This is a robust and easy-to-use approach that requires no modifications to the model code — see the [Parameter Sweeps](../hydra/distributed_computing.md) and [Optimization with Optuna](../hydra/optuna_cluster.md) pages.
+
+### Spatially distributed inversion (control method)
+
+The control method — which optimises spatially distributed fields such as basal sliding or ice rheology from surface observations — is currently being **heavily reworked** and a significantly improved version is expected to be available in the coming months.
+
+!!! warning
+    We currently recommend the control method only to users who are already familiar with IGM or who have prior experience with PDE-constrained optimisation in ice-sheet modelling. If you are new to IGM, start with the scalar parameter calibration approach above.
 
 ---
 
@@ -105,15 +143,3 @@ GPU memory is the most common bottleneck on large domains. If you run out of mem
 2. Reduce `nz` (vertical layers).
 3. Reduce `nbit` (fewer iceflow iterations).
 4. Enable patching (`iceflow.patching: True`) to split the domain into subgrids — this caps memory per training step at the cost of slightly more training time.
-
----
-
-## Reproducibility of random initialisation
-
-The emulated iceflow solver initialises its neural-network weights randomly. For reproducible results, set a fixed random seed:
-
-```yaml
-processes:
-  iceflow:
-    seed: 42
-```

@@ -29,7 +29,7 @@ Set `include_glathida` to True to retrieve the GlaThiDa ice thickness profiles f
 
 **Table:** Products available with the `oggm_shop` module.
 
-The module depends (of course) on the `oggm` library. Unfortunately the module works on Linux and macOS, but not on Windows (unless using [WSL](../../../installation/other/wsl_windows.md)).
+The module depends (of course) on the `oggm` library. Unfortunately the module works on Linux and macOS, but not on Windows (unless using [WSL](../../installation/other/wsl_windows.md)).
 
 **Contributors:** F. Maussion, G. Jouvet, E. Welty (GlaThiDa-related code), S. Cook (RGI 7.0 modifications).
 

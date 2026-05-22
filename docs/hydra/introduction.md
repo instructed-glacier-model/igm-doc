@@ -8,4 +8,4 @@ As IGM runs various modules based on physical processes (for instance iceflow), 
 
 * **Abstraction**: Lastly, but arguably most importantly, Hydra excels in managing complex hierarchies of yaml files. If we were to manage this ourselves, it quickly becomes error prone and acts as a barrier to how organized IGM can become. We chose Hydra to let it manage our structure in hopes that it will robustify our existing codebase whilst future proofing it.
 
-To start learning how to use Hydra with IGM, please visit the [configuration](custom_configurations.md) and [distributed computing](distributed_computing.md) pages. These pages serve as a quick reference, so if you require more information, we suggest you go to the Hydra website itself for more examples and explanations.
+To start learning how to use Hydra with IGM, please visit the [Custom Configurations](custom_configurations.md) and [Parameter Sweeps](distributed_computing.md) pages. These pages serve as a quick reference, so if you require more information, we suggest you go to the Hydra website itself for more examples and explanations.

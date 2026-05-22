@@ -191,7 +191,7 @@ processes:
     weight_ablation:     1.304   # calibrated scale factor on melt
   iceflow:
     physics:
-      init_slidingco: 0.0595     # basal sliding coefficient (MPa m⁻¹/³ yr¹/³)
+      init_slidingco: 0.0595     # basal sliding coefficient (MPa m^(-1/3) yr^(1/3))
   time:
     start: 1880.0
     end:   2020.0

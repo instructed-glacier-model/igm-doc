@@ -2,7 +2,7 @@
 
 It is easy to create your own module in a separate Python file and integrate it into the workflow. For instance, you might want to implement a climate or surface mass balance model tailored to a specific application. To achieve this, it is crucial to understand the structure and operation of IGM. User modules follow the same structure as built-in ones, so you can use built-in modules as a reference or starting point when designing your own.
 
-It is important to note that there are two main parts of creating custom modules: the module script (this page) and the module's configuration with hydra (this other [page](../hydra/custom_configurations.md)). One needs to setup both of these for it to be properly integrated into IGM. Below, we will only cover the needed steps to create the code that will be run for the custom module.
+It is important to note that there are two main parts of creating custom modules: the module script (this page) and the module's configuration with Hydra ([Custom Configurations](../hydra/custom_configurations.md)). One needs to setup both of these for it to be properly integrated into IGM. Below, we will only cover the needed steps to create the code that will be run for the custom module.
 
 # Coding structure
 

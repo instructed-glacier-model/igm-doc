@@ -52,7 +52,7 @@ In essence, this line means the following
 - [FILE LOCATION]@[POSITION IN STRUCTURE]: [NAME OF FILE]
 ```
 
-For example, from the custom modules [page](../modules/user_modules.md), we know that every custom module should follow this structure
+For example, from the [User Modules](../modules/user_modules.md) page, we know that every custom module should follow this structure
 
 
 ```bash

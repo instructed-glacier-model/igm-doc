@@ -81,11 +81,11 @@ nav:
           - smb_accpdd: modules/processes/smb_accpdd.md
           - smb_oggm: modules/processes/smb_oggm.md
           - texture: modules/processes/texture.md
-      - Global Parameters: modules/core.md
+      - Core Parameters: modules/core.md
       - User Modules: modules/user_modules.md
   - Gallery: gallery/index.md
   - About:
-      - Credits & Authors: about/credits_and_references.md
+      - Authors: about/credits_and_references.md
       - Citing IGM: about/cite.md
       - Support: about/help.md
 

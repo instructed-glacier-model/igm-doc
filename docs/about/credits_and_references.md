@@ -1,18 +1,21 @@
-# Credits & Authors
+# Authors
 
 ## Core developers
 
-| Name | Affiliation | Contributions |
-|---|---|---|
-| Guillaume Jouvet | UNIL | Primary author of most modules and documentation; design of the physics-informed CNN in forward and inverse modes |
-| Brandon Finley | UNIL | Core software design, Hydra integration, code profiling, Docker, documentation framework, `texture` module |
-| Thomas Gregov | UNIL | Refactoring and overhaul of the `iceflow` and `enthalpy` modules — robustness, code quality, benchmarking |
-| Sebastian Rosier | UZH | Refactoring and overhaul of `data_assimilation` and `pretraining` modules; creation of pre-trained emulators |
+<div class="credits-table" markdown="1">
+| Name | Contributions |
+|---|---|
+| Guillaume Jouvet (UNIL) | Primary author of most modules and documentation; design of the physics-informed CNN in forward and inverse modes |
+| Brandon Finley (UNIL) | Core software design, Hydra integration, code profiling, Docker, documentation framework, `texture` module |
+| Thomas Gregov (UNIL) | Refactoring and overhaul of the `iceflow` and `enthalpy` modules — robustness, code quality, benchmarking |
+| Sebastian Rosier (UZH) | Refactoring and overhaul of `data_assimilation` and `pretraining` modules; creation of pre-trained emulators |
+</div>
 
 ## Contributors
 
 *(get in touch if you notice a missing contribution)*
 
+<div class="credits-table" markdown="1">
 | Name | Contributions |
 |---|---|
 | Flavio Calvo | Support from IGM 1 to IGM 2 |
@@ -30,3 +33,4 @@
 | Patrick Schmitt | Visualisation tools |
 | Claire-Mathilde Stücki | Updates to `vert_flow` and `particles` modules |
 | Ethan Welty | GlaThiDa file reading |
+</div>
