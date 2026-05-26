@@ -4,30 +4,37 @@
 # "needs"   = state variables read in initialize() / update()
 # "updates" = state variables written in initialize() / update()
 # "community: true" marks community (non-core) modules
+# "category" maps to Earth component groups defined in module_categories.yaml
 
 # ── Core modules ──────────────────────────────────────────────────────────────
 
 time:
+  category: cryosphere
   needs:   [ubar, vbar]
   updates: [t, dt]
 
 iceflow:
+  category: cryosphere
   needs:   [thk, usurf, topg, arrhenius, slidingco]
   updates: [U, V, ubar, vbar]
 
 thk:
+  category: cryosphere
   needs:   [thk, topg, ubar, vbar, smb, dt]
   updates: [thk, usurf, divflux]
 
 vert_flow:
+  category: cryosphere
   needs:   [U, V, thk]
   updates: [W, wvelbase, wvelsurf]
 
 smb_simple:
+  category: atmosphere
   needs:   [usurf, icemask]
   updates: [smb]
 
 enthalpy:
+  category: cryosphere
   needs:   [thk, U, V, W, arrhenius]
   updates: [E, T, omega, basal_melt_rate, arrhenius]
 
@@ -35,40 +42,101 @@ enthalpy:
 
 avalanche:
   community: true
+  category: atmosphere
   needs:   [thk, topg]
   updates: [thk, usurf]
 
 calving_rate:
-  community: true
+  category: ocean
   needs:   [thk, topg, water_level, ubar, vbar]
   updates: [calving_rate]
 
 glerosion:
   community: true
+  category: lithosphere
   needs:   [U, V, thk]
   updates: [topg, usurf]
 
 gflex:
   community: true
+  category: lithosphere
   needs:   [thk, topg]
   updates: [topg, usurf]
 
 particles:
-  community: true
+  category: misc
   needs:   [U, V, W, thk]
   updates: [particle]
 
 texture:
   community: true
+  category: misc
   needs:   [U, V, thk, usurf]
   updates: []
 
 flow_accumulation:
   community: true
+  category: lithosphere
   needs:   [thk, topg]
   updates: [phi, flow_accumulation]
 
 rockflow:
   community: true
+  category: atmosphere
   needs:   [usurf, thk, U, V]
   updates: [U, V]
+
+effective_pressure:
+  category: lithosphere
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+# ── Community modules (I/O not yet audited) ───────────────────────────────────
+
+clim_glacialindex:
+  community: true
+  category: atmosphere
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+clim_oggm:
+  community: true
+  category: atmosphere
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+clim_station:
+  community: true
+  category: atmosphere
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+data_assimilation:
+  community: true
+  category: misc
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+pretraining:
+  community: true
+  category: misc
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+read_output:
+  community: true
+  category: misc
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+smb_accpdd:
+  community: true
+  category: atmosphere
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+smb_oggm:
+  community: true
+  category: atmosphere
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit

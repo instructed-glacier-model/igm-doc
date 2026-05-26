@@ -43,35 +43,7 @@ Maintained by the IGM development team, well-tested, and stable across releases.
 
 ### Process
 
-<div class="module-cards">
-  <a class="module-card" href="../processes/time/">
-    <span class="module-card-name">time</span>
-    <p>Advance the simulation clock and compute an adaptive time step from the CFL stability condition</p>
-  </a>
-  <a class="module-card" href="../processes/iceflow/">
-    <span class="module-card-name">iceflow</span>
-    <p>Compute 3D ice velocities by minimizing the Blatter-Pattyn energy functional — direct solver or physics-informed neural network</p>
-  </a>
-  <a class="module-card" href="../processes/thk/">
-    <span class="module-card-name">thk</span>
-    <p>Evolve ice thickness and surface elevation via mass conservation using a finite-volume upwind scheme</p>
-  </a>
-  <a class="module-card" href="../processes/vert_flow/">
-    <span class="module-card-name">vert_flow</span>
-    <p>Diagnose the 3D vertical velocity field from the horizontal velocity divergence (incompressibility)</p>
-  </a>
-  <a class="module-card" href="../processes/smb_simple/">
-    <span class="module-card-name">smb_simple</span>
-    <p>Compute surface mass balance from a user-defined elevation–SMB profile with time-varying ELA</p>
-  </a>
-  <a class="module-card" href="../processes/enthalpy/">
-    <span class="module-card-name">enthalpy</span>
-    <p>Solve the 3D enthalpy equation to compute ice temperature, liquid water content, and basal melt rate</p>
-  </a>
-</div>
-
-!!! note "Additional SMB modules"
-    IGM provides two further surface mass balance modules of increasing physical complexity, each requiring climate forcing inputs: a monthly **temperature-index model** calibrated against geodetic mass balance observations (based on OGGM), and a **positive degree-day** scheme with explicit snowpack tracking and separate melt factors for snow and ice. These are available as community/user modules; see the source repository for documentation.
+{{ render_process_cards(community=False) }}
 
 ### Output
 
@@ -112,74 +84,11 @@ Contributed by the broader research community. These modules extend IGM with spe
 
 ### Process
 
-<div class="module-cards">
-  <a class="module-card" href="../processes/avalanche/">
-    <span class="module-card-name">avalanche</span>
-    <p>Redistribute snow from slopes exceeding the angle of repose to prevent unrealistic accumulation at high elevations</p>
-  </a>
-  <a class="module-card" href="../processes/calving_rate/">
-    <span class="module-card-name">calving_rate</span>
-    <p>Compute the calving flux at a marine or lacustrine ice front from ice thickness and velocity</p>
-  </a>
-  <a class="module-card" href="../processes/clim_glacialindex/">
-    <span class="module-card-name">clim_glacialindex</span>
-    <p>Interpolate two climate snapshots using a glacial index approach for palaeo-glacier modelling</p>
-  </a>
-  <a class="module-card" href="../processes/clim_oggm/">
-    <span class="module-card-name">clim_oggm</span>
-    <p>Distribute monthly GSWP3-W5E5 climate data from oggm_shop across the glacier domain with lapse-rate correction</p>
-  </a>
-  <a class="module-card" href="../processes/clim_station/">
-    <span class="module-card-name">clim_station</span>
-    <p>Generate temperature and precipitation fields from simplified weather-station-type forcing with elevation lapse rate</p>
-  </a>
-  <a class="module-card" href="../processes/data_assimilation/">
-    <span class="module-card-name">data_assimilation</span>
-    <p>Invert for optimal ice thickness and flow parameters by minimising the misfit against observed surface velocities and thickness profiles</p>
-  </a>
-  <a class="module-card" href="../processes/effective_pressure/">
-    <span class="module-card-name">effective_pressure</span>
-    <p>Compute basal effective pressure N = pᵢ − pᵥ required by the Budd and Coulomb sliding laws</p>
-  </a>
-  <a class="module-card" href="../processes/flow_accumulation/">
-    <span class="module-card-name">flow_accumulation</span>
-    <p>Compute subglacial water routing and flow accumulation from bed topography</p>
-  </a>
-  <a class="module-card" href="../processes/gflex/">
-    <span class="module-card-name">gflex</span>
-    <p>Compute isostatic bedrock adjustment in response to ice load changes using a thin-plate flexure model</p>
-  </a>
-  <a class="module-card" href="../processes/glerosion/">
-    <span class="module-card-name">glerosion</span>
-    <p>Estimate glacial erosion rates and update bedrock topography from basal sliding velocities</p>
-  </a>
-  <a class="module-card" href="../processes/particles/">
-    <span class="module-card-name">particles</span>
-    <p>Seed and advect Lagrangian particles with the 3D velocity field to visualise ice flow paths and estimate ice age</p>
-  </a>
-  <a class="module-card" href="../processes/pretraining/">
-    <span class="module-card-name">pretraining</span>
-    <p>Pre-train the ice flow emulator on a glacier catalogue to improve accuracy in subsequent forward runs</p>
-  </a>
-  <a class="module-card" href="../processes/read_output/">
-    <span class="module-card-name">read_output</span>
-    <p>Read a previously generated NetCDF output file as if freshly computed, for testing post-processing in isolation</p>
-  </a>
-  <a class="module-card" href="../processes/rockflow/">
-    <span class="module-card-name">rockflow</span>
-    <p>Simulate the transport of supraglacial and englacial debris coupled to ice flow</p>
-  </a>
-  <a class="module-card" href="../processes/smb_accpdd/">
-    <span class="module-card-name">smb_accpdd</span>
-    <p>Positive degree-day surface mass balance model with explicit snowpack tracking and separate melt factors for snow and ice</p>
-  </a>
-  <a class="module-card" href="../processes/smb_oggm/">
-    <span class="module-card-name">smb_oggm</span>
-    <p>Monthly temperature-index surface mass balance model calibrated against geodetic mass balance data via OGGM</p>
-  </a>
-  <a class="module-card" href="../processes/texture/">
-    <span class="module-card-name">texture</span>
-    <p>Track a passive scalar (e.g. sediment concentration, chemical tracer) transported through the ice</p>
-  </a>
-</div>
+<details class="community-modules">
+<summary>Show / hide community process modules</summary>
+<div class="community-modules-body">
 
+{{ render_process_cards(community=True) }}
+
+</div>
+</details>

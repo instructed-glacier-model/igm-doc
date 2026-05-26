@@ -235,6 +235,42 @@ def define_env(env):
         return module_io_cache
 
     @env.macro
+    def render_process_cards(community=False):
+        """Render a flat module-cards grid for core or community process modules.
+
+        Reads module_categories.yaml as the single source of truth for module
+        names, descriptions, and Earth component categories. Cards are emitted
+        in category order (atmosphere → cryosphere → lithosphere → ocean → misc).
+        """
+        from html import escape
+
+        cats_path = os.path.join(os.path.dirname(__file__), "module_categories.yaml")
+        try:
+            with open(cats_path, "r", encoding="utf-8") as f:
+                cats = yaml.safe_load(f) or {}
+        except Exception as e:
+            return f"<!-- Could not load module_categories.yaml: {e} -->"
+
+        cards = []
+        for cat_key, cat in cats.items():
+            color = escape(cat.get("color_key", cat_key))
+            label = escape(cat.get("label", cat_key))
+            for mod in cat.get("modules", []):
+                if bool(mod.get("community", False)) != community:
+                    continue
+                name = escape(str(mod.get("name", "")))
+                desc = escape(str(mod.get("description", "")))
+                cards.append(
+                    f'  <a class="module-card module-card--{color}" href="../processes/{name}/">\n'
+                    f'    <span class="module-card-name">{name}</span>\n'
+                    f'    <p>{desc}</p>\n'
+                    f'    <span class="module-card-category module-card-category--{color}">{label}</span>\n'
+                    f'  </a>'
+                )
+
+        return '<div class="module-cards">\n' + "\n".join(cards) + "\n</div>"
+
+    @env.macro
     def render_module_io(name):
         """Render a state-variable admonition box for a module page."""
         io = _load_module_io().get(name, {})

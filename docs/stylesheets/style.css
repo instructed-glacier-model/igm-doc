@@ -371,3 +371,172 @@
   margin: 0;
   opacity: 0.82;
 }
+
+/* ── Module card category variants ──────────────────────────────────────────── */
+/* Name color + subtle background tint per Earth component.                      */
+/* Palette: Tailwind amber / sky / orange / teal / slate                         */
+/* Modifier class on the <a> element: module-card--<category>                    */
+
+/* — Atmosphere (golden amber — sun, SMB) — */
+[data-md-color-scheme="glacier_light"] .module-card--atmosphere {
+  background: rgba(180, 83, 9, 0.05);   /* amber-700 */
+}
+[data-md-color-scheme="glacier_dark"] .module-card--atmosphere {
+  background: rgba(251, 191, 36, 0.07); /* amber-400 */
+}
+[data-md-color-scheme="glacier_light"] .module-card--atmosphere .module-card-name { color: #b45309; }
+[data-md-color-scheme="glacier_dark"]  .module-card--atmosphere .module-card-name { color: #fbbf24; }
+[data-md-color-scheme="glacier_light"] .module-card--atmosphere:hover {
+  box-shadow: 0 3px 14px rgba(180, 83, 9, 0.15);
+  border-color: rgba(180, 83, 9, 0.35);
+}
+[data-md-color-scheme="glacier_dark"] .module-card--atmosphere:hover {
+  box-shadow: 0 3px 14px rgba(251, 191, 36, 0.18);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+/* — Cryosphere (sky blue — ice, cold) — */
+[data-md-color-scheme="glacier_light"] .module-card--cryosphere {
+  background: rgba(2, 132, 199, 0.05);  /* sky-600 */
+}
+[data-md-color-scheme="glacier_dark"] .module-card--cryosphere {
+  background: rgba(56, 189, 248, 0.07); /* sky-400 */
+}
+[data-md-color-scheme="glacier_light"] .module-card--cryosphere .module-card-name { color: #0284c7; }
+[data-md-color-scheme="glacier_dark"]  .module-card--cryosphere .module-card-name { color: #38bdf8; }
+[data-md-color-scheme="glacier_light"] .module-card--cryosphere:hover {
+  box-shadow: 0 3px 14px rgba(2, 132, 199, 0.15);
+  border-color: rgba(2, 132, 199, 0.35);
+}
+[data-md-color-scheme="glacier_dark"] .module-card--cryosphere:hover {
+  box-shadow: 0 3px 14px rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+/* — Lithosphere (terracotta/rust — rock, earth) — */
+[data-md-color-scheme="glacier_light"] .module-card--lithosphere {
+  background: rgba(194, 65, 12, 0.05);  /* orange-700 */
+}
+[data-md-color-scheme="glacier_dark"] .module-card--lithosphere {
+  background: rgba(251, 146, 60, 0.07); /* orange-400 */
+}
+[data-md-color-scheme="glacier_light"] .module-card--lithosphere .module-card-name { color: #c2410c; }
+[data-md-color-scheme="glacier_dark"]  .module-card--lithosphere .module-card-name { color: #fb923c; }
+[data-md-color-scheme="glacier_light"] .module-card--lithosphere:hover {
+  box-shadow: 0 3px 14px rgba(194, 65, 12, 0.15);
+  border-color: rgba(194, 65, 12, 0.35);
+}
+[data-md-color-scheme="glacier_dark"] .module-card--lithosphere:hover {
+  box-shadow: 0 3px 14px rgba(251, 146, 60, 0.18);
+  border-color: rgba(251, 146, 60, 0.35);
+}
+
+/* — Ocean (teal — distinct from sky blue) — */
+[data-md-color-scheme="glacier_light"] .module-card--ocean {
+  background: rgba(15, 118, 110, 0.05); /* teal-700 */
+}
+[data-md-color-scheme="glacier_dark"] .module-card--ocean {
+  background: rgba(45, 212, 191, 0.07); /* teal-400 */
+}
+[data-md-color-scheme="glacier_light"] .module-card--ocean .module-card-name { color: #0f766e; }
+[data-md-color-scheme="glacier_dark"]  .module-card--ocean .module-card-name { color: #2dd4bf; }
+[data-md-color-scheme="glacier_light"] .module-card--ocean:hover {
+  box-shadow: 0 3px 14px rgba(15, 118, 110, 0.15);
+  border-color: rgba(15, 118, 110, 0.35);
+}
+[data-md-color-scheme="glacier_dark"] .module-card--ocean:hover {
+  box-shadow: 0 3px 14px rgba(45, 212, 191, 0.18);
+  border-color: rgba(45, 212, 191, 0.35);
+}
+
+/* — Misc (slate gray — neutral) — */
+[data-md-color-scheme="glacier_light"] .module-card--misc {
+  background: rgba(100, 116, 139, 0.05); /* slate-500 */
+}
+[data-md-color-scheme="glacier_dark"] .module-card--misc {
+  background: rgba(148, 163, 184, 0.07); /* slate-400 */
+}
+[data-md-color-scheme="glacier_light"] .module-card--misc .module-card-name { color: #475569; }
+[data-md-color-scheme="glacier_dark"]  .module-card--misc .module-card-name { color: #94a3b8; }
+[data-md-color-scheme="glacier_light"] .module-card--misc:hover {
+  box-shadow: 0 3px 14px rgba(100, 116, 139, 0.15);
+  border-color: rgba(100, 116, 139, 0.35);
+}
+[data-md-color-scheme="glacier_dark"] .module-card--misc:hover {
+  box-shadow: 0 3px 14px rgba(148, 163, 184, 0.18);
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+/* ── Module card category label (bottom of card) ────────────────────────────── */
+
+.module-card-category {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  opacity: 0.70;
+}
+
+[data-md-color-scheme="glacier_light"] .module-card-category--atmosphere { color: #b45309; }
+[data-md-color-scheme="glacier_dark"]  .module-card-category--atmosphere { color: #fbbf24; }
+[data-md-color-scheme="glacier_light"] .module-card-category--cryosphere { color: #0284c7; }
+[data-md-color-scheme="glacier_dark"]  .module-card-category--cryosphere { color: #38bdf8; }
+[data-md-color-scheme="glacier_light"] .module-card-category--lithosphere { color: #c2410c; }
+[data-md-color-scheme="glacier_dark"]  .module-card-category--lithosphere { color: #fb923c; }
+[data-md-color-scheme="glacier_light"] .module-card-category--ocean { color: #0f766e; }
+[data-md-color-scheme="glacier_dark"]  .module-card-category--ocean { color: #2dd4bf; }
+[data-md-color-scheme="glacier_light"] .module-card-category--misc { color: #475569; }
+[data-md-color-scheme="glacier_dark"]  .module-card-category--misc { color: #94a3b8; }
+
+/* ── Community modules collapsible ──────────────────────────────────────────── */
+
+details.community-modules {
+  margin: 1rem 0;
+  border: 1px solid rgba(70, 103, 164, 0.20);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+details.community-modules > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.78rem;
+  list-style: none;
+  user-select: none;
+}
+
+details.community-modules > summary::-webkit-details-marker { display: none; }
+
+details.community-modules > summary::before {
+  content: "▶";
+  font-size: 0.65rem;
+  transition: transform 0.18s ease;
+  flex-shrink: 0;
+}
+
+details.community-modules[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+[data-md-color-scheme="glacier_light"] details.community-modules > summary {
+  background: rgba(70, 103, 164, 0.05);
+  color: #4667a4;
+}
+[data-md-color-scheme="glacier_dark"] details.community-modules > summary {
+  background: rgba(123, 164, 217, 0.08);
+  color: #7ba4d9;
+}
+
+details.community-modules > summary:hover {
+  opacity: 0.85;
+}
+
+details.community-modules .community-modules-body {
+  padding: 0.5rem 1.2rem 1.2rem;
+}
