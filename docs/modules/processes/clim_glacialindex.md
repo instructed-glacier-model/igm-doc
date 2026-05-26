@@ -18,9 +18,6 @@ $$\begin{align} {\rm CL}_0(t) & = ( T_0^{\rm mean}(t),T_0^{\rm std}(t),P_0^{\rm 
 corresponding to GI=$0$ and GI=$1$, respectively. Lastly, the GI function is built by linearly rescaling a climate proxy signal so that GI is close to 1 at the ice maximum and close to 0 at the ice minimum. For example, we may use the Antarctica EPICA temperature anomaly signal, which is available for the last 800,000 years.
 
 Note that the two climates ${\rm CL}_0$ and ${\rm CL}_1$ are defined on two different reference topographies. Therefore, it is necessary to correct the temperature for a shift in elevation using a vertical lapse rate between the modeled ice surface elevation and the reference surface.
-
-**Contributors:** G. Jouvet.
-
 ## Parameters
 
 Default configuration file ([clim_glacialindex.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/clim_glacialindex.yaml)):
@@ -35,3 +32,5 @@ Default configuration file ([clim_glacialindex.yaml](https://github.com/instruct
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}
+
+{{ render_contributors("clim_glacialindex") }}

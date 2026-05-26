@@ -1,9 +1,6 @@
 # Module `read_output`
 
 This module enables the reading of a previously generated NetCDF output file, allowing IGM to operate as though these quantities were freshly computed. It is particularly useful for testing the postprocessing module in isolation.
-
-**Contributors:** G. Jouvet.
-
 ## Parameters
 
 Default configuration file ([read_output.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/read_output.yaml)):
@@ -18,3 +15,5 @@ Default configuration file ([read_output.yaml](https://github.com/instructed-gla
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}
+
+{{ render_contributors("read_output") }}

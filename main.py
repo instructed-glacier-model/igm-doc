@@ -22,8 +22,8 @@ import markdown as _md
 def define_env(env):
     # Load bibliography once at initialization
     bib_cache = {}
-    # Module I/O cache (loaded once from module_io.yaml)
-    module_io_cache = {}
+    # Module cache (loaded once from modules.yaml)
+    module_cache = {}
     # Track citations used in YAML descriptions
     yaml_citations = set()
     # Track citation usage count for unique IDs
@@ -222,43 +222,47 @@ def define_env(env):
             # Fallback: just remove citation markers
             return re.sub(r'\[@([^\]]+)\]', r'(\1)', text)
 
-    def _load_module_io():
-        if module_io_cache:
-            return module_io_cache
-        io_path = os.path.join(os.path.dirname(__file__), "module_io.yaml")
+    def _load_modules():
+        if module_cache:
+            return module_cache
+        path = os.path.join(os.path.dirname(__file__), "modules.yaml")
         try:
-            with open(io_path, "r", encoding="utf-8") as f:
+            with open(path, "r", encoding="utf-8") as f:
                 data = yaml.safe_load(f) or {}
-            module_io_cache.update(data)
+            module_cache.update(data)
         except Exception as e:
-            print(f"Warning: Could not load module_io.yaml: {e}")
-        return module_io_cache
+            print(f"Warning: Could not load modules.yaml: {e}")
+        return module_cache
 
     @env.macro
     def render_process_cards(community=False):
         """Render a flat module-cards grid for core or community process modules.
 
-        Reads module_categories.yaml as the single source of truth for module
-        names, descriptions, and Earth component categories. Cards are emitted
-        in category order (atmosphere → cryosphere → lithosphere → ocean → misc).
+        Reads modules.yaml for module data and categories.yaml for display
+        metadata and ordering. Cards are emitted in the category order defined
+        by categories.yaml (atmosphere → cryosphere → lithosphere → ocean → misc).
         """
         from html import escape
 
-        cats_path = os.path.join(os.path.dirname(__file__), "module_categories.yaml")
+        cats_path = os.path.join(os.path.dirname(__file__), "categories.yaml")
         try:
             with open(cats_path, "r", encoding="utf-8") as f:
                 cats = yaml.safe_load(f) or {}
         except Exception as e:
-            return f"<!-- Could not load module_categories.yaml: {e} -->"
+            return f"<!-- Could not load categories.yaml: {e} -->"
+
+        modules = _load_modules()
 
         cards = []
         for cat_key, cat in cats.items():
             color = escape(cat.get("color_key", cat_key))
             label = escape(cat.get("label", cat_key))
-            for mod in cat.get("modules", []):
+            for mod_name, mod in modules.items():
+                if mod.get("category") != cat_key:
+                    continue
                 if bool(mod.get("community", False)) != community:
                     continue
-                name = escape(str(mod.get("name", "")))
+                name = escape(str(mod_name))
                 desc = escape(str(mod.get("description", "")))
                 cards.append(
                     f'  <a class="module-card module-card--{color}" href="../processes/{name}/">\n'
@@ -273,14 +277,22 @@ def define_env(env):
     @env.macro
     def render_module_io(name):
         """Render a state-variable admonition box for a module page."""
-        io = _load_module_io().get(name, {})
-        needs   = ", ".join(f"`{v}`" for v in io.get("needs",   []))
-        updates = ", ".join(f"`{v}`" for v in io.get("updates", []))
+        mod = _load_modules().get(name, {})
+        needs   = ", ".join(f"`{v}`" for v in mod.get("needs",   []))
+        updates = ", ".join(f"`{v}`" for v in mod.get("updates", []))
         return (
             '!!! abstract "State variables"\n\n'
             f'    **Reads:** {needs   or "—"}\n\n'
             f'    **Writes:** {updates or "—"}\n'
         )
+
+    @env.macro
+    def render_contributors(name):
+        """Render a Contributors line for a module page, or empty string if none set."""
+        authors = _load_modules().get(name, {}).get("authors", [])
+        if not authors:
+            return ""
+        return f'**Contributors:** {", ".join(authors)}.'
 
     @env.macro
     def render_year_nav(yaml_path):

@@ -34,9 +34,6 @@ providing, in turn, the particle ID, x, y, z positions, the relative height with
 **Note:** The module has 2 implementations for computing particle trajectories: 1) the original one based on `tensorflow`, 2) an optimized one (implemented by B. Finley) based on cupy and numba. One can switch to one implementation to another with parameter `computation_library`.
 
 Also, the module has 2 implmentation for saving results: 1) the original one based on `numpy` 2) an optimized one (implemented by B. Finley) based on `cudf`. One can switch to one implementation to another with parameter `output_format`. When using the `cudf` one, several choice of output formats are available including : "csv", "feather", and "parquet".
-
-**Contributors:** Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley.
-
 ## Parameters
 
 Default configuration file ([particles.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/particles.yaml)):
@@ -51,3 +48,5 @@ Default configuration file ([particles.yaml](https://github.com/instructed-glaci
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}
+
+{{ render_contributors("particles") }}

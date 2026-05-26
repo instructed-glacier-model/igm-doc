@@ -127,9 +127,6 @@ The parameter `data_assimilation.optimization.nb_relaxation_steps` (default valu
 The `data_assimilation` module outputs VTP files alongside NetCDF files, which greatly helps visualize your optimized/shaped bedrock with ParaView. Additionally, there is also an output module `write_vtp` that outputs sequences of VTK files that can be read by ParaView, offering new 3D visualization capabilities.  
 
 For more information, refer to the relevant documentation or technical references [@Jouvet2022; @Jouvet2023b].
-
-**Contributors:** G. Jouvet, S. Cook (parameter inference functions for global modelling)
-
 ## Parameters
 
 The complete default configuration file can be found here: [data_assimilation.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/data_assimilation.yaml).
@@ -142,3 +139,5 @@ The complete default configuration file can be found here: [data_assimilation.ya
 {% set module_help = help %}
 
 {% include "includes/_config_table_tree.j2" %}
+
+{{ render_contributors("data_assimilation") }}

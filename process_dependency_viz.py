@@ -3,7 +3,7 @@ process_dependency_viz.py
 Generates a self-contained interactive HTML dependency graph
 from the IGM process module definitions.
 
-Module I/O is loaded from module_io.yaml — edit that file to update the graph.
+Module data is loaded from modules.yaml — edit that file to update the graph.
 """
 
 import json
@@ -11,8 +11,8 @@ import os
 import yaml
 from collections import defaultdict
 
-# ── Load module I/O from YAML (single source of truth) ───────────────────────
-_yaml_path = os.path.join(os.path.dirname(__file__), "module_io.yaml")
+# ── Load module data from YAML (single source of truth) ──────────────────────
+_yaml_path = os.path.join(os.path.dirname(__file__), "modules.yaml")
 with open(_yaml_path, "r", encoding="utf-8") as _f:
     _module_io = yaml.safe_load(_f)
 

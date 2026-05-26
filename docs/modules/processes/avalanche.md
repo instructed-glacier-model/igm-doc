@@ -3,9 +3,6 @@
 # Module `avalanche`
 
 This IGM module simulates the redistribution of snow and ice due to gravitational avalanches. The model assumes that when the local surface slope exceeds a specified threshold (angle of repose), mass is redistributed toward lower elevations until the surface slope is reduced below this threshold.
-
-**Contributors:** This function was adapted from [Mark Kessler's GC2D](https://github.com/csdms-contrib/gc2d) program and implemented in IGM by Jürgen Mey with support from Guillaume Jouvet.
-
 ## Parameters
 
 Default configuration file ([avalanche.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/avalanche.yaml)):
@@ -52,3 +49,5 @@ Alternatively, we can do it over the command line
 ```bash
 igm_run +experiment/params processes.avalanche.update_freq=5
 ```
+
+{{ render_contributors("avalanche") }}

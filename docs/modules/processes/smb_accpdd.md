@@ -10,9 +10,6 @@ The computation of PDD uses the expectation integration formulation [@Calov2005]
 
 ### Output
 - `state.smb` [Unit: m ice eq. y$^{-1}$]
-
-**Contributors:** G. Jouvet.
-
 Note: This implementation is a TensorFlow re-implementation inspired by the one used in the Aletsch 1880–2100 example. It has been adapted to closely align (though not strictly) with the Positive Degree Day model implemented in PyPDD [@Seguinot2019], which is utilized in the Parallel Ice Sheet Model (PISM; [www.pism-docs.org](http://www.pism-docs.org))
 
 ## Parameters
@@ -29,3 +26,5 @@ Default configuration file ([smb_accpdd.yaml](https://github.com/instructed-glac
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}
+
+{{ render_contributors("smb_accpdd") }}

@@ -43,46 +43,48 @@ nav:
   - Modules:
       - modules/introduction.md
       - State Variables: modules/state_variables.md
-      - Input:
-          - local: modules/inputs/local.md
-          - load_ncdf: modules/inputs/load_ncdf.md
-          - load_tif: modules/inputs/load_tif.md
-          - oggm_shop: modules/inputs/oggm_shop.md
-      - Process:
-          - time: modules/processes/time.md
-          - iceflow: modules/processes/iceflow.md
-          - thk: modules/processes/thk.md
-          - vert_flow: modules/processes/vert_flow.md
-          - smb_simple: modules/processes/smb_simple.md
-          - enthalpy: modules/processes/enthalpy.md
-      - Output:
-          - local: modules/outputs/local.md
-          - write_ncdf: modules/outputs/write_ncdf.md
-          - write_vtp: modules/outputs/write_vtp.md
-          - write_tif: modules/outputs/write_tif.md
-          - write_ts: modules/outputs/write_ts.md
-          - plot2d: modules/outputs/plot2d.md
-          - live_dashboard: modules/outputs/live_dashboard.md
-      - Community:
-          - avalanche: modules/processes/avalanche.md
-          - calving_rate: modules/processes/calving_rate.md
-          - clim_glacialindex: modules/processes/clim_glacialindex.md
-          - clim_oggm: modules/processes/clim_oggm.md
-          - clim_station: modules/processes/clim_station.md
-          - data_assimilation: modules/processes/data_assimilation.md
-          - effective_pressure: modules/processes/effective_pressure.md
-          - flow_accumulation: modules/processes/flow_accumulation.md
-          - gflex: modules/processes/gflex.md
-          - glerosion: modules/processes/glerosion.md
-          - particles: modules/processes/particles.md
-          - pretraining: modules/processes/pretraining.md
-          - read_output: modules/processes/read_output.md
-          - rockflow: modules/processes/rockflow.md
-          - smb_accpdd: modules/processes/smb_accpdd.md
-          - smb_oggm: modules/processes/smb_oggm.md
-          - texture: modules/processes/texture.md
-      - Core Parameters: modules/core.md
+      - Core Modules:
+          - Input:
+              - local: modules/inputs/local.md
+              - load_ncdf: modules/inputs/load_ncdf.md
+              - load_tif: modules/inputs/load_tif.md
+              - oggm_shop: modules/inputs/oggm_shop.md
+          - Process:
+              - time: modules/processes/time.md
+              - iceflow: modules/processes/iceflow.md
+              - thk: modules/processes/thk.md
+              - vert_flow: modules/processes/vert_flow.md
+              - smb_simple: modules/processes/smb_simple.md
+              - enthalpy: modules/processes/enthalpy.md
+          - Output:
+              - local: modules/outputs/local.md
+              - write_ncdf: modules/outputs/write_ncdf.md
+              - write_vtp: modules/outputs/write_vtp.md
+              - write_tif: modules/outputs/write_tif.md
+              - write_ts: modules/outputs/write_ts.md
+              - plot2d: modules/outputs/plot2d.md
+              - live_dashboard: modules/outputs/live_dashboard.md
+      - Community Modules:
+          - Process:
+              - avalanche: modules/processes/avalanche.md
+              - calving_rate: modules/processes/calving_rate.md
+              - clim_glacialindex: modules/processes/clim_glacialindex.md
+              - clim_oggm: modules/processes/clim_oggm.md
+              - clim_station: modules/processes/clim_station.md
+              - data_assimilation: modules/processes/data_assimilation.md
+              - effective_pressure: modules/processes/effective_pressure.md
+              - flow_accumulation: modules/processes/flow_accumulation.md
+              - gflex: modules/processes/gflex.md
+              - glerosion: modules/processes/glerosion.md
+              - particles: modules/processes/particles.md
+              - pretraining: modules/processes/pretraining.md
+              - read_output: modules/processes/read_output.md
+              - rockflow: modules/processes/rockflow.md
+              - smb_accpdd: modules/processes/smb_accpdd.md
+              - smb_oggm: modules/processes/smb_oggm.md
+              - texture: modules/processes/texture.md
       - User Modules: modules/user_modules.md
+      - Core Parameters: modules/core.md
   - Gallery: gallery/index.md
   - About:
       - Authors: about/credits_and_references.md

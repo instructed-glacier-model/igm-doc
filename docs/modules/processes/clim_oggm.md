@@ -12,9 +12,6 @@ time   delta_temp  prec_scal
 ```
 
 If the `clim_trend_array` parameter is set to an empty list (`[]`), the module reads the data from the specified `file`. Otherwise, it uses the `clim_trend_array` parameter, which must be a list of lists.
-
-**Contributors:** Guillaume Jouvet, Fabien Maussion.
-
 ## Parameters
 
 Default configuration file ([clim_oggm.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/clim_oggm.yaml)):
@@ -29,3 +26,5 @@ Default configuration file ([clim_oggm.yaml](https://github.com/instructed-glaci
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}
+
+{{ render_contributors("clim_oggm") }}

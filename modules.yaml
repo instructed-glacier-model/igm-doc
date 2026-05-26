@@ -1,0 +1,196 @@
+# Module definitions — single source of truth for all module metadata.
+# category:    maps to categories.yaml keys (controls display grouping and card order)
+# community:   true marks community (non-core) modules
+# description: shown on module cards and pages
+# authors:     list of contributor names (optional; renders as "Contributors:" on the module page)
+# needs:       state variables read in initialize() / update()
+# updates:     state variables written in initialize() / update()
+
+# ── Atmosphere ────────────────────────────────────────────────────────────────
+
+smb_simple:
+  category: atmosphere
+  community: false
+  description: Compute surface mass balance from a user-defined elevation–SMB profile with time-varying ELA
+  authors: [Guillaume Jouvet]
+  needs:   [usurf, icemask]
+  updates: [smb]
+
+smb_accpdd:
+  category: atmosphere
+  community: true
+  description: Positive degree-day SMB with snowpack tracking and separate melt factors for snow and ice
+  authors: [Guillaume Jouvet]
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+smb_oggm:
+  category: atmosphere
+  community: true
+  description: Temperature-index SMB calibrated against geodetic mass balance data via OGGM
+  authors: [Guillaume Jouvet, Fabien Maussion]
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+clim_glacialindex:
+  category: atmosphere
+  community: true
+  description: Interpolate two climate snapshots using a glacial index for palaeo-glacier modelling
+  authors: [Guillaume Jouvet]
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+clim_oggm:
+  category: atmosphere
+  community: true
+  description: Distribute GSWP3-W5E5 monthly climate from oggm_shop with lapse-rate correction
+  authors: [Guillaume Jouvet, Fabien Maussion]
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+clim_station:
+  category: atmosphere
+  community: true
+  description: Generate temperature and precipitation fields from station-type forcing with elevation lapse rate
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+avalanche:
+  category: atmosphere
+  community: true
+  description: Redistribute snow from steep slopes to prevent unrealistic high-elevation accumulation
+  authors: [Jürgen Mey, Guillaume Jouvet]
+  needs:   [thk, topg]
+  updates: [thk, usurf]
+
+rockflow:
+  category: atmosphere
+  community: true
+  description: Simulate the transport of supraglacial and englacial debris coupled to ice flow
+  authors: [Guillaume Jouvet]
+  needs:   [usurf, thk, U, V]
+  updates: [U, V]
+
+# ── Cryosphere ────────────────────────────────────────────────────────────────
+
+iceflow:
+  category: cryosphere
+  community: false
+  description: Compute 3D ice velocities — direct solver or neural-network emulator
+  authors: [Guillaume Jouvet, Thomas Gregov, Brandon Finley, Sebastian Rosier]
+  needs:   [thk, usurf, topg, arrhenius, slidingco]
+  updates: [U, V, ubar, vbar]
+
+thk:
+  category: cryosphere
+  community: false
+  description: Evolve ice thickness and surface elevation via mass conservation
+  authors: [Guillaume Cordonnier, Guillaume Jouvet]
+  needs:   [thk, topg, ubar, vbar, smb, dt]
+  updates: [thk, usurf, divflux]
+
+vert_flow:
+  category: cryosphere
+  community: false
+  description: Diagnose the 3D vertical velocity from the horizontal velocity divergence
+  authors: [Guillaume Jouvet, Claire-Mathile Stücki, Thomas Gregov]
+  needs:   [U, V, thk]
+  updates: [W, wvelbase, wvelsurf]
+
+enthalpy:
+  category: cryosphere
+  community: false
+  description: Solve the 3D enthalpy equation for temperature, water content, and basal melt
+  authors: [Guillaume Jouvet, Thomas Gregov, Lucie Bacchin]
+  needs:   [thk, U, V, W, arrhenius]
+  updates: [E, T, omega, basal_melt_rate, arrhenius]
+
+# ── Lithosphere ───────────────────────────────────────────────────────────────
+
+effective_pressure:
+  category: lithosphere
+  community: false
+  description: Compute basal effective pressure N = p_i - p_w for Budd and Coulomb sliding laws
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+glerosion:
+  category: lithosphere
+  community: true
+  description: Estimate glacial erosion rates and update bedrock topography from basal sliding velocities
+  authors: [Guillaume Jouvet]
+  needs:   [U, V, thk]
+  updates: [topg, usurf]
+
+gflex:
+  category: lithosphere
+  community: true
+  description: Compute isostatic bedrock adjustment to ice load via thin-plate flexure
+  authors: [Jürgen Mey]
+  needs:   [thk, topg]
+  updates: [topg, usurf]
+
+flow_accumulation:
+  category: lithosphere
+  community: true
+  description: Compute subglacial water routing and flow accumulation from bed topography
+  needs:   [thk, topg]
+  updates: [phi, flow_accumulation]
+
+# ── Ocean ─────────────────────────────────────────────────────────────────────
+
+calving_rate:
+  category: ocean
+  community: false
+  description: Compute calving flux at a marine or lacustrine ice front
+  needs:   [thk, topg, water_level, ubar, vbar]
+  updates: [calving_rate]
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+
+time:
+  category: misc
+  community: false
+  description: Advance the simulation clock with an adaptive CFL time step
+  authors: [Guillaume Jouvet]
+  needs:   [ubar, vbar]
+  updates: [t, dt]
+
+particles:
+  category: misc
+  community: false
+  description: Advect Lagrangian particles to trace flow paths and estimate ice age
+  authors: [Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley]
+  needs:   [U, V, W, thk]
+  updates: [particle]
+
+texture:
+  category: misc
+  community: true
+  description: Track a passive scalar (e.g. sediment, tracer) transported through the ice
+  authors: [Brandon Finley]
+  needs:   [U, V, thk, usurf]
+  updates: []
+
+pretraining:
+  category: misc
+  community: true
+  description: Pre-train the ice flow emulator on a glacier catalogue for improved accuracy
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+data_assimilation:
+  category: misc
+  community: true
+  description: Invert for ice thickness and flow parameters from observed surface velocities
+  authors: [Guillaume Jouvet, Samuel Cook]
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+read_output:
+  category: misc
+  community: true
+  description: Replay a saved NetCDF output file as if freshly computed
+  authors: [Guillaume Jouvet]
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit

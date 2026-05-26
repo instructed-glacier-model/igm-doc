@@ -331,4 +331,4 @@ The complete default configuration file can be found here: [iceflow.yaml](https:
 
 {% include "includes/_config_table_tree.j2" %}
 
-**Contributors**: G. Jouvet, T. Gregov, B. Finley, S. Rosier.
+{{ render_contributors("iceflow") }}

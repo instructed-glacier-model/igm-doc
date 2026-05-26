@@ -93,4 +93,4 @@ Default configuration file ([vert_flow.yaml](https://github.com/instructed-glaci
 
 {% include "includes/_config_table_notree.j2" %}
 
-**Contributors**: G. Jouvet, C.-M. Stücki, T. Gregov.
+{{ render_contributors("vert_flow") }}

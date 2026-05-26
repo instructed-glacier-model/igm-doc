@@ -34,9 +34,6 @@ If the `array` parameter is set to an empty list `[]`, the module will read the 
 The module computes the surface mass balance at a frequency defined by the `update_freq` parameter (default is 1 year) and interpolates the four parameters linearly over time.
 
 If an "icemask" field is provided as input, the module will assign a negative surface mass balance (-10 m/y) to areas where a positive surface mass balance would otherwise occur outside the mask. This prevents overflow into neighboring catchments.
-
-**Contributors:** G. Jouvet.
-
 ## Parameters
 
 Default configuration file ([smb_simple.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/smb_simple.yaml)):
@@ -51,3 +48,5 @@ Default configuration file ([smb_simple.yaml](https://github.com/instructed-glac
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}
+
+{{ render_contributors("smb_simple") }}

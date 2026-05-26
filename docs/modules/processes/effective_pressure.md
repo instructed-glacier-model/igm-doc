@@ -24,9 +24,6 @@ $N$ is stored in **MPa** to match the rest of the iceflow stress quantities (`sl
 ## Module ordering
 
 `effective_pressure` must run before `iceflow` so that the field is up to date when the sliding cost is assembled. When `mode: ocean_connected` is used, it must also run after whichever input module created `state.water_level` (typically the `local` or `load_ncdf` input phase, which runs before any process).
-
-**Contributors:** IGM authors.
-
 ## Parameters
 
 Default configuration file ([effective_pressure.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/effective_pressure.yaml)):
@@ -79,3 +76,5 @@ Or override on the command line:
 ```bash
 igm_run +experiment/params processes.effective_pressure.mode=percentage processes.effective_pressure.percentage=0.96
 ```
+
+{{ render_contributors("effective_pressure") }}

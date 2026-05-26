@@ -1,0 +1,28 @@
+# Category display metadata for IGM process modules.
+# Key order here controls the card rendering order on the site.
+# color_key maps to CSS modifier class: module-card--<color_key>
+
+atmosphere:
+  label: Atmosphere
+  subtitle: Supraglacial forcing
+  color_key: atmosphere
+
+cryosphere:
+  label: Cryosphere
+  subtitle: Ice mass and thermal evolution
+  color_key: cryosphere
+
+lithosphere:
+  label: Lithosphere
+  subtitle: Subglacial mechanics and bed evolution
+  color_key: lithosphere
+
+ocean:
+  label: Ocean
+  subtitle: Peripheral and frontal processes
+  color_key: ocean
+
+misc:
+  label: Misc
+  subtitle: Diagnostics and utilities
+  color_key: misc

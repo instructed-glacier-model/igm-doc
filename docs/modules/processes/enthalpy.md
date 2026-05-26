@@ -134,4 +134,4 @@ The complete default configuration file can be found here: [enthalpy.yaml](https
 
 {% include "includes/_config_table_tree.j2" %}
 
-**Contributors**: G. Jouvet, T. Gregov, L. Bacchin.
+{{ render_contributors("enthalpy") }}

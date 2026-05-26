@@ -17,9 +17,6 @@ Key parameters of this module include:
 - `processes.time.save`: Specifies the frequency at which results are saved (default: 10 years).
 
 Further details on the time step stability conditions can be found in the following paper: [@Jouvet2021]   
-
-**Contributors:** G. Jouvet.
-
 ## Parameters
 
 Default configuration file ([time.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/time.yaml)):
@@ -34,3 +31,5 @@ Default configuration file ([time.yaml](https://github.com/instructed-glacier-mo
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}
+
+{{ render_contributors("time") }}
