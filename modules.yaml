@@ -176,8 +176,8 @@ pretraining:
   category: misc
   community: true
   description: Pre-train the ice flow emulator on a glacier catalogue for improved accuracy
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  needs:   []  # runs standalone; does not read glacier state fields
+  updates: []  # output is an emulator artifact written to disk, not a state field
 
 data_assimilation:
   category: misc
