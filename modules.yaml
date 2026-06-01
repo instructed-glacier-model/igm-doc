@@ -6,11 +6,31 @@
 # needs:       state variables read in initialize() / update()
 # updates:     state variables written in initialize() / update()
 
+# ── Time ──────────────────────────────────────────────────────────────────────
+
+time:
+  category: time
+  community: false
+  description: Advance the simulation clock with an adaptive CFL time step
+  authors: [Guillaume Jouvet]
+  needs:   [ubar, vbar]
+  updates: [t, dt]
+
 # ── Atmosphere ────────────────────────────────────────────────────────────────
+
+climate:
+  category: atmosphere
+  community: false
+  description: Unified climate module — dispatches to simple, oggm, glacialindex, or station based on the `method` parameter
+
+smb:
+  category: atmosphere
+  community: false
+  description: Unified surface mass balance module — dispatches to simple, oggm, or accpdd based on the `method` parameter
 
 smb_simple:
   category: atmosphere
-  community: false
+  community: true
   description: Compute surface mass balance from a user-defined elevation–SMB profile with time-varying ELA
   authors: [Guillaume Jouvet]
   needs:   [usurf, icemask]
@@ -55,23 +75,15 @@ clim_station:
   needs:   []  # TODO: audit
   updates: []  # TODO: audit
 
-avalanche:
-  category: atmosphere
-  community: true
-  description: Redistribute snow from steep slopes to prevent unrealistic high-elevation accumulation
-  authors: [Jürgen Mey, Guillaume Jouvet]
-  needs:   [thk, topg]
-  updates: [thk, usurf]
-
-rockflow:
-  category: atmosphere
-  community: true
-  description: Simulate the transport of supraglacial and englacial debris coupled to ice flow
-  authors: [Guillaume Jouvet]
-  needs:   [usurf, thk, U, V]
-  updates: [U, V]
-
 # ── Cryosphere ────────────────────────────────────────────────────────────────
+
+arrhenius:
+  category: cryosphere
+  community: false
+  description: Compute the vertically-averaged Arrhenius rate factor from ice temperature and water content
+  authors: [Guillaume Jouvet, Thomas Gregov]
+  needs:   [T, omega]
+  updates: [arrhenius]
 
 iceflow:
   category: cryosphere
@@ -105,14 +117,30 @@ enthalpy:
   needs:   [thk, U, V, W, arrhenius]
   updates: [E, T, omega, basal_melt_rate, arrhenius]
 
-# ── Lithosphere ───────────────────────────────────────────────────────────────
+stress:
+  category: cryosphere
+  community: true
+  description: Compute the full 3D deviatoric stress tensor and principal stress invariants from ice velocities
+  needs:   [U, V, thk, arrhenius]
+  updates: [tau_xx, tau_yy, tau_zz, tau_xy, tau_xz, tau_yz, p, sigma1, sigmaI, tauII]
 
-effective_pressure:
-  category: lithosphere
+avalanche:
+  category: cryosphere
+  community: true
+  description: Redistribute snow from steep slopes to prevent unrealistic high-elevation accumulation
+  authors: [Jürgen Mey, Guillaume Jouvet]
+  needs:   [thk, topg]
+  updates: [thk, usurf]
+
+particles:
+  category: cryosphere
   community: false
-  description: Compute basal effective pressure N = p_i - p_w for Budd and Coulomb sliding laws
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  description: Advect Lagrangian particles to trace flow paths and estimate ice age
+  authors: [Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley]
+  needs:   [U, V, W, thk]
+  updates: [particle]
+
+# ── Lithosphere ───────────────────────────────────────────────────────────────
 
 glerosion:
   category: lithosphere
@@ -130,39 +158,40 @@ gflex:
   needs:   [thk, topg]
   updates: [topg, usurf]
 
-flow_accumulation:
+rockflow:
   category: lithosphere
   community: true
-  description: Compute subglacial water routing and flow accumulation from bed topography
-  needs:   [thk, topg]
-  updates: [phi, flow_accumulation]
+  description: Simulate the transport of supraglacial and englacial debris coupled to ice flow
+  authors: [Guillaume Jouvet]
+  needs:   [usurf, thk, U, V]
+  updates: [U, V]
 
-# ── Ocean ─────────────────────────────────────────────────────────────────────
+# ── Lithosphere ── (additions) ────────────────────────────────────────────────
+
+effective_pressure:
+  category: lithosphere
+  community: false
+  description: Compute basal effective pressure N = p_i - p_w for Budd and Coulomb sliding laws
+  needs:   []  # TODO: audit
+  updates: []  # TODO: audit
+
+# ── Hydrosphere ───────────────────────────────────────────────────────────────
 
 calving_rate:
-  category: ocean
+  category: hydrosphere
   community: false
   description: Compute calving flux at a marine or lacustrine ice front
   needs:   [thk, topg, water_level, ubar, vbar]
   updates: [calving_rate]
 
+flow_accumulation:
+  category: hydrosphere
+  community: true
+  description: Compute subglacial water routing and flow accumulation from bed topography
+  needs:   [thk, topg]
+  updates: [phi, flow_accumulation]
+
 # ── Misc ──────────────────────────────────────────────────────────────────────
-
-time:
-  category: misc
-  community: false
-  description: Advance the simulation clock with an adaptive CFL time step
-  authors: [Guillaume Jouvet]
-  needs:   [ubar, vbar]
-  updates: [t, dt]
-
-particles:
-  category: misc
-  community: false
-  description: Advect Lagrangian particles to trace flow paths and estimate ice age
-  authors: [Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley]
-  needs:   [U, V, W, thk]
-  updates: [particle]
 
 texture:
   category: misc

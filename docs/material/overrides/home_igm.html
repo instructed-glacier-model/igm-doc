@@ -8,10 +8,6 @@
 
 <body class="landing-page">
 
-<!-- ─── BACKGROUND VIDEO ─────────────────────────────────────────────────────
-     • To swap video : change the src in the <source> tag below
-     • To remove     : delete this entire comment + the <div class="landing-video"> block
-     ───────────────────────────────────────────────────────────────────────── -->
 <div class="landing-video">
   <video autoplay muted playsinline>
     <source src="assets/anim_particles.mp4" type="video/mp4">
@@ -19,38 +15,20 @@
 </div>
 
 <div class="landing-container">
-    <h1>Model Glacier Evolution<br class="subheader">with IGM</h1>
-    <p class="landing-subtitle">A differentiable, modular, and GPU-accelerated ice flow model.</p>
-    <div class="landing-buttons">
-      <button onclick="location.href='getting_started/'">Get Started</button>
-      <button onclick="location.href='modules/introduction/'">Explore Modules</button>
-      <button onclick="location.href='gallery/'">Gallery</button>
-      <button onclick="location.href='about/help/'">Contact Us</button>
-    </div>
+  <h1>Model<br>Glacier Evolution<br>with IGM</h1>
+  <p class="landing-tagline">
+    <span class="landing-pillar">⚡ Accessible</span> ·
+    <span class="landing-pillar">🧩 Modular</span> ·
+    <span class="landing-pillar">🔁 Reproducible</span> ·
+    <span class="landing-pillar">📈 Scalable</span>
+  </p>
+  <div class="landing-buttons">
+    <button onclick="location.href='getting_started/'">Get Started</button>
+    <button onclick="location.href='modules/introduction/'">Explore Modules</button>
+    <button onclick="location.href='gallery/'">Gallery</button>
   </div>
+</div>
 
-  <div class="landing-pillars">
-    <div class="pillar-card">
-      <div class="pillar-icon">⚡</div>
-      <h3>Accessible</h3>
-      <p>Install in one command. Configure with a single YAML file. No code changes needed for standard simulations.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">🧩</div>
-      <h3>Modular</h3>
-      <p>Swap or extend individual components — ice flow, mass balance, thermodynamics — without touching the rest of the model.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">🔁</div>
-      <h3>Reproducible</h3>
-      <p>Every run records its full configuration. Continuous integration keeps the documentation and code in sync.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-icon">📈</div>
-      <h3>Scalable</h3>
-      <p>GPU-native raster operations scale from single glaciers to mountain ranges. Ensemble sweeps via Hydra and Optuna.</p>
-    </div>
-  </div>
 </body>
 
 {% endblock %}

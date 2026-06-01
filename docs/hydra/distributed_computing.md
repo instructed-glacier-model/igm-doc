@@ -169,30 +169,4 @@ we launch both experiments on both GPUs.
 
 Hydra also allows one to use [SLURM](https://hydra.cc/docs/plugins/submitit_launcher/) scipts as well as AWS clusters (using [Ray](https://hydra.cc/docs/plugins/ray_launcher/)). While we do not currently have an example, we recommend you to again go to Hydra's page to learn more.
 
-## Using hydra optuna
-
-A very power way to use igm with hydra is to launch an ensemble of simulation with parameters taken randomly into a given (discrete or continuous) set, for that you need to install hydra add-ons :
-
-```bash
-pip install hydra-joblib-launcher
-pip install hydra-optuna-sweeper
-```
-
-and then, you may launch IGM runs as follows:
-
-```bash
-igm_run +experiment=params \
-  hydra/launcher=joblib hydra.launcher.n_jobs=1 \
-  hydra/sweeper=optuna \
-  hydra.sweeper.n_trials=10 \
-  core.hardware.visible_gpus=[0] \ 
-  'processes.data_assimilation.regularization.thk=choice(tag(log, interval(1.0e+2,1.0e+4)))' \
-  'processes.data_assimilation.regularization.slidingco=choice(tag(log, interval(1.0e+9,1.0e+11)))' \ 
-  'processes.data_assimilation.fitting.thkobs_std=choice(1,2.5,7.0)' \
-  'processes.data_assimilation.regularization.to_regularize=choice(topg,thk)' \
-  'processes.iceflow.physics.init_arrhenius=interval(40.0, 120.0)' \
-  --multirun
-```
-
-On the top of this, you may define in a user module the float variable `state.score`, and hydra will tell you the statistic of the parametr set that minimizes the variable `state.score`.
 

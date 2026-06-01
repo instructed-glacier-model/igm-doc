@@ -2,6 +2,11 @@
 # Key order here controls the card rendering order on the site.
 # color_key maps to CSS modifier class: module-card--<color_key>
 
+time:
+  label: Time
+  subtitle: Temporal discretization
+  color_key: time
+
 atmosphere:
   label: Atmosphere
   subtitle: Supraglacial forcing
@@ -17,10 +22,10 @@ lithosphere:
   subtitle: Subglacial mechanics and bed evolution
   color_key: lithosphere
 
-ocean:
-  label: Ocean
+hydrosphere:
+  label: Hydrosphere
   subtitle: Peripheral and frontal processes
-  color_key: ocean
+  color_key: hydrosphere
 
 misc:
   label: Misc
