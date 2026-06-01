@@ -37,7 +37,7 @@ Default configuration file ([effective_pressure.yaml](https://github.com/instruc
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
-{% include "includes/_config_table_notree.j2" %}
+{% include "includes/_config_table_tree.j2" %}
 
 ## Example usage
 

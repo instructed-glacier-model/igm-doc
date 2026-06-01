@@ -80,4 +80,12 @@ Default configuration file ([climate.yaml](https://github.com/instructed-glacier
 {% include "../../../../igm/conf/processes/climate.yaml" %}
 ~~~
 
+{% set config = load_yaml('../igm/conf/processes/climate.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/climate.yaml') %}
+{% set module_key = config.keys() | list | first %}
+{% set module = config[module_key] %}
+{% set module_help = help %}
+
+{% include "includes/_config_table_tree.j2" %}
+
 {{ render_contributors("climate") }}

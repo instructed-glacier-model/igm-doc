@@ -59,11 +59,13 @@ nav:
               - vert_flow: modules/processes/vert_flow.md
               - enthalpy: modules/processes/enthalpy.md
               - arrhenius: modules/processes/arrhenius.md
-              - particles: modules/processes/particles.md
           - Lithosphere:
               - effective_pressure: modules/processes/effective_pressure.md
+              - h_water_till: modules/processes/h_water_till.md
           - Hydrosphere:
               - calving_rate: modules/processes/calving_rate.md
+          - Misc:
+              - particles: modules/processes/particles.md
       - Output Modules:
           - local: modules/outputs/local.md
           - write_ncdf: modules/outputs/write_ncdf.md

@@ -42,4 +42,12 @@ Default configuration file ([stress.yaml](https://github.com/instructed-glacier-
 {% include "../../../../igm/conf/processes/stress.yaml" %}
 ~~~
 
+{% set config = load_yaml('../igm/conf/processes/stress.yaml') %}
+{% set help = load_yaml('../igm/conf_help/processes/stress.yaml') %}
+{% set module_key = config.keys() | list | first %}
+{% set module = config[module_key] %}
+{% set module_help = help %}
+
+{% include "includes/_config_table_notree.j2" %}
+
 {{ render_contributors("stress") }}
