@@ -12,7 +12,7 @@ Guidance for setting up reliable IGM simulations, from initial configuration to 
   </a>
   <a class="module-card" href="numerical_tips/">
     <span class="module-card-name">Numerical Tips</span>
-    <p>Practical guidance on time stepping, grid resolution, solver modes, and GPU memory</p>
+    <p>Practical guidance on time stepping, grid resolution, data assimilation, and GPU memory</p>
   </a>
   <a class="module-card" href="../faq/">
     <span class="module-card-name">FAQ</span>

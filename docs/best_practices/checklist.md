@@ -6,9 +6,9 @@ The checklist below helps you avoid common pitfalls before finalising your study
 
 ## Numerical stability
 
-- [ ] **Verify CFL stability and time-step size.** Reduce the `CFL` parameter if you see oscillations, waves, or sudden thickness spikes (a value below 0.5 is typically safe). Also examine `dt` in the output: very small adaptive time steps can indicate near-instability. See [Numerical Tips](numerical_tips.md#time-stepping-and-the-cfl-condition) for details.
+- [ ] **Verify CFL stability and time-step size.** Reduce the `CFL` parameter if you see oscillations, waves, or sudden thickness spikes (a value below 0.5 is typically safe). Also examine `dt` in the output: very small adaptive time steps can indicate near-instability. See [Numerical Tips: Time stepping](numerical_tips.md#time-stepping-and-the-cfl-condition) for details.
 - [ ] **Vary solver settings.** Check that results do not change significantly when you double `nbit` (iceflow solver iterations). If using the network emulator with periodic re-training, also test sensitivity to the retrain frequency and learning rate — these three interact.
-- [ ] **Validate the iceflow solver.** If using `mapping: network`, run at least one short test with `mapping: identity` to confirm the emulator is not introducing significant error for your domain. Note that `lr` / `lr_init` differ substantially between the two (~0.9 for `identity`, ~1e-5–1e-3 for `network`) — see [Numerical Tips](numerical_tips.md#iceflow-solver-modes) for guidance.
+- [ ] **Validate the iceflow solver.** If using `mapping: network`, run at least one short test with `mapping: identity` to confirm the emulator is not introducing significant error for your domain. Note that `lr` / `lr_init` differ substantially between the two (~0.9 for `identity`, ~1e-5–1e-3 for `network`) — see [iceflow: Practical guidance](../modules/processes/iceflow.md#practical-guidance) for guidance.
 
 ---
 
