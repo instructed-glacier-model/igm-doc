@@ -6,14 +6,38 @@
 # needs:       state variables read in initialize() / update()
 # updates:     state variables written in initialize() / update()
 
+# ── Time ──────────────────────────────────────────────────────────────────────
+
+time:
+  category: time
+  community: false
+  description: Advance the simulation clock with an adaptive CFL time step
+  authors: [Guillaume Jouvet]
+  needs:   [ubar, vbar]
+  updates: [t, dt]
+
 # ── Atmosphere ────────────────────────────────────────────────────────────────
+
+climate:
+  category: atmosphere
+  community: false
+  description: Unified climate module — dispatches to simple, oggm, glacialindex, or station based on the `method` parameter
+  needs:   [t, usurf]
+  updates: [air_temp, air_temp_sd, precipitation]
+
+smb:
+  category: atmosphere
+  community: false
+  description: Unified surface mass balance module — dispatches to simple, oggm, or accpdd based on the `method` parameter
+  needs:   [t, usurf, air_temp, air_temp_sd, precipitation]
+  updates: [smb]
 
 smb_simple:
   category: atmosphere
-  community: false
+  community: true
   description: Compute surface mass balance from a user-defined elevation–SMB profile with time-varying ELA
   authors: [Guillaume Jouvet]
-  needs:   [usurf, icemask]
+  needs:   [t, usurf, icemask]
   updates: [smb]
 
 smb_accpdd:
@@ -21,64 +45,56 @@ smb_accpdd:
   community: true
   description: Positive degree-day SMB with snowpack tracking and separate melt factors for snow and ice
   authors: [Guillaume Jouvet]
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  needs:   [air_temp, air_temp_sd, precipitation]
+  updates: [smb]
 
 smb_oggm:
   category: atmosphere
   community: true
   description: Temperature-index SMB calibrated against geodetic mass balance data via OGGM
   authors: [Guillaume Jouvet, Fabien Maussion]
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  needs:   [air_temp, precipitation]
+  updates: [smb]
 
 clim_glacialindex:
   category: atmosphere
   community: true
   description: Interpolate two climate snapshots using a glacial index for palaeo-glacier modelling
   authors: [Guillaume Jouvet]
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  needs:   [t, usurf]
+  updates: [air_temp, air_temp_sd, precipitation]
 
 clim_oggm:
   category: atmosphere
   community: true
   description: Distribute GSWP3-W5E5 monthly climate from oggm_shop with lapse-rate correction
   authors: [Guillaume Jouvet, Fabien Maussion]
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  needs:   [t, usurf]
+  updates: [air_temp, precipitation]
 
 clim_station:
   category: atmosphere
   community: true
   description: Generate temperature and precipitation fields from station-type forcing with elevation lapse rate
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
-
-avalanche:
-  category: atmosphere
-  community: true
-  description: Redistribute snow from steep slopes to prevent unrealistic high-elevation accumulation
-  authors: [Jürgen Mey, Guillaume Jouvet]
-  needs:   [thk, topg]
-  updates: [thk, usurf]
-
-rockflow:
-  category: atmosphere
-  community: true
-  description: Simulate the transport of supraglacial and englacial debris coupled to ice flow
-  authors: [Guillaume Jouvet]
-  needs:   [usurf, thk, U, V]
-  updates: [U, V]
+  needs:   [t, usurf]
+  updates: [air_temp, air_temp_sd, precipitation]
 
 # ── Cryosphere ────────────────────────────────────────────────────────────────
+
+arrhenius:
+  category: cryosphere
+  community: false
+  description: Compute the vertically-averaged Arrhenius rate factor from ice temperature and water content
+  authors: [Guillaume Jouvet, Thomas Gregov]
+  needs:   [T, omega]
+  updates: [arrhenius]
 
 iceflow:
   category: cryosphere
   community: false
   description: Compute 3D ice velocities — direct solver or neural-network emulator
   authors: [Guillaume Jouvet, Thomas Gregov, Brandon Finley, Sebastian Rosier]
-  needs:   [thk, usurf, topg, arrhenius, slidingco]
+  needs:   [thk, usurf, topg, arrhenius, tau_ref, effective_pressure]
   updates: [U, V, ubar, vbar]
 
 thk:
@@ -103,16 +119,32 @@ enthalpy:
   description: Solve the 3D enthalpy equation for temperature, water content, and basal melt
   authors: [Guillaume Jouvet, Thomas Gregov, Lucie Bacchin]
   needs:   [thk, U, V, W, arrhenius]
-  updates: [E, T, omega, basal_melt_rate, arrhenius]
+  updates: [E, T, omega, basal_melt_rate, arrhenius, temppasurf, temppabase]
+
+stress:
+  category: cryosphere
+  community: true
+  description: Compute the full 3D deviatoric stress tensor and principal stress invariants from ice velocities
+  needs:   [U, V, thk, arrhenius]
+  updates: [tau_xx, tau_yy, tau_zz, tau_xy, tau_xz, tau_yz, p, sigma1, sigmaI, tauII]
+
+avalanche:
+  category: cryosphere
+  community: true
+  description: Redistribute snow from steep slopes to prevent unrealistic high-elevation accumulation
+  authors: [Jürgen Mey, Guillaume Jouvet]
+  needs:   [thk, topg]
+  updates: [thk, usurf]
+
+particles:
+  category: misc
+  community: false
+  description: Advect Lagrangian particles to trace flow paths and estimate ice age
+  authors: [Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley]
+  needs:   [U, V, W, thk]
+  updates: [particle]
 
 # ── Lithosphere ───────────────────────────────────────────────────────────────
-
-effective_pressure:
-  category: lithosphere
-  community: false
-  description: Compute basal effective pressure N = p_i - p_w for Budd and Coulomb sliding laws
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
 
 glerosion:
   category: lithosphere
@@ -130,39 +162,48 @@ gflex:
   needs:   [thk, topg]
   updates: [topg, usurf]
 
-flow_accumulation:
+rockflow:
   category: lithosphere
   community: true
-  description: Compute subglacial water routing and flow accumulation from bed topography
-  needs:   [thk, topg]
-  updates: [phi, flow_accumulation]
+  description: Simulate the transport of supraglacial and englacial debris coupled to ice flow
+  authors: [Guillaume Jouvet]
+  needs:   [usurf, thk, U, V]
+  updates: [U, V]
 
-# ── Ocean ─────────────────────────────────────────────────────────────────────
+# ── Lithosphere ── (additions) ────────────────────────────────────────────────
+
+effective_pressure:
+  category: lithosphere
+  community: false
+  description: Compute basal effective pressure N = p_i - p_w for Budd and Coulomb sliding laws
+  needs:   [thk, topg, water_level, h_water_till]
+  updates: [effective_pressure]
+
+h_water_till:
+  category: lithosphere
+  community: false
+  description: Evolve the subglacial till water layer thickness driven by basal melt and drainage
+  authors: [Guillaume Jouvet, Thomas Gregov]
+  needs:   [h_water_till, basal_melt_rate, thk, dt]
+  updates: [h_water_till]
+
+# ── Hydrosphere ───────────────────────────────────────────────────────────────
 
 calving_rate:
-  category: ocean
+  category: hydrosphere
   community: false
   description: Compute calving flux at a marine or lacustrine ice front
   needs:   [thk, topg, water_level, ubar, vbar]
   updates: [calving_rate]
 
+flow_accumulation:
+  category: hydrosphere
+  community: true
+  description: Compute subglacial water routing and flow accumulation from bed topography
+  needs:   [thk, topg, h_water_till]
+  updates: [phi, flow_accumulation]
+
 # ── Misc ──────────────────────────────────────────────────────────────────────
-
-time:
-  category: misc
-  community: false
-  description: Advance the simulation clock with an adaptive CFL time step
-  authors: [Guillaume Jouvet]
-  needs:   [ubar, vbar]
-  updates: [t, dt]
-
-particles:
-  category: misc
-  community: false
-  description: Advect Lagrangian particles to trace flow paths and estimate ice age
-  authors: [Guillaume Jouvet, Claire-Mathile Stücki, Brandon Finley]
-  needs:   [U, V, W, thk]
-  updates: [particle]
 
 texture:
   category: misc
@@ -184,13 +225,13 @@ data_assimilation:
   community: true
   description: Invert for ice thickness and flow parameters from observed surface velocities
   authors: [Guillaume Jouvet, Samuel Cook]
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  needs:   [usurf, thk, topg, ubar, vbar]
+  updates: [tau_ref]
 
 read_output:
   category: misc
   community: true
   description: Replay a saved NetCDF output file as if freshly computed
   authors: [Guillaume Jouvet]
-  needs:   []  # TODO: audit
-  updates: []  # TODO: audit
+  needs:   []
+  updates: []  # restores all fields that were saved in the NetCDF; content varies

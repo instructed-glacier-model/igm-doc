@@ -41,51 +41,65 @@ nav:
           - Optimization: hydra/optuna_cluster.md
       - IGM v2 → v3 Transition: about/transition-IGM-2-to-3.md
   - Modules:
-      - modules/introduction.md
-      - State Variables: modules/state_variables.md
-      - Core Modules:
-          - Input:
-              - local: modules/inputs/local.md
-              - load_ncdf: modules/inputs/load_ncdf.md
-              - load_tif: modules/inputs/load_tif.md
-              - oggm_shop: modules/inputs/oggm_shop.md
-          - Process:
+      - Overview: modules/introduction.md
+      - Input Modules:
+          - local: modules/inputs/local.md
+          - load_ncdf: modules/inputs/load_ncdf.md
+          - load_tif: modules/inputs/load_tif.md
+          - oggm_shop: modules/inputs/oggm_shop.md
+      - Process Modules:
+          - Time:
               - time: modules/processes/time.md
+          - Atmosphere:
+              - climate: modules/processes/climate.md
+              - smb: modules/processes/smb.md
+          - Cryosphere:
+              - arrhenius: modules/processes/arrhenius.md
               - iceflow: modules/processes/iceflow.md
               - thk: modules/processes/thk.md
               - vert_flow: modules/processes/vert_flow.md
-              - smb_simple: modules/processes/smb_simple.md
               - enthalpy: modules/processes/enthalpy.md
-          - Output:
-              - local: modules/outputs/local.md
-              - write_ncdf: modules/outputs/write_ncdf.md
-              - write_vtp: modules/outputs/write_vtp.md
-              - write_tif: modules/outputs/write_tif.md
-              - write_ts: modules/outputs/write_ts.md
-              - plot2d: modules/outputs/plot2d.md
-              - live_dashboard: modules/outputs/live_dashboard.md
+          - Lithosphere:
+              - effective_pressure: modules/processes/effective_pressure.md
+              - h_water_till: modules/processes/h_water_till.md
+          - Hydrosphere:
+              - calving_rate: modules/processes/calving_rate.md
+          - Misc:
+              - particles: modules/processes/particles.md
           - Assimilation:
               - pretraining: modules/assimilations/pretraining.md
+      - Output Modules:
+          - local: modules/outputs/local.md
+          - write_ncdf: modules/outputs/write_ncdf.md
+          - write_vtp: modules/outputs/write_vtp.md
+          - write_tif: modules/outputs/write_tif.md
+          - write_ts: modules/outputs/write_ts.md
+          - plot2d: modules/outputs/plot2d.md
+          - live_dashboard: modules/outputs/live_dashboard.md
       - Community Modules:
-          - Process:
-              - avalanche: modules/processes/avalanche.md
-              - calving_rate: modules/processes/calving_rate.md
+          - Atmosphere:
               - clim_glacialindex: modules/processes/clim_glacialindex.md
               - clim_oggm: modules/processes/clim_oggm.md
               - clim_station: modules/processes/clim_station.md
-              - data_assimilation: modules/processes/data_assimilation.md
-              - effective_pressure: modules/processes/effective_pressure.md
-              - flow_accumulation: modules/processes/flow_accumulation.md
-              - gflex: modules/processes/gflex.md
-              - glerosion: modules/processes/glerosion.md
-              - particles: modules/processes/particles.md
-              - read_output: modules/processes/read_output.md
-              - rockflow: modules/processes/rockflow.md
+              - smb_simple: modules/processes/smb_simple.md
               - smb_accpdd: modules/processes/smb_accpdd.md
               - smb_oggm: modules/processes/smb_oggm.md
+          - Cryosphere:
+              - avalanche: modules/processes/avalanche.md
+              - stress: modules/processes/stress.md
+          - Lithosphere:
+              - gflex: modules/processes/gflex.md
+              - glerosion: modules/processes/glerosion.md
+              - rockflow: modules/processes/rockflow.md
+          - Hydrosphere:
+              - flow_accumulation: modules/processes/flow_accumulation.md
+          - Misc:
+              - data_assimilation: modules/processes/data_assimilation.md
+              - read_output: modules/processes/read_output.md
               - texture: modules/processes/texture.md
       - User Modules: modules/user_modules.md
       - Core Parameters: modules/core.md
+      - State Variables: modules/state_variables.md
   - Gallery: gallery/index.md
   - About:
       - Authors: about/credits_and_references.md

@@ -1,39 +1,35 @@
 # Module `particles`
 
-This IGM module implements a particle tracking routine, which computes the trajectories of virtual particles advected by the ice flow. The routine operates in real-time during the forward model run, and a large number of particles can be processed efficiently thanks to the parallel implementation with TensorFlow. The routine includes particle seeding (by default in the accumulation area at regular intervals, though this can be customized) and tracking (advection by the velocity field in 3D). Note that there is currently no strategy for removing particles, which may lead to memory overload when using this routine for long durations and/or with high seeding intensity.
+This IGM module implements a particle tracking routine, which computes the trajectories of virtual particles advected by the ice flow. The routine operates in real-time during the forward model run, and a large number of particles can be processed efficiently thanks to the parallel implementation with TensorFlow. The routine includes particle seeding (by default in the accumulation area at regular intervals, though this can be customized) and tracking (advection by the velocity field in 3D).
 
-There are currently two implementations (selectable via the `tracking_method` parameter):
+{{ render_module_io("particles") }}
 
-- `'simple'`: Horizontal and vertical directions are treated differently:
+## Tracking methods
+
+Two tracking implementations are available, selected via `tracking.method`:
+
+- **`simple`**: Horizontal and vertical directions are treated differently:
   1. In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly).
-  2. In the vertical direction, particles are tracked along the ice column, scaled between 0 (at the bed) and 1 (at the surface), based on their relative position. Particles are always initialized at a relative height of 1 (assumed to be on the surface). The evolution of the particle's position within the ice column over time is computed based on the surface mass balance: the particle deepens when the surface mass balance is positive (the relative height decreases) and re-emerges when the surface mass balance is negative (the relative height increases).
+  2. In the vertical direction, particles are tracked along the ice column, scaled between 0 (at the bed) and 1 (at the surface). Particles are initialized at relative height 1 (on the surface). The evolution of the particle's position within the ice column over time is computed from the surface mass balance: the particle deepens when SMB is positive and re-emerges when SMB is negative.
 
-- `'3d'`: Requires activation of the `vert_flow` module, which computes the vertical velocity by integrating the divergence of the horizontal velocity. This enables full 3D particle tracking.
+- **`3d`**: Requires the `vert_flow` module, which computes the vertical velocity by integrating the divergence of the horizontal velocity, enabling full 3D particle tracking.
 
-Currently, the default `tracking_method` is set to `'simple'`, as the `'3d'` method (and its dependency on `vert_flow`) requires further testing.
+The default `tracking.method` is `3d`.
 
-You may adapt the seeding strategy to your needs. The default seeding occurs in the accumulation area, with the seeding frequency controlled by the `frequency_seeding` parameter and the seeding density by the `density_seeding` parameter. Alternatively, you can define a custom seeding strategy (e.g., seeding near rock walls or nunataks). To do this, redefine the `seeding_particles()` function in a `particles.py` file located in the working directory (refer to the example `aletsch-1880-2100`). When executed, `igm_run` will override the original `seeding_particles()` function with the user-defined one.
+## Seeding
 
-The module requires horizontal velocities (`state.U`) and vertical velocities (`state.W`). The vertical velocities are computed using the `vert_flow` module when the `tracking_method` is set to `'3d'`.
+Seeding occurs in the accumulation area at intervals of `seeding.frequency` years, with spatial density controlled by `seeding.density` (0.2 = one seed every 5 grid cells). To use a custom seeding strategy (e.g. near rock walls or nunataks), redefine the `seeding_particles()` function in a `particles.py` file in the working directory — `igm_run` will override the built-in implementation with yours.
 
-**Note:** In the code, the positions of particles are recorded within vectors corresponding to the number of tracked particles: `state.xpos`, `state.ypos`, and `state.zpos`. The variable `state.rhpos` provides the relative height within the ice column (1 at the surface, 0 at the bed). At each time step, the weight of surface debris contained in each cell of the 2D horizontal grid is computed and stored in the variable `state.weight_particles`.
+## Output
 
-This IGM module writes particle time-position data into CSV files, as computed by the `particles` module. The saving frequency is controlled by the parameter `processes.time.save`, which is defined in the `time` module.
-
-The module also writes the trajectories followed by particles. The data are stored in a folder named `trajectory` (created if it does not already exist). Files named `traj-TIME.csv` report the space-time positions of the particles at time `TIME` with the following structure:
+Particle positions are saved at the interval set by `processes.time.save`. Trajectories are written to a `trajectory/` folder as files named `traj-TIME.csv` with the columns:
 
 ```
 ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
-X,            X,           X,           X,           X,           X,           X,
-X,            X,           X,           X,           X,           X,           X,
-X,            X,           X,           X,           X,           X,           X,
 ```
 
-providing, in turn, the particle ID, x, y, z positions, the relative height within the ice column, the seeding time, and the englacial residence time.
+The tracking computation can use `tensorflow` (default) or a CUDA-based `cupy/numba` backend (`tracking.library`). Output writing can use `numpy` (default) or `cudf` (`output.library`), which also supports `parquet` format.
 
-**Note:** The module has 2 implementations for computing particle trajectories: 1) the original one based on `tensorflow`, 2) an optimized one (implemented by B. Finley) based on cupy and numba. One can switch to one implementation to another with parameter `computation_library`.
-
-Also, the module has 2 implmentation for saving results: 1) the original one based on `numpy` 2) an optimized one (implemented by B. Finley) based on `cudf`. One can switch to one implementation to another with parameter `output_format`. When using the `cudf` one, several choice of output formats are available including : "csv", "feather", and "parquet".
 ## Parameters
 
 Default configuration file ([particles.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/particles.yaml)):
@@ -47,6 +43,6 @@ Default configuration file ([particles.yaml](https://github.com/instructed-glaci
 {% set module = config[module_key] %}
 {% set module_help = help %}
 
-{% include "includes/_config_table_notree.j2" %}
+{% include "includes/_config_table_tree.j2" %}
 
 {{ render_contributors("particles") }}

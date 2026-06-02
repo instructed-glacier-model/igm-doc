@@ -2,6 +2,9 @@
 
 Practical guidance for getting the best results from IGM's numerical solvers.
 
+!!! info "Iceflow-specific guidance"
+    For solver mode selection, learning rates, checkerboard artefacts, and vertical basis choice, see [Practical guidance](../modules/processes/iceflow.md#practical-guidance) in the `iceflow` module doc.
+
 ---
 
 ## Time stepping and the CFL condition
@@ -33,90 +36,6 @@ All IGM fields live on a **regular rectangular grid** with uniform spacing $\Del
 
 !!! tip
     Halving the grid spacing roughly quadruples the memory requirement and reduces the maximum time step proportionally. Start coarse, then refine.
-
----
-
-## Iceflow solver modes
-
-The `iceflow` module supports several modes. `solved` and `emulated` are **legacy modes** — they remain functional but are no longer actively developed. The recommended approach is the **`unified` mode**, which covers both use cases through the `mapping` parameter:
-
-| `method` | `mapping` | Equivalent to | Description |
-|---|---|---|---|
-| `unified` | `identity` | `solved` | Direct energy minimisation; accurate, slower |
-| `unified` | `network` | `emulated` | Neural-network emulator; fast, requires pre-trained weights |
-
-!!! warning "Learning rates differ significantly between mappings"
-    Always set **both** `lr` and `lr_init` explicitly — relying on defaults when switching mappings is a common source of problems.
-
-    - `mapping: identity` — use `lr` / `lr_init` ≈ **0.9**
-    - `mapping: network` — use `lr` / `lr_init` in the range **1e-5 – 1e-3**
-
-    A learning rate that is too high can cause numerical instabilities or a fully diverging run. If you observe velocities blowing up or NaN values in the output, reducing the learning rate is the first thing to try.
-
-### The `nbit` parameter
-
-`nbit` controls how many optimisation iterations are used per iceflow solve. Increasing it improves accuracy at the cost of compute time. A practical check: double `nbit` and verify that the resulting velocities change by less than ~5%.
-
-### Checkerboard artefacts in identity-mapping mode
-
-When using the direct solver (`mapping: identity`), the default single-point cell-centred horizontal quadrature can admit **checkerboard zero-energy modes** — spurious oscillations in the velocity field where neighbouring cells move in opposite directions without contributing to the energy.
-
-If you observe a checkerboard pattern in the velocity output, switch to a higher-order horizontal integration scheme via `numerics.basis_horizontal`:
-
-| Value | Scheme | Cost |
-|---|---|---|
-| `central` | Single cell-centred evaluation point (default) | Lowest, but susceptible to checkerboard modes |
-| `q1` | 2×2 Gaussian quadrature on bilinear (Q1) elements | Eliminates checkerboard modes |
-| `p1` | P1 triangulation (each cell split into two triangles) | Eliminates checkerboard modes |
-| `mac` | Marker-and-cell staggered-grid scheme | Eliminates checkerboard modes |
-
-Example configuration:
-
-```yaml
-processes:
-  iceflow:
-    method: unified
-    unified:
-      mapping: identity
-      numerics:
-        basis_horizontal: q1   # or p1
-```
-
-!!! note
-    This issue is specific to the direct solver (`mapping: identity`). The neural-network emulator (`mapping: network`) is not affected because the network weights parameterize the velocity field globally, which inherently suppresses such spurious modes.
-
----
-
-## Vertical discretisation
-
-The vertical profile of the ice velocity is expanded in a set of basis functions controlled by `basis_vertical` and `Nz` under `processes.iceflow.unified.numerics`. Two options cover most use cases:
-
-**MOLHO** (MOno-Layer Higher-Order) uses exactly two layers and is the recommended choice for most applications — it captures the essential shear-sliding partition at low computational cost:
-
-```yaml
-processes:
-  iceflow:
-    method: unified
-    unified:
-      numerics:
-        basis_vertical: molho
-        Nz: 2
-```
-
-**Lagrange** with 4–10 layers is better suited when a more detailed vertical velocity profile is needed (e.g. studies of englacial flow or vertical strain):
-
-```yaml
-processes:
-  iceflow:
-    method: unified
-    unified:
-      numerics:
-        basis_vertical: Lagrange
-        Nz: 6   # anywhere from 4 to 10 is typical
-```
-
-!!! tip
-    Start with MOLHO. Only switch to Lagrange if you have a specific reason to resolve the vertical velocity structure in detail — the added layers increase memory and compute time proportionally.
 
 ---
 

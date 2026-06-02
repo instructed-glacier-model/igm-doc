@@ -318,6 +318,80 @@ Boundary conditions are configured via `unified.bcs`:
 | `periodic_ns` | $\mathbf{u}\vert_{y=L_y} = \mathbf{u}\vert_{y=0}$ |
 | `periodic_we` |$\mathbf{u}\vert_{x=L_x} = \mathbf{u}\vert_{x=0}$ |
 
+## Practical guidance
+
+### Choosing a mapping
+
+Use **`identity`** for verification purposes — small domains and short simulations where you want to check that the solver is behaving correctly. Use **`network`** for production runs: it is faster and scales better to larger domains and longer projections.
+
+!!! warning "Learning rates differ significantly between mappings"
+    Always set **both** `lr` and `lr_init` explicitly — relying on defaults when switching mappings is a common source of problems.
+
+    - `mapping: identity` — use `lr` / `lr_init` ≈ **0.9**
+    - `mapping: network` — use `lr` / `lr_init` in the range **1e-5 – 1e-3**
+
+    A learning rate that is too high can cause numerical instabilities or a fully diverging run. If you observe velocities blowing up or NaN values in the output, reducing the learning rate is the first thing to try.
+
+### Validating `nbit`
+
+`nbit` controls how many optimisation iterations are used per iceflow solve. Increasing it improves accuracy at the cost of compute time. A practical check: double `nbit` and verify that the resulting velocities change by less than ~5%.
+
+To monitor convergence, watch the iceflow cost function value printed during the run — it should decrease and plateau. If it keeps oscillating or fails to decrease, try:
+
+- Increasing `nbit`.
+- Reducing the learning rate (`lr` / `lr_init`).
+- Running a short test with `mapping: identity` for comparison (remember to adjust `lr` / `lr_init` to ~0.9 for that case).
+
+### Checkerboard artefacts
+
+When using the direct solver (`mapping: identity`), the default single-point cell-centred horizontal quadrature can admit **checkerboard zero-energy modes** — spurious oscillations in the velocity field where neighbouring cells move in opposite directions without contributing to the energy.
+
+If you observe a checkerboard pattern in the velocity output, switch to a higher-order horizontal integration scheme via `numerics.basis_horizontal`:
+
+| Value | Scheme | Cost |
+|---|---|---|
+| `central` | Single cell-centred evaluation point (default) | Lowest, but susceptible to checkerboard modes |
+| `q1` | 2×2 Gaussian quadrature on bilinear (Q1) elements | Eliminates checkerboard modes |
+| `p1` | P1 triangulation (each cell split into two triangles) | Eliminates checkerboard modes |
+| `mac` | Marker-and-cell staggered-grid scheme | Eliminates checkerboard modes |
+
+Example configuration:
+
+```yaml
+processes:
+  iceflow:
+    method: unified
+    unified:
+      mapping: identity
+      numerics:
+        basis_horizontal: q1   # or p1
+```
+
+!!! note
+    This issue is specific to the direct solver (`mapping: identity`). The neural-network emulator (`mapping: network`) is not affected because the network weights parameterize the velocity field globally, which inherently suppresses such spurious modes.
+
+### Choosing a vertical basis
+
+Start with **MOLHO** (`basis_vertical: molho`, `Nz: 2`) — it captures the essential shear-sliding partition at low computational cost and is the recommended choice for most applications.
+
+Switch to **Lagrange** with `Nz` between 4 and 10 only when a more detailed vertical velocity profile is needed (e.g. studies of englacial flow or vertical strain).
+
+### Common issues
+
+**Ice accumulating at domain borders**
+
+If ice builds up artificially along the edge of the domain, set `exclude_borders_from_iceflow: True`:
+
+```yaml
+processes:
+  iceflow:
+    exclude_borders_from_iceflow: True
+```
+
+This prevents the solver from computing velocities in cells that touch the domain boundary, which can otherwise cause spurious accumulation.
+
+---
+
 ## Parameters
 
 The complete default configuration file can be found here: [iceflow.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/iceflow.yaml).
