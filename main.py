@@ -16,6 +16,7 @@ The citation system works in conjunction with:
 import yaml
 import re
 import os
+from pathlib import Path
 import markdown as _md
 
 
@@ -39,21 +40,24 @@ def define_env(env):
         if bib_cache:
             return bib_cache
 
-        bib_path = os.path.join(os.path.dirname(__file__), 'refs.bib')
+        bib_path = os.path.join(os.path.dirname(__file__), "refs.bib")
         try:
-            with open(bib_path, 'r', encoding='utf-8') as f:
+            with open(bib_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
             # Parse bib file to extract author and year for each entry
-            entries = re.findall(r'@\w+\{([^,]+),\s*.*?author\s*=\s*\{([^}]+)\}.*?year\s*=\s*\{?(\d{4})\}?',
-                                content, re.DOTALL | re.IGNORECASE)
+            entries = re.findall(
+                r"@\w+\{([^,]+),\s*.*?author\s*=\s*\{([^}]+)\}.*?year\s*=\s*\{?(\d{4})\}?",
+                content,
+                re.DOTALL | re.IGNORECASE,
+            )
 
             for key, author, year in entries:
                 # Extract last name of first author
-                author_parts = author.split(',')[0].strip().split()
+                author_parts = author.split(",")[0].strip().split()
                 last_name = author_parts[-1] if author_parts else author
                 # Check if there are multiple authors (et al.)
-                et_al = ' et al.' if ',' in author or ' and ' in author.lower() else ''
+                et_al = " et al." if "," in author or " and " in author.lower() else ""
                 bib_cache[key] = f"({last_name}{et_al}, {year})"
 
             if not bib_cache:
@@ -80,7 +84,7 @@ def define_env(env):
             dict: Parsed YAML content
         """
         try:
-            with open(file_path, "r", encoding='utf-8') as file:
+            with open(file_path, "r", encoding="utf-8") as file:
                 return yaml.safe_load(file)
         except FileNotFoundError:
             print(f"Error: YAML file not found: {file_path}")
@@ -119,7 +123,9 @@ def define_env(env):
             citations.extend([f"[@{key}]"] * count)
 
         citations_str = " ".join(citations)
-        result = f'<div style="display: none;" class="yaml-citations">{citations_str}</div>'
+        result = (
+            f'<div style="display: none;" class="yaml-citations">{citations_str}</div>'
+        )
 
         # Clear citations for next page
         yaml_citations.clear()
@@ -197,41 +203,50 @@ def define_env(env):
                     # Create a clickable link with an anchor ID
                     return f'<span id="{ref_id}"><a href="#fn:{cite_key}" class="citation-link">{citation_text}</a></span>'
                 else:
-                    print(f"Warning: Citation key '{cite_key}' not found in bibliography")
+                    print(
+                        f"Warning: Citation key '{cite_key}' not found in bibliography"
+                    )
                     return f"({cite_key})"  # Fallback if not found
 
             # Replace citation markers
-            text = re.sub(r'\[@([^\]]+)\]', replace_citation, text)
+            text = re.sub(r"\[@([^\]]+)\]", replace_citation, text)
 
             # Convert any remaining markdown to HTML
             html = _md.markdown(text)
 
             # Remove the wrapping <p> tags for inline display
-            html = re.sub(r'^<p>(.*)</p>$', r'\1', html, flags=re.DOTALL)
+            html = re.sub(r"^<p>(.*)</p>$", r"\1", html, flags=re.DOTALL)
 
             # Remove any footnote markers that might have been created by markdown processor
-            html = re.sub(r'<sup[^>]*>.*?</sup>', '', html, flags=re.DOTALL)
-            html = re.sub(r'\[\^[^\]]+\]', '', html)
+            html = re.sub(r"<sup[^>]*>.*?</sup>", "", html, flags=re.DOTALL)
+            html = re.sub(r"\[\^[^\]]+\]", "", html)
 
             return html
         except AttributeError as e:
             print(f"Error: Markdown conversion failed (missing env.markdown?): {e}")
-            return re.sub(r'\[@([^\]]+)\]', r'(\1)', text)
+            return re.sub(r"\[@([^\]]+)\]", r"(\1)", text)
         except Exception as e:
             print(f"Error: Unexpected error in markdown_inline filter: {e}")
             # Fallback: just remove citation markers
-            return re.sub(r'\[@([^\]]+)\]', r'(\1)', text)
+            return re.sub(r"\[@([^\]]+)\]", r"(\1)", text)
 
     def _load_modules():
         if module_cache:
             return module_cache
-        path = os.path.join(os.path.dirname(__file__), "modules.yaml")
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                data = yaml.safe_load(f) or {}
-            module_cache.update(data)
-        except Exception as e:
-            print(f"Warning: Could not load modules.yaml: {e}")
+        processes_root = Path(__file__).parent.parent / "igm" / "processes"
+        for mod_dir in sorted(processes_root.iterdir()):
+            if not mod_dir.is_dir():
+                continue
+            name = mod_dir.name
+            yaml_path = mod_dir / f"{name}.yaml"
+            if not yaml_path.exists():
+                continue
+            try:
+                with open(yaml_path, encoding="utf-8") as f:
+                    data = yaml.safe_load(f) or {}
+                module_cache[name] = data
+            except Exception as e:
+                print(f"Warning: Could not load {yaml_path}: {e}")
         return module_cache
 
     @env.macro
@@ -305,9 +320,9 @@ def define_env(env):
                 cards.append(
                     f'  <a class="module-card module-card--{color}" href="../assimilations/{name}/">\n'
                     f'    <span class="module-card-name">{name}</span>\n'
-                    f'    <p>{desc}</p>\n'
+                    f"    <p>{desc}</p>\n"
                     f'    <span class="module-card-category module-card-category--{color}">{label}</span>\n'
-                    f'  </a>'
+                    f"  </a>"
                 )
 
         return '<div class="module-cards">\n' + "\n".join(cards) + "\n</div>"
@@ -316,7 +331,7 @@ def define_env(env):
     def render_module_io(name):
         """Render a state-variable admonition box for a module page."""
         mod = _load_modules().get(name, {})
-        needs   = ", ".join(f"`{v}`" for v in mod.get("needs",   []))
+        needs = ", ".join(f"`{v}`" for v in mod.get("needs", []))
         updates = ", ".join(f"`{v}`" for v in mod.get("updates", []))
         return (
             '!!! abstract "State variables"\n\n'
@@ -360,8 +375,8 @@ def define_env(env):
         )
         summary = (
             f'<p class="gallery-summary">'
-            f'<strong>{total}</strong> publications across '
-            f'<strong>{len(years_sorted)}</strong> years</p>'
+            f"<strong>{total}</strong> publications across "
+            f"<strong>{len(years_sorted)}</strong> years</p>"
         )
         return f'<div class="year-nav">{pills}</div>\n{summary}'
 
@@ -395,23 +410,18 @@ def define_env(env):
                 f'<span class="paper-hist-year">{y}</span>'
                 '<div class="paper-hist-bar-track">'
                 f'<div class="paper-hist-bar" style="width: {pct:.1f}%"></div>'
-                '</div>'
+                "</div>"
                 f'<span class="paper-hist-count">{n}</span>'
-                '</div>'
+                "</div>"
             )
         header = (
             f'<div class="paper-hist-header">'
-            f'<strong>{total}</strong> papers using IGM across '
-            f'<strong>{len(years_sorted)}</strong> years '
-            f'({years_sorted[0]}–{years_sorted[-1]})'
-            f'</div>'
+            f"<strong>{total}</strong> papers using IGM across "
+            f"<strong>{len(years_sorted)}</strong> years "
+            f"({years_sorted[0]}–{years_sorted[-1]})"
+            f"</div>"
         )
-        return (
-            '<div class="paper-hist">'
-            f'{header}'
-            f'{"".join(rows)}'
-            '</div>'
-        )
+        return '<div class="paper-hist">' f"{header}" f'{"".join(rows)}' "</div>"
 
     @env.macro
     def render_gallery(yaml_path):
@@ -437,7 +447,9 @@ def define_env(env):
         except FileNotFoundError:
             return f"<p><em>Gallery file not found: {escape(yaml_path)}</em></p>"
         except yaml.YAMLError as e:
-            return f"<p><em>Invalid YAML in {escape(yaml_path)}: {escape(str(e))}</em></p>"
+            return (
+                f"<p><em>Invalid YAML in {escape(yaml_path)}: {escape(str(e))}</em></p>"
+            )
 
         def render_media(p):
             video = p.get("video")
@@ -445,16 +457,22 @@ def define_env(env):
             title = escape(p.get("title", ""))
             if video:
                 if video.startswith("http"):
-                    return (f'<div class="gallery-media">'
-                            f'<iframe src="{escape(video)}" loading="lazy" '
-                            f'frameborder="0" allowfullscreen></iframe></div>')
-                return (f'<div class="gallery-media"><video controls preload="metadata">'
-                        f'<source src="../{escape(video)}"></video></div>')
+                    return (
+                        f'<div class="gallery-media">'
+                        f'<iframe src="{escape(video)}" loading="lazy" '
+                        f'frameborder="0" allowfullscreen></iframe></div>'
+                    )
+                return (
+                    f'<div class="gallery-media"><video controls preload="metadata">'
+                    f'<source src="../{escape(video)}"></video></div>'
+                )
             if image:
                 src = image if image.startswith("http") else f"../{image}"
-                return (f'<div class="gallery-media">'
-                        f'<img src="{escape(src)}" alt="{title}" loading="lazy">'
-                        f'</div>')
+                return (
+                    f'<div class="gallery-media">'
+                    f'<img src="{escape(src)}" alt="{title}" loading="lazy">'
+                    f"</div>"
+                )
             return '<div class="gallery-media gallery-media-empty">📄</div>'
 
         def render_chips(p):
@@ -465,13 +483,17 @@ def define_env(env):
                 url = escape(str(link.get("url", "#")))
                 if ltype == "paper":
                     seen_paper = True
-                chips.append(f'<a class="gallery-chip gallery-chip-{ltype}" '
-                             f'href="{url}" target="_blank" rel="noopener">{ltype}</a>')
+                chips.append(
+                    f'<a class="gallery-chip gallery-chip-{ltype}" '
+                    f'href="{url}" target="_blank" rel="noopener">{ltype}</a>'
+                )
             doi = p.get("doi")
             if doi and not seen_paper:
-                chips.append(f'<a class="gallery-chip gallery-chip-paper" '
-                             f'href="https://doi.org/{escape(str(doi))}" '
-                             f'target="_blank" rel="noopener">doi</a>')
+                chips.append(
+                    f'<a class="gallery-chip gallery-chip-paper" '
+                    f'href="https://doi.org/{escape(str(doi))}" '
+                    f'target="_blank" rel="noopener">doi</a>'
+                )
             return "".join(chips)
 
         by_year = defaultdict(list)
@@ -483,24 +505,28 @@ def define_env(env):
             items = by_year[year]
             # Use markdown heading so MkDocs TOC picks it up (toc.integrate puts
             # it in the left-side nav, giving clickable year navigation).
-            out.append(f'\n## {year}\n')
+            out.append(f"\n## {year}\n")
             out.append('<div class="gallery-grid">')
             for p in items:
-                meta_parts = [p.get("authors"), p.get("journal"), str(p.get("year", ""))]
+                meta_parts = [
+                    p.get("authors"),
+                    p.get("journal"),
+                    str(p.get("year", "")),
+                ]
                 meta = " · ".join(escape(str(s)) for s in meta_parts if s)
                 title_html = (
                     f'<a class="gallery-title" href="https://doi.org/{escape(str(p["doi"]))}" target="_blank" rel="noopener">{escape(p.get("title", ""))}</a>'
-                    if p.get("doi") else
-                    f'<div class="gallery-title">{escape(p.get("title", ""))}</div>'
+                    if p.get("doi")
+                    else f'<div class="gallery-title">{escape(p.get("title", ""))}</div>'
                 )
                 out.append(
                     '<div class="gallery-card">'
-                    f'{render_media(p)}'
+                    f"{render_media(p)}"
                     '<div class="gallery-body">'
-                    f'{title_html}'
+                    f"{title_html}"
                     f'<div class="gallery-meta">{meta}</div>'
                     f'<div class="gallery-chips">{render_chips(p)}</div>'
-                    '</div></div>'
+                    "</div></div>"
                 )
-            out.append('</div>')
+            out.append("</div>")
         return "\n".join(out)
