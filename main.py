@@ -264,8 +264,46 @@ def define_env(env):
                     continue
                 name = escape(str(mod_name))
                 desc = escape(str(mod.get("description", "")))
+                folder = "assimilations" if cat_key == "assimilations" else "processes"
                 cards.append(
-                    f'  <a class="module-card module-card--{color}" href="../processes/{name}/">\n'
+                    f'  <a class="module-card module-card--{color}" href="../{folder}/{name}/">\n'
+                    f'    <span class="module-card-name">{name}</span>\n'
+                    f'    <p>{desc}</p>\n'
+                    f'    <span class="module-card-category module-card-category--{color}">{label}</span>\n'
+                    f'  </a>'
+                )
+
+        return '<div class="module-cards">\n' + "\n".join(cards) + "\n</div>"
+
+    @env.macro
+    def render_assimilation_cards(community=False):
+        """Render a flat module-cards grid for core or community assimilation modules."""
+        from html import escape
+
+        cats_path = os.path.join(os.path.dirname(__file__), "categories.yaml")
+        try:
+            with open(cats_path, "r", encoding="utf-8") as f:
+                cats = yaml.safe_load(f) or {}
+        except Exception as e:
+            return f"<!-- Could not load categories.yaml: {e} -->"
+
+        modules = _load_modules()
+
+        cards = []
+        cat_key = "assimilations"
+        if cat_key in cats:
+            cat = cats[cat_key]
+            color = escape(cat.get("color_key", cat_key))
+            label = escape(cat.get("label", cat_key))
+            for mod_name, mod in modules.items():
+                if mod.get("category") != cat_key:
+                    continue
+                if bool(mod.get("community", False)) != community:
+                    continue
+                name = escape(str(mod_name))
+                desc = escape(str(mod.get("description", "")))
+                cards.append(
+                    f'  <a class="module-card module-card--{color}" href="../assimilations/{name}/">\n'
                     f'    <span class="module-card-name">{name}</span>\n'
                     f'    <p>{desc}</p>\n'
                     f'    <span class="module-card-category module-card-category--{color}">{label}</span>\n'

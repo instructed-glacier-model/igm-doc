@@ -64,6 +64,8 @@ nav:
               - write_ts: modules/outputs/write_ts.md
               - plot2d: modules/outputs/plot2d.md
               - live_dashboard: modules/outputs/live_dashboard.md
+          - Assimilation:
+              - pretraining: modules/assimilations/pretraining.md
       - Community Modules:
           - Process:
               - avalanche: modules/processes/avalanche.md
@@ -77,7 +79,6 @@ nav:
               - gflex: modules/processes/gflex.md
               - glerosion: modules/processes/glerosion.md
               - particles: modules/processes/particles.md
-              - pretraining: modules/processes/pretraining.md
               - read_output: modules/processes/read_output.md
               - rockflow: modules/processes/rockflow.md
               - smb_accpdd: modules/processes/smb_accpdd.md

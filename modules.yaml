@@ -173,8 +173,8 @@ texture:
   updates: []
 
 pretraining:
-  category: misc
-  community: true
+  category: assimilations
+  community: false
   description: Pre-train the ice flow emulator on a glacier catalogue for improved accuracy
   needs:   []  # runs standalone; does not read glacier state fields
   updates: []  # output is an emulator artifact written to disk, not a state field

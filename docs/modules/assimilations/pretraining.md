@@ -67,13 +67,13 @@ When `make_plots: true`, a loss-curve figure (`loss_curve.png`) and per-epoch sp
 
 ## Parameters
 
-Default configuration file ([pretraining.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/pretraining.yaml)):
+Default configuration file ([pretraining.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/assimilations/pretraining.yaml)):
 ~~~yaml
-{% include  "../../../../igm/conf/processes/pretraining.yaml" %}
+{% include  "../../../../igm/conf/assimilations/pretraining.yaml" %}
 ~~~
 
-{% set config = load_yaml('../igm/conf/processes/pretraining.yaml') %}
-{% set help = load_yaml('../igm/conf_help/processes/pretraining.yaml') %}
+{% set config = load_yaml('../igm/conf/assimilations/pretraining.yaml') %}
+{% set help = load_yaml('../igm/conf_help/assimilations/pretraining.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
 {% set module_help = help %}

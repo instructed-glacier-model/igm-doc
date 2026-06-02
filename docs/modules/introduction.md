@@ -41,6 +41,10 @@ Maintained by the IGM development team, well-tested, and stable across releases.
   </a>
 </div>
 
+### Assimilation
+
+{{ render_assimilation_cards(community=False) }}
+
 ### Process
 
 {{ render_process_cards(community=False) }}

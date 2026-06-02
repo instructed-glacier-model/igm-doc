@@ -22,6 +22,11 @@ ocean:
   subtitle: Peripheral and frontal processes
   color_key: ocean
 
+assimilations:
+  label: Assimilations
+  subtitle: Data assimilation and inversion methods
+  color_key: assimilations
+
 misc:
   label: Misc
   subtitle: Diagnostics and utilities
