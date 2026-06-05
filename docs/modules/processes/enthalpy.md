@@ -98,7 +98,15 @@ The enthalpy module builds upon the `iceflow` module. To activate the coupling, 
 processes.iceflow.physics.sliding.law = weertman
 ```
 
-To ensure proper functionality, also activate `vertical_iceflow`, use a relatively fine vertical discretization, and ensure sufficient retraining.
+To ensure proper functionality, also activate the vertical velocity computation, use a relatively fine vertical discretization, and ensure sufficient retraining:
+
+```yaml
+iceflow:
+  vertical_velocity:
+    enabled: true   # required for vertical advection of enthalpy
+```
+
+The vertical advection term in the enthalpy equation uses `state.W` produced by `iceflow.vertical_velocity`. Without it, vertical advection defaults to zero, which reduces accuracy in regions with significant vertical ice motion.
 
 ## Post-processing of auxiliary variables
 

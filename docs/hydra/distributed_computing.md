@@ -22,7 +22,6 @@ defaults:
     - iceflow
     - time
     - thk
-    - vert_flow
     - particles
   - override /outputs: 
     - local

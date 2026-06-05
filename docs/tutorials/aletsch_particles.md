@@ -31,7 +31,7 @@ At each time step the `particles` module moves a set of markers through the ice 
 
 Particles are seeded at the surface (`rhpos = 1`) and sink toward the bed as they are buried by new snowfall and compressed by flow. A particle that started in the accumulation zone 100 years ago will have `rhpos` close to 0 and will be found deep in the glacier trunk.
 
-The `vert_flow` module must be active to provide the vertical velocity `W` — without it, particles would only move horizontally.
+The vertical velocity `W` must be computed by enabling `iceflow.vertical_velocity` — without it, particles would only move horizontally.
 
 ---
 
@@ -55,7 +55,6 @@ defaults:
     - time
     - thk
     - rockflow
-    - vert_flow          # required: provides W for particle advection
     - particles          # Lagrangian tracer module
   - override /outputs:
     - local
@@ -72,6 +71,8 @@ processes:
   iceflow:
     physics:
       init_slidingco: 0.0595
+    vertical_velocity:
+      enabled: true      # required: provides W for particle advection
   time:
     start: 1880.0
     end:   2020.0
@@ -89,7 +90,7 @@ outputs:
     live: False
 ```
 
-**Process order:** `vert_flow` must appear before `particles` in the process list so that `W` is available when the particle integrator runs.
+**Vertical velocity:** `W` is computed inside `iceflow` (via `iceflow.vertical_velocity.enabled: true`) and is available to `particles` automatically.
 
 ---
 

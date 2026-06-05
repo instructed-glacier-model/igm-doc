@@ -154,7 +154,7 @@ Steps 1 and 2 use toy mass-balance models. Step 3 replaces them with a physicall
 2. **`smb_accmelt`** — a temperature-index model that converts temperature and precipitation into accumulation and melt using calibrated scale factors.
 3. **`track_usurf_obs`** — at each time step, compares the modelled surface elevation against 7 observed DEMs (1880, 1926, 1957, 1980, 1999, 2009, 2017) and writes the misfit into `state.score`.
 
-This step also adds `rockflow` (bedrock flexure/erosion coupling) and `vert_flow` (vertical velocity field from incompressibility).
+This step also adds `rockflow` (bedrock flexure/erosion coupling) and enables `iceflow.vertical_velocity` (vertical velocity field from incompressibility).
 
 ### Configuration
 
@@ -176,7 +176,6 @@ defaults:
     - time
     - thk
     - rockflow
-    - vert_flow
   - override /outputs:
     - local
     - live_dashboard
@@ -192,6 +191,8 @@ processes:
   iceflow:
     physics:
       init_slidingco: 0.0595     # basal sliding coefficient (MPa m^(-1/3) yr^(1/3))
+    vertical_velocity:
+      enabled: true              # compute vertical velocity W
   time:
     start: 1880.0
     end:   2020.0

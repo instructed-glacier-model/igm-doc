@@ -57,7 +57,6 @@ nav:
               - arrhenius: modules/processes/arrhenius.md
               - iceflow: modules/processes/iceflow.md
               - thk: modules/processes/thk.md
-              - vert_flow: modules/processes/vert_flow.md
               - enthalpy: modules/processes/enthalpy.md
           - Lithosphere:
               - effective_pressure: modules/processes/effective_pressure.md

@@ -392,6 +392,73 @@ This prevents the solver from computing velocities in cells that touch the domai
 
 ---
 
+## Vertical velocity
+
+The `iceflow` module can optionally compute the **3D vertical velocity** field $w$ (and its basal and surface projections $w_\mathrm{b}$, $w_\mathrm{s}$) immediately after the horizontal velocity update. This sub-computation is disabled by default and enabled via:
+
+```yaml
+iceflow:
+  vertical_velocity:
+    enabled: true   # default: false
+    version: 2      # default: 2
+    method: kinematic  # default: kinematic
+```
+
+When enabled, the following state variables are produced:
+
+- `state.W` — 3D vertical velocity field (shape `Nz × Ny × Nx`)
+- `state.wvelbase` — vertical velocity at the bed
+- `state.wvelsurf` — vertical velocity at the surface
+
+!!! note "Required for particles and enthalpy"
+    Set `iceflow.vertical_velocity.enabled: true` when using 3D particle tracking (`particles.tracking.method: "3d"`) or the `enthalpy` module for physically accurate vertical advection.
+
+### Physical principle
+
+Both methods enforce the kinematic basal condition — that ice velocity is parallel to the bed:
+
+$$
+w_\mathrm{b} = u_\mathrm{b} \frac{\partial b}{\partial x} + v_\mathrm{b} \frac{\partial b}{\partial y}.
+$$
+
+They differ in how $w$ is extended through the column.
+
+#### Kinematic method (`method: kinematic`)
+
+The kinematic method requires that ice velocity be tangent to each terrain-following layer surface. At layer elevation $z_\zeta = b + \zeta H$:
+
+$$
+w = u \frac{\partial z_\zeta}{\partial x} + v \frac{\partial z_\zeta}{\partial y} - \nabla \cdot (\bar{\mathbf{u}}_\zeta \, z_\zeta),
+$$
+
+where $\bar{\mathbf{u}}_\zeta$ is the depth-averaged velocity from the bed up to that layer. This naturally accounts for terrain through the layer-slope terms.
+
+#### Incompressibility method (`method: incompressibility`)
+
+The incompressibility method integrates the divergence-free condition $\nabla \cdot \mathbf{u} = 0$ from the bed upward:
+
+$$
+w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) H\,\mathrm{d}\zeta'.
+$$
+
+Because $u$ and $v$ are discretized at constant $\zeta$ while the incompressibility condition requires horizontal derivatives at constant physical height $z$, the derivatives must be transformed via the chain rule:
+
+$$
+\left.\frac{\partial u}{\partial x}\right|_z = \left.\frac{\partial u}{\partial x}\right|_\zeta - \left[\frac{\partial b}{\partial x} + \zeta\frac{\partial H}{\partial x}\right] \frac{\partial u}{\partial z}.
+$$
+
+### Versions
+
+| `version` | Kinematic | Incompressibility | Terrain correction | Implementation | Author |
+|:---:|:---:|:---:|:---:|:---|:---|
+| `1` | ✓ | ✓ | Kinematic only | Direct numerical derivatives | GJ |
+| `2` | ✓ | ✓ | ✓ | Numerical integration with terrain chain rule | CMS |
+| `3` | — | ✓ | ✓ | Matrix-based with precomputed operators | TG |
+
+Versions 1 and 2 support `kinematic` and `incompressibility` when using the Lagrange vertical basis. For Legendre basis, both use a spectral incompressibility method. For MOLHO basis, both use a two-layer kinematic approach. Version 3 implements only the incompressibility method for all bases.
+
+---
+
 ## Parameters
 
 The complete default configuration file can be found here: [iceflow.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/iceflow.yaml).

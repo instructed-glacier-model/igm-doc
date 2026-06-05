@@ -166,20 +166,6 @@
     "color": "#b85c38",
     "community": false
   },
-  "vert_flow": {
-    "needs": [
-      "U",
-      "V",
-      "thk"
-    ],
-    "updates": [
-      "W",
-      "wvelbase",
-      "wvelsurf"
-    ],
-    "color": "#7b56b0",
-    "community": false
-  },
   "smb_simple": {
     "needs": [
       "usurf",
@@ -537,38 +523,6 @@
     "target": "divflux",
     "proc": "thk",
     "color": "#b85c38",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "U \u00b7 V",
-    "target": "W",
-    "proc": "vert_flow",
-    "color": "#7b56b0",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "U \u00b7 V",
-    "target": "wvelbase \u00b7 wvelsurf",
-    "proc": "vert_flow",
-    "color": "#7b56b0",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "thk",
-    "target": "W",
-    "proc": "vert_flow",
-    "color": "#7b56b0",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "thk",
-    "target": "wvelbase \u00b7 wvelsurf",
-    "proc": "vert_flow",
-    "color": "#7b56b0",
     "self": false,
     "community": false
   },

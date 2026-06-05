@@ -24,8 +24,6 @@ processes:
 	...
   thk:
 	...
-  vert_flow:
-	...
   particles:
 	...
 inputs:
@@ -53,7 +51,6 @@ defaults:
     - iceflow
     - time
     - thk
-    - vert_flow
     - particles
   - override /outputs: 
     - local
@@ -93,7 +90,6 @@ defaults:
     - iceflow
     - time
     - thk
-    - vert_flow
     - particles
   - override /outputs: 
     - local
@@ -112,7 +108,6 @@ defaults:
     - iceflow
     - time
     - thk
-    - vert_flow
     - particles
   - override /outputs: 
     - local
@@ -167,7 +162,6 @@ defaults:
     - iceflow
     - time
     - thk
-    - vert_flow
     - particles
   - override /outputs: 
     - local

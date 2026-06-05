@@ -26,7 +26,6 @@ defaults:
      - time
      - thk
      - rockflow
-     - vert_flow
      - particles
   - override /outputs: 
      - local

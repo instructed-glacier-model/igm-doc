@@ -31,6 +31,6 @@
 | Margot Sirdey | Support from IGM 1 to IGM 2; PyPI setup |
 | Gillian Smith | Bug fixes |
 | Patrick Schmitt | Visualisation tools |
-| Claire-Mathilde Stücki | Updates to `vert_flow` and `particles` modules |
+| Claire-Mathilde Stücki | Vertical velocity computation (now `iceflow.vertical_velocity`) and updates to `particles` |
 | Ethan Welty | GlaThiDa file reading |
 </div>

@@ -9,7 +9,7 @@ Compose your configuration from those groups (group=option)
 
 inputs: load_ncdf, load_tif, local, oggm_shop
 outputs: local, plot2d, write_ncdf, write_tif, write_ts
-processes: avalanche, clim_glacialindex, clim_oggm, enthalpy, gflex, glerosion, iceflow, particles, read_output, rockflow, smb_accpdd, smb_oggm, smb_simple, texture, thk, time, vert_flow
+processes: avalanche, clim_glacialindex, clim_oggm, enthalpy, gflex, glerosion, iceflow, particles, read_output, rockflow, smb_accpdd, smb_oggm, smb_simple, texture, thk, time
 
 
 == Config ==

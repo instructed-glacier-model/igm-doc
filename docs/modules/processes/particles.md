@@ -12,7 +12,7 @@ Two tracking implementations are available, selected via `tracking.method`:
   1. In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly).
   2. In the vertical direction, particles are tracked along the ice column, scaled between 0 (at the bed) and 1 (at the surface). Particles are initialized at relative height 1 (on the surface). The evolution of the particle's position within the ice column over time is computed from the surface mass balance: the particle deepens when SMB is positive and re-emerges when SMB is negative.
 
-- **`3d`**: Requires the `vert_flow` module, which computes the vertical velocity by integrating the divergence of the horizontal velocity, enabling full 3D particle tracking.
+- **`3d`**: Uses the vertical velocity `W` computed by the `vertical_velocity` sub-module of `iceflow`, which integrates the divergence of the horizontal velocity to enable full 3D particle tracking. To activate it, set `iceflow.vertical_velocity.enabled: true` in the iceflow configuration.
 
 The default `tracking.method` is `3d`.
 
