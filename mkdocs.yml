@@ -66,8 +66,8 @@ nav:
               - calving_rate: modules/processes/calving_rate.md
           - Misc:
               - particles: modules/processes/particles.md
-          - Assimilation:
-              - pretraining: modules/assimilations/pretraining.md
+      - Assimilation Modules:
+          - pretraining: modules/assimilations/pretraining.md
       - Output Modules:
           - local: modules/outputs/local.md
           - write_ncdf: modules/outputs/write_ncdf.md

@@ -27,11 +27,6 @@ hydrosphere:
   subtitle: Peripheral and frontal processes
   color_key: hydrosphere
 
-assimilations:
-  label: Assimilations
-  subtitle: Data assimilation and inversion methods
-  color_key: assimilations
-
 misc:
   label: Misc
   subtitle: Diagnostics and utilities

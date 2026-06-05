@@ -43,7 +43,12 @@ Maintained by the IGM development team, well-tested, and stable across releases.
 
 ### Assimilation
 
-{{ render_assimilation_cards(community=False) }}
+<div class="module-cards">
+  <a class="module-card" href="../assimilations/pretraining/">
+    <span class="module-card-name">pretraining</span>
+    <p>Pre-train the ice flow emulator on a glacier catalogue for improved accuracy</p>
+  </a>
+</div>
 
 ### Process
 

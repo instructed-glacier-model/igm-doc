@@ -17,6 +17,7 @@ Create a dedicated environment and install the documentation dependencies:
 ```bash
 conda create -n igm-doc python=3.11
 conda activate igm-doc
+conda install -c conda-forge pandoc
 pip install mkdocs-material mkdocs-include-markdown-plugin mkdocs-macros-plugin mkdocs-table-reader-plugin mkdocs-bibtex
 ```
 

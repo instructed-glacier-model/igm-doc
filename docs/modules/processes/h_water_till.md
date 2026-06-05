@@ -52,7 +52,7 @@ Default configuration file ([h_water_till.yaml](https://github.com/instructed-gl
 
 ## Example usage
 
-Till hydrology coupled to Coulomb sliding:
+Till hydrology coupled to Mohr-Coulomb sliding:
 
 ```yaml
 # @package _global_
@@ -73,7 +73,7 @@ processes:
   iceflow:
     physics:
       sliding_law:
-        name: coulomb
+        name: mohr_coulomb
 ```
 
 {{ render_contributors("h_water_till") }}
