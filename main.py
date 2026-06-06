@@ -97,6 +97,20 @@ def define_env(env):
             return {}
 
     @env.macro
+    def render_alias_table(name):
+        """Render an alias YAML file as a two-column markdown table."""
+        alias_path = (Path(__file__).parent / ".." / "igm" / "common" / "aliases" / f"{name}.yaml").resolve()
+        try:
+            with open(alias_path) as f:
+                data = yaml.safe_load(f) or {}
+        except FileNotFoundError:
+            return f"*Alias file `{name}.yaml` not found.*"
+        lines = ["| Alias | IGM Canonical Name |", "|---|---|"]
+        for alias, canonical in data.items():
+            lines.append(f"| `{alias}` | `{canonical}` |")
+        return "\n".join(lines)
+
+    @env.macro
     def render_yaml_citations():
         """
         Output hidden citation markers for all citations used in YAML files.

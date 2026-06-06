@@ -3,3 +3,5 @@ igm-doc.github.io
 markdown_testing.md
 
 __pycache__/
+
+docs/assets/dependency_graph.html

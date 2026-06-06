@@ -1,46 +1,39 @@
-# State Variables
+# Overview
 
 All IGM fields live in a shared **state object** (`state`). Every module reads from and writes to this object — there are no private module states. Fields are TensorFlow tensors and can be accessed as `state.varname`.
 
-IGM follows the naming conventions of [PISM](https://www.pism.io/) where applicable.
+Variables can also be accessed using **aliases** — alternative names drawn from other naming conventions (e.g. PISM) or longer descriptive names. Aliases carry no runtime cost for the canonical names listed below. See the [Developer: Aliases](../developer/aliases.md) section for full details.
 
-The table below lists the main state variables associated with the **core modules**. Users may define and use additional variables in custom modules.
+<div class="tutorial-cards">
 
----
+  <a class="tutorial-card" href="../variables/igm/">
+    <div class="tutorial-card-tag">Reference</div>
+    <h3>IGM Canonical Names</h3>
+    <p>The names used internally by IGM. Every module and config references these.</p>
+    <div class="tutorial-card-footer">View table →</div>
+  </a>
 
-## Description
+  <a class="tutorial-card" href="../variables/pism/">
+    <div class="tutorial-card-tag">PISM</div>
+    <h3>PISM Aliases</h3>
+    <p>Map PISM variable names to IGM canonical names.</p>
+    <div class="tutorial-card-footer">View table →</div>
+  </a>
 
-| Variable | Shape | Description | Unit |
-|---|---|---|---|
-| `t` | `()` | Simulation time (scalar) | yr |
-| `dt` | `()` | Current time step (scalar) | yr |
-| `x` | `(nx,)` | x-coordinate vector | m |
-| `y` | `(ny,)` | y-coordinate vector | m |
-| `thk` | `(ny, nx)` | Ice thickness | m |
-| `topg` | `(ny, nx)` | Bedrock (basal) topography | m |
-| `usurf` | `(ny, nx)` | Ice surface elevation | m |
-| `smb` | `(ny, nx)` | Surface mass balance (ice-equivalent) | m yr⁻¹ |
-| `icemask` | `(ny, nx)` | Mask restricting SMB computation to glacierized area | — |
-| `ubar` | `(ny, nx)` | Depth-averaged x-velocity | m yr⁻¹ |
-| `vbar` | `(ny, nx)` | Depth-averaged y-velocity | m yr⁻¹ |
-| `U` | `(nz, ny, nx)` | Horizontal x-velocity (3D) | m yr⁻¹ |
-| `V` | `(nz, ny, nx)` | Horizontal y-velocity (3D) | m yr⁻¹ |
-| `W` | `(nz, ny, nx)` | Vertical velocity (3D) | m yr⁻¹ |
-| `wvelbase` | `(ny, nx)` | Vertical velocity at the ice base | m yr⁻¹ |
-| `wvelsurf` | `(ny, nx)` | Vertical velocity at the ice surface | m yr⁻¹ |
-| `divflux` | `(ny, nx)` | Divergence of the ice flux | m yr⁻¹ |
-| `arrhenius` | `(ny, nx)` | Arrhenius (rate) factor for ice rheology | MPa⁻³ yr⁻¹ |
-| `slidingco` | `(ny, nx)` | Sliding coefficient | MPa m<sup>-1/3</sup> yr<sup>1/3</sup> |
-| `E` | `(nz, ny, nx)` | Ice enthalpy | J kg⁻¹ |
-| `T` | `(nz, ny, nx)` | Ice temperature | °C |
-| `omega` | `(nz, ny, nx)` | Water content (liquid fraction) | — |
-| `basal_melt_rate` | `(ny, nx)` | Basal melt rate | m yr⁻¹ |
+  <a class="tutorial-card" href="../variables/descriptive/">
+    <div class="tutorial-card-tag">Descriptive</div>
+    <h3>Descriptive Aliases</h3>
+    <p>Map long English names (e.g. <code>bed_elevation</code>, <code>temperature</code>) to IGM canonical names.</p>
+    <div class="tutorial-card-footer">View table →</div>
+  </a>
+
+</div>
 
 ---
 
 ## Dependency Graph
 
-The interactive graph below shows how core modules are connected through shared state variables. **Nodes** are state variable groups (circles). **Edges** point from the module that writes a variable to the module that reads it.
+The interactive graph below shows how core modules are connected through shared state variables. **Nodes** are state variable groups. **Edges** point from the module that writes a variable to the module that reads it.
 
 Use the filter buttons to highlight edges for a specific module, or drag nodes to rearrange the layout.
 

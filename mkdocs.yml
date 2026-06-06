@@ -98,12 +98,24 @@ nav:
               - texture: modules/processes/texture.md
       - User Modules: modules/user_modules.md
       - Core Parameters: modules/core.md
-      - State Variables: modules/state_variables.md
+      - State Variables:
+          - modules/state_variables.md
+          - IGM Names: modules/variables/igm.md
+          - PISM Aliases: modules/variables/pism.md
+          - Descriptive Aliases: modules/variables/descriptive.md
+  - Developer:
+      - developer/index.md
+      - State Variable Aliases: developer/aliases.md
+      - Module System: developer/module_system.md
+      - Diagnostics: developer/diagnostics.md
   - Gallery: gallery/index.md
   - About:
       - Authors: about/credits_and_references.md
       - Citing IGM: about/cite.md
       - Support: about/help.md
+
+hooks:
+  - hooks.py
 
 plugins:
   - search

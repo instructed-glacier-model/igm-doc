@@ -3,28 +3,57 @@ process_dependency_viz.py
 Generates a self-contained interactive HTML dependency graph
 from the IGM process module definitions.
 
-Module data is loaded from modules.yaml — edit that file to update the graph.
+Module data is loaded directly from each module's per-module YAML file
+(same source as the documentation macros in main.py).
 """
 
 import json
 import os
 import yaml
+from pathlib import Path
 from collections import defaultdict
 
-# ── Load module data from YAML (single source of truth) ──────────────────────
-_yaml_path = os.path.join(os.path.dirname(__file__), "modules.yaml")
-with open(_yaml_path, "r", encoding="utf-8") as _f:
-    _module_io = yaml.safe_load(_f)
+# Variables to omit from the graph (keep it readable).
+EXCLUDE_VARS = {"W", "wvelbase", "wvelsurf", "air_temp", "air_temp_sd", "precipitation"}
+
+
+def _load_module_io() -> dict:
+    """Load needs/updates/community from each module's YAML in igm/processes/."""
+    processes_root = Path(__file__).parent.parent / "igm" / "processes"
+    result = {}
+    for mod_dir in sorted(processes_root.iterdir()):
+        if not mod_dir.is_dir():
+            continue
+        name = mod_dir.name
+        yaml_path = mod_dir / f"{name}.yaml"
+        if not yaml_path.exists():
+            continue
+        try:
+            data = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+            needs   = [v for v in data.get("needs",   []) if v not in EXCLUDE_VARS]
+            updates = [v for v in data.get("updates", []) if v not in EXCLUDE_VARS]
+            if needs or updates:
+                result[name] = {
+                    "needs":     needs,
+                    "updates":   updates,
+                    "community": bool(data.get("community", False)),
+                }
+        except Exception as e:
+            print(f"Warning: could not load {yaml_path}: {e}")
+    return result
+
+
+_module_io = _load_module_io()
 
 CORE_PROCESSES = {
-    k: {"needs": v.get("needs", []), "updates": v.get("updates", [])}
+    k: {"needs": v["needs"], "updates": v["updates"]}
     for k, v in _module_io.items()
-    if not v.get("community")
+    if not v["community"]
 }
 COMMUNITY_PROCESSES = {
-    k: {"needs": v.get("needs", []), "updates": v.get("updates", [])}
+    k: {"needs": v["needs"], "updates": v["updates"]}
     for k, v in _module_io.items()
-    if v.get("community")
+    if v["community"]
 }
 
 # Graph uses core modules only
