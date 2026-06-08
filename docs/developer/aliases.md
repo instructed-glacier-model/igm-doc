@@ -43,10 +43,12 @@ class State:
 
 Two alias sets ship with IGM:
 
-| Set | File | Active by default |
+| Set | File | Loaded by default |
 |---|---|---|
-| `descriptive` | `igm/common/aliases/descriptive.yaml` | Yes |
-| `pism` | `igm/common/aliases/pism.yaml` | Yes |
+| `descriptive` | `igm/common/aliases/descriptive.yaml` | No |
+| `pism` | `igm/common/aliases/pism.yaml` | No |
+
+Which sets are loaded is controlled by `core.aliases.builtin` in the configuration (default: `[]`). See [Configuring aliases via `core.yaml`](#configuring-aliases-via-coreyaml) below.
 
 See [Descriptive Aliases](../modules/variables/descriptive.md) and [PISM Aliases](../modules/variables/pism.md) for the full tables.
 
@@ -68,9 +70,40 @@ val = getattr(state, var, None)
 
 When the alias system was introduced, all existing IGM code that used `vars(state)[var]` patterns was updated to `getattr`/`setattr` — covering 38 occurrences across 14 files (input loaders, output writers, data assimilation routines, iceflow utilities). When writing new modules or modifying existing ones, **never use `vars(state)` to access state variables**. Direct attribute access (`state.topg`, `state.T`) is always fine — it goes through the normal Python attribute machinery and respects aliases.
 
+## Configuring aliases via `core.yaml`
+
+Alias loading is controlled by two keys under `core.aliases` in the IGM configuration:
+
+```yaml
+core:
+  aliases:
+    builtin: []      # built-in sets to load; no aliases active by default
+    extra_files: []  # paths to custom alias YAML files
+```
+
+No aliases are active by default. Opt in by listing the sets you want in your experiment's `params.yaml`:
+
+```yaml
+# @package _global_
+
+core:
+  aliases:
+    builtin: [descriptive]          # load descriptive names only; skip PISM set
+    extra_files: [my_aliases.yaml]  # also load a project-specific alias file
+```
+
+To disable all built-in aliases (useful for auditing or avoiding name collisions):
+
+```yaml
+core:
+  aliases:
+    builtin: []
+    extra_files: []
+```
+
 ## Creating a custom alias file
 
-Any YAML file that maps `alias_name: canonical_name` pairs can be loaded:
+Write a YAML file that maps `alias_name: canonical_name` pairs:
 
 ```yaml
 # my_aliases.yaml
@@ -80,7 +113,20 @@ vel_x: U
 vel_y: V
 ```
 
-Load and register it:
+Then register it via your experiment's `params.yaml` — no code changes required:
+
+```yaml
+# @package _global_
+
+core:
+  aliases:
+    builtin: []
+    extra_files: [my_aliases.yaml]
+```
+
+Paths in `extra_files` are resolved relative to the Hydra working directory (the folder where you run `igm_run`).
+
+For programmatic use in module code, the same file can be loaded directly:
 
 ```python
 from igm.common import State

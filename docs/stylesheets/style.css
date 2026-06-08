@@ -6,10 +6,9 @@
 }
 
 /* ── Landing page background video ─────────────────────────────────────────
-   To remove: delete the .landing-video block below and the z-index on
-   .landing-container / .landing-pillars.
+   Uncomment to re-enable the animated video background.
    ────────────────────────────────────────────────────────────────────────── */
-.landing-video {
+/* .landing-video {
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -23,17 +22,16 @@
   object-fit: cover;
 }
 
-/* Overlay — adjust opacity (0 = transparent, 1 = fully opaque) */
 .landing-video::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.35) 60%, rgba(0, 0, 0, 0.05) 100%);
-}
+} */
 
 .landing-container {
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
   margin-top: 8%;
   margin-left: 8%;
   max-width: 750px;

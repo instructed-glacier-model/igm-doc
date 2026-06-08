@@ -59,8 +59,7 @@ nav:
               - thk: modules/processes/thk.md
               - enthalpy: modules/processes/enthalpy.md
           - Lithosphere:
-              - effective_pressure: modules/processes/effective_pressure.md
-              - h_water_till: modules/processes/h_water_till.md
+              - subglacial_hydrology: modules/processes/subglacial_hydrology.md
           - Hydrosphere:
               - calving_rate: modules/processes/calving_rate.md
           - Misc:
