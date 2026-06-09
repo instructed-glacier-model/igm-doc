@@ -66,6 +66,7 @@ nav:
               - particles: modules/processes/particles.md
       - Assimilation Modules:
           - pretraining: modules/assimilations/pretraining.md
+          - field_inversion: modules/assimilations/field_inversion.md
       - Output Modules:
           - local: modules/outputs/local.md
           - write_ncdf: modules/outputs/write_ncdf.md
