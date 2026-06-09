@@ -67,6 +67,7 @@ nav:
       - Assimilation Modules:
           - pretraining: modules/assimilations/pretraining.md
           - field_inversion: modules/assimilations/field_inversion.md
+          - time_relaxation: modules/assimilations/time_relaxation.md
       - Output Modules:
           - local: modules/outputs/local.md
           - write_ncdf: modules/outputs/write_ncdf.md
