@@ -79,7 +79,7 @@ and formatting):
 | Type | Signals in the source | Exemplar to read |
 |------|-----------------------|------------------|
 | **physics / PDE** | solves a PDE / minimises an energy; governing equations; spatial/vertical discretisation | `docs/modules/processes/enthalpy.md` |
-| **coupling / bookkeeping** | short `update()` maintaining one `state.X` field; a `mode`/`method` switch; run-order constraints | `docs/modules/processes/effective_pressure.md` |
+| **coupling / bookkeeping** | short `update()` maintaining one `state.X` field; a `mode`/`method` switch; run-order constraints | `docs/modules/processes/subglacial_hydrology.md` |
 | **tooling / training** | training loop, dataset/model file I/O, `data_dir`/`out_dir`/`epochs` params | `docs/modules/assimilations/pretraining.md` |
 
 If a module spans types, pick the dominant one and borrow sections as the source
