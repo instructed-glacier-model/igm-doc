@@ -92,17 +92,23 @@ page*). Every page uses this **fixed frame**; **[bracketed]** parts are
 conditional:
 
 1. `# Module \`<name>\``
-2. **Orientation** — `!!! info "Brief summary"` admonition (physics modules) or a
-   plain lead paragraph (coupling / tooling), drafted from the docstring and the
-   `modules.yaml` description. A summary admonition conventionally ends with:
+2. **Orientation** — a `!!! info "Brief summary"` admonition, used for **every**
+   module type (matching exemplar pages like `climate` and `enthalpy`), drafted
+   from the docstring and the module's `<name>.yaml` description. Indent the
+   body 4 spaces under the `!!! info "Brief summary"` line. The admonition
+   conventionally ends with:
    *"The **parameters** of the module are described [here](#parameters)."*
+   Do **not** use a bare lead paragraph — the summary always goes in the box.
 3. **[Migration/transition admonitions]** — `!!! warning` / `!!! note` for
    renamed variables, new generations, deprecated modes; only when the source or
    metadata indicates a change.
 4. **[References line]** — e.g. *"described in further detail in [@IGM]"*; keys in
    `refs.bib` only.
-5. `{{ render_module_io("<name>") }}` — emit unless `inspect_module.py` reported
-   `render_module_io: false` (assimilations pages omit it).
+5. `{{ render_module_io("<name>") }}` — the "State variables" box (reads/writes).
+   Emit it whenever `inspect_module.py` reports `render_module_io: true` (i.e. the
+   module's `<name>.yaml` declares any `needs` or `updates`), placed right after
+   the orientation box and any migration admonitions. Omit only when it reports
+   `false` (the module declares neither).
 6. **Body sections** from the type's menu below.
 7. **Parameters block** — copy the matching template from `assets/` and replace
    the literal tokens `NAME` and `SECTION`:
@@ -122,12 +128,13 @@ single REVIEW checklist (below).
 time-stepping) · `[## Coupling with <module>]` · `[## Practical guidance]` /
 `[## Common issues]`
 
-**coupling / bookkeeping:** lead paragraph (field maintained, its units, the
-consumer) · `## <Modes>` (enumerate each `mode`/`method` value and its behaviour)
-· `[## Unit convention]` · `## Module ordering` · `## Example usage` (YAML / CLI)
+**coupling / bookkeeping:** brief-summary box (frame item 2: field maintained,
+its units, the consumer) · `## <Modes>` (enumerate each `mode`/`method` value and
+its behaviour) · `[## Unit convention]` · `## Module ordering` · `## Example
+usage` (YAML / CLI)
 
-**tooling / training:** lead paragraph · `[## warning/note]` (version /
-compatibility caveats) · `## Overview` (algorithm, losses, workflow) ·
+**tooling / training:** brief-summary box (frame item 2) · `[## warning/note]`
+(version / compatibility caveats) · `## Overview` (algorithm, losses, workflow) ·
 `[## Module ordering]` · `## Training data` / `## Inputs` (required layout) ·
 `## Output` (artifacts written, where) · `## Example usage` (concrete scenarios)
 

@@ -122,7 +122,9 @@ def main():
         "param_table_variant": "tree" if is_nested(conf) else "notree",
         "params": list_params(conf),
         "metadata": metadata,
-        "render_module_io": section != "assimilations",  # assimilations pages omit it
+        # Emit the "State variables" box whenever the module declares any reads or
+        # writes, regardless of section (a standalone module with neither omits it).
+        "render_module_io": bool(metadata.get("needs") or metadata.get("updates")),
         "page_path": page,
         "page_exists": os.path.isfile(page),
     }
