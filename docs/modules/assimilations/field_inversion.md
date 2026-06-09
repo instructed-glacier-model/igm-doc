@@ -1,12 +1,20 @@
 # Module `field_inversion`
 
-This IGM module inverts for unknown fields (e.g. ice thickness) from surface observations (e.g. observed surface ice velocities) by iteratively minimising a cost function that penalises the misfit between model predictions and observations plus a regularization penalty on the control variables. Optionally, the iceflow network emulator can be fine-tuned between inversion iterations to keep it self-consistent with the updated geometry.
+!!! info "Brief summary"
+    `field_inversion` inverts for unknown fields (e.g. ice thickness) from surface
+    observations (e.g. observed surface ice velocities) by iteratively minimising a
+    cost function that penalises the misfit between model predictions and observations
+    plus a regularization penalty on the control variables. Optionally, the iceflow
+    network emulator can be fine-tuned between inversion iterations to keep it
+    self-consistent with the updated geometry.
 
-The **parameters** of the module are described [here](#parameters).
+    The **parameters** of the module are described [here](#parameters).
 
 !!! warning "Requires Keras 3 or newer"
     `field_inversion` requires Keras ≥ 3. The module checks the installed version at
     initialisation and raises a `RuntimeError` if an older version is detected.
+
+{{ render_module_io("field_inversion") }}
 
 ## Overview
 
@@ -127,16 +135,16 @@ assimilations:
 ```
 
 <!-- REVIEW CHECKLIST — sections a complete tooling/assimilation module page usually has,
-     not generated because the source did not fully ground them:
+     not generated because the source did not ground them:
      - Coupling with iceflow: describe more precisely how the DA mapping shares the network
        instance with state.iceflow.mapping and what contract that implies for run order.
      - Penalty names: the default conf uses `penalty: biharmonic` but PenaltyRegistry
-       registers `squared_laplacian`; clarify whether these are aliases or whether the conf
-       default should be updated.
+       registers `squared_laplacian` and `l2`; clarify whether `biharmonic` is an alias
+       or whether the conf default should be updated to `squared_laplacian`.
      - Convergence guidance: practical advice on choosing lam, std, and minimizer_patience
        for typical inversions.
      - Replay data format: the replay TFRecord layout mirrors the pretraining dataset —
-       confirm and cross-reference or add a brief description.
+       confirm and cross-reference, or add a brief description here.
      Fill these in or delete this block. -->
 
 ## Parameters
