@@ -244,23 +244,40 @@ def define_env(env):
             # Fallback: just remove citation markers
             return re.sub(r"\[@([^\]]+)\]", r"(\1)", text)
 
+    # Source sections scanned for per-module metadata (<section>/<name>/<name>.yaml).
+    # Processes are listed first so that, in the rare event two sections share a
+    # module name (e.g. inputs/local vs outputs/local), the process entry wins and
+    # a warning is printed rather than silently clobbering the cache.
+    _MODULE_SECTIONS = ("processes", "assimilations", "inputs", "outputs")
+
     def _load_modules():
         if module_cache:
             return module_cache
-        processes_root = Path(__file__).parent.parent / "igm" / "processes"
-        for mod_dir in sorted(processes_root.iterdir()):
-            if not mod_dir.is_dir():
+        igm_root = Path(__file__).parent.parent / "igm"
+        for section in _MODULE_SECTIONS:
+            section_root = igm_root / section
+            if not section_root.is_dir():
                 continue
-            name = mod_dir.name
-            yaml_path = mod_dir / f"{name}.yaml"
-            if not yaml_path.exists():
-                continue
-            try:
-                with open(yaml_path, encoding="utf-8") as f:
-                    data = yaml.safe_load(f) or {}
-                module_cache[name] = data
-            except Exception as e:
-                print(f"Warning: Could not load {yaml_path}: {e}")
+            for mod_dir in sorted(section_root.iterdir()):
+                if not mod_dir.is_dir():
+                    continue
+                name = mod_dir.name
+                yaml_path = mod_dir / f"{name}.yaml"
+                if not yaml_path.exists():
+                    continue
+                if name in module_cache:
+                    print(
+                        f"Warning: module name '{name}' found in multiple sections; "
+                        f"keeping '{module_cache[name].get('_section')}', ignoring '{section}'"
+                    )
+                    continue
+                try:
+                    with open(yaml_path, encoding="utf-8") as f:
+                        data = yaml.safe_load(f) or {}
+                    data.setdefault("_section", section)
+                    module_cache[name] = data
+                except Exception as e:
+                    print(f"Warning: Could not load {yaml_path}: {e}")
         return module_cache
 
     @env.macro
@@ -306,38 +323,31 @@ def define_env(env):
 
     @env.macro
     def render_assimilation_cards(community=False):
-        """Render a flat module-cards grid for core or community assimilation modules."""
-        from html import escape
+        """Render a flat module-cards grid for core or community assimilation modules.
 
-        cats_path = os.path.join(os.path.dirname(__file__), "categories.yaml")
-        try:
-            with open(cats_path, "r", encoding="utf-8") as f:
-                cats = yaml.safe_load(f) or {}
-        except Exception as e:
-            return f"<!-- Could not load categories.yaml: {e} -->"
+        Plain cards (no category chip), matching the assimilation section's style.
+        Modules are read from their per-module <name>.yaml metadata and emitted in
+        alphabetical order.
+        """
+        from html import escape
 
         modules = _load_modules()
 
         cards = []
-        cat_key = "assimilations"
-        if cat_key in cats:
-            cat = cats[cat_key]
-            color = escape(cat.get("color_key", cat_key))
-            label = escape(cat.get("label", cat_key))
-            for mod_name, mod in modules.items():
-                if mod.get("category") != cat_key:
-                    continue
-                if bool(mod.get("community", False)) != community:
-                    continue
-                name = escape(str(mod_name))
-                desc = escape(str(mod.get("description", "")))
-                cards.append(
-                    f'  <a class="module-card module-card--{color}" href="../assimilations/{name}/">\n'
-                    f'    <span class="module-card-name">{name}</span>\n'
-                    f"    <p>{desc}</p>\n"
-                    f'    <span class="module-card-category module-card-category--{color}">{label}</span>\n'
-                    f"  </a>"
-                )
+        for mod_name in sorted(modules):
+            mod = modules[mod_name]
+            if mod.get("category") != "assimilations":
+                continue
+            if bool(mod.get("community", False)) != community:
+                continue
+            name = escape(str(mod_name))
+            desc = escape(str(mod.get("description", "")))
+            cards.append(
+                f'  <a class="module-card" href="../assimilations/{name}/">\n'
+                f'    <span class="module-card-name">{name}</span>\n'
+                f"    <p>{desc}</p>\n"
+                f"  </a>"
+            )
 
         return '<div class="module-cards">\n' + "\n".join(cards) + "\n</div>"
 

@@ -22,11 +22,12 @@ Copy this checklist and tick items as you go:
 
 ```
 - [ ] 1. Inspect: run inspect_module.py; abort on any precondition failure
-- [ ] 2. Read sources: module package + conf + conf_help + modules.yaml entry
+- [ ] 2. Read sources: module package + conf + conf_help + per-module <name>.yaml
 - [ ] 3. Classify the module type and read the matching exemplar page
 - [ ] 4. Generate the page (grounded prose + REVIEW markers)
-- [ ] 5. Validate: run validate_page.py; fix and re-run until it passes
-- [ ] 6. Report what was generated and what still needs expert input
+- [ ] 5. Wire into the site nav: run update_nav.py
+- [ ] 6. Validate: run validate_page.py; fix and re-run until it passes
+- [ ] 7. Report what was generated and what still needs expert input
 ```
 
 ### Step 1 — Inspect and check preconditions
@@ -142,7 +143,34 @@ sections you could not ground, append exactly one block:
      Fill these in or delete this block. -->
 ```
 
-### Step 5 — Validate (fix-and-repeat loop)
+### Step 5 — Wire into the site nav
+
+```bash
+python scripts/update_nav.py <name>
+```
+
+This inserts `- <name>: modules/<section>/<name>.md` at the **end of the right
+nav group** in `mkdocs.yml`, derived from the module's `<name>.yaml` metadata:
+
+- `processes` (core) → `Process Modules` › `<Category>`; (community) →
+  `Community Modules` › `<Category>` — nested under the category label.
+- `assimilations` / `inputs` / `outputs` → the flat `Assimilation`/`Input`/
+  `Output Modules` group.
+
+It is **idempotent** (re-runs are no-ops once the entry is present), edits the
+file as a surgical text insertion (preserving comments and your curated ordering),
+and re-parses the result to confirm valid YAML before writing. A *community*
+module outside `processes` has no existing nav home — the script makes no change
+and prints a `NAV REVIEW` line with the entry to place by hand.
+
+You do **not** edit `docs/modules/introduction.md`: process **and** assimilation
+tiles auto-render there from `<name>.yaml` (via `render_process_cards` /
+`render_assimilation_cards`). One caveat: if the module's `category` is **not**
+in `categories.yaml`, `update_nav.py` still places it in the nav (title-casing
+the label), but its intro-page card will not appear until that category is added
+to `categories.yaml` — flag this in the report.
+
+### Step 6 — Validate (fix-and-repeat loop)
 
 ```bash
 python scripts/validate_page.py docs/modules/<section>/<name>.md
@@ -153,10 +181,11 @@ paths resolve. If it fails: fix the page (convert dangling citations to
 `<!-- REVIEW: cite? -->`, correct paths) and run it again until it passes. With
 the user's `--build` flag, also run `mkdocs build --strict`.
 
-### Step 6 — Report
+### Step 7 — Report
 
 Summarise: the file written (page or sidecar), the type you classified, which
-grounded sections were generated, the REVIEW checklist contents, and the
+grounded sections were generated, the REVIEW checklist contents, the **nav
+result** from `update_nav.py` (inserted / already present / NAV REVIEW), and the
 validation result. State clearly what still needs human expert input.
 
 ## Existing page
