@@ -88,7 +88,25 @@ Each step is an independent `(residual, update, control)` triple with optional m
 | `control.field` | any state attribute (`smb`, `slidingco`, `topg`, `thk`, `usurf`, ...) |
 | `geometry_policy` | `none` · `recompute_usurf` ($z_s = z_b + h$) · `recompute_topg` ($z_b = z_s - h$, then $h$ re-clipped) |
 
-Optional modifiers per step: `mask`, `cadence`, `start_time`/`end_time`, `smoother.sigma` (mask-aware Gaussian), `update.r_max` (residual clip), `control.bounds` (scalar clip), `control.floor_at`/`control.ceil_at` (per-pixel field clip), `control.outside_mask` (constant fill outside mask), `shares_residual_with` (reuse another step's residual).
+The control field can be *anything* on `state` that the forward model reads — typically `smb`, `slidingco`, `topg`, `thk`, or `usurf`. The driver itself is identical across all methods; only the YAML changes.
+
+Each step has the mandatory pieces (`residual`, `update`, `control`, plus a `name`) and an arbitrary number of optional modifiers. None are needed for the simplest cases; each is added when a real method demands it:
+
+| Modifier | What it solves |
+|---|---|
+| `mask: <state attr>` | apply only on the icemask (or a derived mask) — zero residual elsewhere |
+| `cadence: <years>` | apply only every N years (typical for friction inversions on a slow clock) |
+| `start_time` / `end_time` | activate the step only during a time window (e.g. start friction at $t = 10$ yr after geometry has stabilised) |
+| `update.r_max` | clip the residual to a stable range — prevents large steps in noisy regions |
+| `update.apply: per_step \| per_application` | $\Delta t =$ outer-loop dt vs. $\Delta t = 1$ — selects whether $\alpha$ is a per-time rate or a per-application gain |
+| `smoother.sigma` | mask-aware Gaussian low-pass on the residual — useful when the observation is noisy (e.g. velocity log-ratio for friction inversions) |
+| `control.bounds: [lo, hi]` | scalar clip on the resulting control |
+| `control.floor_at` / `ceil_at: <state attr>` | per-pixel clip against another state field — e.g. `floor_at: topg` enforces $z_s \geq z_b$ |
+| `control.outside_mask: <c>` | constant fill outside the mask (legacy `out_of_mass_smb = -10`) |
+| `geometry_policy` | when the control is one of `(thk, topg, usurf)`: how to restore $z_s = z_b + h$ after writing one of them |
+| `shares_residual_with: <other step>` | reuse a residual already computed by another step (saves recomputing `divflux` or `velsurf_mag`) |
+
+Steps are independent: a single config can run **several steps in parallel** in the same time loop — typically a geometry-inversion step plus a friction-inversion step — sharing the time clock and the forward-model call. Two steps can share a residual via `shares_residual_with` so the divergence (or velocity, etc.) is computed only once per iteration.
 
 ### Derived fields
 
@@ -109,10 +127,24 @@ The same driver, with different YAML parameters, reproduces several established 
 | Method | Control $C$ | Residual $r$ | Update law |
 |---|---|---|---|
 | **PISM force-to-thickness** | `smb` | `linear`: $h^\text{target} - h$ | `replace`: $C \leftarrow \alpha r$ |
-| **Apparent-mass-balance bed inversion** <!-- REVIEW: cite? Frank & van Pelt 2025 --> | `thk` + `usurf` (two coupled steps) | `linear`: $\mathrm{amb} - \nabla\!\cdot\!(\bar{\mathbf u} h)$ (shared) | `additive`: $C \leftarrow C + \alpha r \Delta t$ |
+| **Apparent-mass-balance bed inversion** (Frank & van Pelt, 2025) | `thk` + `usurf` (two coupled steps) | `linear`: $\mathrm{amb} - \nabla\!\cdot\!(\bar{\mathbf u} h)$ (shared) | `additive`: $C \leftarrow C + \alpha r \Delta t$ |
 | **Linear-multiplicative friction** | `slidingco` | `relative`: $(\lvert\mathbf u_s^\text{obs}\rvert - \lvert\mathbf u_s\rvert)/\lvert\mathbf u_s^\text{obs}\rvert$ | `multiplicative_linear`: $C \leftarrow C(1 + \alpha r)$ with $\alpha = -1$ |
 
 Several steps can run together in the same time loop — for instance a bed inversion (two steps writing `thk` and `usurf`) plus a friction-inversion step writing `slidingco`, all sharing the time clock and the same `iceflow` solve.
+
+### PISM-style force-to-thickness
+
+Drift `smb` so that ice thickness relaxes to a target (residual `linear` with target `thk_target` and current `thk`; update `replace` with gain $\alpha$; control `smb` with `bounds: [smb_min, smb_max]`). The actual relaxation is performed by a `post_processes: [thk]` mass-conservation step. This produces the closed-form
+
+$$H(t) = H_\text{target} + (H_0 - H_\text{target})\exp(-\alpha t).$$
+
+### Apparent-mass-balance bed inversion (Frank & van Pelt, 2025)
+
+Drive the flux divergence toward `amb = smb − dhdt_obs` by perturbing thickness and surface elevation jointly. Two geometry steps share one residual (`shares_residual_with`): `amb_thk` writes `thk` with gain $\beta$, and `amb_usurf` writes `usurf` with gain $\theta\beta$ (see the [example below](#apparent-mass-balance-bed-inversion)). The target `amb` is recomputed every iteration by `_ensure_derived` as `state.amb = state.smb − state.dhdt_obs` (masked by `icemask`), with `state.dhdt_obs` snapshotted from the input `dhdt` field at startup. The legacy combined parameter $\theta$ is no longer a free knob — it is simply the ratio `alpha_usurf / alpha_thk`.
+
+### Linear-multiplicative friction
+
+Multiply `slidingco` by $(1 + \mathrm{clip}(r))$ where $r$ is the relative velocity mismatch (residual `relative` with target `velsurf_magobs` and current `velsurf_mag`; update `multiplicative_linear` with `alpha: -1`, `r_max: max_vel_ratio`, `apply: per_application`; control `slidingco` with `bounds`). The $\alpha = -1$ flips the sign because the schema's `relative` residual is $(T-M)/T = (\text{obs}-\text{mod})/\text{obs}$, whereas the legacy IGM friction-inversion formula uses $(\text{mod}-\text{obs})/\text{obs}$.
 
 ## Module ordering
 
