@@ -4,7 +4,7 @@ In some of the IGM examples, you may notice that the default modules IGM provide
 
 In the `experiment` file, you will now notice a slightly different structure. Everything stays the same except now we have our custom modules specified in the `defaults` section.
 
-```yaml hl_lines="8-10"
+```yaml hl_lines="8-11"
 # @package _global_
 
 core:
@@ -12,9 +12,10 @@ core:
 
 defaults:
 
-  - /user/conf/processes@processes.smb_accmelt: smb_accmelt 
-  - /user/conf/processes@processes.clim_aletsch: clim_aletsch
-  - /user/conf/processes@processes.track_usurf_obs: track_usurf_obs
+  - /user/conf/processes@processes:
+      - smb_accmelt
+      - clim_aletsch
+      - track_usurf_obs
 
   - override /inputs: 
      - local
@@ -39,17 +40,24 @@ outputs:
 	...
 ```
 
-This will import our custom modules configuration files (not the code) so that it will now be part of the final configuration structure. Lets now break down what the following line means
+This will import our custom modules configuration files (not the code) so that it will now be part of the final configuration structure. Lets now break down what the following block means
 
 ```yaml
-- /user/conf/processes@processes.smb_accmelt: smb_accmelt 
+- /user/conf/processes@processes:
+    - smb_accmelt
+    - clim_aletsch
+    - track_usurf_obs
 ```
 
-In essence, this line means the following
+In essence, this block means the following
 
 ```yaml
-- [FILE LOCATION]@[POSITION IN STRUCTURE]: [NAME OF FILE]
+- [FILE LOCATION]@[POSITION IN STRUCTURE]:
+    - [NAME OF FILE]
+    - ...
 ```
+
+The `[POSITION IN STRUCTURE]` is `processes` — the parent group — **not** `processes.smb_accmelt`. The module-name level (`smb_accmelt`) is supplied by the configuration *file itself* (see [the template](#the-user-conf-template) below), exactly like the built-in modules. This keeps user configuration files identical in shape to the official ones, so a module can be promoted from user to built-in by *moving the file*, with no rewrite.
 
 For example, from the [User Modules](../modules/user_modules.md) page, we know that every custom module should follow this structure
 
@@ -83,10 +91,10 @@ Here, our configuration for our custom process, `smb_accmelt` is located in `/us
        └── smb_accmelt.yaml
 ```
 
-If we were to change this line into
+If we were to ask for a file that does not exist, e.g.
 
 ```yaml
-- /user/conf/processes@processes.smb_accmelt: smb_accmelt_other_name 
+- /user/conf/processes@processes: smb_accmelt_other_name 
 ```
 
 Hydra would not be able to find the file and will say
@@ -100,53 +108,62 @@ Available options in 'user/conf/processes':
 	track_usurf_obs
 
 ```
-Additionally, we can change the position in the configuration file using the `@` operator. In Hydra, these are called packages (read more [here](https://hydra.cc/docs/advanced/overriding_packages/)). Recall that in the `params` file, one must include the `# @package _global_` header. For custom configurations in the `/user/conf/` folder, there is a similar structure. For instance, in the `smb_accmelt`, by default it operates on the `_global_` level. This means that in the `experiment` file, when we specify `@processes.smb_accmelt` it assumes this is relative to the `_global_` level, which is what we want. The following two cases are equivalent:
+## The user conf template
 
-## Case 1
+A user configuration file **must follow the same template as the built-in modules**: all of the module's parameters are nested under a single top-level key named after the module. Compare a built-in file with a user one — they are now identical in shape:
 
-In this case, we specify the position in the `params.yaml` and not in the `smb_accmelt.yaml` header. We do this with the `@processes.smb_accmelt` extension.
+```yaml title="igm/conf/processes/smb_simple.yaml (built-in)"
+smb_simple:
+  update_freq: 1.0
+  file: param.txt
+  array: []
+```
+
+```yaml title="user/conf/processes/smb_accmelt.yaml (user)"
+smb_accmelt:
+  update_freq: 1
+  weight_ablation: 1.25
+  weight_accumulation: 1.0
+  thr_temp_snow: 0.5
+  thr_temp_rain: 2.5
+  shift_hydro_year: 0.75
+  ice_density: 910.0
+  wat_density: 1000.0
+  weight_Aletschfirn: 1.0
+  weight_Jungfraufirn: 1.0
+  weight_Ewigschneefeld: 1.0
+```
+
+Because the module-name level lives **inside** the file, the `defaults` entry that imports it targets the *parent* group with `@processes` (not `@processes.smb_accmelt`):
 
 ```yaml title="params.yaml"
-- /user/conf/processes@processes.smb_accmelt: smb_accmelt
+- /user/conf/processes@processes: smb_accmelt
 ```
 
-```yaml title="smb_accmelt.yaml"
+This resolves to `processes.smb_accmelt.update_freq`, etc. — exactly where the module code reads it (`cfg.processes.smb_accmelt.update_freq`).
 
-update_freq: 1
-weight_ablation: 1.25
-weight_accumulation: 1.0
-thr_temp_snow: 0.5
-thr_temp_rain: 2.5
-shift_hydro_year: 0.75
-ice_density: 910.0
-wat_density: 1000.0
-weight_Aletschfirn: 1.0
-weight_Jungfraufirn: 1.0
-weight_Ewigschneefeld: 1.0
-```
+!!! tip "Why this template?"
+    Keeping user files identical to built-in ones means a module can move between tiers (your project → shared/community → official) by simply **moving the file** — no YAML rewrite. It also makes the `@`-package directive trivial: always `@processes`, `@inputs`, or `@outputs`, never a per-module package.
 
-## Case 2
+### Importing several modules from the same group
 
-Alternatively, in the `smb_accmelt.yaml` we can change this level with the `@package` header instead of specifying it within the `params` file. For example, in the `smb_accmelt.yaml` file, we can add `@package processes.smb_accmelt` and then in our `params` file, we can simply just import the file without using the `@` operator:
+A `defaults` list cannot contain the same `group@package` key twice, so you **cannot** repeat `- /user/conf/processes@processes: ...` on separate lines (Hydra raises *"Multiple values for user/conf/processes@processes"*). Instead, pass them as a **list** under a single entry:
 
 ```yaml title="params.yaml"
-- /user/conf/processes: smb_accmelt
+- /user/conf/processes@processes:
+    - smb_accmelt
+    - clim_aletsch
+    - track_usurf_obs
 ```
 
-```yaml title="smb_accmelt.yaml"
-# @package processes.smb_accmelt
+For a single module, either the list form or the one-line form (`- /user/conf/processes@processes: smb_accmelt`) works. Modules in *different* groups each get their own line, e.g. one `@inputs` entry and one `@processes` entry.
 
-update_freq: 1
-weight_ablation: 1.25
-weight_accumulation: 1.0
-thr_temp_snow: 0.5
-thr_temp_rain: 2.5
-shift_hydro_year: 0.75
-ice_density: 910.0
-wat_density: 1000.0
-weight_Aletschfirn: 1.0
-weight_Jungfraufirn: 1.0
-weight_Ewigschneefeld: 1.0
+### Param-less modules
+
+If a module exposes no parameters, still wrap it with its name and an empty mapping, so the key exists in the final configuration:
+
+```yaml title="user/conf/processes/track_usurf_obs.yaml"
+track_usurf_obs: {}
 ```
 
 In general, Hydra allows the user to have a modular and complex configuration of files that ultimately get combined into a final configuration structure. This structure is then read by IGM to initialize the simluation run. Apart from the obvious benefits from managing complex structures, Hydra also allows for easy reproducability as the configurations are tracked every single run as well as distributed computing as it can launch ensemble runs and integrate into slurm and other computing platforms (Ray). To learn more, please continue onto the next sections.

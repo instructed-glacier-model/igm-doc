@@ -110,7 +110,7 @@ Custom modules live in `user/code/processes/`. A Hydra config stub in `user/conf
 # experiment/params_step2.yaml
 
 defaults:
-  - /user/conf/processes@processes.mysmb: mysmb   # register the custom module
+  - /user/conf/processes@processes: mysmb   # register the custom module
 
   - override /inputs:
     - local
@@ -162,9 +162,10 @@ This step also adds `rockflow` (bedrock flexure/erosion coupling) and enables `i
 # experiment/params_step3.yaml
 
 defaults:
-  - /user/conf/processes@processes.smb_accmelt:     smb_accmelt
-  - /user/conf/processes@processes.clim_aletsch:    clim_aletsch
-  - /user/conf/processes@processes.track_usurf_obs: track_usurf_obs
+  - /user/conf/processes@processes:
+      - smb_accmelt
+      - clim_aletsch
+      - track_usurf_obs
 
   - override /inputs:
     - local

@@ -41,9 +41,10 @@ The vertical velocity `W` must be computed by enabling `iceflow.vertical_velocit
 # experiment/params_step4.yaml
 
 defaults:
-  - /user/conf/processes@processes.smb_accmelt:     smb_accmelt
-  - /user/conf/processes@processes.clim_aletsch:    clim_aletsch
-  - /user/conf/processes@processes.track_usurf_obs: track_usurf_obs
+  - /user/conf/processes@processes:
+      - smb_accmelt
+      - clim_aletsch
+      - track_usurf_obs
 
   - override /inputs:
     - local

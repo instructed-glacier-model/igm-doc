@@ -47,9 +47,10 @@ Optuna calls `igm_run` repeatedly, proposing new parameter values each trial bas
 # experiment/params_1obj.yaml
 
 defaults:
-  - /user/conf/processes@processes.smb_accmelt:     smb_accmelt
-  - /user/conf/processes@processes.clim_aletsch:    clim_aletsch
-  - /user/conf/processes@processes.track_usurf_obs: track_usurf_obs
+  - /user/conf/processes@processes:
+      - smb_accmelt
+      - clim_aletsch
+      - track_usurf_obs
 
   - override /inputs:
     - local
@@ -166,10 +167,11 @@ Adding `init_slidingco` to the search space is physically motivated: basal slidi
 # experiment/params_2obj.yaml
 
 defaults:
-  - /user/conf/processes@processes.smb_accmelt:       smb_accmelt
-  - /user/conf/processes@processes.clim_aletsch:      clim_aletsch
-  - /user/conf/processes@processes.track_usurf_obs:   track_usurf_obs
-  - /user/conf/processes@processes.track_velsurf_obs: track_velsurf_obs
+  - /user/conf/processes@processes:
+      - smb_accmelt
+      - clim_aletsch
+      - track_usurf_obs
+      - track_velsurf_obs
 
   - override /processes:
     - track_usurf_obs

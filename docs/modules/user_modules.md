@@ -78,6 +78,8 @@ mysmb:
   meanela: 3200
 ```
 
+The parameters are nested under the module name (`mysmb:`), following the **same template as the built-in modules**. The matching `defaults` entry therefore targets the parent group with `@processes` (see [Custom Configurations](../hydra/custom_configurations.md#the-user-conf-template) for the full rationale and the syntax for importing several modules at once).
+
 Then, in the parameter file `params.yaml`, you need to:
 
 1. List the user module so that the code will be found.
@@ -90,7 +92,7 @@ Here is an example of how to modify `params.yaml`:
 
 defaults:
 
-  - /user/conf/processes@processes.mysmb: mysmb
+  - /user/conf/processes@processes: mysmb
   
   - override /processes:  
      - mysmb
