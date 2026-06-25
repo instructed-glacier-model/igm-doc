@@ -40,6 +40,7 @@ nav:
       - Optuna:
           - Optimization: hydra/optuna_cluster.md
       - IGM v2 → v3 Transition: about/transition-IGM-2-to-3.md
+      - IGM v3.1 → v3.2 Transition: about/transition-IGM-3.1-to-3.2.md
   - Modules:
       - Overview: modules/introduction.md
       - Input Modules:
