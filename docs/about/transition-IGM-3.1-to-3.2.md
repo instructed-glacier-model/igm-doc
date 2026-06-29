@@ -53,22 +53,41 @@ reference-point form
 tau_b = tau_ref · (|u_b| / u_ref)^(1/m)
 ```
 
-where `m` is `sliding.exponent`. This is mathematically equivalent to the old
-`u_b = slidingco · tau_b^m`, with
+where `m` is `sliding.exponent` (= 3, the classic Weertman exponent in `u_b ∝ tau_b^m`).
+The drag that multiplies `u_b^(1/m)` is the coefficient `C = tau_ref / u_ref^(1/m)`.
+
+**`tau_ref` *is* the old `slidingco`, renamed.** Both are the reference basal shear
+stress in **MPa**, both default to `0.0464`, and they feed the identical sliding kernel.
+There is **no nonlinear transformation** between them: at the default `u_ref = 1 m/yr`,
 
 ```
-slidingco = u_ref / tau_ref^m
+tau_ref = slidingco            (both in MPa, u_ref = 1)
 ```
 
-The pair `(u_ref, tau_ref)` is just a re-parameterisation of `slidingco` into two
+`slidingco` was already defined at an implicit `u_ref = 1`, i.e. `slidingco = C`. The
+only genuinely new knob is `u_ref`. To keep **identical physics** while moving `u_ref`
+to a meaningful reference speed `U₀`, hold `C` fixed and rescale `tau_ref`:
+
+```
+tau_ref(U₀) = slidingco · U₀^(1/m)
+```
+
+The pair `(u_ref, tau_ref)` is thus just a re-parameterisation of `slidingco` into two
 physically interpretable quantities: **`tau_ref` is the basal shear stress (in MPa)
 needed to produce the reference sliding velocity `u_ref`** — directly comparable across
-sliding laws, unlike `slidingco` whose units depended on `m`.
+sliding laws, unlike the abstract coefficient `C` whose units depend on `m`.
 
 By default `u_ref = 1 m/yr`, so `tau_ref` alone carries the calibration. The intended
 use, though, is to **fix `u_ref` at a meaningful sliding speed** and read `tau_ref` as a
-drag: e.g. `u_ref = 35 m/yr` with `tau_ref = 0.2 MPa` means *"2 bar of basal shear
-stress is required to drive 35 m/yr of basal sliding"* (0.2 MPa = 2 bar).
+drag. For example, the default `slidingco = 0.0464` (at `u_ref = 1`) is exactly
+equivalent to `u_ref = 100 m/yr` with `tau_ref = 0.0464 · 100^(1/3) ≈ 0.215 MPa`, i.e.
+*"≈2 bar of basal shear stress drives 100 m/yr of basal sliding"* (0.2 MPa = 2 bar).
+
+> **Note on exponent conventions.** The IGM-3 GMD paper writes the friction law as
+> `tau_b ∝ (|u_b|/u_ref)^m_paper`, so its exponent is the **reciprocal** of the code's:
+> `m_paper = 1/exponent = 1/3`. The paper's `c = tau_ref / u_ref^m_paper` then matches
+> the code's `C = tau_ref / u_ref^(1/m)`. Do not plug `exponent = 3` into the paper's
+> `c = tau_ref / u_ref^m` — that mixes the two conventions and gives the wrong drag.
 
 ### 4. New sliding laws (`budd`, `mohr_coulomb`, `regu_coulomb`)
 Beyond `weertman`, three effective-pressure-dependent sliding laws were added and are
@@ -111,7 +130,7 @@ processes:
     physics:
       sliding:
         law: weertman
-        slidingco: 0.0464 
+        tau_ref: 0.0464    # unified stack (use `slidingco` on the legacy stack)
         exponent: 3.0
         u_ref: 1.0
       viscosity:
