@@ -77,11 +77,17 @@ physically interpretable quantities: **`tau_ref` is the basal shear stress (in M
 needed to produce the reference sliding velocity `u_ref`** — directly comparable across
 sliding laws, unlike the abstract coefficient `C` whose units depend on `m`.
 
-By default `u_ref = 1 m/yr`, so `tau_ref` alone carries the calibration. The intended
-use, though, is to **fix `u_ref` at a meaningful sliding speed** and read `tau_ref` as a
-drag. For example, the default `slidingco = 0.0464` (at `u_ref = 1`) is exactly
-equivalent to `u_ref = 100 m/yr` with `tau_ref = 0.0464 · 100^(1/3) ≈ 0.215 MPa`, i.e.
-*"≈2 bar of basal shear stress drives 100 m/yr of basal sliding"* (0.2 MPa = 2 bar).
+The intended use is to **fix `u_ref` at a meaningful sliding speed** and read `tau_ref`
+as a drag. **As of IGM 3.2 the unified-stack default is `u_ref = 100 m/yr`** with
+`tau_ref = 0.0464 · 100^(1/3) ≈ 0.215 MPa`, i.e. *"≈2 bar of basal shear stress drives
+100 m/yr of basal sliding"* (0.2 MPa = 2 bar). This is **exactly equivalent** (same drag
+`C`) to the IGM 3.1 default of `u_ref = 1`, `slidingco = tau_ref = 0.0464` — only the
+parameterisation changed, the physics is unchanged.
+
+`u_ref` is a knob of the **unified** stack only. The legacy emulated/solved/diagnostic
+stack uses `slidingco` directly as the drag at an implicit `u_ref = 1`; running those
+methods with any other `u_ref` is **refused at startup** (keep
+`processes.iceflow.physics.sliding.u_ref: 1.0` there).
 
 > **Note on exponent conventions.** The IGM-3 GMD paper writes the friction law as
 > `tau_b ∝ (|u_b|/u_ref)^m_paper`, so its exponent is the **reciprocal** of the code's:
@@ -130,9 +136,9 @@ processes:
     physics:
       sliding:
         law: weertman
-        tau_ref: 0.0464    # unified stack (use `slidingco` on the legacy stack)
+        tau_ref: 0.215     # unified stack at u_ref=100 (use `slidingco: 0.0464` at u_ref=1 on the legacy stack)
         exponent: 3.0
-        u_ref: 1.0
+        u_ref: 100.0       # unified only; the legacy stack requires u_ref: 1.0
       viscosity:
         arrhenius: 78.0
         enhancement_factor: 1.0
