@@ -140,14 +140,26 @@ processes:
 ```
 
 ### 6. New assimilation-type of modules to `/assimilations`
-The former modules `data_assimilation` module was wrongly set in `processes`, while
+The former `data_assimilation` module was wrongly set in `processes`, while
 other "assimilation" modules are expected to populate IGM. Therefore, it was decided
 to split "assimilation" modules into a new category "assimilations". The "data_assimilation"
-module has been completly rewritten & improved and is now 
-in "assimilation", and was renamed `field_inversion`.
-The former / legacy "data_assimilation" is left in processes for 
-compat, but will be removed on the long term. Note that the "assimilation" also contains
-new module such as  `time_relaxation` and `pretraining`.
+module has been completly rewritten & improved and the result is a new module
+in "assimilations", named `field_inversion`.
+The former / legacy "data_assimilation" has also been moved to `assimilations`
+(it is no longer in `processes`), but will be removed on the long term. Note that
+the "assimilations" category also contains new modules such as `time_relaxation` and `pretraining`.
+
+In addition, five default parameter values of the legacy `data_assimilation`
+module were changed in 3.2. If you relied on the previous defaults, set them
+explicitly in your configuration:
+
+| Parameter | Section | Old default | New default |
+|-----------|---------|-------------|-------------|
+| `retrain_iceflow_model` | `optimization` | `true` | `false` |
+| `fix_opti_normalization_issue` | `optimization` | `false` | `true` |
+| `obstacle_constraint` | `optimization` | `[reproject, penalty]` | `[reproject]` |
+| `smooth_anisotropy_factor` | `regularization` | `0.2` | `1.0` |
+| `convexity_weight` | `regularization` | `0.002` | `0.0` |
 
 ### 7. New module `field_inversion` (overhauled `data_assimilation`)
 It infers control fields (by default `thk`, with bounds

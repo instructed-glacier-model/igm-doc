@@ -7,15 +7,18 @@ The scheme is mass-conservative and parallelizable due to its fully explicit nat
 
 ## Parameters
 
-Default configuration file ([thk.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/thk.yaml)):
 ~~~yaml
-{% include  "../../../../igm/conf/processes/thk.yaml" %}
+thk:
+
+  slope_type: superbee                 # limiter used in stock mode (calving_front: false)
+  ratio_density: 0.910                 # rho_ice / rho_water for flotation
 ~~~
 
 {% set config = load_yaml('../igm/conf/processes/thk.yaml') %}
 {% set help = load_yaml('../igm/conf_help/processes/thk.yaml') %}
 {% set module_key = config.keys() | list | first %}
-{% set module = config[module_key] %}
+{% set full_module = config[module_key] %}
+{% set module = {'slope_type': full_module.slope_type, 'ratio_density': full_module.ratio_density} %}
 {% set module_help = help %}
 
 {% include "includes/_config_table_notree.j2" %}

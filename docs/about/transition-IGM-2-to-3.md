@@ -43,13 +43,13 @@ where parameters can be changed within the `params.yaml` file, or overridden dir
 igm_run +experiment=params processes.time.start=1900 processes.time.end=2100
 ```
 
-From a user perspective, migrating to IGM 3 essentially involves converting the former parameter file `params.json` into the new `experiment/params.yaml` format. To facilitate this transition, we provide a utility script named `json_to_yaml.py` (in the root of IGM repo) that automates the conversion process (you may have to adjust manually, check it afterwards!).
+From a user perspective, migrating to IGM 3 essentially involves converting the former parameter file `params.json` into the new `experiment/params.yaml` format. This is done manually: rename and re-nest the parameters following the correspondence tables given below.
 
 ### Parameter Naming Changes, and hierarchical construction
 
 Parameter names have been slightly modified. Previously, all parameters included a prefix like `iflo` to indicate they were associated with the `iceflow` module. Now, parameters are organized hierarchically by attributes, making the prefix redundant and therefore removed. For example: `time_start` is now accessible as `processes.time.start`.
 
-In the `iceflow` module, parameters have been significantly reorganized to follow a **hierarchical structure**. To assist with the transition, we provide a script named `json_to_yaml.py`, and correspondence table to help convert old JSON files into the new YAML format. Also, IGM now raises an error if a parameter contains a typo, and suggests parameters to pick.
+In the `iceflow` module, parameters have been significantly reorganized to follow a **hierarchical structure**. To assist with the transition, we provide correspondence tables (below) to help convert old JSON files into the new YAML format. Also, IGM now raises an error if a parameter contains a typo, and suggests parameters to pick.
  
 ### Example of new parameter file
 

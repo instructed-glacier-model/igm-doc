@@ -61,11 +61,12 @@ nav:
               - enthalpy: modules/processes/enthalpy.md
           - Lithosphere:
               - subglacial_hydrology: modules/processes/subglacial_hydrology.md
-          - Hydrosphere:
-              - calving_rate: modules/processes/calving_rate.md
+          # - Hydrosphere:
+          #     - calving_rate: modules/processes/calving_rate.md
           - Misc:
               - particles: modules/processes/particles.md
       - Assimilation Modules:
+          - data_assimilation: modules/assimilations/data_assimilation.md
           - pretraining: modules/assimilations/pretraining.md
           - field_inversion: modules/assimilations/field_inversion.md
           - time_relaxation: modules/assimilations/time_relaxation.md
@@ -78,24 +79,23 @@ nav:
           - plot2d: modules/outputs/plot2d.md
           - live_dashboard: modules/outputs/live_dashboard.md
       - Community Modules:
-          - Atmosphere:
-              - clim_glacialindex: modules/processes/clim_glacialindex.md
-              - clim_oggm: modules/processes/clim_oggm.md
-              - clim_station: modules/processes/clim_station.md
-              - smb_simple: modules/processes/smb_simple.md
-              - smb_accpdd: modules/processes/smb_accpdd.md
-              - smb_oggm: modules/processes/smb_oggm.md
+          # - Atmosphere:
+          #     - clim_glacialindex: modules/processes/clim_glacialindex.md
+          #     - clim_oggm: modules/processes/clim_oggm.md
+          #     - clim_station: modules/processes/clim_station.md
+          #     - smb_simple: modules/processes/smb_simple.md
+          #     - smb_accpdd: modules/processes/smb_accpdd.md
+          #     - smb_oggm: modules/processes/smb_oggm.md
           - Cryosphere:
               - avalanche: modules/processes/avalanche.md
-              - stress: modules/processes/stress.md
+          #     - stress: modules/processes/stress.md
           - Lithosphere:
               - gflex: modules/processes/gflex.md
               - glerosion: modules/processes/glerosion.md
               - rockflow: modules/processes/rockflow.md
-          - Hydrosphere:
-              - flow_accumulation: modules/processes/flow_accumulation.md
+          # - Hydrosphere:
+          #     - flow_accumulation: modules/processes/flow_accumulation.md
           - Misc:
-              - data_assimilation: modules/processes/data_assimilation.md
               - read_output: modules/processes/read_output.md
               - texture: modules/processes/texture.md
       - User Modules: modules/user_modules.md

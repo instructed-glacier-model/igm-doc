@@ -22,10 +22,10 @@ lithosphere:
   subtitle: Subglacial mechanics and bed evolution
   color_key: lithosphere
 
-hydrosphere:
-  label: Hydrosphere
-  subtitle: Peripheral and frontal processes
-  color_key: hydrosphere
+# hydrosphere:
+#   label: Hydrosphere
+#   subtitle: Peripheral and frontal processes
+#   color_key: hydrosphere
 
 misc:
   label: Misc

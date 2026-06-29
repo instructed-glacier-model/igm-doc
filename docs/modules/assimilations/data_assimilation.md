@@ -53,15 +53,15 @@ The above optimization problem is given in the most general case. However, you m
 
 - **Control Variables**: Specify the variables you wish to optimize. For example:
   ```json
-  "processes.data_assimilation.control_list": ["thk", "slidingco", "usurf"]  # Optimize ice thickness, sliding coefficient, and surface elevation.
-  "processes.data_assimilation.control_list": ["thk", "usurf"]  # Optimize ice thickness and surface elevation only.
-  "processes.data_assimilation.control_list": ["thk"]  # Optimize ice thickness only.
+  "assimilations.data_assimilation.control_list": ["thk", "slidingco", "usurf"]  # Optimize ice thickness, sliding coefficient, and surface elevation.
+  "assimilations.data_assimilation.control_list": ["thk", "usurf"]  # Optimize ice thickness and surface elevation only.
+  "assimilations.data_assimilation.control_list": ["thk"]  # Optimize ice thickness only.
   ```
 
 - **Cost Components**: Specify the components of the cost function to minimize. For example:
   ```json
-  "processes.data_assimilation.cost_list": ["velsurf", "thk", "usurf", "divfluxfcz", "icemask"]  # General case with multiple components.
-  "processes.data_assimilation.cost_list": ["velsurf", "icemask"]  # Fit surface velocity and ice mask only.
+  "assimilations.data_assimilation.cost_list": ["velsurf", "thk", "usurf", "divfluxfcz", "icemask"]  # General case with multiple components.
+  "assimilations.data_assimilation.cost_list": ["velsurf", "icemask"]  # Fit surface velocity and ice mask only.
   ```
 
 **Recommendation**: Start with a simple optimization setup, such as a single control variable (`thk`) and a few cost components (`velsurf` and `icemask`). Gradually increase the complexity by adding more controls and cost components once the simpler setup yields meaningful results. Ensure a balance between controls and constraints to maintain a well-posed problem and avoid multiple solutions.
@@ -73,10 +73,10 @@ There are parameters that may need to tune for each application.
 First, you may adjust the expected confidence levels (i.e., tolerance to fit the data) $\sigma^u$, $\sigma^h$, $\sigma^s$, and $\sigma^d$ to better match surface ice velocity, ice thickness, surface top elevation, or flux divergence. These parameters can be configured as follows:
 
 ```json
-"processes.data_assimilation.velsurfobs_std": 5 # unit m/y
-"processes.data_assimilation.thkobs_std" : 5 # unit m
-"processes.data_assimilation.usurfobs_std" : 5 # unit m
-"processes.data_assimilation.divfluxobs_std": 1 # unit m/y
+"assimilations.data_assimilation.velsurfobs_std": 5 # unit m/y
+"assimilations.data_assimilation.thkobs_std" : 5 # unit m
+"assimilations.data_assimilation.usurfobs_std" : 5 # unit m
+"assimilations.data_assimilation.divfluxobs_std": 1 # unit m/y
 ```
 
 Second, you may adjust regularization parameters to control the smoothness and convexity of the optimized fields. These include:
@@ -88,28 +88,28 @@ Second, you may adjust regularization parameters to control the smoothness and c
 These parameters can be configured as follows:
 
 ```json
-"processes.data_assimilation.regu_param_thk": 10.0           # Regularization weight for ice thickness
-"processes.data_assimilation.regu_param_slidingco": 1.0      # Regularization weight for sliding coefficient
-"processes.data_assimilation.convexity_weight": 0.002        # Convexity weight (gamma)
+"assimilations.data_assimilation.regu_param_thk": 10.0           # Regularization weight for ice thickness
+"assimilations.data_assimilation.regu_param_slidingco": 1.0      # Regularization weight for sliding coefficient
+"assimilations.data_assimilation.convexity_weight": 0.002        # Convexity weight (gamma)
 ```
 
 Lastly, there are a couple of other parameters we may be interest to change e.g.
 
 ```json
-"processes.data_assimilation.nbitmax": 1000         # Number of it. for the optimization
-"processes.data_assimilation.step_size": 1.0        # Step size in the optimization iterative algorithm
-"processes.data_assimilation.init_zero_thk": True   # Force init zero ice thk (otherwise take thkinit)
+"assimilations.data_assimilation.nbitmax": 1000         # Number of it. for the optimization
+"assimilations.data_assimilation.step_size": 1.0        # Step size in the optimization iterative algorithm
+"assimilations.data_assimilation.init_zero_thk": True   # Force init zero ice thk (otherwise take thkinit)
 ```
 
 **Note**: There is a version 2 for the thickness regularization that can be activated by setting `data_assimilation.regularization.thk_version` to 2 (default is 1). By switching to this new version, it adds second-order derivative terms to the minimization in addition to the first-order terms we had before. This "thin plate" approach may have added value over the former "membrane" approach. The consequence is that there are now 2 regularization parameters: `data_assimilation.regularization.thk_2nd_der` and `thk_1st_der`, but the first parameter seems to be the main control. From initial tests, it appears to give at least visually better bedrock results with the default parameters. This also seems to fix the chessboard issue that occurred with version 1 when using anisotropic smoothing. However, all of this needs further testing. Finally, there is one additional parameter `abl_acc_balance` that serves to weight the membrane rigidity more in the accumulation area than in the ablation areas, which are often deeper (at least for mountain glaciers) due to long-term glacial erosion. This is not active by default (i.e., 1 = no imbalance), but you may try setting it to 2.
 
 ### Parameter inference (S. Cook) 
 
-There is also a further option: the convexity weight and the slidingco can be inferred automatically by the model. These values are calibrated only for IGM v2.2.1 and a particular set of costs and controls, and are based on a series of regressions calculated through manual inversions to find the best parameters for 50 glaciers of different types and sizes around the world (see Cook et al., forthcoming). In other words, they are purely empirical and are likely to be a bit off for any different set of costs and controls, but should work tolerably well on any glacier anywhere on the planet, as a starting point for parameter exploration. If this behaviour is desired, you MUST use RGI7.0 (C or G) and the oggm_shop module. If using C, you will also need to set the oggm_sub_entity_mask parameter to True. Within the optimize module, processes.data_assimilation.infer_params must also be set to true.
+There is also a further option: the convexity weight and the slidingco can be inferred automatically by the model. These values are calibrated only for IGM v2.2.1 and a particular set of costs and controls, and are based on a series of regressions calculated through manual inversions to find the best parameters for 50 glaciers of different types and sizes around the world (see Cook et al., forthcoming). In other words, they are purely empirical and are likely to be a bit off for any different set of costs and controls, but should work tolerably well on any glacier anywhere on the planet, as a starting point for parameter exploration. If this behaviour is desired, you MUST use RGI7.0 (C or G) and the oggm_shop module. If using C, you will also need to set the oggm_sub_entity_mask parameter to True. Within the optimize module, assimilations.data_assimilation.infer_params must also be set to true.
 
-For small glaciers with no velocity observations, the model will also use volume-area scaling to provide an additional constraint within the inference framework — this all happens automatically, but note the `processes.data_assimilation.vol_std` parameter that you can adjust to control how much weight is given to volume (by default, this is 1000.0 — a very small cost — anywhere with velocity data, and 0.001 — a large cost — anywhere lacking velocity data. The parameter only controls the default value where other data are present; the 0.001 where there is no velocity data is hard-coded).
+For small glaciers with no velocity observations, the model will also use volume-area scaling to provide an additional constraint within the inference framework — this all happens automatically, but note the `assimilations.data_assimilation.vol_std` parameter that you can adjust to control how much weight is given to volume (by default, this is 1000.0 — a very small cost — anywhere with velocity data, and 0.001 — a large cost — anywhere lacking velocity data. The parameter only controls the default value where other data are present; the 0.001 where there is no velocity data is hard-coded).
 
-A final parameter - processes.data_assimilation.tidewater_glacier - can also be set to True to force the inference code to treat the glacier as a tidewater-type glacier. If the RGI identifies a glacier as tidewater, it will be treated as such anyway, but this parameter gives you the option to force it (note: setting the parameter to False - its default value - will not cause the model to treat RGI-identified tidewater glaciers as non-tidewater - there is no option to do that).
+A final parameter - assimilations.data_assimilation.tidewater_glacier - can also be set to True to force the inference code to treat the glacier as a tidewater-type glacier. If the RGI identifies a glacier as tidewater, it will be treated as such anyway, but this parameter gives you the option to force it (note: setting the parameter to False - its default value - will not cause the model to treat RGI-identified tidewater glaciers as non-tidewater - there is no option to do that).
 
 ### Monitoring the Optimization
 
@@ -118,7 +118,7 @@ You can monitor the data assimilation process during inverse modeling in several
 - **Cost Components**: Verify that the components of the cost function decrease over time. The cost values are printed during the optimization process, and a graph summarizing the results is generated at the end.
 - **Live Monitoring**: Set the parameters `"plot_result": true` and `"plt2d_live": true` to visualize the evolution of the optimized fields (e.g., ice thickness, surface ice speeds) in real-time. Additionally, observe the (hopefully decreasing) standard deviations displayed in the figures.
 - **Post-Run Analysis**: After the run, examine the `optimize.nc` file, which contains the results of the optimization. Ensure this file is configured to be written during the process.
-- **Flux Divergence Check**: If `divfluxfcz` is included in the parameter list `"processes.data_assimilation.cost"`, inspect the divergence of the flux to ensure it aligns with expectations.
+- **Flux Divergence Check**: If `divfluxfcz` is included in the parameter list `"assimilations.data_assimilation.cost"`, inspect the divergence of the flux to ensure it aligns with expectations.
 
 ### Relaxation
 
@@ -131,10 +131,10 @@ The `data_assimilation` module outputs VTP files alongside NetCDF files, which g
 For more information, refer to the relevant documentation or technical references [@Jouvet2022; @Jouvet2023b].
 ## Parameters
 
-The complete default configuration file can be found here: [data_assimilation.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/data_assimilation.yaml).
+The complete default configuration file can be found here: [data_assimilation.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/assimilations/data_assimilation.yaml).
 
-{% set config = load_yaml('../igm/conf/processes/data_assimilation.yaml') %}
-{% set help = load_yaml('../igm/conf_help/processes/data_assimilation.yaml') %}
+{% set config = load_yaml('../igm/conf/assimilations/data_assimilation.yaml') %}
+{% set help = load_yaml('../igm/conf_help/assimilations/data_assimilation.yaml') %}
 {% set header = load_yaml('../igm/conf_help/header.yaml') %}
 {% set module_key = config.keys() | list | first %}
 {% set module = config[module_key] %}
