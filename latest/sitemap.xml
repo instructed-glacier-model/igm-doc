@@ -2,246 +2,314 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://igm-model.org/latest/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
-         <loc>https://igm-model.org/latest/Running/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <loc>https://igm-model.org/latest/configuration/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/getting_started/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/FAQ/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/about/cite/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/credits_and_references/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/help/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/tools/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/transition-IGM-2-to-3/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
-         <loc>https://igm-model.org/latest/about/updates/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <loc>https://igm-model.org/latest/about/transition-IGM-3.1-to-3.2/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/about/variables/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/best_practices/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/best_practices/checklist/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/best_practices/faq/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/best_practices/numerical_tips/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/developer/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/developer/aliases/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/developer/diagnostics/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/developer/module_system/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/examples/Examples/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/gallery/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/basics/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/custom_configurations/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/distributed_computing/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/help/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/introduction/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/introduction_old/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/optuna_cluster/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/hydra/working_directory/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/linux/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/mac/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/quick_start/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/windows/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/other/nvidia_drivers/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/other/virtual_environment/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/installation/other/wsl_windows/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/core/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/introduction/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/state_variables/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/user_modules/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/assimilations/data_assimilation/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/assimilations/field_inversion/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/assimilations/pretraining/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/assimilations/time_relaxation/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/load_ncdf/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/load_tif/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/local/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/inputs/oggm_shop/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/live_dashboard/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/local/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/plot2d/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_ncdf/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_tif/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_ts/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/outputs/write_vtp/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/processes/arrhenius/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/avalanche/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
-         <loc>https://igm-model.org/latest/modules/processes/clim_glacialindex/</loc>
-         <lastmod>2026-05-22</lastmod>
-    </url>
-    <url>
-         <loc>https://igm-model.org/latest/modules/processes/clim_oggm/</loc>
-         <lastmod>2026-05-22</lastmod>
-    </url>
-    <url>
-         <loc>https://igm-model.org/latest/modules/processes/data_assimilation/</loc>
-         <lastmod>2026-05-22</lastmod>
-    </url>
-    <url>
-         <loc>https://igm-model.org/latest/modules/processes/effective_pressure/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <loc>https://igm-model.org/latest/modules/processes/climate/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/enthalpy/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/flow_accumulation/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/gflex/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/glerosion/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/iceflow/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/particles/</loc>
-         <lastmod>2026-05-22</lastmod>
-    </url>
-    <url>
-         <loc>https://igm-model.org/latest/modules/processes/pretraining/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/read_output/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/rockflow/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
-         <loc>https://igm-model.org/latest/modules/processes/smb_accpdd/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <loc>https://igm-model.org/latest/modules/processes/smb/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
-         <loc>https://igm-model.org/latest/modules/processes/smb_oggm/</loc>
-         <lastmod>2026-05-22</lastmod>
-    </url>
-    <url>
-         <loc>https://igm-model.org/latest/modules/processes/smb_simple/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <loc>https://igm-model.org/latest/modules/processes/subglacial_hydrology/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/texture/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/thk/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
          <loc>https://igm-model.org/latest/modules/processes/time/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <lastmod>2026-06-30</lastmod>
     </url>
     <url>
-         <loc>https://igm-model.org/latest/modules/processes/vert_flow/</loc>
-         <lastmod>2026-05-22</lastmod>
+         <loc>https://igm-model.org/latest/modules/variables/descriptive/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/variables/igm/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/modules/variables/pism/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/tutorials/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/tutorials/aletsch/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/tutorials/aletsch_da/</loc>
+         <lastmod>2026-06-30</lastmod>
+    </url>
+    <url>
+         <loc>https://igm-model.org/latest/tutorials/aletsch_inversion/</loc>
+         <lastmod>2026-06-30</lastmod>
     </url>
 </urlset>

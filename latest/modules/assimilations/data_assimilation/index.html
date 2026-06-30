@@ -1,0 +1,6157 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A differentiable, modular, and GPU-accelerated ice flow model.">
+      
+      
+      
+        <link rel="canonical" href="https://igm-model.org/latest/modules/assimilations/data_assimilation/">
+      
+      
+        <link rel="prev" href="../../processes/particles/">
+      
+      
+        <link rel="next" href="../pretraining/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>data_assimilation - Instructed Glacier Model (IGM)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/type-colors.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/param-tables.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/style.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/refs.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/gallery.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="glacier_light" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-data_assimilation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Instructed Glacier Model (IGM)" class="md-header__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Instructed Glacier Model (IGM)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              data_assimilation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="glacier_light" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="glacier_dark" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/instructed-glacier-model/igm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    instructed-glacier-model/igm
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../installation/quick_start/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Installation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../getting_started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../configuration/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Configuration
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../developer/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Developer
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../gallery/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Gallery
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../about/credits_and_references/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Instructed Glacier Model (IGM)" class="md-nav__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Instructed Glacier Model (IGM)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/instructed-glacier-model/igm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    instructed-glacier-model/igm
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/quick_start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/other/nvidia_drivers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nvidia Drivers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/other/virtual_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Environments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/other/wsl_windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WSL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../tutorials/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/aletsch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aletsch: forward modelling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/aletsch_da/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aletsch: parameter calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/aletsch_inversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aletsch: ice-thickness inversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../best_practices/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Best Practices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../best_practices/checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../best_practices/numerical_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../best_practices/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hydra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hydra/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hydra/basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hydra/working_directory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working Directory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hydra/custom_configurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Configurations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hydra/distributed_computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parameter Sweeps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hydra/help/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optuna
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Optuna
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../hydra/optuna_cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGM v2 → v3 Transition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/transition-IGM-3.1-to-3.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGM v3.1 → v3.2 Transition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Input Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inputs/local/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    local
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inputs/load_ncdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    load_ncdf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inputs/load_tif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    load_tif
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inputs/oggm_shop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    oggm_shop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_1" id="__nav_5_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Time
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/time/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    time
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_2" id="__nav_5_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Atmosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Atmosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/climate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    climate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/smb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    smb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_3" id="__nav_5_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/arrhenius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    arrhenius
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/iceflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iceflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/thk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    thk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/enthalpy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    enthalpy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_4" id="__nav_5_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lithosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lithosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/subglacial_hydrology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    subglacial_hydrology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_5" id="__nav_5_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/particles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    particles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assimilation Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Assimilation Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    data_assimilation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    data_assimilation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-optimization-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General optimization setting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-controls-and-cost-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Define controls and cost components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exploring parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-inference-s-cook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter inference (S. Cook)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-the-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring the Optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relaxation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relaxation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3D Visualization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pretraining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pretraining
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../field_inversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    field_inversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../time_relaxation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    time_relaxation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Output Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Output Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../outputs/local/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    local
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../outputs/write_ncdf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    write_ncdf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../outputs/write_vtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    write_vtp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../outputs/write_tif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    write_tif
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../outputs/write_ts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    write_ts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../outputs/plot2d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    plot2d
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../outputs/live_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    live_dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_1" id="__nav_5_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/avalanche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    avalanche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_2" id="__nav_5_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lithosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lithosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/gflex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gflex
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/glerosion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    glerosion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/rockflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rockflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_3" id="__nav_5_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hydrosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydrosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/flow_accumulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    flow_accumulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_4" id="__nav_5_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/read_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    read_output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/texture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    texture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Variables
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    State Variables
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../variables/igm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGM Names
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../variables/pism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PISM Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../variables/descriptive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descriptive Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../developer/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developer/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Variable Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developer/module_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Module System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developer/diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/credits_and_references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/cite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Citing IGM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/help/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../introduction/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Modules
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Assimilation Modules
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="module-data_assimilation">Module <code>data_assimilation</code></h1>
+<p><strong>Note:</strong> This module will be removed in a future release. New projects should use <code>field_inversion</code> instead (still under testing), therefore, we still propose the 2 modules.</p>
+<div class="admonition warning">
+<p class="admonition-title">IGM 3.2 — changed optimisation defaults &amp; recommended setup</p>
+<p>Several defaults of this module changed in 3.2, chosen to give more robust inversions out of the box. If you relied on the old defaults, set them explicitly.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Parameter (<code>section</code>)</th>
+<th>New default (was)</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td><code>optimization.retrain_iceflow_model</code></td>
+<td><code>false</code> (was <code>true</code>)</td>
+<td>Keep the ice-flow emulator <strong>fixed</strong> during the inversion (use an off-line trained emulator). Retraining it on the evolving geometry tends to destabilise the optimisation.</td>
+</tr>
+<tr>
+<td>ii</td>
+<td><code>optimization.fix_opti_normalization_issue</code></td>
+<td><code>true</code> (was <code>false</code>)</td>
+<td>A normalisation issue in the cost was found; enabling this fixes it, so it is now on by default.</td>
+</tr>
+<tr>
+<td>iii</td>
+<td><code>regularization.convexity_weight</code> / <code>regularization.smooth_anisotropy_factor</code></td>
+<td><code>0.0</code> / <code>1.0</code> (was <code>0.002</code> / <code>0.2</code>)</td>
+<td>Convexity constraint and anisotropic smoothing are now <strong>disabled</strong> by default — advanced knobs you normally do not need.</td>
+</tr>
+</tbody>
+</table>
+<p>See the <a href="../../../about/transition-IGM-3.1-to-3.2/">v3.1 → v3.2 migration guide</a> for details.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Recommended setup for robust inversions</p>
+<p>To keep the <code>data_assimilation</code> inversion robust, we strongly advise to:</p>
+<ol>
+<li>pick an <strong>off-line trained iceflow emulator</strong> (one that does not retrain over the iterations);</li>
+<li>limit the number of <strong>controls to one</strong> to keep the problem well-posed, avoiding multi-control optimisation.</li>
+</ol>
+<p>See the <a href="../../../tutorials/aletsch_inversion/">Aletsch inversion tutorial</a> to get familiar with the module.</p>
+</div>
+<p>A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (<code>iceflow</code>) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM.</p>
+<div class="admonition abstract">
+<p class="admonition-title">State variables</p>
+<p><strong>Reads:</strong> <code>usurf</code>, <code>thk</code>, <code>topg</code>, <code>ubar</code>, <code>vbar</code></p>
+<p><strong>Writes:</strong> <code>tau_ref</code></p>
+</div>
+<p><strong>Note:</strong> The optimization process requires some expertise, and parameter tuning may be necessary to achieve meaningful results. Use this module carefully and be prepared to explore various parameter configurations. Feel free to contact us to verify the consistency of your results.</p>
+<h3 id="getting-the-data">Getting the data</h3>
+<p>The first step is to gather as much relevant data as possible. The recommended data includes:</p>
+<ul>
+<li><strong>Observed surface ice velocities</strong> (<span class="arithmatex">\({\bf u}^{s,obs}\)</span>), e.g., from Millan et al. (2022).</li>
+<li><strong>Surface top elevation</strong> (<span class="arithmatex">\(s^{obs}\)</span>), e.g., from datasets like SRTM or ESA GLO-30.</li>
+<li><strong>Ice thickness profiles</strong> (<span class="arithmatex">\(h_p^{obs}\)</span>), e.g., from the GlaThiDa database.</li>
+<li><strong>Glacier outlines and resulting mask</strong>, e.g., from the Randolph Glacier Inventory (RGI).</li>
+</ul>
+<p>If you do not have access to all these datasets, it is still possible to proceed with a reduced dataset. However, in such cases, you will need to make assumptions to limit the number of variables to optimize (controls). This ensures that the optimization problem remains well-posed, meaning it has a unique and meaningful solution.</p>
+<p>These data can be obtained using the IGM module <code>oggm_shop</code> and loaded with the inputs module using convention-based variable names ending with <code>obs</code>. For example:</p>
+<ul>
+<li><code>usurfobs</code>: Observed top surface elevation.</li>
+<li><code>thkobs</code>: Observed thickness profiles (use <code>NaN</code> or no-value where no data is available).</li>
+<li><code>icemaskobs</code>: Mask derived from RGI outlines to enforce zero ice thickness outside the mask.</li>
+<li><code>uvelsurfobs</code> and <code>vvelsurfobs</code>: X- and Y-components of the horizontal surface ice velocity (use <code>NaN</code> or no-value where no data is available).</li>
+<li><code>thkinit</code>: Optionally, a previously inferred ice thickness field to initialize the inverse model. If not provided, the model will start with <code>thk=0</code>.</li>
+</ul>
+<p><strong>Use the IGM <code>oggm_shop</code> to download all the data you need using OGGM.</strong></p>
+<h3 id="general-optimization-setting">General optimization setting</h3>
+<p>The optimization problem consists of finding spatially varying fields (<span class="arithmatex">\(h\)</span>, <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(c\)</span>, <span class="arithmatex">\(s\)</span>) that minimize the cost function:</p>
+<div class="arithmatex">\[\mathcal{J}(h,A,c,s)=\mathcal{C}^u+\mathcal{C}^h+\mathcal{C}^s+\mathcal{C}^{d}+\mathcal{R}^h+\mathcal{R}^A+\mathcal{R}^{c}+\mathcal{P}^h,\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal{C}^u\)</span>: Misfit between modeled and observed surface ice velocities.</li>
+<li><span class="arithmatex">\(\mathcal{C}^h\)</span>: Misfit between modeled and observed ice thickness profiles.</li>
+<li><span class="arithmatex">\(\mathcal{C}^s\)</span>: Misfit between modeled and observed top ice surface.</li>
+<li><span class="arithmatex">\(\mathcal{C}^d\)</span>: Misfit term between modeled and observed flux divergence.</li>
+<li><span class="arithmatex">\(\mathcal{R}^h\)</span>: Regularization term to enforce smoothness on <span class="arithmatex">\(h\)</span>.</li>
+<li><span class="arithmatex">\(\mathcal{R}^A\)</span>: Regularization term to enforce smoothness on <span class="arithmatex">\(A\)</span>.</li>
+<li><span class="arithmatex">\(\mathcal{R}^c\)</span>: Regularization term to enforce smoothness on <span class="arithmatex">\(c\)</span>.</li>
+<li><span class="arithmatex">\(\mathcal{P}^h\)</span>: Penalty term to enforce nonnegative ice thickness.</li>
+</ul>
+<p>This formulation ensures that the optimization problem is well-posed by balancing data fidelity terms (<span class="arithmatex">\(\mathcal{C}\)</span>) with regularization and penalty terms (<span class="arithmatex">\(\mathcal{R}\)</span> and <span class="arithmatex">\(\mathcal{P}\)</span>). Check at the reference paper for more explanation on each terms of the cost function.</p>
+<h3 id="define-controls-and-cost-components">Define controls and cost components</h3>
+<p>The above optimization problem is given in the most general case. However, you may select only some components according to your data as follows:</p>
+<ul>
+<li>
+<p><strong>Control Variables</strong>: Specify the variables you wish to optimize. For example:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&quot;assimilations.data_assimilation.control_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thk&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;slidingco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;usurf&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Op</span><span class="kc">t</span><span class="err">imize</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span><span class="p">,</span><span class="w"> </span><span class="err">slidi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">coe</span><span class="kc">ff</span><span class="err">icie</span><span class="kc">nt</span><span class="p">,</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">sur</span><span class="kc">fa</span><span class="err">ce</span><span class="w"> </span><span class="err">eleva</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">.</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">&quot;assimilations.data_assimilation.control_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thk&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;usurf&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Op</span><span class="kc">t</span><span class="err">imize</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">sur</span><span class="kc">fa</span><span class="err">ce</span><span class="w"> </span><span class="err">eleva</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y.</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">&quot;assimilations.data_assimilation.control_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thk&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Op</span><span class="kc">t</span><span class="err">imize</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y.</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Cost Components</strong>: Specify the components of the cost function to minimize. For example:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&quot;assimilations.data_assimilation.cost_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;velsurf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;thk&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;usurf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;divfluxfcz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;icemask&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Ge</span><span class="kc">neral</span><span class="w"> </span><span class="err">case</span><span class="w"> </span><span class="err">wi</span><span class="kc">t</span><span class="err">h</span><span class="w"> </span><span class="err">mul</span><span class="kc">t</span><span class="err">iple</span><span class="w"> </span><span class="err">compo</span><span class="kc">nents</span><span class="err">.</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">&quot;assimilations.data_assimilation.cost_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;velsurf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;icemask&quot;</span><span class="p">]</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Fi</span><span class="kc">t</span><span class="w"> </span><span class="err">sur</span><span class="kc">fa</span><span class="err">ce</span><span class="w"> </span><span class="err">veloci</span><span class="kc">t</span><span class="err">y</span><span class="w"> </span><span class="err">a</span><span class="kc">n</span><span class="err">d</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="err">mask</span><span class="w"> </span><span class="err">o</span><span class="kc">nl</span><span class="err">y.</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Recommendation</strong>: Start with a simple optimization setup, such as a single control variable (<code>thk</code>) and a few cost components (<code>velsurf</code> and <code>icemask</code>). Gradually increase the complexity by adding more controls and cost components once the simpler setup yields meaningful results. Ensure a balance between controls and constraints to maintain a well-posed problem and avoid multiple solutions.</p>
+<h3 id="exploring-parameters">Exploring parameters</h3>
+<p>There are parameters that may need to tune for each application.</p>
+<p>First, you may adjust the expected confidence levels (i.e., tolerance to fit the data) <span class="arithmatex">\(\sigma^u\)</span>, <span class="arithmatex">\(\sigma^h\)</span>, <span class="arithmatex">\(\sigma^s\)</span>, and <span class="arithmatex">\(\sigma^d\)</span> to better match surface ice velocity, ice thickness, surface top elevation, or flux divergence. These parameters can be configured as follows:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&quot;assimilations.data_assimilation.fitting.velsurfobs_std&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m/y</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">&quot;assimilations.data_assimilation.fitting.thkobs_std&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="w">     </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">&quot;assimilations.data_assimilation.fitting.usurfobs_std&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">&quot;assimilations.data_assimilation.fitting.divfluxobs_std&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">u</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">m/y</span>
+</span></code></pre></div>
+<p>Second, you may adjust the <strong>regularization weights</strong> (<span class="arithmatex">\(\alpha^h\)</span>, <span class="arithmatex">\(\alpha^A\)</span>) that control the smoothness of the optimized fields: increasing them produces smoother ice-thickness and flow-parameter fields. These can be configured as follows:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&quot;assimilations.data_assimilation.regularization.thk&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="err">Regulariza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">weigh</span><span class="kc">t</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hick</span><span class="kc">ness</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">&quot;assimilations.data_assimilation.regularization.slidingco&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">Regulariza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">weigh</span><span class="kc">t</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">slidi</span><span class="kc">n</span><span class="err">g</span><span class="w"> </span><span class="err">coe</span><span class="kc">ff</span><span class="err">icie</span><span class="kc">nt</span>
+</span></code></pre></div>
+<p>Lastly, there are a couple of other parameters we may be interest to change e.g.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&quot;assimilations.data_assimilation.optimization.nbitmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">Number</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">i</span><span class="kc">t</span><span class="err">.</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">op</span><span class="kc">t</span><span class="err">imiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">&quot;assimilations.data_assimilation.optimization.step_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="err">S</span><span class="kc">te</span><span class="err">p</span><span class="w"> </span><span class="err">size</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">op</span><span class="kc">t</span><span class="err">imiza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="err">i</span><span class="kc">terat</span><span class="err">ive</span><span class="w"> </span><span class="err">algori</span><span class="kc">t</span><span class="err">hm</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">&quot;assimilations.data_assimilation.optimization.init_zero_thk&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">True</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">Force</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="w"> </span><span class="err">zero</span><span class="w"> </span><span class="err">ice</span><span class="w"> </span><span class="kc">t</span><span class="err">hk</span><span class="w"> </span><span class="err">(o</span><span class="kc">t</span><span class="err">herwise</span><span class="w"> </span><span class="kc">ta</span><span class="err">ke</span><span class="w"> </span><span class="kc">t</span><span class="err">hki</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="err">)</span>
+</span></code></pre></div>
+<p><strong>Note</strong>: There is a version 2 for the thickness regularization that can be activated by setting <code>data_assimilation.regularization.thk_version</code> to 2 (default is 1). By switching to this new version, it adds second-order derivative terms to the minimization in addition to the first-order terms we had before. This "thin plate" approach may have added value over the former "membrane" approach. The consequence is that there are now 2 regularization parameters: <code>data_assimilation.regularization.thk_2nd_der</code> and <code>thk_1st_der</code>, but the first parameter seems to be the main control. From initial tests, it appears to give at least visually better bedrock results with the default parameters. This also seems to fix the chessboard issue that occurred with version 1 when using anisotropic smoothing. However, all of this needs further testing. Finally, there is one additional parameter <code>abl_acc_balance</code> that serves to weight the membrane rigidity more in the accumulation area than in the ablation areas, which are often deeper (at least for mountain glaciers) due to long-term glacial erosion. This is not active by default (i.e., 1 = no imbalance), but you may try setting it to 2.</p>
+<h3 id="parameter-inference-s-cook">Parameter inference (S. Cook)</h3>
+<p>There is also a further option: the convexity weight and the slidingco can be inferred automatically by the model. These values are calibrated only for IGM v2.2.1 and a particular set of costs and controls, and are based on a series of regressions calculated through manual inversions to find the best parameters for 50 glaciers of different types and sizes around the world (see Cook et al., forthcoming). In other words, they are purely empirical and are likely to be a bit off for any different set of costs and controls, but should work tolerably well on any glacier anywhere on the planet, as a starting point for parameter exploration. If this behaviour is desired, you MUST use RGI7.0 (C or G) and the oggm_shop module. If using C, you will also need to set the oggm_sub_entity_mask parameter to True. Within the optimize module, assimilations.data_assimilation.infer_params must also be set to true.</p>
+<p>For small glaciers with no velocity observations, the model will also use volume-area scaling to provide an additional constraint within the inference framework — this all happens automatically, but note the <code>assimilations.data_assimilation.vol_std</code> parameter that you can adjust to control how much weight is given to volume (by default, this is 1000.0 — a very small cost — anywhere with velocity data, and 0.001 — a large cost — anywhere lacking velocity data. The parameter only controls the default value where other data are present; the 0.001 where there is no velocity data is hard-coded).</p>
+<p>A final parameter - assimilations.data_assimilation.tidewater_glacier - can also be set to True to force the inference code to treat the glacier as a tidewater-type glacier. If the RGI identifies a glacier as tidewater, it will be treated as such anyway, but this parameter gives you the option to force it (note: setting the parameter to False - its default value - will not cause the model to treat RGI-identified tidewater glaciers as non-tidewater - there is no option to do that).</p>
+<h3 id="monitoring-the-optimization">Monitoring the Optimization</h3>
+<p>You can monitor the data assimilation process during inverse modeling in several ways:</p>
+<ul>
+<li><strong>Cost Components</strong>: Verify that the components of the cost function decrease over time. The cost values are printed during the optimization process, and a graph summarizing the results is generated at the end.</li>
+<li><strong>Live Monitoring</strong>: Set the parameters <code>"plot_result": true</code> and <code>"plt2d_live": true</code> to visualize the evolution of the optimized fields (e.g., ice thickness, surface ice speeds) in real-time. Additionally, observe the (hopefully decreasing) standard deviations displayed in the figures.</li>
+<li><strong>Post-Run Analysis</strong>: After the run, examine the <code>optimize.nc</code> file, which contains the results of the optimization. Ensure this file is configured to be written during the process.</li>
+<li><strong>Flux Divergence Check</strong>: If <code>divfluxfcz</code> is included in the parameter list <code>"assimilations.data_assimilation.cost"</code>, inspect the divergence of the flux to ensure it aligns with expectations.</li>
+</ul>
+<h3 id="relaxation">Relaxation</h3>
+<p>The parameter <code>data_assimilation.optimization.nb_relaxation_steps</code> (default value 0, meaning inactive) allows adding relaxation steps after the optimization. The idea is the following: during optimization, the algorithm always tries to enforce a smooth flux divergence field. This is currently done by adding divfluxfcz to the cost_list. However, I was never fully satisfied with the result, since this strong constraint often harms the fit to other quantities of interest. An alternative is to remove divfluxfcz from the cost_list and instead set nb_relaxation_steps, for example to 1000. In that case, a relaxation procedure is run after the optimization: we force the surface mass balance (SMB) to match a smoothed version of the flux divergence over 1000 iterations. The result is a slightly modified topg and usurf (within reasonable bounds), but with a much smoother flux divergence. Physically, this means that the data become consistent with ice physics, since the noisy flux divergence often observed in raw data or inversion output can be interpreted as a non-physical artifact. In short, I strongly recommend performing this relaxation in order to: i) prevent shocks when running the forward model, and ii) ensure that any inference from the flux divergence can be made without requiring additional ad-hoc smoothing.</p>
+<h3 id="3d-visualization">3D Visualization</h3>
+<p>The <code>data_assimilation</code> module outputs VTP files alongside NetCDF files, which greatly helps visualize your optimized/shaped bedrock with ParaView. Additionally, there is also an output module <code>write_vtp</code> that outputs sequences of VTK files that can be read by ParaView, offering new 3D visualization capabilities.  </p>
+<h2 id="parameters">Parameters</h2>
+<p>The complete default configuration file can be found here: <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/assimilations/data_assimilation.yaml">data_assimilation.yaml</a>.</p>
+<p>Structure of the parameters:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>data_assimilation
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── store_freq
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├── control_list
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>├── cost_list
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>├── variables
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>├── optimizer
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>├── optimization
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│   └── ...
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>├── regularization
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│   └── ...
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>├── fitting
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│   └── ...
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>├── divflux
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│   └── ...
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>├── scaling
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>│   └── ...
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>├── output
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>│   └── ...
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>└── cook
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    └── ...
+</span></code></pre></div>
+<p>Description of the parameters:</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Name</th>
+      <th style="width: 40%;">Description</th>
+      <th style="width: 20%; text-align: center;">Default value</th>
+      <th style="width: 15%; text-align: center;">Units</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code class="param_name">store_freq</code>
+      </td>
+      <td class="description_text">Frequency (in iterations) at which the combined DA mapping stores in-memory snapshots of the optimization variable fields (0 = disabled).</td>
+      <td style="text-align: center;">
+
+          <span class="integer_table">100</span>
+
+      </td>
+      <td style="text-align: center;">
+
+          <span class="units_text">—</span>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">control_list</code>
+      </td>
+      <td class="description_text">List of optimized variables for the optimization.</td>
+      <td style="text-align: center;">
+
+          <span class="list_table">['thk']</span>
+
+      </td>
+      <td style="text-align: center;">
+
+          <span class="units_text">—</span>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">cost_list</code>
+      </td>
+      <td class="description_text">List of cost components for the optimization.</td>
+      <td style="text-align: center;">
+
+          <span class="list_table">['velsurf', 'thk', 'icemask']</span>
+
+      </td>
+      <td style="text-align: center;">
+
+          <span class="units_text">—</span>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">variables</code>
+      </td>
+      <td class="description_text">List of variable specifications (name, transform, and optional bounds) defining which fields are jointly optimized by the combined data assimilation mapping.</td>
+      <td style="text-align: center;">
+
+          <span class="list_table">[{'name': 'thk', 'transform': 'identity'}, {'name': 'slidingco', 'transform': 'identity'}, {'name': 'arrhenius', 'transform': 'identity'}]</span>
+
+      </td>
+      <td style="text-align: center;">
+
+          <span class="units_text">—</span>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code class="param_name">optimizer</code>
+      </td>
+      <td class="description_text">Reserved field for optimizer selection at the top level; currently not read by the code — the active method is set by <code>optimization.method</code>.</td>
+      <td style="text-align: center;">
+
+          <span class="string_table">ADAM</span>
+
+      </td>
+      <td style="text-align: center;">
+
+          <span class="units_text">—</span>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="param-section" id="optimization">
+    <summary class="param-section-title">
+      <code>optimization</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.nbitmin</code>
+        </td>
+        <td class="description_text">Min iterations for the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">50</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.nbitmax</code>
+        </td>
+        <td class="description_text">Max iterations for the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">500</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.step_size</code>
+        </td>
+        <td class="description_text">Step size for the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.step_size_decay</code>
+        </td>
+        <td class="description_text">Decay step size parameter for the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.9</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.init_zero_thk</code>
+        </td>
+        <td class="description_text">Initialize the optimization with zero ice thickness.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.sole_mask</code>
+        </td>
+        <td class="description_text">Restrict gradient updates to the ice-covered area only, preventing changes to controls outside the glacier mask.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.retrain_iceflow_model</code>
+        </td>
+        <td class="description_text">Retrain the iceflow model simultaneously?</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.fix_opti_normalization_issue</code>
+        </td>
+        <td class="description_text">Formerly, the oce was mixing reduce_mean and l2_loss leading to dependence to the resolution of the grid</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.method</code>
+        </td>
+        <td class="description_text">Optimization method to use, either ADAM or L-BFGS.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">ADAM</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.obstacle_constraint</code>
+        </td>
+        <td class="description_text">Actions to apply obstacle constraints, either reproject or penalty or both (current default)</td>
+        <td style="text-align: center;">
+
+            <span class="list_table">['reproject']</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.optimizer_clipnorm</code>
+        </td>
+        <td class="description_text">If set, the gradient of each weight is individually clipped so that its norm is no higher than this value</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">10000000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.optimizer_epsilon</code>
+        </td>
+        <td class="description_text">A small constant for numerical stability for the Adam optimizer.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-07</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.pertubate</code>
+        </td>
+        <td class="description_text">Perturbate the emulator for training to get better gradients estimates along controls to be optimized</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.nb_relaxation_steps</code>
+        </td>
+        <td class="description_text">Number of forward ice dynamics relaxation steps applied after the final optimization iteration to refine the ice geometry solution.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.patience</code>
+        </td>
+        <td class="description_text">Window size (in iterations) for rolling-average early stopping: halts if the recent velsurf cost average exceeds 1.1x the historical best over this window (0 = disabled).</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="regularization">
+    <summary class="param-section-title">
+      <code>regularization</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.thk</code>
+        </td>
+        <td class="description_text">Regularization weight for the ice thickness in the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">10.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.thk_version</code>
+        </td>
+        <td class="description_text">Ice thickness regularization scheme: 1 = gradient-only (v1), 2 = combined gradient + second-derivative (v2).</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.thk_2nd_der</code>
+        </td>
+        <td class="description_text">Weight for the second-derivative (smoothness) term in the ice thickness regularization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1000000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.thk_1st_der</code>
+        </td>
+        <td class="description_text">Weight for the first-derivative (gradient) term in the ice thickness regularization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">100.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.thk_1st_der_disc_version</code>
+        </td>
+        <td class="description_text">Discretization scheme for the first-derivative regularization term (e.g., <code>new</code> or <code>old</code>).</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">new</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.abl_acc_balance</code>
+        </td>
+        <td class="description_text">Asymmetry factor for second-derivative regularization: accumulation zone is weighted by this value and ablation zone by its inverse; 1 = uniform weighting.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.slidingco</code>
+        </td>
+        <td class="description_text">Regularization weight for the slidingco field in the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.tau_ref</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.arrhenius</code>
+        </td>
+        <td class="description_text">Regularization weight for the arrhenius field in the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">10.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.divflux</code>
+        </td>
+        <td class="description_text">Regularization weight for the divergence field in the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.smooth_anisotropy_factor</code>
+        </td>
+        <td class="description_text">Smooth anisotropy factor for the ice thickness regularization in the optimization</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.smooth_anisotropy_factor_sl</code>
+        </td>
+        <td class="description_text">Smooth anisotropy factor for the slidingco regularization in the optimization</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.smooth_anisotropy_var</code>
+        </td>
+        <td class="description_text">Variable used to define the anisotropy direction for smoothing regularization (e.g., <code>vel</code>).</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">vel</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.convexity_weight</code>
+        </td>
+        <td class="description_text">Convexity weight for the ice thickness regularization in the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.convexity_power</code>
+        </td>
+        <td class="description_text">Power b in the area-volume scaling V ~ a * A^b taken from 'An estimate of global glacier volume', A. Grinsted, TC, 2013.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.3</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.to_regularize</code>
+        </td>
+        <td class="description_text">'Field to regularize: topg or thk.'</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">topg</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="fitting">
+    <summary class="param-section-title">
+      <code>fitting</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.usurfobs_std</code>
+        </td>
+        <td class="description_text">Confidence/STD of the top ice surface as input data for the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">2.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.velsurfobs_std</code>
+        </td>
+        <td class="description_text">Confidence/STD of the surface ice velocities as input data for the optimization (if 0, velsurfobs_std field must be given)</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m y<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.thkobs_std</code>
+        </td>
+        <td class="description_text">Confidence/STD of the ice thickness profiles (unless given).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">3.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.divfluxobs_std</code>
+        </td>
+        <td class="description_text">Confidence/STD of the flux divergence as input data for the optimization (if 0, divfluxobs_std field must be given)</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">TBD</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.volobsprop_std</code>
+        </td>
+        <td class="description_text">Proportional standard deviation of the target volume observation; scales the volume misfit cost term relative to the target volume (lower = stronger constraint).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.uniformize_thkobs</code>
+        </td>
+        <td class="description_text">uniformize the density of thkobs.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.include_low_speed_term</code>
+        </td>
+        <td class="description_text">Add a cost term that penalizes unrealistically low surface velocities in glacierized areas.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.velsurfobs_thr</code>
+        </td>
+        <td class="description_text">Threshold for the surface ice velocities as input data for the optimization, anything below this value will be ignored</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m y<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.log_slidingco</code>
+        </td>
+        <td class="description_text">Optimize the log of the sliding coefficient instead of the slidingco itself</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="divflux">
+    <summary class="param-section-title">
+      <code>divflux</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">divflux.method</code>
+        </td>
+        <td class="description_text">Compute the divergence of the flux using the upwind or centered method.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">upwind</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">divflux.force_zero_sum</code>
+        </td>
+        <td class="description_text">Add a penalty to the cost function to force the sum of the divergence of the flux to be zero</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="scaling">
+    <summary class="param-section-title">
+      <code>scaling</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">scaling.thk</code>
+        </td>
+        <td class="description_text">Scaling factor for the ice thickness in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">2.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">scaling.usurf</code>
+        </td>
+        <td class="description_text">Scaling factor for the ice thickness in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.5</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">scaling.slidingco</code>
+        </td>
+        <td class="description_text">Scaling factor for the slidingco in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0001</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">scaling.tau_ref</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.0001
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">scaling.arrhenius</code>
+        </td>
+        <td class="description_text">Scaling factor for the Arrhenius in the optimization, serves to adjust step-size of each control relative to each other</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="output">
+    <summary class="param-section-title">
+      <code>output</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">output.freq</code>
+        </td>
+        <td class="description_text">Frequency of the output for the optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">50</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">output.plot2d_live</code>
+        </td>
+        <td class="description_text">Show 2D inversion plots live during optimization.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">output.plot2d</code>
+        </td>
+        <td class="description_text">Save 2D inversion plots at each output step.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">output.save_result_in_ncdf</code>
+        </td>
+        <td class="description_text">Name of the NetCDF file in which the optimized fields are saved.</td>
+        <td style="text-align: center;">
+
+            <span class="file path_table">geology-optimized.nc</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">output.save_iterat_in_ncdf</code>
+        </td>
+        <td class="description_text">Save each optimization iteration to a NetCDF file for post-processing.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">output.editor_plot2d</code>
+        </td>
+        <td class="description_text">Optimized for VS Code (<code>vs</code>) or Spyder (<code>sp</code>) for live plotting.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">vs</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">output.vars_to_save</code>
+        </td>
+        <td class="description_text">List of variables to be recorded in the ncdf file.</td>
+        <td style="text-align: center;">
+
+            <span class="list_table">['usurf', 'thk', 'slidingco', 'velsurf_mag', 'velsurfobs_mag', 'divflux', 'icemask']</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<details class="param-section" id="cook">
+    <summary class="param-section-title">
+      <code>cook</code>
+
+    </summary>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 40%;">Description</th>
+          <th style="width: 20%; text-align: center;">Default value</th>
+          <th style="width: 15%; text-align: center;">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">cook.infer_params</code>
+        </td>
+        <td class="description_text">Infer slidingco and convexity weight from velocity observations.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">cook.tidewater_glacier</code>
+        </td>
+        <td class="description_text">Is the glacier you're trying to infer parameters for a tidewater type?</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">cook.vol_std</code>
+        </td>
+        <td class="description_text">Confidence/STD of the volume estimates from volume-area scaling.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1000.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">TBD</span>
+
+        </td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+  </details>
+
+<p><strong>Contributors:</strong> Guillaume Jouvet, Samuel Cook.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../processes/particles/" class="md-footer__link md-footer__link--prev" aria-label="Previous: particles">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                particles
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../pretraining/" class="md-footer__link md-footer__link--next" aria-label="Next: pretraining">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                pretraining
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/cite-linkify.js"></script>
+      
+    
+  </body>
+</html>

@@ -7,20 +7,30 @@
 {{ super() }}
 
 <body class="landing-page">
-   <!-- <a href="https://www.nature.com/articles/s41467-025-56168-3">
-    <img class="feature-img">
-  </a> -->
-  <div class="landing-container">
-    <h1>Model<br class="subheader">Glacier Evolution with IGM 3</h1>
- <!--    <p>Reproducible Science. Community-Driven. Scalable. </p> -->
-    <div class="landing-buttons">
-      <button onclick="location.href='../latest/Installation/'">Get Started Now</button>
-      <button onclick="location.href='../latest/about/help/'">Contact Us</button>
-    </div>
+
+<!-- <div class="landing-video">
+  <video autoplay muted playsinline>
+    <source src="assets/anim_particles.mp4" type="video/mp4">
+  </video>
+</div> -->
+
+<div class="landing-container">
+  <h1>Model<br>Glacier Evolution<br>with IGM</h1>
+  <p class="landing-tagline">
+    <span class="landing-pillar">⚡ <strong>Accessible</strong></span> ·
+    <span class="landing-pillar">🧩 <strong>Modular</strong></span> ·
+    <span class="landing-pillar">🔁 <strong>Reproducible</strong></span> ·
+    <span class="landing-pillar">📈 <strong>Scalable</strong></span>
+  </p>
+  <div class="landing-buttons">
+    <button onclick="location.href='getting_started/'">Get Started</button>
+    <button onclick="location.href='modules/introduction/'">Explore Modules</button>
+    <button onclick="location.href='gallery/'">Gallery</button>
   </div>
+</div>
+
 </body>
 
-  
 {% endblock %}
 {% block content %}{% endblock %}
 {% block footer %}{% endblock %}

@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Run your own glacier simulations in a fast, accurate, and user-friendly way.">
+        <meta name="description" content="A differentiable, modular, and GPU-accelerated ice flow model.">
       
       
       
         <link rel="canonical" href="https://igm-model.org/latest/modules/processes/enthalpy/">
       
       
-        <link rel="prev" href="../effective_pressure/">
+        <link rel="prev" href="../thk/">
       
       
-        <link rel="next" href="../flow_accumulation/">
+        <link rel="next" href="../subglacial_hydrology/">
       
       
         
@@ -265,6 +265,8 @@
           
   
   
+    
+  
   Installation
 
         </a>
@@ -281,11 +283,35 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../Running/" class="md-tabs__link">
+        <a href="../../../getting_started/" class="md-tabs__link">
           
   
   
+    
+  
   Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../configuration/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Configuration
 
         </a>
       </li>
@@ -307,6 +333,8 @@
           
   
   
+    
+  
   Modules
 
         </a>
@@ -323,11 +351,13 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../about/help/" class="md-tabs__link">
+        <a href="../../../developer/" class="md-tabs__link">
           
   
   
-  Help
+    
+  
+  Developer
 
         </a>
       </li>
@@ -359,17 +389,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../../about/credits_and_references/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../about/credits_and_references/" class="md-tabs__link">
+          
   
   
     
   
-  Credits
+  About
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -454,6 +487,12 @@
   
     
     
+      
+        
+      
+        
+      
+    
     
     
       
@@ -532,6 +571,14 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -552,7 +599,7 @@
   <span class="md-ellipsis">
     
   
-    Other
+    Guides
   
 
     
@@ -568,7 +615,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Other
+    Guides
   
 
           </label>
@@ -644,7 +691,7 @@
   <span class="md-ellipsis">
     
   
-    WSL Windows
+    WSL (Windows)
   
 
     
@@ -680,6 +727,16 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -730,14 +787,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Running/" class="md-nav__link">
+      <a href="../../../getting_started/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    How to Run IGM
+    Overview
   
 
     
@@ -759,6 +816,18 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -772,14 +841,345 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../tutorials/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/aletsch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aletsch: forward modelling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/aletsch_da/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aletsch: parameter calibration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/aletsch_inversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aletsch: ice-thickness inversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../best_practices/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Practices
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Best Practices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../best_practices/checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../best_practices/numerical_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical Tips
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../best_practices/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Using Hydra
+    Configuration
   
 
     
@@ -790,12 +1190,104 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Using Hydra
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hydra
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydra
   
 
           </label>
@@ -815,7 +1307,7 @@
   <span class="md-ellipsis">
     
   
-    Introduction
+    Overview
   
 
     
@@ -927,35 +1419,7 @@
   <span class="md-ellipsis">
     
   
-    Distributed Computing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../hydra/optuna_cluster/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Optuna on Cluster
+    Parameter Sweeps
   
 
     
@@ -1011,15 +1475,133 @@
   
   
   
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optuna
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Optuna
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../examples/Examples/" class="md-nav__link">
+      <a href="../../../hydra/optuna_cluster/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Examples
+    Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGM v2 → v3 Transition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/transition-IGM-3.1-to-3.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGM v3.1 → v3.2 Transition
   
 
     
@@ -1050,6 +1632,26 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1063,10 +1665,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -1084,8 +1686,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1109,7 +1711,7 @@
   <span class="md-ellipsis">
     
   
-    What are modules?
+    Overview
   
 
     
@@ -1129,35 +1731,17 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../core/" class="md-nav__link">
+    
+    
+      
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Core
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1169,17 +1753,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Input
+    Input Modules
   
 
     
@@ -1190,12 +1774,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Input
+    Input Modules
   
 
           </label>
@@ -1331,6 +1915,18 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1341,17 +1937,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Processes
+    Process Modules
   
 
     
@@ -1362,12 +1958,66 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Processes
+    Process Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_1" id="__nav_5_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Time
   
 
           </label>
@@ -1380,14 +2030,106 @@
   
   
     <li class="md-nav__item">
-      <a href="../avalanche/" class="md-nav__link">
+      <a href="../time/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    avalanche
+    time
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_2" id="__nav_5_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Atmosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Atmosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../climate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    climate
   
 
     
@@ -1408,14 +2150,112 @@
   
   
     <li class="md-nav__item">
-      <a href="../clim_glacialindex/" class="md-nav__link">
+      <a href="../smb/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    clim_glacialindex
+    smb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_3" id="__nav_5_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arrhenius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    arrhenius
   
 
     
@@ -1436,14 +2276,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../clim_oggm/" class="md-nav__link">
+      <a href="../iceflow/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    clim_oggm
+    iceflow
   
 
     
@@ -1464,42 +2304,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../data_assimilation/" class="md-nav__link">
+      <a href="../thk/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    data_assimilation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../effective_pressure/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    effective_pressure
+    thk
   
 
     
@@ -1643,29 +2455,9 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../flow_accumulation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    flow_accumulation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1677,15 +2469,33 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../gflex/" class="md-nav__link">
+    
+    
+      
         
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_4" id="__nav_5_3_4_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    gflex
+    Lithosphere
   
 
     
@@ -1693,11 +2503,19 @@
   
   
 
-      </a>
-    </li>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lithosphere
   
 
-              
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1706,350 +2524,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../glerosion/" class="md-nav__link">
+      <a href="../subglacial_hydrology/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    glerosion
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../iceflow/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    iceflow
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../particles/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    particles
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pretraining/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    pretraining
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../read_output/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    read_output
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../rockflow/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    rockflow
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../smb_accpdd/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    smb_accpdd
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../smb_oggm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    smb_oggm
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../smb_simple/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    smb_simple
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../texture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    texture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../thk/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    thk
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../time/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    time
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../vert_flow/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    vert_flow
+    subglacial_hydrology
   
 
     
@@ -2079,6 +2561,10 @@
   
     
     
+      
+        
+      
+    
     
     
       
@@ -2089,17 +2575,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_3_5" id="__nav_5_3_5_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    Output
+    Misc
   
 
     
@@ -2110,12 +2596,302 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_5">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Output
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../particles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    particles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assimilation Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Assimilation Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assimilations/data_assimilation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    data_assimilation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assimilations/pretraining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pretraining
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assimilations/field_inversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    field_inversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assimilations/time_relaxation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    time_relaxation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Output Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Output Modules
   
 
           </label>
@@ -2331,15 +3107,223 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_1" id="__nav_5_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cryosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../user_modules/" class="md-nav__link">
+      <a href="../avalanche/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    User
+    avalanche
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_2" id="__nav_5_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lithosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lithosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gflex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gflex
   
 
     
@@ -2360,14 +3344,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/variables/" class="md-nav__link">
+      <a href="../glerosion/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Variables
+    glerosion
   
 
     
@@ -2376,6 +3360,496 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rockflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rockflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_3" id="__nav_5_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hydrosphere
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydrosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flow_accumulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    flow_accumulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6_4" id="__nav_5_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Misc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../read_output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    read_output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../texture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    texture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Variables
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    State Variables
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../variables/igm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGM Names
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../variables/pism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PISM Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../variables/descriptive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descriptive Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2396,6 +3870,18 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -2406,17 +3892,18 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../developer/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
     
   
-    Help
+    Developer
   
 
     
@@ -2424,35 +3911,43 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Help
+    Developer
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
               
+            
+              
                 
   
   
   
   
     <li class="md-nav__item">
-      <a href="../../../about/help/" class="md-nav__link">
+      <a href="../../../developer/aliases/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Support
+    State Variable Aliases
   
 
     
@@ -2473,14 +3968,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../../developer/module_system/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    IGM 2 to 3 transition notes
+    Module System
   
 
     
@@ -2501,70 +3996,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/updates/" class="md-nav__link">
+      <a href="../../../developer/diagnostics/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Updates
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../about/tools/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Tools
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../about/FAQ/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    FAQ
+    Diagnostics
   
 
     
@@ -2618,6 +4057,64 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../about/credits_and_references/" class="md-nav__link">
         
@@ -2626,7 +4123,7 @@
   <span class="md-ellipsis">
     
   
-    Credits
+    Authors
   
 
     
@@ -2635,6 +4132,70 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/cite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Citing IGM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/help/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2699,11 +4260,37 @@
   
     
     
+      
+  
+  
+    
+    
       <li class="md-path__item">
-        <a href="../avalanche/" class="md-path__link">
+        <a href="../time/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Processes
+    Process Modules
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../arrhenius/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Cryosphere
   </span>
 
         </a>
@@ -2773,7 +4360,12 @@
 </table>
 <p>See the <a href="#parameters">parameters section</a> for parameter name changes.</p>
 </div>
-<p>The implementation is largely inspired by <a href="https://www.pism.io/">PISM</a> (Aschwanden et al., 2012)<sup id="fnref:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">1</a></sup>. Other references have also helped verify the implementation through benchmarks (Kleiner et al., 2015; Wang et al., 2020)<sup id="fnref:Kleiner2015"><a class="footnote-ref" href="#fn:Kleiner2015">2</a></sup> <sup id="fnref:Wang2020"><a class="footnote-ref" href="#fn:Wang2020">3</a></sup>. The <code>enthalpy</code> module will be described in further detail in the in-preparation paper for IGM 3 (Jouvet et al., 2026)<sup id="fnref:Jouvet2026"><a class="footnote-ref" href="#fn:Jouvet2026">4</a></sup>.</p>
+<p>The implementation is largely inspired by <a href="https://www.pism.io/">PISM</a> (Aschwanden et al., 2012)<sup id="fnref:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">1</a></sup>. Other references have also helped verify the implementation through benchmarks (Kleiner et al., 2015; Wang et al., 2020)<sup id="fnref:Kleiner2015"><a class="footnote-ref" href="#fn:Kleiner2015">2</a></sup> <sup id="fnref:Wang2020"><a class="footnote-ref" href="#fn:Wang2020">3</a></sup>. The <code>enthalpy</code> module is described in further detail in (The IGM developers, in prep.)<sup id="fnref:IGM"><a class="footnote-ref" href="#fn:IGM">4</a></sup>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">State variables</p>
+<p><strong>Reads:</strong> <code>thk</code>, <code>U</code>, <code>V</code>, <code>W</code>, <code>arrhenius</code></p>
+<p><strong>Writes:</strong> <code>E</code>, <code>basal_melt_rate</code></p>
+</div>
 <h2 id="physical-model">Physical model</h2>
 <p>The thermal state of glaciers can be complex, with some regions at the pressure-melting point while others are not. Two ice regimes are typically defined:</p>
 <ul>
@@ -2823,15 +4415,20 @@ K =
 </ol>
 <p>The computationally intensive step is solving the equation for <span class="arithmatex">\(E\)</span>. To achieve this efficiently, we use an operator splitting method:</p>
 <ul>
-<li>first, solve the horizontal advection equation with an explicit backward Euler method;</li>
-<li>then, solve the vertical advection-diffusion equation with an implicit solver.</li>
+<li>first, solve the horizontal advection equation explicitly with an upwind finite-difference scheme (forward Euler in time);</li>
+<li>then, solve the vertical advection-diffusion equation with an implicit solver (backward Euler).</li>
 </ul>
 <p>The implicit solver consists of the Thomas algorithm for tridiagonal linear systems, applied simultaneously to each vertical ice column.</p>
 <h2 id="coupling-with-ice-flow">Coupling with ice flow</h2>
 <p>The enthalpy module builds upon the <code>iceflow</code> module. To activate the coupling, set the following option:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.sliding.law = weertman</span>
 </span></code></pre></div>
-<p>To ensure proper functionality, also activate <code>vertical_iceflow</code>, use a relatively fine vertical discretization, and ensure sufficient retraining.</p>
+<p>To ensure proper functionality, also activate the vertical velocity computation, use a relatively fine vertical discretization, and ensure sufficient retraining:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">vertical_velocity</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">   </span><span class="c1"># required for vertical advection of enthalpy</span>
+</span></code></pre></div>
+<p>The vertical advection term in the enthalpy equation uses <code>state.W</code> produced by <code>iceflow.vertical_velocity</code>. Without it, vertical advection defaults to zero, which reduces accuracy in regions with significant vertical ice motion.</p>
 <h2 id="post-processing-of-auxiliary-variables">Post-processing of auxiliary variables</h2>
 <p>Variables derivable from the enthalpy field, such as temperature <span class="arithmatex">\(T\)</span>, pressure-melting point <span class="arithmatex">\(T_\mathrm{pmp}\)</span>, or water content <span class="arithmatex">\(\omega\)</span>, are not stored in state during the simulation. Since these are 3D fields, persisting them at every time step would impose a significant GPU memory overhead. They can instead be recomputed on demand. All utilities below are exported from <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/processes/enthalpy/__init__.py"><code>igm.processes.enthalpy</code></a>. Two high-level functions cover most use cases:</p>
 <table>
@@ -2894,21 +4491,17 @@ K =
 <h2 id="parameters">Parameters</h2>
 <p>The complete default configuration file can be found here: <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/enthalpy.yaml">enthalpy.yaml</a>.</p>
 <p>Structure of the parameters:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enthalpy
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── numerics
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│   └── ...
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── solver
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   └── ...
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── thermal
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   └── ...
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>├── surface
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── ...
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├── arrhenius
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   └── ...
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>├── till
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   └── ...
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>└── drainage
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    └── ...
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>enthalpy
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── numerics
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   └── ...
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>├── solver
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   └── ...
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>├── thermal
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   └── ...
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>├── surface
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   └── ...
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>└── drainage
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    └── ...
 </span></code></pre></div>
 <p>Description of the parameters:</p>
 <details class="param-section" id="numerics">
@@ -3344,599 +4937,6 @@ K =
     </table>
   </details>
 
-<details class="param-section" id="arrhenius">
-    <summary class="param-section-title">
-      <code>arrhenius</code>
-
-    </summary>
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 25%;">Name</th>
-          <th style="width: 40%;">Description</th>
-          <th style="width: 20%; text-align: center;">Default value</th>
-          <th style="width: 15%; text-align: center;">Units</th>
-        </tr>
-      </thead>
-      <tbody>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.A_cold</code>
-        </td>
-        <td class="description_text">Pre-exponential factor for cold ice.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">3.985e-13</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">Pa<span class="math">\( ^{-n} \)</span> s<span class="math">\( ^{-1} \)</span></span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.A_warm</code>
-        </td>
-        <td class="description_text">Pre-exponential factor for warm ice.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">1916.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">Pa<span class="math">\( ^{-n} \)</span> s<span class="math">\( ^{-1} \)</span></span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.Q_cold</code>
-        </td>
-        <td class="description_text">Activation energy for cold ice.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">60000.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">J mol<span class="math">\( ^{-1} \)</span></span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.Q_warm</code>
-        </td>
-        <td class="description_text">Activation energy for warm ice.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">139000.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">J mol<span class="math">\( ^{-1} \)</span></span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.T_threshold</code>
-        </td>
-        <td class="description_text">Temperature threshold between cold and warm regimes.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">263.15</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">K</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.omega_coef</code>
-        </td>
-        <td class="description_text">Water content enhancement coefficient.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">181.25</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.omega_max</code>
-        </td>
-        <td class="description_text">Maximum water content for enhancement.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.01</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">arrhenius.R</code>
-        </td>
-        <td class="description_text">Universal gas constant.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">8.314</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">J mol<span class="math">\( ^{-1} \)</span> K<span class="math">\( ^{-1} \)</span></span>
-
-        </td>
-      </tr>
-
-
-
-      </tbody>
-    </table>
-  </details>
-
-<details class="param-section" id="till">
-    <summary class="param-section-title">
-      <code>till</code>
-
-    </summary>
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 25%;">Name</th>
-          <th style="width: 40%;">Description</th>
-          <th style="width: 20%; text-align: center;">Default value</th>
-          <th style="width: 15%; text-align: center;">Units</th>
-        </tr>
-      </thead>
-      <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.phi</code>
-        </td>
-        <td class="description_text">Till friction angle (uniform case).</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">30.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">°</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.phi_min</code>
-        </td>
-        <td class="description_text">Friction angle at bed_min.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">15.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">°</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.phi_max</code>
-        </td>
-        <td class="description_text">Friction angle at bed_max.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">45.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">°</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.bed_min</code>
-        </td>
-        <td class="description_text">Minimum bed elevation for interpolation.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">None</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.bed_max</code>
-        </td>
-        <td class="description_text">Maximum bed elevation for interpolation.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">None</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.tauc_min</code>
-        </td>
-        <td class="description_text">Minimum yield stress.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">100000.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">Pa</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.tauc_max</code>
-        </td>
-        <td class="description_text">Maximum yield stress.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">10000000000.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">Pa</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.tauc_ice_free</code>
-        </td>
-        <td class="description_text">Yield stress for ice-free areas.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">1000000.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">Pa</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.friction.u_ref</code>
-        </td>
-        <td class="description_text">Reference sliding velocity.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">100.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span></span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.hydro.h_water_till_max</code>
-        </td>
-        <td class="description_text">Maximum till water layer thickness.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">2.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.hydro.N_ref</code>
-        </td>
-        <td class="description_text">Reference effective pressure.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">1000.0</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">Pa</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.hydro.e_ref</code>
-        </td>
-        <td class="description_text">Reference void ratio.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.69</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.hydro.C_c</code>
-        </td>
-        <td class="description_text">Till compressibility coefficient.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.12</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.hydro.delta</code>
-        </td>
-        <td class="description_text">Minimum effective pressure fraction.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.02</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">till.hydro.drainage_rate</code>
-        </td>
-        <td class="description_text">Till drainage rate.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">0.001</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span></span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-      </tbody>
-    </table>
-  </details>
-
 <details class="param-section" id="drainage">
     <summary class="param-section-title">
       <code>drainage</code>
@@ -4097,7 +5097,7 @@ K =
     </table>
   </details>
 
-<p><strong>Contributors</strong>: G. Jouvet, T. Gregov, L. Bacchin.</p>
+<p><strong>Contributors:</strong> Guillaume Jouvet, Thomas Gregov, Lucie Bacchin.</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -4110,8 +5110,8 @@ K =
 <li id="fn:Wang2020">
 <p>Wang, Y., Zhang, T., Xiao, C., Ren, J., &amp; Wang, Y. (2020). A two-dimensional, higher-order, enthalpy-based thermomechanical ice flow model for mountain glaciers and its benchmark experiments. <em>Computers &amp; Geosciences</em>, <em>141</em>, 104526. <a href="https://doi.org/10.1016/j.cageo.2020.104526">https://doi.org/10.1016/j.cageo.2020.104526</a>&#160;<a class="footnote-backref" href="#fnref:Wang2020" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
-<li id="fn:Jouvet2026">
-<p>Jouvet, G., Cook, S., Cordonnier, G., Finley, B., Henz, A., Herrmann, O., Maussion, F., Mey, J., Scherler, D., &amp; Welty, E. (2026). <em>Concepts and capabilities of the instructed glacier model</em>. <a href="https://doi.org/10.31223/x5t99c">https://doi.org/10.31223/x5t99c</a>&#160;<a class="footnote-backref" href="#fnref:Jouvet2026" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<li id="fn:IGM">
+<p>The IGM developers. (in prep.). <em>IGM: An accessible, modular, differentiable, and GPU-accelerated high-order ice flow model</em>. <a href="https://doi.org/10.31223/X5GB6G">https://doi.org/10.31223/X5GB6G</a>&#160;<a class="footnote-backref" href="#fnref:IGM" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -4132,6 +5132,8 @@ K =
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -4144,7 +5146,7 @@ K =
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../effective_pressure/" class="md-footer__link md-footer__link--prev" aria-label="Previous: effective_pressure">
+          <a href="../thk/" class="md-footer__link md-footer__link--prev" aria-label="Previous: thk">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4154,20 +5156,20 @@ K =
                 Previous
               </span>
               <div class="md-ellipsis">
-                effective_pressure
+                thk
               </div>
             </div>
           </a>
         
         
           
-          <a href="../flow_accumulation/" class="md-footer__link md-footer__link--next" aria-label="Next: flow_accumulation">
+          <a href="../subglacial_hydrology/" class="md-footer__link md-footer__link--next" aria-label="Next: subglacial_hydrology">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                flow_accumulation
+                subglacial_hydrology
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4206,7 +5208,7 @@ K =
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
