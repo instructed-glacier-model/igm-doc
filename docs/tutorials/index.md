@@ -16,7 +16,7 @@ Step-by-step guides for running IGM on the Great Aletsch Glacier. Each tutorial 
     <h3>Aletsch: forward run</h3>
     <p>Four progressive steps from a simple ELA-based SMB to a realistic temperature-index model with custom modules and climate forcing.</p>
     <div class="tutorial-card-concepts">
-      <span>smb_simple</span><span>custom modules</span><span>climate forcing</span><span>iceflow</span>
+      <span>smb</span><span>custom modules</span><span>climate forcing</span><span>iceflow</span>
     </div>
     <div class="tutorial-card-footer">View tutorial →</div>
   </a>

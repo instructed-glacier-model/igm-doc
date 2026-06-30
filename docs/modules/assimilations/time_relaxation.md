@@ -56,7 +56,7 @@ where $T$ is the *target* (observed) state field and $M$ is the *current* (model
 Each iteration proceeds as:
 
 ```
-1. pre_processes.update          (e.g. effective_pressure, smb_simple)
+1. pre_processes.update          (e.g. effective_pressure, smb)
 2. forward_model.update          (default: iceflow)
 3. ensure derived fields         (velsurf_mag, divflux, amb)
 4. advance time                  (CFL-limited dt + save-time alignment)
@@ -166,21 +166,23 @@ defaults:
 defaults:
   - override /processes:
     - iceflow
-    - smb_simple
+    - smb
   - override /assimilations:
     - time_relaxation
 
 processes:
-  smb_simple:
-    update_freq: 1.0
-    array:
-      - ["time", "gradabl", "gradacc", "ela", "accmax"]
-      - [0, 0.007, 0.004, 3050, 2.0]
+  smb:
+    method: simple
+    simple:
+      update_freq: 1.0
+      array:
+        - ["time", "gradabl", "gradacc", "ela", "accmax"]
+        - [0, 0.007, 0.004, 3050, 2.0]
 
 assimilations:
   time_relaxation:
     forward_model: iceflow
-    pre_processes: [smb_simple]
+    pre_processes: [smb]
     time:
       start: 0.0
       end: 100.0

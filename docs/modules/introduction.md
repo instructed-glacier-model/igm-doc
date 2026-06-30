@@ -43,11 +43,11 @@ Maintained by the IGM development team, well-tested, and stable across releases.
 
 ### Assimilation
 
-{{ render_assimilation_cards(community=False) }}
+{{ render_assimilation_cards(kind="core") }}
 
 ### Process
 
-{{ render_process_cards(community=False) }}
+{{ render_process_cards(kind="core") }}
 
 ### Output
 
@@ -92,7 +92,7 @@ Contributed by the broader research community. These modules extend IGM with spe
 <summary>Show / hide community process modules</summary>
 <div class="community-modules-body">
 
-{{ render_process_cards(community=True) }}
+{{ render_process_cards(kind="community") }}
 
 </div>
 </details>

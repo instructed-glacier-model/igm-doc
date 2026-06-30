@@ -16,7 +16,7 @@ This command might produce a configuration structure like so
 core:
 	...
 processes:
-  smb_simple:
+  smb:
 	...
   iceflow:
 	...
@@ -47,7 +47,7 @@ defaults:
   - override /inputs: 
     - local
   - override /processes: 
-    - smb_simple
+    - smb
     - iceflow
     - time
     - thk
@@ -57,7 +57,7 @@ defaults:
     - plot2d
 
 processes:
-  smb_simple:
+  smb:
 	...
   time:
 	...
@@ -86,7 +86,7 @@ defaults:
   - override /inputs: 
     - local
   - override /processes: 
-    - smb_simple
+    - smb
     - iceflow
     - time
     - thk
@@ -104,7 +104,7 @@ defaults:
   - override /inputs: 
     - local
   - override /processes: 
-    - smb_simple
+    - smb
     - iceflow
     - time
     - thk
@@ -158,7 +158,7 @@ defaults:
   - override /inputs: 
     - local
   - override /processes: 
-    - smb_simple
+    - smb
     - iceflow
     - time
     - thk

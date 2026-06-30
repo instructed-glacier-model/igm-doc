@@ -18,7 +18,7 @@ EXCLUDE_VARS = {"W", "wvelbase", "wvelsurf", "air_temp", "air_temp_sd", "precipi
 
 
 def _load_module_io() -> dict:
-    """Load needs/updates/community from each module's YAML in igm/processes/."""
+    """Load needs/updates/type from each module's YAML in igm/processes/."""
     processes_root = Path(__file__).parent.parent / "igm" / "processes"
     result = {}
     for mod_dir in sorted(processes_root.iterdir()):
@@ -36,7 +36,7 @@ def _load_module_io() -> dict:
                 result[name] = {
                     "needs":     needs,
                     "updates":   updates,
-                    "community": bool(data.get("community", False)),
+                    "type":      str(data.get("type") or "core"),
                 }
         except Exception as e:
             print(f"Warning: could not load {yaml_path}: {e}")
@@ -45,15 +45,16 @@ def _load_module_io() -> dict:
 
 _module_io = _load_module_io()
 
+# Graph shows core modules only; community, experimental and deprecated are excluded.
 CORE_PROCESSES = {
     k: {"needs": v["needs"], "updates": v["updates"]}
     for k, v in _module_io.items()
-    if not v["community"]
+    if v["type"] == "core"
 }
 COMMUNITY_PROCESSES = {
     k: {"needs": v["needs"], "updates": v["updates"]}
     for k, v in _module_io.items()
-    if v["community"]
+    if v["type"] == "community"
 }
 
 # Graph uses core modules only

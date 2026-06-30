@@ -110,13 +110,13 @@ Available options in 'user/conf/processes':
 ```
 ## The user conf template
 
-A user configuration file **must follow the same template as the built-in modules**: all of the module's parameters are nested under a single top-level key named after the module. Compare a built-in file with a user one — they are now identical in shape:
+A user configuration file **must follow the same template as the built-in modules**: all of the module's parameters are nested under a single top-level key named after the module. Compare a built-in file with a user one — both wrap every parameter under one top-level key named after the module:
 
-```yaml title="igm/conf/processes/smb_simple.yaml (built-in)"
-smb_simple:
+```yaml title="igm/conf/processes/avalanche.yaml (built-in)"
+avalanche:
   update_freq: 1.0
-  file: param.txt
-  array: []
+  angleOfRepose: 30.0
+  stop_redistribution_thk: 0.02
 ```
 
 ```yaml title="user/conf/processes/smb_accmelt.yaml (user)"

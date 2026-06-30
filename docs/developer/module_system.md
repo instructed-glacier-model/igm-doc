@@ -9,7 +9,7 @@ The full set of fields, illustrated with the `enthalpy` module:
 ```yaml
 description: Solve the 3D enthalpy equation for temperature, water content, and basal melt
 category: cryosphere
-community: false
+type: core
 authors: [Guillaume Jouvet, Thomas Gregov, Lucie Bacchin]
 needs:       [thk, U, V, W, arrhenius]
 updates:     [E, basal_melt_rate]
@@ -20,11 +20,24 @@ diagnostics: [T, omega, E_pmp, T_pmp, T_pa, T_pa_b, E_s, T_s]
 |---|---|
 | `description` | One-line summary shown in module cards and the dependency graph |
 | `category` | `atmosphere`, `cryosphere`, `lithosphere`, `hydrosphere`, or `misc` |
-| `community` | `false` for core modules, `true` for community contributions |
+| `type` | Module maturity tier — `core`, `community`, `experimental`, or `deprecated` (see below). Defaults to `core` if omitted |
 | `authors` | List of contributor names |
 | `needs` | Variables read by `update()` — validated at startup |
 | `updates` | Variables written by `update()` every timestep |
 | `diagnostics` | Variables that can be computed on demand by `compute_diagnostics()` (optional) |
+
+### Module type (maturity tier)
+
+The `type` field controls how a module is presented in this documentation:
+
+| `type` | Meaning | Documentation |
+|---|---|---|
+| `core` | Finished, maintained module | Shown in the main module grid and the dependency graph |
+| `community` | Useful community contribution | Shown in the collapsible *Community modules* grid |
+| `experimental` | Untested work in progress | **Ignored** — hidden from the documentation entirely |
+| `deprecated` | Scheduled for removal in the next release | **Ignored** — hidden from the documentation entirely |
+
+If `type` is omitted it defaults to `core`. The field is documentation-only — it has no effect on the IGM runtime. Only `core` and `community` modules are documented; `experimental` and `deprecated` modules have **no documentation page** and do not appear in the navigation, the module cards, or the dependency graph.
 
 ## needs and updates
 
@@ -46,7 +59,7 @@ Create `mymodule.yaml` next to `mymodule.py` and fill in all fields:
 ```yaml
 description: Compute surface mass balance from a temperature index model
 category: atmosphere
-community: true
+type: community
 authors: [Your Name]
 needs:   [t, usurf, air_temp]
 updates: [smb]
@@ -55,7 +68,7 @@ updates: [smb]
 Checklist:
 
 - [ ] `description` is one sentence, no trailing period
-- [ ] `community: true` for any non-core contribution
+- [ ] `type` set to the right tier (`core` / `community` / `experimental` / `deprecated`)
 - [ ] `needs` lists only variables that `update()` actually reads
 - [ ] `updates` lists all variables that `update()` writes
 - [ ] If the module has `compute_diagnostics()`, add a `diagnostics:` list
@@ -81,7 +94,7 @@ The skill refuses to run unless the module you are documenting already has **all
 
 | Required | Path | Notes |
 |---|---|---|
-| Metadata YAML | `<section>/<name>/<name>.yaml` | The file described [above](#metadata-format) — `description`, `category`, `community`, `authors`, `needs`, `updates` |
+| Metadata YAML | `<section>/<name>/<name>.yaml` | The file described [above](#metadata-format) — `description`, `category`, `type`, `authors`, `needs`, `updates` |
 | Default config | `conf/<section>/<name>.yaml` | The module's Hydra config |
 | Config help | `conf_help/<section>/<name>.yaml` | Per-parameter `Type` / `Units` / `Description`, mirroring the config's shape |
 | Source package | `<section>/<name>/` | The Python package, including `<name>.py` |

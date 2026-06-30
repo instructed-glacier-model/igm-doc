@@ -97,7 +97,7 @@ parameters:
     low: 30.0
     high: 150.0
 
-  - name: processes.smb_simple.array.1.3    # ELA (row 1, column 3 of the SMB array)
+  - name: processes.smb.simple.array.1.3    # ELA (row 1, column 3 of the SMB array)
     type: float
     low: 2500.0
     high: 3200.0
@@ -358,7 +358,7 @@ parameters:
     low: 30.0
     high: 150.0
 
-  - name: processes.smb_simple.array.1.3    # ELA
+  - name: processes.smb.simple.array.1.3    # ELA
     type: float
     low: 2500.0
     high: 3200.0

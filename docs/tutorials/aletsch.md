@@ -36,7 +36,7 @@ The simplest possible glacier simulation: ice flow driven by a built-in surface 
 
 ### How it works
 
-The `smb_simple` module computes a piecewise-linear mass-balance profile at each grid point based on surface elevation. The profile is described by three numbers:
+The `smb` module with `method: simple` computes a piecewise-linear mass-balance profile at each grid point based on surface elevation. The profile is described by three numbers:
 
 - **ELA** — elevation at which SMB = 0
 - **`gradabl`** — ablation gradient below the ELA (m w.e. m⁻¹ yr⁻¹)
@@ -53,7 +53,7 @@ defaults:
   - override /inputs:
     - local
   - override /processes:
-    - smb_simple
+    - smb
     - iceflow
     - time
     - thk
@@ -66,12 +66,14 @@ inputs:
     filename: input.nc
 
 processes:
-  smb_simple:
-    array:
-      - ["time", "gradabl", "gradacc", "ela", "accmax"]
-      - [1900,    0.009,     0.005,    2800,   2.0]
-      - [2000,    0.009,     0.005,    2900,   2.0]
-      - [2100,    0.009,     0.005,    3300,   2.0]
+  smb:
+    method: simple
+    simple:
+      array:
+        - ["time", "gradabl", "gradacc", "ela", "accmax"]
+        - [1900,    0.009,     0.005,    2800,   2.0]
+        - [2000,    0.009,     0.005,    2900,   2.0]
+        - [2100,    0.009,     0.005,    3300,   2.0]
   time:
     start: 1900.0
     end:   2000.0
@@ -80,7 +82,7 @@ processes:
 
 The ELA rises from 2800 m in 1900 to 3300 m by 2100, thinning the glacier as the climate warms. `accmax` caps accumulation at 2 m yr⁻¹ to prevent unrealistic build-up at high elevations.
 
-The process order matters: `smb_simple` must run before `iceflow` (which needs the SMB field), and `iceflow` before `thk` (which needs the velocity field to evolve thickness).
+The process order matters: `smb` must run before `iceflow` (which needs the SMB field), and `iceflow` before `thk` (which needs the velocity field to evolve thickness).
 
 ### Run
 
@@ -98,7 +100,7 @@ ncview outputs/*/output.nc
 
 ## Step 2: Custom SMB module
 
-This step replaces `smb_simple` with a **user-defined module** (`mysmb`) that computes SMB from a sinusoidal ELA signal. The physics are simple, but the point is the workflow: how to write, register, and use your own process module.
+This step replaces `smb` with a **user-defined module** (`mysmb`) that computes SMB from a sinusoidal ELA signal. The physics are simple, but the point is the workflow: how to write, register, and use your own process module.
 
 ### How custom modules work
 
@@ -115,7 +117,7 @@ defaults:
   - override /inputs:
     - local
   - override /processes:
-    - mysmb        # replaces smb_simple
+    - mysmb        # replaces smb
     - iceflow
     - time
     - thk

@@ -18,7 +18,7 @@ defaults:
   - override /inputs: 
     - local
   - override /processes: 
-    - smb_simple
+    - smb
     - iceflow
     - time
     - thk
@@ -34,12 +34,14 @@ inputs:
        ratio: 1
 
 processes:
-  smb_simple:
-    array:
-      - ["time", "gradabl", "gradacc", "ela", "accmax"]
-      - [1900, 0.009, 0.005, 2800, 2.0]
-      - [2000, 0.009, 0.005, 2900, 2.0]
-      - [2100, 0.009, 0.005, 3300, 2.0]
+  smb:
+    method: simple
+    simple:
+      array:
+        - ["time", "gradabl", "gradacc", "ela", "accmax"]
+        - [1900, 0.009, 0.005, 2800, 2.0]
+        - [2000, 0.009, 0.005, 2900, 2.0]
+        - [2100, 0.009, 0.005, 3300, 2.0]
   time:
     start: 1900.0
     end: 2000.0

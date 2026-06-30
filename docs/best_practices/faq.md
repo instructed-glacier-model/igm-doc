@@ -35,15 +35,17 @@
 
     See [Numerical Tips](numerical_tips.md) for a full explanation of the CFL condition.
 
-??? question "How do I choose between `smb_simple`, `smb_oggm`, and `smb_accpdd`?"
+??? question "How do I choose the `smb` method (`simple`, `oggm`, or `accpdd`)?"
 
-    | Module | Best for |
+    Set `processes.smb.method`:
+
+    | Method | Best for |
     |---|---|
-    | `smb_simple` | Quick tests, conceptual experiments, idealised setups |
-    | `smb_oggm` | Real glaciers where OGGM data is available; calibrated against geodetic mass balance |
-    | `smb_accpdd` | Studies where explicit snowpack or melt-factor sensitivity matters |
+    | `simple` | Quick tests, conceptual experiments, idealised setups |
+    | `oggm` | Real glaciers where OGGM data is available; calibrated against geodetic mass balance |
+    | `accpdd` | Studies where explicit snowpack or melt-factor sensitivity matters |
 
-    Start with `smb_oggm` for real-world applications — it is calibrated and requires no extra data beyond what `oggm_shop` provides.
+    Start with `method: oggm` for real-world applications — it is calibrated and requires no extra data beyond what `oggm_shop` provides.
 
 ??? question "How do I create or modify NetCDF input files?"
     The [NCO](http://nco.sourceforge.net/) toolkit provides convenient command-line operations:

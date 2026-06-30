@@ -15,7 +15,7 @@ The checklist below helps you avoid common pitfalls before finalising your study
 ## Physical plausibility
 
 - [ ] **Volume and area time series.** Plot total ice volume and area over time. Abrupt jumps or monotonic growth to unrealistic values are red flags.
-- [ ] **Mass balance.** Confirm the chosen SMB module is appropriate for your application — see the [FAQ](faq.md) for a quick comparison of `smb_simple`, `smb_oggm`, and `smb_accpdd`.
+- [ ] **Mass balance.** Confirm the chosen SMB method is appropriate for your application — see the [FAQ](faq.md) for a quick comparison of the `smb` methods (`simple`, `oggm`, `accpdd`).
 - [ ] **Ice velocity.** Compare modelled surface velocities against observations where available. Values exceeding a few km yr⁻¹ for alpine glaciers are unusual.
 
 ---
@@ -36,7 +36,7 @@ See [Numerical Tips](numerical_tips.md#data-assimilation-and-inversion) for deep
 
     ```bash
     igm_run +experiment=params \
-      processes.smb_simple.grad_abl=0.005,0.007,0.009 \
+      processes.smb.simple.array.1.1=0.005,0.007,0.009 \
       --multirun
     ```
 

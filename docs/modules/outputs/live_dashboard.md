@@ -12,7 +12,7 @@ A three-panel planview dashboard updated live during the simulation:
 
 The current simulation time is displayed as a centered title above the panels. A status bar above the time series shows `dt`, volume, area, max velocity, and time.
 
-**ELA computation:** If the `smb_simple` module is active (detected via `state.smbpar`), the full ELA forcing curve is shown as a dashed line from the start. Otherwise, the module computes a live ELA estimate at each save step as the mean surface elevation where $|SMB| < 0.5$ m/yr and ice thickness $> 1$ m.
+**ELA computation:** If the `smb` module is running with `method: simple` (detected via `state.smbpar`), the full ELA forcing curve is shown as a dashed line from the start. Otherwise, the module computes a live ELA estimate at each save step as the mean surface elevation where $|SMB| < 0.5$ m/yr and ice thickness $> 1$ m.
 
 The figure size adapts automatically to the domain's aspect ratio: the configured width (`figsize[0]`) is used, and the height is computed so that the two map panels fill their space without dead space.
 

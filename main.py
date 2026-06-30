@@ -19,6 +19,28 @@ import os
 from pathlib import Path
 import markdown as _md
 
+# Module visibility types (set via `type:` in each module's <name>.yaml):
+#   core         — finished modules, shown in the main docs grid
+#   community    — community-contributed modules, shown in the community grid
+#   experimental — work-in-progress, ignored (hidden from the documentation)
+#   deprecated   — scheduled for removal, ignored (hidden from the documentation)
+# Only core and community modules are documented; the others are skipped.
+_DEFAULT_TYPE = "core"
+
+
+def _module_type(mod):
+    """Return a module's visibility type, defaulting to 'core'."""
+    return str(mod.get("type") or _DEFAULT_TYPE)
+
+
+def _module_in_kind(mod, kind):
+    """Whether a module belongs in the card grid for the given kind.
+
+    Each ``kind`` ("core" or "community") renders exactly the modules of that
+    type. Experimental and deprecated modules are never shown.
+    """
+    return _module_type(mod) == kind
+
 
 def define_env(env):
     # Load bibliography once at initialization
@@ -281,8 +303,12 @@ def define_env(env):
         return module_cache
 
     @env.macro
-    def render_process_cards(community=False):
-        """Render a flat module-cards grid for core or community process modules.
+    def render_process_cards(kind="core"):
+        """Render a flat module-cards grid for process modules of a given kind.
+
+        ``kind`` selects which modules are shown — "core" or "community" —
+        rendering exactly the modules of that type. Modules tagged
+        "experimental" or "deprecated" are never rendered.
 
         Reads modules.yaml for module data and categories.yaml for display
         metadata and ordering. Cards are emitted in the category order defined
@@ -306,7 +332,7 @@ def define_env(env):
             for mod_name, mod in modules.items():
                 if mod.get("category") != cat_key:
                     continue
-                if bool(mod.get("community", False)) != community:
+                if not _module_in_kind(mod, kind):
                     continue
                 name = escape(str(mod_name))
                 desc = escape(str(mod.get("description", "")))
@@ -322,8 +348,12 @@ def define_env(env):
         return '<div class="module-cards">\n' + "\n".join(cards) + "\n</div>"
 
     @env.macro
-    def render_assimilation_cards(community=False):
-        """Render a flat module-cards grid for core or community assimilation modules.
+    def render_assimilation_cards(kind="core"):
+        """Render a flat module-cards grid for assimilation modules of a given kind.
+
+        ``kind`` follows the same convention as ``render_process_cards`` —
+        rendering exactly the assimilation modules of that type. "experimental"
+        and "deprecated" modules are never rendered.
 
         Plain cards (no category chip), matching the assimilation section's style.
         Modules are read from their per-module <name>.yaml metadata and emitted in
@@ -338,7 +368,7 @@ def define_env(env):
             mod = modules[mod_name]
             if mod.get("category") != "assimilations":
                 continue
-            if bool(mod.get("community", False)) != community:
+            if not _module_in_kind(mod, kind):
                 continue
             name = escape(str(mod_name))
             desc = escape(str(mod.get("description", "")))

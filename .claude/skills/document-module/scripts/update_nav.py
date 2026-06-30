@@ -12,15 +12,17 @@ The edit is a surgical text insertion (never a YAML parse-and-redump), so commen
 and curated ordering are untouched. After editing, the file is re-parsed to confirm
 it is still valid YAML; if not, nothing is written.
 
-Group resolution:
-    processes (core)      -> Process Modules   > <Category label>   (nested)
-    processes (community) -> Community Modules  > <Category label>   (nested)
-    assimilations         -> Assimilation Modules                   (flat)
-    inputs                -> Input Modules                           (flat)
-    outputs               -> Output Modules                          (flat)
+Group resolution (driven by the module's `type:` field, default `core`):
+    processes type=core      -> Process Modules   > <Category label>   (nested)
+    processes type=community -> Community Modules  > <Category label>   (nested)
+    assimilations            -> Assimilation Modules                   (flat)
+    inputs                   -> Input Modules                           (flat)
+    outputs                  -> Output Modules                          (flat)
 
-A community module outside `processes` has no existing nav home; the script makes
-no change and prints a REVIEW note instead of guessing.
+type=experimental and type=deprecated modules are ignored (hidden from the
+documentation); the script adds no nav entry. A community module outside
+`processes` has no existing nav home; the script makes no change and prints a
+REVIEW note instead of guessing.
 
 Usage:
     python scripts/update_nav.py <module-name>
@@ -161,7 +163,16 @@ def main():
         sys.exit(f"missing per-module metadata: {meta_path}")
     with open(meta_path) as f:
         meta = yaml.safe_load(f) or {}
-    community = bool(meta.get("community", False))
+    mod_type = str(meta.get("type") or "core")
+    # experimental and deprecated modules are kept out of the documentation
+    if mod_type in ("experimental", "deprecated"):
+        print(
+            f"NAV SKIP: '{name}' is type={mod_type}; {mod_type} modules are "
+            f"ignored (hidden from the documentation). No nav entry is added, and "
+            f"no documentation page should be created for it."
+        )
+        return
+    community = mod_type == "community"
 
     mkdocs = os.path.join(docs_root, "mkdocs.yml")
     if not os.path.isfile(mkdocs):

@@ -48,6 +48,11 @@ nav:
           - load_ncdf: modules/inputs/load_ncdf.md
           - load_tif: modules/inputs/load_tif.md
           - oggm_shop: modules/inputs/oggm_shop.md
+      # Nav groups mirror each module's `type:` tag (see developer/module_system.md):
+      #   core -> Process Modules, community -> Community Modules.
+      #   `experimental` and `deprecated` modules are ignored: they have no
+      #   documentation page (their content is folded into the unified `climate`
+      #   and `smb` dispatcher pages).
       - Process Modules:
           - Time:
               - time: modules/processes/time.md
@@ -61,8 +66,6 @@ nav:
               - enthalpy: modules/processes/enthalpy.md
           - Lithosphere:
               - subglacial_hydrology: modules/processes/subglacial_hydrology.md
-          # - Hydrosphere:
-          #     - calving_rate: modules/processes/calving_rate.md
           - Misc:
               - particles: modules/processes/particles.md
       - Assimilation Modules:
@@ -79,22 +82,14 @@ nav:
           - plot2d: modules/outputs/plot2d.md
           - live_dashboard: modules/outputs/live_dashboard.md
       - Community Modules:
-          # - Atmosphere:
-          #     - clim_glacialindex: modules/processes/clim_glacialindex.md
-          #     - clim_oggm: modules/processes/clim_oggm.md
-          #     - clim_station: modules/processes/clim_station.md
-          #     - smb_simple: modules/processes/smb_simple.md
-          #     - smb_accpdd: modules/processes/smb_accpdd.md
-          #     - smb_oggm: modules/processes/smb_oggm.md
           - Cryosphere:
               - avalanche: modules/processes/avalanche.md
-          #     - stress: modules/processes/stress.md
           - Lithosphere:
               - gflex: modules/processes/gflex.md
               - glerosion: modules/processes/glerosion.md
               - rockflow: modules/processes/rockflow.md
-          # - Hydrosphere:
-          #     - flow_accumulation: modules/processes/flow_accumulation.md
+          - Hydrosphere:
+              - flow_accumulation: modules/processes/flow_accumulation.md
           - Misc:
               - read_output: modules/processes/read_output.md
               - texture: modules/processes/texture.md

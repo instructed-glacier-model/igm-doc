@@ -159,10 +159,15 @@ python scripts/update_nav.py <name>
 This inserts `- <name>: modules/<section>/<name>.md` at the **end of the right
 nav group** in `mkdocs.yml`, derived from the module's `<name>.yaml` metadata:
 
-- `processes` (core) → `Process Modules` › `<Category>`; (community) →
-  `Community Modules` › `<Category>` — nested under the category label.
+- `processes` with `type: core` → `Process Modules` › `<Category>`;
+  `type: community` → `Community Modules` › `<Category>` — nested under the
+  category label.
 - `assimilations` / `inputs` / `outputs` → the flat `Assimilation`/`Input`/
   `Output Modules` group.
+
+Placement is driven by the module's `type:` field (defaults to `core`).
+`type: experimental` and `type: deprecated` modules are ignored (hidden from the
+documentation), so the script adds no nav entry for them.
 
 It is **idempotent** (re-runs are no-ops once the entry is present), edits the
 file as a surgical text insertion (preserving comments and your curated ordering),

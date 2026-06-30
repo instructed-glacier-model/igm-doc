@@ -33,8 +33,8 @@ defaults:
     - oggm_shop
     - local
   - override /processes: 
-    - clim_oggm
-    - smb_oggm
+    - climate
+    - smb
     - iceflow
     - time
     - thk
@@ -48,11 +48,15 @@ inputs:
     RGI_version: 6
 
 processes:
-  clim_oggm:
-    clim_trend_array: 
-      - ["time", "delta_temp", "prec_scal"]
-      - [ 2020,           0.0,         1.0]
-      - [ 2100,           4.0,         1.0]
+  climate:
+    method: oggm
+    oggm:
+      clim_trend_array: 
+        - ["time", "delta_temp", "prec_scal"]
+        - [ 2020,           0.0,         1.0]
+        - [ 2100,           4.0,         1.0]
+  smb:
+    method: oggm
   iceflow:
     physics:
       init_slidingco: 0.25
