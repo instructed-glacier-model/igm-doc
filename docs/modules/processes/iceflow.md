@@ -18,6 +18,9 @@ The `iceflow` module can be configured in different ways. All modes solve the sa
 
 ### Legacy modes
 
+!!! warning "Legacy stack — kept for backward compatibility only"
+    The `solved` and `emulated` modes are **kept for backward compatibility only and will be removed in a future version** — prefer `unified`. On the legacy stack the basal friction is set with `sliding.slidingco` (MPa) — **not** `sliding.tau_ref`, which is unified-only — and `sliding.u_ref` must stay `1.0` (any other value is refused at startup). See the [v3.1 → v3.2 migration guide](../../about/transition-IGM-3.1-to-3.2.md).
+
 **Solved mode**
 
 Classical solve for the velocity field.  Example configuration file:
@@ -25,8 +28,11 @@ Classical solve for the velocity field.  Example configuration file:
 ```yaml
 iceflow:
   physics:
-    init_slidingco: 0.0464      # Basal friction coefficient (MPa y^{1/3} m^{-1/3})
-    init_arrhenius: 78.0        # Flow law coefficient (MPa^{-3} y^{-1})
+    sliding:
+      slidingco: 0.0464       # Basal friction coefficient (legacy stack; MPa)
+      u_ref: 1.0              # legacy (solved/emulated) stack requires u_ref = 1.0
+    viscosity:
+      arrhenius: 78.0         # Flow law coefficient (MPa^{-3} y^{-1})
   method: solved                # Classical solve
   solver:
     optimizer: adam             # Optimization algorithm
@@ -41,8 +47,11 @@ Training of a neural network that emulates the velocity field. Example configura
 ```yaml
 iceflow:
   physics:
-    init_slidingco: 0.0464      # Basal friction coefficient (MPa y^{1/3} m^{-1/3})
-    init_arrhenius: 78.0        # Flow law coefficient (MPa^{-3} y^{-1})
+    sliding:
+      slidingco: 0.0464       # Basal friction coefficient (legacy stack; MPa)
+      u_ref: 1.0              # legacy (solved/emulated) stack requires u_ref = 1.0
+    viscosity:
+      arrhenius: 78.0         # Flow law coefficient (MPa^{-3} y^{-1})
   method: emulated              # Neural-network emulation
   emulator:
     pretrained: true            # Use pre-trained network
@@ -62,8 +71,10 @@ Classical solve for the velocity field. Example configuration file:
 ```yaml
 iceflow:
   physics:
-    init_slidingco: 0.0464      # Basal friction coefficient (MPa y^{1/3} m^{-1/3})
-    init_arrhenius: 78.0        # Flow law coefficient (MPa^{-3} y^{-1})
+    sliding:
+      tau_ref: 0.2154         # Basal shear stress (MPa, at default u_ref=100)
+    viscosity:
+      arrhenius: 78.0         # Flow law coefficient (MPa^{-3} y^{-1})
   method: unified               # Unified framework
   unified:
     mapping: identity           # Classical solve
@@ -79,8 +90,10 @@ Training of a neural network that emulates the velocity field. Example configura
 ```yaml
 iceflow:
   physics:
-    init_slidingco: 0.0464      # Basal friction coefficient (MPa y^{1/3} m^{-1/3})
-    init_arrhenius: 78.0        # Flow law coefficient (MPa^{-3} y^{-1})
+    sliding:
+      tau_ref: 0.2154         # Basal shear stress (MPa, at default u_ref=100)
+    viscosity:
+      arrhenius: 78.0         # Flow law coefficient (MPa^{-3} y^{-1})
   method: unified               # Unified framework
   unified:
     mapping: network            # Neural-network emulation
@@ -100,8 +113,10 @@ The unified framework allows additional options, for instance boundary condition
 ```yaml
 iceflow:
   physics:
-    init_slidingco: 0.0464      # Basal friction coefficient (MPa y^{1/3} m^{-1/3})
-    init_arrhenius: 78.0        # Flow law coefficient (MPa^{-3} y^{-1})
+    sliding:
+      tau_ref: 0.2154         # Basal shear stress (MPa, at default u_ref=100)
+    viscosity:
+      arrhenius: 78.0         # Flow law coefficient (MPa^{-3} y^{-1})
   method: unified               # Unified framework
   unified:
     mapping: network            # Neural-network emulation

@@ -1,8 +1,27 @@
 # Module `data_assimilation`
 
-**Deprecated:** This module will be removed in a future release. New projects should use `field_inversion` instead.
+**Note:** This module will be removed in a future release. New projects should use `field_inversion` instead (still under testing), therefore, we still propose the 2 modules.
 
-A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (`iceflow`) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM. **See [@IGM] for full technical details.**
+!!! warning "IGM 3.2 — changed optimisation defaults & recommended setup"
+    Several defaults of this module changed in 3.2, chosen to give more robust inversions out of the box. If you relied on the old defaults, set them explicitly.
+
+    |  | Parameter (`section`) | New default (was) | Why |
+    |---|---|---|---|
+    | i | `optimization.retrain_iceflow_model` | `false` (was `true`) | Keep the ice-flow emulator **fixed** during the inversion (use an off-line trained emulator). Retraining it on the evolving geometry tends to destabilise the optimisation. |
+    | ii | `optimization.fix_opti_normalization_issue` | `true` (was `false`) | A normalisation issue in the cost was found; enabling this fixes it, so it is now on by default. |
+    | iii | `regularization.convexity_weight` / `regularization.smooth_anisotropy_factor` | `0.0` / `1.0` (was `0.002` / `0.2`) | Convexity constraint and anisotropic smoothing are now **disabled** by default — advanced knobs you normally do not need. |
+
+    See the [v3.1 → v3.2 migration guide](../../about/transition-IGM-3.1-to-3.2.md) for details.
+
+!!! tip "Recommended setup for robust inversions"
+    To keep the `data_assimilation` inversion robust, we strongly advise to:
+
+    1. pick an **off-line trained iceflow emulator** (one that does not retrain over the iterations);
+    2. limit the number of **controls to one** to keep the problem well-posed, avoiding multi-control optimisation.
+
+    See the [Aletsch inversion tutorial](../../tutorials/aletsch_inversion.md) to get familiar with the module.
+
+A data assimilation module in IGM allows users to determine the optimal ice thickness, top ice surface, and/or ice flow parameters that best match observational data, such as surface ice velocities, ice thickness profiles, and top ice surface elevation, while maintaining consistency with the ice flow emulator (`iceflow`) used in forward modeling. This page provides guidance on using the data assimilation module as a preparatory step for running a forward or prognostic model in IGM.
 
 {{ render_module_io("data_assimilation") }}
 
@@ -40,8 +59,8 @@ where:
 - $\mathcal{C}^h$: Misfit between modeled and observed ice thickness profiles.
 - $\mathcal{C}^s$: Misfit between modeled and observed top ice surface.
 - $\mathcal{C}^d$: Misfit term between modeled and observed flux divergence.
-- $\mathcal{R}^h$: Regularization term to enforce smoothness (and possible convexity) on $h$.
-- $\mathcal{R}^A$: Regularization term to enforce smoothness (and possible convexity) on $A$.
+- $\mathcal{R}^h$: Regularization term to enforce smoothness on $h$.
+- $\mathcal{R}^A$: Regularization term to enforce smoothness on $A$.
 - $\mathcal{R}^c$: Regularization term to enforce smoothness on $c$.
 - $\mathcal{P}^h$: Penalty term to enforce nonnegative ice thickness.
 
@@ -73,32 +92,25 @@ There are parameters that may need to tune for each application.
 First, you may adjust the expected confidence levels (i.e., tolerance to fit the data) $\sigma^u$, $\sigma^h$, $\sigma^s$, and $\sigma^d$ to better match surface ice velocity, ice thickness, surface top elevation, or flux divergence. These parameters can be configured as follows:
 
 ```json
-"assimilations.data_assimilation.velsurfobs_std": 5 # unit m/y
-"assimilations.data_assimilation.thkobs_std" : 5 # unit m
-"assimilations.data_assimilation.usurfobs_std" : 5 # unit m
-"assimilations.data_assimilation.divfluxobs_std": 1 # unit m/y
+"assimilations.data_assimilation.fitting.velsurfobs_std": 2.0 # unit m/y
+"assimilations.data_assimilation.fitting.thkobs_std": 5.0     # unit m
+"assimilations.data_assimilation.fitting.usurfobs_std": 5.0   # unit m
+"assimilations.data_assimilation.fitting.divfluxobs_std": 1.0 # unit m/y
 ```
 
-Second, you may adjust regularization parameters to control the smoothness and convexity of the optimized fields. These include:
-
-1. **Regularization Weights** ($\alpha^h$, $\alpha^A$): These parameters control the regularization strength for ice thickness and flow parameters. Increasing $\alpha^h$ or $\alpha^A$ will result in smoother spatial fields for these variables.
-
-2. **Convexity weight** ($\gamma$): Adds a convexity constraint to the system. Using a small value for $\gamma$ can help when initializing the inverse model with zero ice thickness or when dealing with margin regions lacking observational data.
-
-These parameters can be configured as follows:
+Second, you may adjust the **regularization weights** ($\alpha^h$, $\alpha^A$) that control the smoothness of the optimized fields: increasing them produces smoother ice-thickness and flow-parameter fields. These can be configured as follows:
 
 ```json
-"assimilations.data_assimilation.regu_param_thk": 10.0           # Regularization weight for ice thickness
-"assimilations.data_assimilation.regu_param_slidingco": 1.0      # Regularization weight for sliding coefficient
-"assimilations.data_assimilation.convexity_weight": 0.002        # Convexity weight (gamma)
+"assimilations.data_assimilation.regularization.thk": 300.0          # Regularization weight for ice thickness
+"assimilations.data_assimilation.regularization.slidingco": 1.0      # Regularization weight for sliding coefficient
 ```
 
 Lastly, there are a couple of other parameters we may be interest to change e.g.
 
 ```json
-"assimilations.data_assimilation.nbitmax": 1000         # Number of it. for the optimization
-"assimilations.data_assimilation.step_size": 1.0        # Step size in the optimization iterative algorithm
-"assimilations.data_assimilation.init_zero_thk": True   # Force init zero ice thk (otherwise take thkinit)
+"assimilations.data_assimilation.optimization.nbitmax": 1000        # Number of it. for the optimization
+"assimilations.data_assimilation.optimization.step_size": 0.9       # Step size in the optimization iterative algorithm
+"assimilations.data_assimilation.optimization.init_zero_thk": True  # Force init zero ice thk (otherwise take thkinit)
 ```
 
 **Note**: There is a version 2 for the thickness regularization that can be activated by setting `data_assimilation.regularization.thk_version` to 2 (default is 1). By switching to this new version, it adds second-order derivative terms to the minimization in addition to the first-order terms we had before. This "thin plate" approach may have added value over the former "membrane" approach. The consequence is that there are now 2 regularization parameters: `data_assimilation.regularization.thk_2nd_der` and `thk_1st_der`, but the first parameter seems to be the main control. From initial tests, it appears to give at least visually better bedrock results with the default parameters. This also seems to fix the chessboard issue that occurred with version 1 when using anisotropic smoothing. However, all of this needs further testing. Finally, there is one additional parameter `abl_acc_balance` that serves to weight the membrane rigidity more in the accumulation area than in the ablation areas, which are often deeper (at least for mountain glaciers) due to long-term glacial erosion. This is not active by default (i.e., 1 = no imbalance), but you may try setting it to 2.
@@ -128,7 +140,6 @@ The parameter `data_assimilation.optimization.nb_relaxation_steps` (default valu
 
 The `data_assimilation` module outputs VTP files alongside NetCDF files, which greatly helps visualize your optimized/shaped bedrock with ParaView. Additionally, there is also an output module `write_vtp` that outputs sequences of VTK files that can be read by ParaView, offering new 3D visualization capabilities.  
 
-For more information, refer to the relevant documentation or technical references [@Jouvet2022; @Jouvet2023b].
 ## Parameters
 
 The complete default configuration file can be found here: [data_assimilation.yaml](https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/assimilations/data_assimilation.yaml).

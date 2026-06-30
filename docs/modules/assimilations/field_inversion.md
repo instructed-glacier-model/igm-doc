@@ -1,7 +1,9 @@
 # Module `field_inversion`
 
 !!! info "Brief summary"
-    `field_inversion` inverts for unknown fields (e.g. ice thickness) from surface
+    `field_inversion` is IGM's newer inversion route, **set to replace
+    `data_assimilation` in the long term**. It inverts for unknown fields (e.g. ice
+    thickness) from surface
     observations (e.g. observed surface ice velocities) by iteratively minimising a
     cost function that penalises the misfit between model predictions and observations
     plus a regularization penalty on the control variables. Optionally, the iceflow

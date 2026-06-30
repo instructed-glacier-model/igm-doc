@@ -59,7 +59,8 @@ processes:
     method: oggm
   iceflow:
     physics:
-      init_slidingco: 0.25
+      sliding:
+        tau_ref: 0.25
   time:
     start: 2200.0
     end: 2100.0

@@ -8,8 +8,9 @@ As explained above, we can use `igm_run +experiment=params --help` to get the fi
 Compose your configuration from those groups (group=option)
 
 inputs: load_ncdf, load_tif, local, oggm_shop
-outputs: local, plot2d, write_ncdf, write_tif, write_ts
-processes: avalanche, clim_glacialindex, clim_oggm, enthalpy, gflex, glerosion, iceflow, particles, read_output, rockflow, smb_accpdd, smb_oggm, smb_simple, texture, thk, time
+outputs: live_dashboard, local, plot2d, write_ncdf, write_tif, write_ts, write_vtp
+processes: arrhenius, avalanche, calving_rate, climate, clim_glacialindex, clim_oggm, clim_station, damage, enthalpy, flow_accumulation, gflex, glerosion, iceflow, particles, read_output, rockflow, smb, smb_accpdd, smb_oggm, smb_simple, stress, subglacial_hydrology, texture, thk, time
+assimilations: data_assimilation, field_inversion, pretraining, time_relaxation
 
 
 == Config ==

@@ -1,4 +1,8 @@
 # Module `write_ncdf`
+
+!!! warning "Deprecated"
+    Prefer the [`local`](local.md) module, which writes both NetCDF and GeoTIFF through a single interface (via `file_format_list`) and is actively maintained. `write_ncdf` remains functional but will not receive new features.
+
 This IGM module writes 2D field variables specified in the parameter list `vars_to_save` into the NetCDF output file defined by the parameter `output_file` (default: `output.nc`). The saving frequency is determined by the parameter `processes.time.save` in the `time` module.
 
 This module requires the `netCDF4` library.

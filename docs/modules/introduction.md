@@ -88,11 +88,4 @@ Contributed by the broader research community. These modules extend IGM with spe
 
 ### Process
 
-<details class="community-modules">
-<summary>Show / hide community process modules</summary>
-<div class="community-modules-body">
-
 {{ render_process_cards(kind="community") }}
-
-</div>
-</details>

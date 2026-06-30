@@ -86,13 +86,13 @@ Parameters tuned by Optuna. Each maps to a Hydra config path:
 
 ```yaml
 parameters:
-  - name: processes.iceflow.physics.init_slidingco
+  - name: processes.iceflow.physics.sliding.tau_ref
     type: float
     low: 0.01
     high: 1.0
     log: true       # sample in log-space (good for parameters spanning orders of magnitude)
 
-  - name: processes.iceflow.physics.init_arrhenius
+  - name: processes.iceflow.physics.viscosity.arrhenius
     type: float
     low: 30.0
     high: 150.0
@@ -347,13 +347,13 @@ overrides:
 
 # --- Control parameters (tuned by Optuna) ---
 parameters:
-  - name: processes.iceflow.physics.init_slidingco
+  - name: processes.iceflow.physics.sliding.tau_ref
     type: float
     low: 0.01
     high: 1.0
     log: true
 
-  - name: processes.iceflow.physics.init_arrhenius
+  - name: processes.iceflow.physics.viscosity.arrhenius
     type: float
     low: 30.0
     high: 150.0

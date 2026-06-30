@@ -19,10 +19,9 @@ nav:
       - Overview: getting_started.md
       - Tutorials:
           - tutorials/index.md
-          - "Aletsch: forward run": tutorials/aletsch.md
-          - "Aletsch: ensemble run": tutorials/aletsch_ensemble.md
-          - "Aletsch: particle tracking": tutorials/aletsch_particles.md
+          - "Aletsch: forward modelling": tutorials/aletsch.md
           - "Aletsch: parameter calibration": tutorials/aletsch_da.md
+          - "Aletsch: ice-thickness inversion": tutorials/aletsch_inversion.md
       - Best Practices:
           - best_practices/index.md
           - Checklist: best_practices/checklist.md

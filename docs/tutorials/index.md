@@ -13,30 +13,10 @@ Step-by-step guides for running IGM on the Great Aletsch Glacier. Each tutorial 
 
   <a class="tutorial-card" href="aletsch/">
     <div class="tutorial-card-tag">First steps</div>
-    <h3>Aletsch: forward run</h3>
-    <p>Four progressive steps from a simple ELA-based SMB to a realistic temperature-index model with custom modules and climate forcing.</p>
+    <h3>Aletsch: forward modelling</h3>
+    <p>Five progressive steps from a simple ELA-based SMB to a realistic temperature-index model with custom modules, climate forcing, and particle tracking.</p>
     <div class="tutorial-card-concepts">
-      <span>smb</span><span>custom modules</span><span>climate forcing</span><span>iceflow</span>
-    </div>
-    <div class="tutorial-card-footer">View tutorial →</div>
-  </a>
-
-  <a class="tutorial-card" href="aletsch_ensemble/">
-    <div class="tutorial-card-tag">Going further</div>
-    <h3>Aletsch: ensemble run with Hydra</h3>
-    <p>Override parameters from the command line and sweep over accumulation weights and sliding coefficients. Collect and compare glacier volume time series across runs.</p>
-    <div class="tutorial-card-concepts">
-      <span>Hydra multirun</span><span>parameter sweeps</span><span>ensemble analysis</span>
-    </div>
-    <div class="tutorial-card-footer">View tutorial →</div>
-  </a>
-
-  <a class="tutorial-card" href="aletsch_particles/">
-    <div class="tutorial-card-tag">Going further</div>
-    <h3>Aletsch: particle tracking</h3>
-    <p>Seed Lagrangian tracers in the accumulation zone and follow them through the glacier. Visualise englacial flow paths and compute travel times.</p>
-    <div class="tutorial-card-concepts">
-      <span>particles</span><span>Lagrangian tracking</span><span>flow paths</span><span>ice age</span>
+      <span>smb</span><span>custom modules</span><span>climate forcing</span><span>particles</span><span>iceflow</span>
     </div>
     <div class="tutorial-card-footer">View tutorial →</div>
   </a>
@@ -44,9 +24,19 @@ Step-by-step guides for running IGM on the Great Aletsch Glacier. Each tutorial 
   <a class="tutorial-card" href="aletsch_da/">
     <div class="tutorial-card-tag">Deep dive</div>
     <h3>Aletsch: parameter calibration with Optuna</h3>
-    <p>Calibrate SMB weights and sliding coefficients against 7 historical DEMs and InSAR velocities using single- and multi-objective Optuna sweeps.</p>
+    <p>Calibrate SMB weights and basal friction against 7 historical DEMs and observed velocities using single- and multi-objective Optuna sweeps.</p>
     <div class="tutorial-card-concepts">
       <span>Optuna</span><span>TPE</span><span>NSGA-II</span><span>Pareto front</span>
+    </div>
+    <div class="tutorial-card-footer">View tutorial →</div>
+  </a>
+
+  <a class="tutorial-card" href="aletsch_inversion/">
+    <div class="tutorial-card-tag">Deep dive</div>
+    <h3>Aletsch: ice-thickness inversion</h3>
+    <p>Recover the ice-thickness field from surface velocities with the data_assimilation module, including L-curve regularisation and a sliding-coefficient sweep.</p>
+    <div class="tutorial-card-concepts">
+      <span>data_assimilation</span><span>inversion</span><span>L-curve</span><span>regularisation</span>
     </div>
     <div class="tutorial-card-footer">View tutorial →</div>
   </a>

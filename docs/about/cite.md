@@ -4,15 +4,15 @@
 
 When using IGM in your research, please cite the model development paper:
 
-> IGM authors (in prep.). **IGM: a differentiable, modular, and GPU-accelerated ice flow model.** doi:[10.31223/x5t99c](https://doi.org/10.31223/x5t99c)
+> The IGM developers (in prep.). **IGM: an accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.** doi:[10.31223/X5GB6G](https://doi.org/10.31223/X5GB6G)
 
 {% raw %}
 ```bibtex
 @article{IGM,
-  title  = {IGM: a differentiable, modular, and GPU-accelerated ice flow model},
-  author = {{IGM authors}},
+  title  = {IGM: an accessible, modular, differentiable, and GPU-accelerated high-order ice flow model},
+  author = {{The IGM developers}},
   year   = {in prep.},
-  doi    = {10.31223/x5t99c},
+  doi    = {10.31223/X5GB6G},
 }
 ```
 {% endraw %}

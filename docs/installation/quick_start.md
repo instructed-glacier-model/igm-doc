@@ -5,6 +5,9 @@ IGM requires **Python 3.10–3.11**. GPU acceleration requires an NVIDIA card; C
 !!! note "Coming from IGM v2?"
     This documentation covers IGM v3. For IGM v2, visit the [former documentation](https://github.com/instructed-glacier-model/igm/wiki) or the [v2 → v3 migration guide](../about/transition-IGM-2-to-3.md).
 
+!!! note "Upgrading from IGM v3.1?"
+    See the [v3.1 → v3.2 migration guide](../about/transition-IGM-3.1-to-3.2.md) for the breaking changes between those releases.
+
 ---
 
 ## Prerequisites
@@ -64,7 +67,7 @@ See [Virtual Environments](other/virtual_environment.md) for a more detailed wal
     To pin a specific release for reproducibility:
 
     ```bash
-    pip install "igm-model==3.1.0"
+    pip install "igm-model==3.1.1"
     ```
 
     All available releases are listed on [PyPI](https://pypi.org/project/igm-model/#history).

@@ -23,9 +23,10 @@ The `pretraining` module must be listed alongside `iceflow` in the `processes` l
 
 ```yaml
 defaults:
+  - override /assimilations:
+    - pretraining
   - override /processes:
     - iceflow
-    - pretraining
 ```
 
 ## Training data
@@ -97,7 +98,7 @@ processes:
       Nz: 10
       precision: single
     unified:
-      inputs: [thk, usurf, slidingco]
+      inputs: [thk, usurf, tau_ref]
       mapping: network
       network:
         pretrained: false

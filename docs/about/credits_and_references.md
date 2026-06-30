@@ -21,16 +21,14 @@
 | Flavio Calvo | Support from IGM 1 to IGM 2 |
 | Samuel Cook | Global-modelling functions in `data_assimilation`; RGI7 support in `oggm_shop` |
 | Guillaume Cordonnier | Co-design of the physics-informed CNN; original `thk` module |
-| Alex Jarosch | Bueler2005C benchmark in the example gallery |
+| Thomas Frank | time relaxation module generalizing Thomas's original implementation |
 | Andreas Henz | Loading ice masks from shapefiles in input modules |
-| Tancrède Leger | Climate module contributions |
-| Fabien Maussion | Original `oggm_shop` module; `clim_oggm` and `smb_oggm` modules; OGGM integration |
-| Jürgen Mey | `avalanche` and `gflex` modules |
 | Oskar Hermann | `anim_plotly` visualisation tool |
-| Dirk Scherler | Support for verification of the `particles` module |
+| Tancrède Leger | Climate module station |
+| Fabien Maussion | Original `oggm_shop` module; oggm-related modules; OGGM integration |
+| Jürgen Mey | `avalanche` and `gflex` modules |
 | Margot Sirdey | Support from IGM 1 to IGM 2; PyPI setup |
-| Gillian Smith | Bug fixes |
-| Patrick Schmitt | Visualisation tools |
+| Gillian Smith | Bug fixes in the data assimilation and the data assimilation |
 | Claire-Mathilde Stücki | Vertical velocity computation (now `iceflow.vertical_velocity`) and updates to `particles` |
 | Ethan Welty | GlaThiDa file reading |
 </div>

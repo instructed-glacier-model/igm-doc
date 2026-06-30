@@ -83,11 +83,10 @@ processes:
     N_min: 1.0e-3
   iceflow:
     physics:
-      sliding_law:
-        name: budd
-        budd:
-          N_ref: 1.0      # MPa
-          q_exponent: 1.0
+      sliding:
+        law: budd
+        N_ref: 1.0      # MPa
+        q_exponent: 1.0
   thk: {}
   time:
     start: 2000.0
@@ -114,8 +113,8 @@ processes:
       delta: 0.02
   iceflow:
     physics:
-      sliding_law:
-        name: mohr_coulomb
+      sliding:
+        law: mohr_coulomb
 ```
 
 Or override on the command line:

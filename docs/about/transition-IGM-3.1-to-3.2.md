@@ -207,3 +207,15 @@ Several pieces formerly bundled in `enthalpy` were split out or changed. If you 
    now opt-in), and `enthalpy` now also publishes `temppasurf` / `temppabase` on state.
    **Do:** if your post-processing needs `T`/`omega`, add them explicitly to your output
    variable list.
+
+### 11. Floating ice: scalar `sealevel` → 2D `water_level`
+The scalar `state.sealevel` is replaced by a 2D `state.water_level` field, now created
+during the **input phase** (via the `water_level` sub-config of the input modules, e.g.
+`local` / `load_ncdf`) rather than inside `thk`. The iceflow `floating` energy component
+reads this field for the calving-front basal pressure, so a spatially-varying water level
+(e.g. a fjord geometry) can be prescribed instead of a single global value.
+
+**Do:** if you relied on a scalar sea level, set `water_level.include: True` and
+`water_level.value` (in metres) on your input module — or provide a 2D `water_level`
+variable directly in the input file, which takes precedence. If `water_level` is left
+absent, the flotation term is disabled and the lower surface simply follows the bed.

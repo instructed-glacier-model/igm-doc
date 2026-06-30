@@ -1,6 +1,6 @@
 # Overview
 
-This section covers everything beyond a single forward run: how IGM configurations are structured and composed, how to sweep parameters across ensemble runs, how to optimize model parameters against observations, and how to migrate from IGM v2.
+This section covers everything beyond a single forward run: how IGM configurations are structured and composed, how to sweep parameters across ensemble runs, how to optimize model parameters against observations, and how to migrate between IGM versions.
 
 <div class="tutorial-cards">
 
@@ -22,6 +22,13 @@ This section covers everything beyond a single forward run: how IGM configuratio
     <div class="tutorial-card-tag">Migration</div>
     <h3>IGM v2 → v3</h3>
     <p>Transitioning from IGM v2? This guide covers the key changes in configuration syntax, module names, and parameter structure.</p>
+    <div class="tutorial-card-footer">Read the guide →</div>
+  </a>
+
+  <a class="tutorial-card" href="../about/transition-IGM-3.1-to-3.2/">
+    <div class="tutorial-card-tag">Migration</div>
+    <h3>IGM v3.1 → v3.2</h3>
+    <p>Upgrading from IGM v3.1? This guide covers the breaking changes: the unified ice-flow stack, renamed sliding/viscosity parameters, the new <code>assimilations</code> modules, and the umbrella <code>smb</code>/<code>climate</code> modules.</p>
     <div class="tutorial-card-footer">Read the guide →</div>
   </a>
 
