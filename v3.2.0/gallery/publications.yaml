@@ -1,0 +1,142 @@
+# IGM publications gallery
+
+- title: "First Alps-wide reconstruction of LGM glacial sediment transport enabled by GPU-accelerated particle tracking"
+  authors: "Leger T. P. M., Jouvet G., Kamleitner S., Finley B. D., Bernard M., Allegri B., Herman F., Vieli A., Henz A., Nussbaumer S. U."
+  journal: "Earth Surface Dynamics"
+  year: 2026
+  doi: "10.5194/esurf-14-361-2026"
+  image: "https://esurf.copernicus.org/articles/14/361/2026/esurf-14-361-2026-avatar-thumb150.png"
+  links:
+    - { type: data, url: "https://doi.org/10.5281/zenodo.18374156" }
+    - { type: video,  url: "https://youtu.be/lfbwkASf1L0?list=PLhTnndqLZd666LMeVkirAKLERHRs9JHeS" }
+
+- title: "Global glacier-free topography reveals a large potential for future lakes in presently ice-covered terrain"
+  authors: "Frank T., van Pelt W. J. J., Rounce D. R., Jouvet G., Hock R."
+  journal: "Nature Communications"
+  year: 2026
+  doi: "10.1038/s41467-026-72548-9"
+  image: "fig/papers/frank2026_natcomms.png"
+  links:
+    - { type: data, url: "https://doi.org/10.6084/m9.figshare.29940932" }
+
+- title: "Topographic controls on asynchronous glacial maxima in the European Alps during the Late Pleistocene"
+  authors: "Serra E., Leger T. P. M., Gianotti F., Mueller D., Kamleitner S., Monegato G., Jouvet G., Preusser F."
+  journal: "Geology"
+  year: 2026
+  doi: "10.1130/G53974.1"
+  image: "fig/thumbnail_gallery.png"   
+
+- title: "Impact of spatial resolution on large-scale ice cover modelling of mountainous regions"
+  authors: "Werner H., Scherler D., Leger T. P. M., Jouvet G., Winkelmann R."
+  journal: "The Cryosphere"
+  year: 2026
+  doi: "10.5194/tc-20-2469-2026"
+  image: "https://tc.copernicus.org/articles/20/2469/2026/tc-20-2469-2026-avatar-thumb150.png"
+  links:
+    - { type: data, url: "https://doi.org/10.5281/zenodo.14275231" }
+
+- title: "Ice-Dynamic Constraints on Glacier Climatic Mass Balance Using Inverse Techniques"
+  authors: "Zöller A., Herrmann O., Jouvet G., Fürst J. J."
+  journal: "Geophysical Research Letters"
+  year: 2026
+  doi: "10.1029/2025GL120119"
+  image: "fig/thumbnail_gallery.png"
+
+- title: "Observational data provide valuable insights for glacier thickness reconstruction in High Mountain Asia"
+  authors: "Smith G. M. A., Goldberg D. N., Jouvet G., Maddison J. R., Pritchard H. D."
+  journal: "EGUsphere (preprint)"
+  year: 2026
+  doi: "10.5194/egusphere-2026-788"
+  image: "fig/papers/smith2026_egusphere.png"
+
+- title: "Alps-wide high-resolution 3D modelling reconstruction of glacier geometry and climatic conditions for the Little Ice Age"
+  authors: "Henz A., Reinthaler J., Nussbaumer S. U., Leger T. P. M., Kamleitner S., Jouvet G., Vieli A."
+  journal: "The Cryosphere"
+  year: 2025
+  doi: "10.5194/tc-19-5913-2025"
+  image: "https://tc.copernicus.org/articles/19/5913/2025/tc-19-5913-2025-avatar-thumb150.png"
+
+- title: "A data-consistent model of the last glaciation in the Alps achieved with physics-driven AI"
+  authors: "Leger T. P. M., Jouvet G., Kamleitner S., Mey J., Herman F., Finley B. D., Ivy-Ochs S., Vieli A., Henz A., Nussbaumer S. U."
+  journal: "Nature Communications"
+  year: 2025
+  doi: "10.1038/s41467-025-56168-3"
+  image: "fig/papers/leger2025_natcomms.png"
+  links:
+    - { type: data, url: "https://doi.org/10.5281/zenodo.14275231" }
+    - { type: video,  url: "https://youtu.be/lfbwkASf1L0?list=PLhTnndqLZd666LMeVkirAKLERHRs9JHeS" }
+
+- title: "A Kalman filter-based framework for assimilating remote sensing observations into a surface mass balance model"
+  authors: "Herrmann O., Groos A. R., Tabone I., Jouvet G., Fürst J. J."
+  journal: "Annals of Glaciology"
+  year: 2025
+  doi: "10.1017/aog.2025.10020"
+  image: "fig/thumbnail_gallery.png"   
+
+- title: "New glacier thickness and bed topography maps for Svalbard"
+  authors: "van Pelt W., Frank T."
+  journal: "The Cryosphere"
+  year: 2025
+  doi: "10.5194/tc-19-1-2025"
+  image: "https://tc.copernicus.org/articles/19/1/2025/tc-19-1-2025-avatar-thumb150.png"
+
+- title: "Tracing ice loss from the Late Holocene to the future in eastern Nuussuaq, central western Greenland"
+  authors: "Bonsoms J., Oliva M., López-Moreno J. I., Jouvet G."
+  journal: "The Cryosphere"
+  year: 2025
+  doi: "10.5194/tc-19-1973-2025"
+  image: "https://tc.copernicus.org/articles/19/1973/2025/tc-19-1973-2025-avatar-thumb150.png"
+
+- title: "Distributed surface mass balance of an avalanche-fed glacier"
+  authors: "Kneib M., Dehecq A., Gilbert A., Basset A., Miles E. S., Jouvet G., Jourdain B., Ducasse E., Beraud L., Rabatel A., et al."
+  journal: "The Cryosphere"
+  year: 2024
+  doi: "10.5194/tc-18-5965-2024"
+  image: "https://tc.copernicus.org/articles/18/5965/2024/tc-18-5965-2024-avatar-thumb150.png"
+
+- title: "Ice volume and thickness of all Scandinavian glaciers and ice caps"
+  authors: "Thomas F., van Pelt W. J. J."
+  journal: "Journal of Glaciology"
+  year: 2024
+  doi: "10.1017/jog.2024.25"
+  image: "fig/papers/thomas2024_jog.png"
+
+- title: "Modeling sediment fluxes from debris-rich basal ice layers"
+  authors: "Pierce E., Overeem I., Jouvet G."
+  journal: "Journal of Geophysical Research: Earth Surface"
+  year: 2024
+  doi: "10.1029/2024JF007665"
+  image: "fig/thumbnail_gallery.png"
+
+- title: "Inversion of a Stokes glacier flow model emulated by deep learning"
+  authors: "Jouvet G."
+  journal: "Journal of Glaciology"
+  year: 2023
+  doi: "10.1017/jog.2022.41"
+  image: "fig/thumbnail_gallery.png"   
+
+- title: "Ice-flow model emulator based on physics-informed deep learning"
+  authors: "Jouvet G., Cordonnier G."
+  journal: "Journal of Glaciology"
+  year: 2023
+  doi: "10.1017/jog.2023.73"
+  image: "fig/papers/jouvet2023emul_jog.png"
+  links:
+    - { type: code, url: "https://github.com/instructed-glacier-model/igm" }
+
+- title: "Committed Ice Loss in the European Alps Until 2050 Using a Deep-Learning-Aided 3D Ice-Flow Model With Data Assimilation"
+  authors: "Cook S. J., Jouvet G., Millan R., Rabatel A., Zekollari H., Dussaillant I."
+  journal: "Geophysical Research Letters"
+  year: 2023
+  doi: "10.1029/2023GL105029"
+  image: "fig/thumbnail_gallery.png"
+
+- title: "Deep learning speeds up ice flow modelling by several orders of magnitude"
+  authors: "Jouvet G., Cordonnier G., Kim B., Lüthi M., Vieli A., Aschwanden A."
+  journal: "Journal of Glaciology"
+  year: 2022
+  doi: "10.1017/jog.2021.120"
+  image: "fig/papers/jouvet2022_jog.png"
+  links:
+    - { type: code, url: "https://github.com/instructed-glacier-model/igm" }
+
