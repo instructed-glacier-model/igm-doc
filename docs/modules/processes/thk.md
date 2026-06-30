@@ -10,7 +10,7 @@ The scheme is mass-conservative and parallelizable due to its fully explicit nat
 ~~~yaml
 thk:
 
-  slope_type: superbee                 # limiter used in stock mode (calving_front: false)
+  slope_type: superbee                 # slope limiter for the thickness equation (superbee or godunov)
   ratio_density: 0.910                 # rho_ice / rho_water for flotation
 ~~~
 

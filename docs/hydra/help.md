@@ -9,7 +9,7 @@ Compose your configuration from those groups (group=option)
 
 inputs: load_ncdf, load_tif, local, oggm_shop
 outputs: live_dashboard, local, plot2d, write_ncdf, write_tif, write_ts, write_vtp
-processes: arrhenius, avalanche, calving_rate, climate, clim_glacialindex, clim_oggm, clim_station, damage, enthalpy, flow_accumulation, gflex, glerosion, iceflow, particles, read_output, rockflow, smb, smb_accpdd, smb_oggm, smb_simple, stress, subglacial_hydrology, texture, thk, time
+processes: arrhenius, avalanche, climate, clim_glacialindex, clim_oggm, clim_station, enthalpy, flow_accumulation, gflex, glerosion, iceflow, particles, read_output, rockflow, smb, smb_accpdd, smb_oggm, smb_simple, subglacial_hydrology, texture, thk, time
 assimilations: data_assimilation, field_inversion, pretraining, time_relaxation
 
 
