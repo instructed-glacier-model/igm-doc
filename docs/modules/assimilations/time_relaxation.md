@@ -116,36 +116,6 @@ At every iteration, `time_relaxation` recomputes:
 - `state.divflux` from `ubar`, `vbar`, and `thk` (if present)
 - `state.amb = state.smb − state.dhdt_obs` (apparent mass balance, masked by `icemask`; requires an SMB module in `pre_processes` and a `dhdt` field in the input NetCDF)
 
-### Observation snapshots
-
-At startup, the module snapshots standard observation fields if they are not already on state: `usurf_obs`, `thk_obs`, `dhdt_obs`, and `velsurf_magobs`. This allows residuals like `usurf_obs − usurf` to work without explicit preparation.
-
-## Recovering classical methods
-
-The same driver, with different YAML parameters, reproduces several established methods:
-
-| Method | Control $C$ | Residual $r$ | Update law |
-|---|---|---|---|
-| **PISM force-to-thickness** | `smb` | `linear`: $h^\text{target} - h$ | `replace`: $C \leftarrow \alpha r$ |
-| **Apparent-mass-balance bed inversion** (Frank & van Pelt, 2025) | `thk` + `usurf` (two coupled steps) | `linear`: $\mathrm{amb} - \nabla\!\cdot\!(\bar{\mathbf u} h)$ (shared) | `additive`: $C \leftarrow C + \alpha r \Delta t$ |
-| **Linear-multiplicative friction** | `slidingco` | `relative`: $(\lvert\mathbf u_s^\text{obs}\rvert - \lvert\mathbf u_s\rvert)/\lvert\mathbf u_s^\text{obs}\rvert$ | `multiplicative_linear`: $C \leftarrow C(1 + \alpha r)$ with $\alpha = -1$ |
-
-Several steps can run together in the same time loop — for instance a bed inversion (two steps writing `thk` and `usurf`) plus a friction-inversion step writing `slidingco`, all sharing the time clock and the same `iceflow` solve.
-
-### PISM-style force-to-thickness
-
-Drift `smb` so that ice thickness relaxes to a target (residual `linear` with target `thk_target` and current `thk`; update `replace` with gain $\alpha$; control `smb` with `bounds: [smb_min, smb_max]`). The actual relaxation is performed by a `post_processes: [thk]` mass-conservation step. This produces the closed-form
-
-$$H(t) = H_\text{target} + (H_0 - H_\text{target})\exp(-\alpha t).$$
-
-### Apparent-mass-balance bed inversion (Frank & van Pelt, 2025)
-
-Drive the flux divergence toward `amb = smb − dhdt_obs` by perturbing thickness and surface elevation jointly. Two geometry steps share one residual (`shares_residual_with`): `amb_thk` writes `thk` with gain $\beta$, and `amb_usurf` writes `usurf` with gain $\theta\beta$ (see the [example below](#apparent-mass-balance-bed-inversion)). The target `amb` is recomputed every iteration by `_ensure_derived` as `state.amb = state.smb − state.dhdt_obs` (masked by `icemask`), with `state.dhdt_obs` snapshotted from the input `dhdt` field at startup. The legacy combined parameter $\theta$ is no longer a free knob — it is simply the ratio `alpha_usurf / alpha_thk`.
-
-### Linear-multiplicative friction
-
-Multiply `slidingco` by $(1 + \mathrm{clip}(r))$ where $r$ is the relative velocity mismatch (residual `relative` with target `velsurf_magobs` and current `velsurf_mag`; update `multiplicative_linear` with `alpha: -1`, `r_max: max_vel_ratio`, `apply: per_application`; control `slidingco` with `bounds`). The $\alpha = -1$ flips the sign because the schema's `relative` residual is $(T-M)/T = (\text{obs}-\text{mod})/\text{obs}$, whereas the legacy IGM friction-inversion formula uses $(\text{mod}-\text{obs})/\text{obs}$.
-
 ## Module ordering
 
 `time_relaxation` must appear in the `assimilations` list. It initialises the forward model (`iceflow` by default) and any auxiliary modules internally, so these must also be listed in `processes` for Hydra to load their configs:
@@ -158,9 +128,28 @@ defaults:
     - time_relaxation
 ```
 
-## Example usage
+### Observation snapshots
 
-### Apparent-mass-balance bed inversion
+At startup, the module snapshots standard observation fields if they are not already on state: `usurf_obs`, `thk_obs`, `dhdt_obs`, and `velsurf_magobs`. This allows residuals like `usurf_obs − usurf` to work without explicit preparation.
+
+## Recovering classical methods
+
+Because each step is an orthogonal `(residual, update, control)` triple, the same generic driver reproduces a range of classical **relaxation / nudging** data-assimilation methods used in glacier and ice-sheet modelling — each obtained by changing only the YAML, with no code change. For example:
+
+- **Apparent-mass-balance bed inversion** (Frank & van Pelt, 2025) — perturb thickness and surface elevation jointly to drive the flux divergence toward the apparent mass balance (*detailed [below](#apparent-mass-balance-bed-inversion-frank-van-pelt-2025)*).
+- **Surface-mass-balance force-to-thickness** (PISM) — drift `smb` (update `replace`) so that ice thickness relaxes toward a target; a `post_processes: [thk]` mass-conservation step performs the actual relaxation, giving the closed form $H(t) = H_\text{target} + (H_0 - H_\text{target})\exp(-\alpha t)$. 
+- **Sliding-coefficient inversion to surface elevation** (Pollard & DeConto, 2012) — nudge the basal sliding coefficient from the surface-elevation misfit ($r = z_s^\text{obs} - z_s$).
+- **Sliding-coefficient inversion to ice thickness** (Pattyn, 2017) — iteratively adjust the basal sliding coefficient to minimise the modelled–observed ice-thickness misfit at steady state.
+- **Sliding-coefficient inversion to surface velocity** (Le clec'h et al., 2019) — nudge `slidingco` from the relative surface-velocity mismatch, e.g. multiply by $(1 + \mathrm{clip}(r))$ with $\alpha = -1$.
+
+Several steps can run together in the same time loop — for instance a bed inversion (two steps writing `thk` and `usurf`) plus a friction-inversion step writing `slidingco`, all sharing the time clock and the same `iceflow` solve.
+
+We detail one fully worked example — the apparent-mass-balance bed inversion of Frank & van Pelt — below.
+
+### Apparent-mass-balance bed inversion (Frank & van Pelt, 2025)
+
+Drive the flux divergence toward `amb = smb − dhdt_obs` by perturbing thickness and surface elevation jointly. Two geometry steps share one residual (`shares_residual_with`): `amb_thk` writes `thk` with gain $\beta$, and `amb_usurf` writes `usurf` with gain $\theta\beta$ (see the [example below](#apparent-mass-balance-bed-inversion)). The target `amb` is recomputed every iteration by `_ensure_derived` as `state.amb = state.smb − state.dhdt_obs` (masked by `icemask`), with `state.dhdt_obs` snapshotted from the input `dhdt` field at startup. The legacy combined parameter $\theta$ is no longer a free knob — it is simply the ratio `alpha_usurf / alpha_thk`.
+
 
 ```yaml
 defaults:

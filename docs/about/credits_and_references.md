@@ -18,6 +18,7 @@
 <div class="credits-table" markdown="1">
 | Name | Contributions |
 |---|---|
+| Lucie Bachin | Tests of the enthalpy module |
 | Flavio Calvo | Support from IGM 1 to IGM 2 |
 | Samuel Cook | Global-modelling functions in `data_assimilation`; RGI7 support in `oggm_shop` |
 | Guillaume Cordonnier | Co-design of the physics-informed CNN; original `thk` module |
@@ -29,6 +30,6 @@
 | Jürgen Mey | `avalanche` and `gflex` modules |
 | Margot Sirdey | Support from IGM 1 to IGM 2; PyPI setup |
 | Gillian Smith | Bug fixes in the data assimilation and the data assimilation |
-| Claire-Mathilde Stücki | Vertical velocity computation (now `iceflow.vertical_velocity`) and updates to `particles` |
+| Claire-Mathilde Stücki | Vertical velocity computation and particles |
 | Ethan Welty | GlaThiDa file reading |
 </div>
