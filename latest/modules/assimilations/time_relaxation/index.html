@@ -2824,6 +2824,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#module-ordering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module ordering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Module ordering">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#observation-snapshots" class="md-nav__link">
     <span class="md-ellipsis">
@@ -2853,71 +2870,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pism-style-force-to-thickness" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PISM-style force-to-thickness
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#apparent-mass-balance-bed-inversion-frank-van-pelt-2025" class="md-nav__link">
     <span class="md-ellipsis">
       
         Apparent-mass-balance bed inversion (Frank &amp; van Pelt, 2025)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linear-multiplicative-friction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Linear-multiplicative friction
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-ordering" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module ordering
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example usage
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Example usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#apparent-mass-balance-bed-inversion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Apparent-mass-balance bed inversion
       
     </span>
   </a>
@@ -4579,48 +4535,6 @@ several classical relaxation methods used in glacier and ice-sheet modelling.</p
 <li><code>state.divflux</code> from <code>ubar</code>, <code>vbar</code>, and <code>thk</code> (if present)</li>
 <li><code>state.amb = state.smb − state.dhdt_obs</code> (apparent mass balance, masked by <code>icemask</code>; requires an SMB module in <code>pre_processes</code> and a <code>dhdt</code> field in the input NetCDF)</li>
 </ul>
-<h3 id="observation-snapshots">Observation snapshots</h3>
-<p>At startup, the module snapshots standard observation fields if they are not already on state: <code>usurf_obs</code>, <code>thk_obs</code>, <code>dhdt_obs</code>, and <code>velsurf_magobs</code>. This allows residuals like <code>usurf_obs − usurf</code> to work without explicit preparation.</p>
-<h2 id="recovering-classical-methods">Recovering classical methods</h2>
-<p>The same driver, with different YAML parameters, reproduces several established methods:</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Control <span class="arithmatex">\(C\)</span></th>
-<th>Residual <span class="arithmatex">\(r\)</span></th>
-<th>Update law</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>PISM force-to-thickness</strong></td>
-<td><code>smb</code></td>
-<td><code>linear</code>: <span class="arithmatex">\(h^\text{target} - h\)</span></td>
-<td><code>replace</code>: <span class="arithmatex">\(C \leftarrow \alpha r\)</span></td>
-</tr>
-<tr>
-<td><strong>Apparent-mass-balance bed inversion</strong> (Frank &amp; van Pelt, 2025)</td>
-<td><code>thk</code> + <code>usurf</code> (two coupled steps)</td>
-<td><code>linear</code>: <span class="arithmatex">\(\mathrm{amb} - \nabla\!\cdot\!(\bar{\mathbf u} h)\)</span> (shared)</td>
-<td><code>additive</code>: <span class="arithmatex">\(C \leftarrow C + \alpha r \Delta t\)</span></td>
-</tr>
-<tr>
-<td><strong>Linear-multiplicative friction</strong></td>
-<td><code>slidingco</code></td>
-<td><code>relative</code>: <span class="arithmatex">\((\lvert\mathbf u_s^\text{obs}\rvert - \lvert\mathbf u_s\rvert)/\lvert\mathbf u_s^\text{obs}\rvert\)</span></td>
-<td><code>multiplicative_linear</code>: <span class="arithmatex">\(C \leftarrow C(1 + \alpha r)\)</span> with <span class="arithmatex">\(\alpha = -1\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Several steps can run together in the same time loop — for instance a bed inversion (two steps writing <code>thk</code> and <code>usurf</code>) plus a friction-inversion step writing <code>slidingco</code>, all sharing the time clock and the same <code>iceflow</code> solve.</p>
-<h3 id="pism-style-force-to-thickness">PISM-style force-to-thickness</h3>
-<p>Drift <code>smb</code> so that ice thickness relaxes to a target (residual <code>linear</code> with target <code>thk_target</code> and current <code>thk</code>; update <code>replace</code> with gain <span class="arithmatex">\(\alpha\)</span>; control <code>smb</code> with <code>bounds: [smb_min, smb_max]</code>). The actual relaxation is performed by a <code>post_processes: [thk]</code> mass-conservation step. This produces the closed-form</p>
-<div class="arithmatex">\[H(t) = H_\text{target} + (H_0 - H_\text{target})\exp(-\alpha t).\]</div>
-<h3 id="apparent-mass-balance-bed-inversion-frank-van-pelt-2025">Apparent-mass-balance bed inversion (Frank &amp; van Pelt, 2025)</h3>
-<p>Drive the flux divergence toward <code>amb = smb − dhdt_obs</code> by perturbing thickness and surface elevation jointly. Two geometry steps share one residual (<code>shares_residual_with</code>): <code>amb_thk</code> writes <code>thk</code> with gain <span class="arithmatex">\(\beta\)</span>, and <code>amb_usurf</code> writes <code>usurf</code> with gain <span class="arithmatex">\(\theta\beta\)</span> (see the <a href="#apparent-mass-balance-bed-inversion">example below</a>). The target <code>amb</code> is recomputed every iteration by <code>_ensure_derived</code> as <code>state.amb = state.smb − state.dhdt_obs</code> (masked by <code>icemask</code>), with <code>state.dhdt_obs</code> snapshotted from the input <code>dhdt</code> field at startup. The legacy combined parameter <span class="arithmatex">\(\theta\)</span> is no longer a free knob — it is simply the ratio <code>alpha_usurf / alpha_thk</code>.</p>
-<h3 id="linear-multiplicative-friction">Linear-multiplicative friction</h3>
-<p>Multiply <code>slidingco</code> by <span class="arithmatex">\((1 + \mathrm{clip}(r))\)</span> where <span class="arithmatex">\(r\)</span> is the relative velocity mismatch (residual <code>relative</code> with target <code>velsurf_magobs</code> and current <code>velsurf_mag</code>; update <code>multiplicative_linear</code> with <code>alpha: -1</code>, <code>r_max: max_vel_ratio</code>, <code>apply: per_application</code>; control <code>slidingco</code> with <code>bounds</code>). The <span class="arithmatex">\(\alpha = -1\)</span> flips the sign because the schema's <code>relative</code> residual is <span class="arithmatex">\((T-M)/T = (\text{obs}-\text{mod})/\text{obs}\)</span>, whereas the legacy IGM friction-inversion formula uses <span class="arithmatex">\((\text{mod}-\text{obs})/\text{obs}\)</span>.</p>
 <h2 id="module-ordering">Module ordering</h2>
 <p><code>time_relaxation</code> must appear in the <code>assimilations</code> list. It initialises the forward model (<code>iceflow</code> by default) and any auxiliary modules internally, so these must also be listed in <code>processes</code> for Hydra to load their configs:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">defaults</span><span class="p">:</span>
@@ -4629,8 +4543,21 @@ several classical relaxation methods used in glacier and ice-sheet modelling.</p
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /assimilations</span><span class="p">:</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time_relaxation</span>
 </span></code></pre></div>
-<h2 id="example-usage">Example usage</h2>
-<h3 id="apparent-mass-balance-bed-inversion">Apparent-mass-balance bed inversion</h3>
+<h3 id="observation-snapshots">Observation snapshots</h3>
+<p>At startup, the module snapshots standard observation fields if they are not already on state: <code>usurf_obs</code>, <code>thk_obs</code>, <code>dhdt_obs</code>, and <code>velsurf_magobs</code>. This allows residuals like <code>usurf_obs − usurf</code> to work without explicit preparation.</p>
+<h2 id="recovering-classical-methods">Recovering classical methods</h2>
+<p>Because each step is an orthogonal <code>(residual, update, control)</code> triple, the same generic driver reproduces a range of classical <strong>relaxation / nudging</strong> data-assimilation methods used in glacier and ice-sheet modelling — each obtained by changing only the YAML, with no code change. For example:</p>
+<ul>
+<li><strong>Apparent-mass-balance bed inversion</strong> (Frank &amp; van Pelt, 2025) — perturb thickness and surface elevation jointly to drive the flux divergence toward the apparent mass balance (<em>detailed <a href="#apparent-mass-balance-bed-inversion-frank-van-pelt-2025">below</a></em>).</li>
+<li><strong>Surface-mass-balance force-to-thickness</strong> (PISM) — drift <code>smb</code> (update <code>replace</code>) so that ice thickness relaxes toward a target; a <code>post_processes: [thk]</code> mass-conservation step performs the actual relaxation, giving the closed form <span class="arithmatex">\(H(t) = H_\text{target} + (H_0 - H_\text{target})\exp(-\alpha t)\)</span>. </li>
+<li><strong>Sliding-coefficient inversion to surface elevation</strong> (Pollard &amp; DeConto, 2012) — nudge the basal sliding coefficient from the surface-elevation misfit (<span class="arithmatex">\(r = z_s^\text{obs} - z_s\)</span>).</li>
+<li><strong>Sliding-coefficient inversion to ice thickness</strong> (Pattyn, 2017) — iteratively adjust the basal sliding coefficient to minimise the modelled–observed ice-thickness misfit at steady state.</li>
+<li><strong>Sliding-coefficient inversion to surface velocity</strong> (Le clec'h et al., 2019) — nudge <code>slidingco</code> from the relative surface-velocity mismatch, e.g. multiply by <span class="arithmatex">\((1 + \mathrm{clip}(r))\)</span> with <span class="arithmatex">\(\alpha = -1\)</span>.</li>
+</ul>
+<p>Several steps can run together in the same time loop — for instance a bed inversion (two steps writing <code>thk</code> and <code>usurf</code>) plus a friction-inversion step writing <code>slidingco</code>, all sharing the time clock and the same <code>iceflow</code> solve.</p>
+<p>We detail one fully worked example — the apparent-mass-balance bed inversion of Frank &amp; van Pelt — below.</p>
+<h3 id="apparent-mass-balance-bed-inversion-frank-van-pelt-2025">Apparent-mass-balance bed inversion (Frank &amp; van Pelt, 2025)</h3>
+<p>Drive the flux divergence toward <code>amb = smb − dhdt_obs</code> by perturbing thickness and surface elevation jointly. Two geometry steps share one residual (<code>shares_residual_with</code>): <code>amb_thk</code> writes <code>thk</code> with gain <span class="arithmatex">\(\beta\)</span>, and <code>amb_usurf</code> writes <code>usurf</code> with gain <span class="arithmatex">\(\theta\beta\)</span> (see the <a href="#apparent-mass-balance-bed-inversion">example below</a>). The target <code>amb</code> is recomputed every iteration by <code>_ensure_derived</code> as <code>state.amb = state.smb − state.dhdt_obs</code> (masked by <code>icemask</code>), with <code>state.dhdt_obs</code> snapshotted from the input <code>dhdt</code> field at startup. The legacy combined parameter <span class="arithmatex">\(\theta\)</span> is no longer a free knob — it is simply the ratio <code>alpha_usurf / alpha_thk</code>.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">defaults</span><span class="p">:</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /processes</span><span class="p">:</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iceflow</span>
@@ -4994,7 +4921,7 @@ several classical relaxation methods used in glacier and ice-sheet modelling.</p
     </table>
   </details>
 
-<p><strong>Contributors:</strong> Guillaume Jouvet.</p>
+<p><strong>Contributors:</strong> Guillaume Jouvet, Thomas Frank.</p>
 
 
 
