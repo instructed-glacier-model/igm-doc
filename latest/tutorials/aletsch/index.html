@@ -4438,8 +4438,8 @@
 <h3 id="run">Run</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params_A_step1
 </span></code></pre></div>
-<p>The run takes a few seconds to a minute depending on your hardware, and shows the evolving ice-thickness and speed fields live in the dashboard. Output lands in <code>outputs/&lt;date&gt;_&lt;time&gt;/output.nc</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ncview<span class="w"> </span>outputs/*/output.nc
+<p>The run takes a few seconds to a minute depending on your hardware, and shows the evolving ice-thickness and speed fields live in the dashboard. Output lands in <code>outputs/&lt;date&gt;/&lt;time&gt;/output.nc</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ncview<span class="w"> </span>outputs/*/*/output.nc
 </span></code></pre></div>
 <hr />
 <h2 id="step-2-custom-user-defined-smb-module">Step 2: Custom user-defined SMB module</h2>
@@ -4516,7 +4516,7 @@
 </span></code></pre></div>
 <hr />
 <h2 id="inspecting-outputs">Inspecting outputs</h2>
-<p>All steps write results to <code>outputs/&lt;date&gt;_&lt;time&gt;/</code>:</p>
+<p>All steps write results to <code>outputs/&lt;date&gt;/&lt;time&gt;/</code>:</p>
 <table>
 <thead>
 <tr>
