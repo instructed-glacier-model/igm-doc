@@ -101,10 +101,10 @@ The ELA rises from 2800 m in 1900 to 3300 m by 2100, thinning the glacier as the
 igm_run +experiment=params_A_step1
 ```
 
-The run takes a few seconds to a minute depending on your hardware, and shows the evolving ice-thickness and speed fields live in the dashboard. Output lands in `outputs/<date>_<time>/output.nc`:
+The run takes a few seconds to a minute depending on your hardware, and shows the evolving ice-thickness and speed fields live in the dashboard. Output lands in `outputs/<date>/<time>/output.nc`:
 
 ```bash
-ncview outputs/*/output.nc
+ncview outputs/*/*/output.nc
 ```
 
 ---
@@ -212,7 +212,7 @@ igm_run +experiment=params_A_step5
 
 ## Inspecting outputs
 
-All steps write results to `outputs/<date>_<time>/`:
+All steps write results to `outputs/<date>/<time>/`:
 
 | File | Contents |
 |---|---|
