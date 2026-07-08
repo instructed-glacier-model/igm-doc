@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#migrating-to-igm-31-32" class="md-skip">
+        <a href="#migrating-from-igm-31-to-32" class="md-skip">
           Skip to content
         </a>
       
@@ -1659,10 +1659,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-environment-reinstall-igm-tensorflow-217-keras-3-now-required" class="md-nav__link">
+  <a href="#1-reinstall-igm-now-requires-tensorflow-217-keras-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Environment: reinstall IGM (TensorFlow 2.17 / Keras 3 now required)
+        1. Reinstall IGM (now requires TensorFlow 2.17 / Keras 3)
       
     </span>
   </a>
@@ -1695,7 +1695,7 @@
   <a href="#4-new-sliding-laws-budd-mohr_coulomb-regu_coulomb" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. New sliding laws (budd, mohr_coulomb, regu_coulomb)
+        4. New sliding laws: budd, mohr_coulomb, regu_coulomb
       
     </span>
   </a>
@@ -1714,10 +1714,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-new-assimilation-type-of-modules-to-assimilations" class="md-nav__link">
+  <a href="#6-assimilation-modules-move-to-a-new-assimilations-category" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. New assimilation-type of modules to /assimilations
+        6. Assimilation modules move to a new assimilations category
       
     </span>
   </a>
@@ -1758,21 +1758,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-enthalpy-users" class="md-nav__link">
+  <a href="#10-enthalpy-users-several-pieces-split-out" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. enthalpy users
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-floating-ice-scalar-sealevel-2d-water_level" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        11. Floating ice: scalar sealevel → 2D water_level
+        10. enthalpy users: several pieces split out
       
     </span>
   </a>
@@ -4330,97 +4319,214 @@
   
 
 
-<h1 id="migrating-to-igm-31-32">Migrating to IGM 3.1 -&gt; 3.2</h1>
-<blockquote>
-<p>📖 This document tells you <strong>what to change in an existing setup</strong> to run on 3.2.0.
-For an exhaustive, module-by-module list of <em>everything</em> that changed (including
-changes that need no action), see the full release notes in GitHub.</p>
-</blockquote>
+<h1 id="migrating-from-igm-31-to-32">Migrating from IGM 3.1 to 3.2</h1>
+<p>IGM 3.2 is a large but mostly mechanical migration. The headline change is the
+ice-flow engine: the old <code>emulated</code> mode is reworked into a cleaner, benchmarked
+<strong><code>unified</code> stack</strong>, now the default. Around it, the <strong>physics config is regrouped
+and renamed</strong> (<code>sliding:</code> / <code>viscosity:</code>), assimilation modules move into a new
+<strong><code>assimilations</code></strong> category, the <code>smb_*</code> / <code>climate_*</code> modules collapse into
+umbrella <strong><code>smb</code></strong> / <strong><code>climate</code></strong>, <strong><code>enthalpy</code></strong> is split into standalone pieces,
+and the whole thing now runs on <strong>TensorFlow 2.17 / Keras 3</strong>. Most existing setups
+need only a handful of edits — this page lists them.</p>
+<details class="abstract">
+<summary>Migration at a glance — the checklist</summary>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Reinstall</strong> in a TF 2.17 / Keras 3 environment (§1)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Move to the <strong><code>unified</code></strong> ice-flow stack (§2)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rename friction scalar <strong><code>slidingco</code> → <code>tau_ref</code></strong> on unified (§3)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Optionally adopt new <strong>sliding laws</strong> — <code>budd</code>, <code>mohr_coulomb</code>, <code>regu_coulomb</code> (§4)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Apply the <strong><code>sliding:</code> / <code>viscosity:</code></strong> physics-key renames (§5)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Update <strong>assimilation</strong> module paths &amp; changed defaults (§6–8)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Switch to umbrella <strong><code>smb</code> / <code>climate</code></strong> via <code>method:</code> (§9)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> If you use <strong><code>enthalpy</code></strong>: add <code>subglacial_hydrology</code> + <code>arrhenius</code>, enable <code>vertical_velocity</code> (§10)</li>
+</ul>
+</details>
 <hr />
-<h3 id="1-environment-reinstall-igm-tensorflow-217-keras-3-now-required">1. Environment: reinstall IGM (TensorFlow 2.17 / Keras 3 now required)</h3>
-<p>The new stack is tested <strong>only on TF ≥ 2.16 / Keras ≥ 3.12</strong> and uses Keras-3-only.
-On the old TF 2.15 / Keras 2 env it now <strong>fails at the first ice-flow solve</strong>.
-<strong>Do:</strong> reinstall IGM from <code>setup.py</code> (e.g. <code>pip install -e .</code>) in an environment with
-TF 2.17 / Keras 3 — this pulls in the updated dependencies.</p>
-<p><strong>Note:</strong> that if you use a GPU with the blackwell architecture (like RTX 5090 or 6000), the only way to to use the Nvidia NGC docker container (the last one released is 25.02-tf2-py3, with tensorflow 2.17.0).</p>
+<h3 id="1-reinstall-igm-now-requires-tensorflow-217-keras-3">1. Reinstall IGM (now requires TensorFlow 2.17 / Keras 3)</h3>
+<p><strong>Do:</strong> reinstall into a fresh environment with <strong>TF ≥ 2.16 / Keras ≥ 3.12</strong>
+(<code>pip install -e .</code>). The old TF 2.15 / Keras 2 environment will now <strong>fail at the
+first ice-flow solve</strong>.</p>
+<details class="note">
+<summary>Why — Keras 3 only</summary>
+<p>The new stack is tested <strong>only</strong> on TF ≥ 2.16 / Keras ≥ 3.12 and uses
+Keras-3-only APIs, so it cannot run on the previous environment. Reinstalling
+from <code>setup.py</code> pulls in the updated dependencies automatically.</p>
+</details>
 <h3 id="2-switch-to-the-unified-ice-flow-stack">2. Switch to the <code>unified</code> ice-flow stack</h3>
-<p>The former <code>emulated</code> mode has been <strong>reworked into a new, much cleaner <code>unified</code>
-stack</strong>, which is now the default and the recommended way to run ice flow. A bare run
-(no <code>iceflow</code> overrides) now uses <code>unified</code> + a from-scratch <code>dahunet</code> emulator (the
-default <code>numerics.Nz</code> also dropped 10 → 4).</p>
-<p>The legacy <code>emulated</code> and <code>solved</code> modes are <strong>kept for backward compatibility only</strong>
-and <strong>will be removed in a future version</strong> — please migrate to <code>unified</code>.</p>
-<p>Switching modes also changes the <strong>emulator parameters</strong>: the network is now <code>dahunet</code>, 
-its knobs live under <code>unified.network.params</code>, and the friction control
-is <code>tau_ref</code> instead of <code>slidingco</code> (see steps 3–5).</p>
-<p><strong>Do (recommended):</strong> move to <code>unified</code> and update the emulator parameters per steps
-3–5.
-<strong>Do (temporary fallback):</strong> to keep the old behaviour for now, pin
-<code>iceflow.method: emulated</code> and <code>iceflow.numerics.Nz: 10</code>.</p>
-<p><strong>Default <code>unified</code> / <code>dahunet</code> emulator parameters.</strong> The from-scratch defaults were
-optimized to maximize accuracy while minimizing computational time, and you should not
-need to touch them for a standard run. In short: the default <code>iceflow.method</code> is now
-<code>unified</code> (was <code>emulated</code>) and <code>numerics.Nz</code> is <code>4</code> (was <code>10</code>); the <code>dahunet</code> network
-(under <code>unified.network.params</code>) uses a <code>cnn</code> backend with <code>nb_out_filter: 24</code> (was 32),
-<code>nb_layers: 6</code> (was 8), <code>conv_ker_size: 3</code> and residual connections; and the Adam
-training schedule was retuned to fewer, periodic retraining steps — <code>nbit_init: 300</code>
-(was 500), <code>nbit: 5</code> (was 1), <code>retrain_freq: 5</code> (was 1), <code>adam.lr_init: 2.0e-03</code>
-(was 1.0e-03), <code>adam.lr: 5.0e-04</code> (unchanged).</p>
+<p>The former <code>emulated</code> mode has been reworked into a cleaner <strong><code>unified</code> stack</strong>, now
+the <strong>default and recommended</strong> way to run ice flow. A bare run (no <code>iceflow</code>
+overrides) uses <code>unified</code> + a from-scratch <code>dahunet</code> emulator.</p>
+<p><strong>Online vs. offline — same stack, two flavours.</strong> <code>unified</code> minimises the <em>same</em>
+Blatter–Pattyn energy but lets you choose how the velocity field is represented. In
+the <strong>online</strong> flavour the network is trained <em>on-the-fly</em> within the time loop (like
+a self-tuning solver) — flexible, tunable numerics, works for any ice flow. In the
+<strong>offline</strong> flavour a network trained before <em>once for all</em> is used in inference only —
+more reliable for data assimilation, but limited to the fixed, existing
+pre-trained emulators (best for "standard" mountain glaciers). For now both give
+roughly similar accuracy and performance; pick offline if you want a fixed emulator
+and clean assimilation, online if you want full control over the numerics.</p>
+<p><strong>Try both on Aletsch.</strong> The <code>igm-examples/aletsch</code> tutorial lets you switch between
+the two with a single defaults entry:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">defaults</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">common</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iceflow_offline</span><span class="w">   </span><span class="c1"># or: iceflow_online</span>
+</span></code></pre></div>
+<p>where <code>common/iceflow_offline.yaml</code> (resp. <code>iceflow_online.yaml</code>) ships the
+recommended parameters for each flavour — the easiest way to compare them on a real
+glacier.</p>
+<p><strong>Do (recommended):</strong> move to <code>unified</code> and update the emulator parameters per §3–5.
+<strong>Do (temporary fallback):</strong> to keep the old behaviour, pin
+<code>iceflow.method: emulated</code>, <code>iceflow.numerics.Nz: 10</code>, and <code>physics.sliding.u_ref: 1.0</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Legacy modes are deprecated</p>
+<p><code>emulated</code> and <code>solved</code> are kept for backward compatibility only and <strong>will be
+removed in a future version</strong>. Please migrate to <code>unified</code>.</p>
+</div>
+<details class="note">
+<summary>What changes by default (you shouldn't need to touch these)</summary>
+<p>The from-scratch defaults were tuned to maximize accuracy while minimizing
+compute time, so a standard run needs no manual tuning. In short:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Old (<code>emulated</code>)</th>
+<th>New (<code>unified</code> / <code>dahunet</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iceflow.method</code></td>
+<td><code>emulated</code></td>
+<td><code>unified</code></td>
+</tr>
+<tr>
+<td><code>numerics.Nz</code></td>
+<td>10</td>
+<td>4</td>
+</tr>
+<tr>
+<td>network</td>
+<td>(cnn)</td>
+<td><code>dahunet</code> (cnn backend, residual)</td>
+</tr>
+<tr>
+<td><code>nb_out_filter</code></td>
+<td>32</td>
+<td>24</td>
+</tr>
+<tr>
+<td><code>nb_layers</code></td>
+<td>8</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>conv_ker_size</code></td>
+<td>—</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>nbit_init</code></td>
+<td>500</td>
+<td>300</td>
+</tr>
+<tr>
+<td><code>nbit</code></td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>retrain_freq</code></td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>adam.lr_init</code></td>
+<td>1.0e-03</td>
+<td>2.0e-03</td>
+</tr>
+<tr>
+<td><code>adam.lr</code></td>
+<td>5.0e-04</td>
+<td>5.0e-04 (unchanged)</td>
+</tr>
+</tbody>
+</table>
+<p>Network knobs now live under <code>unified.network.params</code>; the friction control is
+<code>tau_ref</code> instead of <code>slidingco</code> (see §3–5).</p>
+</details>
 <h3 id="3-friction-scalar-slidingco-tau_ref-unified-stack-only">3. Friction scalar <code>slidingco</code> → <code>tau_ref</code> (unified stack only)</h3>
-<p><strong>Do:</strong> on the <strong>unified</strong> stack rename <code>sliding.slidingco</code> → <code>sliding.tau_ref</code>, and
-the same under <code>unified.inputs</code>. Leave <code>slidingco</code> as-is on the legacy stack.</p>
-<p><strong>Why <code>tau_ref</code> (with <code>u_ref</code>).</strong> The Weertman/Budd sliding law is now written in a
-reference-point form</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tau_b = tau_ref · (|u_b| / u_ref)^(1/m)
+<p><strong>Do:</strong> on the <strong>unified</strong> stack, rename <code>sliding.slidingco</code> → <code>sliding.tau_ref</code>. 
+Leave <code>slidingco</code> as-is on the legacy stack.</p>
+<p><code>tau_ref</code> <em>is</em> the old <code>slidingco</code>, just renamed and given physical meaning: it is
+the basal shear stress (in MPa) needed to reach the reference sliding speed <code>u_ref</code>.
+The 3.2 unified default reads <em>"≈2 bar of basal shear stress drives 100 m/yr of
+sliding"</em> (<code>u_ref = 100 m/yr</code>, <code>tau_ref ≈ 0.215 MPa</code>) — physically identical to the
+3.1 default (<code>u_ref = 1</code>, <code>slidingco = 0.0464</code>).</p>
+<details class="note">
+<summary>The maths: why <code>tau_ref</code> / <code>u_ref</code>, and how to convert</summary>
+<p>The Weertman sliding law is now written in reference-point form</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>tau_b = tau_ref · (|u_b| / u_ref)^(1/m)
 </span></code></pre></div>
-<p>where <code>m</code> is <code>sliding.exponent</code> (= 3, the classic Weertman exponent in <code>u_b ∝ tau_b^m</code>).
-The drag that multiplies <code>u_b^(1/m)</code> is the coefficient <code>C = tau_ref / u_ref^(1/m)</code>.</p>
-<p><strong><code>tau_ref</code> <em>is</em> the old <code>slidingco</code>, renamed.</strong> Both are the reference basal shear
-stress in <strong>MPa</strong>, both default to <code>0.0464</code>, and they feed the identical sliding kernel.
-There is <strong>no nonlinear transformation</strong> between them: at the default <code>u_ref = 1 m/yr</code>,</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>tau_ref = slidingco            (both in MPa, u_ref = 1)
+<p>where <code>m</code> is <code>sliding.exponent</code> (= 3, the classic Weertman exponent in
+<code>u_b ∝ tau_b^m</code>). The drag multiplying <code>u_b^(1/m)</code> is <code>C = tau_ref / u_ref^(1/m)</code>.</p>
+<p>There is <strong>no nonlinear transformation</strong> between old and new: <code>slidingco</code> was
+already defined at an implicit <code>u_ref = 1</code>, i.e. <code>slidingco = C</code>. So at the
+default <code>u_ref = 1</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tau_ref = slidingco            (both in MPa, u_ref = 1)
 </span></code></pre></div>
-<p><code>slidingco</code> was already defined at an implicit <code>u_ref = 1</code>, i.e. <code>slidingco = C</code>. The
-only genuinely new knob is <code>u_ref</code>. To keep <strong>identical physics</strong> while moving <code>u_ref</code>
-to a meaningful reference speed <code>U₀</code>, hold <code>C</code> fixed and rescale <code>tau_ref</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tau_ref(U₀) = slidingco · U₀^(1/m)
+<p>To keep <strong>identical physics</strong> while moving <code>u_ref</code> to a meaningful reference
+speed <code>U₀</code>, hold <code>C</code> fixed and rescale:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>tau_ref(U₀) = slidingco · U₀^(1/m)
 </span></code></pre></div>
-<p>The pair <code>(u_ref, tau_ref)</code> is thus just a re-parameterisation of <code>slidingco</code> into two
-physically interpretable quantities: <strong><code>tau_ref</code> is the basal shear stress (in MPa)
-needed to produce the reference sliding velocity <code>u_ref</code></strong> — directly comparable across
-sliding laws, unlike the abstract coefficient <code>C</code> whose units depend on <code>m</code>.</p>
-<p>The intended use is to <strong>fix <code>u_ref</code> at a meaningful sliding speed</strong> and read <code>tau_ref</code>
-as a drag. <strong>As of IGM 3.2 the unified-stack default is <code>u_ref = 100 m/yr</code></strong> with
-<code>tau_ref = 0.0464 · 100^(1/3) ≈ 0.215 MPa</code>, i.e. <em>"≈2 bar of basal shear stress drives
-100 m/yr of basal sliding"</em> (0.2 MPa = 2 bar). This is <strong>exactly equivalent</strong> (same drag
-<code>C</code>) to the IGM 3.1 default of <code>u_ref = 1</code>, <code>slidingco = tau_ref = 0.0464</code> — only the
-parameterisation changed, the physics is unchanged.</p>
-<p><code>u_ref</code> is a knob of the <strong>unified</strong> stack only. The legacy emulated/solved/diagnostic
-stack uses <code>slidingco</code> directly as the drag at an implicit <code>u_ref = 1</code>; running those
-methods with any other <code>u_ref</code> is <strong>refused at startup</strong> (keep
-<code>processes.iceflow.physics.sliding.u_ref: 1.0</code> there).</p>
-<blockquote>
-<p><strong>Note on exponent conventions.</strong> The IGM-3 GMD paper writes the friction law as
-<code>tau_b ∝ (|u_b|/u_ref)^m_paper</code>, so its exponent is the <strong>reciprocal</strong> of the code's:
-<code>m_paper = 1/exponent = 1/3</code>. The paper's <code>c = tau_ref / u_ref^m_paper</code> then matches
-the code's <code>C = tau_ref / u_ref^(1/m)</code>. Do not plug <code>exponent = 3</code> into the paper's
-<code>c = tau_ref / u_ref^m</code> — that mixes the two conventions and gives the wrong drag.</p>
-</blockquote>
-<h3 id="4-new-sliding-laws-budd-mohr_coulomb-regu_coulomb">4. New sliding laws (<code>budd</code>, <code>mohr_coulomb</code>, <code>regu_coulomb</code>)</h3>
-<p>Beyond <code>weertman</code>, three effective-pressure-dependent sliding laws were added and are
-selectable via <code>sliding.law</code>: <strong><code>budd</code></strong> (with a <code>q_exponent</code> for sublinear
-effective-pressure dependence, <code>1.0</code> = linear, <code>0.5</code> = Tsai), <strong><code>mohr_coulomb</code></strong>
-(<code>N·tan(phi)</code> reference shear stress, with an optional bed-elevation-dependent friction
-angle), and <strong><code>regu_coulomb</code></strong> (a regularised Coulomb law). All consume
-<code>state.effective_pressure</code> (see the <code>subglacial_hydrology</code> step). These are opt-in — no
-action needed if you stay on <code>weertman</code>.</p>
+<p>So <code>(u_ref, tau_ref)</code> is just a re-parameterisation of <code>slidingco</code> into two
+physically interpretable quantities — directly comparable across sliding laws,
+unlike the abstract coefficient <code>C</code> whose units depend on <code>m</code>. The 3.2 unified
+default <code>u_ref = 100</code>, <code>tau_ref = 0.0464 · 100^(1/3) ≈ 0.215 MPa</code> is exactly
+equivalent (same drag <code>C</code>) to the 3.1 default.</p>
+</details>
+<div class="admonition info">
+<p class="admonition-title"><code>u_ref</code> is unified-only</p>
+<p>The legacy emulated/solved stack uses <code>slidingco</code> directly as the drag
+at an implicit <code>u_ref = 1</code>. Running those methods with any other <code>u_ref</code> is
+<strong>refused at startup</strong> — keep <code>processes.iceflow.physics.sliding.u_ref: 1.0</code>.</p>
+</div>
+<h3 id="4-new-sliding-laws-budd-mohr_coulomb-regu_coulomb">4. New sliding laws: <code>budd</code>, <code>mohr_coulomb</code>, <code>regu_coulomb</code></h3>
+<p><strong>Opt-in — no action needed if you stay on <code>weertman</code>.</strong> Three
+effective-pressure-dependent sliding laws were added, selectable via <code>sliding.law</code>.
+All consume <code>state.effective_pressure</code> (see §10, <code>subglacial_hydrology</code>).</p>
+<details class="note">
+<summary>The three new laws</summary>
+<ul>
+<li><strong><code>budd</code></strong> — adds a <code>q_exponent</code> for sublinear effective-pressure dependence.</li>
+<li><strong><code>mohr_coulomb</code></strong> — <code>N·tan(phi)</code> reference shear stress, with an optional
+  bed-elevation-dependent friction angle.</li>
+<li><strong><code>regu_coulomb</code></strong> — a regularised Coulomb law.</li>
+</ul>
+</details>
 <h3 id="5-physics-keys-regrouped-under-sliding-viscosity">5. Physics keys regrouped under <code>sliding:</code> / <code>viscosity:</code></h3>
 <p>Glen viscosity parameters and the per-law sliding parameters are regrouped under
-<code>viscosity:</code> and <code>sliding:</code>. The per-law sub-blocks (<code>weertman:</code>, <code>coulomb:</code>, <code>budd:</code>,
-<code>mohr_coulomb:</code>) under <code>sliding:</code> no longer exist — their keys move one level up under
-<code>sliding:</code> directly. Only the keys that apply to your chosen <code>sliding.law</code> are read.</p>
-<p><strong>Do:</strong> apply the renames below. Old keys hard-fail at startup with a message naming the
-replacement — the change is purely cosmetic (same physics, values, and units).</p>
+<code>viscosity:</code> and <code>sliding:</code>. The per-law sub-blocks (<code>weertman:</code>, <code>coulomb:</code>,
+<code>budd:</code>, <code>mohr_coulomb:</code>) under <code>sliding:</code> <strong>no longer exist</strong> — their keys move one
+level up under <code>sliding:</code> directly, and only the keys matching your chosen
+<code>sliding.law</code> are read.</p>
+<p><strong>Do:</strong> apply the renames (full table below). Old keys <strong>hard-fail at startup</strong> with
+a message naming the replacement — the change is purely cosmetic (same physics,
+values, and units).</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">physics</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">sliding</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nt">law</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">weertman</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nt">tau_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.215</span><span class="w">     </span><span class="c1"># unified at u_ref=100 (legacy: slidingco: 0.0464 at u_ref=1)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nt">exponent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">u_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span><span class="w">       </span><span class="c1"># unified only; legacy requires u_ref: 1.0</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="nt">viscosity</span><span class="p">:</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="nt">arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">78.0</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="nt">enhancement_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="nt">exponent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</span></code></pre></div>
+<details class="note">
+<summary>Full old → new key mapping</summary>
 <table>
 <thead>
 <tr>
@@ -4479,32 +4585,17 @@ replacement — the change is purely cosmetic (same physics, values, and units).
 </tr>
 </tbody>
 </table>
-<p>New yaml shape (example):</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">processes</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">physics</span><span class="p">:</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">sliding</span><span class="p">:</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="nt">law</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">weertman</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nt">tau_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.215</span><span class="w">     </span><span class="c1"># unified stack at u_ref=100 (use `slidingco: 0.0464` at u_ref=1 on the legacy stack)</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="nt">exponent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="nt">u_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span><span class="w">       </span><span class="c1"># unified only; the legacy stack requires u_ref: 1.0</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">      </span><span class="nt">viscosity</span><span class="p">:</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="nt">arrhenius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">78.0</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="nt">enhancement_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="nt">exponent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
-</span></code></pre></div>
-<h3 id="6-new-assimilation-type-of-modules-to-assimilations">6. New assimilation-type of modules to <code>/assimilations</code></h3>
-<p>The former <code>data_assimilation</code> module was wrongly set in <code>processes</code>, while
-other "assimilation" modules are expected to populate IGM. Therefore, it was decided
-to split "assimilation" modules into a new category "assimilations". The "data_assimilation"
-module has been completly rewritten &amp; improved and the result is a new module
-in "assimilations", named <code>field_inversion</code>.
-The former / legacy "data_assimilation" has also been moved to <code>assimilations</code>
-(it is no longer in <code>processes</code>), but will be removed on the long term. Note that
-the "assimilations" category also contains new modules such as <code>time_relaxation</code> and <code>pretraining</code>.</p>
-<p>In addition, five default parameter values of the legacy <code>data_assimilation</code>
-module were changed in 3.2. If you relied on the previous defaults, set them
-explicitly in your configuration:</p>
+</details>
+<h3 id="6-assimilation-modules-move-to-a-new-assimilations-category">6. Assimilation modules move to a new <code>assimilations</code> category</h3>
+<p>The former <code>data_assimilation</code> module was misplaced in <code>processes</code>. Assimilation
+modules now live in their own <strong><code>assimilations</code></strong> category. <code>data_assimilation</code> was
+rewritten &amp; improved into a new module, <strong><code>field_inversion</code></strong> (§7); the legacy
+<code>data_assimilation</code> also moves to <code>assimilations</code> (deprecated, removed long-term).
+The category also hosts the new modules <code>time_relaxation</code> (§8) and <code>pretraining</code>.</p>
+<p><strong>Do:</strong> update the module paths to <code>assimilations</code>. If you relied on legacy
+<code>data_assimilation</code> defaults, note that five changed in 3.2 — set them explicitly.</p>
+<details class="note">
+<summary>Changed legacy <code>data_assimilation</code> defaults</summary>
 <table>
 <thead>
 <tr>
@@ -4547,54 +4638,54 @@ explicitly in your configuration:</p>
 </tr>
 </tbody>
 </table>
+</details>
 <h3 id="7-new-module-field_inversion-overhauled-data_assimilation">7. New module <code>field_inversion</code> (overhauled <code>data_assimilation</code>)</h3>
-<p>It infers control fields (by default <code>thk</code>, with bounds
-and an <code>icemask</code>) by minimising a misfit-plus-regularisation objective — e.g. a Gaussian
-surface-velocity misfit (<code>uvelsurfobs</code>/<code>vvelsurfobs</code>) plus a squared-Laplacian smoothness
-penalty on the thickness. Check its doc for more details.</p>
+<p>Infers control fields (by default <code>thk</code>, with bounds and an <code>icemask</code>) by minimising
+a misfit-plus-regularisation objective — e.g. a Gaussian surface-velocity misfit
+(<code>uvelsurfobs</code> / <code>vvelsurfobs</code>) plus a squared-Laplacian smoothness penalty on the
+thickness. See its module doc for details.</p>
 <h3 id="8-new-module-time_relaxation">8. New module <code>time_relaxation</code></h3>
-<p>Data assimilation by <strong>time relaxation</strong> (e.g. Frank &amp; van Pelt method): the forward model is
-run forward in time and, each step, control fields (<code>smb</code>, <code>topg</code>, <code>thk</code>,
-<code>slidingco</code>/<code>tau_ref</code>, …) are nudged toward observations so the modelled state relaxes to
-the observed targets while staying dynamically consistent. Check its doc for more details.</p>
+<p>Data assimilation by <strong>time relaxation</strong> (e.g. Frank &amp; van Pelt): the forward model
+is run forward in time and, each step, control fields (<code>smb</code>, <code>topg</code>, <code>thk</code>,
+<code>slidingco</code>/<code>tau_ref</code>, …) are nudged toward observations, so the modelled state
+relaxes to the observed targets while staying dynamically consistent. See its module
+doc for details.</p>
 <h3 id="9-smb_simple-clim_-umbrella-smb-climate">9. <code>smb_simple</code> / <code>clim_*</code> → umbrella <code>smb</code> / <code>climate</code></h3>
-<p>Former modules smb_<em> and climate_</em> were merged for simplicity, wahc one can be called
-using their keyword method (s.t <code>simple</code>, <code>oggm</code> ...)
-<strong>Do:</strong> replace the individual modules with the umbrella <code>smb</code> / <code>climate</code> modules and
-select the implementation via <code>method:</code> (<code>simple</code>/<code>oggm</code>/<code>accpdd</code>,
-<code>simple</code>/<code>oggm</code>/<code>glacialindex</code>/<code>station</code>).</p>
-<h3 id="10-enthalpy-users">10. <code>enthalpy</code> users</h3>
-<p>Several pieces formerly bundled in <code>enthalpy</code> were split out or changed. If you run
-<code>enthalpy</code>, apply all of the following:</p>
+<p>The individual <code>smb_*</code> and <code>climate_*</code> modules were merged into single umbrella
+modules; you select the implementation via <code>method:</code>.</p>
+<p><strong>Do:</strong> replace the individual modules with <code>smb</code> / <code>climate</code> and set <code>method:</code>:</p>
+<ul>
+<li><code>smb</code> → <code>simple</code> / <code>oggm</code> / <code>accpdd</code></li>
+<li><code>climate</code> → <code>simple</code> / <code>oggm</code> / <code>glacialindex</code> / <code>station</code></li>
+</ul>
+<h3 id="10-enthalpy-users-several-pieces-split-out">10. <code>enthalpy</code> users: several pieces split out</h3>
+<p>Several pieces formerly bundled in <code>enthalpy</code> were split out or changed. <strong>If you run
+<code>enthalpy</code>, apply all four changes below.</strong></p>
+<p><strong>Do (summary):</strong> add <code>subglacial_hydrology</code> and <code>arrhenius</code> to your process list,
+remove <code>vert_flow</code> and set <code>iceflow.vertical_velocity.enabled: true</code>, and re-add
+<code>T</code> / <code>omega</code> to your outputs if you need them.</p>
+<details class="note">
+<summary>The four changes in detail</summary>
 <ol>
 <li><strong>Subglacial hydrology / effective pressure</strong> — moved out of <code>enthalpy</code> into a
-   dedicated <code>subglacial_hydrology</code> module (which also adds simpler effective-pressure
-   parametrisations, e.g. a percentage of the ice column). It still returns
-   <code>state.effective_pressure</code> (usable with the Budd sliding law). <strong>Do:</strong> add
-   <code>subglacial_hydrology</code> and pick a <code>mode:</code> (e.g. <code>till_storage</code>).</li>
-<li><strong>Vertical velocity</strong> — the former <code>vert_flow</code> module was removed and folded into
-   <code>iceflow</code>; it is required to run <code>enthalpy</code> (and for particle tracking with the
-   3D-velocity option). <strong>Do:</strong> remove <code>vert_flow</code> and set
+   dedicated <code>subglacial_hydrology</code> module (which also adds simpler
+   effective-pressure parametrisations, e.g. a percentage of the ice column). It
+   still returns <code>state.effective_pressure</code> (usable with the Budd sliding law).
+   <strong>Do:</strong> add <code>subglacial_hydrology</code> and pick a <code>mode:</code> (e.g. <code>till_storage</code>).</li>
+<li><strong>Vertical velocity</strong> — the former <code>vert_flow</code> module was removed and folded
+   into <code>iceflow</code>; it is required to run <code>enthalpy</code> (and for particle tracking
+   with the 3D-velocity option). <strong>Do:</strong> remove <code>vert_flow</code> and set
    <code>iceflow.vertical_velocity.enabled: true</code>.</li>
 <li><strong>Arrhenius</strong> — the temperature-dependent rate-factor update (formerly inside
-   <code>enthalpy</code>) is now a standalone <code>arrhenius</code> process. <strong>Do:</strong> add <code>arrhenius</code> to your
-   process list.</li>
-<li><strong>Output defaults</strong> — <code>enthalpy</code> diagnostics were simplified: <code>T</code> (temperature) and
-   <code>omega</code> (water content) are <strong>no longer saved by default</strong> (diagnostic variables are
-   now opt-in), and <code>enthalpy</code> now also publishes <code>temppasurf</code> / <code>temppabase</code> on state.
-   <strong>Do:</strong> if your post-processing needs <code>T</code>/<code>omega</code>, add them explicitly to your output
-   variable list.</li>
+   <code>enthalpy</code>) is now a standalone <code>arrhenius</code> process. <strong>Do:</strong> add <code>arrhenius</code>
+   to your process list.</li>
+<li><strong>Output defaults</strong> — <code>enthalpy</code> diagnostics were simplified: <code>T</code> (temperature)
+   and <code>omega</code> (water content) are <strong>no longer saved by default</strong> (diagnostic
+   variables are now opt-in), and <code>enthalpy</code> now also publishes <code>temppasurf</code> /
+   <code>temppabase</code> on state. <strong>Do:</strong> if your post-processing needs <code>T</code> / <code>omega</code>, add
+   them explicitly to your output variable list.</li>
 </ol>
-<h3 id="11-floating-ice-scalar-sealevel-2d-water_level">11. Floating ice: scalar <code>sealevel</code> → 2D <code>water_level</code></h3>
-<p>The scalar <code>state.sealevel</code> is replaced by a 2D <code>state.water_level</code> field, now created
-during the <strong>input phase</strong> (via the <code>water_level</code> sub-config of the input modules, e.g.
-<code>local</code> / <code>load_ncdf</code>) rather than inside <code>thk</code>. The iceflow <code>floating</code> energy component
-reads this field for the calving-front basal pressure, so a spatially-varying water level
-(e.g. a fjord geometry) can be prescribed instead of a single global value.</p>
-<p><strong>Do:</strong> if you relied on a scalar sea level, set <code>water_level.include: True</code> and
-<code>water_level.value</code> (in metres) on your input module — or provide a 2D <code>water_level</code>
-variable directly in the input file, which takes precedence. If <code>water_level</code> is left
-absent, the flotation term is disabled and the lower surface simply follows the bed.</p>
+</details>
 
 
 
