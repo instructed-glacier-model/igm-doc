@@ -23,7 +23,7 @@
 | Samuel Cook | Global-modelling functions in `data_assimilation`; RGI7 support in `oggm_shop` |
 | Guillaume Cordonnier | Co-design of the physics-informed CNN; original `thk` module |
 | Thomas Frank | time relaxation module generalizing Thomas's original implementation |
-| Andreas Henz | Loading ice masks from shapefiles in input modules |
+| Andreas Henz | Loading ice masks from shapefiles in input modules, avalanche module improvements |
 | Oskar Hermann | `anim_plotly` visualisation tool |
 | Tancrède Leger | Climate module station |
 | Fabien Maussion | Original `oggm_shop` module; oggm-related modules; OGGM integration |
