@@ -558,6 +558,17 @@ def build_html(processes: dict, community_names: set) -> str:
 def main():
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     html = build_html(ALL_PROCESSES, COMMUNITY_NAMES)
+
+    # mkdocs serve watches docs/, and this file lives under docs/assets/;
+    # an unconditional write bumps its mtime on every build (including the
+    # one this write itself triggers), so mkdocs serve reloads forever.
+    # Skip the write when the content hasn't actually changed.
+    if os.path.exists(OUTPUT_FILE):
+        with open(OUTPUT_FILE, encoding="utf-8") as f:
+            if f.read() == html:
+                print(f"Unchanged → {OUTPUT_FILE}")
+                return
+
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(html)
     size_kb = os.path.getsize(OUTPUT_FILE) / 1024
