@@ -18,7 +18,7 @@
 <div class="credits-table" markdown="1">
 | Name | Contributions |
 |---|---|
-| Lucie Bachin | Tests of the enthalpy module |
+| Lucie Bacchin | Tests of the enthalpy module |
 | Flavio Calvo | Support from IGM 1 to IGM 2 |
 | Samuel Cook | Global-modelling functions in `data_assimilation`; RGI7 support in `oggm_shop` |
 | Guillaume Cordonnier | Co-design of the physics-informed CNN; original `thk` module |

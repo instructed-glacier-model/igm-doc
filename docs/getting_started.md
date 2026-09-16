@@ -54,16 +54,6 @@ See [Hydra: Basics](hydra/basics.md) for the full override syntax.
 
 ---
 
-## Visualizing output
-
-```bash
-igm_viz
-```
-
-Opens an interactive 3-D viewer for a run's output. Requires `pip install igm[viz]`. See [Visualizing output with igm_viz](tutorials/igm_viz.md) for a full walkthrough.
-
----
-
 ## Where to go next
 
 <div class="tutorial-cards">
