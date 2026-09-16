@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -827,6 +827,8 @@
       
         
       
+        
+      
     
     
     
@@ -950,6 +952,34 @@
     
   
     Aletsch: ice-thickness inversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/igm_viz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualizing output with igm_viz
   
 
     
@@ -4225,7 +4255,7 @@
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># @package _global_</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">core</span><span class="p">:</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">url_data</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://www.dropbox.com/scl/fo/8ixpy27i67s04bp7uixoq/h?rlkey=0ye7rd4zkcqfhvzx7suunw3bk&amp;dl=0&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">url_data</span><span class="p">:</span><span class="w"> </span><span class="s">"https://www.dropbox.com/scl/fo/8ixpy27i67s04bp7uixoq/h?rlkey=0ye7rd4zkcqfhvzx7suunw3bk&amp;dl=0"</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">defaults</span><span class="p">:</span>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /inputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">local</span><span class="p p-Indicator">]</span>
@@ -4343,7 +4373,7 @@
 <p><strong><code>log_slidingco</code> (current default: false):</strong> In the next release, the optimization will handle the square root of <code>slidingco</code> (scaled) instead of <code>slidingco</code> directly. This approach ensures that <code>slidingco</code> remains positive without explicitly enforcing positivity. Note that this change will affect the scaling of <code>slidingco</code> (approximately <span class="arithmatex">\(10^{-6}\)</span>) when this option is set to <code>true</code>.</p>
 </li>
 <li>
-<p><strong>`lr_init`` (current default: 0.0001):</strong> In the next release, it will be reduced to 0.001 to make the training more agressive.</p>
+<p><strong><code>r_init</code> (current default: 0.0001):</strong> In the next release, it will be reduced to 0.001 to make the training more agressive.</p>
 </li>
 </ul>
 <h1 id="in-more-details-for-developpers">In more details (for developpers)</h1>
@@ -4935,7 +4965,7 @@ or in case there is no parameter (the file must exist as follows even if no para
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

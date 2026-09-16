@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -821,6 +821,8 @@
       
         
       
+        
+      
     
     
     
@@ -944,6 +946,34 @@
     
   
     Aletsch: ice-thickness inversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/igm_viz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualizing output with igm_viz
   
 
     
@@ -4120,10 +4150,10 @@
 <p>Reduce the <code>CFL</code> parameter.</p>
 <h3 id="how-to-createmodify-netcdf-files">How to create/modify NetCDF files?</h3>
 <p>There are many ways to prepare NetCDF files (e.g., MATLAB, Python, GIS tools). The <a href="http://nco.sourceforge.net/">NCO</a> toolkit allows easy operations via command lines, for example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ncks<span class="w"> </span>-x<span class="w"> </span>-v<span class="w"> </span>thk<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">              </span><span class="c1"># Removes the variable &#39;thk&#39; from file.nc</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ncks<span class="w"> </span>-v<span class="w"> </span>usurf<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">               </span><span class="c1"># Extracts the variable &#39;usurf&#39; from file.nc</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ncap2<span class="w"> </span>-h<span class="w"> </span>-O<span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39;thk=0*thk&#39;</span><span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">  </span><span class="c1"># Performs operations on file.nc, here forcing zero &#39;thk&#39;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ncrename<span class="w"> </span>-v<span class="w"> </span>apc,strflowctrl<span class="w"> </span>file.nc<span class="w">         </span><span class="c1"># Renames variable &#39;apc&#39; to &#39;strflowctrl&#39; in file.nc</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ncks<span class="w"> </span>-x<span class="w"> </span>-v<span class="w"> </span>thk<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">              </span><span class="c1"># Removes the variable 'thk' from file.nc</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ncks<span class="w"> </span>-v<span class="w"> </span>usurf<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">               </span><span class="c1"># Extracts the variable 'usurf' from file.nc</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ncap2<span class="w"> </span>-h<span class="w"> </span>-O<span class="w"> </span>-s<span class="w"> </span><span class="s1">'thk=0*thk'</span><span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">  </span><span class="c1"># Performs operations on file.nc, here forcing zero 'thk'</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ncrename<span class="w"> </span>-v<span class="w"> </span>apc,strflowctrl<span class="w"> </span>file.nc<span class="w">         </span><span class="c1"># Renames variable 'apc' to 'strflowctrl' in file.nc</span>
 </span></code></pre></div>
 <h3 id="oggm-shop-produces-an-error-on-windows">OGGM Shop produces an error on Windows</h3>
 <p>This is expected, as OGGM is <a href="https://github.com/OGGM/oggm/issues/870">not supported</a> on Windows. However, modifying the <code>tarfile.py</code> file at line 2677 from <code>name == member_name</code> to <code>name.replace(os.sep, '/') == member_name</code> seems to fix the issue on Windows. Thanks to Alexi Morin for proposing this workaround.</p>
@@ -4187,7 +4217,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

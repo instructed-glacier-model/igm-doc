@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -832,6 +832,8 @@
       
         
       
+        
+      
     
     
     
@@ -955,6 +957,34 @@
     
   
     Aletsch: ice-thickness inversion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/igm_viz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualizing output with igm_viz
   
 
     
@@ -4230,9 +4260,9 @@
 <details class="question">
 <summary>How do I create or modify NetCDF input files?</summary>
 <p>The <a href="http://nco.sourceforge.net/">NCO</a> toolkit provides convenient command-line operations:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ncks<span class="w"> </span>-x<span class="w"> </span>-v<span class="w"> </span>thk<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">              </span><span class="c1"># remove variable &#39;thk&#39;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ncks<span class="w"> </span>-v<span class="w"> </span>usurf<span class="w"> </span>file.nc<span class="w"> </span>extracted.nc<span class="w">           </span><span class="c1"># extract variable &#39;usurf&#39;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ncap2<span class="w"> </span>-h<span class="w"> </span>-O<span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39;thk=0*thk&#39;</span><span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">  </span><span class="c1"># set &#39;thk&#39; to zero</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ncks<span class="w"> </span>-x<span class="w"> </span>-v<span class="w"> </span>thk<span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">              </span><span class="c1"># remove variable 'thk'</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ncks<span class="w"> </span>-v<span class="w"> </span>usurf<span class="w"> </span>file.nc<span class="w"> </span>extracted.nc<span class="w">           </span><span class="c1"># extract variable 'usurf'</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ncap2<span class="w"> </span>-h<span class="w"> </span>-O<span class="w"> </span>-s<span class="w"> </span><span class="s1">'thk=0*thk'</span><span class="w"> </span>file.nc<span class="w"> </span>file.nc<span class="w">  </span><span class="c1"># set 'thk' to zero</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>ncrename<span class="w"> </span>-v<span class="w"> </span>apc,strflowctrl<span class="w"> </span>file.nc<span class="w">          </span><span class="c1"># rename a variable</span>
 </span></code></pre></div>
 <p>Python alternatives: <a href="https://docs.xarray.dev/">xarray</a>, <a href="https://unidata.github.io/netcdf4-python/">netCDF4-python</a>.</p>
@@ -4377,7 +4407,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

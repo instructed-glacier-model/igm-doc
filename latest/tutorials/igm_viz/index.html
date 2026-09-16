@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://igm-model.org/latest/modules/outputs/write_vtp/">
+        <link rel="canonical" href="https://igm-model.org/latest/tutorials/igm_viz/">
       
       
-        <link rel="prev" href="../write_ncdf/">
+        <link rel="prev" href="../aletsch_inversion/">
       
       
-        <link rel="next" href="../write_tif/">
+        <link rel="next" href="../../best_practices/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>write_vtp - Instructed Glacier Model (IGM)</title>
+        <title>Visualizing output with igm_viz - Instructed Glacier Model (IGM)</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,19 +53,19 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/type-colors.css">
+      <link rel="stylesheet" href="../../stylesheets/type-colors.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/param-tables.css">
+      <link rel="stylesheet" href="../../stylesheets/param-tables.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/style.css">
+      <link rel="stylesheet" href="../../stylesheets/style.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/refs.css">
+      <link rel="stylesheet" href="../../stylesheets/refs.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/gallery.css">
+      <link rel="stylesheet" href="../../stylesheets/gallery.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#module-write_vtp" class="md-skip">
+        <a href="#visualizing-output-with-igm_viz" class="md-skip">
           Skip to content
         </a>
       
@@ -108,9 +108,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Instructed Glacier Model (IGM)" class="md-header__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
+    <a href="../.." title="Instructed Glacier Model (IGM)" class="md-header__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
       
-  <img src="../../../assets/logo.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              write_vtp
+              Visualizing output with igm_viz
             
           </span>
         </div>
@@ -240,7 +240,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -261,7 +261,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../installation/quick_start/" class="md-tabs__link">
+        <a href="../../installation/quick_start/" class="md-tabs__link">
           
   
   
@@ -279,11 +279,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../getting_started/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../getting_started/" class="md-tabs__link">
           
   
   
@@ -305,7 +307,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../configuration/" class="md-tabs__link">
+        <a href="../../configuration/" class="md-tabs__link">
           
   
   
@@ -323,13 +325,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../introduction/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../modules/introduction/" class="md-tabs__link">
           
   
   
@@ -351,7 +351,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../developer/" class="md-tabs__link">
+        <a href="../../developer/" class="md-tabs__link">
           
   
   
@@ -371,7 +371,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../gallery/" class="md-tabs__link">
+      <a href="../../gallery/" class="md-tabs__link">
         
   
   
@@ -392,7 +392,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../about/credits_and_references/" class="md-tabs__link">
+        <a href="../../about/credits_and_references/" class="md-tabs__link">
           
   
   
@@ -430,9 +430,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Instructed Glacier Model (IGM)" class="md-nav__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
+    <a href="../.." title="Instructed Glacier Model (IGM)" class="md-nav__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
       
-  <img src="../../../assets/logo.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     Instructed Glacier Model (IGM)
@@ -459,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -542,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/quick_start/" class="md-nav__link">
+      <a href="../../installation/quick_start/" class="md-nav__link">
         
   
   
@@ -628,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/other/nvidia_drivers/" class="md-nav__link">
+      <a href="../../installation/other/nvidia_drivers/" class="md-nav__link">
         
   
   
@@ -656,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/other/virtual_environment/" class="md-nav__link">
+      <a href="../../installation/other/virtual_environment/" class="md-nav__link">
         
   
   
@@ -684,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/other/wsl_windows/" class="md-nav__link">
+      <a href="../../installation/other/wsl_windows/" class="md-nav__link">
         
   
   
@@ -724,8 +724,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -741,17 +743,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -769,7 +774,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -787,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting_started/" class="md-nav__link">
+      <a href="../../getting_started/" class="md-nav__link">
         
   
   
@@ -812,6 +817,8 @@
                 
   
   
+    
+  
   
   
     
@@ -836,15 +843,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../tutorials/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -868,7 +875,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -888,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tutorials/aletsch/" class="md-nav__link">
+      <a href="../aletsch/" class="md-nav__link">
         
   
   
@@ -916,7 +923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tutorials/aletsch_da/" class="md-nav__link">
+      <a href="../aletsch_da/" class="md-nav__link">
         
   
   
@@ -944,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tutorials/aletsch_inversion/" class="md-nav__link">
+      <a href="../aletsch_inversion/" class="md-nav__link">
         
   
   
@@ -969,10 +976,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../tutorials/igm_viz/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualizing output with igm_viz
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -988,6 +1022,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#picking-a-run-and-a-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Picking a run and a property
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adjusting-the-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adjusting the view
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#animating-and-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animating and statistics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-assimilation-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data-assimilation output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1033,7 +1153,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../best_practices/" class="md-nav__link ">
+            <a href="../../best_practices/" class="md-nav__link ">
               
   
   
@@ -1077,7 +1197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../best_practices/checklist/" class="md-nav__link">
+      <a href="../../best_practices/checklist/" class="md-nav__link">
         
   
   
@@ -1105,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../best_practices/numerical_tips/" class="md-nav__link">
+      <a href="../../best_practices/numerical_tips/" class="md-nav__link">
         
   
   
@@ -1141,7 +1261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../best_practices/faq/" class="md-nav__link">
+      <a href="../../best_practices/faq/" class="md-nav__link">
         
   
   
@@ -1238,7 +1358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../configuration/" class="md-nav__link">
+      <a href="../../configuration/" class="md-nav__link">
         
   
   
@@ -1330,7 +1450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hydra/introduction/" class="md-nav__link">
+      <a href="../../hydra/introduction/" class="md-nav__link">
         
   
   
@@ -1358,7 +1478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hydra/basics/" class="md-nav__link">
+      <a href="../../hydra/basics/" class="md-nav__link">
         
   
   
@@ -1386,7 +1506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hydra/working_directory/" class="md-nav__link">
+      <a href="../../hydra/working_directory/" class="md-nav__link">
         
   
   
@@ -1414,7 +1534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hydra/custom_configurations/" class="md-nav__link">
+      <a href="../../hydra/custom_configurations/" class="md-nav__link">
         
   
   
@@ -1442,7 +1562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hydra/distributed_computing/" class="md-nav__link">
+      <a href="../../hydra/distributed_computing/" class="md-nav__link">
         
   
   
@@ -1470,7 +1590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hydra/help/" class="md-nav__link">
+      <a href="../../hydra/help/" class="md-nav__link">
         
   
   
@@ -1560,7 +1680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hydra/optuna_cluster/" class="md-nav__link">
+      <a href="../../hydra/optuna_cluster/" class="md-nav__link">
         
   
   
@@ -1596,7 +1716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   
@@ -1624,7 +1744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/transition-IGM-3.1-to-3.2/" class="md-nav__link">
+      <a href="../../about/transition-IGM-3.1-to-3.2/" class="md-nav__link">
         
   
   
@@ -1656,10 +1776,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1685,20 +1803,17 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1716,7 +1831,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1734,7 +1849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../introduction/" class="md-nav__link">
+      <a href="../../modules/introduction/" class="md-nav__link">
         
   
   
@@ -1822,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inputs/local/" class="md-nav__link">
+      <a href="../../modules/inputs/local/" class="md-nav__link">
         
   
   
@@ -1850,7 +1965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inputs/load_ncdf/" class="md-nav__link">
+      <a href="../../modules/inputs/load_ncdf/" class="md-nav__link">
         
   
   
@@ -1878,7 +1993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inputs/load_tif/" class="md-nav__link">
+      <a href="../../modules/inputs/load_tif/" class="md-nav__link">
         
   
   
@@ -1906,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../inputs/oggm_shop/" class="md-nav__link">
+      <a href="../../modules/inputs/oggm_shop/" class="md-nav__link">
         
   
   
@@ -2058,7 +2173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/time/" class="md-nav__link">
+      <a href="../../modules/processes/time/" class="md-nav__link">
         
   
   
@@ -2150,7 +2265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/climate/" class="md-nav__link">
+      <a href="../../modules/processes/climate/" class="md-nav__link">
         
   
   
@@ -2178,7 +2293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/smb/" class="md-nav__link">
+      <a href="../../modules/processes/smb/" class="md-nav__link">
         
   
   
@@ -2274,7 +2389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/arrhenius/" class="md-nav__link">
+      <a href="../../modules/processes/arrhenius/" class="md-nav__link">
         
   
   
@@ -2302,7 +2417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/iceflow/" class="md-nav__link">
+      <a href="../../modules/processes/iceflow/" class="md-nav__link">
         
   
   
@@ -2330,7 +2445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/thk/" class="md-nav__link">
+      <a href="../../modules/processes/thk/" class="md-nav__link">
         
   
   
@@ -2358,7 +2473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/enthalpy/" class="md-nav__link">
+      <a href="../../modules/processes/enthalpy/" class="md-nav__link">
         
   
   
@@ -2448,7 +2563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/subglacial_hydrology/" class="md-nav__link">
+      <a href="../../modules/processes/subglacial_hydrology/" class="md-nav__link">
         
   
   
@@ -2538,7 +2653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/particles/" class="md-nav__link">
+      <a href="../../modules/processes/particles/" class="md-nav__link">
         
   
   
@@ -2642,7 +2757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../assimilations/data_assimilation/" class="md-nav__link">
+      <a href="../../modules/assimilations/data_assimilation/" class="md-nav__link">
         
   
   
@@ -2670,7 +2785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../assimilations/pretraining/" class="md-nav__link">
+      <a href="../../modules/assimilations/pretraining/" class="md-nav__link">
         
   
   
@@ -2698,7 +2813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../assimilations/field_inversion/" class="md-nav__link">
+      <a href="../../modules/assimilations/field_inversion/" class="md-nav__link">
         
   
   
@@ -2726,7 +2841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../assimilations/time_relaxation/" class="md-nav__link">
+      <a href="../../modules/assimilations/time_relaxation/" class="md-nav__link">
         
   
   
@@ -2759,10 +2874,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -2787,11 +2900,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
         
           
           <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
@@ -2812,7 +2925,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2830,7 +2943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../local/" class="md-nav__link">
+      <a href="../../modules/outputs/local/" class="md-nav__link">
         
   
   
@@ -2858,7 +2971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../write_ncdf/" class="md-nav__link">
+      <a href="../../modules/outputs/write_ncdf/" class="md-nav__link">
         
   
   
@@ -2883,37 +2996,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    write_vtp
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../modules/outputs/write_vtp/" class="md-nav__link">
         
   
   
@@ -2929,109 +3015,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#config-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Config Structure
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parameters
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Usage
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Example Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#surface-data-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Surface Data Files
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#particle-trajectories-if-enabled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Particle Trajectories (if enabled)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#visualization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Visualization
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3044,7 +3027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../write_tif/" class="md-nav__link">
+      <a href="../../modules/outputs/write_tif/" class="md-nav__link">
         
   
   
@@ -3072,7 +3055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../write_ts/" class="md-nav__link">
+      <a href="../../modules/outputs/write_ts/" class="md-nav__link">
         
   
   
@@ -3100,7 +3083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../plot2d/" class="md-nav__link">
+      <a href="../../modules/outputs/plot2d/" class="md-nav__link">
         
   
   
@@ -3128,7 +3111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../live_dashboard/" class="md-nav__link">
+      <a href="../../modules/outputs/live_dashboard/" class="md-nav__link">
         
   
   
@@ -3278,7 +3261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/avalanche/" class="md-nav__link">
+      <a href="../../modules/processes/avalanche/" class="md-nav__link">
         
   
   
@@ -3372,7 +3355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/gflex/" class="md-nav__link">
+      <a href="../../modules/processes/gflex/" class="md-nav__link">
         
   
   
@@ -3400,7 +3383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/glerosion/" class="md-nav__link">
+      <a href="../../modules/processes/glerosion/" class="md-nav__link">
         
   
   
@@ -3428,7 +3411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/rockflow/" class="md-nav__link">
+      <a href="../../modules/processes/rockflow/" class="md-nav__link">
         
   
   
@@ -3518,7 +3501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/flow_accumulation/" class="md-nav__link">
+      <a href="../../modules/processes/flow_accumulation/" class="md-nav__link">
         
   
   
@@ -3610,7 +3593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/read_output/" class="md-nav__link">
+      <a href="../../modules/processes/read_output/" class="md-nav__link">
         
   
   
@@ -3638,7 +3621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../processes/texture/" class="md-nav__link">
+      <a href="../../modules/processes/texture/" class="md-nav__link">
         
   
   
@@ -3682,7 +3665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../user_modules/" class="md-nav__link">
+      <a href="../../modules/user_modules/" class="md-nav__link">
         
   
   
@@ -3710,7 +3693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/" class="md-nav__link">
+      <a href="../../modules/core/" class="md-nav__link">
         
   
   
@@ -3798,7 +3781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../state_variables/" class="md-nav__link">
+      <a href="../../modules/state_variables/" class="md-nav__link">
         
   
   
@@ -3826,7 +3809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../variables/igm/" class="md-nav__link">
+      <a href="../../modules/variables/igm/" class="md-nav__link">
         
   
   
@@ -3854,7 +3837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../variables/pism/" class="md-nav__link">
+      <a href="../../modules/variables/pism/" class="md-nav__link">
         
   
   
@@ -3882,7 +3865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../variables/descriptive/" class="md-nav__link">
+      <a href="../../modules/variables/descriptive/" class="md-nav__link">
         
   
   
@@ -3952,7 +3935,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../developer/" class="md-nav__link ">
+            <a href="../../developer/" class="md-nav__link ">
               
   
   
@@ -3996,7 +3979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/aliases/" class="md-nav__link">
+      <a href="../../developer/aliases/" class="md-nav__link">
         
   
   
@@ -4024,7 +4007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/module_system/" class="md-nav__link">
+      <a href="../../developer/module_system/" class="md-nav__link">
         
   
   
@@ -4052,7 +4035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/diagnostics/" class="md-nav__link">
+      <a href="../../developer/diagnostics/" class="md-nav__link">
         
   
   
@@ -4087,7 +4070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../gallery/" class="md-nav__link">
+      <a href="../../gallery/" class="md-nav__link">
         
   
   
@@ -4172,7 +4155,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/credits_and_references/" class="md-nav__link">
+      <a href="../../about/credits_and_references/" class="md-nav__link">
         
   
   
@@ -4200,7 +4183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/cite/" class="md-nav__link">
+      <a href="../../about/cite/" class="md-nav__link">
         
   
   
@@ -4228,7 +4211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/help/" class="md-nav__link">
+      <a href="../../about/help/" class="md-nav__link">
         
   
   
@@ -4281,7 +4264,7 @@
   
   
     <li class="md-path__item">
-      <a href="../../.." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -4299,10 +4282,10 @@
     
     
       <li class="md-path__item">
-        <a href="../../introduction/" class="md-path__link">
+        <a href="../../getting_started/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Modules
+    Getting Started
   </span>
 
         </a>
@@ -4317,10 +4300,10 @@
     
     
       <li class="md-path__item">
-        <a href="../local/" class="md-path__link">
+        <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Output Modules
+    Tutorials
   </span>
 
         </a>
@@ -4342,72 +4325,44 @@
   
 
 
-<h1 id="module-write_vtp">Module <code>write_vtp</code></h1>
-<p>This IGM module writes 2D field variables specified in the parameter list <code>vars_to_save</code> into VTP (VTK PolyData) output files for visualization in ParaView or other VTK-compatible software. The saving frequency is determined by the parameter <code>processes.time.save</code> in the <code>time</code> module.</p>
-<p>This module creates triangulated surface meshes from the glacier data and saves them as VTP files with timestamped filenames. It also supports particle trajectory output if the <code>particles</code> process is enabled.</p>
-<p>This module requires the <code>pyvista</code> library.</p>
-<h2 id="config-structure">Config Structure</h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">write_vtp</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">vars_to_save</span><span class="p">:</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">usurf</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">velsurf_mag</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">thk</span>
+<h1 id="visualizing-output-with-igm_viz">Visualizing output with igm_viz</h1>
+<p><code>igm_viz</code> is a Plotly/Dash app that renders a run's output as an interactive 3-D animation — glacier surface and bedrock, colored by any saved variable, steppable frame by frame or played back automatically. This tutorial walks through the app using the <a href="../aletsch/">Aletsch forward-modelling tutorial</a> output as an example.</p>
+<hr />
+<h2 id="setup">Setup</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>igm<span class="o">[</span>viz<span class="o">]</span><span class="w">   </span><span class="c1"># one-off install of the dash dependency</span>
 </span></code></pre></div>
-<h2 id="parameters">Parameters</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-
-      <th>Type</th>
-
-      <th>Units</th>
-
-      <th>Description</th>
-
-      <th>Default Value</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr>
-      <td>vars_to_save</td>
-      <td>list</td>
-      <td>dimless</td>
-      <td>List of variables to be recorded in the ncdf file.</td>
-
-      <td>['usurf', 'velsurf_mag', 'thk']</td>
-    </tr>
-
-  </tbody>
-</table>
-
-<script type="text/javascript">
-  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-</script>
-
-<h2 id="example-usage">Example Usage</h2>
-<p>This module creates several types of output files:</p>
-<h3 id="surface-data-files">Surface Data Files</h3>
-<ul>
-<li><strong>Static topography</strong>: <code>vtp/topg.vtp</code> - Contains the bedrock surface mesh</li>
-<li><strong>Time-series variables</strong>: <code>vtp/{variable}-{timestamp:06d}.vtp</code> - Contains glacier surface data at each save time</li>
-</ul>
-<h3 id="particle-trajectories-if-enabled">Particle Trajectories (if enabled)</h3>
-<ul>
-<li><strong>Trajectory files</strong>: <code>trajectories/traj-{timestamp:08.2f}.vtp</code> - Contains particle positions and attributes</li>
-</ul>
-<h3 id="example-configuration">Example Configuration</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">outputs</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">write_vtp</span><span class="p">:</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">vars_to_save</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"thk"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"usurf"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"velbar_mag"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"velsurf_mag"</span><span class="p p-Indicator">]</span>
+<p>Run it from the same folder you ran <code>igm_run</code> in — it looks for <code>output.nc</code> under <code>outputs/*/*/</code> by default:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>igm-examples/aletsch
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>igm_viz
 </span></code></pre></div>
-<h3 id="visualization">Visualization</h3>
-<p>The generated VTP files can be opened in:
-- <strong>ParaView</strong>: For advanced scientific visualization
-- <strong>VisIt</strong>: For large-scale data analysis
-- <strong>VTK-based tools</strong>: For custom visualization applications</p>
-<p>The files contain triangulated surface meshes where the z-coordinate represents the glacier surface elevation (<code>usurf</code>) and the scalar fields contain the requested variables.</p>
+<p>This opens a local web app at <code>http://127.0.0.1:8050</code>.</p>
+<p>If your <code>outputs/</code> folder isn't in the current directory, point <code>igm_viz</code> at it directly:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>igm_viz<span class="w"> </span>--output_folder<span class="w"> </span>/path/to/other_experiment/outputs
+</span></code></pre></div>
+<p>The exact netCDF file to view is always picked afterward in the dashboard itself.</p>
+<p><img alt="igm_viz overview" src="../../assets/igm_viz_screenshot.png" /></p>
+<hr />
+<h2 id="picking-a-run-and-a-property">Picking a run and a property</h2>
+<p>Every past run found under <code>outputs/*/*/</code> is listed in the <strong>model run</strong> picker at the top, so you can switch between runs without restarting the app. The <strong>property</strong> dropdown selects which variable colors the glacier surface — thickness, velocity, SMB, sliding coefficient, or any other 2-D+time field saved in the output.</p>
+<hr />
+<h2 id="adjusting-the-view">Adjusting the view</h2>
+<ul>
+<li><strong>Vertical exaggeration</strong> and <strong>glacier opacity</strong> sliders adjust the 3-D rendering.</li>
+<li><strong>Ocean plane</strong> and <strong>calving front</strong> checkboxes add a sea-level plane and vertical ice walls where the glacier meets open ocean.</li>
+<li><strong>Colorbar range</strong> can be clamped manually instead of scaling to the data's min/max.</li>
+</ul>
+<hr />
+<h2 id="animating-and-statistics">Animating and statistics</h2>
+<p>Step through frames with the slider at the bottom of the 3-D view, or hit <strong>play</strong> to animate. Below the 3-D view, a stats panel tracks glacier volume and area over time (or over iterations, for data-assimilation output).</p>
+<hr />
+<h2 id="data-assimilation-output">Data-assimilation output</h2>
+<p><code>igm_viz</code> also reads data-assimilation outputs (<code>optimize.nc</code>, <code>geology-optimized.nc</code>), deriving bedrock elevation from <code>usurf - thk</code> when <code>topg</code> isn't saved. Pick one from the <strong>model run</strong> picker like any other file — no separate flag needed.</p>
+<hr />
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><strong>Run the tutorial that produced this output</strong>: <a href="../aletsch/">Aletsch forward modelling</a></li>
+<li><strong>Recover a spatial field to visualize</strong>: <a href="../aletsch_inversion/">Ice-thickness inversion</a></li>
+</ul>
 
 
 
@@ -4439,7 +4394,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../write_ncdf/" class="md-footer__link md-footer__link--prev" aria-label="Previous: write_ncdf">
+          <a href="../aletsch_inversion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Aletsch: ice-thickness inversion">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4449,20 +4404,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                write_ncdf
+                Aletsch: ice-thickness inversion
               </div>
             </div>
           </a>
         
         
           
-          <a href="../write_tif/" class="md-footer__link md-footer__link--next" aria-label="Next: write_tif">
+          <a href="../../best_practices/" class="md-footer__link md-footer__link--next" aria-label="Next: Best Practices">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                write_tif
+                Best Practices
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4501,18 +4456,18 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../../../javascripts/cite-linkify.js"></script>
+        <script src="../../javascripts/cite-linkify.js"></script>
       
     
   </body>
