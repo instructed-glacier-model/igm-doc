@@ -41,6 +41,16 @@ Step-by-step guides for running IGM on the Great Aletsch Glacier. Each tutorial 
     <div class="tutorial-card-footer">View tutorial →</div>
   </a>
 
+  <a class="tutorial-card" href="igm_viz/">
+    <div class="tutorial-card-tag">Tool</div>
+    <h3>Visualizing output with igm_viz</h3>
+    <p>Explore a run's output as an interactive 3-D animation: pick variables, adjust the view, animate frames, and track volume/area over time.</p>
+    <div class="tutorial-card-concepts">
+      <span>igm_viz</span><span>Plotly</span><span>Dash</span>
+    </div>
+    <div class="tutorial-card-footer">View tutorial →</div>
+  </a>
+
 </div>
 
 ---
