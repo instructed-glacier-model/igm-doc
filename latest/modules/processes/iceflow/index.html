@@ -8400,7 +8400,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Type of method used for the normalization of the inputs: adaptive, fixed.</td>
         <td style="text-align: center;">
 
-            <span class="string_table">adaptive</span>
+            <span class="string_table">fixed</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8460,7 +8460,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed offset for the input usurf.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            <span class="float_table">1500.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8483,7 +8483,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed offset for the input arrhenius.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            <span class="float_table">78.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8506,10 +8506,33 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text"></td>
         <td style="text-align: center;">
 
-            0.0
+            0.15
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.normalization.fixed.inputs_offsets.slidingco</code>
+        </td>
+        <td class="description_text">Fixed offset for the input slidingco.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.05</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa y<span class="math">\( ^{m} \)</span> m<span class="math">\( ^{-m} \)</span></span>
 
         </td>
       </tr>
@@ -8527,12 +8550,33 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed offset for the input dX.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            <span class="float_table">100.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">m</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.normalization.fixed.inputs_offsets.water_level</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
         </td>
       </tr>
@@ -8606,7 +8650,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed variance for the input thk.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            <span class="float_table">4.0e4</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8629,7 +8673,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed variance for the input usurf.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            <span class="float_table">1.0e6</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8652,7 +8696,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed variance for the input arrhenius.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            <span class="float_table">1600.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8675,10 +8719,33 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text"></td>
         <td style="text-align: center;">
 
-            1.0
+            0.004
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.normalization.fixed.inputs_variances.slidingco</code>
+        </td>
+        <td class="description_text">Fixed variance for the input slidingco.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.001</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa y<span class="math">\( ^{m} \)</span> m<span class="math">\( ^{-m} \)</span></span>
 
         </td>
       </tr>
@@ -8696,7 +8763,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed variance for the input dX.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            <span class="float_table">1.0e4</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8714,12 +8781,33 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.normalization.fixed.inputs_variances.water_level</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            2.5e5
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.X</code>
         </td>
         <td class="description_text">Fixed variance for the input X.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            <span class="float_table">2.5e9</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -8742,7 +8830,7 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td class="description_text">Fixed variance for the input Y.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            <span class="float_table">2.5e9</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
