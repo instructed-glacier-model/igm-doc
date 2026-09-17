@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://igm-model.org/latest/hydra/optuna_cluster/">
+        <link rel="canonical" href="https://igm-model.org/latest/tutorials/enthalpy_dronbreen/">
       
       
-        <link rel="prev" href="../help/">
+        <link rel="prev" href="../aletsch_inversion/">
       
       
-        <link rel="next" href="../../about/transition-IGM-2-to-3/">
+        <link rel="next" href="../igm_viz/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Optimization - Instructed Glacier Model (IGM)</title>
+        <title>Drønbreen: polythermal ice - Instructed Glacier Model (IGM)</title>
       
     
     
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#optimization-with-optuna" class="md-skip">
+        <a href="#drnbreen-polythermal-ice-and-the-enthalpy-module" class="md-skip">
           Skip to content
         </a>
       
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Optimization
+              Drønbreen: polythermal ice
             
           </span>
         </div>
@@ -279,10 +279,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../getting_started/" class="md-tabs__link">
           
   
@@ -301,12 +303,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../configuration/" class="md-tabs__link">
           
   
@@ -724,8 +724,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -741,17 +743,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -769,7 +774,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -812,6 +817,8 @@
                 
   
   
+    
+  
   
   
     
@@ -838,15 +845,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../tutorials/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -870,7 +877,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -890,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/aletsch/" class="md-nav__link">
+      <a href="../aletsch/" class="md-nav__link">
         
   
   
@@ -918,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/aletsch_da/" class="md-nav__link">
+      <a href="../aletsch_da/" class="md-nav__link">
         
   
   
@@ -946,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/aletsch_inversion/" class="md-nav__link">
+      <a href="../aletsch_inversion/" class="md-nav__link">
         
   
   
@@ -971,10 +978,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../tutorials/enthalpy_dronbreen/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drønbreen: polythermal ice
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -990,6 +1024,203 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-thermal-spin-up-on-a-fixed-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Thermal spin-up on a fixed geometry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Thermal spin-up on a fixed geometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-refreezing-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The refreezing proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-whole-survey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The whole survey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-calibrating-the-thermal-forcing-against-the-radar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Calibrating the thermal forcing against the radar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Calibrating the thermal forcing against the radar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-the-misfit-reaches-optuna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the misfit reaches Optuna
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-tell-whether-a-misfit-is-any-good" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to tell whether a misfit is any good
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecting-the-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting the result
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting outputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-and-citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data and citation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1002,7 +1233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/igm_viz/" class="md-nav__link">
+      <a href="../igm_viz/" class="md-nav__link">
         
   
   
@@ -1203,10 +1434,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1224,20 +1453,17 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -1255,7 +1481,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1365,7 +1591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../hydra/introduction/" class="md-nav__link">
         
   
   
@@ -1393,7 +1619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../basics/" class="md-nav__link">
+      <a href="../../hydra/basics/" class="md-nav__link">
         
   
   
@@ -1421,7 +1647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../working_directory/" class="md-nav__link">
+      <a href="../../hydra/working_directory/" class="md-nav__link">
         
   
   
@@ -1449,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../custom_configurations/" class="md-nav__link">
+      <a href="../../hydra/custom_configurations/" class="md-nav__link">
         
   
   
@@ -1477,7 +1703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../distributed_computing/" class="md-nav__link">
+      <a href="../../hydra/distributed_computing/" class="md-nav__link">
         
   
   
@@ -1505,7 +1731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../help/" class="md-nav__link">
+      <a href="../../hydra/help/" class="md-nav__link">
         
   
   
@@ -1538,8 +1764,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1554,11 +1778,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
         
           
           <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
@@ -1579,7 +1803,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1594,37 +1818,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Optimization
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../hydra/optuna_cluster/" class="md-nav__link">
         
   
   
@@ -1640,269 +1837,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#defining-scores-in-user-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Defining scores in user code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-optuna_paramsyaml-config-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The optuna_params.yaml config file
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The optuna_params.yaml config file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objectives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#control-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Control parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed-overrides" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed overrides
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#trials-and-parallelism" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trials and parallelism
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sampler" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sampler
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pruner" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pruner
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#storage-and-study-name" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Storage and study name
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#trial-timeout" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trial timeout
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-the-optimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running the optimization
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gpu-distribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GPU distribution
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="GPU distribution">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#option-a-share-one-gpu-with-memory-growth" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option A: Share one GPU with memory growth
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#option-b-one-trial-per-gpu-round-robin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option B: One trial per GPU (round-robin)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#option-c-multiple-trials-per-gpu-across-gpus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Option C: Multiple trials per GPU, across GPUs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cpu-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CPU-only
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cluster deployment
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Output
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dashboard
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#full-configuration-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Full configuration template
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4489,10 +4423,10 @@
     
     
       <li class="md-path__item">
-        <a href="../../configuration/" class="md-path__link">
+        <a href="../../getting_started/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Configuration
+    Getting Started
   </span>
 
         </a>
@@ -4507,10 +4441,10 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Optuna
+    Tutorials
   </span>
 
         </a>
@@ -4532,331 +4466,296 @@
   
 
 
-<h1 id="optimization-with-optuna">Optimization with Optuna</h1>
-<p>IGM includes a built-in Hydra sweeper plugin (<code>igm_optuna</code>) that uses <a href="https://optuna.org/">Optuna</a> for parameter optimization. It supports single- and multi-objective optimization, parallel trials, GPU distribution, and persistent storage with dashboard visualization.</p>
-<p>This replaces the upstream <code>hydra-optuna-sweeper</code> (which pins <code>optuna&lt;3.0</code>) with a lightweight alternative that uses Optuna directly with no version ceiling.</p>
+<h1 id="drnbreen-polythermal-ice-and-the-enthalpy-module">Drønbreen: polythermal ice and the enthalpy module</h1>
+<p>Many glaciers outside the tropics are <strong>polythermal</strong>: part of the ice is <em>cold</em>, below its pressure-melting point and effectively free of liquid water, and part is <em>temperate</em>, at the melting point and carrying water between the grains. The two behave very differently — temperate ice is softer, deforms faster, and lets water reach the bed — so where the boundary between them sits shapes how the glacier flows.</p>
+<p>This tutorial models that boundary — the <strong>cold–temperate transition surface (CTS)</strong> — on Drønbreen, a Scandinavian-type polythermal glacier in Nordenskiöld Land, Svalbard, and calibrates it against ten ground-penetrating radar (GPR) lines that mapped the real CTS in March 2022 (Mannerfelt et al., 2025)<sup id="fnref:Mannerfelt2025"><a class="footnote-ref" href="#fn:Mannerfelt2025">1</a></sup>. It is the reference example for IGM's <a href="../../modules/processes/enthalpy/"><code>enthalpy</code></a> module, and it also exercises <a href="../../modules/processes/subglacial_hydrology/"><code>subglacial_hydrology</code></a> in <code>till_storage</code> mode.</p>
+<div class="admonition info">
+<p class="admonition-title">Why an enthalpy formulation</p>
+<p>Tracking temperature alone cannot describe temperate ice, whose temperature is pinned at the melting point however much heat is added — the extra energy goes into water content instead. Enthalpy carries both in one variable: the ice is temperate wherever <code>E &gt;= E_pmp</code>, and the CTS is the level where the two meet. IGM follows the enthalpy formulation of (Aschwanden et al., 2012)<sup id="fnref2:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">2</a></sup>.</p>
+</div>
 <hr />
-<h2 id="overview">Overview</h2>
-<p>The optimization workflow has two parts:</p>
+<h2 id="setup">Setup</h2>
+<p>Clone the examples repository and move into the Drønbreen folder:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/instructed-glacier-model/igm-examples.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>igm-examples/enthalpy-dronbreen
+</span></code></pre></div>
+<p>All data ships with the repository — nothing is downloaded. The folder layout is:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enthalpy-dronbreen/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  data/                # input_dronbreen.nc + cts_gpr/ (the radar observations)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  experiment/          # one params_stepN_*.yaml per step (+ common/ fragment)
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  optuna/              # sweeper configuration for Step 2
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  tools/               # post-processing scripts, and the shared CTS diagnostic
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  user/                # custom process modules
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    code/processes/    # Python source files
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    conf/processes/    # Hydra config stubs
+</span></code></pre></div>
+<p>Beyond IGM itself, the calibration and the plotting scripts need <code>optuna</code>, <code>pandas</code>, <code>scipy</code>, <code>netCDF4</code> and <code>xarray</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Prefix any command with <code>TF_CPP_MIN_LOG_LEVEL=3</code> to silence verbose TensorFlow logging. Results are written to a timestamped subfolder under <code>outputs/</code> (or to the directory passed via <code>hydra.run.dir=</code>).</p>
+</div>
+<hr />
+<h2 id="step-1-thermal-spin-up-on-a-fixed-geometry">Step 1: Thermal spin-up on a fixed geometry</h2>
+<p>The first experiment runs Drønbreen from 1900 to 2022 under a constant climate derived from CARRA reanalysis, and lets the thermal state come into equilibrium with it.</p>
+<h3 id="how-it-works">How it works</h3>
+<p>Four processes form a loop, and the order in the configuration is not arbitrary:</p>
 <ol>
-<li><strong>User process</strong> (<code>eval_objective.py</code>): computes <code>state.score</code> as a dictionary of all available metrics at the end of a simulation.</li>
-<li><strong>Optuna config</strong> (<code>optuna_params.yaml</code>): selects which scores to optimize, defines control parameters, target values, sampler, and parallelism.</li>
+<li><strong><code>clim_carra_ela</code></strong> (custom) turns the two 2-D air-temperature fields in the input file into the monthly series the enthalpy surface boundary condition expects.</li>
+<li><strong><code>iceflow</code></strong> solves for the velocity field, which supplies the strain heating inside the ice and the frictional heating at the bed.</li>
+<li><strong><code>enthalpy</code></strong> advects and diffuses that heat, producing <code>E</code>, <code>E_pmp</code>, the temperature <code>T</code> and the water content <code>omega</code>.</li>
+<li><strong><code>arrhenius</code></strong> converts the new temperature into a flow-rate factor, which softens the ice and feeds back into the next ice-flow solve.</li>
 </ol>
-<p>Each trial runs as a <strong>separate subprocess</strong> with its own TensorFlow session, ensuring clean graph state between trials.</p>
+<p><code>subglacial_hydrology</code> closes the loop at the bed: in <code>till_storage</code> mode it evolves a till water layer fed by basal melt, and derives an effective pressure from it. That mode <strong>requires <code>enthalpy</code> to have run before it</strong>, since basal melt is an enthalpy output.</p>
+<p>There is deliberately <strong>no <code>thk</code> process</strong>. The geometry is held fixed, so the ice surface never moves and only the thermal state evolves. That is the honest setup for the question being asked — the observations to be reproduced are a thermal structure, not a geometry — and it keeps the run cheap.</p>
+<div class="admonition tip">
+<p class="admonition-title">How long does a thermal spin-up need to be?</p>
+<p>Long enough to forget its initial condition, and no longer. For this glacier the modelled CTS settles within about <strong>70 years</strong> of the start, so 1900–2022 is comfortable. Starting in 1600 instead costs four times the compute and moves the misfit by under 2%. It is worth measuring this for your own setup rather than assuming centuries are required: save at a short interval, plot a bulk diagnostic such as the mean temperate-layer thickness against time, and read off where it flattens.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">The two vertical grids are independent</p>
+<p><code>iceflow</code> uses <code>Nz: 2</code> because the MOLHO basis represents the vertical velocity profile analytically — two degrees of freedom per column are enough. <code>enthalpy</code> uses <code>Nz: 30</code>, packed towards the bed by <code>vert_spacing: 4.0</code>, because the CTS is a sharp feature sitting in the lower part of the column. Mixing the two up is the classic mistake here; the example keeps them explicitly separate, and the saved NetCDF gives the thermal fields their own vertical dimension.</p>
+</div>
+<h3 id="the-refreezing-proxy">The refreezing proxy</h3>
+<p>On a Scandinavian-type polythermal glacier, most temperate ice does not form at the bed. It forms in the accumulation area, where summer meltwater percolates into the firn and refreezes, releasing latent heat that warms the ice to the melting point before it is buried and carried downglacier.</p>
+<p>IGM does not model firn refreezing explicitly, so this example substitutes a deliberate proxy: <strong>above the equilibrium line, the air temperature driving the surface boundary condition is replaced by a constant</strong>.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># experiment/params_step1_spinup.yaml (excerpt)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">clim_carra_ela</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">ela</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">666.0</span><span class="w">         </span><span class="c1"># m a.s.l.</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">T_ela</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.42</span><span class="w">        </span><span class="c1"># °C imposed above the ELA -- the refreezing proxy</span>
+</span></code></pre></div>
+<p>This is a parameterisation, not physics. <code>T_ela</code> should be read as "the surface forcing that reproduces the observed thermal structure", not as a measured temperature — which is precisely why Step 2 calibrates it rather than prescribing it, and why the value shipped above comes from that calibration.</p>
+<h3 id="configuration">Configuration</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># experiment/params_step1_spinup.yaml (excerpt)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">defaults</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">common</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iceflow_molho</span><span class="w">                                     </span><span class="c1"># shared ice-flow setup</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">/user/conf/processes@processes.clim_carra_ela</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clim_carra_ela</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /inputs</span><span class="p">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /processes</span><span class="p">:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clim_carra_ela</span><span class="w">          </span><span class="c1"># surface air temperature -&gt; enthalpy boundary condition</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iceflow</span><span class="w">                 </span><span class="c1"># velocities -&gt; strain and friction heating</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enthalpy</span><span class="w">                </span><span class="c1"># the thermal state: E, E_pmp, T, omega</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arrhenius</span><span class="w">               </span><span class="c1"># temperature-dependent flow factor -&gt; back into iceflow</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subglacial_hydrology</span><span class="w">    </span><span class="c1"># till water storage -&gt; effective pressure</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">override /outputs</span><span class="p">:</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span><span class="nt">enthalpy</span><span class="p">:</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="nt">numerics</span><span class="p">:</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">      </span><span class="nt">Nz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span><span class="w">                        </span><span class="c1"># fine thermal grid...</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">      </span><span class="nt">vert_spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span><span class="w">             </span><span class="c1"># ...packed towards the bed, where the CTS sits</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="nt">thermal</span><span class="p">:</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">      </span><span class="nt">basal_heat_flux_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.044</span><span class="w">    </span><span class="c1"># W m^-2, calibrated in Step 2</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">  </span><span class="nt">subglacial_hydrology</span><span class="p">:</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">till_storage</span><span class="w">              </span><span class="c1"># Tulaczyk till hydrology</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">  </span><span class="nt">time</span><span class="p">:</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">    </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1900.0</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="nt">end</span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">2022.0</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="nt">save</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">20.0</span>
+</span></code></pre></div>
+<h3 id="run">Run</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params_step1_spinup
+</span></code></pre></div>
+<p>Roughly two minutes on a GPU. The reported ice volume stays constant throughout — the geometry is fixed, so that is the expected behaviour, not a sign that nothing is happening.</p>
+<p>Then compare the modelled thermal structure with the radar:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>tools/plot_cts_sections.py<span class="w"> </span>--run<span class="w"> </span>outputs/&lt;date&gt;/&lt;time&gt;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python<span class="w"> </span>tools/plot_cts_sections.py<span class="w"> </span>--run<span class="w"> </span>outputs/&lt;date&gt;/&lt;time&gt;<span class="w"> </span>--all<span class="w">   </span><span class="c1"># every radar line</span>
+</span></code></pre></div>
+<p>Each figure is a vertical section along one GPR line, and carries only three things: modelled temperate ice in red, modelled cold ice in blue, and the radar-observed CTS laid over them as a dashed black line. The modelled CTS is not drawn separately — it <em>is</em> the boundary between the two fills. So the comparison is read directly off the figure: where the dashed line runs through blue, the model made too little temperate ice; where it runs through red, too much.</p>
+<p><img alt="Modelled thermal structure along a GPR line, with the observed CTS overlaid" src="../../assets/dronbreen_cts_section.png" width="78%" /></p>
+<p>This is the polythermal structure the example exists to reproduce: cold ice fills the deep central trough, where the ice is thick and the surface is low, while temperate ice occupies both flanks, where it is thinner and closer to the accumulation area. The radar sees the transition climbing the right-hand flank, and the model puts it in much the same place.</p>
+<p>With no argument, the script picks the radar line that best displays a transition. Several of the ten cross almost entirely cold ice, or entirely temperate ice, and come out as one flat colour — informative about the glacier, but not about the CTS.</p>
+<h3 id="the-whole-survey">The whole survey</h3>
+<p>One section shows the shape of the fit on one line. Run <code>--all</code> to get every transect, which is worth doing once:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>tools/plot_cts_sections.py<span class="w"> </span>--run<span class="w"> </span>outputs/&lt;date&gt;/&lt;time&gt;<span class="w"> </span>--all
+</span></code></pre></div>
+<p>Transects are labelled <code>T1</code>–<code>T10</code> in order of how much temperate ice the radar found, so <code>T1</code> is the most temperate line. The label comes from the observations alone, so it stays attached to the same radar line whatever the model does.</p>
+<p>Across the ten of them the model reproduces about <strong>89% of the observed temperate ice</strong> in total, which sounds healthy — but that aggregate hides real differences. <code>T5</code> and <code>T7</code> come out essentially cold where the radar sees a clear temperate layer, while <code>T6</code> carries nearly twice the observed amount. Compensating errors of this kind are exactly what a single misfit number conceals, so it is worth looking line by line before trusting the headline score.</p>
 <hr />
-<h2 id="defining-scores-in-user-code">Defining scores in user code</h2>
-<p>Create a user process module (e.g. <code>user/code/processes/eval_objective.py</code>) that computes all available metrics in <code>finalize()</code>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">pass</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">pass</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">finalize</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">ecfg</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">processes</span><span class="o">.</span><span class="n">eval_objective</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">dx</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">dx</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">volume_km3</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">thk</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">/</span> <span class="mf">1.0e9</span><span class="p">)</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">max_thk</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">thk</span><span class="p">))</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">velsurf_mag</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">state</span><span class="o">.</span><span class="n">uvelsurf</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">vvelsurf</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">)</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">max_speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">velsurf_mag</span><span class="p">))</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">state</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="s2">"cost_volume"</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">volume_km3</span> <span class="o">-</span> <span class="n">ecfg</span><span class="o">.</span><span class="n">target_volume</span><span class="p">),</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="s2">"cost_speed"</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max_speed</span> <span class="o">-</span> <span class="n">ecfg</span><span class="o">.</span><span class="n">target_max_speed</span><span class="p">),</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="s2">"cost_thickness"</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max_thk</span> <span class="o">-</span> <span class="n">ecfg</span><span class="o">.</span><span class="n">target_max_thk</span><span class="p">),</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="p">}</span>
+<h2 id="step-2-calibrating-the-thermal-forcing-against-the-radar">Step 2: Calibrating the thermal forcing against the radar</h2>
+<p>Step 1 prescribes the two heat sources that set the thermal structure, and neither is well known: how much latent heat the accumulation area delivers from above (<code>T_ela</code>, applied above <code>ela</code>), and how much geothermal heat arrives from below (<code>basal_heat_flux_ref</code>). Step 2 lets the observations decide.</p>
+<h3 id="how-the-misfit-reaches-optuna">How the misfit reaches Optuna</h3>
+<p>The custom <code>track_cts_err</code> process module loads the GPR profiles when the run starts and, in its <code>finalize</code> hook, extracts the modelled CTS at every radar point by interpolating <code>E - E_pmp</code> to its zero crossing. It writes the mean per-profile RMSE into <code>state.score</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">state</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="s2">"cost_cts"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost</span>
 </span></code></pre></div>
-<p>The corresponding config (<code>user/conf/processes/eval_objective.yaml</code>) provides default target values:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">target_volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">18.0</span><span class="w">      </span><span class="c1"># km^3</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">target_max_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200.0</span><span class="w">  </span><span class="c1"># m/y</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">target_max_thk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300.0</span><span class="w">    </span><span class="c1"># m</span>
+<p><code>igm_run</code> serialises <code>state.score</code> at the end of every run, and the IGM Optuna sweeper reads it back — so the objective name in the sweeper configuration must match the key:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># optuna/optuna_cts.yaml (excerpt)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">objectives</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_cts</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nt">n_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">                     </span><span class="c1"># three concurrent runs saturate a single mid-range GPU</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlite:///optuna_cts.db</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nt">study_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dronbreen_cts</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nt">sampler</span><span class="p">:</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TPESampler</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="nt">parameters</span><span class="p">:</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.clim_carra_ela.T_ela</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.5</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.clim_carra_ela.ela</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">650.0</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">720.0</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.enthalpy.thermal.basal_heat_flux_ref</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.030</span><span class="w">        </span><span class="c1"># W m^-2, brackets the Svalbard estimates</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.080</span>
 </span></code></pre></div>
-<p>The <code>state.score</code> dictionary can contain as many metrics as desired. The <code>optuna_params.yaml</code> file then selects which ones to actually optimize.</p>
-<hr />
-<h2 id="the-optuna_paramsyaml-config-file">The <code>optuna_params.yaml</code> config file</h2>
-<p>All optimization settings live in a single YAML file (default name: <code>optuna_params.yaml</code>). Below is a complete reference with all available options.</p>
-<h3 id="objectives">Objectives</h3>
-<p>Select which scores from <code>state.score</code> to optimize:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">objectives</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_volume</span><span class="w">      </span><span class="c1"># key in state.score dict</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_speed</span><span class="w">       </span><span class="c1"># key in state.score dict</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
-</span></code></pre></div>
-<ul>
-<li>Each entry must have <code>name</code> (matching a key in <code>state.score</code>) and <code>direction</code> (<code>minimize</code> or <code>maximize</code>).</li>
-<li>Use a single entry for single-objective optimization, multiple entries for multi-objective.</li>
-<li>You can change which scores are active without modifying any Python code.</li>
-</ul>
-<h3 id="control-parameters">Control parameters</h3>
-<p>Parameters tuned by Optuna. Each maps to a Hydra config path:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">parameters</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.sliding.tau_ref</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">       </span><span class="c1"># sample in log-space (good for parameters spanning orders of magnitude)</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.viscosity.arrhenius</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150.0</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.smb.simple.array.1.3</span><span class="w">    </span><span class="c1"># ELA (row 1, column 3 of the SMB array)</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500.0</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3200.0</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="nt">log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span></code></pre></div>
-<p>Supported types:</p>
+<div class="admonition note">
+<p class="admonition-title">Choosing what to calibrate</p>
+<p>The length of the spin-up is deliberately <em>not</em> a search parameter. Since the thermal state equilibrates within ~70 years and every trial starts in 1900, the start date cannot affect the cost — searching over it would burn a third of the sweep on a dimension the data cannot constrain. Before adding a parameter, it is worth asking whether the observations can see it at all; <code>tools/plot_optuna.py</code> will show an uninformative parameter as a flat cloud of cost against its value.</p>
+</div>
+<p>Columns with no enthalpy sign change are not discarded but resolved: an entirely cold column has its CTS at the bed, an entirely temperate one at the surface. Dropping them instead would make the misfit blind in one direction — a model that froze the whole glacier solid would contribute no points and so incur no penalty.</p>
+<h3 id="how-to-tell-whether-a-misfit-is-any-good">How to tell whether a misfit is any good</h3>
+<p>A misfit in metres means nothing on its own. Before trusting one, ask what a model that
+knows nothing would score — and this objective deserves that scrutiny, because on 60% of
+the radar points there is no temperate ice at all. There <code>temperate_elevation</code> equals the
+bed elevation, so the "observation" is really <em>there is no CTS here</em> rather than a
+measured surface. If those points dominated, a trivially cold glacier would score well
+and the calibration would be measuring nothing.</p>
+<p>Two null models answer it. Run the same diagnostic against a glacier forced entirely
+cold (CTS pinned to the bed) and entirely temperate (CTS at the surface), and compare:</p>
 <table>
 <thead>
 <tr>
-<th>Type</th>
-<th>Required fields</th>
-<th>Optional</th>
+<th></th>
+<th><code>cost_cts</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>float</code></td>
-<td><code>low</code>, <code>high</code></td>
-<td><code>log</code> (default: <code>false</code>)</td>
+<td>All cold — CTS pinned to the bed</td>
+<td>37.4 m</td>
 </tr>
 <tr>
-<td><code>int</code></td>
-<td><code>low</code>, <code>high</code></td>
-<td><code>log</code> (default: <code>false</code>)</td>
+<td>All temperate</td>
+<td>89.9 m</td>
 </tr>
 <tr>
-<td><code>categorical</code></td>
-<td><code>choices</code> (list)</td>
-<td>—</td>
+<td>Calibrated model</td>
+<td>≈19 m</td>
 </tr>
 </tbody>
 </table>
-<p>The <code>name</code> field is the full Hydra override path. Optuna suggests a value within the specified range, and it is passed to <code>igm_run</code> as <code>name=value</code>.</p>
-<h3 id="fixed-overrides">Fixed overrides</h3>
-<p>Values passed to every trial as Hydra overrides (not tuned by Optuna):</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">overrides</span><span class="p">:</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">18.0</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_max_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200.0</span>
+<p>The numbers above are for this setup; what matters is the <em>ratio</em>. Roughly halving the
+error of the best null says the objective carries real information. Had the calibrated
+run landed near 37 m, it would have been no better than assuming the glacier is frozen
+throughout — the same number, but worthless.</p>
+<p>It is worth going one step further and splitting the misfit by error mode. Here it
+averages about 27 m where temperate ice is observed against 14 m where the ice is
+observed cold, so the headline figure flatters the model on the quantity that matters
+most: the position of the CTS where one exists.</p>
+<p>Quoting a null baseline alongside any calibrated misfit is a cheap habit, and it catches
+objectives that only look meaningful.</p>
+<h3 id="run_1">Run</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>igm_run<span class="w"> </span>-m<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span>+experiment<span class="o">=</span>params_step2_optuna<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span>hydra/sweeper<span class="o">=</span>igm_optuna<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span>hydra.sweeper.optuna_config<span class="o">=</span>optuna/optuna_cts.yaml
 </span></code></pre></div>
-<p>This keeps both controls and targets in the same file for clarity.</p>
-<h3 id="trials-and-parallelism">Trials and parallelism</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">n_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span><span class="w">       </span><span class="c1"># total number of trials to run</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">           </span><span class="c1"># number of parallel trials (default: 1 = sequential)</span>
+<p>Each trial is a full Step 1 model run, so budget a couple of minutes each; with three in parallel, a forty-trial sweep takes roughly half an hour on a single GPU. Trials land in <code>multirun/optuna_cts/&lt;trial&gt;/</code>, and the study persists in <code>optuna_cts.db</code>, so a sweep can be extended later by re-running the same command.</p>
+<div class="admonition note">
+<p class="admonition-title">Changing the trial count</p>
+<p><code>n_trials</code> and <code>n_jobs</code> have to be edited in <code>optuna/optuna_cts.yaml</code>. They cannot be overridden from the command line, because Hydra treats <code>optuna_config</code> as a path to a file rather than as a config group — <code>hydra.sweeper.optuna_config.n_trials=10</code> fails with a merge error.</p>
+</div>
+<p>Before launching the full sweep, it is worth checking that a single trial produces a cost at all:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params_step2_optuna
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>cat<span class="w"> </span>outputs/&lt;date&gt;/&lt;time&gt;/_igm_score.json<span class="w">     </span><span class="c1"># {"cost_cts": ...}</span>
 </span></code></pre></div>
-<p>When <code>n_jobs &gt; 1</code>, trials are launched as parallel subprocesses. See <a href="#gpu-distribution">GPU distribution</a> below for considerations when running in parallel.</p>
-<h3 id="sampler">Sampler</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">sampler</span><span class="p">:</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TPESampler</span><span class="w">       </span><span class="c1"># Optuna sampler class name</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">population_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">      </span><span class="c1"># extra kwargs passed to the sampler constructor</span>
+<h3 id="inspecting-the-result">Inspecting the result</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>python<span class="w"> </span>tools/plot_optuna.py<span class="w"> </span>--storage<span class="w"> </span>sqlite:///optuna_cts.db<span class="w"> </span>--study<span class="w"> </span>dronbreen_cts
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>python<span class="w"> </span>tools/plot_cts_sections.py<span class="w"> </span>--best-of<span class="w"> </span>sqlite:///optuna_cts.db
 </span></code></pre></div>
-<p>Available samplers (all from <code>optuna.samplers</code>):</p>
+<p><code>plot_optuna.py</code> prints the best parameters and draws the cost against each of them. A flat cloud means the observations do not constrain that parameter; an optimum sitting against a bound means the bound should be widened in <code>optuna/optuna_cts.yaml</code>.</p>
+<p><code>plot_cts_sections.py --best-of</code> looks up the lowest-cost trial and plots its section, so the best run can be inspected without hunting for its trial number.</p>
+<p>A 64-trial sweep brings the misfit to <strong>18.8 m</strong>, with an equilibrium line near 666 m. The values shipped in <code>params_step1_spinup.yaml</code> come from that sweep, so Step 1 reproduces the best trial.</p>
+<p>An interactive alternative:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>optuna-dashboard<span class="w"> </span>sqlite:///optuna_cts.db
+</span></code></pre></div>
+<hr />
+<h2 id="inspecting-outputs">Inspecting outputs</h2>
+<p>Each run writes <code>output.nc</code> in its Hydra directory:</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
-<th>Multi-obj?</th>
-<th>Best for</th>
+<th>Field</th>
+<th>Contents</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>TPESampler</code></td>
-<td>Yes (MOTPE)</td>
-<td>General purpose, fast convergence, good default</td>
+<td><code>E</code></td>
+<td>Ice enthalpy (J kg⁻¹), on the 30-layer thermal grid</td>
 </tr>
 <tr>
-<td><code>NSGAIISampler</code></td>
-<td>Yes</td>
-<td>Multi-objective, diverse Pareto front (2-3 obj)</td>
+<td><code>E_pmp</code></td>
+<td>Enthalpy at the pressure-melting point — the temperate threshold</td>
 </tr>
 <tr>
-<td><code>NSGAIIISampler</code></td>
-<td>Yes</td>
-<td>Multi-objective, best for 3+ objectives (Optuna &gt;= 3.2)</td>
+<td><code>T</code></td>
+<td>Ice temperature (K)</td>
 </tr>
 <tr>
-<td><code>CmaEsSampler</code></td>
-<td>No</td>
-<td>Continuous parameters, covariance-based (single-obj only)</td>
+<td><code>omega</code></td>
+<td>Water content fraction in temperate ice</td>
 </tr>
 <tr>
-<td><code>GPSampler</code></td>
-<td>No</td>
-<td>Gaussian Process surrogate, small budget (single-obj only)</td>
+<td><code>thk</code>, <code>usurf</code>, <code>topg</code></td>
+<td>Geometry (constant here)</td>
 </tr>
 <tr>
-<td><code>RandomSampler</code></td>
-<td>Yes</td>
-<td>Baseline / exploration</td>
-</tr>
-<tr>
-<td><code>QMCSampler</code></td>
-<td>Yes</td>
-<td>Quasi-Monte Carlo, uniform space coverage</td>
+<td><code>.hydra/config.yaml</code></td>
+<td>The complete merged configuration for the run</td>
 </tr>
 </tbody>
 </table>
-<p>Any keyword argument accepted by the sampler constructor can be added under <code>sampler:</code> (e.g. <code>population_size</code>, <code>seed</code>, <code>n_startup_trials</code>).</p>
-<h3 id="pruner">Pruner</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">pruner</span><span class="p">:</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MedianPruner</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">n_startup_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">n_warmup_steps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<p>The thermal fields carry their own vertical dimension, named after the number of layers (<code>z30</code> for <code>Nz: 30</code>) so that it cannot collide with the ice-flow one. They can be read directly:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">"outputs/.../output.nc"</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">temperate</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">"E"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">ds</span><span class="p">[</span><span class="s2">"E_pmp"</span><span class="p">]</span>          <span class="c1"># boolean, (time, z30, y, x)</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">temperate</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">z30</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>       <span class="c1"># where the bed is temperate, at the end</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">temperate</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="s2">"z30"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>     <span class="c1"># temperate layer count over time</span>
 </span></code></pre></div>
-<p>Any Optuna pruner from <code>optuna.pruners</code> can be used. Omit this section if pruning is not needed.</p>
-<h3 id="storage-and-study-name">Storage and study name</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlite:///optuna.db</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">study_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_experiment</span>
-</span></code></pre></div>
+<p>Note that the layers are <strong>not</strong> evenly spaced — <code>vert_spacing: 4.0</code> packs them towards the bed — so the fraction of temperate <em>layers</em> is not the fraction of temperate <em>thickness</em>. To convert a column into an actual CTS elevation, use <code>cts_elevation</code> from <code>tools/cts.py</code>, which applies the same stretched grid the enthalpy module used.</p>
+<p>Watching the temperate extent grow across the saved time slices is the clearest way to see whether the spin-up has reached equilibrium — if it is still growing at the final year, the run was too short.</p>
+<hr />
+<h2 id="next-steps">Next steps</h2>
 <ul>
-<li><code>storage</code>: Optuna storage URL. Use <code>sqlite:///optuna.db</code> for a local SQLite file. Omit for in-memory storage.</li>
-<li><code>study_name</code>: name of the study. When <code>storage</code> is set, the study is created or resumed if it already exists (<code>load_if_exists=True</code>).</li>
+<li><strong>The module reference</strong>: <a href="../../modules/processes/enthalpy/"><code>enthalpy</code></a> and <a href="../../modules/processes/subglacial_hydrology/"><code>subglacial_hydrology</code></a></li>
+<li><strong>Calibration on a different problem</strong> — tuning mass-balance parameters against historical DEMs: <a href="../aletsch_da/">Aletsch: parameter calibration</a></li>
+<li><strong>Standard forward modelling</strong>, with an evolving geometry: <a href="../aletsch/">Aletsch: forward modelling</a></li>
 </ul>
-<h3 id="trial-timeout">Trial timeout</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">trial_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span><span class="w">    </span><span class="c1"># seconds, kill trial if it exceeds this</span>
-</span></code></pre></div>
+<h2 id="data-and-citation">Data and citation</h2>
+<p>The radar observations are from Mannerfelt et al. (Mannerfelt et al., 2025)<sup id="fnref2:Mannerfelt2025"><a class="footnote-ref" href="#fn:Mannerfelt2025">1</a></sup>, trimmed in the example repository to the columns used here; please cite the original dataset if you use them. The surface DEM is from the Norwegian Polar Institute, the bed is reconstructed by kriging of GPR measurements, and the climate fields are CARRA 1990–2024 means.</p>
+<p>The physics follows (Aschwanden et al., 2012)<sup id="fnref:Aschwanden2012"><a class="footnote-ref" href="#fn:Aschwanden2012">2</a></sup> for the enthalpy formulation and (Bueler &amp; Pelt, 2015)<sup id="fnref:Bueler2015"><a class="footnote-ref" href="#fn:Bueler2015">3</a></sup> for the till hydrology; the Svalbard geothermal flux estimate is from (Schäfer et al., 2012)<sup id="fnref:Schaefer2012"><a class="footnote-ref" href="#fn:Schaefer2012">4</a></sup>.</p>
+<div class="footnote">
 <hr />
-<h2 id="running-the-optimization">Running the optimization</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Uses optuna_params.yaml by default</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>hydra/sweeper<span class="o">=</span>igm_optuna
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Specify a custom config file</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>hydra/sweeper<span class="o">=</span>igm_optuna<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>hydra.sweeper.optuna_config<span class="o">=</span>my_other_config.yaml
-</span></code></pre></div>
-<p>The <code>-m</code> flag enables Hydra <strong>multirun</strong> mode (required for sweepers).</p>
-<hr />
-<h2 id="gpu-distribution">GPU distribution</h2>
-<p>By default, TensorFlow grabs all available GPU memory. When running multiple trials in parallel, this causes crashes. Three strategies:</p>
-<h3 id="option-a-share-one-gpu-with-memory-growth">Option A: Share one GPU with memory growth</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">gpu_allow_growth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></code></pre></div>
-<p>Sets <code>TF_FORCE_GPU_ALLOW_GROWTH=true</code> per trial. Each trial allocates only the memory it needs.</p>
-<h3 id="option-b-one-trial-per-gpu-round-robin">Option B: One trial per GPU (round-robin)</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">gpu_ids</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">]</span>
-</span></code></pre></div>
-<p>Trial <em>i</em> uses <code>gpu_ids[i % len(gpu_ids)]</code> via <code>CUDA_VISIBLE_DEVICES</code>.</p>
-<h3 id="option-c-multiple-trials-per-gpu-across-gpus">Option C: Multiple trials per GPU, across GPUs</h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">gpu_ids</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1</span><span class="p p-Indicator">]</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">gpu_allow_growth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></code></pre></div>
-<p>8 trials distributed round-robin across 2 GPUs, 4 trials per GPU, with memory growth enabled.</p>
-<h3 id="cpu-only">CPU-only</h3>
-<p>No special configuration needed:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-</span></code></pre></div>
-<hr />
-<h2 id="cluster-deployment">Cluster deployment</h2>
-<p>For multi-node clusters, each node can run its own <code>igm_run -m</code> command pointing to the <strong>same SQLite database</strong> (via shared filesystem) and <strong>same <code>study_name</code></strong>. Optuna's <code>load_if_exists=True</code> ensures all nodes contribute to the same study.</p>
-<p>Example launch script (<code>run.sh</code>):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">GPU_ID</span><span class="o">=</span><span class="nv">$1</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">N_TRIALS</span><span class="o">=</span><span class="nv">$2</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>igm_run<span class="w"> </span>-m<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>hydra/sweeper<span class="o">=</span>igm_optuna<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span>hydra.sweeper.optuna_config<span class="o">=</span>optuna_params.yaml
-</span></code></pre></div>
-<p>Example cluster dispatch (SSH + tmux):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">NB</span><span class="o">=</span><span class="m">50</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">for</span><span class="w"> </span>GPU<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span>NODE<span class="w"> </span><span class="k">in</span><span class="w"> </span>node01<span class="w"> </span>node02<span class="w"> </span>node03<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="nv">SESSION</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">NODE</span><span class="si">}</span><span class="s2">_GPU</span><span class="si">${</span><span class="nv">GPU</span><span class="si">}</span><span class="s2">"</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span>ssh<span class="w"> </span><span class="nv">$NODE</span><span class="w"> </span><span class="s2">"tmux new-session -d -s </span><span class="nv">$SESSION</span><span class="s2"> 'cd /path/to/experiment &amp;&amp; ./run.sh </span><span class="nv">$GPU</span><span class="s2"> </span><span class="nv">$NB</span><span class="s2">'"</span>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span>sleep<span class="w"> </span><span class="m">5</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="k">done</span>
-</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">done</span>
-</span></code></pre></div>
-<p>All trials land in the same <code>optuna.db</code> and can be monitored together.</p>
-<hr />
-<h2 id="output">Output</h2>
-<p>After a run completes:</p>
-<ul>
-<li><strong><code>multirun/</code></strong> — one subfolder per trial containing the full IGM output and <code>_igm_score.json</code></li>
-<li><strong><code>optimization_results.csv</code></strong> — all trials with named objective columns and parameter values</li>
-<li><strong>Console summary</strong> — Pareto-optimal trials (multi-objective) or best trial (single-objective)</li>
-</ul>
-<hr />
-<h2 id="dashboard">Dashboard</h2>
-<p>To visualize optimization progress interactively:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>pip<span class="w"> </span>install<span class="w"> </span>optuna-dashboard
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>optuna-dashboard<span class="w"> </span>sqlite:///optuna.db
-</span></code></pre></div>
-<p>The dashboard shows:
-- Objective values per trial
-- Best parameters
-- Parameter importance
-- Parallel coordinate plots
-- Pareto front (multi-objective)</p>
-<p>Alternatively, upload <code>optuna.db</code> to the <a href="https://optuna.github.io/optuna-dashboard/">Optuna Dashboard web app</a>.</p>
-<hr />
-<h2 id="full-configuration-template">Full configuration template</h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># --- Objectives (selected from state.score dict) ---</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nt">objectives</span><span class="p">:</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_volume</span>
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cost_speed</span>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="nt">direction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimize</span>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="c1"># --- Trials and parallelism ---</span>
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="nt">n_trials</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="nt">n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="nt">gpu_allow_growth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="c1"># gpu_ids: [0, 1, 2, 3]</span>
-</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="c1"># trial_timeout: 3600</span>
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
-</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="c1"># --- Persistent storage ---</span>
-</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlite:///optuna.db</span>
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="nt">study_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_experiment</span>
-</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>
-</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="c1"># --- Sampler ---</span>
-</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="nt">sampler</span><span class="p">:</span>
-</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="c1">#  method: TPESampler          # Bayesian, fast convergence, good default (1+ obj)</span>
-</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">  </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NSGAIISampler</span><span class="w">        </span><span class="c1"># Genetic, good Pareto diversity (2-3 obj)</span>
-</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="c1">#  method: NSGAIIISampler      # Genetic, best for 3+ objectives</span>
-</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="c1">#  method: CmaEsSampler        # Covariance-based (1 obj only)</span>
-</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="c1">#  method: GPSampler           # Gaussian Process surrogate (1 obj only)</span>
-</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="w">  </span><span class="nt">population_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">          </span><span class="c1"># for NSGA-II/III only</span>
-</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>
-</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a><span class="c1"># --- Pruner (optional) ---</span>
-</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a><span class="c1"># pruner:</span>
-</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a><span class="c1">#   method: MedianPruner</span>
-</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a><span class="c1">#   n_startup_trials: 5</span>
-</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>
-</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a><span class="c1"># --- Fixed overrides (target values, applied to every trial) ---</span>
-</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a><span class="nt">overrides</span><span class="p">:</span>
-</span><span id="__span-18-35"><a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">18.0</span>
-</span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="w">  </span><span class="nt">processes.eval_objective.target_max_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200.0</span>
-</span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>
-</span><span id="__span-18-38"><a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a><span class="c1"># --- Control parameters (tuned by Optuna) ---</span>
-</span><span id="__span-18-39"><a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="nt">parameters</span><span class="p">:</span>
-</span><span id="__span-18-40"><a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.sliding.tau_ref</span>
-</span><span id="__span-18-41"><a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-</span><span id="__span-18-42"><a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.01</span>
-</span><span id="__span-18-43"><a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-18-44"><a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a><span class="w">    </span><span class="nt">log</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span><span id="__span-18-45"><a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a>
-</span><span id="__span-18-46"><a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.iceflow.physics.viscosity.arrhenius</span>
-</span><span id="__span-18-47"><a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-</span><span id="__span-18-48"><a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30.0</span>
-</span><span id="__span-18-49"><a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150.0</span>
-</span><span id="__span-18-50"><a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a>
-</span><span id="__span-18-51"><a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">processes.smb.simple.array.1.3</span><span class="w">    </span><span class="c1"># ELA</span>
-</span><span id="__span-18-52"><a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-</span><span id="__span-18-53"><a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a><span class="w">    </span><span class="nt">low</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500.0</span>
-</span><span id="__span-18-54"><a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a><span class="w">    </span><span class="nt">high</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3200.0</span>
-</span></code></pre></div>
+<ol>
+<li id="fn:Mannerfelt2025">
+<p>Mannerfelt, E. S., Enzenhofer, U., Innanen, S., Abderhalden, J., Gillespie, M. K., Ploeg, K., Brunner, J., Kleber, G., Kolar, J., Moholdt, G., Solem, S., &amp; Hodson, A. (2025). <em>Draft dataset publication from mannerfelt et al., (submitted)</em>. Zenodo. <a href="https://doi.org/10.5281/ZENODO.17882300">https://doi.org/10.5281/ZENODO.17882300</a>&#160;<a class="footnote-backref" href="#fnref:Mannerfelt2025" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:Mannerfelt2025" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:Aschwanden2012">
+<p>Aschwanden, A., Bueler, E., Khroulev, C., &amp; Blatter, H. (2012). An enthalpy formulation for glaciers and ice sheets. <em>Journal of Glaciology</em>, <em>58</em>(209), 441--457. <a href="https://doi.org/10.3189/2012jog11j088">https://doi.org/10.3189/2012jog11j088</a>&#160;<a class="footnote-backref" href="#fnref:Aschwanden2012" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:Aschwanden2012" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:Bueler2015">
+<p>Bueler, E., &amp; Pelt, W. van. (2015). Mass-conserving subglacial hydrology in the parallel ice sheet model version 0.6. <em>Geoscientific Model Development</em>, <em>8</em>(6), 1613--1635. <a href="https://doi.org/10.5194/gmd-8-1613-2015">https://doi.org/10.5194/gmd-8-1613-2015</a>&#160;<a class="footnote-backref" href="#fnref:Bueler2015" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:Schaefer2012">
+<p>Schäfer, M., Zwinger, T., Christoffersen, P., Gillet-Chaulet, F., Laakso, K., Pettersson, R., Pohjola, V. A., Strozzi, T., &amp; Moore, J. C. (2012). Sensitivity of basal conditions in an inverse model: Vestfonna ice cap, Nordaustlandet/Svalbard. <em>The Cryosphere</em>, <em>6</em>(4), 771--783. <a href="https://doi.org/10.5194/tc-6-771-2012">https://doi.org/10.5194/tc-6-771-2012</a>&#160;<a class="footnote-backref" href="#fnref:Schaefer2012" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -4888,7 +4787,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../help/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Help">
+          <a href="../aletsch_inversion/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Aletsch: ice-thickness inversion">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4898,20 +4797,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Help
+                Aletsch: ice-thickness inversion
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../about/transition-IGM-2-to-3/" class="md-footer__link md-footer__link--next" aria-label="Next: IGM v2 → v3 Transition">
+          <a href="../igm_viz/" class="md-footer__link md-footer__link--next" aria-label="Next: Visualizing output with igm_viz">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                IGM v2 → v3 Transition
+                Visualizing output with igm_viz
               </div>
             </div>
             <div class="md-footer__button md-icon">
