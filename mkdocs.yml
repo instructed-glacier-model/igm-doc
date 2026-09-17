@@ -22,6 +22,7 @@ nav:
           - "Aletsch: forward modelling": tutorials/aletsch.md
           - "Aletsch: parameter calibration": tutorials/aletsch_da.md
           - "Aletsch: ice-thickness inversion": tutorials/aletsch_inversion.md
+          - "Drønbreen: polythermal ice": tutorials/enthalpy_dronbreen.md
           - "Visualizing output with igm_viz": tutorials/igm_viz.md
       - Best Practices:
           - best_practices/index.md

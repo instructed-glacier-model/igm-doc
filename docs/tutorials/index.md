@@ -1,6 +1,6 @@
 # Tutorials
 
-Step-by-step guides for running IGM on the Great Aletsch Glacier. Each tutorial is self-contained and builds progressively in complexity.
+Step-by-step guides for running IGM on real glaciers. Each tutorial is self-contained and builds progressively in complexity.
 
 !!! tip "Before you start"
     If you don't know anything about glacier processes, explore this great [website](https://www.antarcticglaciers.org/). If you don't know anything about glacier evolution modelling, you may want to watch this [introductory video](https://youtu.be/eJNIr_0zOyk) first.
@@ -37,6 +37,16 @@ Step-by-step guides for running IGM on the Great Aletsch Glacier. Each tutorial 
     <p>Recover the ice-thickness field from surface velocities with the data_assimilation module, including L-curve regularisation and a sliding-coefficient sweep.</p>
     <div class="tutorial-card-concepts">
       <span>data_assimilation</span><span>inversion</span><span>L-curve</span><span>regularisation</span>
+    </div>
+    <div class="tutorial-card-footer">View tutorial →</div>
+  </a>
+
+  <a class="tutorial-card" href="enthalpy_dronbreen/">
+    <div class="tutorial-card-tag">Deep dive</div>
+    <h3>Drønbreen: polythermal ice and the enthalpy module</h3>
+    <p>Model cold and temperate ice on a Svalbard glacier with the enthalpy module, then calibrate the surface thermal forcing against radar-mapped cold–temperate transition surfaces.</p>
+    <div class="tutorial-card-concepts">
+      <span>enthalpy</span><span>polythermal</span><span>CTS</span><span>Optuna</span>
     </div>
     <div class="tutorial-card-footer">View tutorial →</div>
   </a>
