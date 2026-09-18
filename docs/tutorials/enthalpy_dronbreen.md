@@ -1,4 +1,4 @@
-# Drønbreen: polythermal ice and the enthalpy module
+# Drønbreen: polythermal glacier and the enthalpy module
 
 Many glaciers outside the tropics are **polythermal**: part of the ice is *cold*, below its pressure-melting point and effectively free of liquid water, and part is *temperate*, at the melting point and carrying water between the grains. The two behave very differently — temperate ice is softer, deforms faster, and lets water reach the bed — so where the boundary between them sits shapes how the glacier flows.
 

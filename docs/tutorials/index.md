@@ -43,7 +43,7 @@ Step-by-step guides for running IGM on real glaciers. Each tutorial is self-cont
 
   <a class="tutorial-card" href="enthalpy_dronbreen/">
     <div class="tutorial-card-tag">Deep dive</div>
-    <h3>Drønbreen: polythermal ice and the enthalpy module</h3>
+    <h3>Drønbreen: polythermal glacier and the enthalpy module</h3>
     <p>Model cold and temperate ice on a Svalbard glacier with the enthalpy module, then calibrate the surface thermal forcing against radar-mapped cold–temperate transition surfaces.</p>
     <div class="tutorial-card-concepts">
       <span>enthalpy</span><span>polythermal</span><span>CTS</span><span>Optuna</span>
