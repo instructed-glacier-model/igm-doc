@@ -101,6 +101,8 @@ nav:
           - IGM Names: modules/variables/igm.md
           - PISM Aliases: modules/variables/pism.md
           - Descriptive Aliases: modules/variables/descriptive.md
+  - Ice-flow emulators:
+      - Pretrained emulator (DahuNet): emulators/pretrained_emulator.md
   - Developer:
       - developer/index.md
       - State Variable Aliases: developer/aliases.md

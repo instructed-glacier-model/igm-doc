@@ -257,6 +257,16 @@ $$
 
 The parameters $\boldsymbol{\theta}$ are the weights of a neural network $\mathcal{N}$ that maps glacier state $(\mathbf{c}_H, \mathbf{A}_H, \mathbf{h}_H, \mathbf{s}_H)$ to velocity degrees-of-freedom. Typically, the network can be a convolutional neural network [@LeCun2015]. Pretrained network can be chosen by specifying `unified.network.pretrained: true`.
 
+!!! tip "Pretrained, no-retraining emulators"
+
+    IGM ships a set of **pretrained DahuNet emulators** that predict higher-order
+    velocities in a single forward pass, with no glacier-specific retraining and no
+    iterative solve. They are trained under a fixed set of physical and numerical
+    settings and are only valid inside that regime, which IGM checks automatically at
+    load time. The older `pinnbp` emulators, which are pretrained starting points for
+    **online retraining**, are also still available. Both are covered in
+    [The pretrained ice-flow emulator (DahuNet)](../../emulators/pretrained_emulator.md).
+
 <div class="mapping-figure" markdown="1">
   ![Network mapping architecture](../../fig/mapping.svg)
   <p style="text-align: center; font-style: italic; margin-top: 0.5rem;">Network mapping architecture. The neural network parameterized by weights θ maps the glacier state (inputs: c<sub>H</sub>, A<sub>H</sub>, h<sub>H</sub>, s<sub>H</sub>) to velocity degrees of freedom (outputs: u<sub>H</sub>, v<sub>H</sub>).</p>
