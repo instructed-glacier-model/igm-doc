@@ -351,6 +351,28 @@
     
     
       <li class="md-tabs__item">
+        <a href="../../../emulators/pretrained_emulator/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Ice-flow emulators
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
         <a href="../../../developer/" class="md-tabs__link">
           
   
@@ -4239,6 +4261,95 @@
     
       
         
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ice-flow emulators
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ice-flow emulators
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../emulators/pretrained_emulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pretrained emulator (DahuNet)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
           
         
       
@@ -4259,7 +4370,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -4281,14 +4392,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4444,10 +4555,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
   
@@ -4465,8 +4576,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4904,6 +5015,16 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
   \mathcal{M} = \mathcal{N} \quad \Rightarrow \quad   (\mathbf{u}_H, \mathbf{v}_H) = \mathcal{N}(\boldsymbol{\theta})
 \]</div>
 <p>The parameters <span class="arithmatex">\(\boldsymbol{\theta}\)</span> are the weights of a neural network <span class="arithmatex">\(\mathcal{N}\)</span> that maps glacier state <span class="arithmatex">\((\mathbf{c}_H, \mathbf{A}_H, \mathbf{h}_H, \mathbf{s}_H)\)</span> to velocity degrees-of-freedom. Typically, the network can be a convolutional neural network (LeCun et al., 2015)<sup id="fnref:LeCun2015"><a class="footnote-ref" href="#fn:LeCun2015">9</a></sup>. Pretrained network can be chosen by specifying <code>unified.network.pretrained: true</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Pretrained, no-retraining emulators</p>
+<p>IGM ships a set of <strong>pretrained DahuNet emulators</strong> that predict higher-order
+velocities in a single forward pass, with no glacier-specific retraining and no
+iterative solve. They are trained under a fixed set of physical and numerical
+settings and are only valid inside that regime, which IGM checks automatically at
+load time. The older <code>pinnbp</code> emulators, which are pretrained starting points for
+<strong>online retraining</strong>, are also still available. Both are covered in
+<a href="../../../emulators/pretrained_emulator/">The pretrained ice-flow emulator (DahuNet)</a>.</p>
+</div>
 <div class="mapping-figure">
 <p><img alt="Network mapping architecture" src="../../../fig/mapping.svg" />
   </p>

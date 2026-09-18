@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://igm-model.org/latest/tutorials/">
+        <link rel="canonical" href="https://igm-model.org/latest/emulators/pretrained_emulator/">
       
       
-        <link rel="prev" href="../getting_started/">
+        <link rel="prev" href="../../modules/variables/descriptive/">
       
       
-        <link rel="next" href="aletsch/">
+        <link rel="next" href="../../developer/">
       
       
         
       
       
-      <link rel="icon" href="../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Tutorials - Instructed Glacier Model (IGM)</title>
+        <title>Pretrained emulator (DahuNet) - Instructed Glacier Model (IGM)</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,19 +53,19 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-      <link rel="stylesheet" href="../stylesheets/type-colors.css">
+      <link rel="stylesheet" href="../../stylesheets/type-colors.css">
     
-      <link rel="stylesheet" href="../stylesheets/param-tables.css">
+      <link rel="stylesheet" href="../../stylesheets/param-tables.css">
     
-      <link rel="stylesheet" href="../stylesheets/style.css">
+      <link rel="stylesheet" href="../../stylesheets/style.css">
     
-      <link rel="stylesheet" href="../stylesheets/refs.css">
+      <link rel="stylesheet" href="../../stylesheets/refs.css">
     
-      <link rel="stylesheet" href="../stylesheets/gallery.css">
+      <link rel="stylesheet" href="../../stylesheets/gallery.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorials" class="md-skip">
+        <a href="#the-pretrained-ice-flow-emulator-dahunet" class="md-skip">
           Skip to content
         </a>
       
@@ -108,9 +108,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Instructed Glacier Model (IGM)" class="md-header__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
+    <a href="../.." title="Instructed Glacier Model (IGM)" class="md-header__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
       
-  <img src="../assets/logo.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tutorials
+              Pretrained emulator (DahuNet)
             
           </span>
         </div>
@@ -240,7 +240,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -261,7 +261,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../installation/quick_start/" class="md-tabs__link">
+        <a href="../../installation/quick_start/" class="md-tabs__link">
           
   
   
@@ -279,13 +279,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../getting_started/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../getting_started/" class="md-tabs__link">
           
   
   
@@ -307,7 +305,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../configuration/" class="md-tabs__link">
+        <a href="../../configuration/" class="md-tabs__link">
           
   
   
@@ -329,7 +327,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../modules/introduction/" class="md-tabs__link">
+        <a href="../../modules/introduction/" class="md-tabs__link">
           
   
   
@@ -347,11 +345,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../emulators/pretrained_emulator/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -373,7 +373,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../developer/" class="md-tabs__link">
+        <a href="../../developer/" class="md-tabs__link">
           
   
   
@@ -393,7 +393,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../gallery/" class="md-tabs__link">
+      <a href="../../gallery/" class="md-tabs__link">
         
   
   
@@ -414,7 +414,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../about/credits_and_references/" class="md-tabs__link">
+        <a href="../../about/credits_and_references/" class="md-tabs__link">
           
   
   
@@ -452,9 +452,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Instructed Glacier Model (IGM)" class="md-nav__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
+    <a href="../.." title="Instructed Glacier Model (IGM)" class="md-nav__button md-logo" aria-label="Instructed Glacier Model (IGM)" data-md-component="logo">
       
-  <img src="../assets/logo.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     Instructed Glacier Model (IGM)
@@ -481,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -564,7 +564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/quick_start/" class="md-nav__link">
+      <a href="../../installation/quick_start/" class="md-nav__link">
         
   
   
@@ -650,7 +650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/other/nvidia_drivers/" class="md-nav__link">
+      <a href="../../installation/other/nvidia_drivers/" class="md-nav__link">
         
   
   
@@ -678,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/other/virtual_environment/" class="md-nav__link">
+      <a href="../../installation/other/virtual_environment/" class="md-nav__link">
         
   
   
@@ -706,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/other/wsl_windows/" class="md-nav__link">
+      <a href="../../installation/other/wsl_windows/" class="md-nav__link">
         
   
   
@@ -746,10 +746,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -765,20 +763,17 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -796,7 +791,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -814,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting_started/" class="md-nav__link">
+      <a href="../../getting_started/" class="md-nav__link">
         
   
   
@@ -839,8 +834,6 @@
                 
   
   
-    
-  
   
   
     
@@ -867,15 +860,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../tutorials/" class="md-nav__link ">
               
   
   
@@ -893,13 +886,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -919,7 +912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="aletsch/" class="md-nav__link">
+      <a href="../../tutorials/aletsch/" class="md-nav__link">
         
   
   
@@ -947,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="aletsch_da/" class="md-nav__link">
+      <a href="../../tutorials/aletsch_da/" class="md-nav__link">
         
   
   
@@ -975,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="aletsch_inversion/" class="md-nav__link">
+      <a href="../../tutorials/aletsch_inversion/" class="md-nav__link">
         
   
   
@@ -1003,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="enthalpy_dronbreen/" class="md-nav__link">
+      <a href="../../tutorials/enthalpy_dronbreen/" class="md-nav__link">
         
   
   
@@ -1031,7 +1024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="igm_viz/" class="md-nav__link">
+      <a href="../../tutorials/igm_viz/" class="md-nav__link">
         
   
   
@@ -1092,7 +1085,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../best_practices/" class="md-nav__link ">
+            <a href="../../best_practices/" class="md-nav__link ">
               
   
   
@@ -1136,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../best_practices/checklist/" class="md-nav__link">
+      <a href="../../best_practices/checklist/" class="md-nav__link">
         
   
   
@@ -1164,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../best_practices/numerical_tips/" class="md-nav__link">
+      <a href="../../best_practices/numerical_tips/" class="md-nav__link">
         
   
   
@@ -1200,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../best_practices/faq/" class="md-nav__link">
+      <a href="../../best_practices/faq/" class="md-nav__link">
         
   
   
@@ -1297,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../configuration/" class="md-nav__link">
         
   
   
@@ -1389,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hydra/introduction/" class="md-nav__link">
+      <a href="../../hydra/introduction/" class="md-nav__link">
         
   
   
@@ -1417,7 +1410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hydra/basics/" class="md-nav__link">
+      <a href="../../hydra/basics/" class="md-nav__link">
         
   
   
@@ -1445,7 +1438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hydra/working_directory/" class="md-nav__link">
+      <a href="../../hydra/working_directory/" class="md-nav__link">
         
   
   
@@ -1473,7 +1466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hydra/custom_configurations/" class="md-nav__link">
+      <a href="../../hydra/custom_configurations/" class="md-nav__link">
         
   
   
@@ -1501,7 +1494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hydra/distributed_computing/" class="md-nav__link">
+      <a href="../../hydra/distributed_computing/" class="md-nav__link">
         
   
   
@@ -1529,7 +1522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hydra/help/" class="md-nav__link">
+      <a href="../../hydra/help/" class="md-nav__link">
         
   
   
@@ -1619,7 +1612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hydra/optuna_cluster/" class="md-nav__link">
+      <a href="../../hydra/optuna_cluster/" class="md-nav__link">
         
   
   
@@ -1655,7 +1648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/transition-IGM-2-to-3/" class="md-nav__link">
+      <a href="../../about/transition-IGM-2-to-3/" class="md-nav__link">
         
   
   
@@ -1683,7 +1676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/transition-IGM-3.1-to-3.2/" class="md-nav__link">
+      <a href="../../about/transition-IGM-3.1-to-3.2/" class="md-nav__link">
         
   
   
@@ -1788,7 +1781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/introduction/" class="md-nav__link">
+      <a href="../../modules/introduction/" class="md-nav__link">
         
   
   
@@ -1876,7 +1869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/inputs/local/" class="md-nav__link">
+      <a href="../../modules/inputs/local/" class="md-nav__link">
         
   
   
@@ -1904,7 +1897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/inputs/load_ncdf/" class="md-nav__link">
+      <a href="../../modules/inputs/load_ncdf/" class="md-nav__link">
         
   
   
@@ -1932,7 +1925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/inputs/load_tif/" class="md-nav__link">
+      <a href="../../modules/inputs/load_tif/" class="md-nav__link">
         
   
   
@@ -1960,7 +1953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/inputs/oggm_shop/" class="md-nav__link">
+      <a href="../../modules/inputs/oggm_shop/" class="md-nav__link">
         
   
   
@@ -2112,7 +2105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/time/" class="md-nav__link">
+      <a href="../../modules/processes/time/" class="md-nav__link">
         
   
   
@@ -2204,7 +2197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/climate/" class="md-nav__link">
+      <a href="../../modules/processes/climate/" class="md-nav__link">
         
   
   
@@ -2232,7 +2225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/smb/" class="md-nav__link">
+      <a href="../../modules/processes/smb/" class="md-nav__link">
         
   
   
@@ -2328,7 +2321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/arrhenius/" class="md-nav__link">
+      <a href="../../modules/processes/arrhenius/" class="md-nav__link">
         
   
   
@@ -2356,7 +2349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/iceflow/" class="md-nav__link">
+      <a href="../../modules/processes/iceflow/" class="md-nav__link">
         
   
   
@@ -2384,7 +2377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/thk/" class="md-nav__link">
+      <a href="../../modules/processes/thk/" class="md-nav__link">
         
   
   
@@ -2412,7 +2405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/enthalpy/" class="md-nav__link">
+      <a href="../../modules/processes/enthalpy/" class="md-nav__link">
         
   
   
@@ -2502,7 +2495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/subglacial_hydrology/" class="md-nav__link">
+      <a href="../../modules/processes/subglacial_hydrology/" class="md-nav__link">
         
   
   
@@ -2592,7 +2585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/particles/" class="md-nav__link">
+      <a href="../../modules/processes/particles/" class="md-nav__link">
         
   
   
@@ -2696,7 +2689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/assimilations/data_assimilation/" class="md-nav__link">
+      <a href="../../modules/assimilations/data_assimilation/" class="md-nav__link">
         
   
   
@@ -2724,7 +2717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/assimilations/pretraining/" class="md-nav__link">
+      <a href="../../modules/assimilations/pretraining/" class="md-nav__link">
         
   
   
@@ -2752,7 +2745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/assimilations/field_inversion/" class="md-nav__link">
+      <a href="../../modules/assimilations/field_inversion/" class="md-nav__link">
         
   
   
@@ -2780,7 +2773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/assimilations/time_relaxation/" class="md-nav__link">
+      <a href="../../modules/assimilations/time_relaxation/" class="md-nav__link">
         
   
   
@@ -2882,7 +2875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outputs/local/" class="md-nav__link">
+      <a href="../../modules/outputs/local/" class="md-nav__link">
         
   
   
@@ -2910,7 +2903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outputs/write_ncdf/" class="md-nav__link">
+      <a href="../../modules/outputs/write_ncdf/" class="md-nav__link">
         
   
   
@@ -2938,7 +2931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outputs/write_vtp/" class="md-nav__link">
+      <a href="../../modules/outputs/write_vtp/" class="md-nav__link">
         
   
   
@@ -2966,7 +2959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outputs/write_tif/" class="md-nav__link">
+      <a href="../../modules/outputs/write_tif/" class="md-nav__link">
         
   
   
@@ -2994,7 +2987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outputs/write_ts/" class="md-nav__link">
+      <a href="../../modules/outputs/write_ts/" class="md-nav__link">
         
   
   
@@ -3022,7 +3015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outputs/plot2d/" class="md-nav__link">
+      <a href="../../modules/outputs/plot2d/" class="md-nav__link">
         
   
   
@@ -3050,7 +3043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/outputs/live_dashboard/" class="md-nav__link">
+      <a href="../../modules/outputs/live_dashboard/" class="md-nav__link">
         
   
   
@@ -3200,7 +3193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/avalanche/" class="md-nav__link">
+      <a href="../../modules/processes/avalanche/" class="md-nav__link">
         
   
   
@@ -3294,7 +3287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/gflex/" class="md-nav__link">
+      <a href="../../modules/processes/gflex/" class="md-nav__link">
         
   
   
@@ -3322,7 +3315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/glerosion/" class="md-nav__link">
+      <a href="../../modules/processes/glerosion/" class="md-nav__link">
         
   
   
@@ -3350,7 +3343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/rockflow/" class="md-nav__link">
+      <a href="../../modules/processes/rockflow/" class="md-nav__link">
         
   
   
@@ -3440,7 +3433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/flow_accumulation/" class="md-nav__link">
+      <a href="../../modules/processes/flow_accumulation/" class="md-nav__link">
         
   
   
@@ -3532,7 +3525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/read_output/" class="md-nav__link">
+      <a href="../../modules/processes/read_output/" class="md-nav__link">
         
   
   
@@ -3560,7 +3553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/processes/texture/" class="md-nav__link">
+      <a href="../../modules/processes/texture/" class="md-nav__link">
         
   
   
@@ -3604,7 +3597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/user_modules/" class="md-nav__link">
+      <a href="../../modules/user_modules/" class="md-nav__link">
         
   
   
@@ -3632,7 +3625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/core/" class="md-nav__link">
+      <a href="../../modules/core/" class="md-nav__link">
         
   
   
@@ -3720,7 +3713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/state_variables/" class="md-nav__link">
+      <a href="../../modules/state_variables/" class="md-nav__link">
         
   
   
@@ -3748,7 +3741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/variables/igm/" class="md-nav__link">
+      <a href="../../modules/variables/igm/" class="md-nav__link">
         
   
   
@@ -3776,7 +3769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/variables/pism/" class="md-nav__link">
+      <a href="../../modules/variables/pism/" class="md-nav__link">
         
   
   
@@ -3804,7 +3797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/variables/descriptive/" class="md-nav__link">
+      <a href="../../modules/variables/descriptive/" class="md-nav__link">
         
   
   
@@ -3844,8 +3837,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -3855,17 +3850,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -3883,7 +3881,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3898,10 +3896,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../emulators/pretrained_emulator/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pretrained emulator (DahuNet)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3917,6 +3942,281 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#three-ways-to-get-a-velocity-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three ways to get a velocity field
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Three ways to get a velocity field">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identity-mapping-the-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity mapping — the reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-mapping-with-online-retraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network mapping with online retraining
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-mapping-with-a-pretrained-emulator-no-retraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network mapping with a pretrained emulator — no retraining
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-emulators-were-trained-in-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the emulators were trained — in brief
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-pretrained-emulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available pretrained emulators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-a-pretrained-emulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a pretrained emulator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using a pretrained emulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-it-truly-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it truly offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input normalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reading-the-load-banner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading the load banner
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-must-not-change-and-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you must not change, and why
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What you must not change, and why">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hard-checks-mismatch-raises-an-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hard checks — mismatch raises an error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warning-checks-mismatch-warns-but-continues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warning checks — mismatch warns but continues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-you-are-free-to-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you are free to change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validity-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validity envelope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-legacy-pinnbp-emulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: legacy pinnbp emulators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: legacy pinnbp emulators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#they-are-chosen-by-configuration-not-by-filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        They are chosen by configuration, not by filename
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-and-is-not-checked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is and is not checked
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3963,7 +4263,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../developer/" class="md-nav__link ">
+            <a href="../../developer/" class="md-nav__link ">
               
   
   
@@ -4007,7 +4307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developer/aliases/" class="md-nav__link">
+      <a href="../../developer/aliases/" class="md-nav__link">
         
   
   
@@ -4035,7 +4335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developer/module_system/" class="md-nav__link">
+      <a href="../../developer/module_system/" class="md-nav__link">
         
   
   
@@ -4063,7 +4363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developer/diagnostics/" class="md-nav__link">
+      <a href="../../developer/diagnostics/" class="md-nav__link">
         
   
   
@@ -4098,7 +4398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gallery/" class="md-nav__link">
+      <a href="../../gallery/" class="md-nav__link">
         
   
   
@@ -4183,7 +4483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/credits_and_references/" class="md-nav__link">
+      <a href="../../about/credits_and_references/" class="md-nav__link">
         
   
   
@@ -4211,7 +4511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/cite/" class="md-nav__link">
+      <a href="../../about/cite/" class="md-nav__link">
         
   
   
@@ -4239,7 +4539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/help/" class="md-nav__link">
+      <a href="../../about/help/" class="md-nav__link">
         
   
   
@@ -4292,7 +4592,7 @@
   
   
     <li class="md-path__item">
-      <a href=".." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -4310,28 +4610,10 @@
     
     
       <li class="md-path__item">
-        <a href="../getting_started/" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    Getting Started
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
         <a href="./" class="md-path__link">
           
   <span class="md-ellipsis">
-    Tutorials
+    Ice-flow emulators
   </span>
 
         </a>
@@ -4353,70 +4635,557 @@
   
 
 
-<h1 id="tutorials">Tutorials</h1>
-<p>Step-by-step guides for running IGM on real glaciers. Each tutorial is self-contained and builds progressively in complexity.</p>
+<h1 id="the-pretrained-ice-flow-emulator-dahunet">The pretrained ice-flow emulator (DahuNet)</h1>
+<div class="admonition info">
+<p class="admonition-title">Brief summary</p>
+<p>IGM ships a set of <strong>pretrained neural ice-flow emulators</strong> that predict higher-order
+(Blatter–Pattyn) horizontal velocities <strong>in a single forward pass</strong>, with <strong>no
+glacier-specific retraining and no iterative solve</strong>. They are trained offline on a
+large synthetic catalogue of mountain-glacier states, and their weights are then frozen.
+Because the training was done under a <strong>fixed set of physical and numerical settings</strong>,
+these emulators are only valid inside that regime — IGM enforces this automatically when
+the artifact is loaded. This page explains what the emulators are, how they were trained,
+what you must not change, and how to use them.</p>
+</div>
+<p>This page complements the <a href="../../modules/processes/iceflow/"><code>iceflow</code></a> module page, which describes the
+underlying physics, discretization and optimization framework. Read that page first if you
+are not already familiar with IGM's mapping concept.</p>
+<hr />
+<h2 id="three-ways-to-get-a-velocity-field">Three ways to get a velocity field</h2>
+<p>IGM's unified iceflow framework always solves the <em>same</em> problem: minimize the discretized
+Blatter–Pattyn energy <span class="arithmatex">\(\mathcal{J}_H\)</span> over a mapping <span class="arithmatex">\(\mathcal{M}\)</span> that produces the
+velocity degrees of freedom,</p>
+<div class="arithmatex">\[
+\boldsymbol{\theta}^{*} = \arg\min_{\boldsymbol{\theta}}\;
+\mathcal{J}_H\!\left[\mathcal{M}(\boldsymbol{\theta};\mathbf{Z}_H)\right],
+\qquad
+\mathbf{U}_H = \mathcal{M}(\boldsymbol{\theta}^{*};\mathbf{Z}_H).
+\]</div>
+<p>What differs between configurations is <strong>what <span class="arithmatex">\(\boldsymbol{\theta}\)</span> is</strong>, and <strong>how often it
+is re-optimized during a simulation</strong>. This gives three practically distinct modes, which
+are easy to confuse because two of them share <code>unified.mapping: network</code>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Identity mapping</strong></th>
+<th><strong>Network mapping, retrained online</strong></th>
+<th><strong>Network mapping, pretrained (offline)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Config</td>
+<td><code>unified.mapping: identity</code></td>
+<td><code>unified.mapping: network</code><br><code>network.pretrained: false</code></td>
+<td><code>unified.mapping: network</code><br><code>network.pretrained: true</code><br><code>network.pretrained_path: dahunet_mini.keras</code></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\boldsymbol{\theta}\)</span> is</td>
+<td>the velocity field itself</td>
+<td>network weights</td>
+<td>network weights</td>
+</tr>
+<tr>
+<td>Optimized during the run?</td>
+<td><strong>Yes</strong> — every solve</td>
+<td><strong>Yes</strong> — every <code>retrain_freq</code> steps</td>
+<td><strong>No</strong> — weights frozen</td>
+</tr>
+<tr>
+<td>Number of unknowns</td>
+<td>grows with domain size</td>
+<td>fixed (network size)</td>
+<td>fixed (network size)</td>
+</tr>
+<tr>
+<td>Needs training data?</td>
+<td>no</td>
+<td>no (self-supervised on <span class="arithmatex">\(\mathcal{J}_H\)</span>)</td>
+<td>already trained, offline</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>reference solution</td>
+<td>good, but depends on optimizer settings</td>
+<td>fixed; good inside the training regime</td>
+</tr>
+<tr>
+<td>Cost per step</td>
+<td>highest</td>
+<td>intermediate</td>
+<td>lowest (one forward pass)</td>
+</tr>
+<tr>
+<td>Role</td>
+<td>ground truth / verification</td>
+<td>general-purpose solver</td>
+<td>cheap drop-in for mountain glaciers</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">A fourth option: the legacy <code>pinnbp</code> emulators</p>
+<p>IGM also still ships the older <code>pinnbp</code> emulators (Jouvet et al., 2023)<sup id="fnref3:Jouvet2023"><a class="footnote-ref" href="#fn:Jouvet2023">2</a></sup>, selected by setting
+<code>pretrained: true</code> with an <strong>empty</strong> <code>pretrained_path</code>. They remain supported and valid,
+but they are chosen from your configuration rather than by name, and they are designed to
+be <strong>retrained online</strong> rather than frozen. Everything below concerns the DahuNet
+emulators; the legacy ones are covered separately in the
+<a href="#appendix-legacy-pinnbp-emulators">appendix</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Terminology</p>
+<p>Throughout, <strong>emulator</strong> means the network mapping evaluated at <em>fixed, offline-trained</em>
+weights. Where the same architecture is re-optimized during a simulation, we call it the
+<strong>online neural solver</strong> — that is a solver, not an emulator, even though the code path
+is the same.</p>
+</div>
+<h3 id="identity-mapping-the-reference">Identity mapping — the reference</h3>
+<p><span class="arithmatex">\(\boldsymbol{\theta}\)</span> <em>is</em> <span class="arithmatex">\((\mathbf{u}_H,\mathbf{v}_H)\)</span>. Minimizing <span class="arithmatex">\(\mathcal{J}_H\)</span> is
+therefore a direct solve in the full discrete velocity space, and gives the most accurate
+solution available within a given discretization. This is what generated every training
+target used by the emulators, and it is what you should compare against when validating a
+new setup. It is also the slowest option, and the number of unknowns grows with the domain.</p>
+<h3 id="network-mapping-with-online-retraining">Network mapping with online retraining</h3>
+<p><span class="arithmatex">\(\boldsymbol{\theta}\)</span> are the network weights, optimized against the <em>same</em> discrete energy
+during the simulation (the Deep Ritz idea (E &amp; Yu, 2018)<sup id="fnref:E2018"><a class="footnote-ref" href="#fn:E2018">3</a></sup> as adapted to ice flow by
+(Jouvet et al., 2023)<sup id="fnref:Jouvet2023"><a class="footnote-ref" href="#fn:Jouvet2023">2</a></sup>). The dimension of the optimization is fixed and much smaller than the number
+of velocity DOFs, which is what makes it cheap relative to the identity mapping. The network
+does not need to generalize: it is continually re-fitted to the glacier in front of it.</p>
+<p>The cost is that retraining is not free and introduces user choices — <code>retrain_freq</code>,
+<code>nbit</code>, learning rates, warm-up — that have to be tuned and validated. This is the mode
+IGM's older <code>pinnbp</code> emulators are designed for: they are <em>pretrained starting points</em> that
+are expected to keep being optimized during the run.</p>
+<h3 id="network-mapping-with-a-pretrained-emulator-no-retraining">Network mapping with a pretrained emulator — no retraining</h3>
+<p><span class="arithmatex">\(\boldsymbol{\theta}\)</span> are held at the values <span class="arithmatex">\(\widehat{\boldsymbol{\theta}}\)</span> found once,
+offline, across a large training catalogue. Applying the emulator to a new glacier requires
+<strong>no solve of either kind</strong> — velocity is a single evaluation of a fixed differentiable
+mapping. There are no optimizer settings to tune, because there is no optimizer.</p>
+<p>The trade-off is that a fixed mapping <strong>cannot specialize itself</strong> to a state it handles
+poorly. Everything therefore depends on the state being inside the distribution the emulator
+was trained on — which is why the rest of this page is mostly about the boundaries of that
+distribution.</p>
+<hr />
+<h2 id="how-the-emulators-were-trained-in-brief">How the emulators were trained — in brief</h2>
+<p>The DahuNet emulators were trained offline, once, on a synthetic catalogue of <strong>347,751
+higher-order velocity solutions</strong> generated with IGM itself. Synthetic glaciers were grown on
+mostly ice-free mountain topography across five regions, spanning a wide range of grid
+spacings, ice rheologies, basal resistances and climate histories; every training target was
+then recomputed with the <strong>identity mapping</strong>, so the emulator is fit to reference
+higher-order solutions rather than to another network's output. Training combined a
+supervised velocity misfit with a variational penalty based on the same discretized
+Blatter–Pattyn energy.</p>
+<p>The practical consequence — and the only part that affects how you use the emulator — is
+that the training catalogue defines a <strong>regime of validity</strong>, described in
+<a href="#what-you-must-not-change-and-why">What you must not change</a> and
+<a href="#validity-envelope">Validity envelope</a> below.</p>
 <div class="admonition tip">
-<p class="admonition-title">Before you start</p>
-<p>If you don't know anything about glacier processes, explore this great <a href="https://www.antarcticglaciers.org/">website</a>. If you don't know anything about glacier evolution modelling, you may want to watch this <a href="https://youtu.be/eJNIr_0zOyk">introductory video</a> first.</p>
+<p class="admonition-title">If you want the full story</p>
+<p>The training-set construction, network architecture, hybrid objective and validation are
+described in full in the accompanying paper — see <a href="#citation">Citation</a>. To train your
+own emulator with the same machinery, see the
+<a href="../../modules/assimilations/pretraining/"><code>pretraining</code></a> module.</p>
 </div>
-<p><strong>Prerequisites:</strong> a working IGM installation (<a href="../installation/quick_start/">Quick Start</a>) and basic familiarity with the command line. All tutorial files (data, params, custom modules) are in the <a href="https://github.com/instructed-glacier-model/igm-examples">igm-examples repository</a>.</p>
 <hr />
-<div class="tutorial-cards">
-
-  <a class="tutorial-card" href="aletsch/">
-    <div class="tutorial-card-tag">First steps</div>
-    <h3>Aletsch: forward modelling</h3>
-    <p>Five progressive steps from a simple ELA-based SMB to a realistic temperature-index model with custom modules, climate forcing, and particle tracking.</p>
-    <div class="tutorial-card-concepts">
-      <span>smb</span><span>custom modules</span><span>climate forcing</span><span>particles</span><span>iceflow</span>
-    </div>
-    <div class="tutorial-card-footer">View tutorial →</div>
-  </a>
-
-  <a class="tutorial-card" href="aletsch_da/">
-    <div class="tutorial-card-tag">Deep dive</div>
-    <h3>Aletsch: parameter calibration with Optuna</h3>
-    <p>Calibrate SMB weights and basal friction against 7 historical DEMs and observed velocities using single- and multi-objective Optuna sweeps.</p>
-    <div class="tutorial-card-concepts">
-      <span>Optuna</span><span>TPE</span><span>NSGA-II</span><span>Pareto front</span>
-    </div>
-    <div class="tutorial-card-footer">View tutorial →</div>
-  </a>
-
-  <a class="tutorial-card" href="aletsch_inversion/">
-    <div class="tutorial-card-tag">Deep dive</div>
-    <h3>Aletsch: ice-thickness inversion</h3>
-    <p>Recover the ice-thickness field from surface velocities with the data_assimilation module, including L-curve regularisation and a sliding-coefficient sweep.</p>
-    <div class="tutorial-card-concepts">
-      <span>data_assimilation</span><span>inversion</span><span>L-curve</span><span>regularisation</span>
-    </div>
-    <div class="tutorial-card-footer">View tutorial →</div>
-  </a>
-
-  <a class="tutorial-card" href="enthalpy_dronbreen/">
-    <div class="tutorial-card-tag">Deep dive</div>
-    <h3>Drønbreen: polythermal glacier and the enthalpy module</h3>
-    <p>Model cold and temperate ice on a Svalbard glacier with the enthalpy module, then calibrate the surface thermal forcing against radar-mapped cold–temperate transition surfaces.</p>
-    <div class="tutorial-card-concepts">
-      <span>enthalpy</span><span>polythermal</span><span>CTS</span><span>Optuna</span>
-    </div>
-    <div class="tutorial-card-footer">View tutorial →</div>
-  </a>
-
-  <a class="tutorial-card" href="igm_viz/">
-    <div class="tutorial-card-tag">Tool</div>
-    <h3>Visualizing output with igm_viz</h3>
-    <p>Explore a run's output as an interactive 3-D animation: pick variables, adjust the view, animate frames, and track volume/area over time.</p>
-    <div class="tutorial-card-concepts">
-      <span>igm_viz</span><span>Plotly</span><span>Dash</span>
-    </div>
-    <div class="tutorial-card-footer">View tutorial →</div>
-  </a>
-
+<h2 id="available-pretrained-emulators">Available pretrained emulators</h2>
+<p>Three DahuNet variants are bundled with IGM in
+<code>igm/processes/iceflow/emulate/emulators/</code>. They share the same input representation,
+<span class="arithmatex">\(5\times5\)</span> residual convolutions, and <span class="arithmatex">\(N_z=2\)</span> MOLHO/Q1 velocity basis, and differ only in
+depth and width.</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Depth (conv layers)</th>
+<th>Filters/layer</th>
+<th>Parameters</th>
+<th>GPU mem. (inference)<sup id="fnref:mem"><a class="footnote-ref" href="#fn:mem">1</a></sup></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dahunet.keras</code></td>
+<td>12</td>
+<td>64</td>
+<td>1,234,703</td>
+<td>125 MiB</td>
+</tr>
+<tr>
+<td><strong><code>dahunet_mini.keras</code></strong> <em>(recommended)</em></td>
+<td>8</td>
+<td>48</td>
+<td>464,271</td>
+<td>93 MiB</td>
+</tr>
+<tr>
+<td><code>dahunet_micro.keras</code></td>
+<td>6</td>
+<td>32</td>
+<td>155,343</td>
+<td>73 MiB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="using-a-pretrained-emulator">Using a pretrained emulator</h2>
+<p>A minimal configuration:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unified</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">numerics</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">Nz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nt">basis_vertical</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">molho</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">basis_horizontal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">q1</span><span class="w"> </span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">physics</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">sliding</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="nt">u_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">unified</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">network</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">      </span><span class="nt">inputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">thk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">usurf</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">arrhenius</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">tau_ref</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">dX</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="nt">pretrained</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">pretrained_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dahunet_mini.keras</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">      </span><span class="nt">nbit_init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span><span class="nt">nbit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">      </span><span class="nt">retrain_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span></code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title">Defaults will not work unchanged</p>
+<p>IGM's default <code>iceflow</code> configuration uses <code>Nz: 4</code>, <code>basis_vertical: Lagrange</code> and
+<code>basis_horizontal: central</code>. <strong>All three must be overridden</strong> as shown above, or the
+artifact will refuse to load. This is intentional — see below.</p>
 </div>
-
+<p>A bare filename in <code>pretrained_path</code> resolves to an emulator bundled with IGM; give a full
+path to load your own artifact, with or without the trailing <code>emulator.keras</code>.</p>
+<h3 id="running-it-truly-offline">Running it truly offline</h3>
+<p>The three settings <code>nbit_init: 0</code>, <code>nbit: 0</code> and <code>retrain_freq: 0</code> are what make the run
+<em>offline</em>. Leaving them at their defaults will re-optimize the pretrained weights, which is a
+different (and much more expensive) experiment:</p>
+<ul>
+<li><code>retrain_freq: 0</code> disables periodic retraining during the simulation.</li>
+<li><code>nbit: 0</code> makes any retraining that is still triggered a no-op.</li>
+<li><code>nbit_init: 0</code> skips the initial optimization at model start-up.</li>
+</ul>
+<p>If you leave retraining enabled, you are no longer using the emulator as characterized here,
+and the accuracy and cost figures below do not apply.</p>
+<h3 id="input-normalization">Input normalization</h3>
+<p>Do not set <code>unified.normalization</code> for a pretrained artifact. Normalization statistics are
+stored <strong>inside</strong> the <code>.keras</code> file and are applied by the artifact itself; IGM detects the
+pretrained path and skips the configured normalization layer entirely.</p>
+<h3 id="reading-the-load-banner">Reading the load banner</h3>
+<p>On a successful load IGM prints a panel reporting the architecture, the input/output counts,
+<span class="arithmatex">\(N_z\)</span>, and the resolved artifact path. If you do not see it, the emulator was not loaded and
+you are running something else.</p>
 <hr />
-<p>More tutorials are in preparation. To contribute a tutorial, open a pull request on the <a href="https://github.com/instructed-glacier-model/igm-examples">igm-examples repository</a>.</p>
+<h2 id="what-you-must-not-change-and-why">What you must not change, and why</h2>
+<p>A pretrained emulator is only meaningful together with the physics and discretization it was
+trained under. The network learned a mapping <em>conditioned on</em> those settings; they are not
+inputs it can adapt to. Changing one silently would produce velocities that look plausible
+but are simply wrong — and the error would be invisible, because there is no residual to
+inspect and no solver to fail to converge.</p>
+<p>IGM therefore stores the training settings inside the artifact and validates them against
+your configuration every time the emulator is loaded
+(<code>igm/processes/iceflow/emulate/utils/artifacts.py</code>). Settings fall into two registries.</p>
+<h3 id="hard-checks-mismatch-raises-an-error">Hard checks — mismatch raises an error</h3>
+<p>These change the physical or numerical problem the network was trained to represent, or the
+meaning of its input and output channels. A mismatch aborts the run.</p>
+<table>
+<thead>
+<tr>
+<th>Config path (relative to <code>processes.iceflow</code>)</th>
+<th>Value in the bundled artifacts</th>
+<th>Why it is locked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>numerics.Nz</code></td>
+<td><code>2</code></td>
+<td>Sets the number of output channels (<span class="arithmatex">\(2N_z = 4\)</span> velocity DOFs per cell).</td>
+</tr>
+<tr>
+<td><code>numerics.basis_vertical</code></td>
+<td><code>molho</code></td>
+<td>The outputs <em>are</em> MOLHO coefficients (basal motion + SIA shear); they mean nothing in a Lagrange basis.</td>
+</tr>
+<tr>
+<td><code>numerics.basis_horizontal</code></td>
+<td><code>q1</code></td>
+<td>Sets the quadrature used to assemble <span class="arithmatex">\(\mathcal{J}_H\)</span> and hence the targets the network was fit to.</td>
+</tr>
+<tr>
+<td><code>physics.sliding.u_ref</code></td>
+<td><code>100.0</code></td>
+<td>Fixes the units of <code>tau_ref</code>; the input channel scaling depends on it.</td>
+</tr>
+<tr>
+<td><code>unified.inputs</code></td>
+<td><code>[thk, usurf, arrhenius, tau_ref, dX]</code></td>
+<td>Input channel <strong>set and order</strong> are part of the model contract.</td>
+</tr>
+<tr>
+<td><code>physics.ice_density</code></td>
+<td><code>910.0</code></td>
+<td>Enters the driving stress and hence the energy the targets minimize.</td>
+</tr>
+<tr>
+<td><code>physics.gravity_cst</code></td>
+<td><code>9.81</code></td>
+<td>Same.</td>
+</tr>
+<tr>
+<td><code>physics.energy_components</code></td>
+<td><code>[viscosity, gravity, sliding]</code></td>
+<td>Which physics the targets contain (order is ignored; duplicates are not).</td>
+</tr>
+<tr>
+<td><code>physics.sliding.law</code></td>
+<td><code>weertman</code></td>
+<td>A different sliding law is a different basal boundary condition.</td>
+</tr>
+<tr>
+<td><code>physics.sliding.exponent</code></td>
+<td><code>3.0</code></td>
+<td>The Weertman exponent <span class="arithmatex">\(m\)</span>; the sliding response is trained at <span class="arithmatex">\(m=3\)</span>.</td>
+</tr>
+<tr>
+<td><code>physics.viscosity.exponent</code></td>
+<td><code>3.0</code></td>
+<td>The Glen exponent <span class="arithmatex">\(n\)</span>; the deformation response is trained at <span class="arithmatex">\(n=3\)</span>.</td>
+</tr>
+<tr>
+<td><code>unified.network.output_scale</code></td>
+<td><code>1.0</code></td>
+<td>Rescales network outputs; anything else rescales the velocities.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="warning-checks-mismatch-warns-but-continues">Warning checks — mismatch warns but continues</h3>
+<p>These are regularization and threshold parameters. They perturb the trained regime rather
+than redefining it, so IGM issues a <code>UserWarning</code> and proceeds. Treat a warning as a reason
+to validate against an identity-mapping run before trusting the results.</p>
+<table>
+<thead>
+<tr>
+<th>Config path</th>
+<th>Value in the bundled artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>physics.sliding.regularization</code></td>
+<td><code>1e-10</code></td>
+</tr>
+<tr>
+<td><code>physics.viscosity.regularization</code></td>
+<td><code>1e-5</code></td>
+</tr>
+<tr>
+<td><code>physics.thr_ice_thk</code></td>
+<td><code>0.1</code> m</td>
+</tr>
+<tr>
+<td><code>physics.min_sr</code></td>
+<td><code>1e-20</code></td>
+</tr>
+<tr>
+<td><code>physics.max_sr</code></td>
+<td><code>1e+20</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-you-are-free-to-change">What you <em>are</em> free to change</h3>
+<p>Everything the emulator takes as an <strong>input field</strong> is free, because it was varied during
+training:</p>
+<ul>
+<li><strong>Ice thickness and surface elevation</strong> — the evolving state.</li>
+<li><strong>Arrhenius factor</strong> <code>physics.viscosity.arrhenius</code> — trained over 5–140 MPa<span class="arithmatex">\(^{-3}\)</span> a<span class="arithmatex">\(^{-1}\)</span>.</li>
+<li><strong>Basal shear-stress scale</strong> <code>physics.sliding.tau_ref</code> — trained over the equivalent of
+  40–300 kPa.</li>
+<li><strong>Grid spacing</strong> <code>dX</code> — trained over 50–250 m.</li>
+</ul>
+<p>Everything outside the <code>iceflow</code> module — mass balance, climate forcing, time stepping,
+output modules, and so on — is unaffected.</p>
+<hr />
+<h2 id="validity-envelope">Validity envelope</h2>
+<p>The checks above catch configuration mismatches. They <strong>cannot</strong> catch a glacier that simply
+lies outside the training distribution, and you remain responsible for that. The emulator
+should be read as a pretrained mapping over a sampled mountain-glacier state distribution,
+not as a general ice-flow solver.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Trained range</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Glacier type</td>
+<td>Land-terminating mountain glaciers and ice caps</td>
+<td>No calving, no floating ice, no marine boundary forcing</td>
+</tr>
+<tr>
+<td>Horizontal grid spacing</td>
+<td>50–250 m</td>
+<td>Not stored in the artifact and <strong>not validated</strong> — your responsibility</td>
+</tr>
+<tr>
+<td>Ice rheology <span class="arithmatex">\(A\)</span></td>
+<td>5–140 MPa<span class="arithmatex">\(^{-3}\)</span> a<span class="arithmatex">\(^{-1}\)</span>, spatially uniform</td>
+<td>Spatially variable fields are extrapolation</td>
+</tr>
+<tr>
+<td>Basal resistance <span class="arithmatex">\(\tau_{\mathrm{ref}}\)</span></td>
+<td>40–300 kPa, spatially uniform</td>
+<td>Spatially variable fields are extrapolation</td>
+</tr>
+<tr>
+<td>Boundary condition</td>
+<td>Neumann / stress-free</td>
+<td></td>
+</tr>
+<tr>
+<td>Thermomechanics</td>
+<td>None</td>
+<td>No coupling to <a href="../../modules/processes/enthalpy/"><code>enthalpy</code></a> during training</td>
+</tr>
+<tr>
+<td>Basal hydrology</td>
+<td>None</td>
+<td>Basal melt was zero throughout</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Resolution is not checked automatically</p>
+<p>Grid spacing is supplied to the network as an input channel <code>dX</code>, but it is <strong>not</strong>
+stored in the artifact and <strong>not</strong> validated at load time. Running at 500 m or 10 m will
+not raise an error; it will simply extrapolate. Stay within 50–250 m, or validate
+explicitly.</p>
+</div>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong><code>Incompatible emulator artifact: ...</code></strong>
+: One or more hard-checked settings differ from those the artifact was trained with. The
+  message lists each path with both values. Change your configuration to match the artifact
+  — not the other way around.</p>
+<p><strong><code>Missing emulator artifact settings: ...</code></strong>
+: The artifact predates the compatibility metadata, or was exported without it. Re-export it
+  from a current IGM, or train a new one.</p>
+<p><strong><code>UserWarning: Emulator artifact training differences: ...</code></strong>
+: A soft-checked regularization or threshold differs. The run continues. Validate against an
+  identity-mapping run before trusting the output.</p>
+<p><strong><code>Loading old-format pretrained emulator.</code></strong>
+: Expected and harmless <em>if you meant it</em>: <code>pretrained: true</code> with an empty <code>pretrained_path</code>
+  selects a <a href="#appendix-legacy-pinnbp-emulators">legacy <code>pinnbp</code> emulator</a> chosen from your
+  configuration. If you intended to load a DahuNet artifact, set <code>pretrained_path</code>
+  explicitly — otherwise you are running a different emulator, with no compatibility
+  validation.</p>
+<p><strong><code>No pretrained emulator found in the igm package with name &lt;...&gt;</code></strong>
+: The legacy selection key built from your configuration matches no bundled emulator. Either
+  set <code>pretrained_path</code> to a DahuNet artifact, or adjust <code>Nz</code> / <code>vert_spacing</code> /
+  <code>emulator.network.*</code> to one of the <a href="#appendix-legacy-pinnbp-emulators">selectable combinations</a>.</p>
+<p><strong><code>No pretrained emulator selected. Starting from scratch.</code></strong>
+: <code>pretrained: false</code>. You are training a network online, not using the offline emulator.</p>
+<p><strong>Velocities look plausible but the glacier evolves strangely</strong>
+: Check that retraining really is disabled (<code>nbit_init</code>, <code>nbit</code>, <code>retrain_freq</code> all <code>0</code>), and
+  that your domain is inside the <a href="#validity-envelope">validity envelope</a> — especially grid
+  spacing, which is not validated automatically.</p>
+<hr />
+<h2 id="citation">Citation</h2>
+<div class="admonition warning">
+<p class="admonition-title">Placeholder — to be updated on publication</p>
+<p>The DahuNet emulators are described in a manuscript currently in preparation /
+under review. <strong>The citation below is a placeholder and will be replaced once the paper
+has a DOI.</strong> Please check this page, or <a href="../../about/cite/">Citing IGM</a>, before
+submitting work that uses these emulators.</p>
+</div>
+<p>If you use any of the pretrained DahuNet emulators, please cite:</p>
+<blockquote>
+<p>Rosier, S. H. R., Gregov, T., Jouvet, G., &amp; Vieli, A. (in prep.). <strong>Cheap and accurate
+higher-order ice flow emulator for mountain glaciers.</strong> <em>[journal]</em>, doi:<code>[TBD]</code></p>
+</blockquote>
+<div class="language-bibtex highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nc">@article</span><span class="p">{</span><span class="nl">DahuNet</span><span class="p">,</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="na">author</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">{Rosier, Sebastian H. R. and Gregov, Thomas and Jouvet, Guillaume and Vieli, Andreas}</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="na">title</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="s">{Cheap and accurate higher-order ice flow emulator for mountain glaciers}</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="na">journal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{TBD}</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="na">year</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{in prep.}</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="na">doi</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{TBD}</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Please also cite the <a href="../../about/cite/">IGM model description</a> itself.</p>
+<hr />
+<h2 id="appendix-legacy-pinnbp-emulators">Appendix: legacy <code>pinnbp</code> emulators</h2>
+<p><em>This appendix is self-contained. None of the DahuNet guidance above — the bundled artifacts,
+the compatibility checks, the validity envelope, or the offline <code>nbit: 0</code> recipe — applies to
+the emulators described here.</em></p>
+<p>The DahuNet artifacts are not the only pretrained emulators IGM ships. A set of older
+<code>pinnbp</code> emulators (Jouvet et al., 2023)<sup id="fnref2:Jouvet2023"><a class="footnote-ref" href="#fn:Jouvet2023">2</a></sup> is still bundled and <strong>still fully supported</strong>. They are
+selected by leaving <code>pretrained_path</code> empty:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unified</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">numerics</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">Nz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">                  </span><span class="c1"># part of the selection key — see below</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">vert_spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span><span class="w">       </span><span class="c1"># part of the selection key</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">unified</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">network</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="nt">pretrained</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="nt">pretrained_path</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w">   </span><span class="c1"># empty -&gt; legacy pinnbp selection</span>
+</span></code></pre></div>
+<h3 id="they-are-chosen-by-configuration-not-by-filename">They are chosen by configuration, not by filename</h3>
+<p>This is the key difference from the DahuNet artifacts. You do not name a legacy emulator;
+IGM <strong>builds a directory name from your configuration</strong> and looks for a bundled emulator
+that matches:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pinnbp_{Nz}_{vert_spacing}_{architecture}_{nb_layers}_{nb_out_filter}_2_1_{a|e}
+</span></code></pre></div>
+<p>taken from <code>numerics.Nz</code>, <code>numerics.vert_spacing</code>, and <code>emulator.network.architecture</code>,
+<code>.nb_layers</code>, <code>.nb_out_filter</code>. The trailing letter is <code>e</code> if <code>numerics.basis_vertical</code> is
+Legendre and <code>a</code> otherwise. If no bundled emulator matches, the run aborts with
+<code>No pretrained emulator found in the igm package with name &lt;...&gt;</code>.</p>
+<h3 id="what-is-and-is-not-checked">What is and is not checked</h3>
+<p>Legacy emulators predate the compatibility metadata, so <strong>none of the hard or soft checks
+<a href="#what-you-must-not-change-and-why">described above</a> apply to them</strong>. The only validation is that the input field names in
+<code>fieldin.dat</code> match your configured inputs. Matching the physics and discretization the
+emulator was trained under is therefore entirely your responsibility.</p>
+<p>Note also that the bundled <code>pinnbp</code> emulators take <strong><code>slidingco</code></strong>, not <code>tau_ref</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>thk  usurf  arrhenius  slidingco  dX
+</span></code></pre></div>
+<p>They belong to the legacy friction parametrisation, which requires
+<code>physics.sliding.u_ref: 1.0</code>. See the
+<a href="../../about/transition-IGM-3.1-to-3.2/">v3.1 → v3.2 migration guide</a>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Legacy emulators expect to be retrained</p>
+<p><code>pinnbp</code> emulators were designed as <em>pretrained starting points</em> for online retraining,
+not as frozen mappings. Do <strong>not</strong> apply the <code>nbit: 0</code> / <code>retrain_freq: 0</code> recipe above to
+them — used frozen they are substantially less accurate than when retrained, which is
+simply not their intended operating mode. Leave retraining enabled.</p>
+</div>
+<hr />
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../../modules/processes/iceflow/"><code>iceflow</code></a> — the ice-flow module: physics, discretization, mappings, optimizers.</li>
+<li><a href="../../modules/assimilations/pretraining/"><code>pretraining</code></a> — train your own emulator on your own catalogue.</li>
+<li><a href="../../about/cite/">Citing IGM</a> — full reference list.</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:mem">
+<p>Peak allocation for a single forward pass on a <span class="arithmatex">\(256\times256\)</span> grid, excluding fixed
+runtime overhead.&#160;<a class="footnote-backref" href="#fnref:mem" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:Jouvet2023">
+<p>Jouvet, G., Cohen, D., Russo, E., Buzan, J., Raible, C. C., Haeberli, W., Kamleitner, S., Ivy-Ochs, S., Imhof, M. A., Becker, J. K., Landgraf, A., &amp; Fischer, U. H. (2023). Coupled climate-glacier modelling of the last glaciation in the alps. <em>Journal of Glaciology</em>, <em>69</em>(278), 1956--1970. <a href="https://doi.org/10.1017/jog.2023.74">https://doi.org/10.1017/jog.2023.74</a>&#160;<a class="footnote-backref" href="#fnref:Jouvet2023" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:Jouvet2023" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:Jouvet2023" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:E2018">
+<p>E, W., &amp; Yu, B. (2018). The deep Ritz method: A deep learning-based numerical algorithm for solving variational problems. <em>Communications in Mathematics and Statistics</em>, <em>6</em>(1), 1--12. <a href="https://doi.org/10.1007/s40304-018-0127-z">https://doi.org/10.1007/s40304-018-0127-z</a>&#160;<a class="footnote-backref" href="#fnref:E2018" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -4448,7 +5217,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../getting_started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+          <a href="../../modules/variables/descriptive/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Descriptive Aliases">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4458,20 +5227,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Overview
+                Descriptive Aliases
               </div>
             </div>
           </a>
         
         
           
-          <a href="aletsch/" class="md-footer__link md-footer__link--next" aria-label="Next: Aletsch: forward modelling">
+          <a href="../../developer/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Aletsch: forward modelling
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4510,18 +5279,18 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../javascripts/cite-linkify.js"></script>
+        <script src="../../javascripts/cite-linkify.js"></script>
       
     
   </body>
