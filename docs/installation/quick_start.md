@@ -1,6 +1,6 @@
 # Installation
 
-IGM requires **Python 3.10–3.11**. GPU acceleration requires an NVIDIA card; CPU-only runs are slower but fully supported.
+IGM requires **Python 3.10–3.12**. GPU acceleration requires an NVIDIA card; CPU-only runs are slower but fully supported.
 
 !!! note "Coming from IGM v2?"
     This documentation covers IGM v3. For IGM v2, visit the [former documentation](https://github.com/instructed-glacier-model/igm/wiki) or the [v2 → v3 migration guide](../about/transition-IGM-2-to-3.md).
@@ -59,6 +59,9 @@ See [Virtual Environments](other/virtual_environment.md) for a more detailed wal
 
 ## Install
 
+!!! info "Disk space"
+    A fresh install takes about **5.5 GB**, mostly TensorFlow and its bundled CUDA libraries. Plan for ~10 GB free during installation (pip cache, reclaimable with `pip cache purge`).
+
 === "Standard (pip)"
     ```bash
     pip install igm-model
@@ -67,7 +70,7 @@ See [Virtual Environments](other/virtual_environment.md) for a more detailed wal
     To pin a specific release for reproducibility:
 
     ```bash
-    pip install "igm-model==3.1.1"
+    pip install "igm-model==3.2.0"
     ```
 
     All available releases are listed on [PyPI](https://pypi.org/project/igm-model/#history).
