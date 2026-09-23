@@ -7,7 +7,7 @@ This IGM output module provides a real-time visualization dashboard for glacier 
 A three-panel planview dashboard updated live during the simulation:
 
 - **Ice Thickness** (left): ice thickness over a hillshaded bedrock, using the `cividis` colormap. The colorbar range is controlled by `thk_max`.
-- **Velocity** (right): vertically-averaged ice speed on a log scale over hillshaded bedrock, using the `inferno` colormap. The colorbar range is controlled by `vel_max`. An ice-edge contour is overlaid in blue.
+- **Surface velocity** (right): ice surface speed (depth-averaged speed if the surface velocity is unavailable) on a log scale over hillshaded bedrock, using the `viridis` colormap. The colorbar range is controlled by `vel_max`. An ice-edge contour is overlaid in blue.
 - **Time series** (bottom, full width): dual y-axis plot showing the Equilibrium Line Altitude (ELA, left axis) and ice volume (right axis) over time.
 
 The current simulation time is displayed as a centered title above the panels. A status bar above the time series shows `dt`, volume, area, max velocity, and time.
@@ -23,7 +23,7 @@ If `save_frames` is set to `true`, PNG frames are saved at each update step (nam
 A GPU-accelerated 3D visualization with:
 
 - **Bedrock** rendered as a semi-transparent grey surface.
-- **Ice surface** colored by speed using the `inferno` colormap, with a persistent horizontal colorbar at the bottom.
+- **Ice surface** colored by surface speed using the `viridis` colormap, with a persistent horizontal colorbar at the bottom.
 - **Time title** displayed prominently at the top center.
 - **Stats overlay** (upper left) showing volume, area, max speed, dt, and wall time.
 - **Inset chart** (bottom left) showing the same ELA/volume time series as in 2D mode.
