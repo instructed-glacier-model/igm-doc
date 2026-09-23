@@ -4593,39 +4593,40 @@
 </span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">    </span><span class="nt">climate_0_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/climate.nc</span>
 </span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">    </span><span class="nt">climate_1_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/climate1.nc</span>
 </span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">    </span><span class="nt">signal_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/GI.dat</span>
-</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">    </span><span class="nt">vertical_lapse_rate_0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6.0</span>
-</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">    </span><span class="nt">vertical_lapse_rate_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.74</span>
-</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">    </span><span class="nt">temporal_resampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
-</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
-</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
-</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="w">  </span><span class="c1"># station — synthetic climate built from a reference precipitation</span>
-</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">  </span><span class="c1"># station + adiabatic lapse rate + optional time-series of offsets.</span>
-</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="w">  </span><span class="c1"># Mirrors the legacy `clim_station`.</span>
-</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
-</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">  </span><span class="nt">station</span><span class="p">:</span>
-</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">    </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">    </span><span class="nt">zero_degree_isotherm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500.0</span>
-</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">    </span><span class="nt">adiabatic_lapse_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0058</span>
-</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">    </span><span class="nt">air_temperature_stdev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
-</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="w">    </span><span class="nt">precipitation_lapse_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
-</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="w">    </span><span class="nt">reference_precipitation_elevation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="w">    </span><span class="nt">reference_precipitation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">800.0</span>
-</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="w">    </span><span class="nt">min_precipitation_allowed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="w">    </span><span class="nt">cosine_yearly_cycle_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="w">    </span><span class="nt">cosine_yearly_cycle_amplitude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
-</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="w">    </span><span class="nt">southern_hemisphere_climate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
-</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a><span class="w">    </span><span class="nt">export_climate_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="w">    </span><span class="nt">time_dependent_climate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
-</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a><span class="w">    </span><span class="nt">climate_change_array</span><span class="p">:</span>
-</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"time"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"temperature_offset"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"precip_offset"</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1800</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1850</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1900</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1950</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2000</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2050</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.5</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2100</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">    </span><span class="nt">vertical_lapse_rate_0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6.0</span><span class="w">         </span><span class="c1"># air temperature lapse rate, GI=0 end member [°C per km]</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">    </span><span class="nt">vertical_lapse_rate_1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.74</span><span class="w">        </span><span class="c1"># air temperature lapse rate, GI=1 end member [°C per km]</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">    </span><span class="nt">temp_std</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span><span class="w">                      </span><span class="c1"># used if a climate file has no air_temp_sd [°C]</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">    </span><span class="nt">temporal_resampling</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">  </span><span class="c1"># station — synthetic climate built from a reference precipitation</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="w">  </span><span class="c1"># station + adiabatic lapse rate + optional time-series of offsets.</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">  </span><span class="c1"># Mirrors the legacy `clim_station`.</span>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">  </span><span class="nt">station</span><span class="p">:</span>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">    </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">    </span><span class="nt">zero_degree_isotherm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2500.0</span>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">    </span><span class="nt">adiabatic_lapse_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0058</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="w">    </span><span class="nt">air_temperature_stdev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="w">    </span><span class="nt">precipitation_lapse_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="w">    </span><span class="nt">reference_precipitation_elevation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="w">    </span><span class="nt">reference_precipitation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">800.0</span>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="w">    </span><span class="nt">min_precipitation_allowed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="w">    </span><span class="nt">cosine_yearly_cycle_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="w">    </span><span class="nt">cosine_yearly_cycle_amplitude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a><span class="w">    </span><span class="nt">southern_hemisphere_climate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="w">    </span><span class="nt">export_climate_ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a><span class="w">    </span><span class="nt">time_dependent_climate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="w">    </span><span class="nt">climate_change_array</span><span class="p">:</span>
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"time"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"temperature_offset"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"precip_offset"</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1800</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1850</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1900</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1950</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2000</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2050</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.5</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2100</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">100</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 <p>Structure of the parameters:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>climate
@@ -5107,7 +5108,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">glacialindex.climate_0_file</code>
         </td>
-        <td class="description_text">NetCDF file for the modern (warm) end-member climate.</td>
+        <td class="description_text">NetCDF file for the GI=0 end-member climate (warm state, e.g. modern or interglacial).</td>
         <td style="text-align: center;">
 
             <span class="string_table">data/climate.nc</span>
@@ -5130,7 +5131,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">glacialindex.climate_1_file</code>
         </td>
-        <td class="description_text">NetCDF file for the glacial (cold) end-member climate.</td>
+        <td class="description_text">NetCDF file for the GI=1 end-member climate (cold state, e.g. glacial maximum).</td>
         <td style="text-align: center;">
 
             <span class="string_table">data/climate1.nc</span>
@@ -5176,7 +5177,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">glacialindex.vertical_lapse_rate_0</code>
         </td>
-        <td class="description_text">Vertical lapse rate applied to the modern end-member temperature field.</td>
+        <td class="description_text">Adiabatic lapse rate of air temperature applied to the GI=0 end-member temperature field.</td>
         <td style="text-align: center;">
 
             <span class="float_table">6.0</span>
@@ -5184,7 +5185,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">°C (100 m)<span class="math">\( ^{-1} \)</span></span>
+            <span class="units_text">°C km<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
@@ -5199,7 +5200,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">glacialindex.vertical_lapse_rate_1</code>
         </td>
-        <td class="description_text">Vertical lapse rate applied to the glacial end-member temperature field.</td>
+        <td class="description_text">Adiabatic lapse rate of air temperature applied to the GI=1 end-member temperature field.</td>
         <td style="text-align: center;">
 
             <span class="float_table">5.74</span>
@@ -5207,7 +5208,30 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">°C (100 m)<span class="math">\( ^{-1} \)</span></span>
+            <span class="units_text">°C km<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">glacialindex.temp_std</code>
+        </td>
+        <td class="description_text">Standard deviation of daily air temperature, used when a climate file has no <code>air_temp_sd</code> variable.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">5.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">°C</span>
 
         </td>
       </tr>
@@ -5222,7 +5246,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">glacialindex.temporal_resampling</code>
         </td>
-        <td class="description_text">Number of sub-steps per model time step for temporal resampling of the glacial index signal.</td>
+        <td class="description_text">Number of samples per year used to represent the seasonal cycle: the monthly fields of the climate files are linearly interpolated onto this many sub-annual steps (12 = monthly, 52 = weekly). Independent of update_freq, which only sets how often (in years) the climate is recomputed. Must be &gt;= the number of time records in the climate files. Memory grows linearly with it (52 uses ~4x the memory of 12).</td>
         <td style="text-align: center;">
 
             <span class="integer_table">12</span>
@@ -5230,7 +5254,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">—</span>
+            <span class="units_text">yr<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
@@ -5267,7 +5291,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.update_freq</code>
         </td>
-        <td class="description_text">Update climate fields every X years.</td>
+        <td class="description_text">Update the climate fields each X years during simulation</td>
         <td style="text-align: center;">
 
             <span class="float_table">1.0</span>
@@ -5290,7 +5314,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.zero_degree_isotherm</code>
         </td>
-        <td class="description_text">Elevation at which mean annual temperature is 0 °C.</td>
+        <td class="description_text">Elevation at which mean annual temperature is 0 °C</td>
         <td style="text-align: center;">
 
             <span class="float_table">2500.0</span>
@@ -5298,7 +5322,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">m</span>
+            <span class="units_text">m a.s.l.</span>
 
         </td>
       </tr>
@@ -5313,7 +5337,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.adiabatic_lapse_rate</code>
         </td>
-        <td class="description_text">Adiabatic lapse rate for air temperature.</td>
+        <td class="description_text">Adiabatic lapse rate for air temperature</td>
         <td style="text-align: center;">
 
             <span class="float_table">0.0058</span>
@@ -5336,7 +5360,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.air_temperature_stdev</code>
         </td>
-        <td class="description_text">Space-independent standard deviation of daily temperature variability.</td>
+        <td class="description_text">The space-independent standard deviation of the daily temperature variability</td>
         <td style="text-align: center;">
 
             <span class="float_table">2.0</span>
@@ -5344,7 +5368,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">°C</span>
+            <span class="units_text">°C or K</span>
 
         </td>
       </tr>
@@ -5359,7 +5383,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.precipitation_lapse_rate</code>
         </td>
-        <td class="description_text">Change in precipitation with altitude as a fraction of reference_precipitation.</td>
+        <td class="description_text">Change in precipitation with altitude (in % / 100m): i.e. in % of the given reference_precipitation value.</td>
         <td style="text-align: center;">
 
             <span class="float_table">3.0</span>
@@ -5382,7 +5406,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.reference_precipitation_elevation</code>
         </td>
-        <td class="description_text">Elevation of the reference precipitation station.</td>
+        <td class="description_text">Elevation at which mean cumulative annual precipitation is known (e.g. a weather station)</td>
         <td style="text-align: center;">
 
             <span class="float_table">1000.0</span>
@@ -5390,7 +5414,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">m</span>
+            <span class="units_text">m a.s.l.</span>
 
         </td>
       </tr>
@@ -5405,7 +5429,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.reference_precipitation</code>
         </td>
-        <td class="description_text">Mean cumulative annual precipitation at the reference station.</td>
+        <td class="description_text">Mean cumulative annual precipitation (in mm yr-1 water equivalent) where it is known (e.g. a weather station)</td>
         <td style="text-align: center;">
 
             <span class="float_table">800.0</span>
@@ -5413,7 +5437,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">mm yr<span class="math">\( ^{-1} \)</span></span>
+            <span class="units_text">mm yr<span class="math">\( ^{-1} \)</span> w.e.</span>
 
         </td>
       </tr>
@@ -5428,7 +5452,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.min_precipitation_allowed</code>
         </td>
-        <td class="description_text">Minimum allowed precipitation to avoid unrealistically low values.</td>
+        <td class="description_text">Minimum allowed precipitation to avoid unrealistically low (e.g. negative) values</td>
         <td style="text-align: center;">
 
             <span class="float_table">1.0</span>
@@ -5436,7 +5460,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">mm yr<span class="math">\( ^{-1} \)</span></span>
+            <span class="units_text">mm yr<span class="math">\( ^{-1} \)</span> w.e.</span>
 
         </td>
       </tr>
@@ -5451,7 +5475,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.cosine_yearly_cycle_temp</code>
         </td>
-        <td class="description_text">Add an idealised cosine seasonal temperature signal.</td>
+        <td class="description_text">Keep the temperature constant throughout the year ('False'), or create an idealised seasonal sinusoidal signal of temperature change ('True')</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">True</span>
@@ -5474,7 +5498,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.cosine_yearly_cycle_amplitude</code>
         </td>
-        <td class="description_text">Amplitude of the cosine seasonal temperature variation.</td>
+        <td class="description_text">Amplitude of the cosine-based seasonal temperature variation, defining the maximum excursion from the mean annual temperature (not between min and max)</td>
         <td style="text-align: center;">
 
             <span class="float_table">5.0</span>
@@ -5482,7 +5506,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">°C</span>
+            <span class="units_text">°C or K</span>
 
         </td>
       </tr>
@@ -5497,7 +5521,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.southern_hemisphere_climate</code>
         </td>
-        <td class="description_text">Shift the seasonal cycle by 6 months for southern-hemisphere glaciers.</td>
+        <td class="description_text">Set to 'True' for Southern Hemisphere hydrological year (May - April cycle) and Southern seasonal cycle (i.e. warmest temperatures in January)</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">False</span>
@@ -5520,7 +5544,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.export_climate_ref</code>
         </td>
-        <td class="description_text">Export a climate_ref.nc file for the original topography.</td>
+        <td class="description_text">Set to 'True' to export a NetCDF file called 'climate_ref.nc' which allows to view the climate fields produced from original topography and user parameters</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">True</span>
@@ -5543,7 +5567,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.time_dependent_climate</code>
         </td>
-        <td class="description_text">Allow climate to vary in time via climate_change_array.</td>
+        <td class="description_text">Keep climate constant throughout simulation ('False'), or make it change in time ('True') and thus use the user-given climate_change_array</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">True</span>
@@ -5566,7 +5590,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">station.climate_change_array</code>
         </td>
-        <td class="description_text">Time-dependent offsets: rows of [time, temperature_offset (°C), precip_offset (mm yr^{-1})].</td>
+        <td class="description_text">Time-dependent parameters for temperature offsets (in °C of change) and precipitation offsets (in % of the original precip field, i.e. '100' means no change, '110' means +10% precip). Array structure: [time, temperature_offset, precip_offset]</td>
         <td style="text-align: center;">
 
             <span class="list_table">[['time', 'temperature_offset', 'precip_offset'], [1750, 0.0, 100], [1800, 0.0, 100], [1850, 0.0, 100], [1900, 0.0, 100], [1950, 0.0, 100], [2000, 0.5, 100], [2050, 1.5, 100], [2100, 2.0, 100]]</span>

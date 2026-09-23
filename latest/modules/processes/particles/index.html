@@ -4495,10 +4495,46 @@
 <h2 id="seeding">Seeding</h2>
 <p>Seeding occurs in the accumulation area at intervals of <code>seeding.frequency</code> years, with spatial density controlled by <code>seeding.density</code> (0.2 = one seed every 5 grid cells). To use a custom seeding strategy (e.g. near rock walls or nunataks), redefine the <code>seeding_particles()</code> function in a <code>particles.py</code> file in the working directory — <code>igm_run</code> will override the built-in implementation with yours.</p>
 <h2 id="output">Output</h2>
-<p>Particle positions are saved at the interval set by <code>processes.time.save</code>. Trajectories are written to a <code>trajectory/</code> folder as files named <code>traj-TIME.csv</code> with the columns:</p>
+<p>Particle positions are saved at the interval set by <code>processes.time.save</code>. Trajectories are written to a <code>trajectories/</code> folder as files named <code>traj-TIME.csv</code> with the columns:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
 </span></code></pre></div>
-<p>The tracking computation can use <code>tensorflow</code> (default) or a CUDA-based <code>cupy/numba</code> backend (<code>tracking.library</code>). Output writing can use <code>numpy</code> (default) or <code>cudf</code> (<code>output.library</code>), which also supports <code>parquet</code> format.</p>
+<p>Tracking and writing backends:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tracking.library</code></td>
+<td><code>tensorflow</code> (default)</td>
+<td>Pure TensorFlow interpolation, runs on CPU or GPU</td>
+</tr>
+<tr>
+<td></td>
+<td><code>cuda</code></td>
+<td>Compiled TensorFlow custom op (<code>interpolate_2d.so</code>), NVIDIA GPU</td>
+</tr>
+<tr>
+<td></td>
+<td><code>cupy</code></td>
+<td>Numba CUDA kernel, requires <code>cupy</code> and <code>numba</code></td>
+</tr>
+<tr>
+<td><code>output.library</code></td>
+<td><code>numpy</code> (default)</td>
+<td>Writes CSV files (<code>output.format</code> is ignored)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>cudf</code></td>
+<td>RAPIDS GPU dataframes, writes <code>csv</code>, <code>feather</code> or <code>parquet</code> (<code>output.format</code>)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="parameters">Parameters</h2>
 <p>Default configuration file (<a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/particles.yaml">particles.yaml</a>):
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">particles</span><span class="p">:</span>
@@ -4576,7 +4612,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">seeding.method</code>
         </td>
-        <td class="description_text">Method for seeding particles (accumulation or all).</td>
+        <td class="description_text">Seeding method: <code>accumulation</code> (seed at the surface of the accumulation area, where thk &gt; 1 m and smb &gt; 0, every <code>frequency</code> years) or <code>all</code> (seed the whole ice volume in layers spaced by <code>height</code> at the first time step, then at the surface wherever the cumulated accumulation exceeds <code>height</code>).</td>
         <td style="text-align: center;">
 
             <span class="string_table">accumulation</span>
@@ -4668,7 +4704,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">seeding.height</code>
         </td>
-        <td class="description_text">Height of the seeding layer in the method full.</td>
+        <td class="description_text">Method <code>all</code> only: vertical spacing of the seeded layers, and cumulated accumulation (m ice eq.) that triggers a new surface seeding.</td>
         <td style="text-align: center;">
 
             <span class="float_table">20.0</span>
@@ -4676,7 +4712,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">—</span>
+            <span class="units_text">m</span>
 
         </td>
       </tr>
@@ -4736,7 +4772,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">tracking.library</code>
         </td>
-        <td class="description_text">Library used for tracking (cuda, tensorflow, etc.).</td>
+        <td class="description_text">Library used to interpolate velocities at particle positions: <code>tensorflow</code> (default, portable, CPU or GPU), <code>cuda</code> (compiled TensorFlow custom op, NVIDIA GPU), or <code>cupy</code> (Numba CUDA kernel, requires <code>cupy</code> and <code>numba</code>).</td>
         <td style="text-align: center;">
 
             <span class="string_table">tensorflow</span>
@@ -4781,7 +4817,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">removal.method</code>
         </td>
-        <td class="description_text">Method for removing particles (ablation, etc.).</td>
+        <td class="description_text">Particle removal: empty string (none) or <code>ablation</code> (remove particles that have returned to the ice surface, i.e. relative height r = 1).</td>
         <td style="text-align: center;">
 
             <span class="string_table"></span>
@@ -4826,7 +4862,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">output.library</code>
         </td>
-        <td class="description_text">Library used for outputting particles (numpy, pyvista, etc.).</td>
+        <td class="description_text">Library used to write particle files: <code>numpy</code> (default, CSV only) or <code>cudf</code> (RAPIDS, GPU; supports the formats set by <code>format</code>).</td>
         <td style="text-align: center;">
 
             <span class="string_table">numpy</span>
@@ -4872,7 +4908,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">output.format</code>
         </td>
-        <td class="description_text">Type of output format for particles (csv, parquet).</td>
+        <td class="description_text">Output file format with <code>library: cudf</code>: <code>csv</code>, <code>feather</code>, or <code>parquet</code> (ignored with <code>numpy</code>, which always writes CSV).</td>
         <td style="text-align: center;">
 
             <span class="string_table">csv</span>
@@ -4895,7 +4931,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">output.add_fields</code>
         </td>
-        <td class="description_text">List of fields to write in the output file (englt, velbar, weight).</td>
+        <td class="description_text">Extra particle fields to track and write: <code>weight</code>, <code>englt</code> (englacial time, yr), <code>velmag</code> (3D speed, m yr^{-1}).</td>
         <td style="text-align: center;">
 
             <span class="list_table">['weight', 'englt', 'velmag']</span>

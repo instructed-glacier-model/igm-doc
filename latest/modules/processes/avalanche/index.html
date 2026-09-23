@@ -4506,7 +4506,7 @@
       <td>
         <code class="param_name">stop_redistribution_thk</code>
       </td>
-      <td class="description_text">Stop redistribution if the mean thickness is below this value over the whole grid.</td>
+      <td class="description_text">Stop the iterative redistribution when the thickness to redistribute in one iteration (ice in excess of the angle of repose, non-zero only where avalanching occurs), summed and divided by the total number of grid cells, falls below this value. The remaining excess is then redistributed at once.</td>
       <td style="text-align: center;">
 
           <span class="float_table">0.02</span>

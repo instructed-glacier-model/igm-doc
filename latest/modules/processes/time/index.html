@@ -4561,13 +4561,15 @@ iii) It aligns exactly with specified saving times (controlled by the parameter 
       <td>
         <code class="param_name">cfl_percentile</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">Percentile of |velocity| used in the CFL condition in place of the maximum (100 = exact maximum, default). Values below 100 ignore the fastest (100 - p)% of grid cells, so that a few outlier cells do not collapse the time step; the CFL guarantee then no longer holds in those cells. The percentile is taken over all grid cells, including ice-free ones: keep it close to 100 (e.g. 99.9).</td>
       <td style="text-align: center;">
 
-          100.0
+          <span class="float_table">100.0</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">%</span>
 
       </td>
     </tr>

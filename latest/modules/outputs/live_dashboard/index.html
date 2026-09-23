@@ -4461,7 +4461,7 @@
 <p>A three-panel planview dashboard updated live during the simulation:</p>
 <ul>
 <li><strong>Ice Thickness</strong> (left): ice thickness over a hillshaded bedrock, using the <code>cividis</code> colormap. The colorbar range is controlled by <code>thk_max</code>.</li>
-<li><strong>Velocity</strong> (right): vertically-averaged ice speed on a log scale over hillshaded bedrock, using the <code>inferno</code> colormap. The colorbar range is controlled by <code>vel_max</code>. An ice-edge contour is overlaid in blue.</li>
+<li><strong>Surface velocity</strong> (right): ice surface speed (depth-averaged speed if the surface velocity is unavailable) on a log scale over hillshaded bedrock, using the <code>viridis</code> colormap. The colorbar range is controlled by <code>vel_max</code>. An ice-edge contour is overlaid in blue.</li>
 <li><strong>Time series</strong> (bottom, full width): dual y-axis plot showing the Equilibrium Line Altitude (ELA, left axis) and ice volume (right axis) over time.</li>
 </ul>
 <p>The current simulation time is displayed as a centered title above the panels. A status bar above the time series shows <code>dt</code>, volume, area, max velocity, and time.</p>
@@ -4472,7 +4472,7 @@
 <p>A GPU-accelerated 3D visualization with:</p>
 <ul>
 <li><strong>Bedrock</strong> rendered as a semi-transparent grey surface.</li>
-<li><strong>Ice surface</strong> colored by speed using the <code>inferno</code> colormap, with a persistent horizontal colorbar at the bottom.</li>
+<li><strong>Ice surface</strong> colored by surface speed using the <code>viridis</code> colormap, with a persistent horizontal colorbar at the bottom.</li>
 <li><strong>Time title</strong> displayed prominently at the top center.</li>
 <li><strong>Stats overlay</strong> (upper left) showing volume, area, max speed, dt, and wall time.</li>
 <li><strong>Inset chart</strong> (bottom left) showing the same ELA/volume time series as in 2D mode.</li>
@@ -4495,7 +4495,7 @@
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">          </span><span class="c1"># update every N save events (1 = every save)</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">figsize</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">14</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">9</span><span class="p p-Indicator">]</span><span class="w">        </span><span class="c1"># figure size in inches (2d mode only)</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">dpi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w">                </span><span class="c1"># figure resolution (2d mode only)</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">vel_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500.0</span><span class="w">          </span><span class="c1"># velocity colorbar max (m/a)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">vel_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500.0</span><span class="w">          </span><span class="c1"># velocity colorbar max (m/yr)</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">thk_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">800.0</span><span class="w">          </span><span class="c1"># thickness colorbar max (m)</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">save_frames</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">      </span><span class="c1"># also save PNG frames</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">headless</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">         </span><span class="c1"># use non-interactive Agg backend (for CI / no-display environments)</span>

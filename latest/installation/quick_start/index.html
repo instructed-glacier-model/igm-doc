@@ -4425,7 +4425,7 @@
 
 
 <h1 id="installation">Installation</h1>
-<p>IGM requires <strong>Python 3.10–3.11</strong>. GPU acceleration requires an NVIDIA card; CPU-only runs are slower but fully supported.</p>
+<p>IGM requires <strong>Python 3.10–3.12</strong>. GPU acceleration requires an NVIDIA card; CPU-only runs are slower but fully supported.</p>
 <div class="admonition note">
 <p class="admonition-title">Coming from IGM v2?</p>
 <p>This documentation covers IGM v3. For IGM v2, visit the <a href="https://github.com/instructed-glacier-model/igm/wiki">former documentation</a> or the <a href="../../about/transition-IGM-2-to-3/">v2 → v3 migration guide</a>.</p>
@@ -4479,13 +4479,17 @@
 <p>See <a href="../other/virtual_environment/">Virtual Environments</a> for a more detailed walkthrough.</p>
 <hr />
 <h2 id="install">Install</h2>
+<div class="admonition info">
+<p class="admonition-title">Disk space</p>
+<p>A fresh install takes about <strong>5.5 GB</strong>, mostly TensorFlow and its bundled CUDA libraries. Plan for ~10 GB free during installation (pip cache, reclaimable with <code>pip cache purge</code>).</p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Standard (pip)</label><label for="__tabbed_3_2">From source</label><label for="__tabbed_3_3">macOS (Apple Silicon, M-series GPU)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>igm-model
 </span></code></pre></div>
 <p>To pin a specific release for reproducibility:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"igm-model==3.1.1"</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"igm-model==3.2.0"</span>
 </span></code></pre></div>
 <p>All available releases are listed on <a href="https://pypi.org/project/igm-model/#history">PyPI</a>.</p>
 </div>

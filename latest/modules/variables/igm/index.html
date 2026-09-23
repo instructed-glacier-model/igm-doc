@@ -3757,6 +3757,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGM Names
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3773,6 +3791,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#saving-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-and-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time and grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry-inputs-thk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometry (inputs, thk)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ice-flow-iceflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ice flow (iceflow)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#climate-and-surface-mass-balance-climate-smb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Climate and surface mass balance (climate, smb)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thermodynamics-enthalpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thermodynamics (enthalpy)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subglacial-hydrology-subglacial_hydrology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subglacial hydrology (subglacial_hydrology)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#community-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Community modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4365,7 +4490,18 @@
 
 <h1 id="igm-canonical-variable-names">IGM Canonical Variable Names</h1>
 <p>These are the names used internally by IGM and referenced in all module <code>needs</code>/<code>updates</code> declarations and output configs. IGM follows the naming conventions of <a href="https://www.pism.io/">PISM</a> where applicable.</p>
-<p>The table covers the core modules. Additional variables may be defined by community modules or custom user modules.</p>
+<h2 id="saving-variables">Saving variables</h2>
+<p>The output modules (<code>local</code>, <code>write_ncdf</code>, <code>write_tif</code>) save the variables listed in <code>vars_to_save</code>:</p>
+<ul>
+<li>Any 2D <code>(ny, nx)</code> or 3D <code>(nz, ny, nx)</code> field of the state can be saved (2D only for GeoTIFF), provided the module that produces it is active. Names that do not exist in the state are silently skipped.</li>
+<li><code>velbar_mag</code>, <code>velsurf_mag</code> and <code>velbase_mag</code> are computed on the fly by the output modules.</li>
+<li>Enthalpy diagnostics (<code>T</code>, <code>omega</code>, <code>T_pmp</code>, …) are computed only at save time, and only if they are requested in <code>vars_to_save</code>.</li>
+<li>3D fields of the <code>iceflow</code> module live on its vertical grid; 3D fields of the <code>enthalpy</code> module live on their own vertical grid, and get their own vertical dimension in the NetCDF file.</li>
+<li>Monthly climate fields (<code>air_temp</code>, <code>precipitation</code>, shape <code>(12, ny, nx)</code>) are better saved through their annual means <code>meantemp</code> and <code>meanprec</code>.</li>
+<li>Input modules also load every variable present in the input file (e.g. <code>thkobs</code>, <code>uvelsurfobs</code>, <code>vvelsurfobs</code>, <code>icemaskobs</code> from <code>oggm_shop</code>); these can be saved as well.</li>
+</ul>
+<p>The tables below list the variables of the core modules, and of the most common community modules. Custom user modules may define more.</p>
+<h2 id="time-and-grid">Time and grid</h2>
 <table>
 <thead>
 <tr>
@@ -4400,16 +4536,29 @@
 <td>y-coordinate vector</td>
 <td>m</td>
 </tr>
+</tbody>
+</table>
+<h2 id="geometry-inputs-thk">Geometry (inputs, <code>thk</code>)</h2>
+<table>
+<thead>
 <tr>
-<td><code>thk</code></td>
-<td><code>(ny, nx)</code></td>
-<td>Ice thickness</td>
-<td>m</td>
+<th>Variable</th>
+<th>Shape</th>
+<th>Description</th>
+<th>Unit</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td><code>topg</code></td>
 <td><code>(ny, nx)</code></td>
 <td>Bedrock (basal) topography</td>
+<td>m</td>
+</tr>
+<tr>
+<td><code>thk</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Ice thickness</td>
 <td>m</td>
 </tr>
 <tr>
@@ -4419,10 +4568,10 @@
 <td>m</td>
 </tr>
 <tr>
-<td><code>smb</code></td>
+<td><code>lsurf</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Surface mass balance (ice-equivalent)</td>
-<td>m yr⁻¹</td>
+<td>Ice lower surface elevation (differs from <code>topg</code> where ice floats)</td>
+<td>m</td>
 </tr>
 <tr>
 <td><code>icemask</code></td>
@@ -4431,17 +4580,30 @@
 <td>—</td>
 </tr>
 <tr>
-<td><code>ubar</code></td>
+<td><code>water_level</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Depth-averaged x-velocity</td>
-<td>m yr⁻¹</td>
+<td>Water (sea or lake) level, if provided as input</td>
+<td>m</td>
 </tr>
 <tr>
-<td><code>vbar</code></td>
+<td><code>divflux</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Depth-averaged y-velocity</td>
+<td>Divergence of the ice flux</td>
 <td>m yr⁻¹</td>
 </tr>
+</tbody>
+</table>
+<h2 id="ice-flow-iceflow">Ice flow (<code>iceflow</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Shape</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>U</code></td>
 <td><code>(nz, ny, nx)</code></td>
@@ -4457,39 +4619,155 @@
 <tr>
 <td><code>W</code></td>
 <td><code>(nz, ny, nx)</code></td>
-<td>Vertical velocity (3D)</td>
+<td>Vertical velocity (3D), if <code>vertical_velocity</code> is enabled</td>
 <td>m yr⁻¹</td>
 </tr>
 <tr>
-<td><code>wvelbase</code></td>
+<td><code>ubar</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Vertical velocity at the ice base</td>
+<td>Depth-averaged x-velocity</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>vbar</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Depth-averaged y-velocity</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>velbar_mag</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Depth-averaged velocity magnitude (computed at save time)</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>uvelsurf</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Surface x-velocity</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>vvelsurf</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Surface y-velocity</td>
 <td>m yr⁻¹</td>
 </tr>
 <tr>
 <td><code>wvelsurf</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Vertical velocity at the ice surface</td>
+<td>Surface vertical velocity, if <code>vertical_velocity</code> is enabled</td>
 <td>m yr⁻¹</td>
 </tr>
 <tr>
-<td><code>divflux</code></td>
+<td><code>velsurf_mag</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Divergence of the ice flux</td>
+<td>Surface velocity magnitude (computed at save time)</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>uvelbase</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Basal x-velocity</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>vvelbase</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Basal y-velocity</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>wvelbase</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Basal vertical velocity, if <code>vertical_velocity</code> is enabled</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>velbase_mag</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Basal velocity magnitude (computed at save time)</td>
 <td>m yr⁻¹</td>
 </tr>
 <tr>
 <td><code>arrhenius</code></td>
-<td><code>(ny, nx)</code></td>
+<td><code>(ny, nx)</code> or <code>(nz, ny, nx)</code></td>
 <td>Arrhenius (rate) factor for ice rheology</td>
-<td>MPa⁻³ yr⁻¹</td>
+<td>MPa⁻ⁿ yr⁻¹</td>
+</tr>
+<tr>
+<td><code>tau_ref</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Reference basal shear stress (sliding, <code>unified</code> method)</td>
+<td>MPa</td>
 </tr>
 <tr>
 <td><code>slidingco</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Sliding coefficient</td>
-<td>MPa m<sup>-1/3</sup> yr<sup>1/3</sup></td>
+<td>Reference basal shear stress (<code>emulated</code>, <code>solved</code>, <code>diagnostic</code> methods; same as <code>tau_ref</code>)</td>
+<td>MPa</td>
 </tr>
+</tbody>
+</table>
+<h2 id="climate-and-surface-mass-balance-climate-smb">Climate and surface mass balance (<code>climate</code>, <code>smb</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Shape</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smb</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Surface mass balance (ice equivalent)</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>meantemp</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Mean annual air temperature</td>
+<td>°C</td>
+</tr>
+<tr>
+<td><code>meanprec</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Mean annual precipitation (water equivalent)</td>
+<td>kg m⁻² yr⁻¹</td>
+</tr>
+<tr>
+<td><code>air_temp</code></td>
+<td><code>(12, ny, nx)</code></td>
+<td>Monthly air temperature</td>
+<td>°C</td>
+</tr>
+<tr>
+<td><code>air_temp_sd</code></td>
+<td><code>(12, ny, nx)</code></td>
+<td>Monthly standard deviation of daily air temperature</td>
+<td>°C</td>
+</tr>
+<tr>
+<td><code>precipitation</code></td>
+<td><code>(12, ny, nx)</code></td>
+<td>Monthly precipitation (water equivalent)</td>
+<td>kg m⁻² yr⁻¹</td>
+</tr>
+</tbody>
+</table>
+<h2 id="thermodynamics-enthalpy">Thermodynamics (<code>enthalpy</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Shape</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>E</code></td>
 <td><code>(nz, ny, nx)</code></td>
@@ -4500,7 +4778,7 @@
 <td><code>T</code></td>
 <td><code>(nz, ny, nx)</code></td>
 <td>Ice temperature</td>
-<td>°C</td>
+<td>K</td>
 </tr>
 <tr>
 <td><code>omega</code></td>
@@ -4509,10 +4787,112 @@
 <td>—</td>
 </tr>
 <tr>
+<td><code>E_pmp</code></td>
+<td><code>(nz, ny, nx)</code></td>
+<td>Enthalpy at the pressure melting point</td>
+<td>J kg⁻¹</td>
+</tr>
+<tr>
+<td><code>T_pmp</code></td>
+<td><code>(nz, ny, nx)</code></td>
+<td>Pressure melting point temperature</td>
+<td>K</td>
+</tr>
+<tr>
+<td><code>T_pa</code></td>
+<td><code>(nz, ny, nx)</code></td>
+<td>Pressure-adjusted temperature</td>
+<td>K</td>
+</tr>
+<tr>
+<td><code>T_pa_b</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Pressure-adjusted temperature at the bed</td>
+<td>K</td>
+</tr>
+<tr>
+<td><code>E_s</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Surface enthalpy (boundary condition)</td>
+<td>J kg⁻¹</td>
+</tr>
+<tr>
+<td><code>T_s</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Ice surface temperature</td>
+<td>K</td>
+</tr>
+<tr>
 <td><code>basal_melt_rate</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Basal melt rate</td>
+<td>Basal melt rate (ice equivalent)</td>
 <td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>basal_heat_flux</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Geothermal heat flux</td>
+<td>W m⁻²</td>
+</tr>
+</tbody>
+</table>
+<h2 id="subglacial-hydrology-subglacial_hydrology">Subglacial hydrology (<code>subglacial_hydrology</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Shape</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>effective_pressure</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Effective pressure at the bed</td>
+<td>MPa</td>
+</tr>
+<tr>
+<td><code>h_water_till</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Till water layer thickness (<code>till_storage</code> mode)</td>
+<td>m</td>
+</tr>
+</tbody>
+</table>
+<h2 id="community-modules">Community modules</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Shape</th>
+<th>Module</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>flow_accumulation</code></td>
+<td><code>(ny, nx)</code></td>
+<td><code>flow_accumulation</code></td>
+<td>Upstream accumulated flow (number of cells)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>phi</code></td>
+<td><code>(ny, nx)</code></td>
+<td><code>flow_accumulation</code></td>
+<td>Hydraulic head</td>
+<td>m</td>
+</tr>
+<tr>
+<td><code>weight_particles</code></td>
+<td><code>(ny, nx)</code></td>
+<td><code>particles</code></td>
+<td>Sum of particle weights per cell (with <code>add_fields: [weight]</code>)</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
