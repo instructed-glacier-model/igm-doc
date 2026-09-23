@@ -22,13 +22,21 @@ Seeding occurs in the accumulation area at intervals of `seeding.frequency` year
 
 ## Output
 
-Particle positions are saved at the interval set by `processes.time.save`. Trajectories are written to a `trajectory/` folder as files named `traj-TIME.csv` with the columns:
+Particle positions are saved at the interval set by `processes.time.save`. Trajectories are written to a `trajectories/` folder as files named `traj-TIME.csv` with the columns:
 
 ```
 ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
 ```
 
-The tracking computation can use `tensorflow` (default) or a CUDA-based `cupy/numba` backend (`tracking.library`). Output writing can use `numpy` (default) or `cudf` (`output.library`), which also supports `parquet` format.
+Tracking and writing backends:
+
+| Parameter | Option | Description |
+|---|---|---|
+| `tracking.library` | `tensorflow` (default) | Pure TensorFlow interpolation, runs on CPU or GPU |
+| | `cuda` | Compiled TensorFlow custom op (`interpolate_2d.so`), NVIDIA GPU |
+| | `cupy` | Numba CUDA kernel, requires `cupy` and `numba` |
+| `output.library` | `numpy` (default) | Writes CSV files (`output.format` is ignored) |
+| | `cudf` | RAPIDS GPU dataframes, writes `csv`, `feather` or `parquet` (`output.format`) |
 
 ## Parameters
 
