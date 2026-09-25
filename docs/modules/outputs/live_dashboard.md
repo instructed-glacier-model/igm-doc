@@ -35,6 +35,9 @@ The initial camera is automatically positioned at 300% of the elevation range ab
 - **2D mode**: `matplotlib` with `TkAgg` backend (interactive window).
 - **3D mode**: `pyvista` (GPU rendering via VTK).
 
+!!! warning "Remote servers (SSH)"
+    The live window needs a display. On a remote server reached by plain SSH (e.g. a GPU cluster), there is none: the module then switches automatically to headless mode and saves PNG frames (`dashboard_XXXXXX.png`) in the run directory, with a warning (3D mode falls back to 2D). To get the live window, connect with X forwarding (`ssh -X`), which can be slow over a network; otherwise set `headless: true` and look at the saved frames.
+
 ## Usage
 
 Activate it in your `params.yaml`:
