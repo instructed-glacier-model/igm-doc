@@ -4493,6 +4493,10 @@
 <p><strong>Reads:</strong> —</p>
 <p><strong>Writes:</strong> <code>smb</code></p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Units</p>
+<p>The <code>oggm</code> and <code>accpdd</code> methods take <code>state.precipitation</code> in kg m⁻² yr⁻¹, i.e. <strong>mm water equivalent per year</strong>, and <code>state.air_temp</code> in °C (as produced by the <code>climate</code> module). Accumulation and melt are computed in water equivalent; the resulting <code>state.smb</code> is converted once, at the end, to <strong>m ice equivalent per year</strong>.</p>
+</div>
 <h2 id="choosing-a-method">Choosing a method</h2>
 <p>Set <code>processes.smb.method</code> in your configuration:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">processes</span><span class="p">:</span>

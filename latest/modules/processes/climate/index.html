@@ -4504,6 +4504,10 @@
 <p><strong>Reads:</strong> <code>t</code>, <code>usurf</code></p>
 <p><strong>Writes:</strong> <code>air_temp</code>, <code>air_temp_sd</code>, <code>precipitation</code></p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Units</p>
+<p>All methods produce monthly fields of shape <code>(12, ny, nx)</code>: <code>air_temp</code> and <code>air_temp_sd</code> in °C, and <code>precipitation</code> in kg m⁻² yr⁻¹, i.e. <strong>mm water equivalent per year</strong> (1 kg m⁻² = 1 mm w.e.). This is the unit expected by the <code>smb</code> module.</p>
+</div>
 <h2 id="choosing-a-method">Choosing a method</h2>
 <p>Set <code>processes.climate.method</code> in your configuration:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">processes</span><span class="p">:</span>
@@ -4536,6 +4540,7 @@
 <p>A function GI(<span class="arithmatex">\(t\)</span>) maps time to a scalar between 0 and 1, with GI=0 corresponding to nearly ice-free conditions (<span class="arithmatex">\(\mathrm{CL}_0\)</span>) and GI=1 to maximum glaciation (<span class="arithmatex">\(\mathrm{CL}_1\)</span>). Each climate state bundles mean temperature, temperature variability, mean precipitation, and lapse rate, <span class="arithmatex">\(\mathrm{CL}=(T^{\rm mean},T^{\rm std},P^{\rm mean},\mathrm{LR})\)</span>, and the climate at time <span class="arithmatex">\(t\)</span> is the linear combination:</p>
 <div class="arithmatex">\[\mathrm{CL}(t) = \mathrm{GI}(t)\times \mathrm{CL}_1 + (1 - \mathrm{GI}(t))\times \mathrm{CL}_0.\]</div>
 <p>The GI function is built by rescaling a climate proxy signal — e.g. the EPICA Antarctic temperature anomaly, available for the last 800,000 years — so that it is close to 1 at the ice maximum and 0 at the ice minimum. Because the two states are defined on different reference topographies, temperature is corrected for the elevation difference between the modelled ice surface and each reference surface using a vertical lapse rate.</p>
+<p>The climate files store precipitation as a mass flux in kg m⁻² s⁻¹, converted to kg m⁻² yr⁻¹ (mm w.e. yr⁻¹) by the module. A mass flux is the same whatever its label: an "ice-equivalent" <code>long_name</code> in the file metadata (a PISM convention) does not change the values.</p>
 <hr />
 <h2 id="method-station">Method: <code>station</code></h2>
 <p>Generates spatially distributed <strong>temperature</strong> and <strong>precipitation</strong> fields from simplified climate parameters representing a weather-station-type forcing. Designed for mountain glacier simulations where climate is characterised by a local temperature lapse rate and a precipitation-altitude relationship.</p>
@@ -4547,6 +4552,10 @@
 <li>Applies user-specified time-dependent temperature and precipitation offsets (<code>climate_change_array</code>).</li>
 <li>Adjusts both fields for changes in ice surface elevation relative to the initial surface.</li>
 </ol>
+<div class="admonition warning">
+<p class="admonition-title">Changed after IGM 3.2.0</p>
+<p>Precipitation is now kept in water equivalent, as given by <code>reference_precipitation</code> (mm w.e. yr⁻¹). Earlier versions multiplied it by 1.0989 (conversion to ice equivalent) before passing it to the <code>smb</code> module, which expects water equivalent: accumulation was ~10 % too high. To reproduce an older calibration, multiply <code>reference_precipitation</code> by 1.0989.</p>
+</div>
 <h2 id="parameters">Parameters</h2>
 <p>Default configuration file (<a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/climate.yaml">climate.yaml</a>):</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">climate</span><span class="p">:</span>
@@ -4742,7 +4751,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.prec</code>
         </td>
-        <td class="description_text">Mean annual precipitation at ref_elevation.</td>
+        <td class="description_text">Mean annual precipitation (water equivalent) at ref_elevation.</td>
         <td style="text-align: center;">
 
             <span class="float_table">1000.0</span>
@@ -4750,7 +4759,7 @@
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">kg m<span class="math">\( ^{-2} \)</span> yr<span class="math">\( ^{-1} \)</span></span>
+            <span class="units_text">kg m<span class="math">\( ^{-2} \)</span> yr<span class="math">\( ^{-1} \)</span> (= mm yr<span class="math">\( ^{-1} \)</span> w.e.)</span>
 
         </td>
       </tr>
