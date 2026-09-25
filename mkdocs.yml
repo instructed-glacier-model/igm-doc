@@ -19,9 +19,9 @@ nav:
       - Overview: getting_started.md
       - Tutorials:
           - tutorials/index.md
-          - "Aletsch: forward modelling": tutorials/aletsch.md
-          - "Aletsch: parameter calibration": tutorials/aletsch_da.md
-          - "Aletsch: ice-thickness inversion": tutorials/aletsch_inversion.md
+          - "Part A: Aletsch: forward modelling": tutorials/aletsch.md
+          - "Part B: Aletsch: parameter calibration": tutorials/aletsch_da.md
+          - "Part C: Aletsch: ice-thickness inversion": tutorials/aletsch_inversion.md
           - "Drønbreen: polythermal glacier": tutorials/enthalpy_dronbreen.md
           - "Visualizing output with igm_viz": tutorials/igm_viz.md
       - Best Practices:
