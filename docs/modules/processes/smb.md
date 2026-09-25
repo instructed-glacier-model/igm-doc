@@ -6,6 +6,9 @@
 
 {{ render_module_io("smb") }}
 
+!!! note "Units"
+    The `oggm` and `accpdd` methods take `state.precipitation` in kg m⁻² yr⁻¹, i.e. **mm water equivalent per year**, and `state.air_temp` in °C (as produced by the `climate` module). Accumulation and melt are computed in water equivalent; the resulting `state.smb` is converted once, at the end, to **m ice equivalent per year**.
+
 ## Choosing a method
 
 Set `processes.smb.method` in your configuration:

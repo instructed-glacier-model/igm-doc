@@ -64,10 +64,10 @@ The tables below list the variables of the core modules, and of the most common 
 |---|---|---|---|
 | `smb` | `(ny, nx)` | Surface mass balance (ice equivalent) | m yr⁻¹ |
 | `meantemp` | `(ny, nx)` | Mean annual air temperature | °C |
-| `meanprec` | `(ny, nx)` | Mean annual precipitation (water equivalent) | kg m⁻² yr⁻¹ |
+| `meanprec` | `(ny, nx)` | Mean annual precipitation (water equivalent) | kg m⁻² yr⁻¹ (= mm w.e. yr⁻¹) |
 | `air_temp` | `(12, ny, nx)` | Monthly air temperature | °C |
 | `air_temp_sd` | `(12, ny, nx)` | Monthly standard deviation of daily air temperature | °C |
-| `precipitation` | `(12, ny, nx)` | Monthly precipitation (water equivalent) | kg m⁻² yr⁻¹ |
+| `precipitation` | `(12, ny, nx)` | Monthly precipitation (water equivalent) | kg m⁻² yr⁻¹ (= mm w.e. yr⁻¹) |
 
 ## Thermodynamics (`enthalpy`)
 

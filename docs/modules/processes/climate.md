@@ -6,6 +6,9 @@
 
 {{ render_module_io("climate") }}
 
+!!! note "Units"
+    All methods produce monthly fields of shape `(12, ny, nx)`: `air_temp` and `air_temp_sd` in °C, and `precipitation` in kg m⁻² yr⁻¹, i.e. **mm water equivalent per year** (1 kg m⁻² = 1 mm w.e.). This is the unit expected by the `smb` module.
+
 ## Choosing a method
 
 Set `processes.climate.method` in your configuration:
@@ -58,6 +61,8 @@ $$\mathrm{CL}(t) = \mathrm{GI}(t)\times \mathrm{CL}_1 + (1 - \mathrm{GI}(t))\tim
 
 The GI function is built by rescaling a climate proxy signal — e.g. the EPICA Antarctic temperature anomaly, available for the last 800,000 years — so that it is close to 1 at the ice maximum and 0 at the ice minimum. Because the two states are defined on different reference topographies, temperature is corrected for the elevation difference between the modelled ice surface and each reference surface using a vertical lapse rate.
 
+The climate files store precipitation as a mass flux in kg m⁻² s⁻¹, converted to kg m⁻² yr⁻¹ (mm w.e. yr⁻¹) by the module. A mass flux is the same whatever its label: an "ice-equivalent" `long_name` in the file metadata (a PISM convention) does not change the values.
+
 ---
 
 ## Method: `station`
@@ -71,6 +76,9 @@ At each update the module:
 3. Computes a precipitation field using an altitude-dependent lapse rate relative to a reference station value.
 4. Applies user-specified time-dependent temperature and precipitation offsets (`climate_change_array`).
 5. Adjusts both fields for changes in ice surface elevation relative to the initial surface.
+
+!!! warning "Changed after IGM 3.2.0"
+    Precipitation is now kept in water equivalent, as given by `reference_precipitation` (mm w.e. yr⁻¹). Earlier versions multiplied it by 1.0989 (conversion to ice equivalent) before passing it to the `smb` module, which expects water equivalent: accumulation was ~10 % too high. To reproduce an older calibration, multiply `reference_precipitation` by 1.0989.
 
 ## Parameters
 
