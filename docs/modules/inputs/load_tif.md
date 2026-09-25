@@ -7,7 +7,7 @@ This IGM module is designed to load spatial 2D raster data from any `.tif` file 
 
 The module provides functionality for resampling the data using the `coarsen` parameter, which can be set to values like 2, 3, or 4 (with a default value of 1 indicating no coarsening). It also supports cropping the data by setting the `crop` parameter to `True` and specifying the desired bounds.
 
-Additionally, by setting `icemask_invert` to `True`, an ice mask can be generated from an ESRI Shapefile specified by the `icemask_shapefile` parameter. This mask can identify areas that should contain glaciers or remain glacier-free, based on the `icemask_include` parameter.
+Additionally, by setting `icemask_include` to `True`, an ice mask can be generated from an ESRI Shapefile specified by the `icemask_shapefile` parameter. This mask can identify areas that should remain ice free (`icemask_invert=false`) or areas that should contain glaciers with `icemask_invert=true`.
 
 This module depends on `rasterio`.
 

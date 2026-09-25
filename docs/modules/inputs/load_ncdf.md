@@ -7,7 +7,7 @@ This IGM module is designed to load spatial 2D raster data from a NetCDF file sp
 
 The module offers functions for resampling the data, where the `coarsen` parameter can be set to values like 2, 3, or 4 (with a default value of 1 indicating no coarsening). It also provides functionality for cropping the data by setting the `crop` parameter to `True` and specifying the desired bounds.
 
-Additionally, by setting `icemask_invert` to `True`, an ice mask can be generated from an ESRI Shapefile specified by the `icemask_shapefile` parameter. This mask can identify areas that should contain glaciers or areas that should remain glacier-free, based on the `icemask_include` parameter.
+Additionally, by setting `icemask_include` to `True`, an ice mask can be generated from an ESRI Shapefile specified by the `icemask_shapefile` parameter. This mask can identify areas that should remain ice free (`icemask_invert=false`) or areas that should contain glaciers with `icemask_invert=true`.
 
 For marine / tidewater simulations, the `water_level` sub-config creates a 2D `state.water_level` field consumed downstream by the iceflow `floating` energy component. Set `water_level.include: True` to fill the domain with a uniform value (`water_level.value`, in metres). If a 2D `water_level` variable is already present in the input NetCDF, it takes precedence and the uniform fill is skipped — letting you prescribe a spatially-varying water level (e.g. a fjord geometry). If `water_level` is left absent, the flotation term is disabled (the lower surface follows the bed). Note: this used to live in the `thk` module as `default_sealevel` and has moved to the input phase, so that `state.water_level` is available before any process module runs.
 
