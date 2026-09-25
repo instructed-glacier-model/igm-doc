@@ -919,7 +919,7 @@
   <span class="md-ellipsis">
     
   
-    Aletsch: forward modelling
+    Part A: Aletsch: forward modelling
   
 
     
@@ -947,7 +947,7 @@
   <span class="md-ellipsis">
     
   
-    Aletsch: parameter calibration
+    Part B: Aletsch: parameter calibration
   
 
     
@@ -975,7 +975,7 @@
   <span class="md-ellipsis">
     
   
-    Aletsch: ice-thickness inversion
+    Part C: Aletsch: ice-thickness inversion
   
 
     
@@ -4418,7 +4418,7 @@
 </div>
 <p>This IGM module is designed to load spatial 2D raster data from any <code>.tif</code> file present in the working directory (<code>folder</code>) and transform each of them into TensorFlow variables. The name of the file becomes the name of the variable. For example, the file <code>topg.tif</code> will yield the variable <code>topg</code>. At a minimum, the module is expected to import basal topography represented by the <code>topg</code> variable. Additionally, it can derive basal topography from ice thickness and surface topography. Other fields present in the folder will also be converted to TensorFlow variables, allowing them to be accessed in the code via <code>state.myvar</code>. For instance, providing the <code>icemask</code> variable can help define an accumulation area, which is useful for modeling individual glaciers and preventing overflow into neighboring catchments.</p>
 <p>The module provides functionality for resampling the data using the <code>coarsen</code> parameter, which can be set to values like 2, 3, or 4 (with a default value of 1 indicating no coarsening). It also supports cropping the data by setting the <code>crop</code> parameter to <code>True</code> and specifying the desired bounds.</p>
-<p>Additionally, by setting <code>icemask_invert</code> to <code>True</code>, an ice mask can be generated from an ESRI Shapefile specified by the <code>icemask_shapefile</code> parameter. This mask can identify areas that should contain glaciers or remain glacier-free, based on the <code>icemask_include</code> parameter.</p>
+<p>Additionally, by setting <code>icemask_include</code> to <code>True</code>, an ice mask can be generated from an ESRI Shapefile specified by the <code>icemask_shapefile</code> parameter. This mask can identify areas that should remain ice free (<code>icemask_invert=false</code>) or areas that should contain glaciers with <code>icemask_invert=true</code>.</p>
 <p>This module depends on <code>rasterio</code>.</p>
 <p><strong>Contributors:</strong> G. Jouvet, A. Henz (icemask add-on).</p>
 <h2 id="parameters">Parameters</h2>
@@ -4545,7 +4545,7 @@
       <td>
         <code class="param_name">icemask_include</code>
       </td>
-      <td class="description_text">Include ice mask in the NetCDF file.</td>
+      <td class="description_text">Generate an ice mask from the ESRI Shapefile given by icemask_shapefile.</td>
       <td style="text-align: center;">
 
           <span class="boolean_table">False</span>
@@ -4561,7 +4561,7 @@
       <td>
         <code class="param_name">icemask_shapefile</code>
       </td>
-      <td class="description_text">Shapefile for ice mask.</td>
+      <td class="description_text">ESRI Shapefile used to generate the ice mask, looked up in the data folder (core.folder_data).</td>
       <td style="text-align: center;">
 
           <span class="string_table">icemask.shp</span>
@@ -4577,7 +4577,7 @@
       <td>
         <code class="param_name">icemask_invert</code>
       </td>
-      <td class="description_text">Invert the ice mask.</td>
+      <td class="description_text">False: the shapefile polygons are areas that should remain ice free. True: they are areas that should contain glaciers.</td>
       <td style="text-align: center;">
 
           <span class="boolean_table">False</span>

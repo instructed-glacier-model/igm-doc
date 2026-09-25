@@ -919,7 +919,7 @@
   <span class="md-ellipsis">
     
   
-    Aletsch: forward modelling
+    Part A: Aletsch: forward modelling
   
 
     
@@ -947,7 +947,7 @@
   <span class="md-ellipsis">
     
   
-    Aletsch: parameter calibration
+    Part B: Aletsch: parameter calibration
   
 
     
@@ -975,7 +975,7 @@
   <span class="md-ellipsis">
     
   
-    Aletsch: ice-thickness inversion
+    Part C: Aletsch: ice-thickness inversion
   
 
     
@@ -4483,6 +4483,10 @@
 <li><strong>2D mode</strong>: <code>matplotlib</code> with <code>TkAgg</code> backend (interactive window).</li>
 <li><strong>3D mode</strong>: <code>pyvista</code> (GPU rendering via VTK).</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Remote servers (SSH)</p>
+<p>The live window needs a display. On a remote server reached by plain SSH (e.g. a GPU cluster), there is none: the module then switches automatically to headless mode and saves PNG frames (<code>dashboard_XXXXXX.png</code>) in the run directory, with a warning (3D mode falls back to 2D). To get the live window, connect with X forwarding (<code>ssh -X</code>), which can be slow over a network; otherwise set <code>headless: true</code> and look at the saved frames.</p>
+</div>
 <h2 id="usage">Usage</h2>
 <p>Activate it in your <code>params.yaml</code>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">outputs</span><span class="p">:</span>
@@ -4628,7 +4632,7 @@
       <td>
         <code class="param_name">headless</code>
       </td>
-      <td class="description_text">Use a non-interactive Agg backend instead of TkAgg. Frames are saved automatically. Use in CI or on display-less servers.</td>
+      <td class="description_text">Use a non-interactive Agg backend instead of TkAgg. Frames are saved automatically. Use in CI or on display-less servers; enabled automatically when no display is found (e.g. over SSH without X forwarding).</td>
       <td style="text-align: center;">
 
           <span class="boolean_table">False</span>
