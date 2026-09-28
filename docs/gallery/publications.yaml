@@ -5,21 +5,21 @@
   journal: "EGUsphere (preprint)"
   year: 2026
   doi: "10.5194/egusphere-2026-5523"
-  image: "fig/thumbnail_gallery.png"
+  image: "fig/papers/rosier2026_egusphere.png"
 
 - title: "Physics-enriched neural solvers for transient ice-flow simulation"
   authors: "Gregov T., Rosier S., Finley B., Vieli A., Jouvet G."
   journal: "arXiv (preprint)"
   year: 2026
   doi: "10.48550/arXiv.2609.12900"
-  image: "fig/thumbnail_gallery.png"
+  image: "fig/papers/gregov2026_arxiv.png"
 
 - title: "Performance of the Instructed Glacier Model v2.2.1 in inferring observed ice thickness and dynamics"
   authors: "Piret J., Seguinot J., Cook S. J., Jouvet G., Zekollari H."
   journal: "Journal of Glaciology"
   year: 2026
   doi: "10.1017/jog.2026.10190"
-  image: "fig/thumbnail_gallery.png"
+  image: "fig/papers/piret2026_jog.png"
 
 - title: "Brief communication: Inferring Glacier Equilibrium Line Altitudes in the Europe Alps with FROST"
   authors: "Herrmann O., Prasad V., Zöller A., Groos A. R., Cook S., Sommer C., Fürst J. J."
@@ -102,7 +102,7 @@
   journal: "Annals of Glaciology"
   year: 2025
   doi: "10.1017/aog.2025.10020"
-  image: "fig/thumbnail_gallery.png"   
+  image: "fig/papers/herrmann2025_aog.png"
 
 - title: "New glacier thickness and bed topography maps for Svalbard"
   authors: "van Pelt W., Frank T."
@@ -144,7 +144,7 @@
   journal: "Journal of Glaciology"
   year: 2023
   doi: "10.1017/jog.2022.41"
-  image: "fig/thumbnail_gallery.png"   
+  image: "fig/papers/jouvet2023inv_jog.png"
 
 - title: "Ice-flow model emulator based on physics-informed deep learning"
   authors: "Jouvet G., Cordonnier G."
@@ -160,7 +160,7 @@
   journal: "Geophysical Research Letters"
   year: 2023
   doi: "10.1029/2023GL105029"
-  image: "fig/thumbnail_gallery.png"
+  image: "fig/papers/cook2023_grl.png"
 
 - title: "Deep learning speeds up ice flow modelling by several orders of magnitude"
   authors: "Jouvet G., Cordonnier G., Kim B., Lüthi M., Vieli A., Aschwanden A."
