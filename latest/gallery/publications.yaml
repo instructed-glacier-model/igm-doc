@@ -1,5 +1,36 @@
 # IGM publications gallery
 
+- title: "Cheap and accurate higher-order ice flow emulator for mountain glaciers"
+  authors: "Rosier S. H. R., Gregov T., Jouvet G., Vieli A."
+  journal: "EGUsphere (preprint)"
+  year: 2026
+  doi: "10.5194/egusphere-2026-5523"
+  image: "fig/thumbnail_gallery.png"
+
+- title: "Physics-enriched neural solvers for transient ice-flow simulation"
+  authors: "Gregov T., Rosier S., Finley B., Vieli A., Jouvet G."
+  journal: "arXiv (preprint)"
+  year: 2026
+  doi: "10.48550/arXiv.2609.12900"
+  image: "fig/thumbnail_gallery.png"
+
+- title: "Performance of the Instructed Glacier Model v2.2.1 in inferring observed ice thickness and dynamics"
+  authors: "Piret J., Seguinot J., Cook S. J., Jouvet G., Zekollari H."
+  journal: "Journal of Glaciology"
+  year: 2026
+  doi: "10.1017/jog.2026.10190"
+  image: "fig/thumbnail_gallery.png"
+
+- title: "Brief communication: Inferring Glacier Equilibrium Line Altitudes in the Europe Alps with FROST"
+  authors: "Herrmann O., Prasad V., Zöller A., Groos A. R., Cook S., Sommer C., Fürst J. J."
+  journal: "The Cryosphere"
+  year: 2026
+  doi: "10.5194/tc-20-3817-2026"
+  image: "https://tc.copernicus.org/articles/20/3817/2026/tc-20-3817-2026-avatar-thumb150.jpg"
+  links:
+    - { type: code, url: "https://github.com/FAU-glacier-systems/FROST" }
+    - { type: data, url: "https://doi.org/10.5281/zenodo.18223929" }
+
 - title: "First Alps-wide reconstruction of LGM glacial sediment transport enabled by GPU-accelerated particle tracking"
   authors: "Leger T. P. M., Jouvet G., Kamleitner S., Finley B. D., Bernard M., Allegri B., Herman F., Vieli A., Henz A., Nussbaumer S. U."
   journal: "Earth Surface Dynamics"
