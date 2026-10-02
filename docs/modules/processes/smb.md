@@ -45,6 +45,50 @@ If `array` is empty (`[]`), the module reads from the file specified by `file`. 
 If an `icemask` field is present, the module assigns $-10\,\mathrm{m\,yr^{-1}}$ to areas where positive SMB would otherwise occur outside the mask, preventing overflow into neighbouring catchments.
 
 ---
+### Add-on: correction for insolation (North-South correction with a simple ELA model)
+
+The `simple` method can optionally account for the effect of slope and aspect on the received solar radiation ([Henz et al., 2025](https://doi.org/10.5194/tc-19-5913-2025)). Instead of a uniform ELA, a spatially varying ELA $z_{\rm ELA}^{*}(x,y)$ is used, shifted according to the difference between the solar incidence angle on the local surface and on a flat surface:
+
+$$z_{\rm ELA}^{*}(x,y) = z_{\rm ELA} + c \cdot \bigl( (90^\circ - \alpha) - \varphi(x,y) \bigr),$$
+
+where $\alpha$ is the solar elevation angle, $90^\circ - \alpha$ is the incidence angle on a flat surface, $c$ is the ELA shift per degree of incidence angle (`ela_per_degree_incidence`, in m per degree), and $\varphi(x,y)$ is the incidence angle between the surface normal vector $\mathbf{n}$ and the sun vector $\mathbf{s}$:
+
+$$\cos(\varphi) = \frac{\mathbf{n} \cdot \mathbf{s}}{\|\thinspace\mathbf{n}\| \|\mathbf{s}\thinspace\|}.$$
+
+The surface normal vector is computed from the gradients of the ice surface elevation $z$:
+
+$$\mathbf{n} = \left( -\frac{\partial z}{\partial x}\, -\frac{\partial z}{\partial y}\, 1 \right).$$
+
+The sun vector is determined by the solar elevation angle $\alpha$ (`solar_elevation`) and the solar azimuth angle $\beta$ (`solar_azimuth`, clockwise from north):
+
+$$\mathbf{s} = \bigl( \cos(\alpha)\sin(\beta)\, \cos(\alpha)\cos(\beta)\, \sin(\alpha) \bigr).$$
+
+By default, the sun is positioned in the south ($\beta = 180^\circ$) at an elevation of $\alpha = 60^\circ$ above the horizon, which is typical for Central Europe in June.
+
+Sun-facing slopes ($\varphi < 90^\circ - \alpha$) get a higher ELA and therefore more melt, shaded slopes a lower ELA. On a flat surface the ELA is unchanged. The corrected ELA $z_{\rm ELA}^{*}$ then replaces $z_{\rm ELA}$ in the SMB formula above. Because the correction follows the evolving ice surface, it is recomputed at every SMB update.
+
+The correction is off by default. To switch it on:
+
+```yaml
+processes:
+  smb:
+    method: simple
+    simple:
+      correction_for_insolation_enabled: true
+      correction_for_insolation:
+        solar_elevation: 60.0           # degrees above the horizon
+        solar_azimuth: 180.0            # degrees clockwise from north (180 = sun from the south)
+        ela_per_degree_incidence: 5.0   # m of ELA shift per degree of incidence angle
+        plot_insolation_check: false
+```
+
+or from the command line: `processes.smb.simple.correction_for_insolation_enabled=true`.
+
+!!! tip "Check the orientation"
+    The correction depends on the orientation of the input grid. When using a new domain, set `plot_insolation_check: true` once: at the first SMB update a figure `check_insolation_correction.png` is written to the run folder, showing the surface topography next to the ELA shift (north up). South-facing slopes (Northern Hemisphere) should show a positive shift.
+
+---
+
 
 ## Method: `oggm`
 
