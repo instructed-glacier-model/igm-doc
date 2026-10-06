@@ -101,19 +101,18 @@ See [Virtual Environments](other/virtual_environment.md) for a more detailed wal
 
     ```python
     # Remove:
-    "tensorflow[and-cuda]==2.15.1",
-    "tensorflow-probability==0.23.0",
+    "tensorflow[and-cuda]==2.17.0",
 
     # Add:
-    "tensorflow-macos==2.14.0",
+    "tensorflow==2.17.0",
     "tensorflow-metal",
-    #"tensorflow-probability==0.23.0",
     ```
 
-    **2. Disable JIT compilation** — `tensorflow-metal` does not support JIT compilation. Replace every occurrence of `jit_compile=True` with `jit_compile=False` throughout the source:
+    **2. Disable JIT compilation** — `tensorflow-metal` does not support JIT compilation. Replace every occurrence of `jit_compile=True` with `jit_compile=False`, and of `set_jit(True)` with `set_jit(False)`, throughout the source:
 
     ```bash
     grep -rl "jit_compile=True" . | xargs sed -i '' 's/jit_compile=True/jit_compile=False/g'
+    grep -rl "set_jit(True)" . | xargs sed -i '' 's/set_jit(True)/set_jit(False)/g'
     ```
 
     **3. Install:**
