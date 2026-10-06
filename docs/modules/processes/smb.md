@@ -67,22 +67,22 @@ By default, the sun is positioned in the south ($\beta = 180^\circ$) at an eleva
 
 Sun-facing slopes ($\varphi < 90^\circ - \alpha$) get a higher ELA and therefore more melt, shaded slopes a lower ELA. On a flat surface the ELA is unchanged. The corrected ELA $z_{\rm ELA}^{*}$ then replaces $z_{\rm ELA}$ in the SMB formula above. Because the correction follows the evolving ice surface, it is recomputed at every SMB update.
 
-The correction is off by default. To switch it on:
+The correction is off by default.
 
 ```yaml
 processes:
   smb:
     method: simple
     simple:
-      correction_for_insolation_enabled: true
       correction_for_insolation:
-        solar_elevation: 60.0           # degrees above the horizon
-        solar_azimuth: 180.0            # degrees clockwise from north (180 = sun from the south)
+        enabled: false                  # change here to true to switch it on
+        solar_elevation: 60.0           # degrees above the horizon (for summer in the European Alps, 60° is around noon)
+        solar_azimuth: 180.0            # degrees clockwise from north (180° = sun from the south)
         ela_per_degree_incidence: 5.0   # m of ELA shift per degree of incidence angle
         plot_insolation_check: false
 ```
 
-or from the command line: `processes.smb.simple.correction_for_insolation_enabled=true`.
+or from the command line: `processes.smb.simple.correction_for_insolation.enabled=true`.
 
 !!! tip "Check the orientation"
     The correction depends on the orientation of the input grid. When using a new domain, set `plot_insolation_check: true` once: at the first SMB update a figure `check_insolation_correction.png` is written to the run folder, showing the surface topography next to the ELA shift (north up). South-facing slopes (Northern Hemisphere) should show a positive shift.
