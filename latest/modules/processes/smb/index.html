@@ -4546,33 +4546,48 @@
 </span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">param.txt</span>
 </span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="nt">array</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="c1"># oggm — temperature-index melt model using OGGM calibration json.</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">  </span><span class="c1"># Requires state.precipitation and state.air_temp (e.g. from a climate</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">  </span><span class="c1"># module). Mirrors the legacy `smb_oggm` module.</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">  </span><span class="nt">oggm</span><span class="p">:</span>
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span><span class="nt">ice_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">910.0</span>
-</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">    </span><span class="nt">wat_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="nt">melt_enhancer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
-</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
-</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">  </span><span class="c1"># accpdd — accumulation + positive-degree-day (Hock 2003 / PyPDD)</span>
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">  </span><span class="c1"># melt model. Requires state.precipitation, state.air_temp, and</span>
-</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">  </span><span class="c1"># optionally state.air_temp_sd. Mirrors the legacy `smb_accpdd` module.</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="c1"># Block from Insolation correction (Henz et al. 2025, TC, https://doi.org/10.5194/tc-19-5913-2025)</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="c1"># switch the ELA correction for insolation on/off</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="nt">correction_for_insolation</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># default is off, here you switch it on</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">      </span><span class="c1"># solar elevation angle above the horizon [degrees], </span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">      </span><span class="c1"># --&gt; this is depending on the average latitude of the study region</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">      </span><span class="nt">solar_elevation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60.0</span><span class="w"> </span><span class="c1"># for Alps latitude, midsummer midday value (see Henz et al. 2025)</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">      </span><span class="c1"># solar azimuth, clockwise from north [degrees] (180 = sun from the south, e.g. for the Northern hemisphere)</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">      </span><span class="nt">solar_azimuth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180.0</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">      </span><span class="c1"># ELA shift per degree of incidence-angle difference to a flat surface [m / degree]</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">      </span><span class="c1"># (replaces the old aspect_enhancement_factor: old factor f  -&gt;  5.0 * f here)</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">      </span><span class="nt">ela_per_degree_incidence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span><span class="w"> </span><span class="c1"># comming from Henz et al. 2025 https://doi.org/10.5194/tc-19-5913-2025</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">      </span><span class="c1"># save check_insolation_correction.png (topography + ELA shift) at the first SMB update</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">      </span><span class="nt">plot_insolation_check</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>
 </span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
-</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">  </span><span class="nt">accpdd</span><span class="p">:</span>
-</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">    </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">    </span><span class="nt">refreeze_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span>
-</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">    </span><span class="nt">thr_temp_snow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
-</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">    </span><span class="nt">thr_temp_rain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
-</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="nt">melt_factor_snow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.095726596343</span><span class="w">   </span><span class="c1"># m w.e. yr-1 °C-1 (= 3 mm w.e. d-1 °C-1)</span>
-</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">    </span><span class="nt">melt_factor_ice</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">2.921937590248</span><span class="w">   </span><span class="c1"># m w.e. yr-1 °C-1 (= 8 mm w.e. d-1 °C-1)</span>
-</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">    </span><span class="nt">shift_hydro_year</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.75</span>
-</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">    </span><span class="nt">ice_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">910.0</span>
-</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">    </span><span class="nt">wat_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
-</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">    </span><span class="nt">smb_maximum_accumulation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6.0</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">  </span><span class="c1"># oggm — temperature-index melt model using OGGM calibration json.</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">  </span><span class="c1"># Requires state.precipitation and state.air_temp (e.g. from a climate</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">  </span><span class="c1"># module). Mirrors the legacy `smb_oggm` module.</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">  </span><span class="nt">oggm</span><span class="p">:</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">    </span><span class="nt">ice_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">910.0</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">    </span><span class="nt">wat_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">    </span><span class="nt">melt_enhancer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">  </span><span class="c1"># accpdd — accumulation + positive-degree-day (Hock 2003 / PyPDD)</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">  </span><span class="c1"># melt model. Requires state.precipitation, state.air_temp, and</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">  </span><span class="c1"># optionally state.air_temp_sd. Mirrors the legacy `smb_accpdd` module.</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">  </span><span class="c1"># ------------------------------------------------------------------</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">  </span><span class="nt">accpdd</span><span class="p">:</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">    </span><span class="nt">update_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="w">    </span><span class="nt">refreeze_factor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.6</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">    </span><span class="nt">thr_temp_snow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="w">    </span><span class="nt">thr_temp_rain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">    </span><span class="nt">melt_factor_snow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.095726596343</span><span class="w">   </span><span class="c1"># m w.e. yr-1 °C-1 (= 3 mm w.e. d-1 °C-1)</span>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">    </span><span class="nt">melt_factor_ice</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">2.921937590248</span><span class="w">   </span><span class="c1"># m w.e. yr-1 °C-1 (= 8 mm w.e. d-1 °C-1)</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">    </span><span class="nt">shift_hydro_year</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.75</span>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">    </span><span class="nt">ice_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">910.0</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">    </span><span class="nt">wat_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">    </span><span class="nt">smb_maximum_accumulation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6.0</span>
 </span></code></pre></div>
 <p>Structure of the parameters:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>smb
@@ -4600,15 +4615,13 @@
       <td>
         <code class="param_name">method</code>
       </td>
-      <td class="description_text">SMB implementation to use: <code>simple</code>, <code>oggm</code>, or <code>accpdd</code>.</td>
+      <td class="description_text"></td>
       <td style="text-align: center;">
 
-          <span class="string_table">simple</span>
+          simple
 
       </td>
       <td style="text-align: center;">
-
-          <span class="units_text">—</span>
 
       </td>
     </tr>
@@ -4616,15 +4629,13 @@
       <td>
         <code class="param_name">smb_outside_icemask</code>
       </td>
-      <td class="description_text">SMB imposed outside the icemask (if an icemask is provided) where the computed SMB is positive, to prevent ice build-up in masked-out areas, which results from accumulation plus incoming ice flux. Lower it (e.g. -50) if ice still builds up outside the mask.</td>
+      <td class="description_text"></td>
       <td style="text-align: center;">
 
-          <span class="float_table">-10.0</span>
+          -10.0
 
       </td>
       <td style="text-align: center;">
-
-          <span class="units_text">m yr<span class="math">\( ^{-1} \)</span> ice eq.</span>
 
       </td>
     </tr>
@@ -4657,15 +4668,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.update_freq</code>
         </td>
-        <td class="description_text">Update SMB every X years.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            1.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -4680,15 +4689,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.file</code>
         </td>
-        <td class="description_text">Input file for the simple SMB model (columns: time, gradabl, gradacc, ela, accmax).</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="string_table">param.txt</span>
+            param.txt
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4703,18 +4710,131 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.array</code>
         </td>
-        <td class="description_text">Inline time-dependent SMB parameters (time, gradabl, gradacc, ela, accmax); overrides file if non-empty.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="list_table">[]</span>
+            []
 
         </td>
         <td style="text-align: center; min-width: 100px;">
 
-            <span class="units_text">—</span>
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">simple.correction_for_insolation.enabled</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
         </td>
       </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">simple.correction_for_insolation.solar_elevation</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            60.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">simple.correction_for_insolation.solar_azimuth</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            180.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">simple.correction_for_insolation.ela_per_degree_incidence</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            5.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">simple.correction_for_insolation.plot_insolation_check</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
 
 
 
@@ -4748,15 +4868,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.update_freq</code>
         </td>
-        <td class="description_text">Update SMB every X years.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            1.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -4771,15 +4889,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.ice_density</code>
         </td>
-        <td class="description_text">Ice density used to convert melt from water equivalent.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">910.0</span>
+            910.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -4794,15 +4910,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.wat_density</code>
         </td>
-        <td class="description_text">Water density used to convert melt from water equivalent.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">1000.0</span>
+            1000.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -4817,15 +4931,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.melt_enhancer</code>
         </td>
-        <td class="description_text">Multiplicative factor applied to the melt rate.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            1.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4862,15 +4974,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.update_freq</code>
         </td>
-        <td class="description_text">Update SMB every X years.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.0</span>
+            1.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -4885,15 +4995,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.refreeze_factor</code>
         </td>
-        <td class="description_text">Fraction of meltwater that refreezes (Hock 2003).</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.6</span>
+            0.6
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4908,15 +5016,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.thr_temp_snow</code>
         </td>
-        <td class="description_text">Temperature threshold below which precipitation falls as snow.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            0.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">°C</span>
 
         </td>
       </tr>
@@ -4931,15 +5037,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.thr_temp_rain</code>
         </td>
-        <td class="description_text">Temperature threshold above which precipitation falls as rain.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">2.0</span>
+            2.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">°C</span>
 
         </td>
       </tr>
@@ -4954,15 +5058,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.melt_factor_snow</code>
         </td>
-        <td class="description_text">Degree-day melt factor for snow, in water equivalent. The default corresponds to 3 mm w.e. d-1 °C-1 (value in mm w.e. d-1 °C-1 × 0.365242).</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">1.095726596343</span>
+            1.095726596343
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span> °C<span class="math">\( ^{-1} \)</span> w.e.</span>
 
         </td>
       </tr>
@@ -4977,15 +5079,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.melt_factor_ice</code>
         </td>
-        <td class="description_text">Degree-day melt factor for ice, in water equivalent. The default corresponds to 8 mm w.e. d-1 °C-1 (value in mm w.e. d-1 °C-1 × 0.365242).</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">2.921937590248</span>
+            2.921937590248
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span> °C<span class="math">\( ^{-1} \)</span> w.e.</span>
 
         </td>
       </tr>
@@ -5000,15 +5100,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.shift_hydro_year</code>
         </td>
-        <td class="description_text">Fractional year shift for the start of the hydrological year.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.75</span>
+            0.75
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -5023,15 +5121,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.ice_density</code>
         </td>
-        <td class="description_text">Ice density used for unit conversion.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">910.0</span>
+            910.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -5046,15 +5142,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.wat_density</code>
         </td>
-        <td class="description_text">Water density used for unit conversion.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">1000.0</span>
+            1000.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -5069,15 +5163,13 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.smb_maximum_accumulation</code>
         </td>
-        <td class="description_text">Cap on the accumulation rate to avoid unrealistically large values.</td>
+        <td class="description_text"></td>
         <td style="text-align: center;">
 
-            <span class="float_table">6.0</span>
+            6.0
 
         </td>
         <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
