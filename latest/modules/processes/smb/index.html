@@ -4615,13 +4615,15 @@
       <td>
         <code class="param_name">method</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">SMB implementation to use: <code>simple</code>, <code>oggm</code>, or <code>accpdd</code>.</td>
       <td style="text-align: center;">
 
-          simple
+          <span class="string_table">simple</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">—</span>
 
       </td>
     </tr>
@@ -4629,13 +4631,15 @@
       <td>
         <code class="param_name">smb_outside_icemask</code>
       </td>
-      <td class="description_text"></td>
+      <td class="description_text">SMB imposed outside the icemask (if an icemask is provided) where the computed SMB is positive, to prevent ice build-up in masked-out areas, which results from accumulation plus incoming ice flux. Lower it (e.g. -50) if ice still builds up outside the mask.</td>
       <td style="text-align: center;">
 
-          -10.0
+          <span class="float_table">-10.0</span>
 
       </td>
       <td style="text-align: center;">
+
+          <span class="units_text">m yr<span class="math">\( ^{-1} \)</span> ice eq.</span>
 
       </td>
     </tr>
@@ -4668,13 +4672,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.update_freq</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Update SMB every X years.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -4689,13 +4695,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.file</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Input file for the simple SMB model (columns: time, gradabl, gradacc, ela, accmax).</td>
         <td style="text-align: center;">
 
-            param.txt
+            <span class="string_table">param.txt</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4710,13 +4718,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.array</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Inline time-dependent SMB parameters (time, gradabl, gradacc, ela, accmax); overrides file if non-empty.</td>
         <td style="text-align: center;">
 
-            []
+            <span class="list_table">[]</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4738,13 +4748,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.correction_for_insolation.enabled</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Enable the correction of the ELA for insolation (aspect and slope of the surface).</td>
         <td style="text-align: center;">
 
-            False
+            <span class="bool_table">False</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4759,13 +4771,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.correction_for_insolation.solar_elevation</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Solar elevation angle above the horizon (one single value as a midsummer midday value, depending on latitude, see Henz et al. 2025) [degrees].</td>
         <td style="text-align: center;">
 
-            60.0
+            <span class="float_table">60.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">° (degree)</span>
 
         </td>
       </tr>
@@ -4780,13 +4794,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.correction_for_insolation.solar_azimuth</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Solar azimuth angle [degrees]. Clockwise from north (180 = sun from the south, e.g. for the Northern hemisphere).</td>
         <td style="text-align: center;">
 
-            180.0
+            <span class="float_table">180.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">° (degree)</span>
 
         </td>
       </tr>
@@ -4801,13 +4817,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.correction_for_insolation.ela_per_degree_incidence</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Change in ELA per degree of incidence angle [m/°].</td>
         <td style="text-align: center;">
 
-            5.0
+            <span class="float_table">5.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m °<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
@@ -4822,13 +4840,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">simple.correction_for_insolation.plot_insolation_check</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Plot a diagnostic figure to check the insolation correction.</td>
         <td style="text-align: center;">
 
-            False
+            <span class="bool_table">False</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4868,13 +4888,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.update_freq</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Update SMB every X years.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -4889,13 +4911,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.ice_density</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Ice density used to convert melt from water equivalent.</td>
         <td style="text-align: center;">
 
-            910.0
+            <span class="float_table">910.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -4910,13 +4934,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.wat_density</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Water density used to convert melt from water equivalent.</td>
         <td style="text-align: center;">
 
-            1000.0
+            <span class="float_table">1000.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -4931,13 +4957,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">oggm.melt_enhancer</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Multiplicative factor applied to the melt rate.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -4974,13 +5002,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.update_freq</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Update SMB every X years.</td>
         <td style="text-align: center;">
 
-            1.0
+            <span class="float_table">1.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -4995,13 +5025,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.refreeze_factor</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fraction of meltwater that refreezes (Hock 2003).</td>
         <td style="text-align: center;">
 
-            0.6
+            <span class="float_table">0.6</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
 
         </td>
       </tr>
@@ -5016,13 +5048,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.thr_temp_snow</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Temperature threshold below which precipitation falls as snow.</td>
         <td style="text-align: center;">
 
-            0.0
+            <span class="float_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">°C</span>
 
         </td>
       </tr>
@@ -5037,13 +5071,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.thr_temp_rain</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Temperature threshold above which precipitation falls as rain.</td>
         <td style="text-align: center;">
 
-            2.0
+            <span class="float_table">2.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">°C</span>
 
         </td>
       </tr>
@@ -5058,13 +5094,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.melt_factor_snow</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Degree-day melt factor for snow, in water equivalent. The default corresponds to 3 mm w.e. d-1 °C-1 (value in mm w.e. d-1 °C-1 × 0.365242).</td>
         <td style="text-align: center;">
 
-            1.095726596343
+            <span class="float_table">1.095726596343</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span> °C<span class="math">\( ^{-1} \)</span> w.e.</span>
 
         </td>
       </tr>
@@ -5079,13 +5117,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.melt_factor_ice</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Degree-day melt factor for ice, in water equivalent. The default corresponds to 8 mm w.e. d-1 °C-1 (value in mm w.e. d-1 °C-1 × 0.365242).</td>
         <td style="text-align: center;">
 
-            2.921937590248
+            <span class="float_table">2.921937590248</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span> °C<span class="math">\( ^{-1} \)</span> w.e.</span>
 
         </td>
       </tr>
@@ -5100,13 +5140,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.shift_hydro_year</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Fractional year shift for the start of the hydrological year.</td>
         <td style="text-align: center;">
 
-            0.75
+            <span class="float_table">0.75</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">yr</span>
 
         </td>
       </tr>
@@ -5121,13 +5163,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.ice_density</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Ice density used for unit conversion.</td>
         <td style="text-align: center;">
 
-            910.0
+            <span class="float_table">910.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -5142,13 +5186,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.wat_density</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Water density used for unit conversion.</td>
         <td style="text-align: center;">
 
-            1000.0
+            <span class="float_table">1000.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">kg m<span class="math">\( ^{-3} \)</span></span>
 
         </td>
       </tr>
@@ -5163,13 +5209,15 @@
         <td style="min-width: 200px;">
           <code class="param_name">accpdd.smb_maximum_accumulation</code>
         </td>
-        <td class="description_text"></td>
+        <td class="description_text">Cap on the accumulation rate to avoid unrealistically large values.</td>
         <td style="text-align: center;">
 
-            6.0
+            <span class="float_table">6.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m yr<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
