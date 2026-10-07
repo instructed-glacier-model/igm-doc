@@ -33,3 +33,12 @@
 | Claire-Mathilde Stücki | Vertical velocity computation and particles |
 | Ethan Welty | GlaThiDa file reading |
 </div>
+
+## Funding
+
+<div class="affiliation-logos">
+  <a href="https://www.unil.ch"><img src="../../fig/logo_unil.svg" alt="University of Lausanne (UNIL)"></a>
+  <a href="https://www.uzh.ch"><img src="../../fig/logo_uzh.svg" alt="University of Zurich (UZH)"></a>
+</div>
+
+IGM is developed at the Universities of Lausanne and Zurich, Switzerland, within the SNSF project RECONCILE (grant 200020_213077/1), by Guillaume Jouvet (UNIL) and Andreas Vieli (UZH).
