@@ -159,7 +159,6 @@
       "thk",
       "usurf",
       "topg",
-      "water_level",
       "arrhenius"
     ],
     "updates": [
@@ -193,8 +192,7 @@
   },
   "subglacial_hydrology": {
     "needs": [
-      "thk",
-      "water_level"
+      "thk"
     ],
     "updates": [
       "effective_pressure"
@@ -206,21 +204,15 @@
     "needs": [
       "thk",
       "topg",
-      "water_level",
       "ubar",
       "vbar",
+      "smb",
       "dt"
     ],
     "updates": [
       "thk",
-      "lsurf",
       "usurf",
-      "divflux",
-      "Href",
-      "psi",
-      "calved_thk",
-      "calving_unapplied_thk",
-      "ice_area_fraction"
+      "divflux"
     ],
     "color": "#6a7f3a",
     "community": false
@@ -248,19 +240,6 @@
     "grouped": true
   },
   {
-    "id": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 lsurf \u00b7 psi",
-    "members": [
-      "Href",
-      "calved_thk",
-      "calving_unapplied_thk",
-      "divflux",
-      "ice_area_fraction",
-      "lsurf",
-      "psi"
-    ],
-    "grouped": true
-  },
-  {
     "id": "T \u00b7 omega",
     "members": [
       "T",
@@ -280,6 +259,13 @@
     "id": "arrhenius",
     "members": [
       "arrhenius"
+    ],
+    "grouped": false
+  },
+  {
+    "id": "divflux",
+    "members": [
+      "divflux"
     ],
     "grouped": false
   },
@@ -344,13 +330,6 @@
     "id": "usurf",
     "members": [
       "usurf"
-    ],
-    "grouped": false
-  },
-  {
-    "id": "water_level",
-    "members": [
-      "water_level"
     ],
     "grouped": false
   }
@@ -437,22 +416,6 @@
     "community": false
   },
   {
-    "source": "water_level",
-    "target": "U \u00b7 V",
-    "proc": "iceflow",
-    "color": "#7b56b0",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "water_level",
-    "target": "ubar \u00b7 vbar",
-    "proc": "iceflow",
-    "color": "#7b56b0",
-    "self": false,
-    "community": false
-  },
-  {
     "source": "arrhenius",
     "target": "U \u00b7 V",
     "proc": "iceflow",
@@ -493,14 +456,6 @@
     "community": false
   },
   {
-    "source": "water_level",
-    "target": "effective_pressure",
-    "proc": "subglacial_hydrology",
-    "color": "#a44670",
-    "self": false,
-    "community": false
-  },
-  {
     "source": "thk",
     "target": "thk",
     "proc": "thk",
@@ -510,7 +465,7 @@
   },
   {
     "source": "thk",
-    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 lsurf \u00b7 psi",
+    "target": "usurf",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,
@@ -518,7 +473,7 @@
   },
   {
     "source": "thk",
-    "target": "usurf",
+    "target": "divflux",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,
@@ -534,7 +489,7 @@
   },
   {
     "source": "topg",
-    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 lsurf \u00b7 psi",
+    "target": "usurf",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,
@@ -542,31 +497,7 @@
   },
   {
     "source": "topg",
-    "target": "usurf",
-    "proc": "thk",
-    "color": "#6a7f3a",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "water_level",
-    "target": "thk",
-    "proc": "thk",
-    "color": "#6a7f3a",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "water_level",
-    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 lsurf \u00b7 psi",
-    "proc": "thk",
-    "color": "#6a7f3a",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "water_level",
-    "target": "usurf",
+    "target": "divflux",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,
@@ -582,7 +513,7 @@
   },
   {
     "source": "ubar \u00b7 vbar",
-    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 lsurf \u00b7 psi",
+    "target": "usurf",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,
@@ -590,7 +521,31 @@
   },
   {
     "source": "ubar \u00b7 vbar",
+    "target": "divflux",
+    "proc": "thk",
+    "color": "#6a7f3a",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "smb",
+    "target": "thk",
+    "proc": "thk",
+    "color": "#6a7f3a",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "smb",
     "target": "usurf",
+    "proc": "thk",
+    "color": "#6a7f3a",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "smb",
+    "target": "divflux",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,
@@ -606,7 +561,7 @@
   },
   {
     "source": "dt",
-    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 lsurf \u00b7 psi",
+    "target": "usurf",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,
@@ -614,7 +569,7 @@
   },
   {
     "source": "dt",
-    "target": "usurf",
+    "target": "divflux",
     "proc": "thk",
     "color": "#6a7f3a",
     "self": false,

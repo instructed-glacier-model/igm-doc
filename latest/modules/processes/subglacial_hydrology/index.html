@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -4526,7 +4526,7 @@
 <p>This IGM module is the single source of truth for subglacial hydrology. It computes and maintains <code>state.effective_pressure</code> (MPa) — the basal effective pressure <span class="arithmatex">\(N = p_i - p_w\)</span> consumed by the Budd, regularized Coulomb, and Mohr-Coulomb sliding laws — and, when <code>mode: till_storage</code> is selected, also evolves the <strong>subglacial till water layer</strong> <span class="arithmatex">\(W\)</span> (<code>state.h_water_till</code>, m water) forward in time.</p>
 <div class="admonition abstract">
 <p class="admonition-title">State variables</p>
-<p><strong>Reads:</strong> <code>thk</code>, <code>water_level</code></p>
+<p><strong>Reads:</strong> <code>thk</code></p>
 <p><strong>Writes:</strong> <code>effective_pressure</code></p>
 </div>
 <p>The module is opt-in. If the only sliding law in use is Weertman, <span class="arithmatex">\(N\)</span> cancels out of the cost and the module should not be activated. Conversely, when Budd, regularized Coulomb, or Mohr-Coulomb is active, <code>subglacial_hydrology</code> is required — the iceflow energy validator refuses to run without <code>effective_pressure</code> in its input list.</p>
@@ -4569,28 +4569,27 @@
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="c1">#   till_storage    — Tulaczyk till hydrology (Van Pelt &amp; Bueler 2015);</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="c1">#                     evolves state.h_water_till each time step, then derives</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="c1">#                     N from saturation. Requires `enthalpy` to run before</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="c1">#                     `subglacial_hydrology` in the process order. The till is</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="c1">#                     saturated under floating ice and ice-free ocean (PISM).</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="c1">#</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="c1"># Unit is MPa to match the rest of the iceflow stresses (slidingco, σ, τ).</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="c1"># Literature N_ref values are typically O(1 MPa) (Brondex et al. 2019,</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="c1"># Pollard &amp; DeConto 2012, Pattyn 2017).</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocean_connected</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">percentage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span><span class="w">      </span><span class="c1"># only used if mode == percentage</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">N_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-3</span><span class="w">        </span><span class="c1"># MPa: floor (1 kPa) applied after the closed-form modes</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="nt">till_storage</span><span class="p">:</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="c1"># Till water layer evolution (Tulaczyk 2000 drainage ODE).</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="c1"># Only active when mode == till_storage.</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="nt">h_water_till_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w">     </span><span class="c1"># m water: maximum till water thickness (capacity)</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="nt">drainage_rate</span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">0.001</span><span class="w">    </span><span class="c1"># m water / yr: basal drainage rate to the groundwater system</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="nt">water_density</span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span><span class="w">   </span><span class="c1"># kg m^-3: density of liquid water</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="c1"># Tulaczyk effective-pressure parameters.</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="c1"># h_water_till_max above drives saturation s = h_water_till / h_water_till_max.</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="nt">N_ref</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">1.0e-3</span><span class="w">   </span><span class="c1"># MPa (legacy: 1000 Pa = 1e-3 MPa)</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="nt">e_ref</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">0.69</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="nt">C_c</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">0.12</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="nt">delta</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="c1">#                     `subglacial_hydrology` in the process order.</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="c1">#</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="c1"># Unit is MPa to match the rest of the iceflow stresses (slidingco, σ, τ).</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="c1"># Literature N_ref values are typically O(1 MPa) (Brondex et al. 2019,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="c1"># Pollard &amp; DeConto 2012, Pattyn 2017).</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocean_connected</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">percentage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span><span class="w">      </span><span class="c1"># only used if mode == percentage</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">N_min</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-3</span><span class="w">        </span><span class="c1"># MPa: floor (1 kPa) applied after the closed-form modes</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nt">till_storage</span><span class="p">:</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="c1"># Till water layer evolution (Tulaczyk 2000 drainage ODE).</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="c1"># Only active when mode == till_storage.</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="nt">h_water_till_max</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w">     </span><span class="c1"># m water: maximum till water thickness (capacity)</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="nt">drainage_rate</span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">0.001</span><span class="w">    </span><span class="c1"># m water / yr: basal drainage rate to the groundwater system</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="nt">water_density</span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">1000.0</span><span class="w">   </span><span class="c1"># kg m^-3: density of liquid water</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="c1"># Tulaczyk effective-pressure parameters.</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="c1"># h_water_till_max above drives saturation s = h_water_till / h_water_till_max.</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="nt">N_ref</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">1.0e-3</span><span class="w">   </span><span class="c1"># MPa (legacy: 1000 Pa = 1e-3 MPa)</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="nt">e_ref</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">0.69</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="nt">C_c</span><span class="p">:</span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">0.12</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="nt">delta</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">0.02</span>
 </span></code></pre></div></p>
 <p>Structure of the parameters:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>subglacial_hydrology
@@ -4992,7 +4991,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../javascripts/mathjax.js"></script>
       
