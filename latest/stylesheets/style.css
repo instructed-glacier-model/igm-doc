@@ -607,3 +607,23 @@ details.community-modules > summary:hover {
 details.community-modules .community-modules-body {
   padding: 0.5rem 1.2rem 1.2rem;
 }
+/* University logos on the credits page; white tiles keep them legible in dark mode */
+.affiliation-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.affiliation-logos a {
+  display: inline-flex;
+  background: #fff;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.9rem;
+}
+
+.affiliation-logos img {
+  height: 64px;
+  width: auto;
+}

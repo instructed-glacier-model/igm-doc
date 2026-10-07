@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -4785,7 +4785,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">water_level.include</code>
         </td>
-        <td class="description_text">Create a uniform 2D <code>state.water_level</code> field. Only applied if <code>water_level</code> is not already loaded from the input data. Required by the iceflow <code>floating</code> energy component for marine / tidewater setups.</td>
+        <td class="description_text">If True, fill <code>state.water_level</code> with the uniform <code>value</code> (a sea or lake level). If False (default), the domain has no ocean: <code>state.water_level</code> is filled with the "no ocean" level (-1e6 m), so nothing floats and lsurf = topg (right for mountain glaciers and for sub-zero synthetic beds such as ISMIP-HOM). A <code>water_level</code> variable in the input file takes precedence over both. With an ocean, also list water_level in processes.iceflow.unified.inputs.</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">False</span>
@@ -4808,7 +4808,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">water_level.value</code>
         </td>
-        <td class="description_text">Value (in metres) used to fill the uniform <code>water_level</code> field when <code>include: True</code>.</td>
+        <td class="description_text">Uniform water level (m) used when <code>include: True</code>, e.g. 0.0 for present-day sea level.</td>
         <td style="text-align: center;">
 
             <span class="float_table">0.0</span>
@@ -4922,7 +4922,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../../javascripts/mathjax.js"></script>
       
