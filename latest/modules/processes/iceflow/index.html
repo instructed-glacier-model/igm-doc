@@ -2714,22 +2714,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#physical-principle" class="md-nav__link">
+  <a href="#principle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Physical principle
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Physical principle">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kinematic-method-method-kinematic" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Kinematic method (method: kinematic)
+        Principle
       
     </span>
   </a>
@@ -2737,26 +2725,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#incompressibility-method-method-incompressibility" class="md-nav__link">
+  <a href="#methods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Incompressibility method (method: incompressibility)
+        Methods
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#smoothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Smoothing
+      
+    </span>
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#versions" class="md-nav__link">
+  <a href="#deprecated-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Versions
+        Deprecated versions
       
     </span>
   </a>
@@ -5258,84 +5252,56 @@ load time. The older <code>pinnbp</code> emulators, which are pretrained startin
 <p>This prevents the solver from computing velocities in cells that touch the domain boundary, which can otherwise cause spurious accumulation.</p>
 <hr />
 <h2 id="vertical-velocity">Vertical velocity</h2>
-<p>The <code>iceflow</code> module can optionally compute the <strong>3D vertical velocity</strong> field <span class="arithmatex">\(w\)</span> (and its basal and surface projections <span class="arithmatex">\(w_\mathrm{b}\)</span>, <span class="arithmatex">\(w_\mathrm{s}\)</span>) immediately after the horizontal velocity update. This sub-computation is disabled by default and enabled via:</p>
+<p>The <code>iceflow</code> module can optionally compute the <strong>3D vertical velocity</strong> <span class="arithmatex">\(w\)</span> right after the horizontal velocity update. It is disabled by default; enable it with:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">iceflow</span><span class="p">:</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">vertical_velocity</span><span class="p">:</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">   </span><span class="c1"># default: false</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">      </span><span class="c1"># default: 2</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kinematic</span><span class="w">  </span><span class="c1"># default: kinematic</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">             </span><span class="c1"># default: false</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">                </span><span class="c1"># default</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluxform</span><span class="w">          </span><span class="c1"># default</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nt">slope_stencil</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staggered</span><span class="w">  </span><span class="c1"># default</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nt">smooth_sigma</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">         </span><span class="c1"># default, in grid cells (0 = no filter)</span>
 </span></code></pre></div>
-<p>When enabled, the following state variables are produced:</p>
-<ul>
-<li><code>state.W</code> — 3D vertical velocity field (shape <code>Nz × Ny × Nx</code>)</li>
-<li><code>state.wvelbase</code> — vertical velocity at the bed</li>
-<li><code>state.wvelsurf</code> — vertical velocity at the surface</li>
-</ul>
+<p>This produces <code>state.W</code> (shape <code>Nz × Ny × Nx</code>), <code>state.wvelbase</code> and <code>state.wvelsurf</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Required for particles and enthalpy</p>
-<p>Set <code>iceflow.vertical_velocity.enabled: true</code> when using 3D particle tracking (<code>particles.tracking.method: "3d"</code>) or the <code>enthalpy</code> module for physically accurate vertical advection.</p>
+<p>Set <code>enabled: true</code> when using 3D particle tracking (<code>particles.tracking.method: "3d"</code>) or the <code>enthalpy</code> module.</p>
 </div>
-<h3 id="physical-principle">Physical principle</h3>
-<p>Both methods enforce the kinematic basal condition — that ice velocity is parallel to the bed:</p>
+<h3 id="principle">Principle</h3>
+<p>Ice is incompressible and moves parallel to its base. At each terrain-following level <span class="arithmatex">\(z_\zeta = b + \zeta H\)</span>:</p>
 <div class="arithmatex">\[
-w_\mathrm{b} = u_\mathrm{b} \frac{\partial b}{\partial x} + v_\mathrm{b} \frac{\partial b}{\partial y}.
+w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
+\qquad
+\mathbf{Q}_\zeta = H\int_0^\zeta \mathbf{u}\,\mathrm{d}\zeta',
 \]</div>
-<p>They differ in how <span class="arithmatex">\(w\)</span> is extended through the column.</p>
-<h4 id="kinematic-method-method-kinematic">Kinematic method (<code>method: kinematic</code>)</h4>
-<p>The kinematic method requires that ice velocity be tangent to each terrain-following layer surface. At layer elevation <span class="arithmatex">\(z_\zeta = b + \zeta H\)</span>:</p>
-<div class="arithmatex">\[
-w = u \frac{\partial z_\zeta}{\partial x} + v \frac{\partial z_\zeta}{\partial y} - \nabla \cdot (\bar{\mathbf{u}}_\zeta \, z_\zeta),
-\]</div>
-<p>where <span class="arithmatex">\(\bar{\mathbf{u}}_\zeta\)</span> is the depth-averaged velocity from the bed up to that layer. This naturally accounts for terrain through the layer-slope terms.</p>
-<h4 id="incompressibility-method-method-incompressibility">Incompressibility method (<code>method: incompressibility</code>)</h4>
-<p>The incompressibility method integrates the divergence-free condition <span class="arithmatex">\(\nabla \cdot \mathbf{u} = 0\)</span> from the bed upward:</p>
-<div class="arithmatex">\[
-w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) H\,\mathrm{d}\zeta'.
-\]</div>
-<p>Because <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span> are discretized at constant <span class="arithmatex">\(\zeta\)</span> while the incompressibility condition requires horizontal derivatives at constant physical height <span class="arithmatex">\(z\)</span>, the derivatives must be transformed via the chain rule:</p>
-<div class="arithmatex">\[
-\left.\frac{\partial u}{\partial x}\right|_z = \left.\frac{\partial u}{\partial x}\right|_\zeta - \left[\frac{\partial b}{\partial x} + \zeta\frac{\partial H}{\partial x}\right] \frac{\partial u}{\partial z}.
-\]</div>
-<h3 id="versions">Versions</h3>
+<p>where <span class="arithmatex">\(\mathbf{Q}_\zeta\)</span> is the ice flux between the base and the level. At the surface this gives <span class="arithmatex">\(w_\mathrm{s} = \mathbf{u}_\mathrm{s}\cdot\nabla s + \partial H/\partial t - \dot{b}\)</span>, a direct check against the thickness evolution.</p>
+<h3 id="methods">Methods</h3>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;"><code>version</code></th>
-<th style="text-align: center;">Kinematic</th>
-<th style="text-align: center;">Incompressibility</th>
-<th style="text-align: center;">Terrain correction</th>
-<th style="text-align: left;">Implementation</th>
-<th style="text-align: left;">Author</th>
+<th style="text-align: left;"><code>method</code></th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><code>1</code></td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">Kinematic only</td>
-<td style="text-align: left;">Direct numerical derivatives</td>
-<td style="text-align: left;">GJ</td>
+<td style="text-align: left;"><code>fluxform</code> (default, alias <code>kinematic</code>)</td>
+<td style="text-align: left;">Evaluates the formula above at each node, taking <span class="arithmatex">\(\nabla\cdot\mathbf{Q}_\zeta\)</span> with the same upwind, slope-limited scheme as the <code>thk</code> module. The surface value is therefore consistent with the thickness update computed by the model.</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>2</code></td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: left;">Numerical integration with terrain chain rule</td>
-<td style="text-align: left;">CMS</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>3</code></td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: center;">✓</td>
-<td style="text-align: left;">Matrix-based with precomputed operators</td>
-<td style="text-align: left;">TG</td>
+<td style="text-align: left;"><code>incompressibility</code></td>
+<td style="text-align: left;">Integrates the horizontal divergence upward in matrix form, with precomputed vertical operators and terrain-following corrections. Converges exactly with resolution; useful for verification.</td>
 </tr>
 </tbody>
 </table>
-<p>Versions 1 and 2 support <code>kinematic</code> and <code>incompressibility</code> when using the Lagrange vertical basis. For Legendre basis, both use a spectral incompressibility method. For MOLHO basis, both use a two-layer kinematic approach. Version 3 implements only the incompressibility method for all bases.</p>
+<p>With <code>fluxform</code>, <code>slope_stencil</code> sets how <span class="arithmatex">\(\nabla z_\zeta\)</span> is computed: <code>staggered</code> (default) uses the staggered-grid gradient of the ice-flow energy, i.e. the slope the velocity was solved against, and is less noisy than the centred stencil <code>central</code>.</p>
+<h3 id="smoothing">Smoothing</h3>
+<p>The coupled flow and thickness transport leave a texture of about one grid cell in <span class="arithmatex">\(w\)</span>, at any resolution, that differentiation amplifies. <code>smooth_sigma</code> removes it with an ice-masked Gaussian filter (standard deviation in grid cells) applied after the computation. The filter preserves the mean over the ice, so it introduces no bias, and the default of one cell keeps the glacier-scale pattern intact. Set it to <code>0</code> to keep <span class="arithmatex">\(w_\mathrm{s}\)</span> exactly consistent with the thickness update.</p>
+<h3 id="deprecated-versions">Deprecated versions</h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>version: 1</code> and <code>version: 2</code> are deprecated and kept only for backward compatibility: they emit a warning and will be removed in a future release. Use <code>version: 3</code>.</p>
+<p>Both were written for the Lagrange basis, with two methods: <code>kinematic</code> (layer tangency, with layer-averaged velocities from fixed vertical weights) and <code>incompressibility</code> (vertical integration of finite-difference horizontal derivatives). Version 1 computes the derivatives layer by layer; version 2 is a vectorised rewrite that adds the terrain-following chain rule. For MOLHO both fall back to a two-layer surface formula, and for Legendre to a spectral integration.</p>
+</div>
 <hr />
 <h2 id="parameters">Parameters</h2>
 <p>The complete default configuration file can be found here: <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/iceflow.yaml">iceflow.yaml</a>.</p>
