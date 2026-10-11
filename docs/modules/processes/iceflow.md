@@ -419,70 +419,57 @@ This prevents the solver from computing velocities in cells that touch the domai
 
 ## Vertical velocity
 
-The `iceflow` module can optionally compute the **3D vertical velocity** field $w$ (and its basal and surface projections $w_\mathrm{b}$, $w_\mathrm{s}$) immediately after the horizontal velocity update. This sub-computation is disabled by default and enabled via:
+The `iceflow` module can optionally compute the **3D vertical velocity** $w$ right after the horizontal velocity update. It is disabled by default; enable it with:
 
 ```yaml
 iceflow:
   vertical_velocity:
-    enabled: true   # default: false
-    version: 2      # default: 2
-    method: kinematic  # default: kinematic
+    enabled: true             # default: false
+    version: 3                # default
+    method: fluxform          # default
+    slope_stencil: staggered  # default
+    smooth_sigma: 1.0         # default, in grid cells (0 = no filter)
 ```
 
-When enabled, the following state variables are produced:
-
-- `state.W` — 3D vertical velocity field (shape `Nz × Ny × Nx`)
-- `state.wvelbase` — vertical velocity at the bed
-- `state.wvelsurf` — vertical velocity at the surface
+This produces `state.W` (shape `Nz × Ny × Nx`), `state.wvelbase` and `state.wvelsurf`.
 
 !!! note "Required for particles and enthalpy"
-    Set `iceflow.vertical_velocity.enabled: true` when using 3D particle tracking (`particles.tracking.method: "3d"`) or the `enthalpy` module for physically accurate vertical advection.
+    Set `enabled: true` when using 3D particle tracking (`particles.tracking.method: "3d"`) or the `enthalpy` module.
 
-### Physical principle
+### Principle
 
-Both methods enforce the kinematic basal condition — that ice velocity is parallel to the bed:
-
-$$
-w_\mathrm{b} = u_\mathrm{b} \frac{\partial b}{\partial x} + v_\mathrm{b} \frac{\partial b}{\partial y}.
-$$
-
-They differ in how $w$ is extended through the column.
-
-#### Kinematic method (`method: kinematic`)
-
-The kinematic method requires that ice velocity be tangent to each terrain-following layer surface. At layer elevation $z_\zeta = b + \zeta H$:
+Ice is incompressible and moves parallel to its base. At each terrain-following level $z_\zeta = b + \zeta H$:
 
 $$
-w = u \frac{\partial z_\zeta}{\partial x} + v \frac{\partial z_\zeta}{\partial y} - \nabla \cdot (\bar{\mathbf{u}}_\zeta \, z_\zeta),
+w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
+\qquad
+\mathbf{Q}_\zeta = H\int_0^\zeta \mathbf{u}\,\mathrm{d}\zeta',
 $$
 
-where $\bar{\mathbf{u}}_\zeta$ is the depth-averaged velocity from the bed up to that layer. This naturally accounts for terrain through the layer-slope terms.
+where $\mathbf{Q}_\zeta$ is the ice flux between the base and the level. At the surface this gives $w_\mathrm{s} = \mathbf{u}_\mathrm{s}\cdot\nabla s + \partial H/\partial t - \dot{b}$, a direct check against the thickness evolution.
 
-#### Incompressibility method (`method: incompressibility`)
+### Methods
 
-The incompressibility method integrates the divergence-free condition $\nabla \cdot \mathbf{u} = 0$ from the bed upward:
+| `method` | Description |
+|:---|:---|
+| `fluxform` (default, alias `kinematic`) | Evaluates the formula above at each node, taking $\nabla\cdot\mathbf{Q}_\zeta$ with the same upwind, slope-limited scheme as the `thk` module. The surface value is therefore consistent with the thickness update computed by the model. |
+| `incompressibility` | Integrates the horizontal divergence upward in matrix form, with precomputed vertical operators and terrain-following corrections. Converges exactly with resolution; useful for verification. |
 
-$$
-w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) H\,\mathrm{d}\zeta'.
-$$
+With `fluxform`, `slope_stencil` sets how $\nabla z_\zeta$ is computed: `staggered` (default) uses the staggered-grid gradient of the ice-flow energy, i.e. the slope the velocity was solved against, and is less noisy than the centred stencil `central`.
 
-Because $u$ and $v$ are discretized at constant $\zeta$ while the incompressibility condition requires horizontal derivatives at constant physical height $z$, the derivatives must be transformed via the chain rule:
+### Smoothing
 
-$$
-\left.\frac{\partial u}{\partial x}\right|_z = \left.\frac{\partial u}{\partial x}\right|_\zeta - \left[\frac{\partial b}{\partial x} + \zeta\frac{\partial H}{\partial x}\right] \frac{\partial u}{\partial z}.
-$$
+The coupled flow and thickness transport leave a texture of about one grid cell in $w$, at any resolution, that differentiation amplifies. `smooth_sigma` removes it with an ice-masked Gaussian filter (standard deviation in grid cells) applied after the computation. The filter preserves the mean over the ice, so it introduces no bias, and the default of one cell keeps the glacier-scale pattern intact. Set it to `0` to keep $w_\mathrm{s}$ exactly consistent with the thickness update.
 
-### Versions
+### Deprecated versions
 
-| `version` | Kinematic | Incompressibility | Terrain correction | Implementation | Author |
-|:---:|:---:|:---:|:---:|:---|:---|
-| `1` | ✓ | ✓ | Kinematic only | Direct numerical derivatives | GJ |
-| `2` | ✓ | ✓ | ✓ | Numerical integration with terrain chain rule | CMS |
-| `3` | — | ✓ | ✓ | Matrix-based with precomputed operators | TG |
+!!! warning
+    `version: 1` and `version: 2` are deprecated and kept only for backward compatibility: they emit a warning and will be removed in a future release. Use `version: 3`.
 
-Versions 1 and 2 support `kinematic` and `incompressibility` when using the Lagrange vertical basis. For Legendre basis, both use a spectral incompressibility method. For MOLHO basis, both use a two-layer kinematic approach. Version 3 implements only the incompressibility method for all bases.
+    Both were written for the Lagrange basis, with two methods: `kinematic` (layer tangency, with layer-averaged velocities from fixed vertical weights) and `incompressibility` (vertical integration of finite-difference horizontal derivatives). Version 1 computes the derivatives layer by layer; version 2 is a vectorised rewrite that adds the terrain-following chain rule. For MOLHO both fall back to a two-layer surface formula, and for Legendre to a spectral integration.
 
 ---
+
 
 ## Parameters
 
