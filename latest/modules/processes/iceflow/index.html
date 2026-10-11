@@ -9766,10 +9766,10 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td style="min-width: 200px;">
           <code class="param_name">vertical_velocity.version</code>
         </td>
-        <td class="description_text">Version of the vertical_velocity method (1: original by GJ; 2: improved by CMS; 3: unified by TG).</td>
+        <td class="description_text">Version of the vertical_velocity computation. 3 (default): works with the MOLHO, Lagrange and Legendre vertical bases, validated against a manufactured solution. 1 and 2 are deprecated and will be removed.</td>
         <td style="text-align: center;">
 
-            <span class="integer_table">2</span>
+            <span class="integer_table">3</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -9789,15 +9789,61 @@ w(\zeta) = w_\mathrm{b} - \int_0^\zeta \left(\frac{\partial u}{\partial x} + \fr
         <td style="min-width: 200px;">
           <code class="param_name">vertical_velocity.method</code>
         </td>
-        <td class="description_text">Method to retrieve the vertical velocity: kinematic (layer-following) or incompressibility (divergence-free). Version 3 only supports incompressibility.</td>
+        <td class="description_text">Version 3: fluxform (default; alias kinematic) takes the divergence of the ice flux between the bed and each node with the thk module's scheme, so the surface vertical velocity is consistent with the thickness update; incompressibility integrates the horizontal divergence with a centred matrix form. Deprecated versions 1-2: kinematic or incompressibility.</td>
         <td style="text-align: center;">
 
-            <span class="string_table">kinematic</span>
+            <span class="string_table">fluxform</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">vertical_velocity.slope_stencil</code>
+        </td>
+        <td class="description_text">fluxform only. Stencil of the layer slope grad(z_l) in w = u·grad(z_l) − div(Q_l): staggered (corner gradient of the ice-flow energy averaged to the cell centres, the slope the velocities were solved against; least grid-scale noise) or central (unstaggered, as the matrix form).</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">staggered</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">vertical_velocity.smooth_sigma</code>
+        </td>
+        <td class="description_text">Ice-masked Gaussian filter (standard deviation in grid cells) applied to W after its computation; 0 disables it. The default of 1 cell removes the one-cell numerical texture of W (it sits at one cell at any resolution) without bias. Set 0 to keep W exactly consistent with the thickness update (fluxform).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">cells</span>
 
         </td>
       </tr>
