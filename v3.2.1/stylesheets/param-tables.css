@@ -1,0 +1,320 @@
+/*
+ * Parameter Table Styling
+ *
+ * Defines styles for configuration parameter tables, including:
+ * - Parameter names and descriptions
+ * - Table structure and layout
+ * - Collapsible sections
+ * - Responsive design
+ */
+
+/* ============================================================================
+   BASE PARAMETER STYLING
+   ============================================================================ */
+
+/* Parameter name styling */
+.param_name {
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+}
+
+/* Units text styling */
+.units_text {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+/* Description text color - light theme */
+[data-md-color-scheme="glacier_light"] .description_text {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Description text color - dark theme */
+[data-md-color-scheme="glacier_dark"] .description_text {
+  color: rgba(255, 255, 255, 0.66);
+}
+
+/* ============================================================================
+   PARAMETER TABLE STRUCTURE
+   ============================================================================ */
+
+/* Base table styling */
+.param-table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  display: table !important;
+  border-spacing: 0;
+}
+
+/* Apply to all tables (global override) */
+table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  display: table !important;
+}
+
+/* Table headers */
+table thead th {
+  font-weight: 600;
+  border-bottom: 2px solid var(--md-default-fg-color--lightest);
+  padding: 0.8rem 0.6rem;
+}
+
+/* Table cells */
+table tbody td {
+  padding: 0.6rem 0.6rem;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Row hover effect - light theme */
+table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Row hover effect - dark theme */
+[data-md-color-scheme="glacier_dark"] table tbody td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-md-color-scheme="glacier_dark"] table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* ============================================================================
+   COLLAPSIBLE PARAMETER SECTIONS
+   ============================================================================ */
+
+/* Parameter section container */
+.param-section {
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+}
+
+.param-section:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section title (summary) */
+.param-section-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 1rem 1.2rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: background-color 0.2s ease;
+}
+
+/* Hide default disclosure triangle */
+.param-section summary {
+  list-style: none;
+}
+
+.param-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.param-section summary::marker {
+  content: '';
+  display: none;
+}
+
+/* Custom disclosure triangle */
+.param-section-title::before {
+  content: "▶";
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 0.8em;
+  color: var(--md-default-fg-color);
+  opacity: 0.5;
+}
+
+.param-section[open] .param-section-title::before {
+  transform: rotate(90deg);
+}
+
+/* Section description */
+.section-desc {
+  margin-left: auto;
+  font-size: 0.85em;
+  font-weight: 400;
+  opacity: 0.7;
+  font-style: italic;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Title hover effect */
+.param-section-title:hover {
+  background-color: rgba(70, 103, 164, 0.08);
+}
+
+/* Nested table styling */
+.param-section table {
+  margin: 0;
+  width: 100%;
+}
+
+/* Dark theme overrides */
+[data-md-color-scheme="glacier_dark"] .param-section {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-md-color-scheme="glacier_dark"] .param-section:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-md-color-scheme="glacier_dark"] .param-section-title {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-md-color-scheme="glacier_dark"] .param-section-title:hover {
+  background-color: rgba(70, 103, 164, 0.15);
+}
+
+/* ============================================================================
+   PARAMETER OVERVIEW SECTION
+   ============================================================================ */
+
+.param-overview {
+  margin-bottom: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(70, 103, 164, 0.02) 0%, rgba(70, 103, 164, 0.05) 100%);
+}
+
+.overview-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+}
+
+.param-descriptions {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.param-desc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.param-desc-item:last-child {
+  border-bottom: none;
+}
+
+.param-desc-name {
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+.param-desc-text {
+  font-size: 0.9em;
+  color: var(--md-default-fg-color);
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* Dark theme overrides */
+[data-md-color-scheme="glacier_dark"] .param-overview {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(70, 103, 164, 0.05) 0%, rgba(70, 103, 164, 0.1) 100%);
+}
+
+[data-md-color-scheme="glacier_dark"] .param-desc-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================================================
+   SECTION NAVIGATION
+   ============================================================================ */
+
+.section-nav {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 0.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-label {
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--md-default-fg-color--light);
+  margin-right: 0.5rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+  border-radius: 0.3rem;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.85em;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  background-color: var(--md-accent-fg-color);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+[data-md-color-scheme="glacier_dark"] .section-nav {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* ============================================================================
+   DETAILED PARAMETERS SECTION
+   ============================================================================ */
+
+.detailed-params {
+  margin-top: 3rem;
+}
+
+.detailed-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+  border-bottom: 2px solid var(--md-accent-fg-color);
+  padding-bottom: 0.5rem;
+}
