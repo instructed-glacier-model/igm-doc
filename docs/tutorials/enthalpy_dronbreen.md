@@ -75,7 +75,7 @@ processes:
     T_ela: 0.42        # °C imposed above the ELA -- the refreezing proxy
 ```
 
-This is a parameterisation, not physics. `T_ela` should be read as "the surface forcing that reproduces the observed thermal structure", not as a measured temperature — which is precisely why Step 2 calibrates it rather than prescribing it, and why the value shipped above comes from that calibration.
+This is a parameterisation, not physics. `T_ela` should be read as "the surface forcing that reproduces the observed thermal structure", not as a measured temperature — which is precisely why Step 2 calibrates it rather than prescribing it, and why the value shipped above comes from that calibration. Note that the enthalpy module caps the surface temperature at 0 °C, so any `T_ela` ≥ 0 °C gives exactly the same run as 0.42: the surface above the ELA is held at the melting point, and only a negative `T_ela` makes it cold.
 
 ### Configuration
 
