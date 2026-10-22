@@ -329,26 +329,27 @@ not as a general ice-flow solver.
 
 ## Citation
 
-!!! warning "Placeholder — to be updated on publication"
+!!! note "Preprint — to be updated on publication"
 
-    The DahuNet emulators are described in a manuscript currently in preparation /
-    under review. **The citation below is a placeholder and will be replaced once the paper
-    has a DOI.** Please check this page, or [Citing IGM](../about/cite.md), before
-    submitting work that uses these emulators.
+    The DahuNet emulators are described in a manuscript under review, available as an
+    EGUsphere preprint (doi:[10.5194/egusphere-2026-5523](https://doi.org/10.5194/egusphere-2026-5523)).
+    The citation below will be updated with the journal reference once the paper is
+    published; see also [Citing IGM](../about/cite.md).
 
 If you use any of the pretrained DahuNet emulators, please cite:
 
-> Rosier, S. H. R., Gregov, T., Jouvet, G., & Vieli, A. (in prep.). **Cheap and accurate
-> higher-order ice flow emulator for mountain glaciers.** *[journal]*, doi:`[TBD]`
+> Rosier, S. H. R., Gregov, T., Jouvet, G., & Vieli, A. (2026). **Cheap and accurate
+> higher-order ice flow emulator for mountain glaciers.** *EGUsphere [preprint]*,
+> doi:[10.5194/egusphere-2026-5523](https://doi.org/10.5194/egusphere-2026-5523)
 
 {% raw %}
 ```bibtex
 @article{DahuNet,
   author  = {Rosier, Sebastian H. R. and Gregov, Thomas and Jouvet, Guillaume and Vieli, Andreas},
   title   = {Cheap and accurate higher-order ice flow emulator for mountain glaciers},
-  journal = {TBD},
-  year    = {in prep.},
-  doi     = {TBD},
+  journal = {EGUsphere [preprint]},
+  year    = {2026},
+  doi     = {10.5194/egusphere-2026-5523},
 }
 ```
 {% endraw %}

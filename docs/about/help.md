@@ -2,7 +2,7 @@
 
 ## Discord Chat Server
 
-For any IGM-related questions, feel free to connect with the community on the Discord channel. To gain access, send an email request to <guillaume.jouvet@unil.ch>.
+The IGM Discord server is the main channel for questions, discussion and troubleshooting among users and developers (GitHub Discussions is not enabled on the repository; use GitHub [issues](https://github.com/instructed-glacier-model/igm/issues) for bug reports). To join, send an email request to <guillaume.jouvet@unil.ch> and you will receive an invitation link.
 
 ## Support Guidelines
 

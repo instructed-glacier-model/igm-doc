@@ -4,18 +4,25 @@
 
 When using IGM in your research, please cite the model development paper:
 
-> The IGM developers (in prep.). **IGM: an accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.** doi:[10.31223/X5GB6G](https://doi.org/10.31223/X5GB6G)
+> Jouvet, G., Finley, B. D., Gregov, T., Rosier, S. H. R., Leger, T. P. M., Bacchin, L., Cook, S., Frank, T., Henz, A., Herrmann, O., Maussion, F., Smith, G. M. A., & Stucki, C.-M. (2026). **IGM v3.2.1: an accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.** *EarthArXiv [preprint]*, submitted to *Geoscientific Model Development*. doi:[10.31223/X5GB6G](https://doi.org/10.31223/X5GB6G)
 
 {% raw %}
 ```bibtex
 @article{IGM,
-  title  = {IGM: an accessible, modular, differentiable, and GPU-accelerated high-order ice flow model},
-  author = {{The IGM developers}},
-  year   = {in prep.},
-  doi    = {10.31223/X5GB6G},
+  title   = {{IGM} v3.2.1: an accessible, modular, differentiable, and {GPU}-accelerated high-order ice flow model},
+  author  = {Jouvet, Guillaume and Finley, Brandon D. and Gregov, Thomas and Rosier, Sebastian H. R.
+             and Leger, Tancr{\`e}de P. M. and Bacchin, Lucie and Cook, Samuel and Frank, Thomas
+             and Henz, Andreas and Herrmann, Oskar and Maussion, Fabien and Smith, Gillian M. A.
+             and Stucki, Claire-Mathilde},
+  journal = {EarthArXiv [preprint]},
+  note    = {Submitted to Geoscientific Model Development},
+  year    = {2026},
+  doi     = {10.31223/X5GB6G},
 }
 ```
 {% endraw %}
+
+This entry will be updated with the journal reference once the paper is published.
 
 ---
 

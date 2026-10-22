@@ -1,7 +1,7 @@
 site_name: Instructed Glacier Model (IGM)
 site_url: https://igm-model.org
 site_description: >-
-  A differentiable, modular, and GPU-accelerated ice flow model.
+  An accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.
 
 # Repository
 repo_name: instructed-glacier-model/igm
