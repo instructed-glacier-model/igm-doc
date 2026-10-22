@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A differentiable, modular, and GPU-accelerated ice flow model.">
+        <meta name="description" content="An accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.">
       
       
       
@@ -4498,7 +4498,7 @@
 <p>However, most jobs are independent, so instead we should ideally launch both jobs at the same time. This is where we can use the <code>joblib</code> launcher instead. To do this, we can instead use the command</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Make sure to install it beforehand with <code>pip install hydra-joblib-launcher --upgrade</code></p>
+<p>The <code>joblib</code> launcher is a Hydra plugin that is <strong>not</strong> an IGM dependency: install it beforehand with <code>pip install hydra-joblib-launcher --upgrade</code>.</p>
 </div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>igm_run<span class="w"> </span>+experiment<span class="o">=</span>params<span class="w"> </span>processes.time.start<span class="o">=</span><span class="m">1990</span>,1950<span class="w"> </span>hydra/launcher<span class="o">=</span>joblib<span class="w"> </span>--multirun
 </span></code></pre></div>

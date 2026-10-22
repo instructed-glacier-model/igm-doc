@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A differentiable, modular, and GPU-accelerated ice flow model.">
+        <meta name="description" content="An accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.">
       
       
       
@@ -4483,13 +4483,14 @@
 <h1 id="overview">Overview</h1>
 <p>IGM is built around a <strong>modular architecture</strong>: every physical process and every I/O operation is encapsulated in a self-contained module with its own parameters, source code, and documentation. Modules can be combined, reordered, or replaced from the configuration file — no source-code editing required.</p>
 <h2 id="architecture">Architecture</h2>
-<p>A simulation is assembled from three categories of modules:</p>
+<p>A simulation is assembled from four categories of modules:</p>
 <ul>
 <li><strong>Input modules</strong> load data (bedrock, observations, climate) into the shared model state before the time loop begins.</li>
+<li><strong>Assimilation modules</strong> constrain model parameters or state from observations (thickness inversion, parameter tuning, transient nudging). They share the process lifecycle and run ahead of the process modules at every stage.</li>
 <li><strong>Process modules</strong> update state variables at every time step — ice flow, mass balance, thermodynamics, and more.</li>
 <li><strong>Output modules</strong> write or visualise results at regular intervals during the time loop.</li>
 </ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>inputs → [initialize] → time loop { processes → outputs } → [finalize]
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>inputs → [initialize] → time loop { assimilations → processes → outputs } → [finalize]
 </span></code></pre></div>
 <p>The shared <strong>state object</strong> (<code>state</code>) carries all glacier fields as TensorFlow tensors. Any module can read or write any field; changes propagate to all subsequent modules in the pipeline. See <a href="../state_variables/">State Variables</a> for the complete list of fields and their dependencies.</p>
 <h2 id="core-modules">Core modules</h2>

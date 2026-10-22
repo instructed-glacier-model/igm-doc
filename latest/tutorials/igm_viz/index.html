@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A differentiable, modular, and GPU-accelerated ice flow model.">
+        <meta name="description" content="An accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.">
       
       
       
@@ -4470,7 +4470,7 @@
 <p><code>igm_viz</code> is a Plotly/Dash app that renders a run's output as an interactive 3-D animation — glacier surface and bedrock, colored by any saved variable, steppable frame by frame or played back automatically. This tutorial walks through the app using the <a href="../aletsch/">Aletsch forward-modelling tutorial</a> output as an example.</p>
 <hr />
 <h2 id="setup">Setup</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>igm<span class="o">[</span>viz<span class="o">]</span><span class="w">   </span><span class="c1"># one-off install of the dash dependency</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"igm-model[viz]"</span><span class="w">   </span><span class="c1"># one-off install of the dash dependency</span>
 </span></code></pre></div>
 <p>Run it from the same folder you ran <code>igm_run</code> in — it looks for <code>output.nc</code> under <code>outputs/*/*/</code> by default:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>igm-examples/aletsch

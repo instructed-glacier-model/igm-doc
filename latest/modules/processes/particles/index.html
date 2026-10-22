@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A differentiable, modular, and GPU-accelerated ice flow model.">
+        <meta name="description" content="An accessible, modular, differentiable, and GPU-accelerated high-order ice flow model.">
       
       
       
@@ -2684,6 +2684,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#particle-to-grid-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Particle-to-grid mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpolation-and-writing-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpolation and writing backends
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4483,7 +4511,7 @@
 <p>Two tracking implementations are available, selected via <code>tracking.method</code>:</p>
 <ul>
 <li><strong><code>simple</code></strong>: Horizontal and vertical directions are treated differently:</li>
-<li>In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly).</li>
+<li>In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly at the particle positions).</li>
 <li>
 <p>In the vertical direction, particles are tracked along the ice column, scaled between 0 (at the bed) and 1 (at the surface). Particles are initialized at relative height 1 (on the surface). The evolution of the particle's position within the ice column over time is computed from the surface mass balance: the particle deepens when SMB is positive and re-emerges when SMB is negative.</p>
 </li>
@@ -4498,7 +4526,10 @@
 <p>Particle positions are saved at the interval set by <code>processes.time.save</code>. Trajectories are written to a <code>trajectories/</code> folder as files named <code>traj-TIME.csv</code> with the columns:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
 </span></code></pre></div>
-<p>Tracking and writing backends:</p>
+<h3 id="particle-to-grid-mapping">Particle-to-grid mapping</h3>
+<p>Particle-borne quantities (e.g. <code>weight</code>, added through <code>output.add_fields</code>) can be scattered back onto the 2D grid. The scatter is a <strong>nearest-cell binning</strong>: each particle's value is accumulated in the grid cell that contains it (no bilinear spreading to neighbouring cells).</p>
+<h3 id="interpolation-and-writing-backends">Interpolation and writing backends</h3>
+<p>The velocity interpolation at the particle positions is done by default in <strong>pure TensorFlow</strong> (<code>tracking.library: tensorflow</code>), which runs on CPU and GPU and needs no extra dependency. Two optional accelerated kernels are available for very large particle populations on NVIDIA GPUs; both require additional software that is not installed with IGM:</p>
 <table>
 <thead>
 <tr>
@@ -4516,12 +4547,12 @@
 <tr>
 <td></td>
 <td><code>cuda</code></td>
-<td>Compiled TensorFlow custom op (<code>interpolate_2d.so</code>), NVIDIA GPU</td>
+<td>Optional: compiled TensorFlow custom op (<code>interpolate_2d.so</code>), NVIDIA GPU; must be compiled from the sources in <code>igm/processes/particles/interpolate_2d/</code></td>
 </tr>
 <tr>
 <td></td>
 <td><code>cupy</code></td>
-<td>Numba CUDA kernel, requires <code>cupy</code> and <code>numba</code></td>
+<td>Optional: Numba CUDA kernel, requires <code>cupy</code> and <code>numba</code></td>
 </tr>
 <tr>
 <td><code>output.library</code></td>
