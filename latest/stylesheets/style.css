@@ -163,6 +163,12 @@
   font-weight: 300;
   color: rgba(255, 255, 255, 0.72);
   margin: 0 0 28px !important;
+  line-height: 1.9;
+}
+
+/* the six principles on two rows of three */
+.landing-row {
+  display: block;
 }
 
 [data-md-color-scheme="glacier_light"] .landing-tagline {
