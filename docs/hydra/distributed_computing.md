@@ -76,7 +76,7 @@ However, most jobs are independent, so instead we should ideally launch both job
 
 !!! note
 
-	Make sure to install it beforehand with `pip install hydra-joblib-launcher --upgrade`
+	The `joblib` launcher is a Hydra plugin that is **not** an IGM dependency: install it beforehand with `pip install hydra-joblib-launcher --upgrade`.
 
 ```bash
 igm_run +experiment=params processes.time.start=1990,1950 hydra/launcher=joblib --multirun

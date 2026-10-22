@@ -4,14 +4,15 @@ IGM is built around a **modular architecture**: every physical process and every
 
 ## Architecture
 
-A simulation is assembled from three categories of modules:
+A simulation is assembled from four categories of modules:
 
 - **Input modules** load data (bedrock, observations, climate) into the shared model state before the time loop begins.
+- **Assimilation modules** constrain model parameters or state from observations (thickness inversion, parameter tuning, transient nudging). They share the process lifecycle and run ahead of the process modules at every stage.
 - **Process modules** update state variables at every time step — ice flow, mass balance, thermodynamics, and more.
 - **Output modules** write or visualise results at regular intervals during the time loop.
 
 ```
-inputs → [initialize] → time loop { processes → outputs } → [finalize]
+inputs → [initialize] → time loop { assimilations → processes → outputs } → [finalize]
 ```
 
 The shared **state object** (`state`) carries all glacier fields as TensorFlow tensors. Any module can read or write any field; changes propagate to all subsequent modules in the pipeline. See [State Variables](state_variables.md) for the complete list of fields and their dependencies.

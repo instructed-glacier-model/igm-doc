@@ -8,22 +8,41 @@ It is important to note that there are two main parts of creating custom modules
 
 A closer look at the main script `igm_run.py` reveals that IGM runs in the below manner.
 
-First, we have IGM
+```python
+# build the four module lists from the Hydra cfg
+(inputs, assimilations,
+ processes, outputs) = setup(cfg, state)
 
-- `run` all *inputs* modules
-- `initialize` all *processes* modules
-- `initialize` all *outputs* modules
+# input modules: load data once
+for m in inputs:
+    m.run(cfg, state)
 
-Then, for all time steps:
+# init output modules: e.g., open files
+for m in outputs:
+    m.initialize(cfg, state)
 
-  - `update` all *processes* modules
-  - `run` all *outputs* modules
-  - `finalize` all *processes* modules
+# init assimilation and process modules
+for m in assimilations + processes:
+    m.initialize(cfg, state)
+
+# time loop
+while state.continue_run:
+    for m in assimilations + processes:
+        m.update(cfg, state)   # update state
+    for m in outputs:
+        m.run(cfg, state)      # write results
+
+# finalize, e.g. write score
+for m in assimilations + processes:
+    m.finalize(cfg, state)
+```
+
+Assimilation modules share the lifecycle of process modules and always run ahead of them. Note that the output modules are initialized *before* the process modules, so that a process module can rely on, e.g., an output file being open.
 
 Furthermore, one must note that within each module, the necessary functions change:
 
 - `inputs` modules have a `run` function,
-- `processes` modules have `initialize`, `update`, and `finalize` functions
+- `assimilations` and `processes` modules have `initialize`, `update`, and `finalize` functions,
 - `outputs` modules have `initialize` and `run` functions.
 
 Similar to existing IGM modules, a user-defined module `my_module` can be implemented and automatically loaded when `igm_run` is executed, provided that `my_module` and the path to its parameter file are correctly specified. Building a user module involves creating the following folder structure (folder `user` lies alongside `experiment` and `data`):

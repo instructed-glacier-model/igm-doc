@@ -9,7 +9,7 @@ This IGM module implements a particle tracking routine, which computes the traje
 Two tracking implementations are available, selected via `tracking.method`:
 
 - **`simple`**: Horizontal and vertical directions are treated differently:
-  1. In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly).
+  1. In the horizontal plane, particles are advected using the horizontal velocity field (interpolated bi-linearly at the particle positions).
   2. In the vertical direction, particles are tracked along the ice column, scaled between 0 (at the bed) and 1 (at the surface). Particles are initialized at relative height 1 (on the surface). The evolution of the particle's position within the ice column over time is computed from the surface mass balance: the particle deepens when SMB is positive and re-emerges when SMB is negative.
 
 - **`3d`**: Uses the vertical velocity `W` computed by the `vertical_velocity` sub-module of `iceflow`, which integrates the divergence of the horizontal velocity to enable full 3D particle tracking. To activate it, set `iceflow.vertical_velocity.enabled: true` in the iceflow configuration.
@@ -28,13 +28,19 @@ Particle positions are saved at the interval set by `processes.time.save`. Traje
 ID,  state.xpos,  state.ypos,  state.zpos, state.rhpos,  state.tpos, state.englt
 ```
 
-Tracking and writing backends:
+### Particle-to-grid mapping
+
+Particle-borne quantities (e.g. `weight`, added through `output.add_fields`) can be scattered back onto the 2D grid. The scatter is a **nearest-cell binning**: each particle's value is accumulated in the grid cell that contains it (no bilinear spreading to neighbouring cells).
+
+### Interpolation and writing backends
+
+The velocity interpolation at the particle positions is done by default in **pure TensorFlow** (`tracking.library: tensorflow`), which runs on CPU and GPU and needs no extra dependency. Two optional accelerated kernels are available for very large particle populations on NVIDIA GPUs; both require additional software that is not installed with IGM:
 
 | Parameter | Option | Description |
 |---|---|---|
 | `tracking.library` | `tensorflow` (default) | Pure TensorFlow interpolation, runs on CPU or GPU |
-| | `cuda` | Compiled TensorFlow custom op (`interpolate_2d.so`), NVIDIA GPU |
-| | `cupy` | Numba CUDA kernel, requires `cupy` and `numba` |
+| | `cuda` | Optional: compiled TensorFlow custom op (`interpolate_2d.so`), NVIDIA GPU; must be compiled from the sources in `igm/processes/particles/interpolate_2d/` |
+| | `cupy` | Optional: Numba CUDA kernel, requires `cupy` and `numba` |
 | `output.library` | `numpy` (default) | Writes CSV files (`output.format` is ignored) |
 | | `cudf` | RAPIDS GPU dataframes, writes `csv`, `feather` or `parquet` (`output.format`) |
 

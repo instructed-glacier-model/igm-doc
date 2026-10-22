@@ -170,7 +170,7 @@ objectives:
   - name: cost_cts
     direction: minimize
 
-n_trials: 40
+n_trials: 64
 n_jobs: 3                     # three concurrent runs saturate a single mid-range GPU
 storage: sqlite:///optuna_cts.db
 study_name: dronbreen_cts

@@ -7,7 +7,7 @@
 ## Setup
 
 ```bash
-pip install igm[viz]   # one-off install of the dash dependency
+pip install "igm-model[viz]"   # one-off install of the dash dependency
 ```
 
 Run it from the same folder you ran `igm_run` in — it looks for `output.nc` under `outputs/*/*/` by default:

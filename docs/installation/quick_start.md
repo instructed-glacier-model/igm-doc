@@ -70,7 +70,7 @@ See [Virtual Environments](other/virtual_environment.md) for a more detailed wal
     To pin a specific release for reproducibility:
 
     ```bash
-    pip install "igm-model==3.2.0"
+    pip install "igm-model==3.2.1"
     ```
 
     All available releases are listed on [PyPI](https://pypi.org/project/igm-model/#history).
