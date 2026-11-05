@@ -40,6 +40,7 @@ nav:
           - Help: hydra/help.md
       - Optuna:
           - Optimization: hydra/optuna_cluster.md
+      - Pretrained Ice-flow Emulator (DahuNet): emulators/pretrained_emulator.md
       - IGM v2 → v3 Transition: about/transition-IGM-2-to-3.md
       - IGM v3.1 → v3.2 Transition: about/transition-IGM-3.1-to-3.2.md
   - Modules:
@@ -101,8 +102,6 @@ nav:
           - IGM Names: modules/variables/igm.md
           - PISM Aliases: modules/variables/pism.md
           - Descriptive Aliases: modules/variables/descriptive.md
-  - Ice-flow emulators:
-      - Pretrained emulator (DahuNet): emulators/pretrained_emulator.md
   - Developer:
       - developer/index.md
       - State Variable Aliases: developer/aliases.md
