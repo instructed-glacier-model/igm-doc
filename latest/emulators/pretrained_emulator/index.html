@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://igm-model.org/latest/emulators/pretrained_emulator/">
       
       
-        <link rel="prev" href="../../modules/variables/descriptive/">
+        <link rel="prev" href="../../hydra/optuna_cluster/">
       
       
-        <link rel="next" href="../../developer/">
+        <link rel="next" href="../../about/transition-IGM-2-to-3/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Pretrained emulator (DahuNet) - Instructed Glacier Model (IGM)</title>
+        <title>Pretrained Ice-flow Emulator (DahuNet) - Instructed Glacier Model (IGM)</title>
       
     
     
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pretrained emulator (DahuNet)
+              Pretrained Ice-flow Emulator (DahuNet)
             
           </span>
         </div>
@@ -301,10 +301,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../configuration/" class="md-tabs__link">
           
   
@@ -334,30 +336,6 @@
     
   
   Modules
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
-          
-  
-  
-    
-  
-  Ice-flow emulators
 
         </a>
       </li>
@@ -1225,8 +1203,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1240,21 +1220,26 @@
       
         
       
-    
-    
-    
-      
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -1272,7 +1257,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1635,6 +1620,336 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pretrained Ice-flow Emulator (DahuNet)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pretrained Ice-flow Emulator (DahuNet)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#three-ways-to-get-a-velocity-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three ways to get a velocity field
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Three ways to get a velocity field">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identity-mapping-the-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity mapping — the reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-mapping-with-online-retraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network mapping with online retraining
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-mapping-with-a-pretrained-emulator-no-retraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network mapping with a pretrained emulator — no retraining
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-emulators-were-trained-in-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the emulators were trained — in brief
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-pretrained-emulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available pretrained emulators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-a-pretrained-emulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a pretrained emulator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using a pretrained emulator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-it-truly-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it truly offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input normalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reading-the-load-banner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading the load banner
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-must-not-change-and-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you must not change, and why
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What you must not change, and why">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hard-checks-mismatch-raises-an-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hard checks — mismatch raises an error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warning-checks-mismatch-warns-but-continues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warning checks — mismatch warns but continues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-you-are-free-to-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you are free to change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validity-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validity envelope
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-legacy-pinnbp-emulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: legacy pinnbp emulators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: legacy pinnbp emulators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#they-are-chosen-by-configuration-not-by-filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        They are chosen by configuration, not by filename
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-and-is-not-checked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is and is not checked
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3837,402 +4152,6 @@
       
   
   
-    
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Ice-flow emulators
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Ice-flow emulators
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pretrained emulator (DahuNet)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pretrained emulator (DahuNet)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#three-ways-to-get-a-velocity-field" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Three ways to get a velocity field
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Three ways to get a velocity field">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#identity-mapping-the-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Identity mapping — the reference
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#network-mapping-with-online-retraining" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Network mapping with online retraining
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#network-mapping-with-a-pretrained-emulator-no-retraining" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Network mapping with a pretrained emulator — no retraining
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-the-emulators-were-trained-in-brief" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How the emulators were trained — in brief
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#available-pretrained-emulators" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Available pretrained emulators
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-a-pretrained-emulator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using a pretrained emulator
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Using a pretrained emulator">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#running-it-truly-offline" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running it truly offline
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#input-normalization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Input normalization
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reading-the-load-banner" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reading the load banner
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-you-must-not-change-and-why" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What you must not change, and why
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="What you must not change, and why">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hard-checks-mismatch-raises-an-error" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hard checks — mismatch raises an error
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#warning-checks-mismatch-warns-but-continues" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Warning checks — mismatch warns but continues
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-you-are-free-to-change" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What you are free to change
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validity-envelope" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Validity envelope
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Troubleshooting
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#citation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Citation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#appendix-legacy-pinnbp-emulators" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Appendix: legacy pinnbp emulators
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Appendix: legacy pinnbp emulators">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#they-are-chosen-by-configuration-not-by-filename" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        They are chosen by configuration, not by filename
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-is-and-is-not-checked" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is and is not checked
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See also
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
   
   
     
@@ -4259,7 +4178,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -4281,14 +4200,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4444,10 +4363,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -4465,8 +4384,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4610,10 +4529,10 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../../configuration/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Ice-flow emulators
+    Configuration
   </span>
 
         </a>
@@ -5218,7 +5137,7 @@ runtime overhead.&#160;<a class="footnote-backref" href="#fnref:mem" title="Jump
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../modules/variables/descriptive/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Descriptive Aliases">
+          <a href="../../hydra/optuna_cluster/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Optimization">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5228,20 +5147,20 @@ runtime overhead.&#160;<a class="footnote-backref" href="#fnref:mem" title="Jump
                 Previous
               </span>
               <div class="md-ellipsis">
-                Descriptive Aliases
+                Optimization
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../developer/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+          <a href="../../about/transition-IGM-2-to-3/" class="md-footer__link md-footer__link--next" aria-label="Next: IGM v2 → v3 Transition">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Overview
+                IGM v2 → v3 Transition
               </div>
             </div>
             <div class="md-footer__button md-icon">
