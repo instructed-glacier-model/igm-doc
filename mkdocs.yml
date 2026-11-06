@@ -108,6 +108,9 @@ nav:
       - Module System: developer/module_system.md
       - Diagnostics: developer/diagnostics.md
   - Gallery: gallery/index.md
+  - Viewer:
+      - Map Viewer: viewer/index.md
+      - Publishing a Study: viewer/publishing.md
   - About:
       - Authors: about/credits_and_references.md
       - Citing IGM: about/cite.md
