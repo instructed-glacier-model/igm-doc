@@ -16,14 +16,14 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../about/credits_and_references/">
+        <link rel="next" href="../../edu/">
       
       
         
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -289,7 +289,7 @@
   
     
   
-  Getting Started
+  Start
 
         </a>
       </li>
@@ -403,6 +403,25 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../edu/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Edu
+
+      </a>
+    </li>
   
 
       
@@ -780,7 +799,7 @@
   <span class="md-ellipsis">
     
   
-    Getting Started
+    Start
   
 
     
@@ -796,7 +815,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Getting Started
+    Start
   
 
           </label>
@@ -4191,22 +4210,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-a-study-contains" class="md-nav__link">
+  <a href="#steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What a study contains
+        Steps
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What a study contains">
+    <nav class="md-nav" aria-label="Steps">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#layer-files" class="md-nav__link">
+  <a href="#1-export-the-outputs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Layer files
+        1. Export the outputs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Export the outputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenarios
       
     </span>
   </a>
@@ -4214,10 +4245,48 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#igm_viewerjson" class="md-nav__link">
+  <a href="#studies-made-of-geotiff-tiles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        igm_viewer.json
+        Studies made of GeoTIFF tiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-check-it-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Check it locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-upload-to-zenodo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Upload to Zenodo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-add-the-study-to-the-catalogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Add the study to the catalogue
       
     </span>
   </a>
@@ -4230,10 +4299,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#steps" class="md-nav__link">
+  <a href="#format" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Steps
+        Format
       
     </span>
   </a>
@@ -4273,6 +4342,33 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../edu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Edu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
       
@@ -4293,10 +4389,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
             
   
   
@@ -4314,8 +4410,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4485,125 +4581,156 @@
 
 
 <h1 id="publishing-a-study">Publishing a study</h1>
-<p>A study in the <a href="../">map viewer</a> is a folder of files archived on Zenodo, plus one entry in the viewer's catalogue.
-The website holds the page and the catalogue only; every byte of data is read from the archive by HTTP range requests.</p>
-<h2 id="what-a-study-contains">What a study contains</h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;region&gt;/
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   igm_viewer.json        # description of the study and of each layer (see below)
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   thk.tif                # one Cloud-Optimized GeoTIFF per layer, one band per saved time
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   usurf.tif
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   smb.tif
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   velsurf_mag.tif
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   …
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   preview/thk_1km.tif    # optional 1 km overview (EPSG:3857), used to show several regions together
-</span></code></pre></div>
-<p>A study with several regions (e.g. one per RGI region) has one such folder per region.</p>
-<h3 id="layer-files">Layer files</h3>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-<th>Why</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Format</td>
-<td>Cloud-Optimized GeoTIFF, 256 × 256 internal blocks, DEFLATE, overviews</td>
-<td>the viewer reads only the blocks on screen</td>
-</tr>
-<tr>
-<td>Time</td>
-<td><strong>one band per saved time</strong>, band-interleaved; band <em>k</em> has the description <code>TIME=&lt;year&gt;</code></td>
-<td>one time step is read without downloading the others</td>
-</tr>
-<tr>
-<td>Values</td>
-<td><code>int16</code>, <code>stored = round(value × scale)</code>, nodata <code>-32768</code></td>
-<td>2 to 3 times smaller than <code>float32</code>; the scale is given in the JSON</td>
-</tr>
-<tr>
-<td>Static layers</td>
-<td>one band (e.g. <code>topg</code> when the bed does not change)</td>
-<td></td>
-</tr>
-<tr>
-<td>CRS</td>
-<td>the CRS of the model grid, no reprojection</td>
-<td>the values stay those of the model</td>
-</tr>
-<tr>
-<td>Mask</td>
-<td>nodata off the ice for ice fields; whole domain for <code>topg</code>, <code>usurf</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Typical scales: 1 for metres and m/yr (<code>thk</code>, <code>usurf</code>, <code>topg</code>, speeds), 100 for SMB and dh/dt (cm precision),
-1000 for ratios and friction in MPa. Use <code>float32</code> only when the range of a field does not fit in <code>int16</code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Band interleave with GDAL &lt; 3.11</p>
-<p>The COG driver of GDAL ≤ 3.10 ignores <code>INTERLEAVE=BAND</code> and writes a pixel-interleaved file, which forces the viewer
-to download all time steps of a block at once. With an older GDAL, write a tiled band-interleaved GeoTIFF, build its
-overviews, then copy it with <code>rasterio.shutil.copy(src, dst, driver="GTiff", tiled=True, interleave="band",
-copy_src_overviews=True)</code>, which gives the COG layout.</p>
-</div>
-<h3 id="igm_viewerjson"><code>igm_viewer.json</code></h3>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"igm_viewer/1"</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"study"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aletsch-2100"</span><span class="p">,</span><span class="w"> </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Great Aletsch Glacier to 2100"</span><span class="p">,</span><span class="w"> </span><span class="nt">"authors"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;authors&gt;"</span><span class="p">,</span><span class="w"> </span><span class="nt">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2026</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">            </span><span class="nt">"doi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5281/zenodo.XXXXXXX"</span><span class="p">,</span><span class="w"> </span><span class="nt">"paper"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://doi.org/…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"licence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CC-BY-4.0"</span><span class="p">,</span><span class="w"> </span><span class="nt">"igm_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.2"</span><span class="p">},</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aletsch"</span><span class="p">,</span><span class="w"> </span><span class="nt">"region_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Great Aletsch Glacier"</span><span class="p">,</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"crs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EPSG:32632"</span><span class="p">,</span><span class="w"> </span><span class="nt">"crs_proj4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs"</span><span class="p">,</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">"resolution_m"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">xmi</span><span class="kc">n</span><span class="p">,</span><span class="w"> </span><span class="err">ymi</span><span class="kc">n</span><span class="p">,</span><span class="w"> </span><span class="err">xmax</span><span class="p">,</span><span class="w"> </span><span class="err">ymax</span><span class="p">],</span><span class="w"> </span><span class="nt">"bounds_wgs84"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">lo</span><span class="kc">n</span><span class="err">mi</span><span class="kc">n</span><span class="p">,</span><span class="w"> </span><span class="err">la</span><span class="kc">t</span><span class="err">mi</span><span class="kc">n</span><span class="p">,</span><span class="w"> </span><span class="err">lo</span><span class="kc">n</span><span class="err">max</span><span class="p">,</span><span class="w"> </span><span class="err">la</span><span class="kc">t</span><span class="err">max</span><span class="p">],</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">"grid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">rows</span><span class="p">,</span><span class="w"> </span><span class="err">cols</span><span class="p">],</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2020.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2021.0</span><span class="p">,</span><span class="w"> </span><span class="err">…</span><span class="p">],</span><span class="w"> </span><span class="nt">"time_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yr"</span><span class="p">,</span><span class="w"> </span><span class="nt">"time_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"year"</span><span class="p">,</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">"interleave"</span><span class="p">:</span><span class="w"> </span><span class="s2">"band"</span><span class="p">,</span><span class="w"> </span><span class="nt">"blocksize"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">"thk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thk.tif"</span><span class="p">,</span><span class="w"> </span><span class="nt">"dtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int16"</span><span class="p">,</span><span class="w"> </span><span class="nt">"scale"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"nodata"</span><span class="p">:</span><span class="w"> </span><span class="mi">-32768</span><span class="p">,</span><span class="w"> </span><span class="nt">"bands"</span><span class="p">:</span><span class="w"> </span><span class="mi">81</span><span class="p">,</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">            </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w"> </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ice thickness"</span><span class="p">,</span><span class="w"> </span><span class="nt">"colormap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"viridis"</span><span class="p">,</span><span class="w"> </span><span class="nt">"vmin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"vmax"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w"> </span><span class="nt">"log"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">            </span><span class="nt">"mask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ice"</span><span class="p">,</span><span class="w"> </span><span class="nt">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preview/thk_1km.tif"</span><span class="p">},</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nt">"smb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"smb.tif"</span><span class="p">,</span><span class="w"> </span><span class="nt">"dtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int16"</span><span class="p">,</span><span class="w"> </span><span class="nt">"scale"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">"nodata"</span><span class="p">:</span><span class="w"> </span><span class="mi">-32768</span><span class="p">,</span><span class="w"> </span><span class="nt">"bands"</span><span class="p">:</span><span class="w"> </span><span class="mi">81</span><span class="p">,</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">            </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m ice/yr"</span><span class="p">,</span><span class="w"> </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"surface mass balance"</span><span class="p">,</span><span class="w"> </span><span class="nt">"colormap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RdBu_r"</span><span class="p">,</span><span class="w"> </span><span class="nt">"vmin"</span><span class="p">:</span><span class="w"> </span><span class="mi">-10</span><span class="p">,</span><span class="w"> </span><span class="nt">"vmax"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">            </span><span class="nt">"log"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"mask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ice"</span><span class="p">}</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">}</span>
-</span></code></pre></div>
-<p><code>time</code> has one entry per band (a single entry for a static product). <code>colormap</code> is a Matplotlib name among those the
-viewer ships (<code>viridis</code>, <code>inferno</code>, <code>magma</code>, <code>plasma</code>, <code>gist_earth</code>, <code>RdBu_r</code>, <code>coolwarm</code>, <code>Reds</code>, <code>Set1</code>); <code>vmin</code>,
-<code>vmax</code> and <code>log</code> set the default colour scale. <code>preview</code> is optional.</p>
+<p>A study in the <a href="../">map viewer</a> is a set of files archived on Zenodo, plus one entry in the viewer's catalogue.
+The website holds the page and the catalogue only; the viewer reads the data from the archive by HTTP range requests.</p>
+<p>Each study is the data of a paper and is named <code>YEAR-FirstAuthor-JOURNAL</code>, e.g. <code>2026-Doe-TC</code> for a paper published in
+2026 in The Cryosphere whose first author is J. Doe. Use the usual journal abbreviation (<code>TC</code>, <code>GMD</code>, <code>JGlac</code>, <code>GRL</code>,
+<code>NatGeo</code>, …). The viewer lists the studies by this name, most recent first.</p>
 <h2 id="steps">Steps</h2>
-<ol>
-<li><strong>Produce the files</strong> from the netCDF output of your run (<code>output.nc</code>, dimensions <code>time, y, x</code>), one folder per region
-   as above. Check them: <code>rio info thk.tif</code> must show <code>interleave: band</code> and 256 × 256 blocks.</li>
-<li><strong>Upload to Zenodo</strong> the files individually (not a zip: a zip cannot be read by ranges). Zenodo records are flat:
-   name the files <code>&lt;region&gt;__&lt;file&gt;</code>, e.g. <code>aletsch__thk.tif</code>, <code>aletsch__igm_viewer.json</code>,
-   <code>aletsch__preview__thk_1km.tif</code>. A record holds up to 100 files and 50 GB. Publish and note the DOI.</li>
-<li>
-<p><strong>Add the study to the catalogue</strong>: open a pull request on the
-   <a href="https://github.com/instructed-glacier-model/igm-doc" target="_blank">documentation repository</a> adding an entry to
-   <code>docs/viewer/app/studies.json</code>:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="nt">"studies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aletsch-2100"</span><span class="p">,</span><span class="w"> </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Great Aletsch Glacier to 2100"</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">   </span><span class="nt">"base_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://zenodo.org/records/XXXXXXX/files"</span><span class="p">,</span><span class="w"> </span><span class="nt">"layout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zenodo-flat"</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">   </span><span class="nt">"regions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"aletsch"</span><span class="p">],</span><span class="w"> </span><span class="nt">"doi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5281/zenodo.XXXXXXX"</span><span class="p">}</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">]}</span>
+<h3 id="1-export-the-outputs">1. Export the outputs</h3>
+<p><code>igm_export_for_viewer</code> converts the netCDF outputs of IGM (<code>output.nc</code>, dimensions <code>time, y, x</code>) into the files of a
+study. Describe the study in a file, here with two RGI regions:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Glaciers of the Alps and Iceland to 2100</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">authors</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">Jane Doe</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">John Roe</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">journal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TC</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">doi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.5281/zenodo.XXXXXXX</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">paper</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://doi.org/10.5194/tc-XX-XXXX-2026</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">licence</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC-BY-4.0</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nt">time_steps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">every:5</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nt">layers</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">thk</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">usurf</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">topg</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">smb</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">velsurf_mag</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nt">layer_options</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">thk</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">vmax</span><span class="p">:</span><span class="w"> </span><span class="nv">800</span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nt">regions</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">alps</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">outputs/alps/output.nc</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EPSG:32632</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Central Europe (RGI 11)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">iceland</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">outputs/iceland/output.nc</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EPSG:32627</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Iceland (RGI 06)</span>
 </span></code></pre></div>
-<p><code>base_url</code> + <code>/&lt;region&gt;__&lt;file&gt;</code> must answer HTTP range requests (status 206) with
-<code>Access-Control-Allow-Origin: *</code>, which Zenodo does. For a folder layout (<code>&lt;base_url&gt;/&lt;region&gt;/&lt;file&gt;</code>, e.g. on S3),
-omit <code>layout</code>. An optional <code>mirror_url</code> with the same layout is tried first and used when it answers within 2 s.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>igm_export_for_viewer<span class="w"> </span>study.yaml<span class="w"> </span>--out<span class="w"> </span>viewer_export
+</span></code></pre></div>
+<p>The study name is built from <code>year</code>, the family name of the first author and <code>journal</code>; give <code>id</code> to set it yourself.
+<code>doi</code> and <code>paper</code> are optional. <code>time_steps</code> is <code>all</code>, <code>every:N</code> or a list of times. <code>layer_options</code> overrides the
+default colour scale or labels of a layer (<code>vmin</code>, <code>vmax</code>, <code>colormap</code>, <code>log</code>, <code>label</code>, <code>unit</code>); <code>valid_min</code> and
+<code>valid_max</code> drop values outside a range, e.g. placeholder values in the netCDF. <code>mask: ice</code> keeps a layer only where there
+is ice (for a layer that does not change in time, where there is ice at any time step), <code>mask: domain</code> everywhere. <code>crs</code> is needed when
+the netCDF has no <code>pyproj_srs</code> attribute. Region names are short lowercase words; they appear in the file names and in
+the links to the viewer.</p>
+<p><code>file</code> may also be a list of files or a pattern (<code>outputs/C*.nc</code>): runs made on tiles of one aligned grid, with the
+same times, are merged into one map. Merging keeps the number of files small, as a Zenodo record holds at most 100.
+<code>time_offset</code> is added to the times of the netCDF, e.g. <code>time_offset: 2020</code> for runs whose time starts at 0 in 2020.
+<code>igm_version</code> records the version of IGM used for the runs when it is not the installed one.</p>
+<p>The 3D view of the viewer uses <code>usurf</code> for the ice surface and <code>topg</code> elsewhere: keep both layers to offer it.</p>
+<h4 id="scenarios">Scenarios</h4>
+<p>When the study compares several runs of the same regions (climate scenarios, sensitivity experiments, …), list them
+under <code>scenarios:</code> instead of <code>regions:</code>. Each scenario has a label and its own regions, which must be the same in
+every scenario and on the same grid:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">scenarios</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">ssp126</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSP1-2.6</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">regions</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">alps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="nv">outputs/alps_ssp126/output.nc</span><span class="p p-Indicator">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">iceland</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="nv">outputs/iceland_ssp126/output.nc</span><span class="p p-Indicator">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">ssp585</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSP5-8.5</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">regions</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">      </span><span class="nt">alps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="nv">outputs/alps_ssp585/output.nc</span><span class="p p-Indicator">}</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="nt">iceland</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="nv">outputs/iceland_ssp585/output.nc</span><span class="p p-Indicator">}</span>
+</span></code></pre></div>
+<p>Keys given at the top of the study file (<code>crs</code>, <code>time_offset</code>, …) apply to every scenario, and can be set again in a
+scenario or a region. The viewer then shows one button per scenario, keeps the place, layer, year and colour scale
+when switching, and draws one curve per scenario in the time series of a cell. The colour scale of a layer is the same
+for all scenarios. Scenario names are short lowercase words.</p>
+<h4 id="studies-made-of-geotiff-tiles">Studies made of GeoTIFF tiles</h4>
+<p>Global studies are often delivered as one GeoTIFF per glacier and layer, each in its own projection. Give them under
+<code>tiles:</code> instead of <code>regions:</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">tiles</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">layers</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">thk</span><span class="p">:</span><span class="w"> </span><span class="s">"data/Thk/RGI-*/**/*_thk.tif"</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">topg</span><span class="p">:</span><span class="w"> </span><span class="s">"data/Topg/RGI-*/**/*_topg.tif"</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s">"RGI-(\\d\\d)"</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"rgi{group}"</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="s">"11"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Central</span><span class="nv"> </span><span class="s">Europe"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"13"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Central</span><span class="nv"> </span><span class="s">Asia"</span><span class="p p-Indicator">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">resolution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+</span></code></pre></div>
+<p>Files of the same glacier share their name up to the last <code>_</code>. Tiles are grouped by the part of their path matched by
+<code>group</code>; within a group, nearby glaciers are gathered into regions (<code>gap_km</code>, default 150), each on its own equal-area
+grid at <code>resolution</code> metres and below <code>max_cells</code> cells (default 2e8). Regions are named after <code>name</code>, with <code>-1</code>,
+<code>-2</code>, … when a group is split. Such studies have no time axis.</p>
+<p>A study with a single run can be exported without a study file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>igm_export_for_viewer<span class="w"> </span>outputs/alps/output.nc<span class="w"> </span>--id<span class="w"> </span><span class="m">2026</span>-Doe-TC<span class="w"> </span>--region<span class="w"> </span>alps<span class="w"> </span>--crs<span class="w"> </span>EPSG:32632<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>--title<span class="w"> </span><span class="s2">"Glaciers of the Alps to 2100"</span><span class="w"> </span>--out<span class="w"> </span>viewer_export
+</span></code></pre></div>
+<p>Layers missing from a netCDF are skipped; speeds are computed from their components when needed. The tool prints the
+size of each layer and writes, in the output folder, the two files to upload (<code>igm_viewer.json</code> and <code>data.bin</code>) and
+<code>studies_entry.json</code>, the entry for the catalogue.</p>
+<h3 id="2-check-it-locally">2. Check it locally</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>igm_export_for_viewer<span class="w"> </span>--serve<span class="w"> </span>viewer_export
+</span></code></pre></div>
+<p>opens a local server and prints a link to the viewer showing the exported study, before anything is uploaded.</p>
+<h3 id="3-upload-to-zenodo">3. Upload to Zenodo</h3>
+<p>Create a new Zenodo record titled like the study, upload the two files <code>igm_viewer.json</code> and <code>data.bin</code> as they are,
+and publish it:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Zenodo record 1234567   2026-Doe-TC   doi:10.5281/zenodo.1234567
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── igm_viewer.json     description of the study, its layers and where their data are in data.bin
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>└── data.bin            the data: Cloud-Optimized GeoTIFFs placed one after the other
+</span></code></pre></div>
+<p>A study of any size fits in these two files (a very large study gets <code>data_1.bin</code>, <code>data_2.bin</code>, … of 20 GB each), so
+the record stays far below the Zenodo limits of 100 files and 50 GB. Note the record number.</p>
+<h3 id="4-add-the-study-to-the-catalogue">4. Add the study to the catalogue</h3>
+<p>The catalogue is the file <code>docs/viewer/app/studies.json</code> of the
+<a href="https://github.com/instructed-glacier-model/igm-doc" target="_blank">documentation repository</a>. To add a study,
+open a pull request:</p>
+<ol>
+<li>On GitHub, open
+   <a href="https://github.com/instructed-glacier-model/igm-doc/blob/main/docs/viewer/app/studies.json" target="_blank"><code>docs/viewer/app/studies.json</code></a>
+   and click the pencil (<em>Edit this file</em>). GitHub makes a fork of the repository for you.</li>
+<li>
+<p>Paste the content of <code>studies_entry.json</code> into the list, replace <code>&lt;record&gt;</code> by the record number, and add the DOI
+   of the data:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span><span class="nt">"studies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-Doe-TC"</span><span class="p">,</span><span class="w"> </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glaciers of the Alps and Iceland to 2100"</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">   </span><span class="nt">"base_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://zenodo.org/api/records/1234567/files"</span><span class="p">,</span><span class="w"> </span><span class="nt">"url_suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/content"</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">   </span><span class="nt">"doi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.5281/zenodo.1234567"</span><span class="p">}</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">]}</span>
+</span></code></pre></div>
+<p>Separate entries by commas; their order does not matter.</p>
 </li>
 <li>
-<p><strong>Check the study</strong> before the pull request: serve the folder locally with a server that supports range requests
-   (Python's <code>http.server</code> does not), write a local <code>studies.json</code>, and open the viewer with
-   <code>…/viewer/app/index.html?catalogue=&lt;url of your studies.json&gt;</code>.</p>
+<p>Click <em>Commit changes</em>, then <em>Propose changes</em>, and <em>Create pull request</em>. Give the study name as title and the
+   paper in the description.</p>
 </li>
 </ol>
+<p>The maintainers check that the study opens in the viewer and merge the pull request. The study appears on the website
+at the next deployment of the documentation, and can then be linked directly, e.g.
+<code>https://igm-model.org/latest/viewer/#study=2026-Doe-TC&amp;region=iceland&amp;layer=thk&amp;t=2050</code>.</p>
+<h2 id="format">Format</h2>
+<p>The data of a study are Cloud-Optimized GeoTIFFs in the CRS of the model grid, with 256 × 256 blocks and overviews,
+one per region, scenario, layer and chunk of time steps. The time steps of a chunk are stored together in each pixel
+(<code>INTERLEAVE=PIXEL</code>, band <em>k</em> described as <code>TIME=&lt;year&gt;</code>): one request returns a block for every step of the chunk,
+which keeps animations and time series fast and within the request limits of Zenodo. A chunk holds the whole series up
+to 40 steps, and 25 steps beyond (<code>time_chunk</code> in the study file or <code>--time-chunk</code> to change it). Values are stored as
+<code>int16</code>, <code>stored = round(value × scale)</code>, nodata <code>-32768</code>; layers that do not change in time have a single band. Ice
+fields are masked where <code>thk</code> is below 1 m (<code>ice_threshold</code> in the study file).</p>
+<p><code>data.bin</code> holds these files one after the other, and <code>igm_viewer.json</code> (schema <code>igm_viewer/2</code>) gives the scenarios,
+the regions with their grid, the layers with their scale, unit, label and default colour scale, the time axis, and for
+each chunk its file name and position in <code>data.bin</code>. With more than one region, a 1 to a few km overview of the last time step
+makes a world overview region, clickable to open each region (<code>overview: true</code> or <code>false</code> in the study file to force it).</p>
+<p>To get the GeoTIFFs as plain files, for QGIS, GDAL or <code>rasterio</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>igm_export_for_viewer<span class="w"> </span>--unpack<span class="w"> </span>viewer_export
+</span></code></pre></div>
+<p>writes them into <code>viewer_export/files</code>. Export with <code>--no-container</code> to get the plain files directly, e.g. to host a
+study elsewhere than on Zenodo; the server must then answer HTTP range requests and send
+<code>Access-Control-Allow-Origin: *</code>.</p>
 <h2 id="size">Size</h2>
-<p>A 1000 × 1000 grid in <code>int16</code>, glacier-masked, takes 0.3 to 1 MB per time step and layer; overviews add about a third.
-A 50-step transient run with 10 layers is therefore 150 MB to 1 GB. One screen of one time step reads 4 to 8 blocks, about
-50 to 200 kB, however many time steps the file holds.</p>
+<p>Glacier-masked, one time step of one layer takes about 0.1 to 0.5 MB per million grid cells. For example, the European
+Alps at 100 m (17 million cells) with 3 scenarios, 5 layers and 7 time steps take 36 MB. A screen reads a few blocks
+of the chunk holding the current step; moving in time, playing and time series then need few or no more requests.
+Use <code>time_steps: every:N</code> to thin long runs.</p>
 
 
 
@@ -4652,13 +4779,13 @@ A 50-step transient run with 10 layers is therefore 150 MB to 1 GB. One screen o
         
         
           
-          <a href="../../about/credits_and_references/" class="md-footer__link md-footer__link--next" aria-label="Next: Authors">
+          <a href="../../edu/" class="md-footer__link md-footer__link--next" aria-label="Next: Edu">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Authors
+                Edu
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4700,7 +4827,7 @@ A 50-step transient run with 10 layers is therefore 150 MB to 1 GB. One screen o
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.code.select", "content.tabs.link", "navigation.indexes", "navigation.path", "navigation.instant.progress", "navigation.tabs", "navigation.footer", "toc.integrate", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
