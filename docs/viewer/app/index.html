@@ -19,13 +19,22 @@
     <select id="study"></select>
     <div id="studyinfo" class="info"></div>
 
+    <div id="scenbox">
+      <label>Scenario</label>
+      <div class="chips" id="scenarios"></div>
+    </div>
+
     <div id="regionbox">
       <label>Region</label>
       <div class="chips" id="regions"></div>
+      <select id="regionsel"></select>
     </div>
 
     <label>Layer</label>
-    <select id="field"></select>
+    <div class="row tight">
+      <select id="field"></select>
+      <button id="b3d" title="3D view of the current map extent">3D view</button>
+    </div>
 
     <div id="timebox">
       <label><span id="tlabel">Time</span> <span id="tval" class="tval"></span></label>
@@ -62,10 +71,25 @@
     <div id="val" class="val"></div>
     <div id="tsbox">
       <div class="tshead"><span id="tstitle"></span><button id="tsclose" title="close">×</button></div>
-      <canvas id="ts" width="560" height="220"></canvas>
+      <canvas id="ts" width="560" height="260"></canvas>
     </div>
     <div class="hint" id="hint"></div>
+    <div class="hint" id="busy"></div>
     <details id="debug"><summary>requests</summary><div id="net"></div></details>
+  </div>
+</div>
+<div id="view3d">
+  <div id="v3host"></div>
+  <div id="v3attr"></div>
+  <div id="v3bar">
+    <label>Vertical exaggeration
+      <select id="ex3d"><option value="1">1×</option><option value="1.5" selected>1.5×</option><option value="2">2×</option><option value="3">3×</option></select>
+    </label>
+    <label>Ice
+      <select id="ice3d"><option value="layer" selected>layer colours</option><option value="white">white</option><option value="removed">removed (bed)</option></select>
+    </label>
+    <button id="home3d" title="back to the initial view">reset view</button>
+    <button id="close3d">back to map</button>
   </div>
 </div>
 <div id="msg"></div>

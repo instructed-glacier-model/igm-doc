@@ -4,6 +4,8 @@ IGM is built around a **modular architecture**: every physical process and every
 
 ## Architecture
 
+![Overview of the IGM modular architecture](../fig/igm_flowchart.svg)
+
 A simulation is assembled from four categories of modules:
 
 - **Input modules** load data (bedrock, observations, climate) into the shared model state before the time loop begins.

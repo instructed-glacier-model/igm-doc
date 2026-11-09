@@ -15,7 +15,7 @@ nav:
         - Nvidia Drivers: installation/other/nvidia_drivers.md
         - Virtual Environments: installation/other/virtual_environment.md
         - WSL (Windows): installation/other/wsl_windows.md
-  - Getting Started:
+  - Start:
       - Overview: getting_started.md
       - Tutorials:
           - tutorials/index.md
@@ -111,6 +111,7 @@ nav:
   - Viewer:
       - Map Viewer: viewer/index.md
       - Publishing a Study: viewer/publishing.md
+  - Edu: edu/index.md
   - About:
       - Authors: about/credits_and_references.md
       - Citing IGM: about/cite.md

@@ -5,8 +5,8 @@ hide:
 
 # Map viewer
 
-Browse the outputs of studies made with IGM: pick a **study**, a **region** when the study has several, a **layer**
-(ice thickness, surface speed, surface mass balance, …) and, for transient runs, a **time step**.
+Browse the outputs of studies made with IGM: pick a **study**, a **scenario** and a **region** when the study has
+several, a **layer** (ice thickness, surface speed, surface mass balance, …) and, for transient runs, a **time step**.
 
 <div class="igm-viewer-frame">
   <iframe id="igm-viewer" src="app/index.html" title="IGM map viewer" allow="fullscreen"></iframe>
@@ -33,12 +33,13 @@ Browse the outputs of studies made with IGM: pick a **study**, a **region** when
 
 | Action | How |
 |---|---|
-| Change study, region, layer | panel on the left |
+| Change study, scenario, region, layer | panel on the left; on the world overview, click a region outline |
 | Move in time (transient studies) | time slider, ← / → keys, ▶ (or space) to play |
 | Read a value | move the mouse over the map |
-| Time series at a point | click a cell (transient studies) |
+| Time series at a point | click a cell (transient studies), one curve per scenario |
+| 3D view | **3D view** shows the current map extent in 3D, following the time slider; drag to move, right drag (or ctrl + drag) to rotate and tilt, wheel to zoom; the ice surface shows the layer or white ice, or the ice is removed to show the bed |
 | Colour scale | type the min / max, ↺ resets the study's default |
-| Share a view | copy the URL: study, region, layer and time are kept in it |
+| Share a view | copy the URL: study, scenario, region, layer, time and 3D are kept in it |
 
 The data are never stored on this website. Each study is a set of
 [Cloud-Optimized GeoTIFF](https://cogeo.org/){:target="_blank"} files archived on
