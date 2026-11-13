@@ -131,13 +131,32 @@
     "color": "#4667a4",
     "community": false
   },
+  "bmb": {
+    "needs": [],
+    "updates": [
+      "bmb",
+      "shelf_melt_rate",
+      "grounded_fraction"
+    ],
+    "color": "#3a9e7a",
+    "community": false
+  },
+  "calving_rate": {
+    "needs": [],
+    "updates": [
+      "calving_rate",
+      "frontal_melt_rate"
+    ],
+    "color": "#b85c38",
+    "community": false
+  },
   "climate": {
     "needs": [
       "t",
       "usurf"
     ],
     "updates": [],
-    "color": "#3a9e7a",
+    "color": "#7b56b0",
     "community": false
   },
   "enthalpy": {
@@ -151,7 +170,7 @@
       "E",
       "basal_melt_rate"
     ],
-    "color": "#b85c38",
+    "color": "#c4972a",
     "community": false
   },
   "iceflow": {
@@ -159,6 +178,7 @@
       "thk",
       "usurf",
       "topg",
+      "water_level",
       "arrhenius"
     ],
     "updates": [
@@ -167,7 +187,23 @@
       "ubar",
       "vbar"
     ],
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
+    "community": false
+  },
+  "ocean": {
+    "needs": [
+      "t",
+      "thk",
+      "topg",
+      "lsurf",
+      "water_level"
+    ],
+    "updates": [
+      "ocean_temp",
+      "ocean_salinity",
+      "ocean_thermal_forcing"
+    ],
+    "color": "#a44670",
     "community": false
   },
   "particles": {
@@ -179,7 +215,7 @@
     "updates": [
       "particle"
     ],
-    "color": "#c4972a",
+    "color": "#6a7f3a",
     "community": false
   },
   "smb": {
@@ -187,34 +223,41 @@
     "updates": [
       "smb"
     ],
-    "color": "#2a8fb0",
+    "color": "#b04a4a",
     "community": false
   },
   "subglacial_hydrology": {
     "needs": [
-      "thk"
+      "thk",
+      "water_level"
     ],
     "updates": [
       "effective_pressure"
     ],
-    "color": "#a44670",
+    "color": "#5a7ab8",
     "community": false
   },
   "thk": {
     "needs": [
       "thk",
       "topg",
+      "water_level",
       "ubar",
       "vbar",
-      "smb",
       "dt"
     ],
     "updates": [
       "thk",
+      "lsurf",
       "usurf",
-      "divflux"
+      "divflux",
+      "Href",
+      "psi",
+      "calved_thk",
+      "calving_unapplied_thk",
+      "ice_area_fraction"
     ],
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "community": false
   },
   "time": {
@@ -226,7 +269,7 @@
       "t",
       "dt"
     ],
-    "color": "#b04a4a",
+    "color": "#3a9e7a",
     "community": false
   }
 };
@@ -236,6 +279,18 @@
     "members": [
       "E",
       "basal_melt_rate"
+    ],
+    "grouped": true
+  },
+  {
+    "id": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 psi",
+    "members": [
+      "Href",
+      "calved_thk",
+      "calving_unapplied_thk",
+      "divflux",
+      "ice_area_fraction",
+      "psi"
     ],
     "grouped": true
   },
@@ -263,11 +318,21 @@
     "grouped": false
   },
   {
-    "id": "divflux",
+    "id": "bmb \u00b7 grounded_fraction \u00b7 shelf_melt_rate",
     "members": [
-      "divflux"
+      "bmb",
+      "grounded_fraction",
+      "shelf_melt_rate"
     ],
-    "grouped": false
+    "grouped": true
+  },
+  {
+    "id": "calving_rate \u00b7 frontal_melt_rate",
+    "members": [
+      "calving_rate",
+      "frontal_melt_rate"
+    ],
+    "grouped": true
   },
   {
     "id": "dt",
@@ -282,6 +347,22 @@
       "effective_pressure"
     ],
     "grouped": false
+  },
+  {
+    "id": "lsurf",
+    "members": [
+      "lsurf"
+    ],
+    "grouped": false
+  },
+  {
+    "id": "ocean_salinity \u00b7 ocean_temp \u00b7 ocean_thermal_forcing",
+    "members": [
+      "ocean_salinity",
+      "ocean_temp",
+      "ocean_thermal_forcing"
+    ],
+    "grouped": true
   },
   {
     "id": "particle",
@@ -332,6 +413,13 @@
       "usurf"
     ],
     "grouped": false
+  },
+  {
+    "id": "water_level",
+    "members": [
+      "water_level"
+    ],
+    "grouped": false
   }
 ];
   const LINKS_DATA = [
@@ -347,7 +435,7 @@
     "source": "thk",
     "target": "E \u00b7 basal_melt_rate",
     "proc": "enthalpy",
-    "color": "#b85c38",
+    "color": "#c4972a",
     "self": false,
     "community": false
   },
@@ -355,7 +443,7 @@
     "source": "U \u00b7 V",
     "target": "E \u00b7 basal_melt_rate",
     "proc": "enthalpy",
-    "color": "#b85c38",
+    "color": "#c4972a",
     "self": false,
     "community": false
   },
@@ -363,7 +451,7 @@
     "source": "arrhenius",
     "target": "E \u00b7 basal_melt_rate",
     "proc": "enthalpy",
-    "color": "#b85c38",
+    "color": "#c4972a",
     "self": false,
     "community": false
   },
@@ -371,7 +459,7 @@
     "source": "thk",
     "target": "U \u00b7 V",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
     "self": false,
     "community": false
   },
@@ -379,7 +467,7 @@
     "source": "thk",
     "target": "ubar \u00b7 vbar",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
     "self": false,
     "community": false
   },
@@ -387,7 +475,7 @@
     "source": "usurf",
     "target": "U \u00b7 V",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
     "self": false,
     "community": false
   },
@@ -395,7 +483,7 @@
     "source": "usurf",
     "target": "ubar \u00b7 vbar",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
     "self": false,
     "community": false
   },
@@ -403,7 +491,7 @@
     "source": "topg",
     "target": "U \u00b7 V",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
     "self": false,
     "community": false
   },
@@ -411,7 +499,23 @@
     "source": "topg",
     "target": "ubar \u00b7 vbar",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "U \u00b7 V",
+    "proc": "iceflow",
+    "color": "#2a8fb0",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "ubar \u00b7 vbar",
+    "proc": "iceflow",
+    "color": "#2a8fb0",
     "self": false,
     "community": false
   },
@@ -419,7 +523,7 @@
     "source": "arrhenius",
     "target": "U \u00b7 V",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
     "self": false,
     "community": false
   },
@@ -427,7 +531,47 @@
     "source": "arrhenius",
     "target": "ubar \u00b7 vbar",
     "proc": "iceflow",
-    "color": "#7b56b0",
+    "color": "#2a8fb0",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "t",
+    "target": "ocean_salinity \u00b7 ocean_temp \u00b7 ocean_thermal_forcing",
+    "proc": "ocean",
+    "color": "#a44670",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "thk",
+    "target": "ocean_salinity \u00b7 ocean_temp \u00b7 ocean_thermal_forcing",
+    "proc": "ocean",
+    "color": "#a44670",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "topg",
+    "target": "ocean_salinity \u00b7 ocean_temp \u00b7 ocean_thermal_forcing",
+    "proc": "ocean",
+    "color": "#a44670",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "lsurf",
+    "target": "ocean_salinity \u00b7 ocean_temp \u00b7 ocean_thermal_forcing",
+    "proc": "ocean",
+    "color": "#a44670",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "ocean_salinity \u00b7 ocean_temp \u00b7 ocean_thermal_forcing",
+    "proc": "ocean",
+    "color": "#a44670",
     "self": false,
     "community": false
   },
@@ -435,7 +579,7 @@
     "source": "U \u00b7 V",
     "target": "particle",
     "proc": "particles",
-    "color": "#c4972a",
+    "color": "#6a7f3a",
     "self": false,
     "community": false
   },
@@ -443,7 +587,7 @@
     "source": "thk",
     "target": "particle",
     "proc": "particles",
-    "color": "#c4972a",
+    "color": "#6a7f3a",
     "self": false,
     "community": false
   },
@@ -451,7 +595,15 @@
     "source": "thk",
     "target": "effective_pressure",
     "proc": "subglacial_hydrology",
-    "color": "#a44670",
+    "color": "#5a7ab8",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "effective_pressure",
+    "proc": "subglacial_hydrology",
+    "color": "#5a7ab8",
     "self": false,
     "community": false
   },
@@ -459,23 +611,31 @@
     "source": "thk",
     "target": "thk",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "self": true,
     "community": false
   },
   {
     "source": "thk",
-    "target": "usurf",
+    "target": "lsurf",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
   {
     "source": "thk",
-    "target": "divflux",
+    "target": "usurf",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "thk",
+    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 psi",
+    "proc": "thk",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
@@ -483,7 +643,15 @@
     "source": "topg",
     "target": "thk",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "topg",
+    "target": "lsurf",
+    "proc": "thk",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
@@ -491,15 +659,47 @@
     "source": "topg",
     "target": "usurf",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
   {
     "source": "topg",
-    "target": "divflux",
+    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 psi",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "thk",
+    "proc": "thk",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "lsurf",
+    "proc": "thk",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "usurf",
+    "proc": "thk",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "water_level",
+    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 psi",
+    "proc": "thk",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
@@ -507,7 +707,15 @@
     "source": "ubar \u00b7 vbar",
     "target": "thk",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "ubar \u00b7 vbar",
+    "target": "lsurf",
+    "proc": "thk",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
@@ -515,39 +723,15 @@
     "source": "ubar \u00b7 vbar",
     "target": "usurf",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
   {
     "source": "ubar \u00b7 vbar",
-    "target": "divflux",
+    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 psi",
     "proc": "thk",
-    "color": "#6a7f3a",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "smb",
-    "target": "thk",
-    "proc": "thk",
-    "color": "#6a7f3a",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "smb",
-    "target": "usurf",
-    "proc": "thk",
-    "color": "#6a7f3a",
-    "self": false,
-    "community": false
-  },
-  {
-    "source": "smb",
-    "target": "divflux",
-    "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
@@ -555,7 +739,15 @@
     "source": "dt",
     "target": "thk",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
+    "self": false,
+    "community": false
+  },
+  {
+    "source": "dt",
+    "target": "lsurf",
+    "proc": "thk",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
@@ -563,15 +755,15 @@
     "source": "dt",
     "target": "usurf",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
   {
     "source": "dt",
-    "target": "divflux",
+    "target": "Href \u00b7 calved_thk \u00b7 calving_unapplied_thk \u00b7 divflux \u00b7 ice_area_fraction \u00b7 psi",
     "proc": "thk",
-    "color": "#6a7f3a",
+    "color": "#4667a4",
     "self": false,
     "community": false
   },
@@ -579,7 +771,7 @@
     "source": "ubar \u00b7 vbar",
     "target": "t",
     "proc": "time",
-    "color": "#b04a4a",
+    "color": "#3a9e7a",
     "self": false,
     "community": false
   },
@@ -587,7 +779,7 @@
     "source": "ubar \u00b7 vbar",
     "target": "dt",
     "proc": "time",
-    "color": "#b04a4a",
+    "color": "#3a9e7a",
     "self": false,
     "community": false
   }

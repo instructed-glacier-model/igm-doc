@@ -2055,6 +2055,8 @@
       
         
       
+        
+      
     
     
     
@@ -2589,6 +2591,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2610,7 +2616,7 @@
   <span class="md-ellipsis">
     
   
-    Misc
+    Hydrosphere
   
 
     
@@ -2623,6 +2629,152 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydrosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/bmb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bmb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/ocean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ocean
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/calving_rate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    calving_rate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_6" id="__nav_5_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5190,6 +5342,29 @@
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">optimization.relaxation_freq</code>
+        </td>
+        <td class="description_text">If &gt; 0, also apply the nb_relaxation_steps relaxation every relaxation_freq optimization iterations (interleaved), so the optimizer can re-compensate the misfit after each physical projection. 0 = terminal-only (legacy). Requires the thk process group to be loaded.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">optimization.patience</code>
         </td>
         <td class="description_text">Window size (in iterations) for rolling-average early stopping: halts if the recent velsurf cost average exceeds 1.1x the historical best over this window (0 = disabled).</td>
@@ -5201,6 +5376,52 @@
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.patch_size</code>
+        </td>
+        <td class="description_text">Patch-wise (out-of-core) inversion: when the grid exceeds patch_size in any dimension, the gradient tape runs on overlapping windows of patch_size + 2*patch_halo and only the halo-stripped core of each window gradient is kept, bounding peak GPU memory by the window size. 0 disables (always full-grid tape). Grids &lt;= patch_size take the unchanged full-grid path.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1024</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">gridpoint</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">optimization.patch_halo</code>
+        </td>
+        <td class="description_text">Halo width of the patch-wise inversion windows; must exceed the iceflow emulator receptive-field radius so that halo-stripped window gradients equal the full-grid gradient.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">64</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">gridpoint</span>
 
         </td>
       </tr>
@@ -5463,6 +5684,27 @@
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">regularization.usurf</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">regularization.smooth_anisotropy_factor</code>
         </td>
         <td class="description_text">Smooth anisotropy factor for the ice thickness regularization in the optimization</td>
@@ -5520,6 +5762,90 @@
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.divflux_sole_mask</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.fastfric</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.fastfric_uthr</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            300.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">regularization.fastfric_uscale</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            300.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
         </td>
       </tr>
@@ -5692,6 +6018,48 @@
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">fitting.thkprior_scale</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.thkprior_std_floor</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            5.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">fitting.divfluxobs_std</code>
         </td>
         <td class="description_text">Confidence/STD of the flux divergence as input data for the optimization (if 0, divfluxobs_std field must be given)</td>
@@ -5749,6 +6117,48 @@
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.velsurf_fit</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            linear
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">fitting.velsurflog_std</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.1
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
         </td>
       </tr>
@@ -5886,6 +6296,27 @@
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">divflux.pen_dt</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.1
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
         </td>
       </tr>

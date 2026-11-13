@@ -2115,6 +2115,8 @@
       
         
       
+        
+      
     
     
     
@@ -2649,6 +2651,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2670,7 +2676,7 @@
   <span class="md-ellipsis">
     
   
-    Misc
+    Hydrosphere
   
 
     
@@ -2683,6 +2689,152 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydrosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/bmb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bmb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/ocean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ocean
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/calving_rate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    calving_rate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_6" id="__nav_5_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4874,7 +5026,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">water_level.include</code>
         </td>
-        <td class="description_text">Create a uniform 2D <code>state.water_level</code> field. Only applied if <code>water_level</code> is not already loaded from the input data. Required by the iceflow <code>floating</code> energy component for marine / tidewater setups.</td>
+        <td class="description_text">If True, fill <code>state.water_level</code> with the uniform <code>value</code> (a sea or lake level). If False (default), the domain has no ocean: <code>state.water_level</code> is filled with the "no ocean" level (-1e6 m), so nothing floats and lsurf = topg (right for mountain glaciers and for sub-zero synthetic beds such as ISMIP-HOM). A <code>water_level</code> variable in the input file takes precedence over both. With an ocean, also list water_level in processes.iceflow.unified.inputs.</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">False</span>
@@ -4897,7 +5049,7 @@
         <td style="min-width: 200px;">
           <code class="param_name">water_level.value</code>
         </td>
-        <td class="description_text">Value (in metres) used to fill the uniform <code>water_level</code> field when <code>include: True</code>.</td>
+        <td class="description_text">Uniform water level (m) used when <code>include: True</code>, e.g. 0.0 for present-day sea level.</td>
         <td style="text-align: center;">
 
             <span class="float_table">0.0</span>

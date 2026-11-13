@@ -2057,6 +2057,8 @@
       
         
       
+        
+      
     
     
     
@@ -2649,6 +2651,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Optimization algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-solver-newtoncg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct solver: Newton–CG
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2996,6 +3015,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3017,7 +3040,7 @@
   <span class="md-ellipsis">
     
   
-    Misc
+    Hydrosphere
   
 
     
@@ -3030,6 +3053,152 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydrosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bmb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bmb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ocean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ocean
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calving_rate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    calving_rate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_6" id="__nav_5_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4885,7 +5054,7 @@
 <p>The <code>iceflow</code> module is described in further detail in (The IGM developers, in prep.)<sup id="fnref:IGM"><a class="footnote-ref" href="#fn:IGM">1</a></sup>.</p>
 <div class="admonition abstract">
 <p class="admonition-title">State variables</p>
-<p><strong>Reads:</strong> <code>thk</code>, <code>usurf</code>, <code>topg</code>, <code>arrhenius</code></p>
+<p><strong>Reads:</strong> <code>thk</code>, <code>usurf</code>, <code>topg</code>, <code>water_level</code>, <code>arrhenius</code></p>
 <p><strong>Writes:</strong> <code>U</code>, <code>V</code>, <code>ubar</code>, <code>vbar</code></p>
 </div>
 <h2 id="quick-start-up-guide">Quick start-up guide</h2>
@@ -4995,7 +5164,7 @@
 <li>The first term represents viscous dissipation. Here, <span class="arithmatex">\(\mathbf{D}(\mathbf{u}) = (\nabla \mathbf{u} + \nabla \mathbf{u}^\top)/2\)</span> is the strain-rate tensor, <span class="arithmatex">\(A\)</span> is the Arrhenius factor, and <span class="arithmatex">\(n\)</span> is the flow law exponent.</li>
 <li>The second term represents basal friction dissipation, here parametrized with a Weertman law. Here, <span class="arithmatex">\(c\)</span> is the friction coefficient, <span class="arithmatex">\(\mathbf{u}_\mathrm{b}\)</span> is the basal velocity, and <span class="arithmatex">\(m\)</span> is the power-law exponent.</li>
 <li>The third term represents gravitational power, which is the driving force. Here, <span class="arithmatex">\(\rho_\mathrm{i}\)</span> is ice density and <span class="arithmatex">\(g\)</span> is gravitational acceleration.</li>
-<li>The fourth term accounts for the calving-front energy in marine-terminating glaciers, where <span class="arithmatex">\(p_\mathrm{w}\)</span> is the hydrostatic water pressure and <span class="arithmatex">\(\mathbf{n}\)</span> is the outward horizontal unit normal to <span class="arithmatex">\(\Gamma_\mathrm{cf}\)</span>.</li>
+<li>The fourth term accounts for the calving-front energy in marine-terminating glaciers, where <span class="arithmatex">\(p_\mathrm{w}\)</span> is the hydrostatic water pressure and <span class="arithmatex">\(\mathbf{n}\)</span> is the outward horizontal unit normal to <span class="arithmatex">\(\Gamma_\mathrm{cf}\)</span>. The front is found from the geometry: an ice-covered cell next to an ice-free cell whose lower surface lies below the local water level (<code>water_level</code>, read from the input; see the <a href="../thk/"><code>thk</code></a> module for the flotation). Fronts on the sides of the domain are declared with <code>physics.cf_eswn</code>. Floating ice is frictionless: basal friction acts on grounded ice only (<code>sliding.use_mask_gr</code>), with the grounded fraction of the area around each node when <code>sliding.use_subgrid_gl</code> is set.</li>
 </ul>
 <p>The ice velocity is found by minimizing this functional:</p>
 <div class="arithmatex">\[
@@ -5098,6 +5267,8 @@ u(x_i,y_j,z) = \sum_{k=1}^{N_z} (\mathbf{u}_H)_{k,j,i} \, \phi_k(\zeta(z)), \qua
   \mathcal{M} = \mathcal{N} \quad \Rightarrow \quad   (\mathbf{u}_H, \mathbf{v}_H) = \mathcal{N}(\boldsymbol{\theta})
 \]</div>
 <p>The parameters <span class="arithmatex">\(\boldsymbol{\theta}\)</span> are the weights of a neural network <span class="arithmatex">\(\mathcal{N}\)</span> that maps glacier state <span class="arithmatex">\((\mathbf{c}_H, \mathbf{A}_H, \mathbf{h}_H, \mathbf{s}_H)\)</span> to velocity degrees-of-freedom. Typically, the network can be a convolutional neural network (LeCun et al., 2015)<sup id="fnref:LeCun2015"><a class="footnote-ref" href="#fn:LeCun2015">9</a></sup>. Pretrained network can be chosen by specifying <code>unified.network.pretrained: true</code>.</p>
+<p>The architecture is set by <code>unified.network.architecture</code>: <code>cnn</code>, <code>unet</code>, <code>dahunet</code>, <code>fno</code> (a Fourier neural operator) or <code>hybrid_dahunet_fno</code>, a CNN backbone combined with Fourier layers. On marine glaciers, membrane stresses couple the velocity of an ice shelf over long distances; the Fourier layers of <code>fno</code> and <code>hybrid_dahunet_fno</code> capture these long-range interactions, which a convolutional network of limited receptive field cannot.</p>
+<p>Online training is controlled by <code>nbit_init</code> (iterations at the start), <code>retrain_freq</code> (the network is retrained every N time steps) and <code>nbit</code> (iterations per retraining). <code>nbit</code> is either a number or a piecewise-constant schedule over model time, <code>[[t_0, n_0], [t_1, n_1], ...]</code>, e.g. <code>[[0.0, 25], [1.0, 5]]</code> for a larger budget during the first year of a run.</p>
 <div class="admonition tip">
 <p class="admonition-title">Pretrained, no-retraining emulators</p>
 <p>IGM ships a set of <strong>pretrained DahuNet emulators</strong> that predict higher-order
@@ -5106,7 +5277,9 @@ iterative solve. They are trained under a fixed set of physical and numerical
 settings and are only valid inside that regime, which IGM checks automatically at
 load time. The older <code>pinnbp</code> emulators, which are pretrained starting points for
 <strong>online retraining</strong>, are also still available. Both are covered in
-<a href="../../../emulators/pretrained_emulator/">The pretrained ice-flow emulator (DahuNet)</a>.</p>
+<a href="../../../emulators/pretrained_emulator/">The pretrained ice-flow emulator (DahuNet)</a>. With
+<code>unified.network.pretrained.fp16_inference: true</code>, a pretrained network is evaluated in float16, which is
+faster and lighter on memory; it must not be combined with retraining.</p>
 </div>
 <div class="mapping-figure">
 <p><img alt="Network mapping architecture" src="../../../fig/mapping.svg" />
@@ -5145,24 +5318,88 @@ load time. The older <code>pinnbp</code> emulators, which are pretrained startin
 <td>(Vyas et al., 2024)<sup id="fnref:Vyas2024"><a class="footnote-ref" href="#fn:Vyas2024">12</a></sup></td>
 </tr>
 <tr>
+<td><code>cg_newton</code></td>
+<td>Newton–CG for the identity mapping: each Newton step solves the Hessian system by preconditioned conjugate gradients (see <a href="#direct-solver-newton-cg">below</a>)</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ss_esoap</code></td>
+<td>Self-scaling eSOAP for the network mapping: SOAP with an adaptive eigenbasis and a secant-energy self-scaling of the Kronecker preconditioner</td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>sequential</code></td>
 <td>Multi-stage optimization allowing different optimizers and iteration counts in successive phases (see the <a href="#unified-mode">quick start-up guide</a>)</td>
 <td>-</td>
 </tr>
 </tbody>
 </table>
+<h4 id="direct-solver-newtoncg">Direct solver: Newton–CG</h4>
+<p>With the identity mapping, <code>optimizer: cg_newton</code> is the reference solver: at each Newton iteration the search direction <span class="arithmatex">\(\mathbf{d}^{(k)}\)</span> solves <span class="arithmatex">\((\mathbf{H} + \delta\,\mathbf{I})\,\mathbf{d} = -\nabla\mathcal{J}\)</span> by conjugate gradients, with <span class="arithmatex">\(\mathbf{H}\)</span> the Hessian of the energy and <span class="arithmatex">\(\delta\)</span> a Levenberg–Marquardt damping (<code>cg_newton.damping</code>, adapted from the line-search acceptance when <code>damping_adaptive</code> is set), followed by the line search of <code>unified.line_search</code> (<code>armijo</code>, <code>wolfe</code> or <code>hager-zhang</code>). The main options of <code>unified.cg_newton</code> are:</p>
+<ul>
+<li><code>hvp_mode</code>: <code>autodiff</code> evaluates exact Hessian–vector products by automatic differentiation; <code>banded</code> extracts a frozen 9-point horizontal stencil of the Hessian by graph colouring (identity mapping only), from Hessian–vector products of the colouring probes (<code>probe_mode</code>), evaluated <code>probe_batch</code> at a time for MOLHO (memory grows with the batch). The frozen stencil is rebuilt every <code>operator_update_freq</code> Newton iterations.</li>
+<li><code>preconditioner</code>: <code>none</code>, <code>block_jacobi</code> (point-block Jacobi) or <code>barotropic_multigrid</code>, a geometric multigrid V-cycle on the depth-averaged (barotropic) part of the banded Hessian with point-block smoothing (<code>multigrid.smoother_weight</code>, <code>multigrid.smoother_steps</code>, <code>multigrid.coarse_size</code>), for MOLHO with <code>Nz: 2</code>; it keeps the number of CG iterations independent of the grid size. The preconditioner is updated every <code>precond_update_freq</code> Newton iterations.</li>
+<li><code>cg_tol</code>, <code>cg_max_iter</code>: tolerance on the energy-norm residual and iteration cap of each CG solve (an inexact Newton method).</li>
+<li><code>warm_start</code> reuses the previous Newton direction as the initial guess of the next CG solve; <code>cold_restart_interval</code> restarts the solve from a zero velocity every given number of years, so that the solution cannot drift from one step to the next.</li>
+</ul>
+<p>A typical set-up for a marine glacier, stopping when the velocity no longer changes between Newton iterations:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">unified</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identity</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">optimizer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cg_newton</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">nbit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">cg_newton</span><span class="p">:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nt">cg_tol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-2</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">hvp_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">banded</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">probe_batch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nt">preconditioner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">barotropic_multigrid</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">cold_restart_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nt">halt</span><span class="p">:</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="nt">success</span><span class="p">:</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">abs_change</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="nt">metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">u</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="nt">tol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">            </span><span class="c1"># m/yr</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="nt">reduction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rmse</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span><span class="nt">consecutive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Rigid-body modes of floating ice</p>
+<p>The energy <span class="arithmatex">\(\mathcal{J}\)</span> does not determine the velocity of floating ice that has no mechanical anchor to
+grounded ice: an iceberg, or a block of full cells attached to the anchored ice through a single node (a
+hinge), can translate or rotate freely. The exact solver then returns arbitrary, often huge, speeds for these
+cells, which throttle the CFL time step (a network mapping is less sensitive, as the network weights couple the
+velocity across the domain). Set <code>thk.remove_rigid_body_modes: true</code> so that the <code>thk</code> module removes such ice
+after every update (grounded ice is never removed; with a calving front, the nodes that have just filled next
+to the anchored ice are kept, see the <a href="../thk/"><code>thk</code></a> module). The same applies to vanishing ice: cells with
+a thickness of a few centimetres also have an undetermined velocity, so remove them (e.g. with a minimum
+thickness) rather than letting them decay.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Regularizations and the conditioning of the Newton system</p>
+<p>The viscosity and the basal friction are power laws with exponents below one, so their second derivatives
+blow up where the strain rate or the sliding speed vanishes. Both are regularized: <code>physics.ice.regularization</code>
+(default <code>1e-5</code>, dimensionless, added to the strain-rate invariant of Glen's law) and
+<code>physics.sliding.regularization</code> (default <code>1e-10</code> m yr⁻¹, added to the sliding speed in every friction law).
+These two values set the largest curvature of the energy, hence the conditioning of the Hessian: the smaller
+they are, the more PCG iterations each Newton step needs, and in single precision the Hessian can lose positive
+definiteness. The default sliding regularization is practically zero and is meant for the network mapping,
+where it only shapes the loss; for the Newton–CG solver, raise it to the order of 1 m yr⁻¹
+(<code>physics.sliding.regularization: 1.0</code>, the value of the reference solves on marine glaciers) and keep the
+viscosity regularization at its default. If the solver still stalls, needs many CG iterations, or fails on
+slow ice (shear margins, the quasi-stagnant interior of a shelf, frozen patches), increase them further before
+changing the solver settings.</p>
+</div>
 <h3 id="convergence-criteria">Convergence criteria</h3>
 <p>Optimization terminates when a success or failure criterion is met. Multiple criteria can be specified. Example configuration file:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">unified</span><span class="p">:</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">halt</span><span class="p">:</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">success</span><span class="p">:</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rel_tol</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="nt">metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grad_u_norm</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="nt">tol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-6</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="nt">ord</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">l2</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">failure</span><span class="p">:</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nan</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inf</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">unified</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">halt</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">success</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rel_tol</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="nt">metric</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grad_u_norm</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="nt">tol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-6</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="nt">ord</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">l2</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nt">failure</span><span class="p">:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nan</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">inf</span>
 </span></code></pre></div>
 <p><strong>Success criteria</strong>: <code>halt.success</code></p>
 <table>
@@ -5184,6 +5421,10 @@ load time. The older <code>pinnbp</code> emulators, which are pretrained startin
 <tr>
 <td><code>patience</code></td>
 <td>No improvement for specified iterations</td>
+</tr>
+<tr>
+<td><code>abs_change</code></td>
+<td>Absolute change of a metric between two sampled iterates below a threshold (<code>reduction</code>: <code>max</code> or <code>rmse</code> of the pointwise vector change; <code>consecutive</code> samples in a row)</td>
 </tr>
 </tbody>
 </table>
@@ -5261,6 +5502,7 @@ load time. The older <code>pinnbp</code> emulators, which are pretrained startin
 </tr>
 </tbody>
 </table>
+<p>In addition, <code>unified.bc.dirichlet.{left,right,top,bottom}</code> enforces a value on the velocity degrees of freedom of a side of the domain: a scalar sets both components, a pair <code>[u, v]</code> each one, <code>null</code> leaves the side free (e.g. <code>left: [300, 0]</code> for an inflow of 300 m yr⁻¹ at the left side).</p>
 <h2 id="practical-guidance">Practical guidance</h2>
 <h3 id="choosing-a-mapping">Choosing a mapping</h3>
 <p>Use <strong><code>identity</code></strong> for verification purposes — small domains and short simulations where you want to check that the solver is behaving correctly. Use <strong><code>network</code></strong> for production runs: it is faster and scales better to larger domains and longer projections.</p>
@@ -5316,13 +5558,13 @@ load time. The older <code>pinnbp</code> emulators, which are pretrained startin
 </tbody>
 </table>
 <p>Example configuration:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">processes</span><span class="p">:</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unified</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">unified</span><span class="p">:</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">      </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identity</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">      </span><span class="nt">numerics</span><span class="p">:</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="nt">basis_horizontal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">q1</span><span class="w">   </span><span class="c1"># or p1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unified</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">unified</span><span class="p">:</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">      </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">identity</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">      </span><span class="nt">numerics</span><span class="p">:</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="nt">basis_horizontal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">q1</span><span class="w">   </span><span class="c1"># or p1</span>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5334,21 +5576,21 @@ load time. The older <code>pinnbp</code> emulators, which are pretrained startin
 <h3 id="common-issues">Common issues</h3>
 <p><strong>Ice accumulating at domain borders</strong></p>
 <p>If ice builds up artificially along the edge of the domain, set <code>exclude_borders_from_iceflow: True</code>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">processes</span><span class="p">:</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">exclude_borders_from_iceflow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">processes</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">exclude_borders_from_iceflow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
 </span></code></pre></div>
 <p>This prevents the solver from computing velocities in cells that touch the domain boundary, which can otherwise cause spurious accumulation.</p>
 <hr />
 <h2 id="vertical-velocity">Vertical velocity</h2>
 <p>The <code>iceflow</code> module can optionally compute the <strong>3D vertical velocity</strong> <span class="arithmatex">\(w\)</span> right after the horizontal velocity update. It is disabled by default; enable it with:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">iceflow</span><span class="p">:</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">vertical_velocity</span><span class="p">:</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">             </span><span class="c1"># default: false</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">                </span><span class="c1"># default</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluxform</span><span class="w">          </span><span class="c1"># default</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nt">slope_stencil</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staggered</span><span class="w">  </span><span class="c1"># default</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="nt">smooth_sigma</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">         </span><span class="c1"># default, in grid cells (0 = no filter)</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">iceflow</span><span class="p">:</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">vertical_velocity</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">             </span><span class="c1"># default: false</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">                </span><span class="c1"># default</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluxform</span><span class="w">          </span><span class="c1"># default</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nt">slope_stencil</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">staggered</span><span class="w">  </span><span class="c1"># default</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nt">smooth_sigma</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">         </span><span class="c1"># default, in grid cells (0 = no filter)</span>
 </span></code></pre></div>
 <p>This produces <code>state.W</code> (shape <code>Nz × Ny × Nx</code>), <code>state.wvelbase</code> and <code>state.wvelsurf</code>.</p>
 <div class="admonition note">
@@ -5395,23 +5637,23 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 <h2 id="parameters">Parameters</h2>
 <p>The complete default configuration file can be found here: <a href="https://github.com/instructed-glacier-model/igm/blob/main/igm/conf/processes/iceflow.yaml">iceflow.yaml</a>.</p>
 <p>Structure of the parameters:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>iceflow
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├── method
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>├── force_max_velbar
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>├── physics
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>│   └── ...
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>├── numerics
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>│   └── ...
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>├── solver
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>│   └── ...
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>├── emulator
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>│   └── ...
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>├── diagnostic
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>│   └── ...
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>├── unified
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>│   └── ...
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>└── vertical_velocity
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>    └── ...
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>iceflow
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>├── method
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>├── force_max_velbar
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>├── physics
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>│   └── ...
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>├── numerics
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>│   └── ...
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>├── solver
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>│   └── ...
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>├── emulator
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>│   └── ...
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>├── diagnostic
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>│   └── ...
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>├── unified
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>│   └── ...
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>└── vertical_velocity
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    └── ...
 </span></code></pre></div>
 <p>Description of the parameters:</p>
 <table>
@@ -5539,6 +5781,29 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
           <code class="param_name">physics.sliding.use_mask_gr</code>
         </td>
         <td class="description_text">If True, zero out basal shear stress in floating areas.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">physics.sliding.use_subgrid_gl</code>
+        </td>
+        <td class="description_text">Sub-grid friction near the grounding line, with use_mask_gr: true. false: the friction is zeroed at floating nodes (nodal mask). true: the nodal mask is replaced by the grounded fraction of the area around each node (the four quarter cells touching it), computed from the bilinear flotation function with state.topg (grounding-line parameterization of CISM, Leguy et al., 2021, The Cryosphere 15, 3229-3253). This weight multiplies the input the mask acts on (tau_ref; effective_pressure for mohr_coulomb, which then needs tauc_min: 0) when the unified inputs are read from the state, and the energy applies no mask; with weights of 0 or 1 it reproduces the nodal mask. The weight varies continuously as the grounding line moves, and the friction is located to within half a cell. The inputs keep their names and number, so topg need not be a network input. Requires iceflow.method: unified; field_inversion controls are not weighted. The frictional heating uses the same weight.</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">False</span>
@@ -6112,29 +6377,6 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">m</span>
-
-        </td>
-      </tr>
-
-
-
-
-
-
-
-      <tr>
-        <td style="min-width: 200px;">
-          <code class="param_name">physics.min_sr</code>
-        </td>
-        <td class="description_text">Minimal value for the strain rate.</td>
-        <td style="text-align: center;">
-
-            <span class="float_table">1e-20</span>
-
-        </td>
-        <td style="text-align: center; min-width: 100px;">
-
-            <span class="units_text">y<span class="math">\( ^{-1} \)</span></span>
 
         </td>
       </tr>
@@ -7569,10 +7811,10 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.bc.dirichlet.left</code>
         </td>
-        <td class="description_text">Value enforced on the DOFs of the velocity at the left (west) border; note that this sets the degrees of freedom, not the velocity field itself.</td>
+        <td class="description_text">Value enforced on the DOFs of the velocity at the left (west) border: a scalar sets both components, a pair [u, v] each one; null leaves the border free. Note that this sets the degrees of freedom, not the velocity field itself.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            <span class="float or [u, v]_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -7592,10 +7834,10 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.bc.dirichlet.right</code>
         </td>
-        <td class="description_text">Value enforced on the DOFs of the velocity at the right (east) border; note that this sets the degrees of freedom, not the velocity field itself.</td>
+        <td class="description_text">Value enforced on the DOFs of the velocity at the right (east) border: a scalar sets both components, a pair [u, v] each one; null leaves the border free. Note that this sets the degrees of freedom, not the velocity field itself.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            <span class="float or [u, v]_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -7615,10 +7857,10 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.bc.dirichlet.top</code>
         </td>
-        <td class="description_text">Value enforced on the DOFs of the velocity at the top (north) border; note that this sets the degrees of freedom, not the velocity field itself.</td>
+        <td class="description_text">Value enforced on the DOFs of the velocity at the top (north) border: a scalar sets both components, a pair [u, v] each one; null leaves the border free. Note that this sets the degrees of freedom, not the velocity field itself.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            <span class="float or [u, v]_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -7638,10 +7880,10 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.bc.dirichlet.bottom</code>
         </td>
-        <td class="description_text">Value enforced on the DOFs of the velocity at the bottom (south) border; note that this sets the degrees of freedom, not the velocity field itself.</td>
+        <td class="description_text">Value enforced on the DOFs of the velocity at the bottom (south) border: a scalar sets both components, a pair [u, v] each one; null leaves the border free. Note that this sets the degrees of freedom, not the velocity field itself.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">0.0</span>
+            <span class="float or [u, v]_table">0.0</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -7690,10 +7932,10 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.nbit</code>
         </td>
-        <td class="description_text">Number of iterations done to solve the ice flow.</td>
+        <td class="description_text">Number of iterations done to solve the ice flow at each retrain. Either an integer, or a piecewise-constant schedule over model time [[t_0, n_0], [t_1, n_1], ...] with strictly increasing t_k (years, as time.start): n_k applies from t_k on, and n_0 also before t_0. For example [[0.0, 20], [1.0, 5]] trains 20 iterations per retrain during the first year, then 5. A value of 0 means no training at a retrain step.</td>
         <td style="text-align: center;">
 
-            <span class="integer_table">5</span>
+            <span class="integer or [[t, n], ...]_table">5</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -7713,7 +7955,7 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.nbit_init</code>
         </td>
-        <td class="description_text">Number of iterations done initially to solve the ice flow.</td>
+        <td class="description_text">Number of iterations done initially to solve the ice flow. With init_stop enabled, the maximum number of iterations of the initial training.</td>
         <td style="text-align: center;">
 
             <span class="integer_table">300</span>
@@ -7725,6 +7967,371 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
         </td>
       </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.enabled</code>
+        </td>
+        <td class="description_text">Stop the initial training of the network on its true error. At initialisation, the ice flow of the initial state is solved directly (identity mapping and cg_newton); every freq iterations of the initial training, the network's surface speed s is compared with the direct one s_ref, as the median of |s - s_ref| / (s_ref + speed_floor) over grounded and over floating ice. The training stops when both errors meet their targets at consecutive checks in a row, or when they stop improving (patience); nbit_init is the cap. Needs mapping=network and a single optimizer (not sequential); the warm-up steps are not affected. On GPU, enabling it changes the training at rounding level (XLA compiles the training step differently once the check waits for the weights), as another seed would; disabled, nothing changes.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.target_grounded</code>
+        </td>
+        <td class="description_text">Target error over grounded ice (median of |s - s_ref| / (s_ref + speed_floor), in percent).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">%</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.target_floating</code>
+        </td>
+        <td class="description_text">Target error over floating ice (median of |s - s_ref| / (s_ref + speed_floor), in percent).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">2.5</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">%</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.consecutive</code>
+        </td>
+        <td class="description_text">Number of checks in a row at which both targets must be met before the training stops. The error over floating ice can vary a lot from one check to the next, so a value above 1 (e.g. 3) avoids stopping on a lucky check.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.speed_floor</code>
+        </td>
+        <td class="description_text">Speed added to the reference speed in the denominator of the relative error, so that slow ice does not dominate it.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">10.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m y<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.freq</code>
+        </td>
+        <td class="description_text">Training iterations between two checks of the error (a multiple of unified.halt.freq). Each check costs one evaluation of the network on the whole domain.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">50</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.patience</code>
+        </td>
+        <td class="description_text">Also stop when the error has not improved by more than min_gain over this many training iterations (0: never stop on a plateau). The error is max(grounded / target_grounded, floating / target_floating).</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">500</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.min_gain</code>
+        </td>
+        <td class="description_text">Relative decrease of the error that counts as an improvement for the patience.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.05</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.reference.nbit</code>
+        </td>
+        <td class="description_text">Maximum number of Newton iterations of the direct solve (identity mapping and cg_newton, from a zero velocity, with the settings of unified.cg_newton).</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">200</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.reference.tol</code>
+        </td>
+        <td class="description_text">The direct solve stops when the RMSE change of the velocity between Newton iterations stays below tol three times in a row.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">m y<span class="math">\( ^{-1} \)</span></span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.reference.cg_tol</code>
+        </td>
+        <td class="description_text">Tolerance (relative residual) of the CG solve of each Newton step of the direct solve: an inexact Newton method. The other solver settings are those of unified.cg_newton (preconditioner, hvp_mode, ...), which the network does not use; for a MOLHO basis with Nz = 2, preconditioner: barotropic_multigrid with hvp_mode: banded is much faster than the defaults.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.01</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.reference.line_search</code>
+        </td>
+        <td class="description_text">Line search of the direct solve.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">armijo</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.reference.precision</code>
+        </td>
+        <td class="description_text">Floating-point precision of the direct solve (single or double); null uses numerics.precision. Use double when the network trains in single precision on large domains (about a million cells, e.g. a whole ice sheet): there, cg_newton in single precision makes no progress (CG stops at once, and the multigrid coarse operators lose positive definiteness). When it differs from numerics.precision the direct solve builds its own discretization constants and cost function in that precision; its surface speed is then compared in numerics.precision.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">None</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.log</code>
+        </td>
+        <td class="description_text">CSV file of the checks (iterations, error_grounded, error_floating, in percent), in the run folder; an empty string writes none.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">init_stop.csv</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.init_stop.display</code>
+        </td>
+        <td class="description_text">Rich display of the settings, the direct solve, one row per check and a summary. Without it, one summary line is printed.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
 
 
 
@@ -8024,15 +8631,61 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.cg_newton.cg_tol</code>
         </td>
-        <td class="description_text">Tolerance for the conjugate-gradient linear solver in the CG-Newton optimizer.</td>
+        <td class="description_text">Tolerance on the energy-norm residual of the CG linear solve; iteration continues while delta_new is greater than cg_tol squared times delta_0.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1e-10</span>
+            <span class="float_table">1e-20</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.warm_start</code>
+        </td>
+        <td class="description_text">Reuse the previous Newton step direction as the initial guess for the next CG linear solve.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.cold_restart_interval</code>
+        </td>
+        <td class="description_text">Physical-time interval in years between zero-velocity restarts for identity/Newton-CG; zero disables restarts.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">years</span>
 
         </td>
       </tr>
@@ -8068,9 +8721,489 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
-          <code class="param_name">unified.cg_newton.truncated</code>
+          <code class="param_name">unified.cg_newton.line_search_compile</code>
         </td>
-        <td class="description_text">Use truncated (inexact) Newton steps in the CG-Newton optimizer.</td>
+        <td class="description_text">CG-Newton only. If true, run the selected line search as a reusable TensorFlow graph. If false, use the faster eager Armijo loop when line_search is armijo; Wolfe and Hager-Zhang remain compiled because they have no eager path. Both Armijo paths reuse the cost and directional derivative already computed at the current iterate.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.print_timing</code>
+        </td>
+        <td class="description_text">Print synchronized CG and total wall-clock timing for each Newton iteration. Intended for profiling because GPU synchronization slightly affects runtime.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.damping</code>
+        </td>
+        <td class="description_text">Levenberg-Marquardt damping added to the Hessian diagonal, so CG solves (H + damping I) p = -g.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-6</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.damping_adaptive</code>
+        </td>
+        <td class="description_text">Adapt the damping from line-search acceptance. Damping decreases when the quadratic model predicts a near-full step well and increases when it predicts poorly; this lets the method approach an undamped Newton step.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.damping_min</code>
+        </td>
+        <td class="description_text">Lower bound for adaptive Levenberg-Marquardt damping.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-12</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.damping_max</code>
+        </td>
+        <td class="description_text">Upper bound for adaptive Levenberg-Marquardt damping.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e2</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.damping_down</code>
+        </td>
+        <td class="description_text">Multiplicative damping reduction applied when the line search accepts a near-full Newton step.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.25</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.damping_up</code>
+        </td>
+        <td class="description_text">Multiplicative damping increase applied when the line search accepts only a very small Newton step.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">4.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.hvp_mode</code>
+        </td>
+        <td class="description_text">Method used to compute Hessian-vector products: autodiff uses the exact reverse-over-reverse Hessian; banded extracts a frozen 9-point horizontal stencil by graph colouring for identity mappings. Nonperiodic SSA and Nz=2 MOLHO use compact stencils; other supported cases use generalized component blocks.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">autodiff</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.hvp_verify</code>
+        </td>
+        <td class="description_text">For hvp_mode=banded, compare the colour-extracted stencil with the exact autodiff Hessian on a random vector. This debug check is expensive because it traces the otherwise unused double-backward Hessian graph, so it should be enabled when changing the energy or discretization rather than in production.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.probe_mode</code>
+        </td>
+        <td class="description_text">Method used by the component and spatial colouring probes when hvp_mode=banded: autodiff uses exact reverse-over-reverse Hessian-vector products and is the production MOLHO mode; fd uses central finite differences in double precision; forward uses exact forward-over-reverse products for validation. The number of probes depends on Nz and the periodic grid dimensions.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">autodiff</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.probe_batch</code>
+        </td>
+        <td class="description_text">Number of MOLHO stencil probes evaluated per batched autodiff HVP call. Zero evaluates probes individually. Requires an identity mapping with batch size one and probe_mode=autodiff; memory use grows with the batch.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.preconditioner</code>
+        </td>
+        <td class="description_text">CG preconditioner: none, block_jacobi, or barotropic_multigrid. The multigrid option requires identity-mapped MOLHO with Nz=2 and combines full four-component point smoothing with a two-component horizontal coarse correction.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">block_jacobi</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.operator_update_freq</code>
+        </td>
+        <td class="description_text">Number of outer Newton iterations for which a frozen banded Hessian is reused. One rebuilds it every iteration.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.precond_update_freq</code>
+        </td>
+        <td class="description_text">Number of outer Newton iterations between preconditioner updates.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.multigrid.smoother_weight</code>
+        </td>
+        <td class="description_text">Relaxation weight used by the symmetric point-block smoothers in barotropic_multigrid. It is capped at 0.5 on periodic duplicated-endpoint grids to preserve positive definiteness; 0.5 is also the validated ISMIP-HOM setting.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.6666666666666666</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.multigrid.smoother_steps</code>
+        </td>
+        <td class="description_text">Number of point-block smoothing steps before and after each coarse-grid correction.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.cg_newton.multigrid.coarse_size</code>
+        </td>
+        <td class="description_text">Maximum horizontal size of the bottom multigrid level solved by dense Cholesky.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">8</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.enabled</code>
+        </td>
+        <td class="description_text">Enable the diagnostic a-posteriori velocity-error estimator. At the current (network) velocity it evaluates the energy gradient g and the frozen banded Hessian H of cg_newton on a shadow identity mapping, runs k preconditioned CG iterations on (H + damping I) delta = -g (plus newton_steps-1 chord steps), and reports -delta as the estimated error in the units used to score network solves (median relative surface-velocity error over grounded and floating ice, RMSE). Validated against Newton-CG references on AIS 32-4 km, ASE 5-1 km and Aletsch (igm-ais/error_estimator_study.md). Diagnostic only: logs a JSONL line per estimate and publishes state.err_est_* scalars; it never changes the optimization, and when disabled it adds no operation to the optimizer graph.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.freq</code>
+        </td>
+        <td class="description_text">Period, in parameter updates, of the in-loop estimates made by Optimizer._estimate_error when an optimizer loop calls it (0 disables them; the start estimate is controlled by estimate_at_start). Each refresh of the frozen Hessian costs roughly one Newton step without line search, so keep freq large compared with that cost in optimizer iterations.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">250</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.estimate_at_start</code>
+        </td>
+        <td class="description_text">Also estimate the error of the initial iterate before the loop starts (reported as iteration -1). Useful to decide whether an optimization is needed at all.</td>
         <td style="text-align: center;">
 
             <span class="boolean_table">True</span>
@@ -8091,17 +9224,1350 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
-          <code class="param_name">unified.cg_newton.damping</code>
+          <code class="param_name">unified.error_estimator.cg_iters</code>
         </td>
-        <td class="description_text">Damping added to the Hessian diagonal for regularization in the CG-Newton optimizer.</td>
+        <td class="description_text">Sorted list of PCG iteration counts k at which the first Newton step is read off and converted to metrics (one CG run, several checkpoints, keys k<k><em>*). With the barotropic multigrid preconditioner k=5 is already converged on every validated case; use several values only for diagnostics. The largest k feeds the chord steps and, with newton_steps=1, is the estimate reported as est</em>*.</td>
         <td style="text-align: center;">
 
-            <span class="float_table">1e-6</span>
+            <span class="list_table">[10]</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
 
             <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.cg_tol</code>
+        </td>
+        <td class="description_text">Relative tolerance on the preconditioned residual of the PCG solve; iterations stop early when <r, P^-1 r> falls below cg_tol squared times its initial value.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-06</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.hvp_mode</code>
+        </td>
+        <td class="description_text">Hessian-vector product mode for the shadow identity mapping: autodiff (exact, general) or banded (frozen 9-point stencil; compact MOLHO storage for Nz=2, compact SSA for Nz=1).</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">banded</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.probe_mode</code>
+        </td>
+        <td class="description_text">How banded stencils are probed: fd (central finite differences of the gradient; default, halves the first-call trace, exact enough in double precision and automatically replaced by autodiff when the estimator runs in single precision), autodiff (reverse-over-reverse), or forward (forward-over-reverse; traces very slowly on large grids).</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">fd</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.hvp_verify</code>
+        </td>
+        <td class="description_text">At the first estimate, compare the frozen banded Hessian with one exact autodiff Hessian-vector product and warn if they differ by more than 1e-6 relative (diagnoses energies that couple beyond the 9-point stencil).</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.preconditioner</code>
+        </td>
+        <td class="description_text">Preconditioner for the estimator's PCG solve: none, block_jacobi, or barotropic_multigrid (MOLHO Nz=2 with hvp_mode banded).</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">barotropic_multigrid</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.multigrid.smoother_weight</code>
+        </td>
+        <td class="description_text">Relaxation weight of the barotropic_multigrid point-block smoother used by the estimator.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.6666666666666666</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.multigrid.smoother_steps</code>
+        </td>
+        <td class="description_text">Smoothing steps before and after each coarse-grid correction in the estimator's multigrid preconditioner.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.multigrid.coarse_size</code>
+        </td>
+        <td class="description_text">Maximum horizontal size of the bottom multigrid level solved by dense Cholesky in the estimator's preconditioner.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">8</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.damping</code>
+        </td>
+        <td class="description_text">Levenberg-Marquardt damping added to the Hessian diagonal in the estimator's linear solve; keeps ice-free degrees of freedom nonsingular.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-16</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.operator_update_freq</code>
+        </td>
+        <td class="description_text">Optional upper bound on the number of estimates between refreshes of the frozen banded Hessian and preconditioner. Zero relies on the velocity- and input-change guards without a count cap; one rebuilds at every estimate. Between refreshes the stencil is reused at the new gradient, which removes ~85 % of the per-estimate cost.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.operator_refresh_rel_change</code>
+        </td>
+        <td class="description_text">Refresh the frozen Hessian as soon as the RMS relative change of the velocity since the last refresh exceeds this value. Any change in the energy inputs also forces a refresh. A Hessian frozen at an early, near-zero iterate is useless a few hundred iterations later, so a count alone is unsafe.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.05</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.newton_steps</code>
+        </td>
+        <td class="description_text">Number of Newton-type steps accumulated into the estimate. 1 is the linearised correction, which under-estimates floating-ice error by 10-35 % on AIS 16-4 km; each further step is a chord step (gradient re-evaluated at u + delta, same frozen Hessian and preconditioner) costing one gradient and one PCG solve. Validation: 2 steps remove the bias (ratio 0.98-1.04 on AIS, 1.14 on ASE 1 km), 3 steps give 0.94-0.97 everywhere. Default 2 (within the 20 % accuracy target); use 3 for tighter estimates. The k-sweep (k<em>_ keys) always refers to the first step; step<n>_</em> keys hold the accumulated correction, which becomes est_*.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">2</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.disable_xla</code>
+        </td>
+        <td class="description_text">Switch off XLA auto-clustering (enabled globally by the Adam optimizer module) while the estimator's own graphs are built and run. Auto-clustering the large double-precision Hessian graphs costs minutes of compile time and tens of GB of host memory at AIS 4-8 km; the optimizer's graphs keep their XLA setting.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.precision</code>
+        </td>
+        <td class="description_text">Floating-point precision of the estimator (single or double); null uses numerics.precision. Double is the default because the banded Hessian probing and the multigrid coarsening lose positive definiteness in single precision once velocities are realistic (the preconditioner then returns NaN). When it differs from numerics.precision the estimator builds its own discretization constants and cost function in that precision.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">double</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.use_basin_mask</code>
+        </td>
+        <td class="description_text">Restrict the error statistics to state.basinmask &gt; 0.5 when that field exists (matches the ASE scoring convention).</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.record_path</code>
+        </td>
+        <td class="description_text">Path (relative to the run directory) of the JSONL file receiving one line per estimate.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">error_estimate.jsonl</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.save_fields_dir</code>
+        </td>
+        <td class="description_text">If set, write the surface velocity of the iterate and the estimated surface error components to <dir>/fields_<n>.npz at every estimate (offline baselines such as iterate-difference extrapolation). null disables.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">None</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.publish_field</code>
+        </td>
+        <td class="description_text">Publish the estimated surface-velocity error magnitude as the 2-D field state.err_est_surf so it can be listed in outputs vars_to_save.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.reference_file</code>
+        </td>
+        <td class="description_text">Optional NetCDF with uvelsurf and vvelsurf of a reference solution on the same grid. When given, the true error of the current velocity (true_<em>) and of the corrected velocity u + delta (corr_</em>) are logged next to the estimate for validation.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">None</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.error_estimator.verbose</code>
+        </td>
+        <td class="description_text">Print one summary line per estimate.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.cg_max_iter</code>
+        </td>
+        <td class="description_text">Maximum PCG iterations for the damped network-weight Gauss-Newton system.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">50</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.forcing_eta_min</code>
+        </td>
+        <td class="description_text">Minimum Eisenstat-Walker relative residual tolerance.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.01</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.forcing_eta_max</code>
+        </td>
+        <td class="description_text">Maximum Eisenstat-Walker relative residual tolerance.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.5</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.forcing_gamma</code>
+        </td>
+        <td class="description_text">Eisenstat-Walker forcing multiplier.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.9</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.forcing_power</code>
+        </td>
+        <td class="description_text">Exponent applied to consecutive gradient-norm ratios.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.5</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.damping_rel_init</code>
+        </td>
+        <td class="description_text">Initial LM damping relative to the estimated largest Gauss-Newton eigenvalue.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.01</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.damping_rel_min</code>
+        </td>
+        <td class="description_text">Minimum relative LM damping.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-08</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.damping_rel_max</code>
+        </td>
+        <td class="description_text">Maximum relative LM damping.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0e2</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.lm_ratio_low</code>
+        </td>
+        <td class="description_text">Actual/predicted reduction threshold below which damping increases.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.25</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.lm_ratio_high</code>
+        </td>
+        <td class="description_text">Actual/predicted reduction threshold above which damping decreases.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.75</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.damping_down</code>
+        </td>
+        <td class="description_text">Factor used to reduce Gauss-Newton damping after an accurate model step.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.25</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.damping_up</code>
+        </td>
+        <td class="description_text">Factor used to increase Gauss-Newton damping after a rejected or inaccurate step.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">4.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.solve_retries</code>
+        </td>
+        <td class="description_text">Maximum damped-solve retries after negative curvature or line-search rejection.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">3</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.power_iterations</code>
+        </td>
+        <td class="description_text">Power iterations used to estimate spectral scale with identity preconditioning.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">6</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.armijo_c1</code>
+        </td>
+        <td class="description_text">Sufficient-decrease constant for stateless Gauss-Newton trial steps.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0001</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.armijo_contraction</code>
+        </td>
+        <td class="description_text">Step contraction factor for the Gauss-Newton Armijo search.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.5</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.line_search_max_iter</code>
+        </td>
+        <td class="description_text">Maximum stateless cost evaluations in one Gauss-Newton line search.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">12</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.hu_mode</code>
+        </td>
+        <td class="description_text">Velocity-space Hessian mode: banded or autodiff.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">banded</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.probe_mode</code>
+        </td>
+        <td class="description_text">Probe method used to assemble the banded velocity Hessian.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">autodiff</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.hvp_verify</code>
+        </td>
+        <td class="description_text">Compare the banded velocity Hessian with exact autodiff for debugging.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.preconditioner</code>
+        </td>
+        <td class="description_text">Weight-space PCG preconditioner: auto selects Nyström for DahuNet and identity for FNO; explicit choices are identity and nystrom.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">auto</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.precond_update_freq</code>
+        </td>
+        <td class="description_text">Accepted outer iterations between Nyström sketch refreshes.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">3</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.print_timing</code>
+        </td>
+        <td class="description_text">Print parseable Gauss-Newton preparation, sketch, PCG, and line-search timings.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.nystrom.rank</code>
+        </td>
+        <td class="description_text">Requested randomized Nyström rank.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">32</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.nystrom.seed</code>
+        </td>
+        <td class="description_text">Stateless random seed for Nyström sketches.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.nystrom.sketch_memory_gb</code>
+        </td>
+        <td class="description_text">Memory cap for the three large parameter-by-rank sketch tensors.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">2.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">GiB</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.nystrom.minimum_rank</code>
+        </td>
+        <td class="description_text">Fall back to identity below this effective Nyström rank.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">8</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.gauss_newton.nystrom.print_timing</code>
+        </td>
+        <td class="description_text">Synchronize and print detailed Nyström sketch/eigensolve timings for profiling.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.assembly</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            probe
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.scalar_flowline</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.damping</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1e-6
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.damping_adaptive</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.damping_min</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1e-12
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.damping_max</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1e2
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.damping_down</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.25
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.damping_up</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            4.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.tridiag_newton.probe_mode</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            fd
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
 
         </td>
       </tr>
@@ -8522,6 +10988,430 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.lr</code>
+        </td>
+        <td class="description_text">Base learning rate of the SS-eSOAP optimizer, used at DEFAULT status.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0003</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.lr_init</code>
+        </td>
+        <td class="description_text">Learning rate of the SS-eSOAP optimizer during INIT and WARM_UP.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.001</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.beta1</code>
+        </td>
+        <td class="description_text">Momentum decay coefficient for SS-eSOAP.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.9</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.beta2</code>
+        </td>
+        <td class="description_text">Second-moment and Kronecker-factor decay coefficient for SS-eSOAP.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.95</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.eps</code>
+        </td>
+        <td class="description_text">Epsilon for numerical stability in the SS-eSOAP update.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-08</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.tau_trigger</code>
+        </td>
+        <td class="description_text">Relative off-diagonal mass of a Kronecker factor above which SS-eSOAP recomputes its eigenbasis. Replaces SOAP's fixed preconditioner schedule: the cubic eigendecomposition fires only when the current basis has drifted.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.2</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.check_freq</code>
+        </td>
+        <td class="description_text">Iterations between two trigger checks. The check is O(m^3) on a layer of width m, so raising this to 5-10 amortises it on wide layers; the default of 1 is tuned for PINN-sized layers.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.warmup</code>
+        </td>
+        <td class="description_text">Iterations before the adaptive basis trigger is armed.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.tau_min</code>
+        </td>
+        <td class="description_text">Lower clip on the SS-eSOAP self-scaling factor tau, which matches the Kronecker metric to the curvature observed along the last parameter displacement.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.self_scaling</code>
+        </td>
+        <td class="description_text">Enable the self-scaling (secant-energy) correction. False gives the adaptive-basis-SOAP ablation.</td>
+        <td style="text-align: center;">
+
+            <span class="bool_table">True</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.damping</code>
+        </td>
+        <td class="description_text">Regularization added to the SS-eSOAP Kronecker factors.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-08</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.relative_damping</code>
+        </td>
+        <td class="description_text">Additional ridge added to an SS-eSOAP Kronecker factor A before its eigendecomposition, relative to its scale: A + (damping + relative_damping trace(A)/m) I. The factors are rank-deficient (a decaying sum of G G^T), and with the absolute damping below float32 resolution their null space is a cluster of eigenvalues at rounding-noise level, on which cuSOLVER's float32 eigendecomposition can fail to converge and stop the run; the default 1e-6 lifts that cluster above the noise. 0 keeps the absolute damping only (the behaviour before this option).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-06</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.weight_decay</code>
+        </td>
+        <td class="description_text">Decoupled weight decay applied by SS-eSOAP.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.lr_drop_iter</code>
+        </td>
+        <td class="description_text">Zero-based iteration at which to apply one learning-rate drop; a negative value disables the schedule. Optimizer state is retained across the drop.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">-1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.lr_drop_factor</code>
+        </td>
+        <td class="description_text">Multiplier applied to the SS-eSOAP learning rate at and after lr_drop_iter.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.lr_auto_drop_patience</code>
+        </td>
+        <td class="description_text">Length of each cost-comparison window for an automatic one-time learning-rate drop. A non-positive value disables the controller. This selects the drop time, not the initial learning rate, and is mutually exclusive with lr_drop_iter.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">iteration</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.lr_auto_drop_warmup</code>
+        </td>
+        <td class="description_text">Iteration at which the automatic-drop controller records its first reference cost.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">500</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">iteration</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.ss_esoap.lr_auto_drop_rel_improvement</code>
+        </td>
+        <td class="description_text">Minimum relative cost decrease required over an automatic-drop comparison window. If the decrease is smaller, the learning rate is multiplied once by lr_drop_factor.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.01</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.sequential.stages</code>
         </td>
         <td class="description_text">List containing the optimizer configurations when using a sequential optimization approach.</td>
@@ -8550,7 +11440,7 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="min-width: 200px;">
           <code class="param_name">unified.line_search</code>
         </td>
-        <td class="description_text">Type of line-search method.</td>
+        <td class="description_text">Line-search method for unified optimizers that use one: armijo, wolfe (strong Wolfe), or hager-zhang. Armijo uses cost-only trial evaluations where the optimizer supports them; Wolfe reuses bracket endpoint evaluations; Hager-Zhang is implemented locally without TensorFlow Probability and preserves projected-step handling for bounded mappings.</td>
         <td style="text-align: center;">
 
             <span class="string_table">hager-zhang</span>
@@ -8795,6 +11685,29 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.normalization.fixed.inputs_offsets.effective_pressure</code>
+        </td>
+        <td class="description_text">Fixed offset for the input effective_pressure (needed when a Budd/Coulomb law puts it in unified.inputs with a network mapping).</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">0.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_offsets.X</code>
         </td>
         <td class="description_text">Fixed offset for the input X.</td>
@@ -9008,6 +11921,29 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.normalization.fixed.inputs_variances.effective_pressure</code>
+        </td>
+        <td class="description_text">Fixed variance for the input effective_pressure.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">4.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">MPa^2</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.normalization.fixed.inputs_variances.X</code>
         </td>
         <td class="description_text">Fixed variance for the input X.</td>
@@ -9208,6 +12144,27 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.network.seed</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            None
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.network.fp16_inference</code>
         </td>
         <td class="description_text"></td>
@@ -9285,12 +12242,441 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_time.method</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            none
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_time.enabled_observation</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_time.credit.kappa</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.001
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_time.credit.retrain_freq_max</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            100
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_time.credit.record_path</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            credit_log.jsonl
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.enabled</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.windows</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            peak_augmented
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.n_extra_peaks</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            -1
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.patch_size</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            64
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.batch_cells_max</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            2250000
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.selection</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            scored
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.min_thk_in_window</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            0.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.score_alpha</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1.0
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.temporal_downsample</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            1
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.shuffle_training_windows</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            True
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.record_training_windows</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            False
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.record_path</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            None
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.rng_seed</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            None
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.adaptive_patching.rescore_freq</code>
+        </td>
+        <td class="description_text"></td>
+        <td style="text-align: center;">
+
+            10
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.data_preparation.framesizemax</code>
         </td>
         <td class="description_text">Maximum patch size; the domain is split into non-overlapping patches no larger than this value to avoid GPU memory overload.</td>
         <td style="text-align: center;">
 
-            <span class="integer_table">99999</span>
+            <span class="integer_table">100000000</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -9347,6 +12733,29 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="text-align: center;">
 
             <span class="integer_table">1</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.halt.raise_on_failure</code>
+        </td>
+        <td class="description_text">Raise RuntimeError after a failure criterion stops an optimizer instead of returning its last iterate.</td>
+        <td style="text-align: center;">
+
+            <span class="boolean_table">False</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">
@@ -9480,6 +12889,62 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
 
       <tr>
         <td style="min-width: 200px;">
+          <code class="param_name">unified.halt.criteria.rel_initial.tol</code>
+        </td>
+        <td class="description_text">Default tolerance for the metric norm relative to its value on the first criterion check.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1e-3</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.halt.criteria.rel_initial.ord</code>
+        </td>
+        <td class="description_text">Default type of norm for the relative-to-initial criterion.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">l2</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
           <code class="param_name">unified.halt.criteria.abs_tol.tol</code>
         </td>
         <td class="description_text">Default tolerance for the absolute-change criterion.</td>
@@ -9509,6 +12974,85 @@ w(\zeta) = \mathbf{u}(\zeta)\cdot\nabla z_\zeta - \nabla\cdot\mathbf{Q}_\zeta,
         <td style="text-align: center;">
 
             <span class="string_table">l2_weighted</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.halt.criteria.abs_change.tol</code>
+        </td>
+        <td class="description_text">Absolute threshold for the change in a metric between two sampled optimizer iterates. With metric u, its units are m yr^-1.</td>
+        <td style="text-align: center;">
+
+            <span class="float_table">1.0</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">metric dependent</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.halt.criteria.abs_change.reduction</code>
+        </td>
+        <td class="description_text">Reduction of pointwise vector changes: max for the largest vector magnitude or rmse for the root mean squared vector magnitude.</td>
+        <td style="text-align: center;">
+
+            <span class="string_table">max</span>
+
+        </td>
+        <td style="text-align: center; min-width: 100px;">
+
+            <span class="units_text">—</span>
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+      <tr>
+        <td style="min-width: 200px;">
+          <code class="param_name">unified.halt.criteria.abs_change.consecutive</code>
+        </td>
+        <td class="description_text">Number of consecutive sampled changes that must satisfy the threshold before halting.</td>
+        <td style="text-align: center;">
+
+            <span class="integer_table">1</span>
 
         </td>
         <td style="text-align: center; min-width: 100px;">

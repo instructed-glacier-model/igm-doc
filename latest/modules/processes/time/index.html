@@ -2057,6 +2057,8 @@
       
         
       
+        
+      
     
     
     
@@ -2651,6 +2653,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2672,7 +2678,7 @@
   <span class="md-ellipsis">
     
   
-    Misc
+    Hydrosphere
   
 
     
@@ -2685,6 +2691,152 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydrosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bmb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bmb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ocean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ocean
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calving_rate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    calving_rate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_6" id="__nav_5_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4650,7 +4802,7 @@ iii) It aligns exactly with specified saving times (controlled by the parameter 
       <td>
         <code class="param_name">cfl_percentile</code>
       </td>
-      <td class="description_text">Percentile of |velocity| used in the CFL condition in place of the maximum (100 = exact maximum, default). Values below 100 ignore the fastest (100 - p)% of grid cells, so that a few outlier cells do not collapse the time step; the CFL guarantee then no longer holds in those cells. The percentile is taken over all grid cells, including ice-free ones: keep it close to 100 (e.g. 99.9).</td>
+      <td class="description_text">Percentile of |velocity| used in the CFL condition in place of the maximum (100 = exact maximum, default). Values below 100 ignore the fastest (100 - p)% of grid cells, so that a few outlier cells do not collapse the time step; the CFL guarantee then no longer holds in those cells. The percentile is taken over the active (ice-covered) cells when available, otherwise over all grid cells.</td>
       <td style="text-align: center;">
 
           <span class="float_table">100.0</span>

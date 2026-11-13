@@ -2055,6 +2055,8 @@
       
         
       
+        
+      
     
     
     
@@ -2589,6 +2591,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2610,7 +2616,7 @@
   <span class="md-ellipsis">
     
   
-    Misc
+    Hydrosphere
   
 
     
@@ -2623,6 +2629,152 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hydrosphere
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/bmb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bmb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/ocean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ocean
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../processes/calving_rate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    calving_rate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_6" id="__nav_5_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Misc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3923,6 +4075,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ocean-sub-shelf-melt-and-calving-ocean-bmb-calving_rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ocean, sub-shelf melt and calving (ocean, bmb, calving_rate)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#subglacial-hydrology-subglacial_hydrology" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4671,7 +4834,7 @@
 <tr>
 <td><code>water_level</code></td>
 <td><code>(ny, nx)</code></td>
-<td>Water (sea or lake) level, if provided as input</td>
+<td>Water (sea or lake) level, if provided as input (a "no ocean" default otherwise)</td>
 <td>m</td>
 </tr>
 <tr>
@@ -4679,6 +4842,30 @@
 <td><code>(ny, nx)</code></td>
 <td>Divergence of the ice flux</td>
 <td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>Href</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Ice volume per unit area stored in the partial cells of a calving front (<code>thk.front</code>)</td>
+<td>m</td>
+</tr>
+<tr>
+<td><code>psi</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Level-set function of the calving front (<code>thk.front.method: level_set</code>)</td>
+<td>m</td>
+</tr>
+<tr>
+<td><code>ice_area_fraction</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Fill fraction of the cells at the calving front</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>calved_thk</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Cumulative calved ice thickness (calving, minimum front thickness, removed icebergs)</td>
+<td>m</td>
 </tr>
 </tbody>
 </table>
@@ -4922,6 +5109,67 @@
 <td><code>(ny, nx)</code></td>
 <td>Geothermal heat flux</td>
 <td>W m⁻²</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ocean-sub-shelf-melt-and-calving-ocean-bmb-calving_rate">Ocean, sub-shelf melt and calving (<code>ocean</code>, <code>bmb</code>, <code>calving_rate</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Shape</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ocean_temp</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Ocean potential temperature at the ice base (sea floor in open water)</td>
+<td>°C</td>
+</tr>
+<tr>
+<td><code>ocean_salinity</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Ocean salinity at the ice base</td>
+<td>g kg⁻¹</td>
+</tr>
+<tr>
+<td><code>ocean_thermal_forcing</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Thermal forcing, the temperature above the freezing point at the ice base</td>
+<td>K</td>
+</tr>
+<tr>
+<td><code>bmb</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Basal mass balance (ice equivalent), positive for a gain</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>shelf_melt_rate</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Sub-shelf melt rate of the melt law, positive for melt</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>grounded_fraction</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Grounded fraction of each node's cell</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>calving_rate</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Calving rate at the ice front (zero away from the front band)</td>
+<td>m yr⁻¹</td>
+</tr>
+<tr>
+<td><code>frontal_melt_rate</code></td>
+<td><code>(ny, nx)</code></td>
+<td>Frontal (submarine) melt rate at the ice front</td>
+<td>m yr⁻¹</td>
 </tr>
 </tbody>
 </table>
