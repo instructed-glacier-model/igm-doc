@@ -1,0 +1,214 @@
+/* IGM publications gallery */
+
+/* Year navigation pills */
+.year-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.year-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  background: var(--md-primary-fg-color--light, rgba(70,103,164,0.12));
+  color: var(--md-primary-fg-color, #4667a4);
+  border: 1px solid var(--md-primary-fg-color--light, rgba(70,103,164,0.25));
+  transition: background 0.15s, color 0.15s;
+}
+
+.year-pill:hover {
+  background: var(--md-primary-fg-color, #4667a4);
+  color: #fff;
+}
+
+.year-pill-count {
+  font-weight: 400;
+  font-size: 0.76em;
+  opacity: 0.75;
+}
+
+.gallery-summary {
+  font-size: 0.85rem;
+  color: var(--md-default-fg-color--light);
+  margin: 0.25rem 0 1rem;
+}
+
+.gallery-year {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding-bottom: 0.3rem;
+}
+
+.gallery-year .gallery-count {
+  font-size: 0.75em;
+  font-weight: 400;
+  color: var(--md-default-fg-color--light);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1rem 0 2rem 0;
+}
+@media (max-width: 1000px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--md-default-bg-color);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.gallery-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.gallery-media {
+  aspect-ratio: 16 / 9;
+  background: var(--md-code-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery-media img,
+.gallery-media video,
+.gallery-media iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  display: block;
+}
+
+.gallery-media-empty {
+  font-size: 2.5rem;
+  color: var(--md-default-fg-color--lighter);
+}
+
+.gallery-body {
+  padding: 0.85rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.gallery-title {
+  font-weight: 600;
+  line-height: 1.3;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+[data-md-color-scheme="glacier_light"] a.gallery-title:hover {
+  color: #1a47b0;
+}
+
+[data-md-color-scheme="glacier_dark"] a.gallery-title:hover {
+  color: #b8d6f5;
+}
+
+.gallery-meta {
+  font-size: 0.82em;
+  color: var(--md-default-fg-color--light);
+  line-height: 1.4;
+}
+
+.gallery-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+.gallery-chip {
+  font-size: 0.72em;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+  background: var(--md-code-bg-color);
+  color: var(--md-default-fg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.gallery-chip:hover {
+  background: var(--md-accent-fg-color--transparent);
+  color: var(--md-accent-fg-color);
+}
+
+.gallery-chip-code   { border-color: #4a8; }
+.gallery-chip-zenodo { border-color: #38c; }
+.gallery-chip-data   { border-color: #c83; }
+.gallery-chip-paper  { border-color: #888; }
+
+/* Papers-per-year histogram */
+.paper-hist {
+  margin: 1rem 0 2rem 0;
+  font-size: 0.85em;
+}
+.paper-hist-header {
+  font-size: 0.95em;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 0.5rem;
+}
+.paper-hist-row {
+  display: grid;
+  grid-template-columns: 3rem 1fr 2rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.15rem 0;
+}
+.paper-hist-year {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--md-default-fg-color--light);
+}
+.paper-hist-bar-track {
+  width: 100%;
+  height: 0.85rem;
+  background: rgba(127, 127, 127, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.paper-hist-bar {
+  display: block;
+  height: 100%;
+  background: #2879b3;
+  border-radius: 2px;
+  min-width: 2px;
+}
+.paper-hist-count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IGM viewer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="lib/ol.css">
+<link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+<div id="map"></div>
+<div id="panel">
+  <div class="head">
+    <h1>IGM viewer</h1>
+    <button id="collapse" title="hide / show the panel">hide</button>
+  </div>
+  <div id="body">
+    <label>Study</label>
+    <select id="study"></select>
+    <div id="studyinfo" class="info"></div>
+
+    <div id="scenbox">
+      <label>Scenario</label>
+      <div class="chips" id="scenarios"></div>
+    </div>
+
+    <div id="regionbox">
+      <label>Region</label>
+      <div class="chips" id="regions"></div>
+      <select id="regionsel"></select>
+    </div>
+
+    <label>Layer</label>
+    <div class="row tight">
+      <select id="field"></select>
+      <button id="b3d" title="3D view of the current map extent">3D view</button>
+    </div>
+
+    <div id="timebox">
+      <label><span id="tlabel">Time</span> <span id="tval" class="tval"></span></label>
+      <div class="row tight">
+        <button id="play" title="play / pause (space)">▶</button>
+        <input id="time" type="range" min="0" max="0" value="0">
+        <select id="fps" title="playback speed (frames per second)">
+          <option value="4">4/s</option><option value="8" selected>8/s</option><option value="16">16/s</option><option value="30">30/s</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div><label>Basemap</label>
+        <select id="base">
+          <option value="sat">Satellite (Esri)</option>
+          <option value="topo">Topographic (OpenTopoMap)</option>
+          <option value="osm">OpenStreetMap</option>
+          <option value="none">None</option>
+        </select></div>
+      <div><label>Opacity <span id="opv">80%</span></label>
+        <input id="opacity" type="range" min="10" max="100" value="80"></div>
+    </div>
+
+    <label>Colour scale</label>
+    <div class="row tight">
+      <input id="vmin" type="number" step="any">
+      <input id="vmax" type="number" step="any">
+      <button id="vreset" title="reset to the study's default">↺</button>
+    </div>
+    <div class="grad" id="grad"></div>
+    <div class="ticks" id="ticks"></div>
+
+    <div id="val" class="val"></div>
+    <div id="tsbox">
+      <div class="tshead"><span id="tstitle"></span><button id="tsclose" title="close">×</button></div>
+      <canvas id="ts" width="560" height="260"></canvas>
+    </div>
+    <div class="hint" id="hint"></div>
+    <div class="hint" id="busy"></div>
+    <details id="debug"><summary>requests</summary><div id="net"></div></details>
+  </div>
+</div>
+<div id="view3d">
+  <div id="v3host"></div>
+  <div id="v3attr"></div>
+  <div id="v3bar">
+    <label>Vertical exaggeration
+      <select id="ex3d"><option value="1">1×</option><option value="1.5" selected>1.5×</option><option value="2">2×</option><option value="3">3×</option></select>
+    </label>
+    <label>Ice
+      <select id="ice3d"><option value="layer" selected>layer colours</option><option value="white">white</option><option value="removed">removed (bed)</option></select>
+    </label>
+    <button id="home3d" title="back to the initial view">reset view</button>
+    <button id="close3d">back to map</button>
+  </div>
+</div>
+<div id="msg"></div>
+<script src="lib/proj4.js"></script>
+<script src="lib/geotiff.js"></script>
+<script src="lib/ol.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>
