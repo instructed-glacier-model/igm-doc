@@ -68,6 +68,10 @@ nav:
               - enthalpy: modules/processes/enthalpy.md
           - Lithosphere:
               - subglacial_hydrology: modules/processes/subglacial_hydrology.md
+          - Hydrosphere:
+              - bmb: modules/processes/bmb.md
+              - ocean: modules/processes/ocean.md
+              - calving_rate: modules/processes/calving_rate.md
           - Misc:
               - particles: modules/processes/particles.md
       - Assimilation Modules:

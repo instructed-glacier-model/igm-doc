@@ -33,8 +33,12 @@ The tables below list the variables of the core modules, and of the most common 
 | `usurf` | `(ny, nx)` | Ice surface elevation | m |
 | `lsurf` | `(ny, nx)` | Ice lower surface elevation (differs from `topg` where ice floats) | m |
 | `icemask` | `(ny, nx)` | Mask restricting SMB computation to glacierized area | — |
-| `water_level` | `(ny, nx)` | Water (sea or lake) level, if provided as input | m |
+| `water_level` | `(ny, nx)` | Water (sea or lake) level, if provided as input (a "no ocean" default otherwise) | m |
 | `divflux` | `(ny, nx)` | Divergence of the ice flux | m yr⁻¹ |
+| `Href` | `(ny, nx)` | Ice volume per unit area stored in the partial cells of a calving front (`thk.front`) | m |
+| `psi` | `(ny, nx)` | Level-set function of the calving front (`thk.front.method: level_set`) | m |
+| `ice_area_fraction` | `(ny, nx)` | Fill fraction of the cells at the calving front | — |
+| `calved_thk` | `(ny, nx)` | Cumulative calved ice thickness (calving, minimum front thickness, removed icebergs) | m |
 
 ## Ice flow (`iceflow`)
 
@@ -84,6 +88,19 @@ The tables below list the variables of the core modules, and of the most common 
 | `T_s` | `(ny, nx)` | Ice surface temperature | K |
 | `basal_melt_rate` | `(ny, nx)` | Basal melt rate (ice equivalent) | m yr⁻¹ |
 | `basal_heat_flux` | `(ny, nx)` | Geothermal heat flux | W m⁻² |
+
+## Ocean, sub-shelf melt and calving (`ocean`, `bmb`, `calving_rate`)
+
+| Variable | Shape | Description | Unit |
+|---|---|---|---|
+| `ocean_temp` | `(ny, nx)` | Ocean potential temperature at the ice base (sea floor in open water) | °C |
+| `ocean_salinity` | `(ny, nx)` | Ocean salinity at the ice base | g kg⁻¹ |
+| `ocean_thermal_forcing` | `(ny, nx)` | Thermal forcing, the temperature above the freezing point at the ice base | K |
+| `bmb` | `(ny, nx)` | Basal mass balance (ice equivalent), positive for a gain | m yr⁻¹ |
+| `shelf_melt_rate` | `(ny, nx)` | Sub-shelf melt rate of the melt law, positive for melt | m yr⁻¹ |
+| `grounded_fraction` | `(ny, nx)` | Grounded fraction of each node's cell | — |
+| `calving_rate` | `(ny, nx)` | Calving rate at the ice front (zero away from the front band) | m yr⁻¹ |
+| `frontal_melt_rate` | `(ny, nx)` | Frontal (submarine) melt rate at the ice front | m yr⁻¹ |
 
 ## Subglacial hydrology (`subglacial_hydrology`)
 

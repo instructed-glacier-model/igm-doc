@@ -149,7 +149,7 @@ where $\Omega$ is the three-dimensional ice domain, $\Gamma_\mathrm{b}$ is the b
 - The first term represents viscous dissipation. Here, $\mathbf{D}(\mathbf{u}) = (\nabla \mathbf{u} + \nabla \mathbf{u}^\top)/2$ is the strain-rate tensor, $A$ is the Arrhenius factor, and $n$ is the flow law exponent.
 - The second term represents basal friction dissipation, here parametrized with a Weertman law. Here, $c$ is the friction coefficient, $\mathbf{u}_\mathrm{b}$ is the basal velocity, and $m$ is the power-law exponent.
 - The third term represents gravitational power, which is the driving force. Here, $\rho_\mathrm{i}$ is ice density and $g$ is gravitational acceleration.
-- The fourth term accounts for the calving-front energy in marine-terminating glaciers, where $p_\mathrm{w}$ is the hydrostatic water pressure and $\mathbf{n}$ is the outward horizontal unit normal to $\Gamma_\mathrm{cf}$.
+- The fourth term accounts for the calving-front energy in marine-terminating glaciers, where $p_\mathrm{w}$ is the hydrostatic water pressure and $\mathbf{n}$ is the outward horizontal unit normal to $\Gamma_\mathrm{cf}$. The front is found from the geometry: an ice-covered cell next to an ice-free cell whose lower surface lies below the local water level (`water_level`, read from the input; see the [`thk`](thk.md) module for the flotation). Fronts on the sides of the domain are declared with `physics.cf_eswn`. Floating ice is frictionless: basal friction acts on grounded ice only (`sliding.use_mask_gr`), with the grounded fraction of the area around each node when `sliding.use_subgrid_gl` is set.
 
 The ice velocity is found by minimizing this functional:
 
@@ -257,6 +257,10 @@ $$
 
 The parameters $\boldsymbol{\theta}$ are the weights of a neural network $\mathcal{N}$ that maps glacier state $(\mathbf{c}_H, \mathbf{A}_H, \mathbf{h}_H, \mathbf{s}_H)$ to velocity degrees-of-freedom. Typically, the network can be a convolutional neural network [@LeCun2015]. Pretrained network can be chosen by specifying `unified.network.pretrained: true`.
 
+The architecture is set by `unified.network.architecture`: `cnn`, `unet`, `dahunet`, `fno` (a Fourier neural operator) or `hybrid_dahunet_fno`, a CNN backbone combined with Fourier layers. On marine glaciers, membrane stresses couple the velocity of an ice shelf over long distances; the Fourier layers of `fno` and `hybrid_dahunet_fno` capture these long-range interactions, which a convolutional network of limited receptive field cannot.
+
+Online training is controlled by `nbit_init` (iterations at the start), `retrain_freq` (the network is retrained every N time steps) and `nbit` (iterations per retraining). `nbit` is either a number or a piecewise-constant schedule over model time, `[[t_0, n_0], [t_1, n_1], ...]`, e.g. `[[0.0, 25], [1.0, 5]]` for a larger budget during the first year of a run.
+
 !!! tip "Pretrained, no-retraining emulators"
 
     IGM ships a set of **pretrained DahuNet emulators** that predict higher-order
@@ -265,7 +269,9 @@ The parameters $\boldsymbol{\theta}$ are the weights of a neural network $\mathc
     settings and are only valid inside that regime, which IGM checks automatically at
     load time. The older `pinnbp` emulators, which are pretrained starting points for
     **online retraining**, are also still available. Both are covered in
-    [The pretrained ice-flow emulator (DahuNet)](../../emulators/pretrained_emulator.md).
+    [The pretrained ice-flow emulator (DahuNet)](../../emulators/pretrained_emulator.md). With
+    `unified.network.pretrained.fp16_inference: true`, a pretrained network is evaluated in float16, which is
+    faster and lighter on memory; it must not be combined with retraining.
 
 <div class="mapping-figure" markdown="1">
   ![Network mapping architecture](../../fig/mapping.svg)
@@ -289,7 +295,67 @@ Available optimizers:
 | `adam` | Adaptive Moment Estimation: maintains running averages of gradient (first moment) and gradient magnitude (second moment) | [@Kingma2015] |
 | `lbfgs` | Limited-memory BFGS: quasi-Newton method approximating the inverse Hessian using gradient history | [@Nocedal2006] |
 | `soap` | SOAP (Shampoo with Adam): second-order optimizer combining Shampoo-style preconditioned updates with Adam's moment estimation; effective for physics-informed neural network training | [@Vyas2024] |
+| `cg_newton` | Newton–CG for the identity mapping: each Newton step solves the Hessian system by preconditioned conjugate gradients (see [below](#direct-solver-newton-cg)) | - |
+| `ss_esoap` | Self-scaling eSOAP for the network mapping: SOAP with an adaptive eigenbasis and a secant-energy self-scaling of the Kronecker preconditioner | - |
 | `sequential` | Multi-stage optimization allowing different optimizers and iteration counts in successive phases (see the [quick start-up guide](#unified-mode)) | - |
+
+#### Direct solver: Newton–CG
+
+With the identity mapping, `optimizer: cg_newton` is the reference solver: at each Newton iteration the search direction $\mathbf{d}^{(k)}$ solves $(\mathbf{H} + \delta\,\mathbf{I})\,\mathbf{d} = -\nabla\mathcal{J}$ by conjugate gradients, with $\mathbf{H}$ the Hessian of the energy and $\delta$ a Levenberg–Marquardt damping (`cg_newton.damping`, adapted from the line-search acceptance when `damping_adaptive` is set), followed by the line search of `unified.line_search` (`armijo`, `wolfe` or `hager-zhang`). The main options of `unified.cg_newton` are:
+
+- `hvp_mode`: `autodiff` evaluates exact Hessian–vector products by automatic differentiation; `banded` extracts a frozen 9-point horizontal stencil of the Hessian by graph colouring (identity mapping only), from Hessian–vector products of the colouring probes (`probe_mode`), evaluated `probe_batch` at a time for MOLHO (memory grows with the batch). The frozen stencil is rebuilt every `operator_update_freq` Newton iterations.
+- `preconditioner`: `none`, `block_jacobi` (point-block Jacobi) or `barotropic_multigrid`, a geometric multigrid V-cycle on the depth-averaged (barotropic) part of the banded Hessian with point-block smoothing (`multigrid.smoother_weight`, `multigrid.smoother_steps`, `multigrid.coarse_size`), for MOLHO with `Nz: 2`; it keeps the number of CG iterations independent of the grid size. The preconditioner is updated every `precond_update_freq` Newton iterations.
+- `cg_tol`, `cg_max_iter`: tolerance on the energy-norm residual and iteration cap of each CG solve (an inexact Newton method).
+- `warm_start` reuses the previous Newton direction as the initial guess of the next CG solve; `cold_restart_interval` restarts the solve from a zero velocity every given number of years, so that the solution cannot drift from one step to the next.
+
+A typical set-up for a marine glacier, stopping when the velocity no longer changes between Newton iterations:
+
+```yaml
+unified:
+  mapping: identity
+  optimizer: cg_newton
+  nbit: 20
+  cg_newton:
+    cg_tol: 1.0e-2
+    hvp_mode: banded
+    probe_batch: 9
+    preconditioner: barotropic_multigrid
+    cold_restart_interval: 1.0
+  halt:
+    success:
+      - criterion: abs_change
+        metric: u
+        tol: 1.0            # m/yr
+        reduction: rmse
+        consecutive: 3
+```
+
+!!! warning "Rigid-body modes of floating ice"
+
+    The energy $\mathcal{J}$ does not determine the velocity of floating ice that has no mechanical anchor to
+    grounded ice: an iceberg, or a block of full cells attached to the anchored ice through a single node (a
+    hinge), can translate or rotate freely. The exact solver then returns arbitrary, often huge, speeds for these
+    cells, which throttle the CFL time step (a network mapping is less sensitive, as the network weights couple the
+    velocity across the domain). Set `thk.remove_rigid_body_modes: true` so that the `thk` module removes such ice
+    after every update (grounded ice is never removed; with a calving front, the nodes that have just filled next
+    to the anchored ice are kept, see the [`thk`](thk.md) module). The same applies to vanishing ice: cells with
+    a thickness of a few centimetres also have an undetermined velocity, so remove them (e.g. with a minimum
+    thickness) rather than letting them decay.
+
+!!! warning "Regularizations and the conditioning of the Newton system"
+
+    The viscosity and the basal friction are power laws with exponents below one, so their second derivatives
+    blow up where the strain rate or the sliding speed vanishes. Both are regularized: `physics.ice.regularization`
+    (default `1e-5`, dimensionless, added to the strain-rate invariant of Glen's law) and
+    `physics.sliding.regularization` (default `1e-10` m yr⁻¹, added to the sliding speed in every friction law).
+    These two values set the largest curvature of the energy, hence the conditioning of the Hessian: the smaller
+    they are, the more PCG iterations each Newton step needs, and in single precision the Hessian can lose positive
+    definiteness. The default sliding regularization is practically zero and is meant for the network mapping,
+    where it only shapes the loss; for the Newton–CG solver, raise it to the order of 1 m yr⁻¹
+    (`physics.sliding.regularization: 1.0`, the value of the reference solves on marine glaciers) and keep the
+    viscosity regularization at its default. If the solver still stalls, needs many CG iterations, or fails on
+    slow ice (shear margins, the quasi-stagnant interior of a shelf, frozen patches), increase them further before
+    changing the solver settings.
 
 ### Convergence criteria
 
@@ -315,6 +381,7 @@ unified:
 | `rel_tol` | Relative change in metric below tolerance |
 | `abs_tol` | Absolute metric value below tolerance |
 | `patience` | No improvement for specified iterations |
+| `abs_change` | Absolute change of a metric between two sampled iterates below a threshold (`reduction`: `max` or `rmse` of the pointwise vector change; `consecutive` samples in a row) |
 
 **Failure criteria**: `halt.failure`
 
@@ -342,6 +409,8 @@ Boundary conditions are configured via `unified.bcs`:
 | `frozen_bed` | $\mathbf{u}\vert_{z=b} = \mathbf{0}$ |
 | `periodic_ns` | $\mathbf{u}\vert_{y=L_y} = \mathbf{u}\vert_{y=0}$ |
 | `periodic_we` |$\mathbf{u}\vert_{x=L_x} = \mathbf{u}\vert_{x=0}$ |
+
+In addition, `unified.bc.dirichlet.{left,right,top,bottom}` enforces a value on the velocity degrees of freedom of a side of the domain: a scalar sets both components, a pair `[u, v]` each one, `null` leaves the side free (e.g. `left: [300, 0]` for an inflow of 300 m yr⁻¹ at the left side).
 
 ## Practical guidance
 
