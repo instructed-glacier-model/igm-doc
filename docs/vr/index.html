@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IGM VR</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../viewer/app/lib/ol.css">
+<link rel="stylesheet" href="vr.css">
+</head>
+<body>
+<div id="map"></div>
+<div id="stage"></div>
+<div id="panel">
+  <h1>IGM VR</h1>
+  <label>Study</label>
+  <select id="study"></select>
+  <div id="studyinfo" class="info"></div>
+  <div id="scenbox"><label>Scenario</label><select id="scen"></select></div>
+  <div id="regionbox"><label>Region</label><select id="region"></select></div>
+  <label>Layer</label>
+  <select id="field"></select>
+  <div class="row">
+    <div><label>Basemap</label>
+      <select id="base"><option value="sat">Satellite</option><option value="topo">OpenTopoMap</option><option value="none">none</option></select></div>
+    <div><label>Detail</label>
+      <select id="detail"><option value="256">low</option><option value="512" selected>medium</option><option value="768">high</option></select></div>
+  </div>
+  <p class="hint" id="hint">Frame the area to show on the map, then build the model.</p>
+  <button id="build" class="main">Build model</button>
+  <div id="xr">
+    <button id="vr" disabled>Enter VR</button>
+    <button id="ar" disabled>Mixed reality</button>
+  </div>
+  <button id="back" class="hidden">Back to map</button>
+  <p class="hint" id="xrnote"></p>
+  <p class="hint" id="net"></p>
+</div>
+<div id="busy"></div>
+<script src="../viewer/app/lib/proj4.js"></script>
+<script src="../viewer/app/lib/geotiff.js"></script>
+<script src="../viewer/app/lib/ol.js"></script>
+<script type="module" src="vr.js"></script>
+</body>
+</html>

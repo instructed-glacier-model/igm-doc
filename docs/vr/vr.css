@@ -1,0 +1,21 @@
+html, body { margin: 0; height: 100%; font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; background: #e9eef5; color: #1d2738; }
+#map, #stage { position: absolute; inset: 0; }
+#stage { display: none; background: #dfe8f2; left: 302px; }
+@media (max-width: 700px) { #stage { left: 0; } }
+#panel { position: absolute; top: 10px; left: 10px; z-index: 5; width: 280px; max-height: calc(100% - 20px); overflow: auto;
+  background: rgba(255, 255, 255, .95); border: 1px solid #c8d3e4; border-radius: 8px; padding: 10px 12px; box-shadow: 0 2px 10px rgba(30, 50, 90, .18); }
+h1 { font-size: 15px; margin: 0; color: #4667a4; }
+label { display: block; margin-top: 8px; color: #4667a4; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+select { width: 100%; box-sizing: border-box; background: #fff; color: #1d2738; border: 1px solid #b5c3d9; border-radius: 5px; padding: 3px 5px; font: inherit; }
+button { background: #fff; color: #4667a4; border: 1px solid #b5c3d9; border-radius: 5px; padding: 5px 8px; cursor: pointer; font: inherit; width: 100%; margin-top: 8px; }
+button:hover:not(:disabled) { background: #eef2f9; }
+button:disabled { color: #9aa6ba; cursor: default; }
+button.main, #xr button:not(:disabled) { background: #4667a4; color: #fff; border-color: #4667a4; }
+.row, #xr { display: flex; gap: 8px; } .row > *, #xr > * { flex: 1; min-width: 0; }
+.info { font-size: 12px; color: #4b5a72; margin-top: 4px; }
+.info a { color: #4667a4; }
+.hint { font-size: 11px; color: #6b7891; margin: 8px 0 0; }
+#net { font-family: ui-monospace, monospace; }
+.hidden { display: none; }
+#busy { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 6; background: rgba(29, 39, 56, .85); color: #fff;
+  border-radius: 6px; padding: 6px 12px; display: none; }
