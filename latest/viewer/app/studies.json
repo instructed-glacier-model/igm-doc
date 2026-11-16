@@ -6,6 +6,13 @@
    "base_url": "https://zenodo.org/api/records/24021640/files",
    "url_suffix": "/content",
    "doi": "10.5281/zenodo.24021640"
+  },
+  {
+   "id": "2026-Frank-NatCommun",
+   "title": "Global glacier-free topography and potential future lakes",
+   "base_url": "https://zenodo.org/api/records/24217396/files",
+   "url_suffix": "/content",
+   "doi": "10.5281/zenodo.24217396"
   }
  ]
 }
